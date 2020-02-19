@@ -26,9 +26,7 @@
     "watch:js:prod": "webpack --mode=production --progress --watch",
     "watch:all:prod": "npm-run-all -p watch:css watch:js:prod watch:theme:prod",
     "watch:all:prod:windows": "npm-run-all -p watch:css:windows watch:js:prod watch:theme:prod",
-    "replace:theme:prod": "npm run js:css && cd ./src && theme deploy --env=production",
-    "netlify:dev": "netlify dev",
-    "netlify:prod": "netlify deploy --prod --dir=."
+    "replace:theme:prod": "npm run js:css && cd ./src && theme deploy --vars='../.env'"
   },
   "dependencies": {
     "@shopify/theme-sections": "^3.0.3",
