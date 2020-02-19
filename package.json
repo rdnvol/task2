@@ -16,16 +16,18 @@
     "js:css": "npm run js && npm run css",
     "test": "node -r ./webpack.config.js && js:css",
     "watch:css": "onchange 'src/styles/**/*.scss' -- npm run css",
-    "watch:css:windows": "onchange \"src/styles/**/*.scss\" -- npm run css",
+    "watch:css:win": "onchange \"src/styles/**/*.scss\" -- npm run css",
     "watch:js:dev": "webpack --mode=development --progress --watch ",
     "watch:theme:dev": "NODE_ENV=development cd ./src && theme watch --vars='../.env'",
     "watch:theme:prod": "cd ./src && theme watch --vars='../.env'",
+    "watch:theme:prod:win": "cd ./src && theme watch --vars=\"../.env\"",
     "watch:all:dev": "npm-run-all -p watch:css watch:js:dev watch:theme:dev",
     "replace:theme:dev": "npm run js:css && cd ../ && theme deploy --env=development",
     "watch:js:prod": "webpack --mode=production --progress --watch",
     "watch:all:prod": "npm-run-all -p watch:css watch:js:prod watch:theme:prod",
-    "watch:all:prod:windows": "npm-run-all -p watch:css:windows watch:js:prod watch:theme:prod",
-    "replace:theme:prod": "npm run js:css && cd ./src && theme deploy --vars='../.env'"
+    "watch:all:prod:win": "npm-run-all -p watch:css:win watch:js:prod watch:theme:prod:win",
+    "replace:theme:prod": "npm run js:css && cd ./src && theme deploy --vars='../.env'",
+    "replace:theme:prod:win": "npm run js:css && cd ./src && theme deploy --vars=\"../.env\""
   },
   "dependencies": {
     "@shopify/theme-sections": "^3.0.3",
