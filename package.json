@@ -1,11 +1,10 @@
 {
-  "name": "levain",
-  "version": "1.0.0",
+  "name": "original",
+  "version": "1.0.0-beta",
   "private": true,
-  "description": "Levain build tasks and dependencies.",
+  "description": "Original theme for projects from scratch.",
   "main": "app.js",
-  "author": "WS",
-  "license": "ISC",
+  "author": "BA",
   "sasslintConfig": ".",
   "engines": {
     "node": ">=10.0.0",
