@@ -10,6 +10,8 @@ import 'lazysizes/plugins/respimg/ls.respimg';
 
 import 'Scripts/jquery.plugins.js'
 
+import 'Scripts/login.js'
+
 class App {
   constructor() {
     this.init()

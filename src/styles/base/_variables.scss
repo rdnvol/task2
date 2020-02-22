@@ -44,15 +44,15 @@ $base-link-color: $color-body-text;
 
 // Buttons 
 $btn-color: $white !default;
-$btn-background: $color-body-text !default;
+$btn-background: $black !default;
 $btn-padding: 20px 15px !default;
 $btn-font-size: inherit !default;
 
 // Forms
 $form-element-padding: $btn-padding !default;
-$form-element-border-color: $color-border !default;
-$form-element-focus-border-color: $color-border !default;
-$placeholder-color: $color-accent !default;
+$form-element-border-color: $black !default;
+$form-element-focus-border-color: $d-gray !default;
+$placeholder-color: $color-body-text !default;
 
 // Headers
 $h1-font-size: 30px !default;
