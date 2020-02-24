@@ -59,50 +59,9 @@
   }
 }
 
-.account-page__content {
-  @include media("≥widescreen"){
-    padding-top:29px;
-  }
-}
-
-.account__address {
-  position:relative;
-  padding: 0 50px 0 0;
-  @include media("≥tablet"){
-    padding:0;
-  }
-}
-
-.account__item {
-  margin:0 0 30px;
-  @include media("≥tablet"){
-    position:relative;
-    margin:0 0 43px;
-    padding: 0 50px 0 0;
-  }
-}
-
-.account__link-edit {
-  position:absolute;
-  right:-2px;
-  top:7px;
-  @include media("≥tablet"){
-    top:4px;
-    right:2px;
-  }
-}
-
-.account__block {
+.account__title-box {
   margin:0 0 20px;
-  padding:35px 0 7px;
-  border-width:1px 0;
-  border-style:solid;
-  border-color:$black;
-  @include media("≥tablet"){
-    margin:0;
-    padding:45px 0 0;
-    border-width:1px 0 0;
-  }
+  border-bottom:1px solid $black;
 }
 
 .account__block__item-holder {
@@ -154,14 +113,6 @@
       margin:0 0 15px;
       padding:13px 0;
     }
-    &:first-child {
-      
-      td {
-        @include media("≥tablet"){
-          padding-top:12px;
-        }
-      }
-    }
     &:last-child {
       border:none;
       @include media("≤767px"){
@@ -176,7 +127,7 @@
       width:50%;
     }
     @include media("≥tablet"){
-      padding:35px 0;
+      padding:20px 0;
     }
     &.row-name {
       @include media("≤767px"){
@@ -212,99 +163,10 @@
     align-items:center;
     padding:0 0 16px;
   }
-  
-  .account__sub-title {
-    margin:0 0 5px;
-    @include media("≥tablet"){
-      margin:0;
-    }
-  }
 }
 
-.account-menu {
-  margin:0 0 40px;
-  border:1px solid #000;
-  @include media("≥tablet"){
-    margin:0 0 15px;
-    border:none;
-  }
-}
-
-.account-menu__link {
-  @include media("≥tablet"){
-    margin-left:25px;
-  }
-}
-
-.account-menu__opener {
-  border:none;
-  text-transform:capitalize;
-  color:$black !important;
-  padding:13px 30px 13px 15px;
-  font-size:inherit;
-  line-height:inherit;
-  &:before {
-    display:none;
-  }
-  &:after {
-    width:12px;
-    height:11px;
-    right:15px;
-    background-color:transparent;
-    transform:translate(0, -50%) rotate(90deg);
-    
-    .active & {
-      opacity:1;
-      transform:translate(0, -50%) rotate(-90deg);
-    }
-  }
-}
-
-.open-close-mobile__slide {
-  @include media("≤767px"){
-    display:none;
-  }
-}
-
-.account-menu__list {
-  @extend %listreset;
-  @include media("≥tablet"){
-    border-left:1px solid rgba(#000, 0.1);
-  }
-  
-  li {
-    border-top:1px solid #f2f2f2;
-    @include media("≥tablet"){
-      margin:0 0 12px -1px;
-      padding:0 0 0 25px;
-      border-top-width:0;
-      border-left:1px solid transparent;
-      transition:border $animation-speed ease;
-    }
-    &:hover,
-    &.active {
-      border-left-color:#000;
-    }
-    &.active {
-      
-      > a {
-        @include media("≤767px"){
-          color:$orange;
-        }
-      }
-    }
-  }
-  
-  a {
-    display:block;
-    padding:14px 15px 13px;
-    text-decoration:none;
-    @include media("≥tablet"){
-      display:inline-block;
-      vertical-align:top;
-      padding:10px 9px 10px 0;
-    }
-  }
+.account__sub-title {
+  margin:0 0 10px;
 }
 
 .account__customer-addresses {
