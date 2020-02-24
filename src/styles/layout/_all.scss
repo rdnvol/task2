@@ -319,4 +319,8 @@ img[data-sizes="auto"] {
     transform: translate3d(0,0,0)!important;
     transition-delay: 0s!important;
   }
+  
+  & + #preview-bar-iframe {
+    display:none;
+  }
 }

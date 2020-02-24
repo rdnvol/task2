@@ -6,7 +6,7 @@
 }
 
 .account-page__title {
-  margin:0 0 65px;
+  margin:0 0 30px;
   @include media("≥tablet"){
     margin:0 0 70px;
   }
@@ -24,11 +24,6 @@
   select {
     display:block;
     width:100%;
-  }
-  
-  .button {
-    font-size:14px;
-    padding-bottom:18px;
   }
 }
 
