@@ -49,6 +49,7 @@ function resetPasswordSuccess() {
 }
 
 if (document.querySelector(selectors.recoverPasswordForm)) {
+  console.log("Hello");
   checkUrlHash();
   resetPasswordSuccess();
 
