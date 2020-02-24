@@ -10,7 +10,9 @@ import 'lazysizes/plugins/respimg/ls.respimg';
 
 import 'Scripts/jquery.plugins.js'
 
+// Account js
 import 'Scripts/login.js'
+import 'Scripts/addresses.js'
 
 class App {
   constructor() {

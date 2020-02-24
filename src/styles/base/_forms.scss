@@ -43,10 +43,12 @@ textarea {
 
 select {
   -webkit-border-radius: 0;
-  height:50px;
   box-sizing: border-box;
+  height:50px;
   border: 1px solid $form-element-border-color;
   padding: $form-element-padding;
+  padding-top:0;
+  padding-bottom:0;
   font-size:12px;
   line-height:16px;
   font-weight:300;
@@ -58,6 +60,7 @@ select {
 }
 
 .select-holder {
+  position:relative;
   &:after {
     @include triangle(8px 6px, $black, down);
     content:'';

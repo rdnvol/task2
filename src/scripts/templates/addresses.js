@@ -16,7 +16,7 @@ const selectors = {
   addressForm: '[data-address-form]',
   addressDeleteForm: '[data-address-delete-form]',
 };
-const hideClass = 'hide';
+const hideClass = 'hidden';
 
 function initializeAddressForm(container) {
   const addressFields = container.querySelector(selectors.addressFields);

@@ -1,7 +1,7 @@
 .account-section {
-  padding-bottom:150px;
-  @include media("≤767px"){
-    padding-top:57px;
+  padding:60px 0;
+  @include media("≥tablet") {
+    padding:120px 0;
   }
 }
 
@@ -14,39 +14,43 @@
 
 .account-form {
   @extend %clearfix;
-  max-width:327px;
+  max-width:300px;
   margin:0 auto;
   color:$base-text-color;
-  @include media("≥tablet"){
-    max-width:300px;
-  }
   
   select {
     display:block;
     width:100%;
   }
+  
+  button {
+    min-width:300px;
+    @include media("≥tablet") {
+      min-width:100%;
+    }
+  }
 }
 
 .open-close__account {
   
-  .button,
-  .open-close__account__opener,
-   button {
-    min-width:230px;
+  button {
+    min-width:300px;
+    @include media("≥tablet") {
+      min-width:100%;
+    }
   }
 }
 
-.open-close__account__slide {
-  display:none;
+button.button-add-new-address {
+  min-width:300px;
 }
 
 .open-close__account__holder {
   padding:60px 0;
 }
 
-.input-row {
+.input-holder {
   position:relative;
-  margin:0 0 16px;
   &[data-aria-hidden="true"] {
     display:none;
   }
