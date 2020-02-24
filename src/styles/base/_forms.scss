@@ -93,19 +93,20 @@ input[type='submit'] {
   -webkit-appearance: none;
   -webkit-border-radius: 0;
   box-sizing: border-box;
-  padding:19px 30px;
+  padding:17px 30px 16px;
   min-width:136px;
   color:$btn-color;
   line-height:1;
   text-align:center;
   text-transform:uppercase;
   background:$btn-background;
-  border:none;
+  border:1px solid $white;
   cursor: pointer;
   &:hover,
   &:focus {
     color:$black;
     background:$white;
+    border-color:$black;
   }
   &.disabled {
     color:$white;
@@ -128,12 +129,7 @@ input[type='submit'] {
 a.button {
   display:inline-block;
   vertical-align:top;
-  padding:15px 30px;
   text-decoration:none;
-  @include media("≥widescreen"){
-    padding-top:19px;
-    padding-bottom:19px;
-  }
 }
 
 .input-holder {
