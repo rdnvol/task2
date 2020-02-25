@@ -57,10 +57,7 @@ button.button-add-new-address {
 }
 
 .account-form__actions {
-  margin:0 0 25px;
-  @include media("≥tablet"){
-    margin:0 0 25px;
-  }
+  margin:0 0 20px;
 }
 
 .account__title-box {
@@ -88,6 +85,7 @@ button.button-add-new-address {
 .order-table {
   width:100%;
   border-collapse: collapse;
+  margin:0 0 30px;
   
   .order-name {
     @extend h5;
@@ -96,6 +94,12 @@ button.button-add-new-address {
     
     a {
       text-decoration:none;
+    }
+  }
+  
+  thead {
+    @include media("≤767px") {
+      display:none;
     }
   }
   
@@ -110,50 +114,52 @@ button.button-add-new-address {
   
   tr {
     border-bottom:1px solid #d0d2d3;
-    @include media("≤767px"){
-      display:flex;
-      flex-wrap:wrap;
-      justify-content:space-between;
-      margin:0 0 15px;
-      padding:13px 0;
-    }
-    &:last-child {
-      border:none;
-      @include media("≤767px"){
-        margin:0;
-      }
-    }
+  }
+  
+  th,
+  td {
+    text-align:left;
   }
   
   td {
-    padding:0 0 15px;
+    padding:10px 0;
     @include media("≤767px"){
-      width:50%;
+      position:relative;
+      display:block;
+      width:100%;
     }
     @include media("≥tablet"){
       padding:20px 0;
     }
-    &.row-name {
-      @include media("≤767px"){
-        order:-2;
+    &:empty {
+      @include media("≤767px") {
+        display:none;
       }
     }
-    &.row-price {
-      @include media("≤767px"){
-        order:-1;
-        text-align:right;
+    &:before {
+      @include media("≤767px") {
+        content:attr(data-label);
+        display:inline-block;
+        vertical-align:top;
+        width:130px;
+        font-weight:bold;
       }
     }
-    &:nth-child(4) {
-      @include media("≤767px"){
-        text-align:right;
-      }
+  }
+  
+  .small--hide {
+    @include media("≤767px") {
+      display:none;
     }
-    &:last-child {
-      @include media("≥tablet"){
-        text-align:right;
-      }
-    }
+  }
+  
+  dt,
+  dd {
+    margin:0;
+  }
+  
+  tfoot {
+    font-weight:bold;
   }
 }
 
@@ -177,74 +183,6 @@ button.button-add-new-address {
   & + & {
     margin-top:30px;
   }
-}
-
-.orders-block__item {
-  padding:31px 0;
-  border-bottom:1px solid #d0d2d3;
-  &:first-child {
-    padding-top:0;
-  }
-  &:last-child {
-    border-bottom:none;
-  }
-}
-
-.orders-block__item__img {
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  flex-shrink:0;
-  width:80px;
-  margin:0 14px 0 0;
-  
-  img {
-    display:block;
-    width:100%;
-  }
-}
-
-.orders-block__item__text-holder {
-  width:100%;
-}
-
-.orders-block__item__category,
-.orders-block__item__product-title {
-  
-  a {
-    text-decoration:none;
-    color:inherit;
-    &:hover,
-    &:focus {
-      color:$orange;
-    }
-  }
-}
-
-.orders-block__item__category {
-  margin:1px 0;
-  text-transform:uppercase;
-  color:$base-text-color;
-}
-
-.orders-block__item__product-title {
-  margin:0 0 16px;
-}
-
-.orders-block__item__text {
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  margin:0 0 14px;
-  color:#666;
-}
-
-.orders-block__item__product-price {
-  color:$base-text-color;
-}
-
-.orders-block__item__subtotal {
-  font-weight:400;
 }
 
 .errors {

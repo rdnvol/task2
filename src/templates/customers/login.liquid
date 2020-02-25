@@ -9,7 +9,7 @@
 			</div>
 			{% form 'customer_login', class: 'account-form' %}
 				{{ form.errors | default_errors }}
-				<div class="input-row">
+				<div class="input-holder">
 					<label for="CustomerEmail" class="label-hidden">
 						{{ 'customer.login.email' | t }}
 					</label>
@@ -24,7 +24,7 @@
 								 autofocus>
 				</div>
 				{% if form.password_needed %}
-					<div class="input-row">
+					<div class="input-holder">
 						<label for="CustomerPassword" class="label-hidden">
 							{{ 'customer.login.password' | t }}
 						</label>
@@ -61,7 +61,7 @@
 					{% if form.posted_successfully? %}
 						<span class="hidden" data-form-state></span>
 					{% endif %}
-					<div class="input-row">
+					<div class="input-holder">
 						<label for="RecoverEmail" class="label-hidden">
 							{{ 'customer.recover_password.email' | t }}
 						</label>
