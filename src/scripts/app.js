@@ -15,7 +15,6 @@ class App {
     this.init()
   }
   init() {
-    // initGallery();
 
     // Responsive fluid iframe
     $(".rte iframe").each(function (index) {
