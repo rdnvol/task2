@@ -17,6 +17,8 @@ npm-debug.log
 .env
 .env.*
 package-lock.json
+src/assets/theme.css.liquid
+src/assets/theme.js
 
 # Compiled source #
 ###################
