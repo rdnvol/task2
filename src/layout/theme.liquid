@@ -34,6 +34,7 @@
 	{%- assign template_name = template.name -%}
 
 	{%- include 'social-meta-tags' -%}
+	{% include 'css-variables' %}
 	{{ 'theme.css' | asset_url | stylesheet_tag }}
 
 	{%- if template.directory == 'customers' -%}
