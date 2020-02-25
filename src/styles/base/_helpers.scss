@@ -1,0 +1,126 @@
+// list reset
+%listreset {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+// clearfix
+%clearfix {
+ &:after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+}
+
+.clearfix {
+  @extend %clearfix;
+}
+
+// transition
+%transition {
+ transition: all 0.3s ease-in-out;
+}
+
+.hidden-xs {
+  @include media("≤767px"){
+    display:none !important;
+  }
+}
+
+.hidden-sm {
+  @include media("≤991px"){
+    display:none !important;
+  }
+}
+
+.hidden-md {
+  @include media(">991px"){
+    display:none !important;
+  }
+}
+
+.visible-xs {
+  @include media("≥tablet"){
+    display:none !important;
+  }
+}
+
+.text-center {
+  text-align:center;
+}
+
+.text-left {
+  text-align:left;
+}
+
+.text-right {
+  text-align:right;
+}
+
+.text-right-sm {
+  @include media("≥tablet", "<desktop"){
+    text-align:right;
+  }
+}
+
+.m-auto {
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.sr-only {
+  position:absolute;
+  left:-9999px;
+  visibility:hidden;
+}
+
+.hidden {
+  display:none !important;
+  visibility:hidden !important;
+}
+
+.text-uppercase {
+  text-transform:uppercase;
+}
+
+
+// transition
+// %transition {
+//  transition: all 0.3s ease-in-out;
+// }
+
+// // justify nav
+// %justify {
+//  text-align: justify; 
+//  font-size: 1px;
+//  line-height: 0px;
+//  > * {
+//   display: inline-block;
+//   vertical-align: top;
+//   text-align: left;
+//   font-size: $font-size-base;
+//   line-height: $line-height-base;
+//  }
+//  &:after { 
+//   content: '';
+//   width: 100%;
+//   display: inline-block;
+//   vertical-align: top;
+//  }
+// }
+
+
+
+/// * Helper class to truncate and add ellipsis to a string too long for it to fit
+/// * on a single line.
+/// * 1. Prevent content from wrapping, forcing it on a single line.
+/// * 2. Add ellipsis at the end of the line.
+
+// .ellipsis {
+//   white-space: nowrap; /* 1 */
+//   text-overflow: ellipsis; /* 2 */
+//   overflow: hidden;
+// }
+

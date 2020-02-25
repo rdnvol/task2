@@ -1,0 +1,69 @@
+// Typography
+$font-heading: var(--font-heading);
+$font-body: var(--font-body);
+$font-body-weight: var(--font-body-weight);
+$font-body-style: var(--font-body-style);
+$font-body-bold-weight: var(--font-body-bold-weight);
+
+// Colors
+$black: #000;
+$white: #fff;
+$d-gray:#6a6a6a;
+$gray: #999;
+$l-gray:#e8e8e8;
+$red: #dc3636;
+$green: #537b3d;
+$yellow: #fdb03c;
+
+// Text colors
+$color-body-text: var(--color-body-text);
+
+// Background colors
+$color-body: var(--color-main-background);
+
+// Other colors
+$color-accent: var(--color-accent);
+$color-border: var(--color-border);
+
+$base-font-sans-serif: $font-body;
+$base-font-serif: 'Times New Roman', 'Times', 'Baskerville', 'Georgia', serif;
+
+// Body
+$base-text-color: $color-body-text !default;
+$base-background-color: $color-body !default;
+$font-size-base: 15px;
+$base-line-height: 1.86 !default;
+$base-font-family: $base-font-sans-serif !default;
+
+$vertical-rhythm: ($base-line-height * 1em);
+
+$base-min-width: 320px;
+
+// Liks
+$base-link-color: $color-body-text;
+
+// Buttons 
+$btn-color: $white !default;
+$btn-background: $color-accent !default;
+$btn-padding: 20px 15px !default;
+$btn-font-size: inherit !default;
+
+// Forms
+$form-element-padding: $btn-padding !default;
+$form-element-border-color: $color-border !default;
+$form-element-focus-border-color: $color-border !default;
+$placeholder-color: $color-accent !default;
+
+// Headers
+$h1-font-size: 30px !default;
+$h2-font-size: 25px !default;
+$h3-font-size: 20px !default;
+$h4-font-size: 18px !default;
+$h5-font-size: 15px !default;
+$h6-font-size: 12px !default;
+
+$headings-font-family: $font-heading !default;
+$headings-color: inherit !default;
+
+
+$animation-speed: 0.3s;

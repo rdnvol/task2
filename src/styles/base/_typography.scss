@@ -1,0 +1,103 @@
+// Typography
+
+h1, .h1,
+h2, .h2,
+h3, .h3,
+h4, .h4,
+h5, .h5,
+h6, .h6,
+.h {
+  font-family: $headings-font-family;
+  margin: 0 0 15px;
+  color: $headings-color;
+  line-height:1.6;
+  letter-spacing: 0.6px;
+  @include media("≥widescreen") {
+    line-height:1.5;
+  }
+}
+
+h1, .h1 {
+  font-size: $h1-font-size;
+  @include media("≥widescreen") {
+    font-size: $h1-font-size + 18px;
+    letter-spacing: 1.44px;
+  }
+}
+
+h2, .h2 {
+  font-size: $h2-font-size;
+  @include media("≥widescreen") {
+    font-size: $h2-font-size + 5px;
+    letter-spacing: 0.9px;
+  }
+}
+
+h3, .h3 {
+  font-size: $h3-font-size;
+}
+
+h4, .h4 {
+  font-size: $h4-font-size;
+  font-family:$base-font-family;
+  font-weight:500;
+  letter-spacing: 0.54px;
+}
+
+h5, .h5 {
+  font-size: $h5-font-size;
+  font-family:$base-font-family;
+  font-weight:500;
+  letter-spacing: 0.45px;
+}
+
+h6, .h6 {
+  font-size: $h6-font-size;
+  font-family:$base-font-family;
+  font-weight:500;
+  letter-spacing: 0.36px;
+}
+
+h1 a, .h1 a,
+h2 a, .h2 a,
+h3 a, .h3 a,
+h4 a, .h4 a,
+h5 a, .h5 a,
+h6 a, .h6 a,
+.h a{
+  color:inherit;
+}
+
+h1 a:hover, .h1 a:hover,
+h2 a:hover, .h2 a:hover,
+h3 a:hover, .h3 a:hover,
+h4 a:hover, .h4 a:hover,
+h5 a:hover, .h5 a:hover,
+h6 a:hover, .h6 a:hover,
+.h a:hover{
+  opacity: 0.6;
+}
+
+p {
+  margin:0 0 15px;
+  @include media("≥tablet"){
+    margin:0 0 25px;
+  }
+  @include media("≥desktop"){
+    margin:0 0 30px;
+  }
+}
+
+b,
+strong {
+  font-family: $headings-font-family;
+}
+
+a {
+  color: $base-link-color;
+  text-decoration:underline;
+  &:hover,
+  &:focus {
+    text-decoration: none;
+  }
+}

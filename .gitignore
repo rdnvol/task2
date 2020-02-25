@@ -10,12 +10,13 @@
 node_modules
 dist
 upload
+input
 deploy.log
 config/shopify.yml
 npm-debug.log
 .env
 .env.*
-
+package-lock.json
 
 # Compiled source #
 ###################
@@ -65,3 +66,5 @@ _site
 secrets.json
 .jekyll-metadata
 .ruby-version
+*.sublime-workspace
+*.sublime-project
