@@ -35,6 +35,12 @@
     "name": "Typography",
     "settings": [
       {
+        "type": "checkbox",
+        "id": "enable_fonts_library",
+        "label": "Shopify fonts library",
+        "default": true
+      },
+      {
         "type": "font_picker",
         "id": "font_heading",
         "default": "helvetica_n4",
