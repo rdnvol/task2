@@ -96,20 +96,20 @@ input[type='submit'] {
   -webkit-appearance: none;
   -webkit-border-radius: 0;
   box-sizing: border-box;
-  padding:17px 30px 16px;
   min-width:136px;
+  min-height:50px;
+  padding:12px 30px;
   color:$btn-color;
   line-height:1;
   text-align:center;
   text-transform:uppercase;
   background:$btn-background;
-  border:1px solid $white;
+  border:1px solid $black;
   cursor: pointer;
   &:hover,
   &:focus {
     color:$black;
     background:$white;
-    border-color:$black;
   }
   &.disabled {
     color:$white;
@@ -132,11 +132,22 @@ input[type='submit'] {
 a.button {
   display:inline-block;
   vertical-align:top;
+  padding-top:17px;
+  padding-bottom:16px;
   text-decoration:none;
 }
 
 .input-holder {
   margin:0 0 20px;
+}
+
+.page-search-form__button {
+  margin-left:-1px;
+  
+  svg {
+    margin:0 4px 0 0;
+    fill:currentColor;
+  }
 }
 
 .additional-checkout-buttons {
