@@ -18,6 +18,7 @@ textarea {
   -webkit-appearance: none;
   -webkit-border-radius: 0;
   box-sizing: border-box;
+  outline:none;
   display:block;
   width:100%;
   height:50px;
@@ -42,10 +43,12 @@ textarea {
 
 select {
   -webkit-border-radius: 0;
-  height:50px;
   box-sizing: border-box;
+  height:50px;
   border: 1px solid $form-element-border-color;
   padding: $form-element-padding;
+  padding-top:0;
+  padding-bottom:0;
   font-size:12px;
   line-height:16px;
   font-weight:300;
@@ -57,6 +60,7 @@ select {
 }
 
 .select-holder {
+  position:relative;
   &:after {
     @include triangle(8px 6px, $black, down);
     content:'';
@@ -92,14 +96,15 @@ input[type='submit'] {
   -webkit-appearance: none;
   -webkit-border-radius: 0;
   box-sizing: border-box;
-  padding:19px 30px;
   min-width:136px;
+  min-height:50px;
+  padding:12px 30px;
   color:$btn-color;
   line-height:1;
   text-align:center;
   text-transform:uppercase;
   background:$btn-background;
-  border:none;
+  border:1px solid $black;
   cursor: pointer;
   &:hover,
   &:focus {
@@ -127,16 +132,22 @@ input[type='submit'] {
 a.button {
   display:inline-block;
   vertical-align:top;
-  padding:15px 30px;
+  padding-top:17px;
+  padding-bottom:16px;
   text-decoration:none;
-  @include media("≥widescreen"){
-    padding-top:19px;
-    padding-bottom:19px;
-  }
 }
 
 .input-holder {
   margin:0 0 20px;
+}
+
+.page-search-form__button {
+  margin-left:-1px;
+  
+  svg {
+    margin:0 4px 0 0;
+    fill:currentColor;
+  }
 }
 
 .additional-checkout-buttons {

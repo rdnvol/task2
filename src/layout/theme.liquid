@@ -70,14 +70,14 @@
 	<a class="in-page-link accessibility skip-link" href="#content">{{ 'general.accessibility.skip_to_content' | t }}</a>
 	
 	<div id="wrapper">
-		{% section 'header' %}
+		{% comment %}{% section 'header' %}{% endcomment %}
 
 		<main role="main" id="main">
 			{{ content_for_layout }}
 		</main>
 	</div>
 
-	{% section 'footer' %}
+	{% comment %}{% section 'footer' %}{% endcomment %}
 	
 </body>
 </html>

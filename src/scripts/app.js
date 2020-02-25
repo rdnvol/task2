@@ -1,6 +1,8 @@
 import $ from 'jquery';
 import { load } from '@shopify/theme-sections';
 
+import 'picturefill';
+
 import 'lazysizes/plugins/object-fit/ls.object-fit';
 import 'lazysizes/plugins/parent-fit/ls.parent-fit';
 import 'lazysizes/plugins/rias/ls.rias';
@@ -9,6 +11,10 @@ import 'lazysizes';
 import 'lazysizes/plugins/respimg/ls.respimg';
 
 import 'Scripts/jquery.plugins.js'
+
+// Account js
+import 'Scripts/login.js'
+import 'Scripts/addresses.js'
 
 class App {
   constructor() {

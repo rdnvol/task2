@@ -280,12 +280,24 @@
   blockquote {
     margin:0 0 15px;
     padding:0 0 0 25px;
-    border-left:2px solid $color-body-text;
+    border-left:2px solid $d-gray;
     @include media("≥tablet"){
       margin:0 0 25px;
     }
     @include media("≥widescreen"){
       margin:0 0 30px;
+    }
+  }
+}
+
+.page-title-block {
+  margin:0 0 30px;
+  
+  h1,
+  .h1,
+  .h {
+    &:only-child {
+      margin-bottom:0;
     }
   }
 }
@@ -318,5 +330,9 @@ img[data-sizes="auto"] {
   &:hover {
     transform: translate3d(0,0,0)!important;
     transition-delay: 0s!important;
+  }
+  
+  & + #preview-bar-iframe {
+    display:none;
   }
 }

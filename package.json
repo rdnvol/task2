@@ -30,6 +30,7 @@
     "replace:theme:prod:win": "npm run js:css && cd ./src && theme deploy --vars=\"../.env\""
   },
   "dependencies": {
+    "@shopify/theme-addresses": "^3.0.3",
     "@shopify/theme-sections": "^3.0.3",
     "axios": "^0.19.0",
     "browser-sync": "^2.26.7",
@@ -38,8 +39,8 @@
     "flatpickr": "^4.6.3",
     "google-spreadsheet": "^2.0.8",
     "jquery": "^3.2.1",
-    "lazysizes": "^4.1.1",
     "js-cookie": "^2.2.1",
+    "lazysizes": "^4.1.1",
     "modernizr": "^3.6.0",
     "moment": "^2.24.0",
     "objectFitPolyfill": "^2.3.0",
