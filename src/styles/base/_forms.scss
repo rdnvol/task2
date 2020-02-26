@@ -12,6 +12,7 @@ input[type='tel'],
 input[type='email'],
 input[type='search'],
 input[type='password'],
+input[type='number'],
 //input[type='url'],
 // input[type='date'],
 textarea {
@@ -39,6 +40,10 @@ textarea {
   @include placeholder {
     color: $placeholder-color;
   }
+}
+
+input[type='number'] {
+  width:100px;
 }
 
 select {
@@ -96,7 +101,7 @@ input[type='submit'] {
   -webkit-appearance: none;
   -webkit-border-radius: 0;
   box-sizing: border-box;
-  min-width:136px;
+  min-width:180px;
   min-height:50px;
   padding:12px 30px;
   color:$btn-color;
