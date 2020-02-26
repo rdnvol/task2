@@ -65,7 +65,7 @@
         "type": "range",
         "id": "custom_heading_weight",
         "label": "Custom heading font weight",
-        "default": 300,
+        "default": 400,
         "min": 100,
         "max": 900,
         "step": 100

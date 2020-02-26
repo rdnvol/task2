@@ -8,11 +8,10 @@ h5, .h5,
 h6, .h6,
 .h {
   font-family: $headings-font-family;
+  font-weight: $headings-font-weight;
   text-transform:uppercase;
-  font-style:italic;
   margin: 0 0 15px;
   color: $headings-color;
-  line-height:1.6;
 }
 
 h1, .h1 {
