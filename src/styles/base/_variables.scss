@@ -4,6 +4,7 @@ $font-body: var(--font-body);
 $font-body-weight: var(--font-body-weight);
 $font-body-style: var(--font-body-style);
 $font-body-bold-weight: var(--font-body-bold-weight);
+$font-heading-weight: var(--font-heading-weight);
 
 // Colors
 $black: #000;
@@ -55,7 +56,7 @@ $form-element-focus-border-color: $d-gray !default;
 $placeholder-color: $color-body-text !default;
 
 // Headers
-$h1-font-size: 30px !default;
+$h1-font-size: 40px !default;
 $h2-font-size: 25px !default;
 $h3-font-size: 20px !default;
 $h4-font-size: 18px !default;
@@ -63,6 +64,7 @@ $h5-font-size: 15px !default;
 $h6-font-size: 12px !default;
 
 $headings-font-family: $font-heading !default;
+$headings-font-weight: $font-heading-weight;
 $headings-color: inherit !default;
 
 
