@@ -35,6 +35,12 @@
     "name": "Typography",
     "settings": [
       {
+        "type": "checkbox",
+        "id": "enable_fonts_library",
+        "label": "Shopify fonts library",
+        "default": true
+      },
+      {
         "type": "font_picker",
         "id": "font_heading",
         "default": "helvetica_n4",
@@ -45,6 +51,24 @@
         "id": "font_body",
         "default": "helvetica_n4",
         "label": "Body text"
+      },
+      {
+        "type": "range",
+        "id": "custom_body_weight",
+        "label": "Custom body font weight",
+        "default": 300,
+        "min": 100,
+        "max": 900,
+        "step": 100
+      },
+      {
+        "type": "range",
+        "id": "custom_heading_weight",
+        "label": "Custom heading font weight",
+        "default": 400,
+        "min": 100,
+        "max": 900,
+        "step": 100
       }
     ]
   },
