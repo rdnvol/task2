@@ -1,15 +1,13 @@
 <style>
-  {%- if settings.enable_fonts_library -%}
 
   {{ settings.font_heading | font_face }}
   {{ settings.font_body | font_face }}
 
   {%- assign font_body_bold = settings.font_body | font_modify: 'weight', 'bolder' -%}
-  {%- assign font_body_bold_italic = font_body_bold | font_modify: 'style', 'italic' -%}
+  {%- assign font_body_italic = settings.font_body | font_modify: 'style', 'italic' -%}
 
   {{ font_body_bold | font_face }}
-  {{ font_body_bold_italic | font_face }}
-  {%- endif -%}
+  {{ font_body_italic | font_face }}
 
   :root {
     --color-accent: {{ settings.color_accent }};
