@@ -52,6 +52,7 @@ input[type="reset"] {
 }
 
 // transition for svg
-svg * {
-  transition: all $animation-speed ease;
+svg {
+  transition: stroke $animation-speed ease,
+  fill $animation-speed ease;
 }
