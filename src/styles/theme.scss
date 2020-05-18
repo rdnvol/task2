@@ -44,9 +44,9 @@ $media-expressions: (
 @import 'layout/all';
 @import 'layout/account';
 
-@import 'sections/hero';
-@import 'sections/featured-collection';
-@import 'sections/feature-block';
+@import 'section/hero';
+@import 'section/featured-collection';
+@import 'section/feature-block';
 
 @import 'modules/footer';
 
