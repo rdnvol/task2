@@ -1,0 +1,7 @@
+.product-item__img {
+  margin:0 0 30px;
+  @include media("≥desktop") {
+    margin:0 0 5px;
+  }
+}
+

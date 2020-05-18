@@ -10,9 +10,11 @@ h6, .h6,
   font-family: $headings-font-family;
   font-weight: $headings-font-weight;
   line-height: 1.5;
-  text-transform:uppercase;
-  margin: 0 0 15px;
+  margin: 0 0 20px;
   color: $headings-color;
+  @include media("≥desktop") {
+    margin:0 0 30px;
+  }
 }
 
 h1, .h1 {

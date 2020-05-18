@@ -24,9 +24,12 @@
 }
 
 .container {
-  max-width:1480px;
+  max-width:1360px;
   margin:0 auto;
-  padding:0 20px;
+  padding:0 15px;
+  @include media("≥desktop") {
+    padding:0 30px;
+  }
 }
 
 .breadcrumbs {
