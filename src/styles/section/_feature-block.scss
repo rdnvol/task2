@@ -4,3 +4,11 @@
     margin: 0;
   }
 }
+
+.feature-item__text {
+  padding: 0 0 40px;
+  @include media ("≥tablet") {
+    padding: 0;
+  }
+  
+}
