@@ -1,0 +1,30 @@
+.hero {
+  position: relative;
+  z-index: 2;
+  margin: 0 0 50px;
+  @include media("≥tablet") {
+    margin: 0;
+  }
+}
+
+.hero-gallery__img {
+  margin: 0 0 20px;
+  @include media("≥tablet") {
+    margin: 0;
+  }
+
+  img {
+    display: block;
+  }
+}
+
+.hero__block {
+  @include media("≥tablet") {
+    position: absolute;
+    left: 0;
+    top: 50px;
+    right: 0px;
+    bottom: 50px;
+    z-index: 4;
+  }
+}
