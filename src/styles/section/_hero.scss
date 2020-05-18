@@ -7,14 +7,10 @@
   }
 }
 
-.hero-gallery__img {
+.hero__img {
   margin: 0 0 20px;
   @include media("≥tablet") {
     margin: 0;
-  }
-
-  img {
-    display: block;
   }
 }
 
@@ -22,9 +18,9 @@
   @include media("≥tablet") {
     position: absolute;
     left: 0;
-    top: 50px;
+    top: 30px;
     right: 0px;
-    bottom: 50px;
+    bottom: 30px;
     z-index: 4;
   }
 }
