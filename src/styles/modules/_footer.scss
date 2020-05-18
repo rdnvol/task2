@@ -1,7 +1,51 @@
-[id="shopify-section-footer"] {
+[id="shopify-section-footer"],
+[id="shopify-section-footer--markup"] {
   display:table-footer-group;
   height:1%;
   width:100%;
   overflow:hidden;
+}
+
+[id="footer"] {
+  position:relative;
+  
+  a {
+    text-decoration:none;
+    &:hover {
+      text-decoration:underline;
+    }
+  }
+}
+
+.footer-holder {
+  padding:20px 0 64px;
+  @include media("≥widescreen") {
+    padding:74px 0;
+  }
+}
+
+.footer__nav {
+  
+  ul {
+    margin:0;
+    padding:0;
+    list-style:none;
+  }
+}
+
+.footer__panel {
+  padding:20px 0;
+  color:$gray;
+  font-size:$font-size-base - 4px;
+  line-height:1.25;
+  letter-spacing: 0.05em;
+  text-transform:uppercase;
+  @include media("≥desktop") {
+    padding:7px 0;
+  }
+  
+  a {
+    color:inherit;
+  }
 }
 

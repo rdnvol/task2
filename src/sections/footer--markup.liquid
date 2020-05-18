@@ -1,0 +1,67 @@
+<footer id="footer">
+	<div class="container">
+		<div class="footer-holder">
+			<div class="row">
+				<div class="col-sm-12 col-lg-3">
+					<p>Dignissim suspendisse in est ante in nibh mauris cursus mattis. Arcu odio ut sem nulla pharetra diam sit amet nisl.</p>
+				</div>
+				<div class="col-sm-3 col-lg-3">
+					<nav class="footer__nav">
+						<h3 class="footer__title h5">Explore</h3>
+						<ul>
+							<li><a href="#">Home</a></li>
+							<li><a href="#">Shop</a></li>
+							<li><a href="#">Blog</a></li>
+							<li><a href="#">Contact</a></li>
+							<li><a href="#">Features</a></li>
+						</ul>
+					</nav>
+				</div>
+				<div class="col-sm-3 col-lg-3">
+					<nav class="footer__nav">
+						<h3 class="footer__title h5">Quick Links</h3>
+						<ul>
+							<li><a href="#">My Account</a></li>
+							<li><a href="#">Order History</a></li>
+							<li><a href="#">Wish List</a></li>
+							<li><a href="#">Newsletter</a></li>
+							<li><a href="#">Specials</a></li>
+						</ul>
+					</nav>
+				</div>
+				<div class="col-sm-3 col-lg-3">
+					<h3 class="footer__title h5">Connect</h3>
+					<p>Join our mailing list for updates</p>
+					<form action="#" class="">
+						<input type="email" placeholder="Enter your email">
+						<input type="submit" value="Submit" />
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="footer__panel text-center">
+			<div class="mb-2">&copy; {{ 'now' | date: "%Y" }} <a href="#">Draft</a>. All Rights Reserved. <a href="#">Terms</a>, <a href="#">Privacy &amp; Accessibility</a>.</div>
+		</div>
+	</div>
+</footer>
+
+{% schema %}
+  {
+	"name": "Footer",
+	"settings": [
+	  {
+		"type": "link_list",
+		"id": "footer_linklist",
+		"label": "First menu",
+		"default": "footer"
+	  },
+	  {
+		"type": "checkbox",
+		"id": "show_payment_icons",
+		"label": "Show payment icons",
+		"default": false
+	  }
+	]
+  }
+
+{% endschema %}
