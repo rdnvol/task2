@@ -32,8 +32,8 @@ $base-font-serif: 'Times New Roman', 'Times', 'Baskerville', 'Georgia', serif;
 // Body
 $base-text-color: $color-body-text !default;
 $base-background-color: $color-body !default;
-$font-size-base: 15px;
-$base-line-height: 1.86 !default;
+$font-size-base: 16px;
+$base-line-height: 1.5 !default;
 $base-font-family: $base-font-sans-serif !default;
 
 $vertical-rhythm: ($base-line-height * 1em);
@@ -56,16 +56,17 @@ $form-element-focus-border-color: $d-gray !default;
 $placeholder-color: $color-body-text !default;
 
 // Headers
-$h1-font-size: 40px !default;
-$h2-font-size: 25px !default;
-$h3-font-size: 20px !default;
-$h4-font-size: 18px !default;
-$h5-font-size: 15px !default;
-$h6-font-size: 12px !default;
-
-$headings-font-family: $font-heading !default;
+$headings-font-size: 36px;
 $headings-font-weight: $font-heading-weight;
+$headings-font-family: $font-heading !default;
 $headings-color: inherit !default;
+
+$h1-font-size: $headings-font-size !default; // 35px
+$h2-font-size: $headings-font-size - 10px !default; // 25px
+$h3-font-size: $headings-font-size - 15px !default; // 20px
+$h4-font-size: $headings-font-size - 19px !default; // 16px
+$h5-font-size: $headings-font-size - 21px !default; // 14px
+$h6-font-size: $headings-font-size - 23px !default; // 12px
 
 
 $animation-speed: 0.3s;
