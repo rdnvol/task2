@@ -1,7 +1,33 @@
+.product-item {
+  margin:0 0 64px;
+  @include media("≥576px") {
+    margin:0 0 30px;
+  }
+}
+
 .product-item__img {
+  display:block;
   margin:0 0 30px;
   @include media("≥desktop") {
     margin:0 0 5px;
   }
 }
 
+.product-item__title {
+  margin:0 0 10px;
+  font:600 #{$font-size-base}/1.25 $base-font-family;
+  @include media("≥desktop") {
+    margin:0 0 15px;
+  }
+}
+
+.product-item__price {
+  
+  ins {
+    text-decoration:none;
+  }
+  
+  del {
+    color:$red;
+  }
+}
