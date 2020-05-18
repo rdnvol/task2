@@ -1,0 +1,6 @@
+.feature-item__img {
+  margin: 0 0 20px;
+  @include media("≥tablet") {
+    margin: 0;
+  }
+}
