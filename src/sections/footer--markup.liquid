@@ -1,11 +1,14 @@
 <footer id="footer">
 	<div class="container">
-		<div class="footer-holder">
+		<div class="footer__holder">
 			<div class="row">
-				<div class="col-sm-12 col-lg-3">
+				<div class="col-sm-12 col-lg-3 mb-6 mb-lg-0">
+					<a href="#" class="footer__logo">
+						<img data-src="{{ 'logo-2.svg' | asset_url }}" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" class="lazyload" data-sizes="auto" alt="image description">
+					</a>
 					<p>Dignissim suspendisse in est ante in nibh mauris cursus mattis. Arcu odio ut sem nulla pharetra diam sit amet nisl.</p>
 				</div>
-				<div class="col-sm-3 col-lg-3">
+				<div class="col-sm-6 col-md-4 col-lg-3 mb-6 mb-lg-0">
 					<nav class="footer__nav">
 						<h3 class="footer__title h5">Explore</h3>
 						<ul>
@@ -17,7 +20,7 @@
 						</ul>
 					</nav>
 				</div>
-				<div class="col-sm-3 col-lg-3">
+				<div class="col-sm-6 col-md-4 col-lg-3 mb-6 mb-lg-0">
 					<nav class="footer__nav">
 						<h3 class="footer__title h5">Quick Links</h3>
 						<ul>
@@ -29,18 +32,29 @@
 						</ul>
 					</nav>
 				</div>
-				<div class="col-sm-3 col-lg-3">
+				<div class="col-sm-6 col-md-4 col-lg-3">
 					<h3 class="footer__title h5">Connect</h3>
 					<p>Join our mailing list for updates</p>
-					<form action="#" class="">
-						<input type="email" placeholder="Enter your email">
-						<input type="submit" value="Submit" />
+					<form action="#" class="footer__form pt-2">
+						<div class="d-flex align-items-center position-relative">
+							<input type="email" placeholder="Enter your email" class="footer__form__input">
+							<button type="submit" class="footer__form__button">
+								{%- include 'icon-arrow-right' -%}
+							</button>
+						</div>
 					</form>
 				</div>
 			</div>
 		</div>
 		<div class="footer__panel text-center">
-			<div class="mb-2">&copy; {{ 'now' | date: "%Y" }} <a href="#">Draft</a>. All Rights Reserved. <a href="#">Terms</a>, <a href="#">Privacy &amp; Accessibility</a>.</div>
+			<div class="mb-4 mb-md-2">&copy; {{ 'now' | date: "%Y" }} <a href="#">Draft</a>. All Rights Reserved. <a href="#">Terms</a>, <a href="#">Privacy &amp; Accessibility</a>.</div>
+			<div>
+				<picture>
+					<source srcset="{{ 'payment-logos-m-2x.png' | asset_img_url:'345x' }}, {{ 'payment-logos-m-2x.png' | asset_img_url:'690x' }} 2x" media="(max-width: 767px)">
+					<source srcset="{{ 'payment-logos-2x.png' | asset_img_url:'635x' }}, {{ 'payment-logos-2x.png' | asset_img_url:'1270x' }} 2x">
+					<img src="{{ 'payment-logos-2x.png' | asset_img_url:'1270x' }}" alt="image description">
+				</picture>
+			</div>
 		</div>
 	</div>
 </footer>
