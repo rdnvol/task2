@@ -171,6 +171,40 @@
 				<li>List item three</li>
 				<li>List item four</li>
 			</ol>
+			
+			<div class="row">
+				<div class="col-sm-4 mb-4">
+					<h4>Image lazyload asset_img_url</h4>
+					<picture>
+						<source data-srcset="{{ 'img-placeholder.png' | asset_img_url:'375x' }}, {{ 'img-placeholder.png' | asset_img_url:'750x' }} 2x" media="(max-width: 767px)" srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+						<source data-srcset="{{ 'img-placeholder.png' | asset_img_url:'688x' }}, {{ 'img-placeholder.png' | asset_img_url:'1376x' }} 2x" srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+						<img data-src="{{ 'img-placeholder.png' | asset_img_url:'688x' }}" class="lazyload" data-sizes="auto" alt="image description" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+					</picture>
+				</div>
+				<div class="col-sm-4 mb-4">
+					<h4>Image lazyload asset_img_url with fixed sizes image placeholder</h4>
+					<picture>
+						<source data-srcset="{{ 'img-placeholder.png' | asset_img_url:'375x300' }}, {{ 'img-placeholder.png' | asset_img_url:'750x' }} 2x" media="(max-width: 767px)" srcset="{{ 'img-placeholder.png' | asset_img_url:'375x300', crop: 'center' }}">
+						<source data-srcset="{{ 'img-placeholder.png' | asset_img_url:'688x600' }}, {{ 'img-placeholder.png' | asset_img_url:'1376x' }} 2x" srcset="{{ 'img-placeholder.png' | asset_img_url:'688x600', crop: 'center' }}">
+						<img data-src="{{ 'img-placeholder.png' | asset_img_url:'688x600' }}" class="lazyload" data-sizes="auto" alt="image description" src="{{ 'img-placeholder.png' | asset_img_url:'688x600', crop: 'center' }}">
+					</picture>
+				</div>
+				<div class="col-sm-4 mb-4">
+					<h4>Image lazyload asset_img_url</h4>
+					<picture>
+						<source data-srcset="{{ 'img-placeholder.png' | asset_img_url:'375x' }}, {{ 'img-placeholder.png' | asset_img_url:'750x' }} 2x" media="(max-width: 767px)" srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+						<source data-srcset="{{ 'img-placeholder.png' | asset_img_url:'688x' }}, {{ 'img-placeholder.png' | asset_img_url:'1376x' }} 2x" srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+						<img data-src="{{ 'img-placeholder.png' | asset_img_url:'688x' }}" class="lazyload" data-sizes="auto" alt="image description" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+					</picture>
+				</div>
+				<div class="col-sm-4 mb-4">
+					<h4>Image placeholder</h4>
+					<picture>
+						<img src="https://via.placeholder.com/203x115" class="lazyload" data-sizes="auto" alt="image description" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" />
+					</picture>
+				</div>
+			</div>
+			
 			<iframe width="560" height="315" src="https://www.youtube.com/embed/ScMzIvxBSi4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
 		</div>
 	</div>

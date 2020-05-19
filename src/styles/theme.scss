@@ -39,9 +39,14 @@ $media-expressions: (
 
 @import 'modules/header';
 
+
 @import 'layout/password';
 @import 'layout/all';
 @import 'layout/account';
+
+@import 'section/hero';
+@import 'section/featured-collection';
+@import 'section/feature-block';
 
 @import 'modules/footer';
 
