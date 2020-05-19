@@ -45,9 +45,9 @@
 								<a href="{{ item.url | within: collection }}">
 									{% assign featured_image = item.image | default: item.featured_image %}
 									<picture>
-										<source data-srcset="{{ featured_image | img_url: '240x' }}, {{ featured_image | img_url: '480x' }} 2x" media="(max-width: 767px)">
-										<source data-srcset="{{ featured_image | img_url: '240x' }}, {{ featured_image | img_url: '480x' }} 2x">
-										<img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{ featured_image | img_url: '240x' }}" class="lazyload" data-sizes="auto" alt="image description">
+										<source data-srcset="{{ featured_image | img_url: '240x' }}, {{ featured_image | img_url: '480x' }} 2x" media="(max-width: 767px)" srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+										<source data-srcset="{{ featured_image | img_url: '240x' }}, {{ featured_image | img_url: '480x' }} 2x" srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+										<img data-src="{{ featured_image | img_url: '240x' }}" class="lazyload" data-sizes="auto" alt="image description" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
 									</picture>
 									<h3>{{ item.title }}</h3>
 								</a>
