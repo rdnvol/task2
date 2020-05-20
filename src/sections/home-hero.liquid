@@ -1,0 +1,112 @@
+<section class="hero">
+	<div class="hero__img">
+		{%- if section.settings.image != blank -%}
+			{% include "image", src: section.settings.image, m:'375x', d :'1438x' %}
+		{%- else -%}
+			{{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+		{%- endif -%}
+	</div>
+	<div class="hero__block">
+		<div class="container position-relative h-100">
+			<div class="row h-100 {{section.settings.alignment}}">
+				<div class="col-sm-10 col-md-6 col-lg-4">
+					{%- if section.settings.title != blank -%}
+						<h1>{{section.settings.title}}</h1>
+					{%- endif -%}
+					{{section.settings.text}}
+					{%- if section.settings.button_link != blank -%}
+						<a href="{{section.settings.url}}" class="button">{{section.settings.button_label}}</a>
+					{%- endif -%}
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+{% schema %}
+{
+	"name": "Image with text overlay",
+	"settings": [
+		{
+			"type": "image_picker",
+			"id": "image",
+			"label": "Image"
+		},
+		{
+			"type": "text",
+			"id": "title",
+			"label": "Heading",
+			"default": "Title"
+		},
+		{
+			 "type": "select",
+			 "id": "alignment",
+			 "label": "Text alignment",
+			 "default": "justify-content-center align-items-center",
+			 "options": [
+					{
+						"value": "justify-content-start align-items-top",
+						"label": "Top left"
+					},
+					{
+						"value": "justify-content-center align-items-top",
+						"label": "Top center"
+					},
+					{
+						"value": "justify-content-end align-items-top",
+						"label": "Top right"
+					},
+					{
+						"value": "justify-content-start align-items-center",
+						"label": "Middle left"
+					},
+					{
+						"value": "justify-content-center align-items-center",
+						"label": "Middle center"
+					},
+					{
+						"value": "justify-content-end align-items-center",
+						"label": "Middle right"
+					},
+					{
+						"value": "justify-content-start align-items-end",
+						"label": "Bottom left"
+					},
+					{
+						"value": "justify-content-center align-items-end",
+						"label": "Bottom center"
+					},
+					{
+						"value": "justify-content-end align-items-end",
+						"label": "Bottom right"
+					}
+			 ]
+		},
+		{
+			"type": "richtext",
+			"id": "text",
+			"label": "Body text",
+			"default": "<p>Use overlay text to give your customers insight into your brand. Select imagery and text that relates to your style and story.</p>"
+		},
+		{
+			"type": "url",
+			"id": "button_link",
+			"label": "Button link",
+			"info": "Button is disabled if empty"
+		},
+		{
+			"type": "text",
+			"id": "button_label",
+			"label": "Button label",
+			"default": "Button label"
+		}
+	],
+	"presets": [
+		{
+			"name": "Image with text overlay",
+			"category": "Image"
+		}
+	]
+}
+{% endschema %}

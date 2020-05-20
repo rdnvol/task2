@@ -1,0 +1,49 @@
+{%- unless src_m -%}
+	{% assign src_m = src %}
+{%- endunless -%}
+
+{% assign d_width = d | split:'x' | first %}
+{% assign d_height = d | split:'x' | last %}
+{% assign m_width = m | split:'x' | first %}
+{% assign m_height = m | split:'x' | last %}
+
+{%- comment %}
+	check if height passed
+	Desctop image
+{% endcomment -%}
+{%- if d_height -%}
+{% assign dw_2x = d_width | times: 2 %}
+{% assign dh_2x = d_height | times: 2 %}
+	{% assign d2x = dw_2x | append: 'x' | append: dh_2x %}
+{%- else -%}
+	{% assign d2x = d_width | times: 2 | append: 'x' %}
+{%- endif -%}
+
+{%- comment %}
+	check if height passed
+	Mobile image
+{% endcomment -%}
+{%- if m_height -%}
+{% assign mw_2x = m_width | times: 2 %}
+{% assign mh_2x = m_height | times: 2 %}
+	{% assign m2x = mw_2x | append: 'x' | append: dh_2x %}
+{%- else -%}
+	{% assign m2x = m_width | times: 2 | append: 'x' %}
+{%- endif -%}
+
+{%- comment %}
+	Check if crop filter is present
+{% endcomment -%}
+{%- if crop -%}
+	<picture>
+		<source data-srcset="{{ src_m | img_url:m | crop: crop }}, {{ src_m | img_url:m2x | crop: crop }} 2x" media="(max-width: 767px)" srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+		<source data-srcset="{{ src | img_url:d | crop: crop }}, {{ src | img_url:d2x | crop: crop }} 2x" srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+		<img data-src="{{ src | img_url:d | crop: crop }}" class="lazyload" data-sizes="auto" alt="image description" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+	</picture>
+{%- else -%}
+	<picture>
+		<source data-srcset="{{ src | img_url:m }}, {{ src | img_url:m2x }} 2x" media="(max-width: 767px)" srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+		<source data-srcset="{{ src | img_url:d }}, {{ src | img_url:d2x }} 2x" srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+		<img data-src="{{ src | img_url:d }}" class="lazyload" data-sizes="auto" alt="image description" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+	</picture>
+{%- endif -%}

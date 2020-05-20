@@ -38,63 +38,114 @@
     "checkout_button_color": "#197bbd",
     "checkout_error_color": "#e32c2b",
     "sections": {
-      "collection-list": {
-        "type": "collection-list",
-        "blocks": {
-          "collection-list-0": {
-            "type": "collection",
-            "settings": {
-              "collection": ""
-            }
-          },
-          "collection-list-1": {
-            "type": "collection",
-            "settings": {
-              "collection": ""
-            }
-          },
-          "collection-list-2": {
-            "type": "collection",
-            "settings": {
-              "collection": ""
-            }
-          }
-        },
-        "block_order": [
-          "collection-list-0",
-          "collection-list-1",
-          "collection-list-2"
-        ],
-        "settings": {
-          "title": "Collection list"
-        }
-      },
-      "featured-collection": {
-        "type": "featured-collection",
-        "settings": {
-          "title": "Featured collection",
-          "collection": "frontpage"
-        }
-      },
-      "featured-product": {
-        "type": "featured-product",
-        "settings": {
-          "product": "",
-          "show_share_buttons": false
-        }
-      },
       "footer--markup": {
         "type": "footer--markup",
         "settings": {
           "footer_linklist": "footer",
           "show_payment_icons": false
         }
+      },
+      "home-hero": {
+        "type": "home-hero",
+        "settings": {
+          "image": "",
+          "title": "Title",
+          "alignment": "justify-content-start align-items-center",
+          "text": "<p>Use overlay text to give your customers insight into your brand. Select imagery and text that relates to your style and story.</p>",
+          "button_link": "shopify://collections/all",
+          "button_label": "Button label"
+        }
+      },
+      "1589983221519": {
+        "type": "home-featured-collection",
+        "settings": {
+          "title": "Featured collection",
+          "collection": "",
+          "grid": 4,
+          "rows": 1,
+          "show_view_all": true
+        }
+      },
+      "1589984445229": {
+        "type": "home-hero",
+        "settings": {
+          "image": "",
+          "title": "Image with text overlay",
+          "alignment": "justify-content-start align-items-center",
+          "text": "<p>Use overlay text to give your customers insight into your brand. Select imagery and text that relates to your style and story.</p>",
+          "button_link": "",
+          "button_label": "Button label"
+        }
+      },
+      "1589985337197": {
+        "type": "home-image-with-text",
+        "settings": {
+          "image": "",
+          "layout": "",
+          "title": "Image with text",
+          "text": "<p>Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+          "button_label": "Shop now",
+          "button_link": "/"
+        }
+      },
+      "1589985461361": {
+        "type": "home-image-with-text",
+        "settings": {
+          "image": "",
+          "layout": "flex-md-row-reverse",
+          "title": "Image with text",
+          "text": "<p>Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+          "button_label": "Shop now",
+          "button_link": "/"
+        }
+      },
+      "footer": {
+        "type": "footer",
+        "blocks": {
+          "1589988638820": {
+            "type": "link_list",
+            "settings": {
+              "title": "Quick links",
+              "menu": "footer"
+            }
+          },
+          "1589988651729": {
+            "type": "link_list",
+            "settings": {
+              "title": "Quick links",
+              "menu": "main-menu"
+            }
+          },
+          "1589988667036": {
+            "type": "newsletter",
+            "settings": {
+              "title": "Newsletter"
+            }
+          },
+          "1589993081754": {
+            "type": "text",
+            "settings": {
+              "icon": "logo-2.svg",
+              "text": "<p>Dignissim suspendisse in est ante in nibh mauris cursus mattis. Arcu odio ut sem nulla pharetra diam sit amet nisl.</p>"
+            }
+          }
+        },
+        "block_order": [
+          "1589993081754",
+          "1589988638820",
+          "1589988651729",
+          "1589988667036"
+        ],
+        "settings": {
+          "show_payment_icons": true
+        }
       }
     },
     "content_for_index": [
-      "collection-list",
-      "featured-collection",
-      "featured-product"
+      "1589984445229",
+      "1589983221519",
+      "1589985337197",
+      "1589985461361"
     ]
   },
   "presets": {

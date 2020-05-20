@@ -1,3 +1,9 @@
+.placeholder-svg {
+    width: 100%;
+    fill: white;
+    background: #c4c4c4;
+}
+
 #wrapper {
   position:relative;
   display:table-cell;
@@ -182,7 +188,7 @@
 // Default page shopify styles
 .shopify-policy__body,
 .rte {
-  
+
   ul {
     padding-left:20px;
     margin:0 0 15px;
@@ -221,16 +227,16 @@
         margin-bottom:0;
       }
     }
-    
+
     ol{
       padding-left:20px;
     }
-    
+
     ul {
       padding-left:35px;
     }
   }
-  
+
   dl {
     margin:0;
 
@@ -246,7 +252,7 @@
       }
     }
   }
-  
+
   address {
     font-style:normal;
     @include media("≥tablet"){
@@ -255,14 +261,14 @@
     @include media("≥widescreen"){
       line-height:1.9;
     }
-    
+
     p {
       &:last-child {
         margin-bottom:0;
       }
     }
   }
-  
+
   table {
     border:1px solid #dcdcdc;
     border-collapse:collapse;
@@ -279,7 +285,7 @@
       border:1px solid #dcdcdc;
     }
   }
-  
+
   blockquote {
     margin:0 0 15px;
     padding:0 0 0 25px;
@@ -291,7 +297,7 @@
       margin:0 0 30px;
     }
   }
-  
+
   p {
     &:last-child {
       margin-bottom: 0;
@@ -301,7 +307,7 @@
 
 .page-title-block {
   margin:0 0 30px;
-  
+
   h1,
   .h1,
   .h {
@@ -314,13 +320,13 @@
 .cart-table {
   table-layout:fixed;
   width:100%;
-  
+
   th,
   td {
     text-align:left;
     padding:15px 20px;
   }
-  
+
   @include media("≤767px") {
 
     thead {
@@ -369,11 +375,11 @@
 }
 
 .cart-form {
-  
+
   label {
     font-weight:bold;
   }
-  
+
   button,
   .button {
     width:100%;
@@ -416,7 +422,7 @@ img[data-sizes="auto"] {
     transform: translate3d(0,0,0)!important;
     transition-delay: 0s!important;
   }
-  
+
   & + #preview-bar-iframe {
     display:none;
   }
