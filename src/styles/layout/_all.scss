@@ -1,18 +1,17 @@
-.placeholder-svg {
-    width: 100%;
-    fill: white;
-    background: #c4c4c4;
+.page-wrapper {
+  position:relative;
+  &.sort-open {
+    position:relative;
+    position:fixed;
+    -webkit-overflow-scrolling: touch;
+    pointer-events:none;
+    cursor:default;
+    overflow:hidden;
+  }
 }
 
 #wrapper {
   position:relative;
-  display:table-cell;
-  width:100%;
-  overflow:hidden;
-}
-
-#content {
-  outline:none;
 }
 
 .accessibility {
@@ -391,6 +390,12 @@
 
 .cart-form__total {
   font-weight:bold;
+}
+
+.placeholder-svg {
+  width: 100%;
+  fill: white;
+  background: #c4c4c4;
 }
 
 img[data-sizes="auto"] {
