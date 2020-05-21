@@ -4,7 +4,7 @@
 			<div class="page-title-block text-center">
 				<h1 class="h3">
 					{% if search.performed %}
-						<span class="visually-hidden">{{ 'general.search.heading' | t: count: search.results_count }}:</span>
+						<span class="accessibility">{{ 'general.search.heading' | t: count: search.results_count }}:</span>
 							{{ 'general.search.results_with_count' | t: terms: search.terms, count: search.results_count }}
 					{% else %}
 						{{ 'general.search.title' | t }}
@@ -12,7 +12,7 @@
 				</h1>
 			</div>
 			<div class="row">
-				<div class="col-md-4 mx-auto">
+				<div class="col-sm-8 col-md-6 mx-auto">
 					<form action="/search" method="get" role="search" class="page-search-form">
 						<div class="d-flex align-items-center">
 							<input type="search"
@@ -43,16 +43,16 @@
 												<a href="{{ item.url | within: collection }}">
 													{% assign featured_image = item.image | default: item.featured_image %}
 													<picture>
-														<source data-srcset="{{ featured_image | img_url: '240x' }}, {{ featured_image | img_url: '480x' }} 2x" media="(max-width: 767px)" srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
-														<source data-srcset="{{ featured_image | img_url: '240x' }}, {{ featured_image | img_url: '480x' }} 2x" srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
-														<img data-src="{{ featured_image | img_url: '240x' }}" class="lazyload" data-sizes="auto" alt="image description" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+														<source data-srcset="{{ featured_image | img_url: '120x' }}, {{ featured_image | img_url: '240x' }} 2x" media="(max-width: 767px)" srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+														<source data-srcset="{{ featured_image | img_url: '190x' }}, {{ featured_image | img_url: '3 80x' }} 2x" srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+														<img data-src="{{ featured_image | img_url: '190x' }}" class="lazyload" data-sizes="auto" alt="image description" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
 													</picture>
 												</a>
 											</div>
 											<div class="col-8 col-md-9">
 												<div class="row justify-content-md-between">
 													<div class="col-md-6 mb-3 mb-md-0">
-														<h2 class="search-item__title">{{ item.title }}</h2>
+														<h2 class="search-item__title"><a href="#">{{ item.title }}</a></h2>
 													</div>
 													<div class="col-md-6">
 														{% if item.object_type == 'product' %}

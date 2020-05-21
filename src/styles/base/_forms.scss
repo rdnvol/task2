@@ -149,7 +149,7 @@ a.button {
 }
 
 .page-search-form__button {
-  margin-left:20px;
+  margin-left:12px;
   min-height:42px;
   @include media("≥desktop") {
     margin-left:30px;
@@ -157,7 +157,7 @@ a.button {
   
   svg {
     width:18px;
-    height:auto;
+    height:18px;
     margin:0;
     fill:currentColor;
   }
