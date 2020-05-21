@@ -1,0 +1,44 @@
+.search-item {
+  margin:0 0 20px;
+  @include media("≥desktop") {
+    margin:0 0 44px;
+  }
+  &:last-child {
+    margin-bottom:0;
+  }
+}
+
+.search-item__title {
+  font:600 #{$font-size-base - 2px} $base-font-sans-serif;
+  letter-spacing: 0.05em;
+  @include media("≥desktop") {
+    font-family: $font-size-base;
+    letter-spacing: 0.02em;
+  }
+  &:last-child {
+    margin:0;
+  }
+}
+
+.search-item__price {
+  @include media("≥tablet") {
+    text-align:right;
+  }
+  
+  * {
+    display:inline-block;
+    vertical-align:middle;
+    margin:0 7px 0 0;
+    @include media("≥tablet") {
+      margin:0 0 0 7px;
+    }
+  }
+  
+  ins {
+    text-decoration:none;
+  }
+  
+  del {
+    color:$red;
+  }
+}
