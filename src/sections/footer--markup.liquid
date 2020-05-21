@@ -1,3 +1,15 @@
+{% assign show_payment_icons = section.settings.show_payment_icons %}
+{%- capture payment_icon_markup -%}
+	{%- if show_payment_icons -%}
+		<div class="d-flex flex-wrap align-items-center justify-content-center pt-3">
+			{%- for type in shop.enabled_payment_types -%}
+				<div class="mx-3 mb-3">
+					{{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}
+				</div>
+			{%- endfor -%}
+		</div>
+	{%- endif -%}
+{%- endcapture -%}
 <footer id="footer">
 	<div class="container">
 		<div class="footer__holder">
@@ -49,11 +61,7 @@
 		<div class="footer__panel text-center">
 			<div class="mb-4 mb-md-2">&copy; {{ 'now' | date: "%Y" }} <a href="#">Draft</a>. All Rights Reserved. <a href="#">Terms</a>, <a href="#">Privacy &amp; Accessibility</a>.</div>
 			<div>
-				<picture>
-					<source srcset="{{ 'payment-logos-m-2x.png' | asset_img_url:'345x' }}, {{ 'payment-logos-m-2x.png' | asset_img_url:'690x' }} 2x" media="(max-width: 767px)">
-					<source srcset="{{ 'payment-logos-2x.png' | asset_img_url:'635x' }}, {{ 'payment-logos-2x.png' | asset_img_url:'1270x' }} 2x">
-					<img src="{{ 'payment-logos-2x.png' | asset_img_url:'1270x' }}" alt="image description">
-				</picture>
+				{{ payment_icon_markup }}
 			</div>
 		</div>
 	</div>

@@ -10,7 +10,7 @@ h6, .h6,
   font-family: $headings-font-family;
   font-weight: $headings-font-weight;
   margin: 0 0 20px;
-  font-style:italic;
+  font-style: $font-heading-style;
   line-height: 1.5;
   color: $headings-color;
   @include media("≥desktop") {
