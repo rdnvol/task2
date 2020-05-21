@@ -3,6 +3,7 @@ $font-heading: var(--font-heading);
 $font-body: var(--font-body);
 $font-body-weight: var(--font-body-weight);
 $font-body-style: var(--font-body-style);
+$font-heading-style: var(--font-heading-style);
 $font-body-bold-weight: var(--font-body-bold-weight);
 $font-heading-weight: var(--font-heading-weight);
 
@@ -43,7 +44,7 @@ $base-min-width: 320px;
 // Liks
 $base-link-color: $color-body-text;
 
-// Buttons 
+// Buttons
 $btn-color: $white !default;
 $btn-background: $black !default;
 $btn-padding: 12px 15px !default;
