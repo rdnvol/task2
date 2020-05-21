@@ -21,10 +21,10 @@
 }
 
 .search-item__price {
-  
   @include media("≥tablet") {
     text-align:right;
   }
+  
   * {
     display:inline-block;
     vertical-align:middle;
