@@ -1,5 +1,153 @@
 {
-  "current": "Default",
+  "current": {
+    "color_accent": "#fcf113",
+    "color_body_text": "#000000",
+    "color_main_bg": "#ffffff",
+    "enable_fonts_library": true,
+    "font_heading": "ff_tisa_n4",
+    "font_body": "source_sans_pro_n4",
+    "custom_body_weight": 300,
+    "custom_heading_weight": 400,
+    "share_image": "",
+    "social_sharing_blog": true,
+    "share_facebook": true,
+    "share_twitter": true,
+    "share_pinterest": true,
+    "social_twitter_link": "",
+    "social_facebook_link": "",
+    "social_pinterest_link": "",
+    "social_instagram_link": "",
+    "social_snapchat_link": "",
+    "social_tumblr_link": "",
+    "social_youtube_link": "",
+    "social_vimeo_link": "",
+    "cart_notes_enable": true,
+    "favicon": "",
+    "checkout_header_image": "",
+    "checkout_logo_image": "",
+    "checkout_logo_position": "left",
+    "checkout_logo_size": "medium",
+    "checkout_body_background_image": "",
+    "checkout_body_background_color": "#fff",
+    "checkout_input_background_color_mode": "white",
+    "checkout_sidebar_background_image": "",
+    "checkout_sidebar_background_color": "#fafafa",
+    "checkout_heading_font": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+    "checkout_body_font": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+    "checkout_accent_color": "#197bbd",
+    "checkout_button_color": "#197bbd",
+    "checkout_error_color": "#e32c2b",
+    "sections": {
+      "footer--markup": {
+        "type": "footer--markup",
+        "settings": {
+          "footer_linklist": "footer",
+          "show_payment_icons": false
+        }
+      },
+      "home-hero": {
+        "type": "home-hero",
+        "settings": {
+          "image": "",
+          "title": "Title",
+          "alignment": "justify-content-start align-items-center",
+          "text": "<p>Use overlay text to give your customers insight into your brand. Select imagery and text that relates to your style and story.</p>",
+          "button_link": "shopify://collections/all",
+          "button_label": "Button label"
+        }
+      },
+      "1589983221519": {
+        "type": "home-featured-collection",
+        "settings": {
+          "title": "Featured collection",
+          "collection": "",
+          "grid": 4,
+          "rows": 1,
+          "show_view_all": true
+        }
+      },
+      "1589984445229": {
+        "type": "home-hero",
+        "settings": {
+          "image": "",
+          "title": "Image with text overlay",
+          "alignment": "justify-content-start align-items-center",
+          "text": "<p>Use overlay text to give your customers insight into your brand. Select imagery and text that relates to your style and story.</p>",
+          "button_link": "",
+          "button_label": "Button label"
+        }
+      },
+      "1589985337197": {
+        "type": "home-image-with-text",
+        "settings": {
+          "image": "",
+          "layout": "",
+          "title": "Image with text",
+          "text": "<p>Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+          "button_label": "Shop now",
+          "button_link": "/"
+        }
+      },
+      "1589985461361": {
+        "type": "home-image-with-text",
+        "settings": {
+          "image": "",
+          "layout": "flex-md-row-reverse",
+          "title": "Image with text",
+          "text": "<p>Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+          "button_label": "Shop now",
+          "button_link": "/"
+        }
+      },
+      "footer": {
+        "type": "footer",
+        "blocks": {
+          "1589988638820": {
+            "type": "link_list",
+            "settings": {
+              "title": "Quick links",
+              "menu": "footer"
+            }
+          },
+          "1589988651729": {
+            "type": "link_list",
+            "settings": {
+              "title": "Quick links",
+              "menu": "main-menu"
+            }
+          },
+          "1589988667036": {
+            "type": "newsletter",
+            "settings": {
+              "title": "Newsletter"
+            }
+          },
+          "1589993081754": {
+            "type": "text",
+            "settings": {
+              "icon": "logo-2.svg",
+              "text": "<p>Dignissim suspendisse in est ante in nibh mauris cursus mattis. Arcu odio ut sem nulla pharetra diam sit amet nisl.</p>"
+            }
+          }
+        },
+        "block_order": [
+          "1589993081754",
+          "1589988638820",
+          "1589988651729",
+          "1589988667036"
+        ],
+        "settings": {
+          "show_payment_icons": true
+        }
+      }
+    },
+    "content_for_index": [
+      "1589984445229",
+      "1589983221519",
+      "1589985337197",
+      "1589985461361"
+    ]
+  },
   "presets": {
     "Default": {
       "sections": {
@@ -7,20 +155,24 @@
           "type": "collection-list",
           "blocks": {
             "collection-list-0": {
-              "type": "collection"
+              "type": "collection",
+              "settings": {}
             },
             "collection-list-1": {
-              "type": "collection"
+              "type": "collection",
+              "settings": {}
             },
             "collection-list-2": {
-              "type": "collection"
+              "type": "collection",
+              "settings": {}
             }
           },
           "block_order": [
             "collection-list-0",
             "collection-list-1",
             "collection-list-2"
-          ]
+          ],
+          "settings": {}
         },
         "featured-collection": {
           "type": "featured-collection",
@@ -29,7 +181,8 @@
           }
         },
         "featured-product": {
-          "type": "featured-product"
+          "type": "featured-product",
+          "settings": {}
         }
       },
       "content_for_index": [

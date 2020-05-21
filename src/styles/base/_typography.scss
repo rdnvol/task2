@@ -9,8 +9,9 @@ h6, .h6,
 .h {
   font-family: $headings-font-family;
   font-weight: $headings-font-weight;
-  line-height: 1.5;
   margin: 0 0 20px;
+  font-style: $font-heading-style;
+  line-height: 1.5;
   color: $headings-color;
   @include media("≥desktop") {
     margin:0 0 30px;
@@ -83,6 +84,7 @@ p {
 b,
 strong {
   font-family: $headings-font-family;
+  font-weight:bold;
 }
 
 a {

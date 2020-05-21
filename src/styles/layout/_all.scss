@@ -1,139 +1,164 @@
 .row {
   @include media("≤767px") {
-    margin-left:-10px;
-    margin-right:-10px;
+    margin-left: -10px;
+    margin-right: -10px;
   }
-  
-  > .col,
-  > [class*="col-"] {
+
+  >.col,
+  >[class*="col-"] {
     @include media("≤767px") {
-      padding-left:10px;
-      padding-right:10px; 
+      padding-left: 10px;
+      padding-right: 10px;
     }
   }
+
+}
+
+.placeholder-svg {
+  width: 100%;
+  fill: white;
+  background: #c4c4c4;
 }
 
 #wrapper {
-  position:relative;
-  display:table-cell;
-  width:100%;
-  overflow:hidden;
+  position: relative;
+  display: table-cell;
+  width: 100%;
+  overflow: hidden;
 }
 
 #content {
-  outline:none;
+  outline: none;
 }
 
 .accessibility {
-  position:absolute;
-  left:-100000px;
-  top:auto;
-  width:1px;
-  height:1px;
-  overflow:hidden;
-  &:focus{
-    position:static;
-    width:auto;
-    height:auto;
+  position: absolute;
+  left: -100000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+
+  &:focus {
+    position: static;
+    width: auto;
+    height: auto;
   }
 }
 
+.visually-hidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  white-space: nowrap;
+}
+
 .container {
-  max-width:1360px;
-  margin:0 auto;
-  padding:0 15px;
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 0 15px;
+
   @include media("≥desktop") {
-    padding:0 30px;
+    padding: 0 30px;
   }
 }
 
 .breadcrumbs {
-  display:flex;
-  flex-wrap:wrap;
-  margin:0 0 18px;
-  padding:16px 0 0;
-  list-style:none;
-  font-size:$font-size-base - 3px;
-  text-transform:capitalize;
-  @include media("≥desktop"){
-    margin-bottom:15px;
-    padding-top:30px;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 0 18px;
+  padding: 16px 0 0;
+  list-style: none;
+  font-size: $font-size-base - 3px;
+  text-transform: capitalize;
+
+  @include media("≥desktop") {
+    margin-bottom: 15px;
+    padding-top: 30px;
     letter-spacing: 0.6px;
   }
-  @include media("≥widescreen"){
+
+  @include media("≥widescreen") {
     letter-spacing: 0.5px;
   }
 
   li:not(:last-child) {
-    margin:0 5px 0 0;
+    margin: 0 5px 0 0;
+
     &:after {
-      content:'/';
-      display:inline-block;
-      vertical-align:middle;
-      margin:-4px 0 0 4px;
+      content: '/';
+      display: inline-block;
+      vertical-align: middle;
+      margin: -4px 0 0 4px;
     }
   }
 
   a {
     color: $gray;
-    text-decoration:none;
+    text-decoration: none;
+
     &:hover {
-      color:$base-text-color;
+      color: $base-text-color;
     }
   }
 }
 
 .bg-stretch {
-  position:absolute;
-  left:0;
-  top:0;
-  right:0;
-  bottom:0;
-  background-position:50% 50%;
-  background-size:cover;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-position: 50% 50%;
+  background-size: cover;
 
   img {
-    display:block;
-    width:100%;
-    height:auto;
+    display: block;
+    width: 100%;
+    height: auto;
   }
 }
 
 .fluid-iframe {
-  position:relative;
-  height:0;
-  padding-top:56.25%;
+  position: relative;
+  height: 0;
+  padding-top: 56.25%;
 
   iframe {
-    position:absolute;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    margin:0;
-    border:none;
-    z-index:1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    border: none;
+    z-index: 1;
   }
 }
 
 .image-container {
-  position:relative;
-  display:block;
-  width:100%;
-  padding:100% 0 0;
-  z-index:1;
-  overflow:hidden;
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 100% 0 0;
+  z-index: 1;
+  overflow: hidden;
 
   img {
-    position:absolute;
-    left:50%;
-    top:50%;
-    min-width:100%;
-    min-height:100%;
-    width:auto;
-    height:auto;
-    transform:translate(-50%, -50%);
-    object-fit:cover;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
   }
 }
 
@@ -141,55 +166,62 @@
 
   ul {
     @extend %listreset;
-    display:flex;
-    flex-wrap:wrap;
-    align-items:center;
-    justify-content:center;
-    @include media("≥widescreen"){
-      justify-content:space-around;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+
+    @include media("≥widescreen") {
+      justify-content: space-around;
     }
   }
 
   li {
-    margin:0 21px 15px;
-    @include media("≥desktop"){
-      margin:0 14px 15px;
+    margin: 0 21px 15px;
+
+    @include media("≥desktop") {
+      margin: 0 14px 15px;
     }
-    @include media("≥laptop"){
-      margin:0 15px 15px;
+
+    @include media("≥laptop") {
+      margin: 0 15px 15px;
     }
   }
 
   a {
-    display:flex;
-    align-items:center;
-    justify-content:center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     &:hover {
 
       svg {
-        fill:$blue;
+        fill: $blue;
       }
     }
   }
 
   svg {
-    fill:$black;
+    fill: $black;
   }
 }
 
 [id="main"] {
-  overflow:hidden;
+  overflow: hidden;
 }
 
 .section {
-  padding:64px 0;
-  @include media("≥widescreen"){
-    padding:74px 0;
+  padding: 64px 0;
+
+  @include media("≥widescreen") {
+    padding: 74px 0;
   }
+
   &.page-section {
-    padding-top:20px;
+    padding-top: 20px;
+
     @include media("≥desktop") {
-      padding-top:30px;
+      padding-top: 30px;
     }
   }
 }
@@ -197,142 +229,164 @@
 // Default page shopify styles
 .shopify-policy__body,
 .rte {
-  
+
   ul {
-    padding-left:20px;
-    margin:0 0 15px;
-    @include media("≥tablet"){
-      margin:0 0 25px;
+    padding-left: 20px;
+    margin: 0 0 15px;
+
+    @include media("≥tablet") {
+      margin: 0 0 25px;
     }
-    @include media("≥widescreen"){
-      margin:0 0 30px;
+
+    @include media("≥widescreen") {
+      margin: 0 0 30px;
     }
+
     &:last-child {
-      margin:0;
+      margin: 0;
     }
   }
 
   ol {
-    margin:0 0 15px;
-    padding:0;
+    margin: 0 0 15px;
+    padding: 0;
     list-style-type: none;
-    @include media("≥tablet"){
-      margin:0 0 25px;
-    }
-    @include media("≥widescreen"){
-      margin:0 0 30px;
-    }
-    &:last-child {
-      margin:0;
+
+    @include media("≥tablet") {
+      margin: 0 0 25px;
     }
 
-    > li {
+    @include media("≥widescreen") {
+      margin: 0 0 30px;
+    }
+
+    &:last-child {
+      margin: 0;
+    }
+
+    >li {
       counter-increment: step-counter;
+
       &:before {
         content: counter(step-counter) ".";
         margin-right: 5px;
       }
+
       &:last-child {
-        margin-bottom:0;
+        margin-bottom: 0;
       }
     }
-    
-    ol{
-      padding-left:20px;
+
+    ol {
+      padding-left: 20px;
     }
-    
+
     ul {
-      padding-left:35px;
+      padding-left: 35px;
     }
   }
-  
+
   dl {
-    margin:0;
+    margin: 0;
 
     dt {
       font-family: $headings-font-family;
-      font-weight:700;
+      font-weight: 700;
     }
 
     dd {
-      margin:0 0 14px;
-      @include media("≥widescreen"){
-        margin:0 0 18px;
+      margin: 0 0 14px;
+
+      @include media("≥widescreen") {
+        margin: 0 0 18px;
       }
     }
   }
-  
+
   address {
-    font-style:normal;
-    @include media("≥tablet"){
-      line-height:1.72;
+    font-style: normal;
+
+    @include media("≥tablet") {
+      line-height: 1.72;
     }
-    @include media("≥widescreen"){
-      line-height:1.9;
+
+    @include media("≥widescreen") {
+      line-height: 1.9;
     }
-    
+
     p {
       &:last-child {
-        margin-bottom:0;
+        margin-bottom: 0;
       }
     }
   }
-  
+
   table {
-    border:1px solid #dcdcdc;
-    border-collapse:collapse;
+    border: 1px solid #dcdcdc;
+    border-collapse: collapse;
 
     th {
-      font-family:$headings-font-family;
-      background:#f9f9f9;
+      font-family: $headings-font-family;
+      background: #f9f9f9;
     }
 
     th,
     td {
-      padding:10px 7px;
-      vertical-align:top;
-      border:1px solid #dcdcdc;
+      padding: 10px 7px;
+      vertical-align: top;
+      border: 1px solid #dcdcdc;
     }
   }
-  
+
   blockquote {
-    margin:0 0 15px;
-    padding:0 0 0 25px;
-    border-left:2px solid $d-gray;
-    @include media("≥tablet"){
-      margin:0 0 25px;
+    margin: 0 0 15px;
+    padding: 0 0 0 25px;
+    border-left: 2px solid $d-gray;
+
+    @include media("≥tablet") {
+      margin: 0 0 25px;
     }
-    @include media("≥widescreen"){
-      margin:0 0 30px;
+
+    @include media("≥widescreen") {
+      margin: 0 0 30px;
+    }
+  }
+
+  p {
+    &:last-child {
+      margin-bottom: 0;
     }
   }
 }
 
 .page-title-block {
-  margin:0 0 20px;
+  <<<<<<< HEAD margin: 0 0 20px;
+
   @include media("≥desktop") {
-    margin:0 0 30px;
+    margin: 0 0 30px;
   }
-  
-  h1,
+
+  =======margin:0 0 30px;
+
+  >>>>>>>master h1,
   .h1,
   .h {
     &:only-child {
-      margin-bottom:0;
+      margin-bottom: 0;
     }
   }
 }
 
 .cart-table {
-  table-layout:fixed;
-  width:100%;
-  
+  table-layout: fixed;
+  width: 100%;
+
   th,
   td {
-    text-align:left;
-    padding:15px 20px;
+    text-align: left;
+    padding: 15px 20px;
   }
-  
+
   @include media("≤767px") {
 
     thead {
@@ -354,15 +408,15 @@
     td::before {
       content: attr(data-label);
       float: left;
-      width:120px;
+      width: 120px;
       padding-right: 10px;
-      font-weight:bold;
-      text-align:left;
+      font-weight: bold;
+      text-align: left;
     }
 
     // Add a keyline between rows
-    .responsive-table-row + .responsive-table-row,
-    tfoot > .responsive-table-row:first-child {
+    .responsive-table-row+.responsive-table-row,
+    tfoot>.responsive-table-row:first-child {
       position: relative;
       margin-top: 10px;
       padding-top: 10px;
@@ -381,27 +435,28 @@
 }
 
 .cart-form {
-  
+
   label {
-    font-weight:bold;
+    font-weight: bold;
   }
-  
+
   button,
   .button {
-    width:100%;
+    width: 100%;
+
     @include media("≥tablet") {
-      width:auto;
+      width: auto;
     }
   }
 }
 
 .cart-form__total {
-  font-weight:bold;
+  font-weight: bold;
 }
 
 img[data-sizes="auto"] {
   display: block;
-  width:100%;
+  width: 100%;
 }
 
 // Lazy-load styles
@@ -420,16 +475,17 @@ img[data-sizes="auto"] {
 
 // Shopify Preview bar iframe styles
 #preview-bar-iframe {
-  border-right: 15px solid #5c6ac4!important;
-  transform: translate3d(calc(-100% + 15px),0,0)!important;
-  transition-delay: 5s!important;
-  width: calc(100% + 15px)!important;
+  border-right: 15px solid #5c6ac4 !important;
+  transform: translate3d(calc(-100% + 15px), 0, 0) !important;
+  transition-delay: 5s !important;
+  width: calc(100% + 15px) !important;
+
   &:hover {
-    transform: translate3d(0,0,0)!important;
-    transition-delay: 0s!important;
+    transform: translate3d(0, 0, 0) !important;
+    transition-delay: 0s !important;
   }
-  
-  & + #preview-bar-iframe {
-    display:none;
+
+  &+#preview-bar-iframe {
+    display: none;
   }
 }
