@@ -6,9 +6,48 @@
 }
 
 .account-page__title {
-  margin:0 0 30px;
+  margin:0 0 64px;
   @include media("≥tablet"){
-    margin:0 0 70px;
+    margin:0 0 74px;
+  }
+  
+  h1,
+  .h1,
+  h2,
+  .h2,
+  .h {
+    &:only-child {
+      margin-bottom: 0;
+    }
+  }
+  
+  p {
+    &:last-child {
+      margin-bottom:0;
+    }
+  }
+}
+
+.account-page__heading {
+  margin:0 0 34px;
+  @include media("≥desktop") {
+    margin:0 0 44px;
+  }
+  
+  h1,
+  .h1,
+  h2,
+  .h2,
+  .h {
+    &:only-child {
+      margin-bottom: 0;
+    }
+  }
+  
+  p {
+    &:last-child {
+      margin-bottom:0;
+    }
   }
 }
 

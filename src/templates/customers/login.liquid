@@ -1,10 +1,10 @@
-<div class="account-section">
+<div class="section page-section">
 	<div class="container">
 		<div class="text-center form-success hidden" data-reset-success>
 			{{ 'customer.recover_password.success' | t }}
 		</div>
 		<div data-login-form>
-			<div class="text-center">
+			<div class="account-page__title text-center">
 				<h1>{{ 'customer.login.title' | t }}</h1>
 			</div>
 			{% form 'customer_login', class: 'account-form' %}
@@ -53,8 +53,8 @@
 		
 		<div class="account__slide-block hidden" data-recover-form>
 			<div class="account__slide-block__holder">
-				<div class="text-center">
-					<h2>{{ 'customer.recover_password.title' | t }}</h2>
+				<div class="account-page__heading text-center">
+					<h2 class="mb-3">{{ 'customer.recover_password.title' | t }}</h2>
 					<p>{{ 'customer.recover_password.subtext' | t }}</p>
 				</div>
 				{% form 'recover_customer_password', class: 'account-form' %}
@@ -63,7 +63,7 @@
 						<span class="hidden" data-form-state></span>
 					{% endif %}
 					<div class="input-holder">
-						<label for="RecoverEmail" class="label-hidden">
+						<label for="RecoverEmail" class="label label-hidden">
 							{{ 'customer.recover_password.email' | t }}
 						</label>
 						<input type="email"
@@ -77,9 +77,11 @@
 					<div class="account-form__actions">
 						<input type="submit" class="button w-100" value="{{ 'customer.recover_password.submit' | t }}">
 					</div>
-					<button type="button" class="w-100" data-recover-toggle>
-						{{ 'customer.recover_password.cancel' | t }}
-					</button>
+					<div class="input-holder text-center">
+						<a href="#" data-recover-toggle>
+							{{ 'customer.recover_password.cancel' | t }}
+						</a>
+					</div>
 				{% endform %}
 			</div>
 		</div>
