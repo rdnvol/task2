@@ -10,7 +10,7 @@
 			{% form 'customer_login', class: 'account-form' %}
 				{{ form.errors | default_errors }}
 				<div class="input-holder">
-					<label for="CustomerEmail" class="label-hidden">
+					<label for="CustomerEmail" class="label label-hidden">
 						{{ 'customer.login.email' | t }}
 					</label>
 					<input type="email"
@@ -25,7 +25,7 @@
 				</div>
 				{% if form.password_needed %}
 					<div class="input-holder">
-						<label for="CustomerPassword" class="label-hidden">
+						<label for="CustomerPassword" class="label label-hidden">
 							{{ 'customer.login.password' | t }}
 						</label>
 						<input type="password"
@@ -35,17 +35,18 @@
 									 placeholder="{{ 'customer.login.password' | t }}">
 					</div>
 				{% endif %}
-				<div class="account-form__actions">
-					<input type="submit" class="button w-100" value="{{ 'customer.login.sign_in' | t }}">
-				</div>
-				<div class="text-center">
-					<a href="/">{{ 'customer.login.cancel' | t }}</a>
-					<a href="/account/register">
-						{{ 'layout.customer.create_account' | t }}
-					</a>
+				<div class="input-holder text-center">
 					{% if form.password_needed %}
 						<a href="#recover" data-recover-toggle>{{ 'customer.login.forgot_password' | t }}</a>
 					{% endif %}
+				</div>
+				<div class="account-form__actions">
+					<input type="submit" class="button w-100" value="{{ 'customer.login.sign_in' | t }}">
+				</div>
+				<div class="input-holder text-center">
+					<a href="/account/register">
+						{{ 'layout.customer.create_account' | t }}
+					</a>
 				</div>
 			{% endform %}
 		</div>

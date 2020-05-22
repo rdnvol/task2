@@ -58,6 +58,9 @@ button.button-add-new-address {
 
 .account-form__actions {
   margin:0 0 20px;
+  @include media("≥desktop") {
+    margin:0 0 30px;
+  }
 }
 
 .account__title-box {
