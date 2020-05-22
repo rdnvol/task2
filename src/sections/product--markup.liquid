@@ -2,37 +2,13 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-6">
-				{%- assign current_variant = product.selected_or_first_available_variant -%}
-				{%- assign featured_image = current_variant.featured_image | default: product.featured_image -%}
-
-				{% for image in product.images %}
-					{% capture wrapper_class %}
-						{%- unless featured_image == image -%}
-						hide
-						{%- endunless -%}
-					{% endcapture %}
-
-					{% include 'responsive-image' with
-						image: image,
-						max_width: 700,
-						max_height: 800,
-						image_attributes: "data-product-featured-image",
-						wrapper_class: wrapper_class,
-						wrapper_attributes: "data-product-image-wrapper",
-					%}
-				{% endfor %}
-				
-				{% if product.images.size > 1 %}
-					<ul>
-						{% for image in product.images %}
-						<li>
-							<a href="{{ image.src | img_url: '480x480' }}" data-thumbnail-id="{{ image.id }}" data-product-single-thumbnail{% if featured_image == image %} aria-current="true"{% endif %}>
-								<img class="product-single__thumbnail-image" src="{{ image.src | img_url: '160x160' }}" alt="{{ image.alt | escape }}">
-							</a>
-						</li>
-						{% endfor %}
-					</ul>
-				{% endif %}
+				<div class="product__img">
+					<picture>
+						<source data-srcset="{{ 'img-placeholder.png' | asset_img_url:'345x' }}, {{ 'img-placeholder.png' | asset_img_url:'690x' }} 2x" media="(max-width: 767px)" srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+						<source data-srcset="{{ 'img-placeholder.png' | asset_img_url:'635x' }}, {{ 'img-placeholder.png' | asset_img_url:'1270x' }} 2x" srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+						<img data-src="{{ 'img-placeholder.png' | asset_img_url:'635x' }}" class="lazyload" data-sizes="auto" alt="image description" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+					</picture>
+				</div>
 			</div>
 			<div class="col-md-6">
 				<h1 class="product__title">{{ product.title }}</h1>
@@ -41,7 +17,7 @@
 					<div class="product__price" data-price-wrapper>
 						<div class="product__price__box d-flex flex-wrap align-items-center">
 							<div data-product-price>
-								{{ current_variant.price | money }}
+								$41.00
 							</div>
 							{% if product.compare_at_price_max > product.price %}
 								<span class="accessibility" data-compare-text>{{ 'products.product.regular_price' | t }}</span>
