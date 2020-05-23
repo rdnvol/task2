@@ -1,18 +1,17 @@
-[id="shopify-section-footer"],
-[id="shopify-section-footer--markup"] {
+[id="shopify-section-footer"] {
   overflow:hidden;
 }
 
 [id="footer"] {
   position:relative;
-  
+
   a {
     text-decoration:none;
     &:hover {
       text-decoration:underline;
     }
   }
-  
+
   p {
     &:last-child {
       margin:0;
@@ -31,7 +30,7 @@
   display:inline-block;
   vertical-align:top;
   margin:0 0 15px;
-  
+
   img {
     width:116px;
   }
@@ -44,11 +43,11 @@
 }
 
 .footer__nav {
-  
+
   ul {
     @extend %listreset;
   }
-  
+
   li {
     margin:0 0 15px;
     &:last-child {
@@ -58,7 +57,7 @@
 }
 
 .footer__form {
-  
+
   .footer__form__input {
     padding-right:55px;
   }
@@ -80,12 +79,12 @@
     &:hover,
     &:focus {
       background:$btn-background;
-      
+
       svg {
         fill:$white;
       }
     }
-    
+
     svg {
       fill:$gray;
       width:16px;
@@ -104,7 +103,7 @@
   @include media("≥desktop") {
     padding:10px 0;
   }
-  
+
   a {
     color:inherit;
   }
