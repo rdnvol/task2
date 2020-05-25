@@ -246,7 +246,6 @@
 
   &.page-section {
     padding-top: 20px;
-
     @include media("≥desktop") {
       padding-top: 30px;
     }
@@ -397,6 +396,12 @@
   .h {
     &:only-child {
       margin-bottom: 0;
+    }
+  }
+  
+  p {
+    &:last-child {
+      margin-bottom:0;
     }
   }
 }

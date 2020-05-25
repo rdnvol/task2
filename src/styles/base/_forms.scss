@@ -145,6 +145,15 @@ a.button {
 
 .input-holder {
   margin:0 0 20px;
+  @include media("≥desktop") {
+    margin:0 0 30px;
+  }
+}
+
+.label {
+  display:inline-block;
+  vertical-align:top;
+  margin:0 0 5px;
 }
 
 .page-search-form__button {
