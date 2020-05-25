@@ -41,7 +41,7 @@ textarea {
 }
 
 input[type='number'] {
-  width:100px;
+  width:80px;
 }
 
 select {
@@ -52,10 +52,9 @@ select {
   padding: $form-element-padding;
   padding-top:0;
   padding-bottom:0;
-  font-size:12px;
-  line-height:16px;
-  font-weight:300;
-  letter-spacing:0.5px;
+  font-size: $font-size-base - 2px;
+  line-height:1.3;
+  letter-spacing: 0.05em;
   background:$white;
   &:focus {
     border-color: $form-element-focus-border-color;
@@ -146,6 +145,15 @@ a.button {
 
 .input-holder {
   margin:0 0 20px;
+  @include media("≥desktop") {
+    margin:0 0 30px;
+  }
+}
+
+.label {
+  display:inline-block;
+  vertical-align:top;
+  margin:0 0 5px;
 }
 
 .page-search-form__button {

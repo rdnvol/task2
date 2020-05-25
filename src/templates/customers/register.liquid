@@ -1,12 +1,12 @@
-<div class="account-section" id="content" tabindex="0">
+<div class="section page-section" id="content" tabindex="0">
 	<div class="container">
-		<div class="text-center">
-			<h1>{{ 'customer.register.title' | t }}</h1>
+		<div class="account-page__title text-center">
+			<h1 class="h2">{{ 'customer.register.title' | t }}</h1>
 		</div>
 		{% form 'create_customer', class: 'account-form' %}
 			{{ form.errors | default_errors }}
 			<div class="input-holder">
-				<label for="FirstName" class="label-hidden">
+				<label for="FirstName" class="label label-hidden">
 					{{ 'customer.register.first_name' | t }}
 				</label>
 				<input type="text"
@@ -17,7 +17,7 @@
 					{% if form.first_name %}value="{{ form.first_name }}"{% endif %}>
 			</div>
 			<div class="input-holder">
-				<label for="LastName" class="label-hidden">
+				<label for="LastName" class="label label-hidden">
 					{{ 'customer.register.last_name' | t }}
 				</label>
 				<input type="text"
@@ -27,7 +27,7 @@
 					{% if form.last_name %}value="{{ form.last_name }}"{% endif %}>
 			</div>
 			<div class="input-holder">
-				<label for="Email" class="label-hidden">
+				<label for="Email" class="label label-hidden">
 					{{ 'customer.register.email' | t }}
 				</label>
 				<input type="email"
@@ -41,7 +41,7 @@
 					autocapitalize="off">
 			</div>
 			<div class="input-holder">
-				<label for="CreatePassword" class="label-hidden">
+				<label for="CreatePassword" class="label label-hidden">
 					{{ 'customer.register.password' | t }}
 				</label>
 				<input type="password"

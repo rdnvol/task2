@@ -6,9 +6,48 @@
 }
 
 .account-page__title {
-  margin:0 0 30px;
+  margin:0 0 64px;
   @include media("≥tablet"){
-    margin:0 0 70px;
+    margin:0 0 74px;
+  }
+  
+  h1,
+  .h1,
+  h2,
+  .h2,
+  .h {
+    &:only-child {
+      margin-bottom: 0;
+    }
+  }
+  
+  p {
+    &:last-child {
+      margin-bottom:0;
+    }
+  }
+}
+
+.account-page__heading {
+  margin:0 0 34px;
+  @include media("≥desktop") {
+    margin:0 0 44px;
+  }
+  
+  h1,
+  .h1,
+  h2,
+  .h2,
+  .h {
+    &:only-child {
+      margin-bottom: 0;
+    }
+  }
+  
+  p {
+    &:last-child {
+      margin-bottom:0;
+    }
   }
 }
 
@@ -58,6 +97,9 @@ button.button-add-new-address {
 
 .account-form__actions {
   margin:0 0 20px;
+  @include media("≥desktop") {
+    margin:0 0 30px;
+  }
 }
 
 .account__title-box {
@@ -192,5 +234,16 @@ button.button-add-new-address {
   
   ul {
     @extend %listreset;
+  }
+}
+
+.shopify-challenge__container {
+  padding:20px 0 64px;
+  @include media ("≥desktop") {
+    padding:30px 0 74px;
+  }
+  
+  .shopify-challenge__button.btn {
+    min-width: 180px;
   }
 }
