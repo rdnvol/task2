@@ -35,11 +35,11 @@
 									 placeholder="{{ 'customer.login.password' | t }}">
 					</div>
 				{% endif %}
-				<div class="input-holder text-center">
-					{% if form.password_needed %}
+				{% if form.password_needed %}
+					<div class="input-holder text-center">
 						<a href="#recover" data-recover-toggle>{{ 'customer.login.forgot_password' | t }}</a>
-					{% endif %}
-				</div>
+					</div>
+				{% endif %}
 				<div class="account-form__actions">
 					<input type="submit" class="button w-100" value="{{ 'customer.login.sign_in' | t }}">
 				</div>
