@@ -206,6 +206,33 @@
   }
 }
 
+.social-sharing {
+  margin:0 0 -15px;
+  padding:0;
+  list-style:none;
+  font-size: $font-size-base - 2px;
+  line-height:1px;
+  letter-spacing: 0.05em;
+  text-transform:uppercase;
+  overflow:hidden;
+  
+  li {
+    display:inline-flex;
+    align-items:center;
+    margin:0 15px 15px 0;
+  }
+  
+  a {
+    display:inline-flex;
+    align-items:center;
+    text-decoration:none;
+  }
+  
+   .icon {
+    margin-right:9px;
+  }
+}
+
 [id="main"] {
   overflow: hidden;
 }
