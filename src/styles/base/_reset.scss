@@ -1,5 +1,8 @@
 html {
   box-sizing: border-box;
+  @include media ("≥widescreen") {
+    overflow:visible !important;
+  }
 }
 
 *, *:before, *:after {
@@ -17,6 +20,9 @@ body {
   letter-spacing:0.45px;
   background: $base-background-color;
   -moz-osx-font-smoothing: grayscale;
+  @include media ("≥widescreen") {
+    overflow:visible !important;
+  }
 }
 
 body,
