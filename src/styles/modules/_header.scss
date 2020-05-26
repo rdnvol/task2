@@ -18,28 +18,30 @@ $header-panel-height: 126px;
 .header__panel {
   padding: 20px 0;
   background: $l-gray;
-  transition:top $menu-animation-speed ease-in-out;
+  transition:transform 0.3s ease-in-out;
   @include media ("≥widescreen") {
+    position: relative;
     padding: 15px 0;
   }
-
   .fixed-position & {
-    padding: 12px 0;
     z-index:100;
     @include media ("≥widescreen") {
-      padding: 15px 0;
       z-index:10001;
     }
   }
-
   .fixed-position.nav-up & {
-    // transform:translateY(-100%);
-    top: -100% !important;
+    transform:translateY(-100%);
+  }
+  .fixed-position.nav-down & {
+    transform:translateY(0);
   }
 
-  .fixed-position.nav-down & {
-    // transform:translateY(0);
-    top: 0 !important;
+  .row {
+
+    > .col,
+    > [class*="col-"] {
+      position: static;
+    }
   }
 }
 
@@ -63,9 +65,6 @@ $header-panel-height: 126px;
 }
 
 .menu-active {
-  height: 100vh;
-  height: -webkit-fill-available;
-  overflow: hidden;
 
   .menu__drop {
     transform:translateX(0);
@@ -91,21 +90,21 @@ $header-panel-height: 126px;
 
 .menu__drop {
   position:fixed;
-  top: 0;
+  top: 126px;
+  bottom: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
-  height: -webkit-fill-available;
+  height: 100%;
+  max-height: calc(100% - 126px);
   display:flex;
   flex-direction:column;
   justify-content:space-between;
-  padding: $header-panel-height 0 0;
+  background: $color-body;
   border-top:1px solid $l-gray;
   z-index:1000;
   @include media("≤1199px"){
     overflow-y:auto;
     overflow-x:hidden;
-    transition:transform $menu-animation-speed ease-in-out;
     transform:translateX(-100%);
   }
   @include media("≥widescreen") {
@@ -115,14 +114,20 @@ $header-panel-height: 126px;
     transform:none;
     border-top:none;
   }
+  .fixed-position & {
+    top: 85px;
+    max-height: calc(100% - 85px);
+    @include media ("≥widescreen") {
+      max-height: none;
+    }
+  }
 }
 
 .menu__btn-opener {
   display:block;
   position:relative;
   width:40px;
-  height:36px;
-  margin:0 0 0 8px;
+  height:40px;
   font-size:0;
   line-height:0;
   z-index:1001;
@@ -168,7 +173,32 @@ $header-panel-height: 126px;
       margin: 0 25px 15px 0;
     }
     @include media ("≥widescreen") {
-      margin-right: 34px;
+      margin: 0;
+      padding: 15px 30px 15px 0;
+    }
+    &:hover {
+
+      > a {
+        @include media ("≥widescreen") {
+          color: $color-accent;
+        }
+      }
+
+      .menu-accordion__slide {
+        @include media ("≥widescreen") {
+          opacity:1;
+          height:auto;
+          pointer-events: auto;
+        }
+      }
+
+      .fixed-position.nav-up & {
+        @include media ("≥widescreen") {
+          opacity:0;
+          height:0;
+          pointer-events:none;
+        }
+      }
     }
 
     a {
@@ -179,15 +209,76 @@ $header-panel-height: 126px;
         display: inline-block;
         padding: 0;
       }
+      &:hover {
+        color: $color-accent;
+      }
     }
   }
 
   a {
     color: $color-body-text;
   }
+
+  ul {
+    margin: 0 0 30px;
+    padding: 15px 0 0 40px;
+    list-style: none;
+    @include media ("≥widescreen") {
+      margin:0 0 20px;
+      padding: 0;
+      font-weight:300;
+    }
+
+    li {
+      margin:0 0 30px;
+      @include media ("≥widescreen") {
+        margin:0 0 15px;
+      }
+      &.active {
+
+        > a {
+          color:$color-accent;
+        }
+      }
+    }
+
+    a {
+      &:hover {
+        @include media ("≥widescreen") {
+          color:$color-accent;
+          text-decoration:none;
+        }
+      }
+    }
+  }
 }
 
+.menu-accordion__slide {
+  @include media ("≥widescreen") {
+    position: absolute;
+    left:0;
+    top:100%;
+    width:100%;
+    height:0;
+    opacity:0;
+    padding:0 30px 0 15px;
+    cursor:default;
+    pointer-events:none;
+    background:$l-gray;
+    transition: opacity $animation-speed ease-in-out;
+    z-index:1000;
+  }
 
+  .container {
+    @include media ("≤1199px") {
+      padding:0;
+    }
+    @include media ("≥widescreen") {
+      padding-top:50px;
+      padding-bottom:50px;
+    }
+  }
+}
 
 .header__action-menu {
   @extend %listreset;

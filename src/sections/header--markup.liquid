@@ -9,18 +9,48 @@
   <div class="header__panel">
     <div class="container">
       <div class="row align-items-center">
-        <div class="col-3 col-md-3">
+        <div class="col-4 col-md-3">
           <nav class="menu">
             <a href="#" class="menu__opener menu__btn-opener page-wrapper__opener d-lg-none">
               <span>Menu</span>
             </a>
             <div class="menu__drop">
-              <ul id="nav">
+              <ul id="nav" class="menu-accordion">
                 <li>
                   <a href="#">Home</a>
                 </li>
                 <li>
-                  <a href="#">Catalog</a>
+                  <a href="#" class="menu-accordion__opener">Catalog</a>
+                  <div class="menu-accordion__slide">
+                    <div class="container">
+                      <ul>
+                        <li>
+                          <a href="#">Catalog Link</a>
+                        </li>
+                        <li>Catalog Link</li>
+                        <li>Catalog Link</li>
+                        <li>Catalog Link</li>
+                        <li>Catalog Link</li>
+                        <li>Catalog Link</li>
+                        <li>Catalog Link</li>
+                        <li>Catalog Link</li>
+                        <li>Catalog Link</li>
+                        <li>Catalog Link</li>
+                      </ul>
+                      <ul>
+                        <li>Catalog Link</li>
+                        <li>Catalog Link</li>
+                        <li>Catalog Link</li>
+                        <li>Catalog Link</li>
+                        <li>Catalog Link</li>
+                        <li>Catalog Link</li>
+                        <li>Catalog Link</li>
+                        <li>Catalog Link</li>
+                        <li>Catalog Link</li>
+                        <li>Catalog Link</li>
+                      </ul>
+                    </div>
+                  </div>
                 </li>
                 <li>
                   <a href="#">Blog</a>
@@ -32,14 +62,14 @@
             </div>
           </nav>
         </div>
-        <div class="col-6 col-md-6">
+        <div class="col-4 col-md-6">
           <div class="logo">
             <a href="/">
               <img src="{{ 'logo.svg' | asset_url }}" alt="image description">
             </a>
           </div>
         </div>
-        <nav class="col-3 col-md-3 d-flex flex-wrap align-items-center justify-content-end">
+        <nav class="col-4 col-md-3 d-flex flex-wrap align-items-center justify-content-end">
           <ul class="header__action-menu d-flex flex-wrap align-items-center justify-content-center">
             <li class="d-none d-md-block">
               <a href="#" class="header__action-menu__link">

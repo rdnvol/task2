@@ -1,5 +1,7 @@
 import $ from 'jquery';
-import { load } from '@shopify/theme-sections';
+import {
+  load
+} from '@shopify/theme-sections';
 
 import 'picturefill';
 
@@ -10,24 +12,25 @@ import 'lazysizes/plugins/bgset/ls.bgset';
 import 'lazysizes';
 import 'lazysizes/plugins/respimg/ls.respimg';
 
-import 'Scripts/jquery.plugins.js'
+import 'Scripts/jquery.plugins.js';
 
 // Account js
-import 'Scripts/login.js'
-import 'Scripts/addresses.js'
+import 'Scripts/login.js';
+import 'Scripts/addresses.js';
 
 class App {
   constructor() {
-    this.init()
+    this.init();
   }
   init() {
     this.initStickyScrollBlock();
     this.initHeaderOnScrollDown();
     this.initIosScroll();
     this.initMobileNav();
+    this.initAccordion();
 
     // Responsive fluid iframe
-    $(".rte iframe").each(function (index) {
+    $(".rte iframe").each(function(index) {
       $(this).wrap('<div class="fluid-iframe"></div>');
     });
 
@@ -35,7 +38,7 @@ class App {
       $('html').addClass('no-touch');
     }
   }
-  
+
   // initialize fixed blocks on scroll
   initStickyScrollBlock() {
     $('.header__panel').stickyScrollBlock({
@@ -44,7 +47,7 @@ class App {
       container: '.page-wrapper',
       positionType: 'fixed',
       animDelay: 0,
-      showAfterScrolled: true
+      showAfterScrolled: false
     });
   }
 
@@ -55,11 +58,11 @@ class App {
     let delta = 5;
     let navbarHeight = $('.sticky-wrap-header__panel').outerHeight();
 
-    $(window).scroll(function(event){
+    $(window).scroll(function(event) {
       didScroll = true;
     });
 
-    setInterval(function () {
+    setInterval(function() {
       if (didScroll) {
         hasScrolled();
         didScroll = false;
@@ -86,7 +89,7 @@ class App {
       lastScrollTop = st;
     }
   }
-  
+
   initIosScroll() {
     ResponsiveHelper.addRange({
       '..1199': {
@@ -95,14 +98,14 @@ class App {
             $wrap = $('.page-wrapper'),
             scrollTop;
           $(".page-wrapper__opener").on("click", function(e) {
-            if ($('body').hasClass("scroll-fix")) {
+            if ($('html').hasClass("scroll-fix")) {
               $.unlockBody();
-              $('body').removeClass("scroll-fix");
+              $('html').removeClass("scroll-fix");
             } else {
               $.lockBody();
-              $('body').addClass("scroll-fix");
+              $('html').addClass("scroll-fix");
             }
-          })
+          });
           $.unlockBody = function() {
             $docEl.css({
               height: "",
@@ -115,7 +118,7 @@ class App {
             window.setTimeout(function() {
               scrollTop = null;
             }, 0);
-          }
+          };
           $.lockBody = function() {
             if (window.pageYOffset) {
               scrollTop = window.pageYOffset;
@@ -124,11 +127,10 @@ class App {
               });
             }
             $docEl.css({
-              height: "100%",
-              overflow: "hidden",
-              padding: "0"
+              // height: "100%",
+              overflow: "hidden"
             });
-          }
+          };
         },
         off: function() {
           $(".page-wrapper__opener").off();
@@ -136,7 +138,7 @@ class App {
       }
     });
   }
-  
+
   // mobile menu init
   initMobileNav() {
     $('body').mobileNav({
@@ -144,6 +146,28 @@ class App {
       menuOpener: '.menu__opener',
       menuDrop: '.menu',
       hideOnClickOutside: false
+    });
+  }
+
+  // accordion menu init
+  initAccordion() {
+    ResponsiveHelper.addRange({
+      '..1199': {
+        on: function() {
+          $('.menu-accordion').slideAccordion({
+            allowClickWhenExpanded: true,
+            activeClass: 'active',
+            opener: '.menu-accordion__opener',
+            slider: '.menu-accordion__slide',
+            collapsible: true,
+            event: 'click',
+            animSpeed: 400
+          });
+        },
+        off: function() {
+          $('.menu-accordion').slideAccordion('destroy');
+        }
+      }
     });
   }
 }
