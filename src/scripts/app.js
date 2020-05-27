@@ -25,7 +25,7 @@ class App {
   init() {
     this.initStickyScrollBlock();
     this.initHeaderOnScrollDown();
-    // this.initIosScroll();
+    this.initIosScroll();
     this.initMobileNav();
     this.initAccordion();
 
@@ -47,7 +47,7 @@ class App {
       container: '.page-wrapper',
       positionType: 'fixed',
       animDelay: 0,
-      showAfterScrolled: false
+      showAfterScrolled: true
     });
   }
 
@@ -89,6 +89,7 @@ class App {
       lastScrollTop = st;
     }
   }
+  
 
   initIosScroll() {
     ResponsiveHelper.addRange({
@@ -98,6 +99,10 @@ class App {
             $wrap = $('.page-wrapper'),
             scrollTop;
           $(".page-wrapper__opener").on("click", function(e) {
+            window.headerPanel = $('.header__panel');
+            window.stickyWrap = $('.sticky-wrap-header__panel');
+            window.headerPanelStyle = headerPanel.attr('style');
+            window.stickyWrapStyle = stickyWrap.attr('style');
             if ($('html').hasClass("scroll-fix")) {
               $.unlockBody();
               $('html').removeClass("scroll-fix");
@@ -105,6 +110,13 @@ class App {
               $.lockBody();
               $('html').addClass("scroll-fix");
             }
+            setTimeout(() => {
+              window.headerPanel.attr('style', window.headerPanelStyle)
+              window.stickyWrap.attr('style', window.stickyWrapStyle)
+              if (window.headerPanelStyle !== '') {
+                window.stickyWrap.addClass('fixed-position')
+              }
+            }, 100)
           });
           $.unlockBody = function() {
             $docEl.css({
