@@ -1,38 +1,38 @@
-<div class="section d-none"
-     id="product-recommendations"
-     data-product-id="{{ product.id }}"
-     data-limit="{{ section.settings.limit }}">
-  <div class="container">
-    <h2 class="text-center">{{ section.settings.title }}</h2>
-    <div class="row js-products">
-      {% for product in recommendations.products %}
-        <div class="col-sm-6 col-lg-3">
-          <div class="product-item text-center">
-            <a href="{{ product.url }}" class="product-item__img">
-              {% include "image", src: product.featured_image, m:'345x', d :'303x' %}
-            </a>
-            <div class="product-item__box">
-              <h3 class="product-item__title">
-                <a href="#">{{ product.title }}</a>
-              </h3>
-              <div class="product-item__price">
-                <div>$20.00</div>
-              </div>
-            </div>
-          </div>
+{% if section.settings.show_product_recommendations %}
+  <div class="section"
+       id="product-recommendations"
+       data-section-type="product-recommendations"
+       data-section-id="{{ section.id }}"
+       data-product-id="{{ product.id }}"
+       data-limit="{{ section.settings.limit }}">
+    {%- if recommendations.products_count > 0 -%}
+      <div class="container">
+        <h2 class="text-center">{{ section.settings.title }}</h2>
+        <div class="row js-products">
+          {%- for product in recommendations.products -%}
+            {% render "product-card", product: product %}
+          {%- endfor -%}
         </div>
-      {% endfor %}
-    </div>
-    <div class="pt-sm-4 text-center">
-      <a href="#" class="button">back to home page</a>
-    </div>
+        {% if section.settings.button_link != blank %}
+          <div class="pt-sm-4 text-center">
+            <a href="{{ section.settings.button.link }}" class="button">{{ section.settings.button_label }}</a>
+          </div>
+        {% endif %}
+      </div>
+    {%- endif -%}
   </div>
-</div>
+{% endif %}
 
 {% schema %}
   {
     "name": "Related products",
     "settings": [
+      {
+        "type": "checkbox",
+        "id": "show_product_recommendations",
+        "label": "Turn on product recommendations",
+        "default": true
+      },
       {
         "type": "text",
         "id": "title",
@@ -47,6 +47,18 @@
         "step":  1,
         "label":  "Limit",
         "default": 4
+      },
+      {
+        "type": "url",
+        "id": "button_link",
+        "label": "Button link",
+        "info": "Button is disabled if empty"
+      },
+      {
+        "type": "text",
+        "id": "button_label",
+        "label": "Button label",
+        "default": "back to home page"
       }
     ]
   }

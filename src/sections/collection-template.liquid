@@ -6,7 +6,6 @@
 				<h1 class="h2">{{ collection.title }}</h1>
 			</div>
 			<div class="row py-4">
-				{% assign grid_item_width = "col-6 col-lg-3" %}
 				{% assign products = collection.products %}
 				{% if collection.products.size == 0 %}
 					{%- for i in (1..limit) -%}
@@ -14,7 +13,7 @@
 						{% render "product-card--empty", grid_item_width:grid_item_width, current: current %}
 					{%- endfor -%}
 				{%- else -%}
-					{% render "product-card" for products as product, grid_item_width:grid_item_width %}
+					{% render "product-card" for products as product %}
 				{% endif %}
 			</div>
 		</div>
