@@ -30,12 +30,16 @@
     "replace:theme:prod": "npm run js:css && cd ./src && theme deploy --vars='../.env'",
     "replace:theme:prod:win": "npm run js:css && cd ./src && theme deploy --vars=\"../.env\"",
     "build": "npm run js && npm run css",
-    "watch": "npm-run-all -p watch:css:win watch:js:prod watch:theme:dev:win",
+    "watch": "npm-run-all -p watch:css:win watch:js:dev watch:theme:dev:win",
     "deploy": "npm run js:css && cd ./src && theme deploy --vars=\"../.env\""
   },
   "dependencies": {
+    "@babel/runtime": "^7.9.6",
     "@shopify/theme-addresses": "^3.0.3",
-    "@shopify/theme-sections": "^3.0.3",
+    "@shopify/theme-currency": "^3.1.0",
+    "@shopify/theme-product": "^3.1.0",
+    "@shopify/theme-product-form": "^3.1.0",
+    "@shopify/theme-sections": "^3.1.0",
     "axios": "^0.19.0",
     "browser-sync": "^2.26.7",
     "dotenv": "^8.2.0",
@@ -56,6 +60,7 @@
   "devDependencies": {
     "@babel/cli": "^7.2.3",
     "@babel/core": "^7.4.5",
+    "@babel/plugin-transform-runtime": "^7.9.6",
     "@babel/preset-env": "^7.4.5",
     "autoprefixer": "^6.7.2",
     "babel-loader": "^8.0.5",
@@ -75,6 +80,11 @@
   "babel": {
     "presets": [
       "@babel/preset-env"
+    ],
+    "plugins": [
+      [
+        "@babel/transform-runtime"
+      ]
     ]
   }
 }

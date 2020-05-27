@@ -1,13 +1,17 @@
+{% unless grid_item_width %}
+{% assign grid_item_width = 'col-sm-6 col-lg-3' %}
+{% endunless %}
+
 <div class="{{grid_item_width}}">
 	<div class="product-item text-center">
 		<a href="{{ product.url | within: collection }}" class="product-item__img">
-			{% include "image", src:product.featured_image, m:'303x', d:'345x' %}
+			{% render "image", src:product.featured_image, m:'303x', d:'345x' %}
 		</a>
 		<div class="product-item__box">
 			<h3 class="product-item__title">
-				<a href="#">Your product's name</a>
+				<a href="{{ product.url | within: collection }}">{{ product.title }}</a>
 			</h3>
-			{% include "product-price", product:product %}
+			{% render "product-price", product:product %}
 		</div>
 	</div>
 </div>
