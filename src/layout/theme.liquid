@@ -67,14 +67,12 @@
 </head>
 
 <body id="{{ page_title | handle }}" class="template-{{ template.name | handle }}">
-	<div class="page-wrapper">
-		<div id="wrapper">
-			{% section 'header--markup' %}
+	<div id="wrapper" class="page-wrapper">
+		{% section 'header--markup' %}
 
-			<main role="main" id="main">
-				{{ content_for_layout }}
-			</main>
-		</div>
+		<main role="main" id="main">
+			{{ content_for_layout }}
+		</main>
 
 		{% section 'footer' %}
 	</div>

@@ -3,16 +3,6 @@ html {
   @include media ("≥widescreen") {
     overflow:visible !important;
   }
-  &.scroll-fix {
-    padding-bottom: 0 !important;
-    // height: 100vh;
-    // height: -webkit-fill-available;
-    
-    // body {
-    //   height: 100vh;
-    //   height: -webkit-fill-available;
-    // }
-  }
 }
 
 *, *:before, *:after {
