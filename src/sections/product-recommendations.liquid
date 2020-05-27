@@ -1,0 +1,53 @@
+<div class="section d-none"
+     id="product-recommendations"
+     data-product-id="{{ product.id }}"
+     data-limit="{{ section.settings.limit }}">
+  <div class="container">
+    <h2 class="text-center">{{ section.settings.title }}</h2>
+    <div class="row js-products">
+      {% for product in recommendations.products %}
+        <div class="col-sm-6 col-lg-3">
+          <div class="product-item text-center">
+            <a href="{{ product.url }}" class="product-item__img">
+              {% include "image", src: product.featured_image, m:'345x', d :'303x' %}
+            </a>
+            <div class="product-item__box">
+              <h3 class="product-item__title">
+                <a href="#">{{ product.title }}</a>
+              </h3>
+              <div class="product-item__price">
+                <div>$20.00</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+    <div class="pt-sm-4 text-center">
+      <a href="#" class="button">back to home page</a>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Related products",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "You may also like"
+      },
+      {
+        "type": "range",
+        "id":  "limit",
+        "min":  1,
+        "max":  8,
+        "step":  1,
+        "label":  "Limit",
+        "default": 4
+      }
+    ]
+  }
+{% endschema %}

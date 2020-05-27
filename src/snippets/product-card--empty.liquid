@@ -1,14 +1,14 @@
 <div class="{{grid_item_width}}">
 	<div class="product-item text-center">
-		<a href="#" class="product-item__img">
-			{{ 'product-' | append: index | placeholder_svg_tag: 'placeholder-svg' }}
-		</a>
+		<div class="product-item__img">
+			{{ 'product-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
+		</div>
 		<div class="product-item__box">
 			<h3 class="product-item__title">
-				<a href="#">Your product's name</a>
+				<div>Your product's name</div>
 			</h3>
 			<div class="product-item__price">
-				{% include "product-price", product:product %}
+				{% render "product-price", product:product %}
 			</div>
 		</div>
 	</div>
