@@ -19,7 +19,7 @@
   transition:transform 0.3s ease-in-out;
   @include media ("≥widescreen") {
     position: relative;
-    padding: 15px 0;
+    padding: 0;
   }
   .fixed-position & {
     z-index:100;
@@ -68,10 +68,6 @@
 
 .menu-active {
 
-  // body {
-  //   overflow: hidden;
-  // }
-
   .menu__drop {
     transform:translateX(0);
   }
@@ -100,6 +96,8 @@
   left: 0;
   bottom: 0;
   width: 100%;
+  height: 100vh;
+  max-height: calc(100vh - 120px);
   display:flex;
   flex-direction:column;
   justify-content:space-between;
@@ -117,10 +115,11 @@
     padding: 0;
     transform:none;
     border-top:none;
+    background: none;
   }
 
   .fixed-position & {
-    top: 85px;
+    max-height: calc(100vh - 80px);
   }
 }
 
@@ -163,10 +162,10 @@
   font-size: 14px;
   line-height: 1.28;
   letter-spacing: 0.05em;
-  @include media ("≥desktop") {
+  @include media ("≥widescreen") {
     display: flex;
     align-items: center;
-    margin-bottom: -15px;
+    padding: 0;
   }
 
   > li {
@@ -175,15 +174,25 @@
     }
     @include media ("≥widescreen") {
       margin: 0;
-      padding: 15px 30px 15px 0;
+      padding: 28px 30px 28px 0;
     }
-    &:hover {
+    &.active {
 
       > a {
-        @include media ("≥widescreen") {
-          color: $color-accent;
+        color: $color-accent;
+      }
+    }
+    &.has-drop {
+      &:hover {
+
+        > a {
+          @include media ("≥widescreen") {
+            color: $color-accent;
+          }
         }
       }
+    }
+    &:hover {
 
       .menu-accordion__slide {
         @include media ("≥widescreen") {
@@ -221,8 +230,8 @@
   }
 
   ul {
-    margin: 0 0 30px;
-    padding: 15px 0 0 40px;
+    margin: 0 0 10px;
+    padding: 0;
     list-style: none;
     @include media ("≥widescreen") {
       margin:0 0 20px;
@@ -231,10 +240,6 @@
     }
 
     li {
-      margin:0 0 30px;
-      @include media ("≥widescreen") {
-        margin:0 0 15px;
-      }
       &.active {
 
         > a {
@@ -271,8 +276,8 @@
 
   .container {
     @include media ("≥widescreen") {
-      padding-top:50px;
-      padding-bottom:50px;
+      padding-top:15px;
+      padding-bottom:30px;
     }
   }
 }

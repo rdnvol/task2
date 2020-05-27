@@ -25,7 +25,7 @@ class App {
   init() {
     this.initStickyScrollBlock();
     this.initHeaderOnScrollDown();
-    this.initIosScroll();
+    // this.initIosScroll();
     this.initMobileNav();
     this.initAccordion();
 
@@ -47,7 +47,7 @@ class App {
       container: '.page-wrapper',
       positionType: 'fixed',
       animDelay: 0,
-      showAfterScrolled: true
+      showAfterScrolled: false
     });
   }
 
