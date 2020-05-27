@@ -92,15 +92,12 @@
 
 .menu__drop {
   position: fixed;
-  top: 120px;
+  top: var(--header-height);
   left: 0;
   bottom: 0;
   width: 100%;
   height: 100vh;
-  max-height: calc(100vh - 120px);
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
+  max-height: calc(100vh - var(--header-height));
   border-top:1px solid $l-gray;
   background: $color-body;
   z-index:1000;
@@ -119,7 +116,8 @@
   }
 
   .fixed-position & {
-    max-height: calc(100vh - 80px);
+    top: var(--header-sticky-height);
+    max-height: calc(100vh - var(--header-sticky-height));
   }
 }
 
@@ -136,11 +134,12 @@
   & span {
     position:absolute;
     top:50%;
-    left:18%;
-    right:18%;
-    height:1px;
+    left:20%;
+    right:20%;
+    height:2px;
     transition:all $animation-speed ease;
-    background:$black;
+    background:$color-body-text;
+    border-radius: 2px;
   }
   &:before,
   &:after {
@@ -149,9 +148,6 @@
   }
   &:after {
     top:70%;
-  }
-  .nav-active & span {
-    opacity:0;
   }
 }
 
@@ -177,6 +173,14 @@
       padding: 28px 30px 28px 0;
     }
     &.active {
+      &.has-drop {
+
+        > a {
+          &:after {
+            transform: rotate(135deg);
+          }
+        }
+      }
 
       > a {
         color: $color-accent;
@@ -188,6 +192,26 @@
         > a {
           @include media ("≥widescreen") {
             color: $color-accent;
+          }
+        }
+      }
+
+      > a {
+        position: relative;
+        &:after {
+          content: '';
+          position: absolute;
+          top:50%;
+          right:12px;
+          width:10px;
+          height:10px;
+          margin-top:-7px;
+          border-style:solid;
+          border-width:0 0 1px 1px;
+          border-color: $color-body-text;
+          transform: rotate(-45deg);
+          @include media ("≥widescreen") {
+            display: none;
           }
         }
       }
@@ -213,7 +237,7 @@
 
     a {
       display: block;
-      padding: 12px 25px;
+      padding: 16px 25px;
       text-decoration: none;
       @include media ("≥widescreen") {
         display: inline-block;
@@ -240,6 +264,9 @@
     }
 
     li {
+      @include media ("≥widescreen") {
+        margin: 0 0 15px;
+      }
       &.active {
 
         > a {
@@ -255,6 +282,13 @@
           text-decoration:none;
         }
       }
+    }
+  }
+
+  .h {
+    padding: 15px 25px 0 25px;
+    @include media ("≥widescreen") {
+      padding: 0;
     }
   }
 }
@@ -297,10 +331,19 @@
   }
 }
 
-.header__action-menu__link {
+.header__btn {
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 44px;
+  height: 44px;
+  &:hover {
+    color: $color-accent;
+  }
+
+  svg {
+    color: currentColor;
+  }
 }
 
 
