@@ -1,0 +1,96 @@
+.cart-table {
+  table-layout: fixed;
+  width: 100%;
+
+  th,
+  td {
+    text-align: left;
+    padding: 15px 20px;
+    &:first-child {
+      @include media ("≥desktop") {
+        width: 45%;
+      }
+    }
+    &:nth-child(2) {
+      @include media ("≥desktop") {
+        width: 15%;
+      }
+    }
+    &:nth-child(3) {
+      @include media ("≥desktop") {
+        width: 15%;
+      }
+    }
+    &:nth-child(4) {
+      @include media ("≥desktop") {
+        width: 15%;
+      }
+    }
+  }
+
+  // @include media("≤767px") {
+
+  //   thead {
+  //     display: none;
+  //   }
+
+  //   tr {
+  //     display: block;
+  //   }
+
+  //   th,
+  //   td {
+  //     display: block;
+  //     margin: 0;
+  //     padding: 10px 0;
+  //     text-align: right;
+  //   }
+
+  //   td::before {
+  //     content: attr(data-label);
+  //     float: left;
+  //     width: 120px;
+  //     padding-right: 10px;
+  //     font-weight: bold;
+  //     text-align: left;
+  //   }
+
+  //   // Add a keyline between rows
+  //   .responsive-table-row+.responsive-table-row,
+  //   tfoot>.responsive-table-row:first-child {
+  //     position: relative;
+  //     margin-top: 10px;
+  //     padding-top: 10px;
+
+  //     &::after {
+  //       content: '';
+  //       position: absolute;
+  //       top: 0;
+  //       right: 10px;
+  //       left: 10px;
+  //       display: block;
+  //       border-bottom: 1px solid $color-border;
+  //     }
+  //   }
+  // }
+}
+
+.cart-form {
+
+  label {
+    font-weight: bold;
+  }
+
+  button,
+  .button {
+    width: 100%;
+
+    @include media("≥tablet") {
+      width: auto;
+    }
+  }
+}
+
+.cart-form__total {
+  font-weight: bold;
+}

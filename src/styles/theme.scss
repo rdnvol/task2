@@ -42,7 +42,9 @@ $media-expressions: (
 
 @import 'layout/password';
 @import 'layout/all';
-@import 'layout/account';
+
+@import 'pages/account';
+@import 'pages/cart';
 
 @import 'section/hero';
 @import 'section/featured-collection';
