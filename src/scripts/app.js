@@ -1,8 +1,4 @@
-import $ from 'jquery';
-import {
-  load
-} from '@shopify/theme-sections';
-
+$ = window.$ = jQuery = window.jQuery = require('jquery');
 import 'picturefill';
 
 import 'lazysizes/plugins/object-fit/ls.object-fit';
@@ -12,16 +8,33 @@ import 'lazysizes/plugins/bgset/ls.bgset';
 import 'lazysizes';
 import 'lazysizes/plugins/respimg/ls.respimg';
 
-import 'Scripts/jquery.plugins.js';
+import 'Scripts/jquery.plugins'
+
+import product from "Scripts/product";
+import "Scripts/related-product";
+
+import { load } from '@shopify/theme-sections';
+load('product-recommendations');
 
 // Account js
-import 'Scripts/login.js';
-import 'Scripts/addresses.js';
+import 'Scripts/login'
+import 'Scripts/addresses'
+
 
 class App {
   constructor() {
     this.init();
+    this.duplicateQuantityForMobile();
+    product.init('#product');
   }
+  
+  duplicateQuantityForMobile() {
+    $('input[id^="updates_mobile_"]').change(function() {
+      const key = $(this).data('key');
+      $(`input[id^="updates_${key}"]`).val($(this).val());
+    })
+  }
+  
   init() {
     this.initMobileNav();
     this.initStickyScrollBlock();

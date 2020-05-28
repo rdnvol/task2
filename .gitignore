@@ -70,3 +70,5 @@ secrets.json
 .ruby-version
 *.sublime-workspace
 *.sublime-project
+*.map
+*.code-workspace
