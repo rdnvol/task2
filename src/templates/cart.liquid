@@ -95,10 +95,10 @@
                                     {% endif %}
                                   </div>
                                   <div class="d-flex d-md-none align-items-center justify-content-end">
-                                    <label for="updates_{{ item.key }}" class="mr-2">Qty</label>
+                                    <label for="updates_mobile_{{ item.key }}" class="mr-2">Qty</label>
                                     <input type="number"
-                                              name="updates[]"
-                                              id="updates_{{ item.key }}"
+                                              data-key="{{ item.key }}"
+                                              id="updates_mobile_{{ item.key }}"
                                               value="{{ item.quantity }}"
                                               min="0"
                                               aria-label="{{ 'cart.general.item_quantity' | t }}">

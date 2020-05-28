@@ -24,8 +24,17 @@ import 'Scripts/addresses'
 class App {
   constructor() {
     this.init();
+    this.duplicateQuantityForMobile();
     product.init('#product');
   }
+  
+  duplicateQuantityForMobile() {
+    $('input[id^="updates_mobile_"]').change(function() {
+      const key = $(this).data('key');
+      $(`input[id^="updates_${key}"]`).val($(this).val());
+    })
+  }
+  
   init() {
 
     // Responsive fluid iframe
