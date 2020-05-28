@@ -7,8 +7,9 @@ html {
     padding-bottom: 0 !important;
     
     body {
-      overflow: hidden;
-      -webkit-overflow-scrolling: touch;
+      position: relative !important;
+      overflow: hidden !important;
+      // -webkit-overflow-scrolling: touch;
     }
   }
 }
