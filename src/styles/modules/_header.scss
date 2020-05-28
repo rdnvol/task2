@@ -96,8 +96,7 @@
   left: 0;
   bottom: 0;
   width: 100%;
-  height: 100vh;
-  max-height: calc(100vh - var(--header-height));
+  height: calc(100% - var(--header-height));
   border-top:1px solid $l-gray;
   background: $color-body;
   z-index:1000;
@@ -115,9 +114,11 @@
     background: none;
   }
 
-  .fixed-position & {
+  .fixed-position.nav-down &,
+  .fixed-position.nav-up & {
     top: var(--header-sticky-height);
-    max-height: calc(100vh - var(--header-sticky-height));
+    max-height: calc(-webkit-fill-available - var(--header-sticky-height));
+    min-height: calc(100vh - var(--header-sticky-height));
   }
 }
 
@@ -163,6 +164,11 @@
     align-items: center;
     padding: 0;
   }
+  .fixed-position.nav-down &,
+  .fixed-position.nav-up & {
+    padding-bottom: 70px;
+  }
+
 
   > li {
     @include media ("≥desktop") {

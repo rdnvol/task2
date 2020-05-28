@@ -3,6 +3,9 @@ html {
   @include media ("≥widescreen") {
     overflow:visible !important;
   }
+  &.scroll-fix {
+    padding-bottom: 0 !important;
+  }
 }
 
 *, *:before, *:after {

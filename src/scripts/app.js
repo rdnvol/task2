@@ -89,7 +89,6 @@ class App {
       lastScrollTop = st;
     }
   }
-  
 
   initIosScroll() {
     ResponsiveHelper.addRange({
