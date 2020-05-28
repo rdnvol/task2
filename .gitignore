@@ -71,3 +71,4 @@ secrets.json
 *.sublime-workspace
 *.sublime-project
 *.map
+*.code-workspace
