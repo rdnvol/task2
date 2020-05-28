@@ -23,10 +23,10 @@ class App {
     this.init();
   }
   init() {
-    this.initStickyScrollBlock();
-    this.initHeaderOnScrollDown();
-    this.initIosScroll();
     this.initMobileNav();
+    this.initStickyScrollBlock();
+    // this.initHeaderOnScrollDown();
+    this.initIosScroll();
     this.initAccordion();
 
     // Responsive fluid iframe
@@ -47,7 +47,7 @@ class App {
       container: '.page-wrapper',
       positionType: 'fixed',
       animDelay: 0,
-      showAfterScrolled: true
+      showAfterScrolled: false
     });
   }
 
