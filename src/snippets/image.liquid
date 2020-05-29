@@ -38,9 +38,9 @@
 {% endcomment -%}
 {%- if crop -%}
 	<picture>
-		<source data-srcset="{{ src_mobile | img_url:m | crop: crop }}, {{ src_mobile | img_url:m2x | crop: crop }} 2x" media="(max-width: 767px)" srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
-		<source data-srcset="{{ src | img_url:d | crop: crop }}, {{ src | img_url:d2x | crop: crop }} 2x" srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
-		<img data-src="{{ src | img_url:d | crop: crop }}" class="lazyload" data-sizes="auto" alt="image description" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+		<source data-srcset="{{ src_mobile | img_url:m, crop: crop }}, {{ src_mobile | img_url:m2x, crop: crop }} 2x" media="(max-width: 767px)" srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+		<source data-srcset="{{ src | img_url:d, crop: crop }}, {{ src | img_url:d2x, crop: crop }} 2x" srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+		<img data-src="{{ src | img_url:d }}" class="lazyload" data-sizes="auto" alt="image description" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
 	</picture>
 {%- else -%}
 	<picture>
