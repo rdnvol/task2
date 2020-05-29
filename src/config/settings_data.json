@@ -62,18 +62,18 @@
           "title": "Featured collection",
           "collection": "",
           "grid": 4,
-          "rows": 1,
+          "rows": 2,
           "show_view_all": true
         }
       },
       "1589984445229": {
         "type": "home-hero",
         "settings": {
-          "image": "",
+          "image": "shopify://shop_images/Untitled_design.png",
           "title": "Image with text overlay",
           "alignment": "justify-content-start align-items-center",
           "text": "<p>Use overlay text to give your customers insight into your brand. Select imagery and text that relates to your style and story.</p>",
-          "button_link": "",
+          "button_link": "shopify://collections",
           "button_label": "Button label"
         }
       },
@@ -102,6 +102,13 @@
       "footer": {
         "type": "footer",
         "blocks": {
+          "1589993081754": {
+            "type": "text",
+            "settings": {
+              "icon": "logo-2.svg",
+              "text": "<p>Dignissim suspendisse in est ante in nibh mauris cursus mattis. Arcu odio ut sem nulla pharetra diam sit amet nisl.</p>"
+            }
+          },
           "1589988638820": {
             "type": "link_list",
             "settings": {
@@ -120,13 +127,6 @@
             "type": "newsletter",
             "settings": {
               "title": "Newsletter"
-            }
-          },
-          "1589993081754": {
-            "type": "text",
-            "settings": {
-              "icon": "logo-2.svg",
-              "text": "<p>Dignissim suspendisse in est ante in nibh mauris cursus mattis. Arcu odio ut sem nulla pharetra diam sit amet nisl.</p>"
             }
           }
         },
@@ -174,22 +174,12 @@
           ],
           "settings": {}
         },
-        "featured-collection": {
-          "type": "featured-collection",
-          "settings": {
-            "collection": "frontpage"
-          }
-        },
         "featured-product": {
           "type": "featured-product",
           "settings": {}
         }
       },
-      "content_for_index": [
-        "collection-list",
-        "featured-collection",
-        "featured-product"
-      ]
+      "content_for_index": ["collection-list", "featured-product"]
     }
   }
 }
