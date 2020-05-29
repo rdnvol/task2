@@ -1,5 +1,7 @@
 {%- unless src_m -%}
-	{% assign src_m = src %}
+	{% assign src_mobile = src %}
+{% else %}
+	{% assign src_mobile = src_m %}
 {%- endunless -%}
 
 {% assign d_width = d | split:'x' | first %}
@@ -36,13 +38,13 @@
 {% endcomment -%}
 {%- if crop -%}
 	<picture>
-		<source data-srcset="{{ src_m | img_url:m | crop: crop }}, {{ src_m | img_url:m2x | crop: crop }} 2x" media="(max-width: 767px)" srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+		<source data-srcset="{{ src_mobile | img_url:m | crop: crop }}, {{ src_mobile | img_url:m2x | crop: crop }} 2x" media="(max-width: 767px)" srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
 		<source data-srcset="{{ src | img_url:d | crop: crop }}, {{ src | img_url:d2x | crop: crop }} 2x" srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
 		<img data-src="{{ src | img_url:d | crop: crop }}" class="lazyload" data-sizes="auto" alt="image description" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
 	</picture>
 {%- else -%}
 	<picture>
-		<source data-srcset="{{ src | img_url:m }}, {{ src | img_url:m2x }} 2x" media="(max-width: 767px)" srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+		<source data-srcset="{{ src_mobile | img_url:m }}, {{ src_mobile | img_url:m2x }} 2x" media="(max-width: 767px)" srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
 		<source data-srcset="{{ src | img_url:d }}, {{ src | img_url:d2x }} 2x" srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
 		<img data-src="{{ src | img_url:d }}" class="lazyload" data-sizes="auto" alt="image description" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
 	</picture>

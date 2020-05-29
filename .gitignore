@@ -72,3 +72,4 @@ secrets.json
 *.sublime-project
 *.map
 *.code-workspace
+src/assets/*.js.map

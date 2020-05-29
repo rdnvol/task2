@@ -28,6 +28,11 @@
         "id": "color_main_bg",
         "label": "Background",
         "default": "#fff"
+      },
+      {
+        "type": "url",
+        "id": "image",
+        "label": "Image"
       }
     ]
   },

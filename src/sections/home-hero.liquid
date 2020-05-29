@@ -1,7 +1,7 @@
 <section class="hero">
 	<div class="hero__img">
 		{%- if section.settings.image != blank -%}
-			{% include "image", src: section.settings.image, m:'375x', d :'1438x' %}
+			{% include "image", src: section.settings.image, src_m: section.settings.image_mobile, m:'375x', d :'1438x' %}
 		{%- else -%}
 			{{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
 		{%- endif -%}
@@ -31,6 +31,11 @@
 		{
 			"type": "image_picker",
 			"id": "image",
+			"label": "Image"
+		},
+		{
+			"type": "image_picker",
+			"id": "image_mobile",
 			"label": "Image"
 		},
 		{

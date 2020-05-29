@@ -14,7 +14,7 @@ import product from "Scripts/product";
 import "Scripts/related-product";
 
 import { load } from '@shopify/theme-sections';
-load('product-recommendations');
+load('*');
 
 // Account js
 import 'Scripts/login'
