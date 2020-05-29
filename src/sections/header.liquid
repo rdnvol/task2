@@ -10,131 +10,149 @@
   Theme Store optional settings
   - Home page only: only shows on the home page
 {%- endcomment -%}
-<section data-section-id="{{ section.id }}" data-section-type="header">
+
+<header id="header">
   {%- if section.settings.announcement_bar_enabled -%}
-    <div>
-      {%- if section.settings.announcement_bar_home_page_only == false or template.name == 'index' -%}
-        {%- if section.settings.announcement_bar_link != blank -%}
-          <a href="{{ section.settings.announcement_bar_link }}">
-            {{ section.settings.announcement_bar_text | escape }}
-          </a>
-        {%- else -%}
-          <p>{{ section.settings.announcement_bar_text | escape }}</p>
-        {%- endif -%}
-      {%- endif -%}
+    <div class="header__bar py-2">
+      <div class="container">
+        <ul class="header__bar-list d-flex flex-wrap align-items-center justify-content-center">
+          {%- if section.settings.announcement_bar_home_page_only == false or template.name == 'index' -%}
+            {%- if section.settings.announcement_bar_link != blank -%}
+              <li><a href="{{ section.settings.announcement_bar_link }}">{{ section.settings.announcement_bar_text | escape }}</a></li>
+            {%- else -%}
+              <li>{{ section.settings.announcement_bar_text | escape }}</li>
+            {%- endif -%}
+          {%- endif -%}
+        </ul>
+      </div>
     </div>
   {%- endif -%}
-
-  <header role="banner">
-    {% if template.name == 'index' %}
-      <h1>
-    {% else %}
-      <div class="h1">
-    {% endif %}
-        <a href="/" class="logo-image">
-          {% if section.settings.logo != blank %}
-            {% capture image_size %}{{ section.settings.logo_max_width }}x{% endcapture %}
-            <img src="{{ section.settings.logo | img_url: image_size }}"
-                srcset="{{ section.settings.logo | img_url: image_size }} 1x, {{ section.settings.logo | img_url: image_size, scale: 2 }} 2x"
-                alt="{{ section.settings.logo.alt | default: shop.name }}">
-          {% else %}
-            {{ shop.name }}
-          {% endif %}
-        </a>
-    {% if template.name == 'index' %}
-      </h1>
-    {% else %}
-      </div>
-    {% endif %}
-
-    <a href="/cart">
-      {% include 'icon-cart' %}
-      {{ 'layout.cart.title' | t }}
-      ({{ cart.item_count }} {{ 'layout.cart.items_count' | t: count: cart.item_count }})
-    </a>
-
-    {% if shop.customer_accounts_enabled %}
-      <ul>
-        {% if customer %}
-          <li>
-            {% if customer.first_name != blank %}
-              {% capture first_name %}<a href="/account">{{ customer.first_name }}</a>{% endcapture %}
-              {{ 'layout.customer.logged_in_as_html' | t: first_name: first_name }}
-            {% else %}
-              <a href="/account">{{ 'layout.customer.account' | t }}</a>
-            {% endif %}
-          </li>
-          <li>
-            {{ 'layout.customer.log_out' | t | customer_logout_link }}
-          </li>
-        {% else %}
-          <li>
-            {{ 'layout.customer.log_in' | t | customer_login_link }}
-          </li>
-          <li>
-            {{ 'layout.customer.create_account' | t | customer_register_link }}
-          </li>
-        {% endif %}
-      </ul>
-    {% endif %}
-
-    <form action="/search" method="get" role="search">
-      <label for="Search-{{ section.id }}" class="label-hidden">
-        {{ 'general.search.placeholder' | t }}
-      </label>
-
-      <input type="search"
-        name="q"
-        id="Search-{{ section.id }}"
-        value="{{ search.terms | escape }}"
-        placeholder="{{ 'general.search.placeholder' | t }}">
-
-      <button type="submit" class="button">
-        {% include 'icon-search' %}
-        <span class="icon-fallback-text">{{ 'general.search.submit' | t }}</span>
-      </button>
-    </form>
-  </header>
-
-  <nav role="navigation">
-    <ul>
-      {% for link in linklists[section.settings.menu].links %}
-        {% if link.links != blank %}
-          <li>
-            <a href="{{ link.url }}">
-              {{ link.title }}
-              {% include 'icon-arrow-down' %}
+  <div class="header__panel">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-4 col-lg-3">
+          <div class="menu">
+            <div class="d-flex d-lg-none align-items-center">
+              <a href="#" class="menu__opener menu__btn-opener page-wrapper__opener">
+                <span>Menu</span>
+              </a>
+              <a href="{{ routes.search_url }}" class="header__btn d-none d-xs-inline-flex d-lg-none">
+                {%- include 'icon' with 'search' -%}
+              </a>
+            </div>
+            <nav class="menu__drop d-none d-lg-block">
+              <ul id="nav" class="main-menu menu-accordion">
+                {% render 'nav-menu' %}
+              </ul>
+            </nav>
+          </div>
+        </div>
+        <div class="col-4 col-lg-6">
+          <div class="logo">
+            <a href="{{ routes.root_url }}">
+              {% if section.settings.logo != blank %}
+                <img src="{{ section.settings.logo | img_url:'172x' }}" alt="image description">
+              {% else %}
+                <img src="{{ 'logo.svg' | asset_url }}" alt="image description">
+              {% endif %}
             </a>
-            <ul>
-              {% for childlink in link.links %}
-                <li>
-                  <a href="{{ childlink.url }}">
-                    {{ childlink.title }}
+          </div>
+        </div>
+        <nav class="col-4 col-lg-3 d-flex flex-wrap align-items-center justify-content-end">
+          <ul class="header__action-menu d-flex flex-wrap align-items-center justify-content-center">
+            <li class="d-none d-lg-block">
+              <a href="{{ routes.search_url }}" class="header__btn">
+                {%- include 'icon' with 'search' -%}
+              </a>
+            </li>
+            {% if shop.customer_accounts_enabled %}
+              {% if customer %}
+                <li class="d-none d-xs-block">
+                  <a href="{{ routes.account_login_url }}" class="header__btn">
+                    {%- include 'icon' with 'account' -%}
                   </a>
                 </li>
-              {% endfor %}
-            </ul>
-          </li>
-        {% else %}
-          <li>
-            <a href="{{ link.url }}">
-              {{ link.title }}
+              {% else %}
+              {% endif %}
+            {% endif %}
+            <li>
+              <a href="{{ routes.cart_url }}" class="header__btn">
+                {%- include 'icon' with 'cart' -%}
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+<nav class="menu__drop d-lg-none">
+  {%- if section.settings.announcement_bar_enabled -%}
+    <div class="header__bar py-2">
+      <div class="container">
+        <ul class="header__bar-list d-flex flex-wrap align-items-center justify-content-center">
+           {%- if section.settings.announcement_bar_home_page_only == false or template.name == 'index' -%}
+             {%- if section.settings.announcement_bar_link != blank -%}
+               <li><a href="{{ section.settings.announcement_bar_link }}">{{ section.settings.announcement_bar_text | escape }}</a></li>
+             {%- else -%}
+               <li>{{ section.settings.announcement_bar_text | escape }}</li>
+             {%- endif -%}
+           {%- endif -%}
+        </ul>
+      </div>
+    </div>
+  {%- endif -%}
+  <div class="header__panel-mobile">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-4 col-lg-3">
+          <div class="menu">
+            <div class="d-flex d-lg-none align-items-center">
+              <a href="#" class="menu__opener menu__btn-opener page-wrapper__opener">
+                <span>Menu</span>
+              </a>
+              <a href="#" class="header__btn d-none d-xs-inline-flex d-lg-none">
+                {%- include 'icon' with 'search' -%}
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-4 col-lg-6">
+          <div class="logo">
+            <a href="/">
+              <img src="{{ 'logo.svg' | asset_url }}" alt="image description">
             </a>
-          </li>
-        {% endif %}
-      {% endfor %}
+          </div>
+        </div>
+        <nav class="col-4 col-lg-3 d-flex flex-wrap align-items-center justify-content-end">
+          <ul class="header__action-menu d-flex flex-wrap align-items-center justify-content-center">
+            <li class="d-none d-lg-block">
+              <a href="#" class="header__btn">
+                {%- include 'icon' with 'search' -%}
+              </a>
+            </li>
+            <li class="d-none d-xs-block">
+              <a href="#" class="header__btn">
+                {%- include 'icon' with 'account' -%}
+              </a>
+            </li>
+            <li>
+              <a href="#" class="header__btn">
+                {%- include 'icon' with 'cart' -%}
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <ul class="main-menu menu-accordion">
+      {% render 'nav-menu' %}
     </ul>
-  </nav>
-</section>
+  </div>
+</nav>
 
-{% if section.settings.logo != blank %}
-  <style>
-    .logo-image {
-      display: block;
-      max-width: {{ section.settings.logo_max_width }}px;
-    }
-  </style>
-{% endif %}
 
 {% schema %}
   {
@@ -148,13 +166,13 @@
         "type": "checkbox",
         "id": "announcement_bar_enabled",
         "label": "Show announcement",
-        "default": false
+        "default": true
       },
       {
         "type": "checkbox",
         "id": "announcement_bar_home_page_only",
         "label": "Show on home page only",
-        "default": true
+        "default": false
       },
       {
         "type": "text",
@@ -176,16 +194,6 @@
         "type": "image_picker",
         "id": "logo",
         "label": "Logo image"
-      },
-      {
-        "type": "range",
-        "id": "logo_max_width",
-        "min": 50,
-        "max": 450,
-        "step": 10,
-        "unit": "px",
-        "label": "Custom logo width",
-        "default": 250
       },
       {
         "type": "link_list",

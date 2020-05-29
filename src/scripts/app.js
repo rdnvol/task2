@@ -1,4 +1,4 @@
-$ = window.$ = jQuery = window.jQuery = require('jquery');
+
 import 'picturefill';
 
 import 'lazysizes/plugins/object-fit/ls.object-fit';
