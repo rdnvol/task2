@@ -7,9 +7,10 @@ html {
     padding-bottom: 0 !important;
     
     body {
-      position: relative !important;
-      overflow: hidden !important;
-      // -webkit-overflow-scrolling: touch;
+      @include media ("≤1199px") {
+        position: relative !important;
+        overflow: hidden !important;
+      }
     }
   }
 }
