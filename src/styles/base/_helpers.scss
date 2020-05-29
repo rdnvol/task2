@@ -60,3 +60,15 @@
 .text-uppercase {
   text-transform:uppercase;
 }
+
+.d-xs-block {
+  @include media ("≥phone") {
+    display: block !important;
+  }
+}
+
+.d-xs-inline-flex {
+  @include media ("≥phone") {
+    display: inline-flex !important;
+  }
+}

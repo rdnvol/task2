@@ -1,11 +1,15 @@
+.page-wrapper {
+  position:relative;
+}
+
 .row {
   @include media("≤767px") {
     margin-left: -10px;
     margin-right: -10px;
   }
 
-  >.col,
-  >[class*="col-"] {
+  > .col,
+  > [class*="col-"] {
     @include media("≤767px") {
       padding-left: 10px;
       padding-right: 10px;
@@ -13,21 +17,8 @@
   }
 }
 
-.placeholder-svg {
-  width: 100%;
-  fill: white;
-  background: #c4c4c4;
-}
-
 #wrapper {
   position: relative;
-  display: table-cell;
-  width: 100%;
-  overflow: hidden;
-}
-
-#content {
-  outline: none;
 }
 
 .accessibility {
@@ -403,6 +394,12 @@
       margin-bottom:0;
     }
   }
+}
+
+.placeholder-svg {
+  width: 100%;
+  fill: white;
+  background: #c4c4c4;
 }
 
 img[data-sizes="auto"] {

@@ -67,18 +67,18 @@
 </head>
 
 <body id="{{ page_title | handle }}" class="template-{{ template.name | handle }}">
-
-	{% comment %}<a class="in-page-link accessibility skip-link" href="#content">{{ 'general.accessibility.skip_to_content' | t }}</a>{% endcomment %}
-
-	<div id="wrapper">
-		{% comment %}{% section 'header' %}{% endcomment %}
+	<div id="wrapper" class="page-wrapper">
+		{% section 'header--markup' %}
 
 		<main role="main" id="main">
 			{{ content_for_layout }}
 		</main>
+
+		{% section 'footer' %}
 	</div>
 
-	{% section 'footer' %}
+	{% comment %}<a class="in-page-link accessibility skip-link" href="#content">{{ 'general.accessibility.skip_to_content' | t }}</a>{% endcomment %}
+
 
 </body>
 </html>
