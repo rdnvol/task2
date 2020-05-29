@@ -1,5 +1,8 @@
 .page-wrapper {
   position:relative;
+  @include media ("≥widescreen") {
+    top: auto !important;
+  }
 }
 
 .row {
