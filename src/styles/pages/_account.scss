@@ -53,8 +53,6 @@
 
 .account-form {
   @extend %clearfix;
-  max-width:300px;
-  margin:0 auto;
   color:$base-text-color;
   
   select {
@@ -73,10 +71,7 @@
 .open-close__account {
   
   button {
-    min-width:300px;
-    @include media("≥tablet") {
       min-width:100%;
-    }
   }
 }
 
