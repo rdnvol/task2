@@ -102,11 +102,6 @@ button.button-add-new-address {
   }
 }
 
-.account__title-box {
-  margin:0 0 20px;
-  border-bottom:1px solid $black;
-}
-
 .account__block__item-holder {
   @include media("≥tablet"){
     margin-bottom:-45px;
@@ -128,6 +123,9 @@ button.button-add-new-address {
   width:100%;
   border-collapse: collapse;
   margin:0 0 30px;
+  @include media ("≥desktop") {
+    margin:0 0 60px;
+  }
   
   .order-name {
     @extend h5;
@@ -153,7 +151,7 @@ button.button-add-new-address {
       width:100%;
     }
   }
-  
+
   tr {
     border-bottom:1px solid #d0d2d3;
   }
@@ -218,7 +216,8 @@ button.button-add-new-address {
 }
 
 .account__sub-title {
-  margin:0 0 10px;
+  margin:0 0 20px;
+  text-transform: uppercase;
 }
 
 .account__customer-addresses {
