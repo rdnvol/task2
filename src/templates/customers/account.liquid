@@ -1,11 +1,11 @@
 <div class="section page-section" id="content" tabindex="0">
   <div class="container">
-    <div class="account-page__title text-center">
-      <h1 class="h2 mb-2">{{ 'customer.account.title' | t }}</h1>
-        <a href="/account/logout">Log out</a>
-    </div>
     <div class="row">
-      <div class="col-lg-8 mx-lg-auto">
+      <div class="col-md-10 col-lg-8 mx-md-auto">
+        <div class="account-page__title text-center">
+          <h1 class="h2 mb-2">{{ 'customer.account.title' | t }}</h1>
+            <a href="/account/logout">Log out</a>
+        </div>
         <h2 class="h3 account__sub-title">{{ 'customer.orders.title' | t }}</h2>
         {% paginate customer.orders by 20 %}
           {% if customer.orders.size != 0 %}
@@ -46,12 +46,8 @@
             {% include 'pagination' %}
           {% endif %}
         {% endpaginate %}
-      </div>
-      <div class="col-lg-8 offset-lg-2">
         <h2 class="h3 account__sub-title">{{ 'customer.account.details' | t }}</h2>
         {{ customer.default_address | format_address }}
-      </div>
-      <div class="col-md-4 offset-lg-2">
         <a class="button" href="/account/addresses">{{ 'customer.account.view_addresses' | t }} ({{ customer.addresses_count }})</a>
       </div>
     </div>
