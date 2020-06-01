@@ -1,7 +1,7 @@
 <div class="section page-section">
 	<div class="container">
 		<div class="row">
-			<div class="col-sm-10 col-lg-8 mx-auto">
+			<div class="col-md-10 col-lg-8 mx-md-auto">
 				<div class="page-title-block text-center">
 					<h1 class="h2">{{ page.title }}</h1>
 					<div class="rte">
@@ -23,6 +23,7 @@
 									name="contact[name]"
 									id="ContactFormName"
 									placeholder="{{ 'contact.form.name' | t }}"
+									required
 									value="{% if form[name] %}{{ form[name] }}{% elsif customer %}{{ customer.name }}{% endif %}">
 							</div>
 						</div>
@@ -33,6 +34,7 @@
 									name="contact[email]"
 									id="ContactFormEmail"
 									placeholder="{{ 'contact.form.email' | t }}"
+									required
 									value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
 									spellcheck="false"
 									autocomplete="off"
@@ -46,6 +48,7 @@
 							name="contact[phone]"
 							id="ContactFormPhone"
 							placeholder="{{ 'contact.form.phone' | t }}"
+							required
 							value="{% if form[phone] %}{{ form.phone }}{% elsif customer %}{{ customer.phone }}{% endif %}"
 							pattern="[0-9\-]*">
 					</div>
@@ -54,6 +57,7 @@
 						<textarea rows="10"
 							name="contact[body]"
 							id="ContactFormMessage"
+							required
 							placeholder="{{ 'contact.form.message' | t }}">
 							{%- if form.body -%}
 								{{- form.body -}}
