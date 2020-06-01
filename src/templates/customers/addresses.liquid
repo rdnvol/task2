@@ -1,16 +1,16 @@
-<div class="account-section" id="content" tabindex="0">
+<div class="section page-section" id="content" tabindex="0">
 	<div class="container">
-		<div class="text-center">
-			<h1 class="account-page__title account-page__title--alt">{{ 'customer.account.title' | t }}</h1>
-		</div>
 		<div class="row">
-			<div class="col-lg-8 offset-lg-2">
-				{% paginate customer.addresses by 5 %}
-					<p>
+			<div class="col-md-10 col-lg-8 mx-md-auto">
+        <div class="text-center">
+          <h1 class="h2 mb-2">{{ 'customer.account.title' | t }}</h1>
+          <p>
 						<a href="/account">{{ 'customer.account.return' | t }}</a>
-					</p>
+          </p>
+          <button type="button" class="button-add-new-address" data-address-toggle>{{ 'customer.addresses.add_new' | t }}</button>
+        </div>
+				{% paginate customer.addresses by 5 %}
 					<div data-address class="mb-4">
-						<button type="button" class="button-add-new-address" data-address-toggle>{{ 'customer.addresses.add_new' | t }}</button>
 						<div data-address-form class="hidden">
 							{% form 'customer_address', customer.new_address, class: 'account-form mx-0' %}
 								<div class="pt-4">
