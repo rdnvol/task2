@@ -2,34 +2,34 @@
   <div class="container">
     <div class="row">
       <div class="col-md-8 col-lg-9">
-        <article role="article" class="article">
-          <header role="banner" class="article__header">
-            <h2 class="h3 article__title">
+        <article role="article" class="post post--single">
+          <header role="banner" class="post__header">
+            <h2 class="h3 post__title">
               <a href="#">Post title</a>
             </h2>
-            <em class="article__date">
+            <em class="post__date">
               <time datetime="2019-06-30">June 30 2019</time>
             </em>
             <a href="#">2 comments</a>
           </header>
-          <a href="#" class="article__img">
+          <a href="#" class="post__img">
             <picture>
               <source data-srcset="{{ 'img-placeholder.png' | asset_img_url:'375x' }}, {{ 'img-placeholder.png' | asset_img_url:'750x' }} 2x" media="(max-width: 767px)" srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
               <source data-srcset="{{ 'img-placeholder.png' | asset_img_url:'587x' }}, {{ 'img-placeholder.png' | asset_img_url:'1714x' }} 2x" srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
               <img data-src="{{ 'img-placeholder.png' | asset_img_url:'857x' }}" class="lazyload" data-sizes="auto" alt="image description" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
             </picture>
           </a>
-          <div class="article__text-block">
+          <div class="post__text-block">
             <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Accusamus reiciendis et harum molestiae nisi ullam reprehenderit dicta! Dolor, facilis aliquam.</p>
             {% if settings.social_sharing_blog %}
               {% include 'social-sharing', share_title: article.title, share_permalink: article.url, share_image: article.image %}
             {% endif %}
           </div>
-          <div class="article__discussion">
+          <div class="post__discussion">
             <h3 class="h4">Comments</h3>
             <ul>
               <li>
-                <div class="article__comment rte">
+                <div class="post__comment rte">
                   <div class="mb-3">
                     <b>Alex Smith</b>
                     <em>
@@ -40,7 +40,7 @@
                 </div>
               </li>
               <li>
-                <div class="article__comment rte">
+                <div class="post__comment rte">
                   <div class="mb-3">
                     <b>Alex Smith</b>
                     <em>
@@ -107,9 +107,9 @@
         </article>
       </div>
       <div class="col-md-4 col-lg-3">
-        <aside class="blog-aside">
+        <aside class="aside">
           <h3>Recent articles</h3>
-          <div class="blog-aside__item">
+          <div class="aside__item">
             <h4 class="mb-2">
               <a href="#">Post title</a>
             </h4>
@@ -117,7 +117,7 @@
               <time datetime="2019-06-30">Posted on June 30, 2019</time>
             </em>
           </div>
-          <div class="blog-aside__item">
+          <div class="aside__item">
             <h4 class="mb-2">
               <a href="#">Post title</a>
             </h4>
@@ -125,30 +125,32 @@
               <time datetime="2019-06-30">Posted on June 30, 2019</time>
             </em>
           </div>
-          <h3 class="mb-3">Tags</h3>
-          <ul class="blog-aside__tags-list">
-            <li>
-              <a href="#">all</a>
-            </li>
-            <li>
-              <a href="#">tag 1</a>
-            </li>
-            <li>
-              <a href="#">tag 2</a>
-            </li>
-            <li>
-              <a href="#">tag 3</a>
-            </li>
-            <li>
-              <a href="#">tag 4</a>
-            </li>
-            <li>
-              <a href="#">tag 5</a>
-            </li>
-            <li>
-              <a href="#">tag 6</a>
-            </li>
-          </ul>
+          <div class="aside__item">
+            <h3 class="mb-3">Tags</h3>
+            <ul class="aside__tags-list">
+              <li>
+                <a href="#">all</a>
+              </li>
+              <li>
+                <a href="#">tag 1</a>
+              </li>
+              <li>
+                <a href="#">tag 2</a>
+              </li>
+              <li>
+                <a href="#">tag 3</a>
+              </li>
+              <li>
+                <a href="#">tag 4</a>
+              </li>
+              <li>
+                <a href="#">tag 5</a>
+              </li>
+              <li>
+                <a href="#">tag 6</a>
+              </li>
+            </ul>
+          </div>
         </aside>
       </div>
   </div>
