@@ -1,0 +1,55 @@
+.article {
+  margin: 0 0 30px;
+}
+
+.article__header {
+  margin: 0 0 18px;
+}
+
+.article__text-block {
+  margin: 0 0 20px;
+  padding: 0 0 20px;
+  border-bottom: 1px solid $gray;
+}
+
+.article__title {
+  margin: 0 0 4px;
+}
+
+.article__date {
+  display: block;
+  margin: 0 0 6px;
+  font-style: normal;
+}
+
+.article__img {
+  display: block;
+  margin: 0 0 20px;
+}
+
+.article__discussion {
+  margin: 0 0 30px;
+  border-bottom: 1px solid $gray;
+
+  ul {
+    @extend %listreset
+  }
+}
+
+.article__comment {
+  margin: 0 0 24px;
+
+  p {
+    &:last-child {
+      margin: 0;
+    }
+  }
+}
+
+.comment-form {
+  margin: 0 0 30px;
+
+  textarea {
+    resize: none;
+  }
+}
