@@ -5,22 +5,26 @@
   }
 }
 
-.post__text-block {
-  padding: 0 0 20px;
-  border-bottom: 1px solid $gray;
-}
-
 .post__discussion {
   margin: 0 0 30px;
+  padding: 20px 0 0;
+  border-top: 1px solid $gray;
   border-bottom: 1px solid $gray;
 
   ul {
     @extend %listreset
   }
+
+  li {
+    margin: 0 0 24px;
+  }
+}
+
+.post__text-block {
+  margin: 0 0 20px;
 }
 
 .post__comment {
-  margin: 0 0 24px;
 
   p {
     &:last-child {

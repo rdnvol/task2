@@ -4,35 +4,33 @@
       <div class="col-md-8 col-lg-9">
         <article role="article" class="post post--single">
           <header role="banner" class="post__header">
-            <h2 class="h3 post__title">
-              <a href="#">Post title</a>
-            </h2>
+            <h1 class="post__title">Post title</h1>
             <em class="post__date">
               <time datetime="2019-06-30">June 30 2019</time>
             </em>
             <a href="#">2 comments</a>
           </header>
-          <a href="#" class="post__img">
+          <div class="post__img">
             <picture>
               <source data-srcset="{{ 'img-placeholder.png' | asset_img_url:'375x' }}, {{ 'img-placeholder.png' | asset_img_url:'750x' }} 2x" media="(max-width: 767px)" srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
               <source data-srcset="{{ 'img-placeholder.png' | asset_img_url:'587x' }}, {{ 'img-placeholder.png' | asset_img_url:'1714x' }} 2x" srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
               <img data-src="{{ 'img-placeholder.png' | asset_img_url:'857x' }}" class="lazyload" data-sizes="auto" alt="image description" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
             </picture>
-          </a>
-          <div class="post__text-block">
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Accusamus reiciendis et harum molestiae nisi ullam reprehenderit dicta! Dolor, facilis aliquam.</p>
+          </div>
+          <div class="post__text-block rte">
+            {{ article.content }}
+          </div>
             {% if settings.social_sharing_blog %}
               {% include 'social-sharing', share_title: article.title, share_permalink: article.url, share_image: article.image %}
             {% endif %}
-          </div>
         </article>
         <div class="post__discussion">
-          <h3 class="h4">Comments</h3>
+          <h2 class="h3">Comments</h2>
           <ul>
             <li>
               <div class="post__comment rte">
                 <div class="mb-3">
-                  <b>Alex Smith</b>
+                  <strong>Alex Smith</strong>
                   <em>
                     on <time datetime="2019-04-14 10:39">April 14, 2019 at 10:39AM</time>
                   </em>
@@ -43,7 +41,7 @@
             <li>
               <div class="post__comment rte">
                 <div class="mb-3">
-                  <b>Alex Smith</b>
+                  <strong>Alex Smith</strong>
                   <em>
                     on <time datetime="2019-04-14 10:39">April 14, 2019 at 10:39AM</time>
                   </em>
@@ -54,12 +52,12 @@
           </ul>
         </div>
         {% form 'new_comment', article %}
-          <h3>{{ 'blogs.comments.title' | t }}</h3>
+          <h2 class="h3">{{ 'blogs.comments.title' | t }}</h2>
           {{ form.errors | default_errors }}
           <div class="row">
             <div class="col-sm-6">
               <div class="input-holder">
-                <label for="CommentAuthor" class="label-hidden">
+                <label for="CommentAuthor" class="label-hidden label">
                   {{ 'blogs.comments.name' | t }}
                 </label>
                 <input type="text"
@@ -73,7 +71,7 @@
             </div>
             <div class="col-sm-6">
               <div class="input-holder">
-                <label for="CommentEmail" class="label-hidden">
+                <label for="CommentEmail" class="label-hidden label">
                   {{ 'blogs.comments.email' | t }}
                 </label>
                 <input type="email"
@@ -89,7 +87,7 @@
             </div>
           </div>
           <div class="input-holder">
-            <label for="CommentBody" class="label-hidden">
+            <label for="CommentBody" class="label-hidden label">
               {{ 'blogs.comments.message' | t }}
             </label>
             <textarea
@@ -153,5 +151,6 @@
           </div>
         </aside>
       </div>
+    </div>
   </div>
 </div>
