@@ -1,0 +1,35 @@
+.post {
+  margin: 0 0 30px;
+  border-bottom: 1px solid $gray;
+}
+
+.post__text-block {
+  margin: 0 0 18px;
+}
+
+.post__title {
+  margin: 0 0 4px;
+}
+
+.post__date {
+  margin: 0 0 6px;
+  font-style: normal;
+}
+
+.post__img {
+  margin: 0 0 20px;
+}
+
+.blog-aside__item {
+  margin: 0 0 20px;
+}
+
+.blog-aside__tags-list {
+  @extend %listreset;
+  display: flex;
+  flex-wrap: wrap;
+
+  li {
+    margin: 0 12px 7px 0;
+  }
+}
