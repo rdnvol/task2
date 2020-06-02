@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-10 col-lg-8 mx-md-auto">
-        <div class="text-center">
+        <div class="page-title-block text-center">
           <h1 class="h2 mb-2">{{ 'customer.account.title' | t }}</h1>
           <p>
             <a href="/account">{{ 'customer.account.return' | t }}</a>
@@ -13,7 +13,7 @@
             <div class="text-center">
               <button type="button" class="button-add-new-address" data-address-toggle>{{ 'customer.addresses.add_new' | t }}</button>
             </div>
-            <div data-address-form class="hidden">
+            <div data-address-form class="hidden section">
               {% form 'customer_address', customer.new_address, class: 'account-form mx-0' %}
                 <div class="pt-4">
                   <h2>{{ 'customer.addresses.add_new' | t }}</h2>
@@ -22,7 +22,7 @@
                   <div class="row">
                     <div class="col-md-6">
                       <div class="input-holder">
-                        <label for="AddressFirstNameNew">
+                        <label for="AddressFirstNameNew" class="label">
                           {{ 'customer.addresses.first_name' | t }}
                         </label>
                         <input type="text"
@@ -34,7 +34,7 @@
                     </div>
                     <div class="col-md-6">
                       <div class="input-holder">
-                        <label for="AddressLastNameNew">
+                        <label for="AddressLastNameNew" class="label">
                           {{ 'customer.addresses.last_name' | t }}
                         </label>
                         <input type="text"
@@ -46,7 +46,7 @@
                     </div>
                   </div>
                   <div class="input-holder">
-                    <label for="AddressCompanyNew">
+                    <label for="AddressCompanyNew" class="label">
                       {{ 'customer.addresses.company' | t }}
                     </label>
                     <input type="text"
@@ -56,7 +56,7 @@
                           autocapitalize="words">
                   </div>
                   <div class="input-holder">
-                    <label for="AddressAddress1New">
+                    <label for="AddressAddress1New" class="label">
                       {{ 'customer.addresses.address1' | t }}
                     </label>
                     <input type="text"
@@ -66,7 +66,7 @@
                           autocapitalize="words">
                   </div>
                   <div class="input-holder">
-                    <label for="AddressAddress2New">
+                    <label for="AddressAddress2New" class="label">
                       {{ 'customer.addresses.address2' | t }}
                     </label>
                     <input type="text"
@@ -78,7 +78,7 @@
                   <div class="row">
                     <div class="col-md-6">
                       <div class="input-holder">
-                        <label for="AddressCityNew">
+                        <label for="AddressCityNew" class="label">
                           {{ 'customer.addresses.city' | t }}
                         </label>
                         <input type="text"
@@ -90,7 +90,7 @@
                     </div>
                     <div class="col-md-6">
                       <div class="input-holder">
-                        <label for="AddressCountryNew">
+                        <label for="AddressCountryNew" class="label">
                           {{ 'customer.addresses.country' | t }}
                         </label>
                         <select data-address-country
@@ -102,7 +102,7 @@
                     </div>
                   </div>
                   <div class="input-holder" data-address-province-wrapper>
-                    <label for="AddressProvinceNew">
+                    <label for="AddressProvinceNew" class="label">
                       {{ 'customer.addresses.province' | t }}
                     </label>
                     <select data-address-province
@@ -112,7 +112,7 @@
                     </select>
                   </div>
                   <div class="input-holder">
-                    <label for="AddressZipNew">
+                    <label for="AddressZipNew" class="label">
                       {{ 'customer.addresses.zip' | t }}
                     </label>
                     <input type="text"
@@ -122,7 +122,7 @@
                           autocapitalize="characters">
                   </div>
                   <div class="input-holder">
-                    <label for="AddressPhoneNew">
+                    <label for="AddressPhoneNew" class="label">
                       {{ 'customer.addresses.phone' | t }}
                     </label>
                     <input type="tel"
@@ -163,14 +163,14 @@
               {{ address | format_address }}
               <div class="row">
                 <div class="col-6 col-sm-3 col-lg-2">
-                  <div class="input-holder">
+                  <div class="mb-3">
                     <button type="button" data-address-toggle>
                       {{ 'customer.addresses.edit' | t }}
                     </button>
                   </div>
                 </div>
                 <div class="col-6 col-sm-3 col-lg-2">
-                  <form class="mb-4" data-address-delete-form method="post" action="/account/addresses/{{ address.id }}" data-confirm-message="{{ 'customer.addresses.delete_confirm' | t }}">
+                  <form class="mb-3" data-address-delete-form method="post" action="/account/addresses/{{ address.id }}" data-confirm-message="{{ 'customer.addresses.delete_confirm' | t }}">
                     <input type="hidden" name="_method" value="delete"/>
                     <button type="submit">
                       {{ 'customer.addresses.delete' | t }}
@@ -178,14 +178,14 @@
                   </form>
                 </div>
               </div>
-              <div data-address-form class="hidden">
+              <div data-address-form class="hidden section">
                 {% form 'customer_address', address, class: 'account-form mx-0' %}
                   <h3 class="mb-4 account__sub-title">{{ 'customer.addresses.edit_address' | t }}</h3>
                   <div data-address-fields class="address-form">
                     <div class="row">
                       <div class="col-sm-6">
                         <div class="input-holder">
-                          <label for="AddressFirstName_{{ form.id }}">
+                          <label for="AddressFirstName_{{ form.id }}" class="label">
                             {{ 'customer.addresses.first_name' | t }}
                           </label>
                           <input type="text"
@@ -197,7 +197,7 @@
                       </div>
                       <div class="col-sm-6">
                         <div class="input-holder">
-                          <label for="AddressLastName_{{ form.id }}">
+                          <label for="AddressLastName_{{ form.id }}" class="label">
                             {{ 'customer.addresses.last_name' | t }}
                           </label>
                           <input type="text"
@@ -209,7 +209,7 @@
                       </div>
                     </div>
                     <div class="input-holder">
-                      <label for="AddressCompany_{{ form.id }}">
+                      <label for="AddressCompany_{{ form.id }}" class="label">
                         {{ 'customer.addresses.company' | t }}
                       </label>
                       <input type="text"
@@ -219,7 +219,7 @@
                             autocapitalize="words">
                     </div>
                     <div class="input-holder">
-                      <label for="AddressAddress1_{{ form.id }}">
+                      <label for="AddressAddress1_{{ form.id }}" class="label">
                         {{ 'customer.addresses.address1' | t }}
                       </label>
                       <input type="text"
@@ -229,7 +229,7 @@
                             autocapitalize="words">
                     </div>
                     <div class="input-holder">
-                      <label for="AddressAddress2_{{ form.id }}">
+                      <label for="AddressAddress2_{{ form.id }}" class="label">
                         {{ 'customer.addresses.address2' | t }}
                       </label>
                       <input type="text"
@@ -241,7 +241,7 @@
                     <div class="row">
                       <div class="col-sm-6">
                         <div class="input-holder">
-                          <label for="AddressCity_{{ form.id }}">
+                          <label for="AddressCity_{{ form.id }}" class="label">
                             {{ 'customer.addresses.city' | t }}
                           </label>
                           <input type="text"
@@ -253,7 +253,7 @@
                       </div>
                       <div class="col-sm-6">
                         <div class="input-holder">
-                          <label for="AddressCountry_{{ form.id }}">
+                          <label for="AddressCountry_{{ form.id }}" class="label">
                             {{ 'customer.addresses.country' | t }}
                           </label>
                           <select data-address-country
@@ -267,7 +267,7 @@
                       </div>
                     </div>
                     <div class="input-holder" id="AddressProvinceContainer_{{ form.id }}" data-address-province-wrapper>
-                      <label for="AddressProvince_{{ form.id }}">
+                      <label for="AddressProvince_{{ form.id }}" class="label">
                         {{ 'customer.addresses.province' | t }}
                       </label>
                       <select data-address-province
@@ -277,7 +277,7 @@
                       </select>
                     </div>
                     <div class="input-holder">
-                      <label for="AddressZip_{{ form.id }}">
+                      <label for="AddressZip_{{ form.id }}" class="label">
                         {{ 'customer.addresses.zip' | t }}
                       </label>
                       <input type="text"
@@ -287,7 +287,7 @@
                             autocapitalize="characters">
                     </div>
                     <div class="input-holder">
-                      <label for="AddressPhone_{{ form.id }}">
+                      <label for="AddressPhone_{{ form.id }}" class="label">
                         {{ 'customer.addresses.phone' | t }}
                       </label>
                       <input type="tel"
@@ -299,7 +299,7 @@
                   </div>
                   <div class="input-holder">
                     {{ form.set_as_default_checkbox }}
-                    <label for="address_default_address_{{ form.id }}">
+                    <label for="address_default_address_{{ form.id }}" class="label">
                       {{ 'customer.addresses.set_default' | t }}
                     </label>
                   </div>
