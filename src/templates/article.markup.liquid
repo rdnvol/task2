@@ -25,86 +25,86 @@
               {% include 'social-sharing', share_title: article.title, share_permalink: article.url, share_image: article.image %}
             {% endif %}
           </div>
-          <div class="post__discussion">
-            <h3 class="h4">Comments</h3>
-            <ul>
-              <li>
-                <div class="post__comment rte">
-                  <div class="mb-3">
-                    <b>Alex Smith</b>
-                    <em>
-                      on <time datetime="2019-04-14 10:39">April 14, 2019 at 10:39AM</time>
-                    </em>
-                  </div>
-                  <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veniam autem animi error fuga, vitae quis.</p>
-                </div>
-              </li>
-              <li>
-                <div class="post__comment rte">
-                  <div class="mb-3">
-                    <b>Alex Smith</b>
-                    <em>
-                      on <time datetime="2019-04-14 10:39">April 14, 2019 at 10:39AM</time>
-                    </em>
-                  </div>
-                  <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veniam autem animi error fuga, vitae quis.</p>
-                </div>
-              </li>
-            </ul>
-          </div>
-          {% form 'new_comment', article %}
-            <h3>{{ 'blogs.comments.title' | t }}</h3>
-            {{ form.errors | default_errors }}
-            <div class="row">
-              <div class="col-sm-6">
-                <div class="input-holder">
-                  <label for="CommentAuthor" class="label-hidden">
-                    {{ 'blogs.comments.name' | t }}
-                  </label>
-                  <input type="text"
-                        name="comment[author]"
-                        id="CommentAuthor"
-                        class="{% if form.errors contains 'author' %}input-error{% endif %}"
-                        placeholder="{{ 'blogs.comments.name' | t }}"
-                        value="{{ form.author }}"
-                        autocapitalize="words">
-                </div>
-              </div>
-              <div class="col-sm-6">
-                <div class="input-holder">
-                  <label for="CommentEmail" class="label-hidden">
-                    {{ 'blogs.comments.email' | t }}
-                  </label>
-                  <input type="email"
-                        name="comment[email]"
-                        id="CommentEmail"
-                        class="{% if form.errors contains 'email' %}input-error{% endif %}"
-                        placeholder="{{ 'blogs.comments.email' | t }}"
-                        value="{{ form.email }}"
-                        spellcheck="false"
-                        autocomplete="off"
-                        autocapitalize="off">
-                </div>
-              </div>
-            </div>
-            <div class="input-holder">
-              <label for="CommentBody" class="label-hidden">
-                {{ 'blogs.comments.message' | t }}
-              </label>
-              <textarea
-                name="comment[body]"
-                id="CommentBody"
-                class="{% if form.errors contains 'body' %}input-error{% endif %}"
-                placeholder="{{ 'blogs.comments.message' | t }}">
-                {{- form.body -}}
-              </textarea>
-            </div>
-            {% if blog.moderated? %}
-              <p>{{ 'blogs.comments.moderated' | t }}</p>
-            {% endif %}
-            <input type="submit" class="button" value="{{ 'blogs.comments.post' | t }}">
-          {% endform %}
         </article>
+        <div class="post__discussion">
+          <h3 class="h4">Comments</h3>
+          <ul>
+            <li>
+              <div class="post__comment rte">
+                <div class="mb-3">
+                  <b>Alex Smith</b>
+                  <em>
+                    on <time datetime="2019-04-14 10:39">April 14, 2019 at 10:39AM</time>
+                  </em>
+                </div>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veniam autem animi error fuga, vitae quis.</p>
+              </div>
+            </li>
+            <li>
+              <div class="post__comment rte">
+                <div class="mb-3">
+                  <b>Alex Smith</b>
+                  <em>
+                    on <time datetime="2019-04-14 10:39">April 14, 2019 at 10:39AM</time>
+                  </em>
+                </div>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veniam autem animi error fuga, vitae quis.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+        {% form 'new_comment', article %}
+          <h3>{{ 'blogs.comments.title' | t }}</h3>
+          {{ form.errors | default_errors }}
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="input-holder">
+                <label for="CommentAuthor" class="label-hidden">
+                  {{ 'blogs.comments.name' | t }}
+                </label>
+                <input type="text"
+                      name="comment[author]"
+                      id="CommentAuthor"
+                      class="{% if form.errors contains 'author' %}input-error{% endif %}"
+                      placeholder="{{ 'blogs.comments.name' | t }}"
+                      value="{{ form.author }}"
+                      autocapitalize="words">
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="input-holder">
+                <label for="CommentEmail" class="label-hidden">
+                  {{ 'blogs.comments.email' | t }}
+                </label>
+                <input type="email"
+                      name="comment[email]"
+                      id="CommentEmail"
+                      class="{% if form.errors contains 'email' %}input-error{% endif %}"
+                      placeholder="{{ 'blogs.comments.email' | t }}"
+                      value="{{ form.email }}"
+                      spellcheck="false"
+                      autocomplete="off"
+                      autocapitalize="off">
+              </div>
+            </div>
+          </div>
+          <div class="input-holder">
+            <label for="CommentBody" class="label-hidden">
+              {{ 'blogs.comments.message' | t }}
+            </label>
+            <textarea
+              name="comment[body]"
+              id="CommentBody"
+              class="{% if form.errors contains 'body' %}input-error{% endif %}"
+              placeholder="{{ 'blogs.comments.message' | t }}">
+              {{- form.body -}}
+            </textarea>
+          </div>
+          {% if blog.moderated? %}
+            <p>{{ 'blogs.comments.moderated' | t }}</p>
+          {% endif %}
+          <input type="submit" class="button" value="{{ 'blogs.comments.post' | t }}">
+        {% endform %}
       </div>
       <div class="col-md-4 col-lg-3">
         <aside class="aside">

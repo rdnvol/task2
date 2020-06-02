@@ -1,35 +1,16 @@
 .post {
   &.post--single {
-
+    padding: 0;
+    border: none;
   }
 }
 
-.article__header {
-  margin: 0 0 18px;
-}
-
-.article__text-block {
-  margin: 0 0 20px;
+.post__text-block {
   padding: 0 0 20px;
   border-bottom: 1px solid $gray;
 }
 
-.article__title {
-  margin: 0 0 4px;
-}
-
-.article__date {
-  display: block;
-  margin: 0 0 6px;
-  font-style: normal;
-}
-
-.article__img {
-  display: block;
-  margin: 0 0 20px;
-}
-
-.article__discussion {
+.post__discussion {
   margin: 0 0 30px;
   border-bottom: 1px solid $gray;
 
@@ -38,7 +19,7 @@
   }
 }
 
-.article__comment {
+.post__comment {
   margin: 0 0 24px;
 
   p {
