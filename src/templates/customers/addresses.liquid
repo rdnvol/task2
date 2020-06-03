@@ -140,10 +140,8 @@
                 </div>
                 <div class="open-close__account">
                   <div class="row">
-                    <div class="col-12 col-sm-5 col-md-4 col-xl-3">
-                      <div class="input-holder">
-                        <button type="submit">{{ 'customer.addresses.add' | t }}</button>
-                      </div>
+                    <div class="col-12 col-sm-5 col-md-4 col-xl-3 mb-3 mb-sm-0">
+                      <button type="submit">{{ 'customer.addresses.add' | t }}</button>
                     </div>
                     <div class="col-12 col-sm-5 col-md-4 col-xl-3">
                       <button type="button" data-address-toggle>
@@ -163,14 +161,12 @@
               {{ address | format_address }}
               <div class="row">
                 <div class="col-6 col-sm-3 col-lg-2">
-                  <div class="mb-3">
-                    <button type="button" data-address-toggle>
-                      {{ 'customer.addresses.edit' | t }}
-                    </button>
-                  </div>
+                  <button type="button" data-address-toggle>
+                    {{ 'customer.addresses.edit' | t }}
+                  </button>
                 </div>
                 <div class="col-6 col-sm-3 col-lg-2">
-                  <form class="mb-3" data-address-delete-form method="post" action="/account/addresses/{{ address.id }}" data-confirm-message="{{ 'customer.addresses.delete_confirm' | t }}">
+                  <form data-address-delete-form method="post" action="/account/addresses/{{ address.id }}" data-confirm-message="{{ 'customer.addresses.delete_confirm' | t }}">
                     <input type="hidden" name="_method" value="delete"/>
                     <button type="submit">
                       {{ 'customer.addresses.delete' | t }}
@@ -304,10 +300,8 @@
                     </label>
                   </div>
                   <div class="row">
-                    <div class="col-12 col-sm-5 col-md-4 col-xl-3">
-                      <div class="input-holder">
-                        <button type="submit">{{ 'customer.addresses.update' | t }}</button>
-                      </div>
+                    <div class="col-12 col-sm-5 col-md-4 col-xl-3 mb-3 mb-sm-0">
+                      <button type="submit">{{ 'customer.addresses.update' | t }}</button>
                     </div>
                     <div class="col-12 col-sm-5 col-md-4 col-xl-3">
                       <button type="button" data-address-toggle data-form-id="{{ form.id }}">
