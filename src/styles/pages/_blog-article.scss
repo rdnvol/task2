@@ -9,7 +9,6 @@
   margin: 0 0 30px;
   padding: 20px 0 0;
   border-top: 1px solid $gray;
-  border-bottom: 1px solid $gray;
 
   ul {
     @extend %listreset
@@ -21,7 +20,7 @@
 }
 
 .post__text-block {
-  margin: 0 0 20px;
+  margin: 0 0 30px;
 }
 
 .post__comment {
@@ -35,6 +34,8 @@
 
 .comment-form {
   margin: 0 0 30px;
+  padding: 20px 0 0;
+  border-top: 1px solid $gray;
 
   textarea {
     resize: none;
