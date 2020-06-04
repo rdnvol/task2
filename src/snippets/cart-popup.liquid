@@ -1,0 +1,38 @@
+<div class="cart-popup active">
+	<div class="cart-popup__header">
+		<div class="cart-popup__heading">
+			Just added to your cart
+		</div>
+		<div>
+			<button class="cart-popup__close default">
+				{%- include 'icon-close' -%}
+			</button>
+		</div>
+	</div>
+	<div class="cart-popup__holder">
+		<div class="cart-popup__item">
+			<div class="row align-items-center">
+				<div class="col-3">
+					<div class="cart-popup__item__img">
+						<picture>
+							<source data-srcset="{{ 'img-placeholder.png' | asset_img_url:'70x' }}, {{ 'img-placeholder.png' | asset_img_url:'140x' }} 2x" media="(max-width: 767px)" srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+							<source data-srcset="{{ 'img-placeholder.png' | asset_img_url:'80x' }}, {{ 'img-placeholder.png' | asset_img_url:'160x' }} 2x" srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+							<img data-src="{{ 'img-placeholder.png' | asset_img_url:'80x' }}" class="lazyload" data-sizes="auto" alt="image description" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+						</picture>
+					</div>
+				</div>
+				<div class="col-6">
+					<div class="cart-popup__item__title">Your product's name</div>
+					<div>Title: xs</div>
+				</div>
+				<div class="col-3 text-right">Qty: 1</div>
+			</div>
+		</div>
+		<div class="text-center">
+			<a href="#" class="button w-100">View cart (1)</a>
+			<div class="pt-2">
+				<a href="#">Continue shopping</a>
+			</div>
+		</div>
+	</div>
+</div>
