@@ -1,3 +1,23 @@
+<section class="hero hero--full-height">
+	<div class="hero__img">
+		<picture>
+			<source data-srcset="{{ 'img-placeholder.png' | asset_img_url:'375x' }}, {{ 'img-placeholder.png' | asset_img_url:'750x' }} 2x" media="(max-width: 767px)" srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+			<source data-srcset="{{ 'img-placeholder.png' | asset_img_url:'1438x' }}, {{ 'img-placeholder.png' | asset_img_url:'2876x' }} 2x" srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+			<img data-src="{{ 'img-placeholder.png' | asset_img_url:'1438x' }}" class="lazyload" data-sizes="auto" alt="image description" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+		</picture>
+	</div>
+	<div class="hero__block">
+		<div class="container position-relative h-100">
+			<div class="row h-100 align-items-center">
+				<div class="col-sm-10 col-md-6 col-lg-4">
+					<h1>Title</h1>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+					<a href="#" class="button">Shop now</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
 <section class="hero">
 	<div class="hero__img">
 		<picture>
