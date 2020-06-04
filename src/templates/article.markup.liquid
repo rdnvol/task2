@@ -5,9 +5,9 @@
         <article role="article" class="post post--single">
           <header role="banner" class="post__header">
             <h1 class="post__title">Post title</h1>
-            <em class="post__date">
+            <div class="post__date">
               <time datetime="2019-06-30">June 30 2019</time>
-            </em>
+            </div>
             <a href="#">2 comments</a>
           </header>
           <div class="post__img">
@@ -20,9 +20,9 @@
           <div class="post__text-block rte">
             {{ article.content }}
           </div>
-            {% if settings.social_sharing_blog %}
-              {% include 'social-sharing', share_title: article.title, share_permalink: article.url, share_image: article.image %}
-            {% endif %}
+          {% if settings.social_sharing_blog %}
+            {% include 'social-sharing', share_title: article.title, share_permalink: article.url, share_image: article.image %}
+          {% endif %}
         </article>
         <div class="post__discussion">
           <h2 class="h3">Comments</h2>
@@ -31,9 +31,9 @@
               <div class="post__comment rte">
                 <div class="mb-3">
                   <strong>Alex Smith</strong>
-                  <em>
+                  <div>
                     on <time datetime="2019-04-14 10:39">April 14, 2019 at 10:39AM</time>
-                  </em>
+                  </div>
                 </div>
                 <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veniam autem animi error fuga, vitae quis.</p>
               </div>
@@ -42,9 +42,9 @@
               <div class="post__comment rte">
                 <div class="mb-3">
                   <strong>Alex Smith</strong>
-                  <em>
+                  <div>
                     on <time datetime="2019-04-14 10:39">April 14, 2019 at 10:39AM</time>
-                  </em>
+                  </div>
                 </div>
                 <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veniam autem animi error fuga, vitae quis.</p>
               </div>
@@ -111,17 +111,17 @@
             <h4 class="mb-2">
               <a href="#">Post title</a>
             </h4>
-            <em>
+            <div>
               <time datetime="2019-06-30">Posted on June 30, 2019</time>
-            </em>
+            </div>
           </div>
           <div class="aside__item">
             <h4 class="mb-2">
               <a href="#">Post title</a>
             </h4>
-            <em>
+            <div>
               <time datetime="2019-06-30">Posted on June 30, 2019</time>
-            </em>
+            </div>
           </div>
           <h3 class="mb-3">Tags</h3>
           <div class="aside__item">
