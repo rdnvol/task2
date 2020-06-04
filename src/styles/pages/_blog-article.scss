@@ -1,0 +1,39 @@
+.post {
+  &.post--single {
+    padding: 0;
+    border: none;
+  }
+}
+
+.post__discussion {
+  margin: 0 0 30px;
+  padding: 20px 0 0;
+  border-top: 1px solid $gray;
+
+  ul {
+    @extend %listreset
+  }
+
+  li {
+    margin: 0 0 24px;
+  }
+}
+
+.post__text-block {
+  margin: 0 0 30px;
+}
+
+.post__comment {
+
+  p {
+    &:last-child {
+      margin: 0;
+    }
+  }
+}
+
+.comment-form {
+  margin: 0 0 30px;
+  padding: 20px 0 0;
+  border-top: 1px solid $gray;
+}
