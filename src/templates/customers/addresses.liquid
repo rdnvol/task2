@@ -13,8 +13,8 @@
             <div class="text-center">
               <button type="button" class="button-add-new-address" data-address-toggle>{{ 'customer.addresses.add_new' | t }}</button>
             </div>
-            <div data-address-form class="hidden section">
-              {% form 'customer_address', customer.new_address, class: 'account-form mx-0' %}
+            <div data-address-form class="hidden pt-5">
+              {% form 'customer_address', customer.new_address, class: 'account-form account-form--address mx-0' %}
                 <h2 class="h3 mb-4 account__sub-title">{{ 'customer.addresses.add_new' | t }}</h2>
                 <div data-address-fields>
                   <div class="row">
@@ -136,16 +136,14 @@
                     {{ 'customer.addresses.set_default' | t }}
                   </label>
                 </div>
-                <div class="open-close__account">
-                  <div class="row">
-                    <div class="col-12 col-sm-5 col-md-4 col-xl-3 mb-3 mb-sm-0">
-                      <button type="submit">{{ 'customer.addresses.add' | t }}</button>
-                    </div>
-                    <div class="col-12 col-sm-5 col-md-4 col-xl-3">
-                      <button type="button" data-address-toggle>
-                        {{ 'customer.addresses.cancel' | t }}
-                      </button>
-                    </div>
+                <div class="row">
+                  <div class="col-12 col-sm-5 col-md-4 col-xl-3 mb-3 mb-sm-0">
+                    <button class="button button--address" type="submit">{{ 'customer.addresses.add' | t }}</button>
+                  </div>
+                  <div class="col-12 col-sm-5 col-md-4 col-xl-3">
+                    <button class="button button--address" type="button" data-address-toggle>
+                      {{ 'customer.addresses.cancel' | t }}
+                    </button>
                   </div>
                 </div>
               {% endform %}
@@ -159,21 +157,21 @@
               {{ address | format_address }}
               <div class="row">
                 <div class="col-6 col-sm-3 col-lg-2">
-                  <button type="button" data-address-toggle>
+                  <button class="button button--address" type="button" data-address-toggle>
                     {{ 'customer.addresses.edit' | t }}
                   </button>
                 </div>
                 <div class="col-6 col-sm-3 col-lg-2">
                   <form data-address-delete-form method="post" action="/account/addresses/{{ address.id }}" data-confirm-message="{{ 'customer.addresses.delete_confirm' | t }}">
                     <input type="hidden" name="_method" value="delete"/>
-                    <button type="submit">
+                    <button class="button button--address" type="submit">
                       {{ 'customer.addresses.delete' | t }}
                     </button>
                   </form>
                 </div>
               </div>
-              <div data-address-form class="hidden section">
-                {% form 'customer_address', address, class: 'account-form mx-0' %}
+              <div data-address-form class="hidden pt-5">
+                {% form 'customer_address', address, class: 'account-form account-form--address mx-0' %}
                   <h3 class="mb-4 account__sub-title">{{ 'customer.addresses.edit_address' | t }}</h3>
                   <div data-address-fields class="address-form">
                     <div class="row">
@@ -299,10 +297,10 @@
                   </div>
                   <div class="row">
                     <div class="col-12 col-sm-5 col-md-4 col-xl-3 mb-3 mb-sm-0">
-                      <button type="submit">{{ 'customer.addresses.update' | t }}</button>
+                      <button class="button button--address" type="submit">{{ 'customer.addresses.update' | t }}</button>
                     </div>
                     <div class="col-12 col-sm-5 col-md-4 col-xl-3">
-                      <button type="button" data-address-toggle data-form-id="{{ form.id }}">
+                      <button class="button button--address" type="button" data-address-toggle data-form-id="{{ form.id }}">
                         {{ 'customer.addresses.cancel' | t }}
                       </button>
                     </div>
