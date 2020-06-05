@@ -1,0 +1,13 @@
+#age-popup {
+  display: none;
+  padding: 20px;
+
+  .fancybox-close-small {
+    display: none;
+  }
+}
+
+.age-popup__box {
+  padding: 30px;
+  border: 1px solid $gray;
+}
