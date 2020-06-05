@@ -56,7 +56,10 @@
   max-width:300px;
   margin:0 auto;
   color:$base-text-color;
-  
+  &.account-form--address {
+    max-width: 100%;
+  }
+
   select {
     display:block;
     width:100%;
@@ -68,20 +71,14 @@
       min-width:100%;
     }
   }
-}
 
-.open-close__account {
-  
-  button {
-    min-width:300px;
-    @include media("≥tablet") {
-      min-width:100%;
-    }
+  .button--address {
+    min-width: 100%;
   }
 }
 
 button.button-add-new-address {
-  min-width:300px;
+  min-width: 280px;
 }
 
 .open-close__account__holder {
@@ -222,7 +219,11 @@ button.button-add-new-address {
 
 .account__customer-addresses {
   & + & {
-    margin-top:30px;
+    margin-top:44px;
+  }
+
+  .button--address {
+    min-width: 100%;
   }
 }
 
