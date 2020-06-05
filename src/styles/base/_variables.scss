@@ -8,14 +8,17 @@ $font-body-bold-weight: var(--font-body-bold-weight);
 $font-heading-weight: var(--font-heading-weight);
 
 // Colors
+$secondary:     #a2aeb6;
+$success:       #27ae60;
+$info:          #0f62fe;
+$danger:        #da1d28;
+$light:         #f0f4f6;
+$dark:          #262c30;
 $black: #000;
 $white: #fff;
-$d-gray:#6a6a6a;
+$d-gray: $dark;
 $gray: #999;
-$l-gray:#f8f8f8;
-$red: #dc3636;
-$green: #537b3d;
-$yellow: #fdb03c;
+$l-gray: $light;
 
 // Text colors
 $color-body-text: var(--color-body-text);
@@ -46,7 +49,7 @@ $base-link-color: $color-body-text;
 
 // Buttons
 $btn-color: $white !default;
-$btn-background: $black !default;
+$btn-background: $dark !default;
 $btn-padding: 12px 15px !default;
 $btn-font-size: inherit !default;
 
