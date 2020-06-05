@@ -5,6 +5,32 @@
   @include media("≥tablet") {
     margin: 0;
   }
+  &.hero--full-height {
+    height: calc(100vh - var(--header-height));
+  
+    .hero__img {
+      position: absolute;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      margin: 0;
+
+      img {
+        object-fit: cover;
+        height: 100%;
+      }
+    }
+
+    .hero__block {
+      position: absolute;
+      left: 0;
+      top: 30px;
+      right: 0;
+      bottom: 30px;
+      z-index: 4;
+    }
+  }
 }
 
 .hero__img {
@@ -19,7 +45,7 @@
     position: absolute;
     left: 0;
     top: 30px;
-    right: 0px;
+    right: 0;
     bottom: 30px;
     z-index: 4;
   }
