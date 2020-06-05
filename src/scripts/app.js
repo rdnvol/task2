@@ -9,7 +9,7 @@ import 'lazysizes';
 import 'lazysizes/plugins/respimg/ls.respimg';
 
 import 'Scripts/jquery.plugins'
-
+import Swiper from 'swiper';
 import product from "Scripts/product";
 import "Scripts/related-product";
 
@@ -41,6 +41,7 @@ class App {
     // this.initHeaderOnScrollDown();
     this.initIosScroll();
     this.initAccordion();
+    this.initProductGallery();
 
     // Responsive fluid iframe
     $(".rte iframe").each(function(index) {
@@ -191,6 +192,27 @@ class App {
         off: function() {
           $('.menu-accordion').slideAccordion('destroy');
         }
+      }
+    });
+  }
+
+  initProductGallery() {
+    var galleryThumbs = new Swiper('.product-gallery__thumbs', {
+      spaceBetween: 20,
+      slidesPerView: 3,
+      freeMode: true,
+      watchSlidesVisibility: true,
+      watchSlidesProgress: true,
+      speed: 800,
+    });
+    var galleryTop = new Swiper('.product-gallery', {
+      speed: 800,
+      // navigation: {
+      //   nextEl: '.swiper-button-next',
+      //   prevEl: '.swiper-button-prev',
+      // },
+      thumbs: {
+        swiper: galleryThumbs
       }
     });
   }
