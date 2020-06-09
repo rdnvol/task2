@@ -231,14 +231,15 @@ class App {
     function openFancybox(cooke_name) {
       $.fancybox.open($('#age-popup'), {
         width: 830,
-        height: 282,
+        height: "100%",
         closeClickOutside: false,
+        modal: true,
+        autoFocus: false,
         afterClose: function(instance, slide) {
           setCookie(cooke_name, 'no', 365);
         }
       });
     };
-    /* Cookie functions */
     
     function setCookie(name, value, days) {
       if (days) {
