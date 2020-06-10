@@ -225,14 +225,10 @@ class App {
       if (getCookie(cookie_popup1_name) != 'no') {
         openFancybox(cookie_popup1_name)
       }
-    
     });
     
     function openFancybox(cooke_name) {
       $.fancybox.open($('#age-popup'), {
-        width: 830,
-        height: "100%",
-        closeClickOutside: false,
         modal: true,
         autoFocus: false,
         afterClose: function(instance, slide) {
