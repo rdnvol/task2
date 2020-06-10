@@ -5,12 +5,16 @@
 .product-gallery__img {
 
   img {
-    display: block;
-    width: 100%;
+    width: auto;
+  }
+
+  picture {
+    display: flex;
+    justify-content: center;
   }
 }
 
-.product-gallery__thumbs {
+.product-gallery-thumbs {
 
   .swiper-slide {
     opacity: 0.4;
@@ -18,6 +22,19 @@
 
   .swiper-slide-thumb-active {
     opacity: 1;
+    transition: opacity $animation-speed ease;
+  }
+}
+
+.product-gallery-thumbs__img {
+
+  img {
+    width: auto;
+  }
+
+  picture {
+    display: flex;
+    justify-content: center;
   }
 }
 
