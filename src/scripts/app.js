@@ -10,6 +10,7 @@ import 'lazysizes/plugins/respimg/ls.respimg';
 
 import 'Scripts/jquery.plugins'
 import Swiper from 'swiper';
+import fancybox from '@fancyapps/fancybox';
 import product from "Scripts/product";
 import "Scripts/related-product";
 
@@ -42,6 +43,7 @@ class App {
     this.initIosScroll();
     this.initAccordion();
     this.initProductGallery();
+    this.initFancyboxAutoLoad();
 
     // Responsive fluid iframe
     $(".rte iframe").each(function(index) {
@@ -215,6 +217,49 @@ class App {
         swiper: productGalleryThumbs 
       }
     });
+  }
+
+  initFancyboxAutoLoad() {
+    jQuery(document).ready(function($) {
+      var cookie_popup1_name = 'show_cookie_message_popup1';
+      if (getCookie(cookie_popup1_name) != 'no') {
+        openFancybox(cookie_popup1_name)
+      }
+    });
+    
+    function openFancybox(cooke_name) {
+      $.fancybox.open($('#age-popup'), {
+        modal: true,
+        autoFocus: false,
+        afterClose: function(instance, slide) {
+          setCookie(cooke_name, 'no', 365);
+        }
+      });
+    };
+    
+    function setCookie(name, value, days) {
+      if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        var expires = "; expires=" + date.toGMTString();
+      } else var expires = "";
+      document.cookie = name + "=" + value + expires + "; path=/";
+    }
+    
+    function getCookie(name) {
+      var nameEQ = name + "=";
+      var ca = document.cookie.split(';');
+      for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+      }
+      return null;
+    }
+    
+    function deleteCookie(name) {
+      setCookie(name, "", -1);
+    }
   }
 }
 
