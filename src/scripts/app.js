@@ -197,7 +197,7 @@ class App {
   }
 
   initProductGallery() {
-    var galleryThumbs = new Swiper('.product-gallery__thumbs', {
+    var productGalleryThumbs  = new Swiper('.product-gallery-thumbs', {
       spaceBetween: 20,
       slidesPerView: 3,
       freeMode: true,
@@ -205,14 +205,14 @@ class App {
       watchSlidesProgress: true,
       speed: 800,
     });
-    var galleryTop = new Swiper('.product-gallery', {
+    var productGallery  = new Swiper('.product-gallery', {
       speed: 800,
       // navigation: {
       //   nextEl: '.swiper-button-next',
       //   prevEl: '.swiper-button-prev',
       // },
       thumbs: {
-        swiper: galleryThumbs
+        swiper: productGalleryThumbs 
       }
     });
   }
