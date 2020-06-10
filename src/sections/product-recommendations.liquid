@@ -15,7 +15,10 @@
         </div>
         {% if section.settings.button_link != blank %}
           <div class="pt-sm-4 text-center">
-            <a href="{{ section.settings.button.link }}" class="button">{{ section.settings.button_label }}</a>
+            {% render "button",
+              href: section.settings.button_link,
+              text: section.settings.button_label
+            %}
           </div>
         {% endif %}
       </div>

@@ -1,9 +1,9 @@
 {%- assign current_variant = product.selected_or_first_available_variant -%}
 <section data-section-id="{{ section.id }}"
-         class="section page-section"
-         data-section-type="product"
-         id="product"
-         data-handle="{{ product.handle }}">
+   class="section page-section"
+   data-section-type="product"
+   id="product"
+   data-handle="{{ product.handle }}">
   <div class="container">
     <div class="row">
       <div class="col-md-6">
@@ -78,11 +78,11 @@
             <div class="col-sm-4">
               <div class="product__row">
                 <button
-                        type="submit"
-                        name="add"
-                        class="w-100"
-                        data-submit-button
-                        {% unless current_variant.available %}disabled="disabled"{% endunless %}>
+                  type="submit"
+                  name="add"
+                  class="w-100"
+                  data-submit-button
+                  {% unless current_variant.available %}disabled="disabled"{% endunless %}>
                   <span data-submit-button-text>
                     {% if current_variant.available %}
                       {{ 'products.product.add_to_cart' | t }}

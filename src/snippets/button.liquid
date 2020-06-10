@@ -1,0 +1,62 @@
+{% comment %}
+  NOTE:
+    Renders a button
+    Accepts:
+    - href: {string} link for button (default is '#')
+    - element: {string} to define which element you want to be rendered ('a', 'button', 'input', 'span', default is 'a')
+    - class: {string} for adding additional classes (should be separated with space, example 'class1 class2')
+    - text: {string} override button label (default is 'Button')
+    - type: {string} only for 'input', define witch type of input you want to be rendered ('submit', 'reset', 'button', default is 'button')
+    - data_attribute: {string} for adding data attributes. If you want more than one it should be separated with space (example 'data-fancybox data-custom-attr')
+    - snippet: {string} for adding icons or other snippets (except element 'input')
+    for usage:
+    {% render "button",
+      element: 'a',
+      href: '/',
+      class: 'class2 class3',
+      text: 'text',
+      data_attribute: 'data-text'
+    %}
+    usage with snippet:
+    {% include "button",
+      element: 'a',
+      href: '/',
+      class: 'class2 class3',
+      text: 'text',
+      data_attribute: 'data-text',
+      snippet: 'snippet-name'
+    %}
+    
+{% endcomment %}
+
+{%- capture class -%}
+  {{- "button " | append: class | rstrip -}}
+{%- endcapture -%}
+{% assign element = element | default: "a" %}
+
+{%- capture content -%}
+  {%- if snippet -%}
+    {% render snippet %}
+  {% else %}
+    {{- text | default: 'Button' -}}
+  {%- endif -%}
+{%- endcapture -%}
+
+{%- case element -%}
+  {%- when 'a' -%}
+    <a href="{{ href | default: '#'}}" class="{{ class }}" {{ data_attribute }}>
+      {{- content -}}
+    </a>
+  {%- when 'button' -%}
+    <button type="{{ type | default: "button" }}" class="{{ class }}" {{ data_attribute }}>
+      {{- content -}}
+    </button>
+  {%- when 'span' -%}
+    <span class="{{ class }}" {{ data_attribute }}>
+      {{- content -}}
+    </span>
+  {%- when 'input' -%}
+    <input type="{{ type | default: "button" }}"
+           class="{{ class }}" {{ data_attribute }}
+           value="{{ text | default: "Button" }}"/>
+{%- endcase -%}
