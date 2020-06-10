@@ -1,7 +1,40 @@
-.product__img {
+.product-gallery {
   margin:0 0 20px;
-  @include media("≥tablet") {
-    margin:0;
+}
+
+.product-gallery__img {
+
+  img {
+    width: auto;
+  }
+
+  picture {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.product-gallery-thumbs {
+
+  .swiper-slide {
+    opacity: 0.4;
+  }
+
+  .swiper-slide-thumb-active {
+    opacity: 1;
+    transition: opacity $animation-speed ease;
+  }
+}
+
+.product-gallery-thumbs__img {
+
+  img {
+    width: auto;
+  }
+
+  picture {
+    display: flex;
+    justify-content: center;
   }
 }
 

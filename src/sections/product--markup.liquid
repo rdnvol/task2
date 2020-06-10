@@ -1,135 +1,208 @@
 <section data-section-id="{{ section.id }}" class="section page-section" data-section-type="product">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-6">
-				<div class="product__img">
-					<picture>
-						<source data-srcset="{{ 'img-placeholder.png' | asset_img_url:'345x' }}, {{ 'img-placeholder.png' | asset_img_url:'690x' }} 2x" media="(max-width: 767px)" srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
-						<source data-srcset="{{ 'img-placeholder.png' | asset_img_url:'635x' }}, {{ 'img-placeholder.png' | asset_img_url:'1270x' }} 2x" srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
-						<img data-src="{{ 'img-placeholder.png' | asset_img_url:'635x' }}" class="lazyload" data-sizes="auto" alt="image description" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
-					</picture>
-				</div>
-			</div>
-			<div class="col-md-6">
-				<h1 class="product__title">{{ product.title }}</h1>
-				<div class="product__vendor mb-1 mb-md-2">{{ product.vendor }}</div>
-				{% form 'product', product, data-product-form: '', data-product-handle: product.handle, data-enable-history-state: 'true' %}
-					<div class="product__price" data-price-wrapper>
-						<div class="product__price__box d-flex flex-wrap align-items-center">
-							<div data-product-price>
-								$41.00
-							</div>
-							{% if product.compare_at_price_max > product.price %}
-								<span class="accessibility" data-compare-text>{{ 'products.product.regular_price' | t }}</span>
-								<del data-compare-price>
-									{% if current_variant.compare_at_price > current_variant.price %}
-										{{ current_variant.compare_at_price | money }}
-									{% endif %}
-								</del>
-							{% endif %}
-						</div>
-						<div class="product__price__text">
-							<p>Tax included.</p>
-						</div>
-					</div>
-					{% unless product.has_only_default_variant %}
-						{% for option in product.options_with_values %}
-							<div class="js">
-								{% if forloop.index0 > 0 %}
-									{% for value in option.values %}
-										<input type="radio" id="Option{{ option.position }}-{{ value }}" name="options[{{ option.name }}]" value="{{ value }}"{% if option.selected_value == value %} checked{% endif %}>
-										<label for="Option{{ option.position }}-{{ value }}">{{ value }}</label>
-									{% endfor %}
-								{% else %}
-									<label for="Option{{ option.position }}">
-										{{ option.name }}
-									</label>
-									{% comment %}<select
-										id="Option{{ option.position }}"
-										name="options[{{ option.name | escape }}]">
-										{% for value in option.values %}
-											<option
-												value="{{ value | escape }}"
-												{% if option.selected_value == value %}selected="selected"{% endif %}>
-												{{ value }}
-											</option>
-										{% endfor %}
-									</select>{% endcomment %}
-								{% endif %}
-							</div>
-						{% endfor %}
-					{% endunless %}
-					<div class="product__row">
-						<div class="row mb-2">
-							<div class="col-sm-6">
-								<label class="product__label" for="size">Size</label>
-								<select name="id" id="size" class="product__select w-100">
-									{% for variant in product.variants %}
-										<option
-											{% if variant == current_variant %}selected="selected"{% endif %}
-											{% unless variant.available %}disabled="disabled"{% endunless %}
-											value="{{ variant.id }}">
-											{{ variant.title }}
-										</option>
-									{% endfor %}
-								</select>
-							</div>
-						</div>
-						<div>
-							<label class="product__label" for="Quantity">{{ 'products.product.quantity' | t }}</label>
-							<input type="number" id="Quantity" name="quantity" value="1" min="1">
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-4">
-							<div class="product__row">
-								<button
-									type="submit"
-									name="add"
-									class="w-100"
-									data-submit-button
-									{% unless current_variant.available %}disabled="disabled"{% endunless %}>
-									<span data-submit-button-text>
-										{% if current_variant.available %}
-											{{ 'products.product.add_to_cart' | t }}
-										{% else %}
-											{{ 'products.product.sold_out' | t }}
-										{% endif %}
-									</span>
-								</button>
-							</div>
-							<div class="product__row">
-								<button type="button" class="w-100">buy it now</button>
-							</div>
-						</div>
-					</div>
-						
-					
-				{% endform %}
-				
-				<div class="product__row rte">
-					{{ product.description }}
-				</div>
-				
-				{% if section.settings.show_share_buttons %}
-					{% include 'social-sharing', share_title: product.title, share_permalink: product.url, share_image: product %}
-				{% endif %}
-			</div>
-		</div>
-	</div>
-	{%- include 'cart-popup' -%}
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 mb-4 mb-md-0">
+        <div class="swiper-container product-gallery">
+          <div class="swiper-wrapper align-items-center">
+            <div class="swiper-slide">
+              <div class="product-gallery__img">
+                <picture>
+                  <source data-srcset="{{ 'img-placeholder.png' | asset_img_url:'375x' }}, {{ 'img-placeholder.png' | asset_img_url:'750x' }} 2x" media="(max-width: 767px)" srcset="{{ 'img-placeholder.png' | asset_img_url:'375x', crop: 'center' }}">
+                  <source data-srcset="{{ 'img-placeholder.png' | asset_img_url:'650x' }}, {{ 'img-placeholder.png' | asset_img_url:'1300x' }} 2x" srcset="{{ 'img-placeholder.png' | asset_img_url:'650x', crop: 'center' }}">
+                  <img data-src="{{ 'img-placeholder.png' | asset_img_url:'650x' }}" class="lazyload" data-sizes="auto" alt="image description" src="{{ 'img-placeholder.png' | asset_img_url:'650x', crop: 'center' }}">
+                </picture>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="product-gallery__img">
+                <picture>
+                  <source data-srcset="{{ 'img-placeholder.png' | asset_img_url:'375x' }}, {{ 'img-placeholder.png' | asset_img_url:'750x' }} 2x" media="(max-width: 767px)" srcset="{{ 'img-placeholder.png' | asset_img_url:'375x', crop: 'center' }}">
+                  <source data-srcset="{{ 'img-placeholder.png' | asset_img_url:'650x' }}, {{ 'img-placeholder.png' | asset_img_url:'1300x' }} 2x" srcset="{{ 'img-placeholder.png' | asset_img_url:'650x', crop: 'center' }}">
+                  <img data-src="{{ 'img-placeholder.png' | asset_img_url:'650x' }}" class="lazyload" data-sizes="auto" alt="image description" src="{{ 'img-placeholder.png' | asset_img_url:'650x', crop: 'center' }}">
+                </picture>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="product-gallery__img">
+                <picture>
+                  <source data-srcset="{{ 'img-placeholder.png' | asset_img_url:'375x' }}, {{ 'img-placeholder.png' | asset_img_url:'750x' }} 2x" media="(max-width: 767px)" srcset="{{ 'img-placeholder.png' | asset_img_url:'375x', crop: 'center' }}">
+                  <source data-srcset="{{ 'img-placeholder.png' | asset_img_url:'650x' }}, {{ 'img-placeholder.png' | asset_img_url:'1300x' }} 2x" srcset="{{ 'img-placeholder.png' | asset_img_url:'650x', crop: 'center' }}">
+                  <img data-src="{{ 'img-placeholder.png' | asset_img_url:'650x' }}" class="lazyload" data-sizes="auto" alt="image description" src="{{ 'img-placeholder.png' | asset_img_url:'650x', crop: 'center' }}">
+                </picture>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="product-gallery__img">
+                <picture>
+                  <source data-srcset="{{ 'img-placeholder.png' | asset_img_url:'375x' }}, {{ 'img-placeholder.png' | asset_img_url:'750x' }} 2x" media="(max-width: 767px)" srcset="{{ 'img-placeholder.png' | asset_img_url:'375x', crop: 'center' }}">
+                  <source data-srcset="{{ 'img-placeholder.png' | asset_img_url:'650x' }}, {{ 'img-placeholder.png' | asset_img_url:'1300x' }} 2x" srcset="{{ 'img-placeholder.png' | asset_img_url:'650x', crop: 'center' }}">
+                  <img data-src="{{ 'img-placeholder.png' | asset_img_url:'650x' }}" class="lazyload" data-sizes="auto" alt="image description" src="{{ 'img-placeholder.png' | asset_img_url:'650x', crop: 'center' }}">
+                </picture>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-container product-gallery-thumbs">
+          <div class="swiper-wrapper align-items-center">
+            <div class="swiper-slide">
+              <div class="product-gallery-thumbs__img">
+                <picture>
+                  <source data-srcset="{{ 'img-placeholder.png' | asset_img_url:'375x' }}, {{ 'img-placeholder.png' | asset_img_url:'750x' }} 2x" media="(max-width: 767px)" srcset="{{ 'img-placeholder.png' | asset_img_url:'375x', crop: 'center' }}">
+                  <source data-srcset="{{ 'img-placeholder.png' | asset_img_url:'203x' }}, {{ 'img-placeholder.png' | asset_img_url:'406x' }} 2x" srcset="{{ 'img-placeholder.png' | asset_img_url:'203x', crop: 'center' }}">
+                  <img data-src="{{ 'img-placeholder.png' | asset_img_url:'203x' }}" class="lazyload" data-sizes="auto" alt="image description" src="{{ 'img-placeholder.png' | asset_img_url:'203x', crop: 'center' }}">
+                </picture>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="product-gallery-thumbs__img">
+                <picture>
+                  <source data-srcset="{{ 'img-placeholder.png' | asset_img_url:'375x' }}, {{ 'img-placeholder.png' | asset_img_url:'750x' }} 2x" media="(max-width: 767px)" srcset="{{ 'img-placeholder.png' | asset_img_url:'375x', crop: 'center' }}">
+                  <source data-srcset="{{ 'img-placeholder.png' | asset_img_url:'203x' }}, {{ 'img-placeholder.png' | asset_img_url:'406x' }} 2x" srcset="{{ 'img-placeholder.png' | asset_img_url:'203x', crop: 'center' }}">
+                  <img data-src="{{ 'img-placeholder.png' | asset_img_url:'203x' }}" class="lazyload" data-sizes="auto" alt="image description" src="{{ 'img-placeholder.png' | asset_img_url:'203x', crop: 'center' }}">
+                </picture>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="product-gallery-thumbs__img">
+                <picture>
+                  <source data-srcset="{{ 'img-placeholder.png' | asset_img_url:'375x' }}, {{ 'img-placeholder.png' | asset_img_url:'750x' }} 2x" media="(max-width: 767px)" srcset="{{ 'img-placeholder.png' | asset_img_url:'375x', crop: 'center' }}">
+                  <source data-srcset="{{ 'img-placeholder.png' | asset_img_url:'203x' }}, {{ 'img-placeholder.png' | asset_img_url:'406x' }} 2x" srcset="{{ 'img-placeholder.png' | asset_img_url:'203x', crop: 'center' }}">
+                  <img data-src="{{ 'img-placeholder.png' | asset_img_url:'203x' }}" class="lazyload" data-sizes="auto" alt="image description" src="{{ 'img-placeholder.png' | asset_img_url:'203x', crop: 'center' }}">
+                </picture>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="product-gallery-thumbs__img">
+                <picture>
+                  <source data-srcset="{{ 'img-placeholder.png' | asset_img_url:'375x' }}, {{ 'img-placeholder.png' | asset_img_url:'750x' }} 2x" media="(max-width: 767px)" srcset="{{ 'img-placeholder.png' | asset_img_url:'375x', crop: 'center' }}">
+                  <source data-srcset="{{ 'img-placeholder.png' | asset_img_url:'203x' }}, {{ 'img-placeholder.png' | asset_img_url:'406x' }} 2x" srcset="{{ 'img-placeholder.png' | asset_img_url:'203x', crop: 'center' }}">
+                  <img data-src="{{ 'img-placeholder.png' | asset_img_url:'203x' }}" class="lazyload" data-sizes="auto" alt="image description" src="{{ 'img-placeholder.png' | asset_img_url:'203x', crop: 'center' }}">
+                </picture>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <h1 class="product__title">{{ product.title }}</h1>
+        <div class="product__vendor mb-1 mb-md-2">{{ product.vendor }}</div>
+        {% form 'product', product, data-product-form: '', data-product-handle: product.handle, data-enable-history-state: 'true' %}
+          <div class="product__price" data-price-wrapper>
+            <div class="product__price__box d-flex flex-wrap align-items-center">
+              <div data-product-price>
+                $41.00
+              </div>
+              {% if product.compare_at_price_max > product.price %}
+                <span class="accessibility" data-compare-text>{{ 'products.product.regular_price' | t }}</span>
+                <del data-compare-price>
+                  {% if current_variant.compare_at_price > current_variant.price %}
+                    {{ current_variant.compare_at_price | money }}
+                  {% endif %}
+                </del>
+              {% endif %}
+            </div>
+            <div class="product__price__text">
+              <p>Tax included.</p>
+            </div>
+          </div>
+          {% unless product.has_only_default_variant %}
+            {% for option in product.options_with_values %}
+              <div class="js">
+                {% if forloop.index0 > 0 %}
+                  {% for value in option.values %}
+                    <input type="radio" id="Option{{ option.position }}-{{ value }}" name="options[{{ option.name }}]" value="{{ value }}"{% if option.selected_value == value %} checked{% endif %}>
+                    <label for="Option{{ option.position }}-{{ value }}">{{ value }}</label>
+                  {% endfor %}
+                {% else %}
+                  <label for="Option{{ option.position }}">
+                    {{ option.name }}
+                  </label>
+                  {% comment %}<select
+                    id="Option{{ option.position }}"
+                    name="options[{{ option.name | escape }}]">
+                    {% for value in option.values %}
+                      <option
+                        value="{{ value | escape }}"
+                        {% if option.selected_value == value %}selected="selected"{% endif %}>
+                        {{ value }}
+                      </option>
+                    {% endfor %}
+                  </select>{% endcomment %}
+                {% endif %}
+              </div>
+            {% endfor %}
+          {% endunless %}
+          <div class="product__row">
+            <div class="row mb-2">
+              <div class="col-sm-6">
+                <label class="product__label" for="size">Size</label>
+                <select name="id" id="size" class="product__select w-100">
+                  {% for variant in product.variants %}
+                    <option
+                      {% if variant == current_variant %}selected="selected"{% endif %}
+                      {% unless variant.available %}disabled="disabled"{% endunless %}
+                      value="{{ variant.id }}">
+                      {{ variant.title }}
+                    </option>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+            <div>
+              <label class="product__label" for="Quantity">{{ 'products.product.quantity' | t }}</label>
+              <input type="number" id="Quantity" name="quantity" value="1" min="1">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4">
+              <div class="product__row">
+                <button
+                  type="submit"
+                  name="add"
+                  class="w-100"
+                  data-submit-button
+                  {% unless current_variant.available %}disabled="disabled"{% endunless %}>
+                  <span data-submit-button-text>
+                    {% if current_variant.available %}
+                      {{ 'products.product.add_to_cart' | t }}
+                    {% else %}
+                      {{ 'products.product.sold_out' | t }}
+                    {% endif %}
+                  </span>
+                </button>
+              </div>
+              <div class="product__row">
+                <button type="button" class="w-100">buy it now</button>
+              </div>
+            </div>
+          </div>
+            
+          
+        {% endform %}
+        
+        <div class="product__row rte">
+          {{ product.description }}
+        </div>
+        
+        {% if section.settings.show_share_buttons %}
+          {% include 'social-sharing', share_title: product.title, share_permalink: product.url, share_image: product %}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  {%- include 'cart-popup' -%}
 </section>
 
 {% schema %}
   {
-	"name": "Product pages",
-	"settings": [
-	  {
-		"type": "checkbox",
-		"id": "show_share_buttons",
-		"label": "Show social sharing buttons",
-		"default": true
-	  }
-	]
+  "name": "Product pages",
+  "settings": [
+    {
+    "type": "checkbox",
+    "id": "show_share_buttons",
+    "label": "Show social sharing buttons",
+    "default": true
+    }
+  ]
   }
 {% endschema %}
