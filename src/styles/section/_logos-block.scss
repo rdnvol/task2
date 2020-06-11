@@ -3,8 +3,11 @@
   align-items: center;
   justify-content: center;
   height: 100%;
-  margin: 0 0 20px;
-  @include media ("≥tablet") {
-    margin: 0 0 30px;
+
+  a {
+    margin: 0 0 20px;
+    @include media ("≥tablet") {
+      margin: 0 0 30px;
+    }
   }
 }
