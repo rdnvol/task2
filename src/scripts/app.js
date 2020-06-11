@@ -44,6 +44,7 @@ class App {
     this.initAccordion();
     this.initProductGallery();
     this.initFancyboxAutoLoad();
+    this.initTestimonialsSlider();
 
     // Responsive fluid iframe
     $(".rte iframe").each(function(index) {
@@ -206,6 +207,7 @@ class App {
       watchSlidesVisibility: true,
       watchSlidesProgress: true,
       speed: 800,
+      watchOverflow: true,
     });
     var productGallery  = new Swiper('.product-gallery', {
       speed: 800,
@@ -260,6 +262,36 @@ class App {
     function deleteCookie(name) {
       setCookie(name, "", -1);
     }
+  }
+
+  initTestimonialsSlider() {
+    var testimonialsSlider = new Swiper('.testimonials-slider', {
+      slidesPerView: 1,
+      watchOverflow: true,
+      loop: true,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      //   navigation: {
+      //   nextEl: '.swiper-button-next',
+      //   prevEl: '.swiper-button-prev',
+      // },
+      breakpoints: {
+        567: {
+          slidesPerView: 2,
+          spaceBetween: 20,
+        },
+        768: {
+          slidesPerView: 2,
+          spaceBetween: 40,
+        },
+        1024: {
+          slidesPerView: 3,
+          spaceBetween: 60,
+        },
+      }
+    });
   }
 }
 
