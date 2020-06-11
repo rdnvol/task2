@@ -36,7 +36,7 @@
 
 {%- capture content -%}
   {%- if snippet -%}
-    {% render snippet %}
+    {% include snippet %}
   {% else %}
     {{- text | default: 'Button' -}}
   {%- endif -%}
