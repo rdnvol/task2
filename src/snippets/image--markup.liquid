@@ -33,6 +33,11 @@
 
 {%- comment %}
 	Check if crop filter is present
+	<picture>
+		<source data-srcset="{{ 'img-placeholder.png' | asset_img_url:'375x' }}, {{ 'img-placeholder.png' | asset_img_url:'750x' }} 2x" media="(max-width: 767px)" srcset="{{ 'img-placeholder.png' | asset_img_url:'375x', crop: 'center' }}">
+		<source data-srcset="{{ 'img-placeholder.png' | asset_img_url:'650x' }}, {{ 'img-placeholder.png' | asset_img_url:'1300x' }} 2x" srcset="{{ 'img-placeholder.png' | asset_img_url:'650x', crop: 'center' }}">
+		<img data-src="{{ 'img-placeholder.png' | asset_img_url:'650x' }}" class="lazyload" data-sizes="auto" alt="image description" src="{{ 'img-placeholder.png' | asset_img_url:'650x', crop: 'center' }}">
+	</picture>
 {% endcomment -%}
 {%- if crop -%}
 	<picture>
