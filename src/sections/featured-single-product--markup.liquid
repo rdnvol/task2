@@ -86,7 +86,7 @@
       <div class="col-md-6">
         <h1 class="product__title">{{ product.title }}</h1>
         <div class="product__vendor mb-1 mb-md-2">{{ product.vendor }}</div>
-        {% form 'product', product, data-product-form: '', data-product-handle: product.handle, data-enable-history-state: 'true' %}
+        <form method="post" action="/cart/add" id="product_form_1740858196035" accept-charset="UTF-8" class="shopify-product-form" enctype="multipart/form-data" data-product-form="" data-product-handle="example-product-title-1" data-enable-history-state="true"><input type="hidden" name="form_type" value="product"><input type="hidden" name="utf8" value="✓">
           <div class="product__price" data-price-wrapper>
             <div class="product__price__box d-flex flex-wrap align-items-center">
               <div data-product-price>
@@ -176,14 +176,10 @@
               </div>
             </div>
           </div>
-            
-          
-        {% endform %}
-        
+        </form>
         <div class="product__row rte">
           {{ product.description }}
         </div>
-        
         {% if section.settings.show_share_buttons %}
           {% include 'social-sharing', share_title: product.title, share_permalink: product.url, share_image: product %}
         {% endif %}
@@ -192,7 +188,6 @@
   </div>
   {%- include 'cart-popup' -%}
 </section>
-
 {% schema %}
   {
   "name": "Product pages",
