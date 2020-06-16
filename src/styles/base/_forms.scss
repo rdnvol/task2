@@ -216,3 +216,33 @@ a.button {
     }
   }
 }
+
+.shopify-payment-button__button--unbranded.shopify-payment-button__button--unbranded {
+  -webkit-appearance: none;
+  -webkit-border-radius: 0;
+  box-sizing: border-box;
+  min-width: 180px;
+  min-height: 44px;
+  padding: 12px 30px;
+  color: $btn-color;
+  line-height: 1;
+  text-align: center;
+  text-transform: uppercase;
+  background: $btn-background;
+  border: 1px solid $black;
+  border-radius: 0;
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    color: $black !important;
+    background: $white !important;
+  }
+
+  &.disabled {
+    color: $white;
+    background: $gray;
+    pointer-events: none;
+    cursor: default;
+  }
+}
