@@ -5,8 +5,7 @@
         src: section.settings.image,
         src_m: section.settings.image_mobile,
         m:'375x',
-        d :'1438x',
-        class: "test1 test2"
+        d :'1438x'
       %}
     {%- else -%}
       {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
@@ -20,9 +19,9 @@
             <h1>{{ section.settings.title }}</h1>
           {%- endif -%}
           {{ section.settings.text }}
-          {%- if section.settings.url != blank -%}
-            {% render 'button',
-              href: section.settings.url,
+          {%- if section.settings.button_link != blank -%}
+            {% include 'button',
+              href: section.settings.button_link,
               text: section.settings.button_label
             %}
           {%- endif -%}

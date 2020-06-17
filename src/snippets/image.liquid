@@ -106,6 +106,7 @@
   {% assign placeholder = placeholder | asset_img_url: p_d %}
   {% assign placeholder_m = placeholder | asset_img_url: p_m %}
 {% else %}
+  {% assign placeholder = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' %}
   {% assign placeholder_m = placeholder %}
 {% endif %}
 

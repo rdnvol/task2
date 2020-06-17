@@ -1,6 +1,9 @@
 import { getUrlWithVariant, ProductForm } from '@shopify/theme-product-form';
 import { formatMoney } from '@shopify/theme-currency';
 import Swiper from "swiper";
+import { addItem } from "Scripts/cartAjaxCall";
+import Cart from "Scripts/cart";
+
 
 class Product {
   constructor(elem) {
@@ -19,6 +22,7 @@ class Product {
         console.log(this.product);
         this.form = new ProductForm(this.formElement[0], this.product, {
           onOptionChange: this.onOptionChange.bind(this),
+          onFormSubmit: this.initAddToBag.bind(this)
         });
         this.initSelectedVariant();
       })
@@ -52,8 +56,9 @@ class Product {
   }
   
   onOptionChange(event) {
+    console.log('event', event);
     const variant = event.dataset.variant;
-    console.log(variant);
+    // console.log(variant);
     this.slideToVariantImage(variant);
     this.updateVariantPrice(variant);
     this.updateSubmitButton(variant);
@@ -96,8 +101,6 @@ class Product {
     if (variant) {
       const imageLabel = variant.featured_media ? variant.featured_media.preview_image.src : '';
       const imagePosition = variant.featured_media ? variant.featured_media.position - 1 : '';
-      console.log(imageLabel)
-      console.log(imagePosition)
       this.productGallery.slideTo(imagePosition);
     }
   }
@@ -106,6 +109,14 @@ class Product {
     console.log(this.form.variant());
     const currentIndex = this.form.variant().featured_media ? this.form.variant().featured_media.position - 1 : 0;
     this.productGallery.slideTo(currentIndex)
+  }
+  
+  initAddToBag(event) {
+    event.preventDefault();
+    addItem(this.form.element)
+      .then((item) => {
+        Cart.showPopup(item);
+      });
   }
 }
 

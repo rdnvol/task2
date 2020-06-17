@@ -51,6 +51,12 @@
 				soldOut: {{ 'products.product.sold_out' | t | json }},
 				unavailable: {{ 'products.product.unavailable' | t | json }}
 			},
+			cart: {
+				quantity: "Qty:",
+				continue_shipping: "Continue shopping"
+			},
+			placeholder_data: "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==",
+			placeholder_image:"{{ 'img-placeholder.png' | asset_img_url:'master' }}",
 			moneyFormat: {{ shop.money_format | json }}
 		};
 

@@ -86,20 +86,26 @@
           <div class="row">
             <div class="col-sm-4">
               <div class="product__row">
-                <button
-                  type="submit"
-                  name="add"
-                  class="w-100"
-                  data-submit-button
-                  {% unless current_variant.available %}disabled="disabled"{% endunless %}>
-                  <span data-submit-button-text>
-                    {% if current_variant.available %}
-                      {{ 'products.product.add_to_cart' | t }}
-                    {% else %}
-                      {{ 'products.product.sold_out' | t }}
-                    {% endif %}
-                  </span>
-                </button>
+                {% if current_variant.available %}
+                  {% render 'button',
+                    element: 'button',
+                    locales_text: 'products.product.add_to_cart',
+                    data_attribute: 'data-submit-button',
+                    class: 'w-100',
+                    name: 'add',
+                    other: 'name="add"',
+                    type: 'submit'
+                  %}
+                {% else %}
+                  {% render 'button',
+                    element: 'button',
+                    locales_text: 'products.product.sold_out',
+                    data_attribute: 'data-submit-button',
+                    class: 'w-100 disabled',
+                    other: 'name="add" disabled',
+                    type: 'submit'
+                  %}
+                {% endif %}
               </div>
               <div class="product__row">
                 {{ form | payment_button }}
@@ -118,6 +124,7 @@
       </div>
     </div>
   </div>
+  {%- include 'cart-popup' -%}
 </section>
 
 
