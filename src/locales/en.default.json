@@ -104,6 +104,7 @@
       "continue_browsing_html":
         "Continue browsing <a href=\"/collections/all\">here</a>.",
       "item_quantity": "Item quantity",
+      "continue_shopping_html": "<a href=\"#\">Continue shopping</a>",
       "savings": "You're saving"
     },
     "label": {
