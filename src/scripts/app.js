@@ -1,6 +1,5 @@
-
+require("expose-loader?$!jquery");
 import 'picturefill';
-
 import 'lazysizes/plugins/object-fit/ls.object-fit';
 import 'lazysizes/plugins/parent-fit/ls.parent-fit';
 import 'lazysizes/plugins/rias/ls.rias';
@@ -8,12 +7,15 @@ import 'lazysizes/plugins/bgset/ls.bgset';
 import 'lazysizes';
 import 'lazysizes/plugins/respimg/ls.respimg';
 
+import 'Scripts/utils';
+
 import 'Scripts/jquery.plugins'
 import Swiper from 'swiper';
 import fancybox from '@fancyapps/fancybox';
 import product from "Scripts/product";
 import "Scripts/related-product";
 import bgVideo from 'jquery-background-video';
+import cart from "Scripts/cart"
 
 import { load } from '@shopify/theme-sections';
 load('*');
@@ -28,6 +30,7 @@ class App {
     this.init();
     this.duplicateQuantityForMobile();
     product.init('#product');
+    console.log(cart);
   }
   
   duplicateQuantityForMobile() {
@@ -307,3 +310,4 @@ class App {
 }
 
 const app = new App();
+
