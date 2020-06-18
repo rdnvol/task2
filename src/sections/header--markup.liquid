@@ -95,13 +95,19 @@
               </a>
             </li>
             <li class="d-none d-xs-block">
-              <a href="#" class="header__btn">
+              <a href="#" class="header__btn header__cart-btn">
                 {%- include 'icon' with 'account' -%}
+                <span class="header__cart-btn__num">
+                  2
+                </span>
               </a>
             </li>
             <li>
-              <a href="#" class="header__btn">
+              <a href="{{ routes.cart_url }}" class="header__btn header__cart-btn">
                 {%- include 'icon' with 'cart' -%}
+                <span class="header__cart-btn__num">
+                  2
+                </span>
               </a>
             </li>
           </ul>
@@ -153,8 +159,11 @@
               </a>
             </li>
             <li>
-              <a href="#" class="header__btn">
+              <a href="{{ routes.cart_url }}" class="header__btn header__cart-btn">
                 {%- include 'icon' with 'cart' -%}
+                <span class="header__cart-btn__num">
+                  2
+                </span>
               </a>
             </li>
           </ul>
