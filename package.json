@@ -36,6 +36,7 @@
   "dependencies": {
     "@babel/runtime": "^7.9.6",
     "@fancyapps/fancybox": "^3.5.7",
+    "@shopify/theme-a11y": "^4.0.0",
     "@shopify/theme-addresses": "^3.0.3",
     "@shopify/theme-currency": "^3.1.0",
     "@shopify/theme-product": "^3.1.0",
@@ -48,6 +49,7 @@
     "flatpickr": "^4.6.3",
     "google-spreadsheet": "^2.0.8",
     "jquery": "^3.2.1",
+    "jquery-background-video": "^1.1.0",
     "js-cookie": "^2.2.1",
     "lazysizes": "^4.1.1",
     "modernizr": "^3.6.0",
@@ -68,6 +70,7 @@
     "browser-sync-webpack-plugin": "^2.2.2",
     "clean-css-cli": "^4.0.12",
     "exports-loader": "^0.6.4",
+    "expose-loader": "^0.7.5",
     "imports-loader": "^0.7.1",
     "node-sass": "^4.9.3",
     "npm-run-all": "^4.0.2",

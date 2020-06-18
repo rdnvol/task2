@@ -1,0 +1,82 @@
+import { getCart } from "Scripts/cartAjaxCall";
+import { trapFocus, removeTrapFocus} from "@shopify/theme-a11y";
+
+class Cart {
+  constructor(item) {
+    // this.cartWrapper = $(item);
+    this.cartCount = $('[data-cart-count]');
+    this.cartAddedPopup = $('.cart-popup');
+    this.cartAddedItemWrapper = $('[data-added-item]');
+    
+    this.initClosePopup();
+    getCart()
+      .then((cart) => {
+        this.cart = cart;
+      })
+  }
+  
+  showPopup(item) {
+    this.justAddedItem = item;
+    getCart()
+      .then((data) => {
+        this.updatePopupContent(data, item);
+        this.cartAddedPopup.addClass('active');
+  
+        trapFocus(this.cartAddedPopup[0]);
+      })
+  }
+  
+  justAddedHtml(item) {
+    const {image, price, product_title, variant_title, quantity, options_with_values, product_has_only_default_variant} = item;
+    return (
+      `<div class="cart-popup__item">
+        <div class="row align-items-center">
+          <div class="col-3">
+            <div class="cart-popup__item__img">
+              <picture>
+                <source data-srcset="${ resizeImageSrcset(image, '70x') }" media="(max-width: 767px)" srcset="${ theme.placeholder_data }">
+                <source data-srcset="${ resizeImageSrcset(image, '80x') }" srcset="${ theme.placeholder_data }">
+                <img data-src="${ resizeImage(image, '80x') }" class="lazyload" data-sizes="auto" alt="image description" src="${ theme.placeholder_data }">
+              </picture>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="cart-popup__item__title">${ product_title }</div>
+            ${this.renderVariantOptionsList(options_with_values, product_has_only_default_variant)}
+          </div>
+          <div class="col-3 text-right">Qty: ${ quantity }</div>
+        </div>
+      </div>`
+    )
+  }
+  
+  renderVariantOptionsList(options, only_default_option) {
+    let html = '';
+    if(!only_default_option) {
+      options.forEach((option) => {
+        html += `<div>${option.name}: ${option.value}</div>`;
+      })
+    }
+    return html;
+  }
+  
+  updatePopupContent(data, item) {
+    this.cartAddedItemWrapper.empty();
+    this.cartAddedItemWrapper.append(this.justAddedHtml(item));
+    this.cartCount.text(`(${ data.item_count })`);
+  }
+  
+  initClosePopup() {
+    $('body').click((e) => {
+      const target = $(e.target);
+      if (!target.closest(this.cartAddedPopup).length) {
+        this.cartAddedPopup.removeClass('active');
+      }
+    })
+    $('.cart-popup__close').click(() => this.cartAddedPopup.removeClass('active'));
+  }
+}
+
+export default Cart = new Cart()
+window.Cart = Cart;
+

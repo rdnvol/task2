@@ -1,6 +1,5 @@
-
+require("expose-loader?$!jquery");
 import 'picturefill';
-
 import 'lazysizes/plugins/object-fit/ls.object-fit';
 import 'lazysizes/plugins/parent-fit/ls.parent-fit';
 import 'lazysizes/plugins/rias/ls.rias';
@@ -8,11 +7,15 @@ import 'lazysizes/plugins/bgset/ls.bgset';
 import 'lazysizes';
 import 'lazysizes/plugins/respimg/ls.respimg';
 
+import 'Scripts/utils';
+
 import 'Scripts/jquery.plugins'
 import Swiper from 'swiper';
 import fancybox from '@fancyapps/fancybox';
 import product from "Scripts/product";
 import "Scripts/related-product";
+import bgVideo from 'jquery-background-video';
+import cart from "Scripts/cart"
 
 import { load } from '@shopify/theme-sections';
 load('*');
@@ -27,6 +30,7 @@ class App {
     this.init();
     this.duplicateQuantityForMobile();
     product.init('#product');
+    console.log(cart);
   }
   
   duplicateQuantityForMobile() {
@@ -44,6 +48,8 @@ class App {
     this.initAccordion();
     this.initProductGallery();
     this.initFancyboxAutoLoad();
+    this.initTestimonialsSlider();
+    this.initBackgroundVideo();
 
     // Responsive fluid iframe
     $(".rte iframe").each(function(index) {
@@ -206,6 +212,7 @@ class App {
       watchSlidesVisibility: true,
       watchSlidesProgress: true,
       speed: 800,
+      watchOverflow: true,
     });
     var productGallery  = new Swiper('.product-gallery', {
       speed: 800,
@@ -261,6 +268,46 @@ class App {
       setCookie(name, "", -1);
     }
   }
+
+  initTestimonialsSlider() {
+    var testimonialsSlider = new Swiper('.testimonials-slider', {
+      slidesPerView: 1,
+      watchOverflow: true,
+      loop: true,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      //   navigation: {
+      //   nextEl: '.swiper-button-next',
+      //   prevEl: '.swiper-button-prev',
+      // },
+      breakpoints: {
+        567: {
+          slidesPerView: 2,
+          spaceBetween: 20,
+        },
+        768: {
+          slidesPerView: 2,
+          spaceBetween: 40,
+        },
+        1024: {
+          slidesPerView: 3,
+          spaceBetween: 60,
+        },
+      }
+    });
+  }
+
+  initBackgroundVideo() {
+    $('.jquery-background-video').bgVideo({
+      fadeIn: 1000,
+      showPausePlay: true,
+      pausePlayXPos: 'right',
+      pausePlayYPos: 'top'
+    });
+  }
 }
 
 const app = new App();
+

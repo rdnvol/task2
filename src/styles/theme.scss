@@ -38,6 +38,7 @@ $media-expressions: (
 @import 'plugins/swiper';
 @import 'plugins/age-popup';
 @import 'plugins/jquery.fancybox';
+@import 'plugins/_jquery-background-video';
 
 @import 'modules/header';
 
@@ -56,6 +57,8 @@ $media-expressions: (
 @import 'section/feature-block';
 @import 'section/search-page';
 @import 'section/product';
+@import 'section/testimonials-block';
+@import 'section/logos-block';
 
 @import 'modules/cart-popup';
 @import 'modules/footer';
