@@ -53,7 +53,6 @@
   right: -1px;
   left: -1px;
   bottom: -1px;
-  padding: 20px 40px;
   pointer-events: none; /* Allows right click menu on the video */
   background: url("{{'video-section-img.jpg' | asset_url}}") no-repeat;
   background-position: 50% 50%;
@@ -61,10 +60,7 @@
   opacity: 1;
   transition:opacity $animation-speed ease-in-out;
   z-index:1;
-  @include media ("≥tablet") {
-    padding: 40px;
-  }
-  
+
   .is-playing + & {
     opacity:0;
   }
@@ -95,7 +91,17 @@
   }
 }
 
-.video-overlay__text {
+.video-text-block {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  padding: 20px 40px;
+  @include media ("≥tablet") {
+    padding: 40px;
+  }
 
   * {
     &:last-child {
