@@ -130,4 +130,3 @@ const productInit = {
 };
 
 export default productInit;
-
