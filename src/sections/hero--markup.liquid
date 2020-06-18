@@ -5,8 +5,8 @@
 			<source data-srcset="{{ 'img-placeholder.png' | asset_img_url:'1438x' }}, {{ 'img-placeholder.png' | asset_img_url:'2876x' }} 2x" srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
 			<img data-src="{{ 'img-placeholder.png' | asset_img_url:'1438x' }}" class="lazyload" data-sizes="auto" alt="image description" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
     </picture> -->
-    <!-- {% render 'image', src: 'img-placeholder.png', d: '1438x', src_m: 'img-placeholder.png', m: '375x' %} -->
-    {% render
+    {% render 'image', asset_img_url: true, src: 'img-placeholder.png', d: '1438x', src_m: 'img-placeholder.png', m: '375x' %}
+    {% comment %} {% render
       'image',
       src: 'img-placeholder.png',
       d: '650x',
@@ -17,7 +17,7 @@
       crop: 'center'
       lazyload: false,
       placeholder: 'img-placeholder.png',
-    %}
+    %} {% endcomment %}
 	</div>
 	<div class="hero__block">
 		<div class="container position-relative h-100">
