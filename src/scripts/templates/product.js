@@ -1,7 +1,7 @@
 import { getUrlWithVariant, ProductForm } from '@shopify/theme-product-form';
 import { formatMoney } from '@shopify/theme-currency';
 import Swiper from "swiper";
-import { addItem } from "Scripts/cartAjaxCall";
+import { addItem, getCart } from "Scripts/cartAjaxCall";
 import Cart from "Scripts/cart";
 
 
@@ -116,6 +116,9 @@ class Product {
     addItem(this.form.element)
       .then((item) => {
         Cart.showPopup(item);
+        getCart().then((cart) => {
+          // Cart.updateCartItemCount(cart.item_count);
+        })
       });
   }
 }
