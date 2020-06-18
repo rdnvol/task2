@@ -14,6 +14,7 @@ import Swiper from 'swiper';
 import fancybox from '@fancyapps/fancybox';
 import product from "Scripts/product";
 import "Scripts/related-product";
+import bgVideo from 'jquery-background-video';
 import cart from "Scripts/cart"
 
 import { load } from '@shopify/theme-sections';
@@ -48,6 +49,7 @@ class App {
     this.initProductGallery();
     this.initFancyboxAutoLoad();
     this.initTestimonialsSlider();
+    this.initBackgroundVideo();
 
     // Responsive fluid iframe
     $(".rte iframe").each(function(index) {
@@ -294,6 +296,15 @@ class App {
           spaceBetween: 60,
         },
       }
+    });
+  }
+
+  initBackgroundVideo() {
+    $('.jquery-background-video').bgVideo({
+      fadeIn: 1000,
+      showPausePlay: true,
+      pausePlayXPos: 'right',
+      pausePlayYPos: 'top'
     });
   }
 }
