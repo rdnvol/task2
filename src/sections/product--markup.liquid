@@ -6,38 +6,58 @@
           <div class="swiper-wrapper align-items-center">
             <div class="swiper-slide">
               <div class="product-gallery__img">
-                <picture>
-                  <source data-srcset="{{ 'img-placeholder.png' | asset_img_url:'375x' }}, {{ 'img-placeholder.png' | asset_img_url:'750x' }} 2x" media="(max-width: 767px)" srcset="{{ 'img-placeholder.png' | asset_img_url:'375x', crop: 'center' }}">
-                  <source data-srcset="{{ 'img-placeholder.png' | asset_img_url:'650x' }}, {{ 'img-placeholder.png' | asset_img_url:'1300x' }} 2x" srcset="{{ 'img-placeholder.png' | asset_img_url:'650x', crop: 'center' }}">
-                  <img data-src="{{ 'img-placeholder.png' | asset_img_url:'650x' }}" class="lazyload" data-sizes="auto" alt="image description" src="{{ 'img-placeholder.png' | asset_img_url:'650x', crop: 'center' }}">
-                </picture>
+                {% render
+                  'image',
+                  asset_img_url: true,
+                  src: 'img-placeholder.png',
+                  d: '650x',
+                  m: '375x',
+                  placeholder: 'img-placeholder.png',
+                  p_d: '650x',
+                  p_m: '375x',
+                %}
               </div>
             </div>
             <div class="swiper-slide">
               <div class="product-gallery__img">
-                <picture>
-                  <source data-srcset="{{ 'img-placeholder.png' | asset_img_url:'375x' }}, {{ 'img-placeholder.png' | asset_img_url:'750x' }} 2x" media="(max-width: 767px)" srcset="{{ 'img-placeholder.png' | asset_img_url:'375x', crop: 'center' }}">
-                  <source data-srcset="{{ 'img-placeholder.png' | asset_img_url:'650x' }}, {{ 'img-placeholder.png' | asset_img_url:'1300x' }} 2x" srcset="{{ 'img-placeholder.png' | asset_img_url:'650x', crop: 'center' }}">
-                  <img data-src="{{ 'img-placeholder.png' | asset_img_url:'650x' }}" class="lazyload" data-sizes="auto" alt="image description" src="{{ 'img-placeholder.png' | asset_img_url:'650x', crop: 'center' }}">
-                </picture>
+                {% render
+                  'image',
+                  asset_img_url: true,
+                  src: 'img-placeholder.png',
+                  d: '650x',
+                  m: '375x',
+                  placeholder: 'img-placeholder.png',
+                  p_d: '650x',
+                  p_m: '375x',
+                %}
               </div>
             </div>
             <div class="swiper-slide">
               <div class="product-gallery__img">
-                <picture>
-                  <source data-srcset="{{ 'img-placeholder.png' | asset_img_url:'375x' }}, {{ 'img-placeholder.png' | asset_img_url:'750x' }} 2x" media="(max-width: 767px)" srcset="{{ 'img-placeholder.png' | asset_img_url:'375x', crop: 'center' }}">
-                  <source data-srcset="{{ 'img-placeholder.png' | asset_img_url:'650x' }}, {{ 'img-placeholder.png' | asset_img_url:'1300x' }} 2x" srcset="{{ 'img-placeholder.png' | asset_img_url:'650x', crop: 'center' }}">
-                  <img data-src="{{ 'img-placeholder.png' | asset_img_url:'650x' }}" class="lazyload" data-sizes="auto" alt="image description" src="{{ 'img-placeholder.png' | asset_img_url:'650x', crop: 'center' }}">
-                </picture>
+                {% render
+                  'image',
+                  asset_img_url: true,
+                  src: 'img-placeholder.png',
+                  d: '650x',
+                  m: '375x',
+                  placeholder: 'img-placeholder.png',
+                  p_d: '650x',
+                  p_m: '375x',
+                %}
               </div>
             </div>
             <div class="swiper-slide">
               <div class="product-gallery__img">
-                <picture>
-                  <source data-srcset="{{ 'img-placeholder.png' | asset_img_url:'375x' }}, {{ 'img-placeholder.png' | asset_img_url:'750x' }} 2x" media="(max-width: 767px)" srcset="{{ 'img-placeholder.png' | asset_img_url:'375x', crop: 'center' }}">
-                  <source data-srcset="{{ 'img-placeholder.png' | asset_img_url:'650x' }}, {{ 'img-placeholder.png' | asset_img_url:'1300x' }} 2x" srcset="{{ 'img-placeholder.png' | asset_img_url:'650x', crop: 'center' }}">
-                  <img data-src="{{ 'img-placeholder.png' | asset_img_url:'650x' }}" class="lazyload" data-sizes="auto" alt="image description" src="{{ 'img-placeholder.png' | asset_img_url:'650x', crop: 'center' }}">
-                </picture>
+                {% render
+                  'image',
+                  asset_img_url: true,
+                  src: 'img-placeholder.png',
+                  d: '650x',
+                  m: '375x',
+                  placeholder: 'img-placeholder.png',
+                  p_d: '650x',
+                  p_m: '375x',
+                %}
               </div>
             </div>
           </div>
@@ -46,38 +66,58 @@
           <div class="swiper-wrapper align-items-center">
             <div class="swiper-slide">
               <div class="product-gallery-thumbs__img">
-                <picture>
-                  <source data-srcset="{{ 'img-placeholder.png' | asset_img_url:'105x' }}, {{ 'img-placeholder.png' | asset_img_url:'210x' }} 2x" media="(max-width: 767px)" srcset="{{ 'img-placeholder.png' | asset_img_url:'105x', crop: 'center' }}">
-                  <source data-srcset="{{ 'img-placeholder.png' | asset_img_url:'203x' }}, {{ 'img-placeholder.png' | asset_img_url:'406x' }} 2x" srcset="{{ 'img-placeholder.png' | asset_img_url:'203x', crop: 'center' }}">
-                  <img data-src="{{ 'img-placeholder.png' | asset_img_url:'203x' }}" class="lazyload" data-sizes="auto" alt="image description" src="{{ 'img-placeholder.png' | asset_img_url:'203x', crop: 'center' }}">
-                </picture>
+                {% render
+                  'image',
+                  asset_img_url: true,
+                  src: 'img-placeholder.png',
+                  d: '203x',
+                  m: '105x',
+                  placeholder: 'img-placeholder.png',
+                  p_d: '203x',
+                  p_m: '105x',
+                %}
               </div>
             </div>
             <div class="swiper-slide">
               <div class="product-gallery-thumbs__img">
-                <picture>
-                  <source data-srcset="{{ 'img-placeholder.png' | asset_img_url:'105x' }}, {{ 'img-placeholder.png' | asset_img_url:'210x' }} 2x" media="(max-width: 767px)" srcset="{{ 'img-placeholder.png' | asset_img_url:'105x', crop: 'center' }}">
-                  <source data-srcset="{{ 'img-placeholder.png' | asset_img_url:'203x' }}, {{ 'img-placeholder.png' | asset_img_url:'406x' }} 2x" srcset="{{ 'img-placeholder.png' | asset_img_url:'203x', crop: 'center' }}">
-                  <img data-src="{{ 'img-placeholder.png' | asset_img_url:'203x' }}" class="lazyload" data-sizes="auto" alt="image description" src="{{ 'img-placeholder.png' | asset_img_url:'203x', crop: 'center' }}">
-                </picture>
+                {% render
+                  'image',
+                  asset_img_url: true,
+                  src: 'img-placeholder.png',
+                  d: '203x',
+                  m: '105x',
+                  placeholder: 'img-placeholder.png',
+                  p_d: '203x',
+                  p_m: '105x',
+                %}
               </div>
             </div>
             <div class="swiper-slide">
               <div class="product-gallery-thumbs__img">
-                <picture>
-                  <source data-srcset="{{ 'img-placeholder.png' | asset_img_url:'105x' }}, {{ 'img-placeholder.png' | asset_img_url:'210x' }} 2x" media="(max-width: 767px)" srcset="{{ 'img-placeholder.png' | asset_img_url:'105x', crop: 'center' }}">
-                  <source data-srcset="{{ 'img-placeholder.png' | asset_img_url:'203x' }}, {{ 'img-placeholder.png' | asset_img_url:'406x' }} 2x" srcset="{{ 'img-placeholder.png' | asset_img_url:'203x', crop: 'center' }}">
-                  <img data-src="{{ 'img-placeholder.png' | asset_img_url:'203x' }}" class="lazyload" data-sizes="auto" alt="image description" src="{{ 'img-placeholder.png' | asset_img_url:'203x', crop: 'center' }}">
-                </picture>
+                {% render
+                  'image',
+                  asset_img_url: true,
+                  src: 'img-placeholder.png',
+                  d: '203x',
+                  m: '105x',
+                  placeholder: 'img-placeholder.png',
+                  p_d: '203x',
+                  p_m: '105x',
+                %}
               </div>
             </div>
             <div class="swiper-slide">
               <div class="product-gallery-thumbs__img">
-                <picture>
-                  <source data-srcset="{{ 'img-placeholder.png' | asset_img_url:'105x' }}, {{ 'img-placeholder.png' | asset_img_url:'210x' }} 2x" media="(max-width: 767px)" srcset="{{ 'img-placeholder.png' | asset_img_url:'105x', crop: 'center' }}">
-                  <source data-srcset="{{ 'img-placeholder.png' | asset_img_url:'203x' }}, {{ 'img-placeholder.png' | asset_img_url:'406x' }} 2x" srcset="{{ 'img-placeholder.png' | asset_img_url:'203x', crop: 'center' }}">
-                  <img data-src="{{ 'img-placeholder.png' | asset_img_url:'203x' }}" class="lazyload" data-sizes="auto" alt="image description" src="{{ 'img-placeholder.png' | asset_img_url:'203x', crop: 'center' }}">
-                </picture>
+                {% render
+                  'image',
+                  asset_img_url: true,
+                  src: 'img-placeholder.png',
+                  d: '203x',
+                  m: '105x',
+                  placeholder: 'img-placeholder.png',
+                  p_d: '203x',
+                  p_m: '105x',
+                %}
               </div>
             </div>
           </div>
