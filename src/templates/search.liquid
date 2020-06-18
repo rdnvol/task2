@@ -44,16 +44,12 @@
                       <div class="col-4 col-md-3">
                         <a href="{{ item.url | within: collection }}">
                           {% assign featured_image = item.image | default: item.featured_image %}
-                          <picture>
-                            <source data-srcset="{{ featured_image | img_url: '120x' }}, {{ featured_image | img_url: '240x' }} 2x"
-                                    media="(max-width: 767px)"
-                                    srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
-                            <source data-srcset="{{ featured_image | img_url: '190x' }}, {{ featured_image | img_url: '380x' }} 2x"
-                                    srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
-                            <img data-src="{{ featured_image | img_url: '190x' }}" class="lazyload" data-sizes="auto"
-                                 alt="image description"
-                                 src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
-                          </picture>
+                          {% render
+                            'image',
+                            src: featured_image,
+                            d: '190x',
+                            m: '120x',
+                          %}
                         </a>
                       </div>
                       <div class="col-8 col-md-9">
