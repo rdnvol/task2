@@ -73,6 +73,8 @@
 </head>
 
 <body id="{{ page_title | handle }}" class="template-{{ template.name | handle }}">
+	{% section 'popup' %}
+	
 	<div id="wrapper" class="page-wrapper">
 		{% section 'header' %}
 
@@ -82,8 +84,6 @@
 
 		{% section 'footer' %}
 	</div>
-
-	{% include 'age-popup' %}
 
 	{% comment %}<a class="in-page-link accessibility skip-link" href="#content">{{ 'general.accessibility.skip_to_content' | t }}</a>{% endcomment %}
 
