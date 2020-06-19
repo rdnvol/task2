@@ -16,11 +16,14 @@
               <a href="#">3 comments</a>
             </header>
           <a href="#" class="post__img">
-            <picture>
-              <source data-srcset="{{ 'img-placeholder.png' | asset_img_url:'375x' }}, {{ 'img-placeholder.png' | asset_img_url:'750x' }} 2x" media="(max-width: 767px)" srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
-              <source data-srcset="{{ 'img-placeholder.png' | asset_img_url:'587x' }}, {{ 'img-placeholder.png' | asset_img_url:'1714x' }} 2x" srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
-              <img data-src="{{ 'img-placeholder.png' | asset_img_url:'857x' }}" class="lazyload" data-sizes="auto" alt="image description" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
-            </picture>
+            {% render
+              'image',
+              asset_img_url: true,
+              src: 'img-placeholder.png',
+              d: '857x',
+              src_m: 'img-placeholder.png',
+              m: '375x',
+            %}
           </a>
           <div>
             Phone:
@@ -38,11 +41,14 @@
             <a href="#">3 comments</a>
           </header>
           <a href="#" class="post__img">
-            <picture>
-              <source data-srcset="{{ 'img-placeholder.png' | asset_img_url:'375x' }}, {{ 'img-placeholder.png' | asset_img_url:'750x' }} 2x" media="(max-width: 767px)" srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
-              <source data-srcset="{{ 'img-placeholder.png' | asset_img_url:'587x' }}, {{ 'img-placeholder.png' | asset_img_url:'1714x' }} 2x" srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
-              <img data-src="{{ 'img-placeholder.png' | asset_img_url:'857x' }}" class="lazyload" data-sizes="auto" alt="image description" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
-            </picture>
+            {% render
+              'image',
+              asset_img_url: true,
+              src: 'img-placeholder.png',
+              d: '857x',
+              src_m: 'img-placeholder.png',
+              m: '375x',
+            %}
           </a>
           <div>
             Phone:

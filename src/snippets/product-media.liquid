@@ -3,13 +3,25 @@
     {%- if main -%}
       <div class="swiper-slide">
         <div class="product-gallery__img" data-position="{{ media.position }}">
-          {% render 'image', src: media, d: '650x', m: '375x' %}
+          {% render
+            'image',
+            src: media,
+            d: '650x',
+            src_m: media,
+            m: '375x'
+          %}
         </div>
       </div>
     {%- else -%}
       <div class="swiper-slide">
         <div class="product-gallery-thumbs__img">
-          {% render 'image' src: media, d: '203x', m: '375x' %}
+          {% render
+            'image',
+            src: media,
+            d: '203x',
+            src_m: media,
+            m: '375x'
+          %}
         </div>
       </div>
     {%- endif -%}
