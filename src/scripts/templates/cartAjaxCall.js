@@ -34,13 +34,13 @@ export function updateItemQuantity(
     .done(
       function (state) {
         Cart.updateCartItemCount(state.item_count);
+        Cart.updateTotalQuantity(state.total_price)
         if (state.item_count === 0) {
           Cart.showEmptyCart();
         } else {
           if (quantity === 0) {
             Cart.getItemsHtml();
           } else {
-            Cart.updateTotalQuantity(state.total_price)
             Cart.updateItemContent(itemElement, state);
           }
         }

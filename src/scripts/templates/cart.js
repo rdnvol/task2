@@ -121,6 +121,7 @@ class Cart {
       .then((data) => {
         this.cartItemsElement.html(data);
         this.initChangeQuantity();
+        this.initRemoveItem();
       });
   }
   
