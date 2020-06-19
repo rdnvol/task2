@@ -302,6 +302,7 @@
 }
 
 .header__btn {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -314,4 +315,18 @@
   svg {
     color: currentColor;
   }
+}
+
+.header__cart-btn__num {
+  position: absolute;
+  right: 1px;
+  top: 1px;
+  width: 20px;
+  height: 20px;
+  padding: 2px;
+  font-size: 12px;
+  line-height: 14px;
+  text-align: center;
+  background: $white;
+  border-radius: 100%;
 }
