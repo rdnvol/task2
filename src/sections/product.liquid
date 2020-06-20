@@ -15,11 +15,13 @@
           </div>
         </div>
         <div class="swiper-container product-gallery-thumbs">
-          <div class="swiper-wrapper align-items-center">
-            {% for media in product.media  %}
-              {% render 'product-media' media: media %}
-            {% endfor %}
-          </div>
+          {% if product.media.size > 1 %}
+            <div class="swiper-wrapper align-items-center">
+              {% for media in product.media  %}
+                {% render 'product-media' media: media %}
+              {% endfor %}
+            </div>
+          {% endif %}
         </div>
       </div>
       <div class="col-md-6">
