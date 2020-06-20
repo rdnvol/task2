@@ -28,6 +28,7 @@ import { load } from '@shopify/theme-sections';
 load('*');
 import "Scripts/related-product";
 import "Scripts/popup";
+import "Scripts/testimonials";
 
 
 class App {
@@ -44,7 +45,6 @@ class App {
     this.initIosScroll();
     this.initAccordion();
     this.initProductGallery();
-    this.initTestimonialsSlider();
     this.initBackgroundVideo();
 
     // Responsive fluid iframe
@@ -218,36 +218,6 @@ class App {
       // },
       thumbs: {
         swiper: productGalleryThumbs 
-      }
-    });
-  }
-
-  initTestimonialsSlider() {
-    var testimonialsSlider = new Swiper('.testimonials-slider', {
-      slidesPerView: 1,
-      watchOverflow: true,
-      loop: true,
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-      },
-      //   navigation: {
-      //   nextEl: '.swiper-button-next',
-      //   prevEl: '.swiper-button-prev',
-      // },
-      breakpoints: {
-        567: {
-          slidesPerView: 2,
-          spaceBetween: 20,
-        },
-        768: {
-          slidesPerView: 2,
-          spaceBetween: 40,
-        },
-        1024: {
-          slidesPerView: 3,
-          spaceBetween: 60,
-        },
       }
     });
   }
