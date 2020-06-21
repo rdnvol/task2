@@ -34,7 +34,6 @@ import "Scripts/testimonials";
 class App {
   constructor() {
     this.init();
-    product.init('#product');
   }
   
   
