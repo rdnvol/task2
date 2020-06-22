@@ -4,8 +4,33 @@ import Swiper from "swiper";
 import { addItem, getCart } from "Scripts/cartAjaxCall";
 import Cart from "Scripts/cart";
 
+import { register } from '@shopify/theme-sections';
 
-class Product {
+register('product', {
+  _initProduct(handle) {
+    console.log(this)
+    if (handle) {
+      window.Product = new Product(this.container);
+      console.log('Product section loaded')
+    } else {
+      console.log('onboarding product');
+    }
+  },
+  
+  // Shortcut function called when a section is loaded via 'sections.load()' or by the Theme Editor 'shopify:section:load' event.
+  onLoad: function(e) {
+    this._initProduct(this.container.dataset.handle);
+    // Do something when a section instance is loaded
+  },
+  
+  // Shortcut function called when a section unloaded by the Theme Editor 'shopify:section:unload' event.
+  onUnload: function() {
+    // Do something when a section instance is unloaded
+  }
+});
+
+
+export class Product {
   constructor(elem) {
     this.wrapper = $(elem);
     this.handle = this.wrapper.data('handle');
@@ -29,7 +54,7 @@ class Product {
   }
   
   initGallery() {
-    this.productGalleryThumbs = new Swiper('.product-gallery-thumbs', {
+    this.productGalleryThumbs = new Swiper(this.wrapper.find('.product-gallery-thumbs')[0], {
       spaceBetween: 20,
       slidesPerView: 3,
       freeMode: true,
@@ -37,7 +62,7 @@ class Product {
       watchSlidesProgress: true,
       speed: 800,
     });
-    this.productGallery = new Swiper('.product-gallery', {
+    this.productGallery = new Swiper(this.wrapper.find('.product-gallery'), {
       speed: 800,
       // navigation: {
       //   nextEl: '.swiper-button-next',
@@ -123,13 +148,3 @@ class Product {
   }
 }
 
-
-const productInit = {
-  init(elem) {
-    if ($(elem).length > 0) {
-      window.product = new Product(elem);
-    }
-  }
-};
-
-export default productInit;

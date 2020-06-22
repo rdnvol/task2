@@ -1,4 +1,4 @@
-{% render 'product' with product as product %}
+{% render 'product', product: all_products[section.settings.product] %}
 
 {% schema %}
 {
