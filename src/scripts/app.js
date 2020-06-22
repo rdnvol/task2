@@ -10,7 +10,7 @@ import 'lazysizes/plugins/respimg/ls.respimg';
 import 'Scripts/jquery.plugins'
 import Swiper from 'swiper';
 import fancybox from '@fancyapps/fancybox';
-import bgVideo from 'jquery-background-video';
+
 
 // utils
 import { getCookie, deleteCookie, setCookie } from "Scripts/utils";
@@ -29,6 +29,7 @@ load('*');
 import "Scripts/related-product";
 import "Scripts/popup";
 import "Scripts/testimonials";
+import "Scripts/video";
 
 
 class App {
@@ -44,7 +45,6 @@ class App {
     this.initIosScroll();
     this.initAccordion();
     this.initProductGallery();
-    this.initBackgroundVideo();
 
     // Responsive fluid iframe
     $(".rte iframe").each(function(index) {
@@ -218,15 +218,6 @@ class App {
       thumbs: {
         swiper: productGalleryThumbs 
       }
-    });
-  }
-
-  initBackgroundVideo() {
-    $('.jquery-background-video').bgVideo({
-      fadeIn: 1000,
-      showPausePlay: true,
-      pausePlayXPos: 'right',
-      pausePlayYPos: 'top'
     });
   }
 }
