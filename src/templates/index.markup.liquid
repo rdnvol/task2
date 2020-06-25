@@ -5,3 +5,18 @@
 {%- section 'logos-block--markup' -%}
 {%- section 'featured-single-product--markup' -%}
 {%- section 'video-section--markup' -%}
+{%- section 'gallery-section--markup' -%}
+
+{% render
+    'image',
+    asset_img_url: true,
+    src: 'image-src.png',
+    d: '650x',
+    src_m: 'image-src-m.png',
+    m: '375x',
+    src_t: 'image-src-t.png',
+    t: '375x',
+    crop: 'center',
+    lazyload: false,
+    placeholder: 'img-placeholder.png',
+%}
