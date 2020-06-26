@@ -56,6 +56,7 @@
 }
 
 .gallery-section__link {
+  position: relative;
   display: block;
   &:before {
     content: "";
@@ -66,6 +67,7 @@
     left: 0;
     background-color: $dark;
     opacity: 0.4;
+    transition: opacity $animation-speed ease-in-out;
   }
   &:hover {
     &::before {
