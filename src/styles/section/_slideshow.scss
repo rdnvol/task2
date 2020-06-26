@@ -1,0 +1,125 @@
+.slideshow-gallery {
+  overflow: visible;
+
+  .swiper-pagination {
+    bottom: -30px;
+    @include media("≥tablet") {
+      bottom: 5px;
+    }
+  }
+
+  .swiper-button-next,
+  .swiper-button-prev {
+    top: 40%;
+    @include media ("≥tablet") {
+      top: 50%;
+    }
+  }
+
+  .swiper-slide {
+    &.swiper-slide-active {
+
+      .slideshow-gallery__block {
+        @include media ("≥tablet") {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+    }
+  }
+}
+
+.slideshow-gallery__img {
+  height: 650px;
+  &.slideshow-gallery__img--sm {
+    height: 475px;
+  }
+  &.slideshow-gallery__img--lg {
+    height: 775px;
+  }
+
+  img {
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.slideshow-gallery__block {
+  position: relative;
+  width: 80%;
+  margin: -20px auto 0;
+  padding: 20px 0;
+  background: $white;
+  @include media("≥tablet") {
+    position: absolute;
+    left: 0;
+    top: 30px;
+    right: 0;
+    bottom: 30px;
+    z-index: 4;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    color: $white;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity, transform 0.6s cubic-bezier(0.44, 0.13, 0.48, 0.87);
+  }
+
+  .container {
+    padding: 0 60px;
+    box-sizing: border-box;
+    @include media ("≥laptop") {
+      padding: 0 30px;
+    }
+  }
+}
+
+.slideshow-gallery__text-block {
+  margin: 0 0 16px;
+  font-size: 15px;
+  @include media ("≥tablet") {
+  font-size: 19px;
+  }
+  &.slideshow-gallery__text-block--lg {
+    font-size: 17px;
+    @include media ("≥tablet") {
+      font-size: 23px;
+    }
+
+    .slideshow-gallery__title {
+      font-size: 34px;
+      @include media ("≥tablet") {
+        font-size: 65px;
+      }
+    }
+  }
+
+  p {
+    &:last-child {
+      margin: 0;
+    }
+  }
+}
+
+.slideshow-gallery__title {
+  margin: 0 0 10px;
+  font-size: 32px;
+  line-height: 1;
+  @include media ("≥tablet") {
+    font-size: 35px;
+  }
+}
+
+.slideshow-gallery__overlay {
+  @include media ("≥tablet") {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: $black;
+    opacity: 0.4;
+  }
+}
