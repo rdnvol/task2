@@ -1,16 +1,13 @@
 .slideshow-gallery {
-  overflow: visible;
+  padding: 0 0 30px;
 
   .swiper-pagination {
-    bottom: -30px;
-    @include media("≥tablet") {
-      bottom: 5px;
-    }
+    bottom: 5px;
   }
 
   .swiper-button-next,
   .swiper-button-prev {
-    top: 40%;
+    top: 30%;
     @include media ("≥tablet") {
       top: 50%;
     }
@@ -30,12 +27,21 @@
 }
 
 .slideshow-gallery__img {
-  height: 650px;
+  height: 270px;
+  @include media ("≥tablet") {
+    height: 650px;
+  }
   &.slideshow-gallery__img--sm {
-    height: 475px;
+    height: 175px;
+    @include media ("≥tablet") {
+      height: 475px;
+    }
   }
   &.slideshow-gallery__img--lg {
-    height: 775px;
+    height: 375px;
+    @include media ("≥tablet") {
+      height: 775px;
+    }
   }
 
   img {
@@ -60,7 +66,7 @@
     width: 100%;
     margin: 0;
     padding: 0;
-    background: transparent;
+    background: none;
     color: $white;
     opacity: 0;
     transform: translateY(50px);
@@ -78,14 +84,14 @@
 
 .slideshow-gallery__text-block {
   margin: 0 0 16px;
-  font-size: 15px;
+  font-size: $font-size-base - 1px;
   @include media ("≥tablet") {
-  font-size: 19px;
+    font-size: $font-size-base + 3px;
   }
   &.slideshow-gallery__text-block--lg {
-    font-size: 17px;
+    font-size: $font-size-base + 1px;
     @include media ("≥tablet") {
-      font-size: 23px;
+      font-size: $font-size-base + 7px;
     }
 
     .slideshow-gallery__title {
