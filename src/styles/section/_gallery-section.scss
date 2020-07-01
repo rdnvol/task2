@@ -1,9 +1,7 @@
 .gallery-section {
-  max-width: 400px;
-  margin: 0 auto;
-  @include media ("≥tablet") {
-    max-width: 100%;
-    margin: 0;
+  @media only (min-width:414px) and (max-width:767px) {
+    max-width: 400px;
+    margin: 0 auto;
   }
 }
 
