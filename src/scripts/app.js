@@ -45,6 +45,7 @@ class App {
     this.initIosScroll();
     this.initAccordion();
     this.initProductGallery();
+    this.initSlideshowGallery();
 
     // Responsive fluid iframe
     $(".rte iframe").each(function(index) {
@@ -218,6 +219,29 @@ class App {
       thumbs: {
         swiper: productGalleryThumbs 
       }
+    });
+  }
+
+  initSlideshowGallery() {
+    var slideshowGallery = new Swiper('.slideshow-gallery', {
+      speed: 800,
+      watchOverflow: true,
+      loop: true,
+      autoplay: {
+        delay: 5000,
+      },
+      effect: 'fade',
+      fadeEffect: {
+        crossFade: true
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
     });
   }
 }

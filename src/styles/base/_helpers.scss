@@ -31,8 +31,20 @@
   text-align:left;
 }
 
+.text-md-left {
+  @include media ("≥tablet") {
+    text-align:left;
+  }
+}
+
 .text-right {
   text-align:right;
+}
+
+.text-md-right {
+  @include media ("≥tablet") {
+    text-align:right;
+  }
 }
 
 .text-right-sm {
