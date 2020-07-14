@@ -11,9 +11,10 @@
 }
 
 .header__panel {
+  z-index: 100;
   padding: 20px 0;
   background: $l-gray;
-  box-shadow: 0 20px 16px 0 rgba(234, 234, 234, 1);
+  box-shadow: 0 2px 24px 0 rgba(0, 0, 0, 0.09);
   @include media ("≥widescreen") {
     position: relative;
     padding: 0;
