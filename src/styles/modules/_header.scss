@@ -14,7 +14,7 @@
   z-index: 100;
   padding: 20px 0;
   background: $l-gray;
-  box-shadow: 0 2px 24px 0 rgba(0, 0, 0, 0.09);
+  box-shadow: 0 6px 12px 0 rgba(0, 0 ,0, 0.09);
   @include media ("≥widescreen") {
     position: relative;
     padding: 0;
