@@ -34,7 +34,7 @@
     {% unless product.has_only_default_variant %}
       {% for option in product.options_with_values %}
         <div class="row mb-2">
-          <div class="col-sm-4">
+          <div class="col-sm-7 col-lg-5 col-xl-4">
             <label class="product__label" for="Option{{ option.position }}">
               {% if show_variant_label %}
                 {{ option.name }}
@@ -58,15 +58,15 @@
     {% endunless %}
     {% if show_quantity %}
       <div class="row">
-        <div class="col-sm-4">
+        <div class="col-sm-7 col-lg-5 col-xl-4">
           <label class="product__label" for="Quantity">{{ 'products.product.quantity' | t }}</label>
-          <input type="number" id="Quantity" class="product__select w-100" name="quantity" value="1" min="1">
+          <input type="number" id="Quantity" class="w-100" name="quantity" value="1" min="1">
         </div>
       </div>
     {% endif %}
   </div>
   <div class="row">
-    <div class="col-sm-4">
+    <div class="col-sm-7 col-lg-5 col-xl-4">
       <div class="product__row">
         {% if current_variant.available %}
           {% render 'button',
