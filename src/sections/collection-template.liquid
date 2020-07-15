@@ -1,4 +1,5 @@
 {% assign limit = section.settings.limit %}
+{% include 'breadcrumbs--markup' %}
 {% paginate collection.products by limit %}
 	<div class="section page-section">
 		<div class="container">
