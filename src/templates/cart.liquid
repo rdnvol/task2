@@ -1,4 +1,4 @@
-<div class="section" id="cart">
+<div class="section" id="cart" data-note-enable="{{ settings.cart_notes_enable }}">
   <div class="container">
     
     <div data-has-items {% if cart.item_count == 0 %}class="d-none"{% endif %}>
@@ -83,3 +83,5 @@
     </div>
   </div>
 </div>
+
+<div class="preact-cart"></div>

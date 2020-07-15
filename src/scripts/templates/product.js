@@ -140,9 +140,10 @@ export class Product {
     event.preventDefault();
     addItem(this.form.element)
       .then((item) => {
-        Cart.showPopup(item);
-        getCart().then((cart) => {
-          // Cart.updateCartItemCount(cart.item_count);
+        console.log('set state item', item)
+        getCart().then(({item_count, items}) => {
+          Store.setState({justAdded: item, popupActive: true})
+          Store.setState({item_count, popupActive: true, items})
         })
       });
   }

@@ -31,6 +31,10 @@ import "Scripts/popup";
 import "Scripts/testimonials";
 import "Scripts/video";
 
+import Cart from "./Components/CartReact";
+import CartCount from "./Components/CartCount";
+import CartPopup from "./Components/CartPopup";
+
 
 class App {
   constructor() {
