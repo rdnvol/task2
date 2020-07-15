@@ -27,7 +27,7 @@
       </div>
     {%- endif -%}
   {%- endif -%}
-  <div class="header__panel">
+  <div class="header__panel{% if section.settings.enable_shadow %} header__panel-shadow{% endif %}">
     <div class="container">
       <div class="row align-items-center">
         <div class="col-4 col-lg-5">
@@ -208,6 +208,12 @@
         "id": "menu",
         "label": "Menu",
         "default": "main-menu"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_shadow",
+        "label": "Enable shadow effect",
+        "default": true
       }
     ]
   }
