@@ -8,6 +8,7 @@ $font-body-bold-weight: var(--font-body-bold-weight);
 $font-heading-weight: var(--font-heading-weight);
 
 // Colors
+$primary:       #000;
 $secondary:     #a2aeb6;
 $success:       #27ae60;
 $info:          #0f62fe;
@@ -48,8 +49,15 @@ $base-min-width: 320px;
 $base-link-color: $color-body-text;
 
 // Buttons
-$btn-color: $white !default;
-$btn-background: $dark !default;
+$btn-color: var(--button-text-color) !default;
+$btn-hover-color: var(--button-hover-text-color) !default;
+$btn-focus-color: var(--button-focus-text-color) !default;
+$btn-background: var(--button-background-color) !default;
+$btn-hover-background: var(--button-hover-background-color) !default;
+$btn-focus-background: var(--button-focus-background-color) !default;
+$btn-border-color: var(--button-border-color) !default;
+$btn-hover-border-color: var(--button-hover-border-color) !default;
+$btn-focus-border-color: var(--button-focus-border-color) !default;
 $btn-padding: 12px 15px !default;
 $btn-font-size: inherit !default;
 

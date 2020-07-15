@@ -105,18 +105,19 @@ input[type='submit'] {
   box-sizing: border-box;
   min-width: 178px;
   min-height: $height-form-elements;
-  padding: 11px 15px;
+  padding: 10px 15px;
   color: $btn-color;
+  font-family: $font-heading;
   line-height: 1;
   text-align: center;
   text-transform: uppercase;
   background: $btn-background;
-  border: 1px solid $black;
+  border: 1px solid $btn-border-color;
   cursor: pointer;
   &.button--lg {
     min-height: $height-button-large;
-    padding-top: 15px;
-    padding-bottom: 15px;
+    padding-top: 14px;
+    padding-bottom: 14px;
   }
   &.button--sm {
     font-size: $font-size-base;
@@ -128,24 +129,35 @@ input[type='submit'] {
     display: inline-flex;
     align-items: center;
     justify-content: space-between;
+
+    .icon {
+      margin-left: 7px;
+    }
   }
 
   &:hover,
   &:focus {
-    color: $black;
-    background: $white;
+    color: $btn-hover-color;
+    background: $btn-hover-background;
+    border-color: $btn-hover-border-color;
   }
 
   &:focus {
-    outline: 1px dashed $black;
-    outline-offset: 2px;
+    color: $btn-focus-color;
+    background: $btn-focus-background;
+    border-color: $btn-focus-border-color;
+    outline: 1px dashed $primary;
+    outline-offset: 3px;
   }
 
-  &.disabled {
-    color: $white;
-    background: $gray;
+  &.disabled,
+  &:disabled {
+    color: $secondary;
+    background: $light;
+    border-color: $light;
     pointer-events: none;
     cursor: default;
+    outline: none !important;
   }
 
   &.default {
@@ -161,8 +173,17 @@ input[type='submit'] {
   }
 
   &.btn {
-    padding: 12px;
-    min-width: auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: $height-button-medium;
+    padding: 6px;
+    &.button--lg {
+      min-width: $height-button-large;
+    }
+    &.button--sm {
+      min-width: $height-button-small;
+    }
   }
 
   .icon {
@@ -175,12 +196,12 @@ input[type='submit'] {
 a.button {
   display: inline-block;
   vertical-align: top;
-  padding-top: 11px;
-  padding-bottom: 11px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   text-decoration: none;
   &.button--lg {
-    padding-top: 15px;
-    padding-bottom: 15px;
+    padding-top: 14px;
+    padding-bottom: 14px;
   }
   &.button--sm {
     padding-top: 7px;
