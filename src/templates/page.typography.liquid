@@ -46,11 +46,50 @@
       <strong>Emphasize Tag</strong>
       <p>The emphasize tag should <i>italicize</i> text.</p>
       <div class="row p-5">
-        <div class="col-md-6 mb-5 ">
-          <a href="#" class="button">add to cart</a>
+        <div class="col-md-6 mb-5">
+          <a href="#" class="button button--lg">Label</a>
+          {% include 'button',
+            element: 'button',
+            class: 'button--lg',
+            text: 'Label',
+            snippet: 'icon',
+            icon: 'search'
+          %}
+          <a href="#" class="button button--lg btn--with-icon">
+            Label
+            {% include 'icon' with 'search' %}
+          </a>
         </div>
         <div class="col-md-6 mb-5">
-          <a href="#" class="button disabled">add to cart</a>
+          <a href="#" class="button">add to cart</a>
+          {% include 'button',
+            element: 'button',
+            class: 'button',
+            text: 'Label',
+            snippet: 'icon',
+            icon: 'search'
+          %}
+          <a href="#" class="button btn--with-icon">
+            Label
+            {% include 'icon' with 'search' %}
+          </a>
+        </div>
+        <div class="col-md-6 mb-5">
+          <a href="#" class="button button--sm">add to cart</a>
+          {% include 'button',
+            element: 'button',
+            class: 'button--sm',
+            text: 'Label',
+            snippet: 'icon',
+            icon: 'search'
+          %}
+          <a href="#" class="button button--sm btn--with-icon">
+            Label
+            {% include 'icon' with 'search' %}
+          </a>
+        </div>
+        <div class="col-md-6 mb-5">
+          <a href="#" class="button button--sm">add to cart</a>
         </div>
         <div class="col-md-6 mb-5">
           <a href="#" class="button button--secondary">build your prescription</a>

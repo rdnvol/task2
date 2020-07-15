@@ -50,15 +50,15 @@ select {
   -webkit-border-radius: 0;
   box-sizing: border-box;
   height: $height-form-elements;
-  border: 1px solid $form-element-border-color;
   padding: $form-element-padding;
   padding-top: 0;
   padding-bottom: 0;
   font-size: $font-size-base - 2px;
   line-height: 1.3;
   letter-spacing: 0.05em;
-  background: $white;
-
+  background: $base-background-color;
+  border: 1px solid $form-element-border-color;
+  
   // &:focus {
   //   border-color: $form-element-focus-border-color;
   // }
@@ -103,9 +103,9 @@ input[type='submit'] {
   -webkit-appearance: none;
   -webkit-border-radius: 0;
   box-sizing: border-box;
-  min-width: 180px;
-  min-height: 44px;
-  padding: 12px 30px;
+  min-width: 178px;
+  min-height: $height-form-elements;
+  padding: 11px 15px;
   color: $btn-color;
   line-height: 1;
   text-align: center;
@@ -113,11 +113,32 @@ input[type='submit'] {
   background: $btn-background;
   border: 1px solid $black;
   cursor: pointer;
+  &.button--lg {
+    min-height: $height-button-large;
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+  &.button--sm {
+    font-size: $font-size-base;
+    min-height: $height-button-small;
+    padding-top: 7px;
+    padding-bottom: 7px;
+  }
+  &.btn--with-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 
   &:hover,
   &:focus {
     color: $black;
     background: $white;
+  }
+
+  &:focus {
+    outline: 1px dashed $black;
+    outline-offset: 2px;
   }
 
   &.disabled {
@@ -143,14 +164,28 @@ input[type='submit'] {
     padding: 12px;
     min-width: auto;
   }
+
+  .icon {
+    margin: -3px 0;
+    width: 16px;
+    height: 16px;
+  }
 }
 
 a.button {
   display: inline-block;
   vertical-align: top;
-  padding-top: 17px;
-  padding-bottom: 16px;
+  padding-top: 11px;
+  padding-bottom: 11px;
   text-decoration: none;
+  &.button--lg {
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+  &.button--sm {
+    padding-top: 7px;
+    padding-bottom: 7px;
+  }
 }
 
 .input-holder {

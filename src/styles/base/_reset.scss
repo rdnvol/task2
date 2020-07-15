@@ -58,12 +58,11 @@ a,
 span.btn-more,
 input[type="submit"],
 input[type="reset"] {
-  outline:none;
   @include animates;
 }
 
 // transition for svg
 svg {
   transition: stroke $animation-speed ease,
-  fill $animation-speed ease;
+              fill $animation-speed ease;
 }
