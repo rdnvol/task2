@@ -1,5 +1,5 @@
-import { trapFocus, removeTrapFocus } from "@shopify/theme-a11y";
-import { h, Component, render, createRef } from "preact";
+import { trapFocus } from "@shopify/theme-a11y";
+import { h, Component, render } from "preact";
 import CartJustAdded from "./CartJustAdded";
 import { Connect, Provider } from "redux-zero/preact";
 import store from "./store";
@@ -11,19 +11,22 @@ class CartPopup extends Component {
     
   }
   componentDidMount() {
-    console.log(this.base);
+    document.querySelector('body').addEventListener('click', (e) => this.initCloseEvent(e))
   }
-  componentDidUpdate(previousProps, previousState, snapshot) {
-    console.log('previousProps',previousProps)
-    console.log('previousState', previousState)
-    console.log('snapshot',snapshot)
-  }
+
   componentWillReceiveProps({active}, nextContext) {
     this.trapFocus(active);
   }
-  trapFocus() {
-  
+  trapFocus(active) {
+    trapFocus(this.base);
   }
+  
+  initCloseEvent(e) {
+    if (!e.target.closest(`.${this.base.className}`)) {
+      this.props.closePopup();
+    }
+  }
+  
   render({justAdded, item_count, closePopup, active}) {
     
     return(

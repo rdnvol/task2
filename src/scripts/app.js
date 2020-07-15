@@ -19,7 +19,6 @@ import { getCookie, deleteCookie, setCookie } from "Scripts/utils";
 
 // templates
 import product from "Scripts/product";
-import cart from "Scripts/cart"
 import 'Scripts/login'
 import 'Scripts/addresses'
 

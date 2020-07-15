@@ -52,10 +52,7 @@ class LineItem extends Component {
   }
   
   renderPrice({original_line_price, line_price, original_price, price}) {
-    console.log(line_price)
-    console.log(line_price)
-    console.log(original_line_price)
-    if (original_line_price != line_price) {
+    if (original_line_price !== line_price) {
       return (
         <Fragment>
           <span className="visually-hidden">{ theme.cart.discounted_price }</span>
@@ -78,7 +75,6 @@ class LineItem extends Component {
   }
   
   render({item, updateCart}) {
-    console.log(item.quantity);
     const {
       key,
       image,
