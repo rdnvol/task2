@@ -71,6 +71,12 @@
 	</div>
 </footer>
 
+{% style %}
+	#footer {
+		background: {{ section.settings.bg_color }};
+	}
+{% endstyle %}
+
 {% schema %}
 	{
 		"name": "Footer",
@@ -81,6 +87,12 @@
 				"id": "show_payment_icons",
 				"label": "Show payment icons",
 				"default": false
+			},
+			{
+				"type": "color",
+				"id": "bg_color",
+				"label": "Background color",
+				"default": "#ffffff"
 			}
 		],
 		"blocks": [
