@@ -13,7 +13,8 @@ module.exports = {
   resolve: {
    alias: {
      Scripts: path.resolve(__dirname, './src/scripts/templates')
-   }
+   },
+    extensions: ['.js', '.jsx']
   },
   output: {
     path: path.resolve(__dirname, './src/assets'),
@@ -41,6 +42,17 @@ module.exports = {
     {
       test: /scripts\/modernizr\.js$/,
       loader: 'imports-loader?this=>window!exports-loader?window.Modernizr'
+    },
+    {
+      test: /\.(js|jsx)$/,
+      exclude: /node_modules/,
+      loader: "babel-loader",
+      options: {
+        plugins: [
+          ["@babel/transform-react-jsx", { "pragma": "h" }],
+          ["@babel/plugin-proposal-class-properties"]
+        ]
+      }
     }]
   },
   plugins: [

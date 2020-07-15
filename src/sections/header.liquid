@@ -75,7 +75,7 @@
               {% else %}
               {% endif %}
             {% endif %}
-            <li>
+            <li data-cart-count>
               <a href="{{ routes.cart_url }}" class="header__btn header__cart-btn" data-cart-count-wrapper>
                 {%- include 'icon' with 'cart' -%}
                 {% if cart.item_count > 0 %}

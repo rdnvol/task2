@@ -46,14 +46,32 @@
 		document.documentElement.className = document.documentElement.className.replace('no-js', '');
 
 		window.theme = {
+			cartState: {{ cart | json }},
 			strings: {
 				addToCart: {{ 'products.product.add_to_cart' | t | json }},
 				soldOut: {{ 'products.product.sold_out' | t | json }},
 				unavailable: {{ 'products.product.unavailable' | t | json }}
 			},
 			cart: {
-				quantity: "Qty:",
-				continue_shipping: "Continue shopping"
+				// quantity: "Qty:",
+				continue_shipping: "Continue shopping",
+				product: {{ 'cart.label.product' | t | json }},
+				price: {{ 'cart.label.price' | t | json }},
+				quantity: {{ 'cart.label.quantity' | t | json }},
+				total: {{ 'cart.label.total' | t | json }},
+				title: {{ 'cart.general.title' | t | json }},
+				empty: {{ 'cart.general.empty' | t | json }},
+				continue_browsing_html: {{ 'cart.general.continue_browsing_html' | t | json }},
+				note: {{ 'cart.general.note' | t | json }},
+				cookies: {{ 'cart.general.cookies_required' | t | json }},
+				savings: {{'cart.general.savings' | t | json }},
+				shipping_at_checkout: {{'cart.general.shipping_at_checkout' | t | json }},
+				checkout: {{ 'cart.general.checkout' | t | json }},
+				remove: {{'cart.general.remove' | t | json}},
+				discounted_price: {{'cart.label.discounted_price' | t | json }},
+				original_price: {{'cart.label.original_price' | t | json }},
+				continue_shipping_html: {{'cart.general.continue_shopping_html' | t | json }}
+				
 			},
 			placeholder_data: "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==",
 			placeholder_image:"{{ 'img-placeholder.png' | asset_img_url:'master' }}",
