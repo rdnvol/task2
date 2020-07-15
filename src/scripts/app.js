@@ -42,6 +42,7 @@ class App {
   
   
   init() {
+    this.setHeaderHeight();
     this.initMobileNav();
     this.initStickyScrollBlock();
     // this.initHeaderOnScrollDown();
@@ -246,6 +247,10 @@ class App {
         prevEl: '.swiper-button-prev',
       },
     });
+  }
+  
+  setHeaderHeight() {
+    document.documentElement.style.setProperty('--header-height', $('#header').css('height'));
   }
 }
 
