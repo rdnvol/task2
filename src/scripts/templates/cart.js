@@ -128,7 +128,6 @@ class Cart {
   updateTotalQuantity(totalPrice) {
     this.cartTotalAmount.text(formatMoney(totalPrice, theme.moneyFormat));
   }
-  
   updateCartItemCount(itemsCount) {
     if (itemsCount === 0) {
       this.cartCount.detach();

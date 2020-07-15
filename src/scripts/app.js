@@ -19,7 +19,6 @@ import { getCookie, deleteCookie, setCookie } from "Scripts/utils";
 
 // templates
 import product from "Scripts/product";
-import cart from "Scripts/cart"
 import 'Scripts/login'
 import 'Scripts/addresses'
 
@@ -30,6 +29,10 @@ import "Scripts/related-product";
 import "Scripts/popup";
 import "Scripts/testimonials";
 import "Scripts/video";
+
+import Cart from "./Components/CartReact";
+import CartCount from "./Components/CartCount";
+import CartPopup from "./Components/CartPopup";
 
 
 class App {
