@@ -1,151 +1,157 @@
 {% assign show_payment_icons = section.settings.show_payment_icons %}
 {%- capture payment_icon_markup -%}
-	{%- if show_payment_icons -%}
-		<div class="d-flex flex-wrap align-items-center justify-content-center pt-3">
-			{%- for type in shop.enabled_payment_types -%}
-				<div class="mx-3 mb-3">
-					{{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}
-				</div>
-			{%- endfor -%}
-		</div>
-	{%- endif -%}
+  {%- if show_payment_icons -%}
+    <div class="d-flex flex-wrap align-items-center justify-content-center pt-3">
+      {%- for type in shop.enabled_payment_types -%}
+        <div class="mx-3 mb-3">
+          {{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}
+        </div>
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
 {%- endcapture -%}
 <footer id="footer">
-	<div class="container">
-		{%- if section.blocks.size != 0 -%}
-			<div class="footer__holder">
-				<div class="row">
-					{%- for block in section.blocks -%}
-						{%- case block.type -%}
-						{%- when 'text' -%}
-							<div class="col-sm-12 col-lg-3 mb-6 mb-lg-0 {% unless forloop.last %}mb-6 mb-lg-0{% endunless %}">
-								<a href="{{ routes.root_url }}" class="footer__logo">
-									<img data-src="{{ block.settings.icon | asset_url }}" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" class="lazyload" data-sizes="auto" alt="image description">
-								</a>
-								{{block.settings.text}}
-							</div>
-						{%- when 'newsletter' -%}
-							<div class="col-sm-6 col-md-4 col-lg-3 {% unless forloop.last %}mb-6 mb-lg-0{% endunless %}" {{block.shopify_attributes}}>
-								<h3 class="footer__title h5">{{block.settings.title}}</h3>
-								<p>{{ 'general.newsletter_form.newsletter_email' | t }}</p>
-								{% form 'customer', novalidate: 'novalidate', class: "footer__form pt-2" %}
-									<input type="hidden" name="contact[tags]" value="newsletter">
-									{%- if form.posted_successfully? -%}
-										<p class="form-message form-message--success" tabindex="-1" data-form-status>
-											{{ 'general.newsletter_form.confirmation' | t }}
-										</p>
-									{%- endif -%}
-									<div class="d-flex align-items-center position-relative">
-										<input type="email" name="contact[email]" placeholder="{{ 'general.newsletter_form.email_placeholder' | t }}" class="footer__form__input">
-										<button type="submit" class="footer__form__button">
-											{%- include 'icon-arrow-right' -%}
-										</button>
-									</div>
-								{% endform %}
-							</div>
-						{%- when 'link_list' -%}
-						{%- assign footer_linklist = block.settings.menu -%}
-							<div class="col-sm-6 col-md-4 col-lg-3 {% unless forloop.last %}mb-6 mb-lg-0{% endunless %}">
-								<nav class="footer__nav">
-									{%- if block.settings.title != blank -%}
-										<h3 class="footer__title h5">{{block.settings.title}}</h3>
-									{%- endif -%}
-									<ul>
-										{%- for link in linklists[footer_linklist].links -%}
-										<li><a href="{{ link.url }}">{{ link.title | escape }}</a></li>
-										{%- endfor -%}
-									</ul>
-								</nav>
-							</div>
-						{%- endcase -%}
-					{%- endfor -%}
-				</div>
-			</div>
-		{%- endif -%}
-		<div class="footer__panel text-center">
-			<div class="mb-4 mb-md-2">&copy; {{ 'now' | date: "%Y" }} <a href="#">Draft</a>. All Rights Reserved. <a href="#">Terms</a>, <a href="#">Privacy &amp; Accessibility</a>.</div>
-			<div>
-				{{ payment_icon_markup }}
-			</div>
-		</div>
-	</div>
+  <div class="container">
+    {%- if section.blocks.size != 0 -%}
+      <div class="footer__holder">
+        <div class="row">
+          {%- for block in section.blocks -%}
+            {%- case block.type -%}
+            {%- when 'text' -%}
+              <div class="col-sm-12 col-lg-3 mb-6 mb-lg-0 {% unless forloop.last %}mb-6 mb-lg-0{% endunless %}">
+                <a href="{{ routes.root_url }}" class="footer__logo">
+                  <img data-src="{{ block.settings.icon | asset_url }}"
+                       src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" class="lazyload"
+                       data-sizes="auto" alt="image description">
+                </a>
+                {{ block.settings.text }}
+              </div>
+            {%- when 'newsletter' -%}
+              <div class="col-sm-6 col-md-4 col-lg-3 {% unless forloop.last %}mb-6 mb-lg-0{% endunless %}" {{ block.shopify_attributes }}>
+                <h3 class="footer__title h5">{{ block.settings.title }}</h3>
+                <p>{{ 'general.newsletter_form.newsletter_email' | t }}</p>
+                {% form 'customer', novalidate: 'novalidate', class: "footer__form pt-2" %}
+                  <input type="hidden" name="contact[tags]" value="newsletter">
+                  {%- if form.posted_successfully? -%}
+                    <p class="form-message form-message--success" tabindex="-1" data-form-status>
+                      {{ 'general.newsletter_form.confirmation' | t }}
+                    </p>
+                  {%- endif -%}
+                  <div class="d-flex align-items-center position-relative">
+                    <input type="email" name="contact[email]"
+                           placeholder="{{ 'general.newsletter_form.email_placeholder' | t }}"
+                           class="footer__form__input">
+                    <button type="submit" class="footer__form__button">
+                      {%- include 'icon-arrow-right' -%}
+                    </button>
+                  </div>
+                {% endform %}
+              </div>
+            {%- when 'link_list' -%}
+            {%- assign footer_linklist = block.settings.menu -%}
+              <div class="col-sm-6 col-md-4 col-lg-3 {% unless forloop.last %}mb-6 mb-lg-0{% endunless %}">
+                <nav class="footer__nav">
+                  {%- if block.settings.title != blank -%}
+                    <h3 class="footer__title h5">{{ block.settings.title }}</h3>
+                  {%- endif -%}
+                  <ul>
+                    {%- for link in linklists[footer_linklist].links -%}
+                      <li><a href="{{ link.url }}">{{ link.title | escape }}</a></li>
+                    {%- endfor -%}
+                  </ul>
+                </nav>
+              </div>
+            {%- endcase -%}
+          {%- endfor -%}
+        </div>
+      </div>
+    {%- endif -%}
+    <div class="footer__panel text-center">
+      <div class="mb-4 mb-md-2">&copy; {{ 'now' | date: "%Y" }} <a href="#">Draft</a>. All Rights Reserved. <a href="#">Terms</a>,
+        <a href="#">Privacy &amp; Accessibility</a>.
+      </div>
+      <div>
+        {{ payment_icon_markup }}
+      </div>
+    </div>
+  </div>
 </footer>
 
 {% style %}
-	#footer {
-		background: {{ section.settings.bg_color }};
+#footer {
+    background: {{ section.settings.bg_color }};
 	}
 {% endstyle %}
 
 {% schema %}
-	{
-		"name": "Footer",
-		"max_blocks": 4,
-		"settings": [
-			{
-				"type": "checkbox",
-				"id": "show_payment_icons",
-				"label": "Show payment icons",
-				"default": false
-			},
-			{
-				"type": "color",
-				"id": "bg_color",
-				"label": "Background color",
-				"default": "#ffffff"
-			}
-		],
-		"blocks": [
-			{
-				"type": "link_list",
-				"name": "Menu",
-				"settings": [
-					{
-						"type": "text",
-						"id": "title",
-						"label": "Heading",
-						"default": "Quick links"
-					},
-					{
-						"type": "link_list",
-						"id": "menu",
-						"label": "Menu"
-					}
-				]
-			},
-			{
-				"type": "newsletter",
-				"limit": 1,
-				"name": "Newsletter signup",
-				"settings": [
-					{
-						"type": "text",
-						"id": "title",
-						"label": "Heading",
-						"info": "Subscribers will be added to your “accepts marketing” [customer list.](/admin/customers?query=&accepts_marketing=1)",
-						"default": "Newsletter"
-					}
-				]
-			},
-			{
-				"type": "text",
-				"name": "Text and icon",
-				"settings": [
-					{
-						"type": "text",
-						"id": "icon",
-						"label": "Icon",
-						"default": "logo-2.svg"
-					},
-					{
-						"type": "richtext",
-						"id": "text",
-						"label": "Body text",
-						"default": "<p>Dignissim suspendisse in est ante in nibh mauris cursus mattis. Arcu odio ut sem nulla pharetra diam sit amet nisl.</p>"
-					}
-				]
-			}
-		]
-	}
+{
+  "name": "Footer",
+  "max_blocks": 4,
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_payment_icons",
+      "label": "Show payment icons",
+      "default": false
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "link_list",
+      "name": "Menu",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Quick links"
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "label": "Menu"
+        }
+      ]
+    },
+    {
+      "type": "newsletter",
+      "limit": 1,
+      "name": "Newsletter signup",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "info": "Subscribers will be added to your “accepts marketing” [customer list.](/admin/customers?query=&accepts_marketing=1)",
+          "default": "Newsletter"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "Text and icon",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Icon",
+          "default": "logo-2.svg"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Body text",
+          "default": "<p>Dignissim suspendisse in est ante in nibh mauris cursus mattis. Arcu odio ut sem nulla pharetra diam sit amet nisl.</p>"
+        }
+      ]
+    }
+  ]
+}
 
 {% endschema %}
