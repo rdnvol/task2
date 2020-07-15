@@ -1,12 +1,14 @@
 {% assign show_payment_icons = section.settings.show_payment_icons %}
 {%- capture payment_icon_markup -%}
   {%- if show_payment_icons -%}
-    <div class="d-flex flex-wrap align-items-center justify-content-center pt-3">
-      {%- for type in shop.enabled_payment_types -%}
-        <div class="mx-3 mb-3">
-          {{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}
-        </div>
-      {%- endfor -%}
+    <div>
+      <div class="d-flex flex-wrap align-items-center justify-content-center pt-3">
+        {%- for type in shop.enabled_payment_types -%}
+          <div class="mx-3 mb-3">
+            {{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}
+          </div>
+        {%- endfor -%}
+      </div>
     </div>
   {%- endif -%}
 {%- endcapture -%}
@@ -67,12 +69,15 @@
       </div>
     {%- endif -%}
     <div class="footer__panel text-center">
-      <div class="mb-4 mb-md-2">&copy; {{ 'now' | date: "%Y" }} <a href="#">Draft</a>. All Rights Reserved. <a href="#">Terms</a>,
-        <a href="#">Privacy &amp; Accessibility</a>.
+      {% capture copy %}
+        &copy; {{ 'now' | date: "%Y" }} {{ shop.name | link_to: routes.root_url | l_strip }}.
+      {% endcapture %}
+      {% assign first_part = copy | prepend:'<p>' %}
+      {% assign rights_text = section.settings.rights_text | replace: '<p>', first_part %}
+      <div {% if show_payment_icons %}class="mb-4 mb-md-2"{% endif %}>
+        {% if section.settings.rights_text != blank %}{{ rights_text }}{% else %}{{ copy }}{% endif %}
       </div>
-      <div>
-        {{ payment_icon_markup }}
-      </div>
+      {{ payment_icon_markup }}
     </div>
   </div>
 </footer>
@@ -99,6 +104,12 @@
       "id": "bg_color",
       "label": "Background color",
       "default": "#ffffff"
+    },
+    {
+      "type": "richtext",
+      "id": "rights_text",
+      "label": "Rights text",
+      "default": "<p>All Rights Reserved. <a href=\"#\">Terms</a>, <a href=\"#\">Privacy &amp; Accessibility</a>.</p>"
     }
   ],
   "blocks": [
