@@ -33,6 +33,64 @@
         "type": "url",
         "id": "image",
         "label": "Image"
+      },
+      {
+        "type": "header",
+        "content": "Buttons colors"
+      },
+      {
+        "type": "color",
+        "id": "button_text_color",
+        "label": "Text",
+        "default": "#262C30"
+      },
+      {
+        "type": "color",
+        "id": "button_hover_color",
+        "label": "Hover",
+        "default": "#A2AEB6"
+      },
+      {
+        "type": "color",
+        "id": "button_focus_text_color",
+        "label": "Focus text",
+        "default": "#262C30"
+      },
+      {
+        "type": "color",
+        "id": "button_border_color",
+        "label": "Border",
+        "default": "#FCF113"
+      },
+      {
+        "type": "color",
+        "id": "button_hover_border_color",
+        "label": "Hover border",
+        "default": "#000"
+      },
+      {
+        "type": "color",
+        "id": "button_focus_border_color",
+        "label": "Focus border",
+        "default": "#FCF113"
+      },
+      {
+        "type": "color",
+        "id": "button_bg_color",
+        "label": "Background",
+        "default": "#FCF113"
+      },
+      {
+        "type": "color",
+        "id": "button_hover_bg_color",
+        "label": "Background hover",
+        "default": "#000"
+      },
+      {
+        "type": "color",
+        "id": "button_focus_bg_color",
+        "label": "Background focus",
+        "default": "#FCF113"
       }
     ]
   },
