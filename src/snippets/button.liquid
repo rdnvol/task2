@@ -8,7 +8,7 @@
     - text: {string} override button label (default is 'Button')
     - locales_text: {string} used for including text from locales, instead of {{ 'products.product.quantity' | t }}
                     write 'products.product.quantity')
-    - type: {string} only for 'input', define witch type of input you want to be rendered ('submit', 'reset', 'button', default is 'button')
+    - type: {string} define witch type of input you want to be rendered ('submit', 'reset', 'button', 'icon', default is 'button')
     - data_attribute: {string} for adding data attributes.
                   If you want more than one it should be separated with space (example 'data-fancybox data-custom-attr')
     - snippet: {string} for adding icons or other snippets (except element 'input')
@@ -43,36 +43,43 @@
     
 {% endcomment %}
 
-{%- capture class -%}
+{%- capture classes -%}
   {{- "button " | append: class | rstrip -}}
 {%- endcapture -%}
 {% assign element = element | default: "a" %}
 
 {%- capture content -%}
-  {%- if snippet -%}
-    {% include snippet with icon %}
-    {% elsif locales_text %}
-    {{ locales_text | t }}
-  {% else %}
-    {{- text | default: 'Button' -}}
-  {%- endif -%}
+  {% if type == 'icon' %}
+    {%- if snippet -%}
+      {% include snippet with icon %}
+      {% elsif locales_text %}
+      {{ locales_text | t }}
+    {%- endif -%}
+   {% else %}
+     {{- text | default: 'Button' -}}
+     {%- if snippet -%}
+       {% include snippet with icon %}
+       {% elsif locales_text %}
+       {{ locales_text | t }}
+     {%- endif -%}
+  {% endif %}
 {%- endcapture -%}
 
 {%- case element -%}
 {%- when 'a' -%}
-  <a href="{{ href | default: '#' }}" class="{{ class }}" {{ data_attribute }}>
+  <a href="{{ href | default: '#' }}" class="{{ classes }}" {{ data_attribute }}>
     {{- content -}}
   </a>
 {%- when 'button' -%}
-  <button type="{{ type | default: "button" }}" class="{{ class }}" {{ data_attribute }} {{ other }}>
+  <button type="{{ type | default: "button" }}" class="{{ classes }}" {{ data_attribute }} {{ other }}>
     {{- content -}}
   </button>
 {%- when 'span' -%}
-  <span class="{{ class }}" {{ data_attribute }}>
+  <span class="{{ classes }}" {{ data_attribute }}>
       {{- content -}}
     </span>
 {%- when 'input' -%}
   <input type="{{ type | default: "button" }}"
-         class="{{ class }}" {{ data_attribute }}
+         class="{{ classes }}" {{ data_attribute }}
          value="{{ text | default: "Button" }} {{ other }}"/>
 {%- endcase -%}
