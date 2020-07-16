@@ -50,15 +50,15 @@ select {
   -webkit-border-radius: 0;
   box-sizing: border-box;
   height: $height-form-elements;
-  border: 1px solid $form-element-border-color;
   padding: $form-element-padding;
   padding-top: 0;
   padding-bottom: 0;
   font-size: $font-size-base - 2px;
   line-height: 1.3;
   letter-spacing: 0.05em;
-  background: $white;
-
+  background: $base-background-color;
+  border: 1px solid $form-element-border-color;
+  
   // &:focus {
   //   border-color: $form-element-focus-border-color;
   // }
@@ -103,28 +103,61 @@ input[type='submit'] {
   -webkit-appearance: none;
   -webkit-border-radius: 0;
   box-sizing: border-box;
-  min-width: 180px;
-  min-height: 44px;
-  padding: 12px 30px;
+  min-width: 178px;
+  min-height: $height-form-elements;
+  padding: 10px 15px;
   color: $btn-color;
+  font-family: $font-heading;
   line-height: 1;
   text-align: center;
   text-transform: uppercase;
   background: $btn-background;
-  border: 1px solid $black;
+  border: 1px solid $btn-border-color;
   cursor: pointer;
+  &.button--lg {
+    min-height: $height-button-large;
+    padding-top: 14px;
+    padding-bottom: 14px;
+  }
+  &.button--sm {
+    font-size: $font-size-base;
+    min-height: $height-button-small;
+    padding-top: 7px;
+    padding-bottom: 7px;
+  }
+  &.btn--with-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .icon {
+      margin-left: 7px;
+    }
+  }
 
   &:hover,
   &:focus {
-    color: $black;
-    background: $white;
+    color: $btn-hover-color;
+    background: $btn-hover-background;
+    border-color: $btn-hover-border-color;
   }
 
-  &.disabled {
-    color: $white;
-    background: $gray;
+  &:focus {
+    color: $btn-focus-color;
+    background: $btn-focus-background;
+    border-color: $btn-focus-border-color;
+    outline: 1px dashed $primary;
+    outline-offset: 3px;
+  }
+
+  &.disabled,
+  &:disabled {
+    color: $secondary;
+    background: $light;
+    border-color: $light;
     pointer-events: none;
     cursor: default;
+    outline: none !important;
   }
 
   &.default {
@@ -140,17 +173,40 @@ input[type='submit'] {
   }
 
   &.btn {
-    padding: 12px;
-    min-width: auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: $height-button-medium;
+    padding: 6px;
+    &.button--lg {
+      min-width: $height-button-large;
+    }
+    &.button--sm {
+      min-width: $height-button-small;
+    }
+  }
+
+  .icon {
+    margin: -3px 0;
+    width: 16px;
+    height: 16px;
   }
 }
 
 a.button {
   display: inline-block;
   vertical-align: top;
-  padding-top: 17px;
-  padding-bottom: 16px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   text-decoration: none;
+  &.button--lg {
+    padding-top: 14px;
+    padding-bottom: 14px;
+  }
+  &.button--sm {
+    padding-top: 7px;
+    padding-bottom: 7px;
+  }
 }
 
 .input-holder {

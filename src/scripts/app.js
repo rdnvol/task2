@@ -18,17 +18,18 @@ import { getCookie, deleteCookie, setCookie } from "Scripts/utils";
 'Scripts/utils';
 
 // templates
-import product from "Scripts/product";
+import product from "Sections/product";
 import 'Scripts/login'
 import 'Scripts/addresses'
 
 // sections
 import { load } from '@shopify/theme-sections';
 load('*');
-import "Scripts/related-product";
-import "Scripts/popup";
-import "Scripts/testimonials";
-import "Scripts/video";
+import "Sections/related-product";
+import "Sections/popup";
+import "Sections/testimonials";
+import "Sections/video";
+import "Sections/slideshow";
 
 import Cart from "./Components/CartReact";
 import CartCount from "./Components/CartCount";
@@ -49,7 +50,7 @@ class App {
     this.initIosScroll();
     this.initAccordion();
     this.initProductGallery();
-    this.initSlideshowGallery();
+    // this.initSlideshowGallery();
 
     // Responsive fluid iframe
     $(".rte iframe").each(function(index) {

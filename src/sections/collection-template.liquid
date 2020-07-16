@@ -1,25 +1,25 @@
 {% assign limit = section.settings.limit %}
-{% include 'breadcrumbs--markup' %}
+{% include 'breadcrumbs' %}
 {% paginate collection.products by limit %}
-	<div class="section page-section">
-		<div class="container">
-			<div class="text-center">
-				<h1 class="h2">{{ collection.title }}</h1>
-			</div>
-			<div class="row py-4">
-				{% assign products = collection.products %}
-				{% if collection.products.size == 0 %}
-					{%- for i in (1..limit) -%}
-						{% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
-						{% render "product-card--empty", grid_item_width:grid_item_width, current: current %}
-					{%- endfor -%}
-				{%- else -%}
-					{% render "product-card" for products as product %}
-				{% endif %}
-			</div>
-		</div>
-	</div>
-	{% if paginate.pages > 1 %}
+  <div class="section page-section">
+    <div class="container">
+      <div class="text-center">
+        <h1 class="h2">{{ collection.title }}</h1>
+      </div>
+      <div class="row py-4">
+        {% assign products = collection.products %}
+        {% if collection.products.size == 0 %}
+          {%- for i in (1..limit) -%}
+            {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
+            {% render "product-card--empty", grid_item_width:grid_item_width, current: current %}
+          {%- endfor -%}
+        {%- else -%}
+          {% render "product-card" for products as product %}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  {% if paginate.pages > 1 %}
     {% include 'pagination' %}
   {% endif %}
 {% endpaginate %}
@@ -28,15 +28,15 @@
 {
   "name": "Collection",
   "settings": [
-		{
-			"type": "range",
-			"id": "limit",
-			"label": "Products per page",
-			"min": 4,
-			"max": 48,
-			"step": 4,
-			"default": 16
-		}
+    {
+      "type": "range",
+      "id": "limit",
+      "label": "Products per page",
+      "min": 4,
+      "max": 48,
+      "step": 4,
+      "default": 16
+    }
   ]
 }
 {% endschema %}

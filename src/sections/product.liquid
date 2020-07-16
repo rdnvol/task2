@@ -1,15 +1,10 @@
-{% include 'breadcrumbs--markup' %}
+{% include 'breadcrumbs' %}
 {% render 'product' with product as product %}
 
 {% schema %}
 {
   "name": "Product",
   "settings": [
-    {
-      "type": "product",
-      "id": "product",
-      "label": "Product"
-    },
     {
       "type": "checkbox",
       "id": "show_quantity",
@@ -39,12 +34,6 @@
       "id": "show_share_buttons",
       "label": "Show social sharing buttons",
       "default": true
-    }
-  ],
-  "presets": [
-    {
-      "name": "Product",
-      "category": "Product"
     }
   ]
 }

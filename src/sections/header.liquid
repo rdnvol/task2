@@ -1,112 +1,63 @@
 {%- comment -%}
   This is a required section for the Shopify Theme Store.
   It is available in the "Header" section in the theme editor.
-
+  
   Theme Store required settings
   - Show announcement
   - Text: message to announce
   - Link: link of the announcement bar
-
+  
   Theme Store optional settings
   - Home page only: only shows on the home page
 {%- endcomment -%}
 
 <header id="header">
-  {%- if section.settings.announcement_bar_enabled -%}
-    {%- if section.settings.announcement_bar_home_page_only == false or template.name == 'index' -%}
-      <div class="header__bar py-2">
-        <div class="container">
-          <ul class="header__bar-list d-flex flex-wrap align-items-center justify-content-center">
-              {%- if section.settings.announcement_bar_link != blank -%}
-                <li><a href="{{ section.settings.announcement_bar_link }}">{{ section.settings.announcement_bar_text | escape }}</a></li>
-              {%- else -%}
-                <li>{{ section.settings.announcement_bar_text | escape }}</li>
-              {%- endif -%}
-          </ul>
-        </div>
-      </div>
-    {%- endif -%}
-  {%- endif -%}
-  <div class="header__panel{% if section.settings.enable_shadow %} header__panel-shadow{% endif %}">
+  {% render 'header-announcement' %}
+  <div class="header__panel">
     <div class="container">
       <div class="row align-items-center">
-        <div class="col-4 col-lg-5">
+        <div class="col-4 {% if section.settings.layout == 'center' %}col-lg-5{% else %}col-lg-6 order-lg-2{% endif %}">
           <div class="menu">
             <div class="d-flex d-lg-none align-items-center">
-              <a href="#" class="menu__opener menu__btn-opener page-wrapper__opener">
-                <span>Menu</span>
-              </a>
-              <a href="{{ routes.search_url }}" class="header__btn d-none d-xs-inline-flex d-lg-none">
-                {%- include 'icon' with 'search' -%}
-              </a>
+              {% if section.settings.menu != blank %}
+                <a href="#" class="menu__opener menu__btn-opener page-wrapper__opener">
+                  <span>Menu</span>
+                </a>
+              {% endif %}
+              {% if section.settings.search_enable %}
+                <a href="{{ routes.search_url }}" class="header__btn d-none d-xs-inline-flex d-lg-none">
+                  {%- include 'icon' with 'search' -%}
+                </a>
+              {% endif %}
             </div>
-            <nav class="menu__drop d-none d-lg-block">
-              <ul id="nav" class="main-menu menu-accordion">
-                {% render 'nav-menu' %}
-              </ul>
-            </nav>
-          </div>
-        </div>
-        <div class="col-4 col-lg-2">
-          <div class="logo">
-            <a href="{{ routes.root_url }}">
-              {% if section.settings.logo != blank %}
-                <img src="{{ section.settings.logo | img_url:'172x' }}" alt="image description">
-              {% else %}
-                <img src="{{ 'logo.svg' | asset_url }}" alt="image description">
-              {% endif %}
-            </a>
-          </div>
-        </div>
-        <nav class="col-4 col-lg-5 d-flex flex-wrap align-items-center justify-content-end">
-          <ul class="header__action-menu d-flex flex-wrap align-items-center justify-content-center">
-            <li class="d-none d-lg-block">
-              <a href="{{ routes.search_url }}" class="header__btn">
-                {%- include 'icon' with 'search' -%}
-              </a>
-            </li>
-            {% if shop.customer_accounts_enabled %}
-              {% if customer %}
-                <li class="d-none d-xs-block">
-                  <a href="{{ routes.account_login_url }}" class="header__btn">
-                    {%- include 'icon' with 'account' -%}
-                  </a>
-                </li>
-              {% else %}
-              {% endif %}
+            {% if section.settings.menu != blank %}
+              <nav class="menu__drop d-none d-lg-block">
+                <ul id="nav" class="main-menu menu-accordion">
+                  {% render 'nav-menu' %}
+                </ul>
+              </nav>
             {% endif %}
-            <li data-cart-count>
-              <a href="{{ routes.cart_url }}" class="header__btn header__cart-btn" data-cart-count-wrapper>
-                {%- include 'icon' with 'cart' -%}
-                {% if cart.item_count > 0 %}
-                  <span class="header__cart-btn__num" data-cart-count>
-                    {{- cart.item_count -}}
-                  </span>
-                {% endif %}
-              </a>
-            </li>
-          </ul>
+          </div>
+        </div>
+        <div class="col-4 {% if section.settings.layout == 'center' %}col-lg-2{% else %}col-lg-2 order-lg-1{% endif %}">
+          {% render 'header-logo' %}
+        </div>
+        <nav class="col-4 {% if section.settings.layout == 'center' %}col-lg-5{% else %}col-lg-4 order-lg-3{% endif %} d-flex flex-wrap align-items-center justify-content-end">
+          {% if section.settings.button_link != blank %}
+            {% render "button",
+              element: 'a',
+              href: section.settings.button_link,
+              class: 'button d-none d-lg-block',
+              text: 'Submit an inquiry' %}
+          {% endif %}
+          {% render 'header-icons' %}
         </nav>
       </div>
     </div>
   </div>
 </header>
 <nav class="menu__drop d-lg-none">
-  {%- if section.settings.announcement_bar_enabled -%}
-    <div class="header__bar py-2">
-      <div class="container">
-        <ul class="header__bar-list d-flex flex-wrap align-items-center justify-content-center">
-           {%- if section.settings.announcement_bar_home_page_only == false or template.name == 'index' -%}
-             {%- if section.settings.announcement_bar_link != blank -%}
-               <li><a href="{{ section.settings.announcement_bar_link }}">{{ section.settings.announcement_bar_text | escape }}</a></li>
-             {%- else -%}
-               <li>{{ section.settings.announcement_bar_text | escape }}</li>
-             {%- endif -%}
-           {%- endif -%}
-        </ul>
-      </div>
-    </div>
-  {%- endif -%}
+  {% render 'header-announcement' %}
   <div class="header__panel-mobile">
     <div class="container">
       <div class="row align-items-center">
@@ -116,107 +67,145 @@
               <a href="#" class="menu__opener menu__btn-opener page-wrapper__opener">
                 <span>Menu</span>
               </a>
-              <a href="#" class="header__btn d-none d-xs-inline-flex d-lg-none">
-                {%- include 'icon' with 'search' -%}
-              </a>
             </div>
           </div>
         </div>
         <div class="col-4 col-lg-6">
-          <div class="logo">
-            <a href="/">
-              <img src="{{ 'logo.svg' | asset_url }}" alt="image description">
-            </a>
-          </div>
+          {% render 'header-logo' %}
         </div>
         <nav class="col-4 col-lg-3 d-flex flex-wrap align-items-center justify-content-end">
-          <ul class="header__action-menu d-flex flex-wrap align-items-center justify-content-center">
-            <li class="d-none d-lg-block">
-              <a href="#" class="header__btn">
-                {%- include 'icon' with 'search' -%}
-              </a>
-            </li>
-            <li class="d-none d-xs-block">
-              <a href="#" class="header__btn">
-                {%- include 'icon' with 'account' -%}
-              </a>
-            </li>
-            <li>
-              <a href="{{ routes.cart_url }}" class="header__btn header__cart-btn">
-                {%- include 'icon' with 'cart' -%}
-                <span class="header__cart-btn__num">
-                  2
-                </span>
-              </a>
-            </li>
-          </ul>
+          {% render 'header-icons' %}
         </nav>
       </div>
     </div>
   </div>
   <div class="container">
+    <form action="#" class="header__search-form">
+      <input type="search" placeholder="Search">
+      <button type="submit" class="button">
+        {%- include 'icon' with 'search' -%}
+      </button>
+    </form>
     <ul class="main-menu menu-accordion">
       {% render 'nav-menu' %}
     </ul>
   </div>
 </nav>
 
+<style media="screen">
+  #header .header__bar {
+    background: {{ section.settings.announcement_bar_bg_color }} !important;
+    color: {{ section.settings.announcement_bar_text_color }} !important;
+  }
+</style>
 
 {% schema %}
-  {
-    "name": "Header",
-    "settings": [
-      {
-        "type": "header",
-        "content": "Announcement bar"
-      },
-      {
-        "type": "checkbox",
-        "id": "announcement_bar_enabled",
-        "label": "Show announcement",
-        "default": true
-      },
-      {
-        "type": "checkbox",
-        "id": "announcement_bar_home_page_only",
-        "label": "Show on home page only",
-        "default": false
-      },
-      {
-        "type": "text",
-        "id": "announcement_bar_text",
-        "label": "Announcement text",
-        "default": "Announce something here"
-      },
-      {
-        "type": "url",
-        "id": "announcement_bar_link",
-        "label": "Announcement link",
-        "info": "Optional"
-      },
-      {
-        "type": "header",
-        "content": "Header"
-      },
-      {
-        "type": "image_picker",
-        "id": "logo",
-        "label": "Logo image"
-      },
-      {
-        "type": "link_list",
-        "id": "menu",
-        "label": "Menu",
-        "default": "main-menu"
-      },
-      {
-        "type": "checkbox",
-        "id": "enable_shadow",
-        "label": "Enable shadow effect",
-        "default": true
-      }
-    ]
-  }
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Announcement bar"
+    },
+    {
+      "type": "checkbox",
+      "id": "announcement_bar_enabled",
+      "label": "Show announcement",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "announcement_bar_home_page_only",
+      "label": "Show on home page only",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "announcement_bar_text",
+      "label": "Announcement text",
+      "default": "Announce something here"
+    },
+    {
+      "type": "url",
+      "id": "announcement_bar_link",
+      "label": "Announcement link",
+      "info": "Optional"
+    },
+    {
+      "type": "color",
+      "id": "announcement_bar_bg_color",
+      "label": "Announcement bar bg color",
+      "default": "#000"
+    },
+    {
+      "type": "color",
+      "id": "announcement_bar_text_color",
+      "label": "Announcement bar bg color",
+      "default": "#fff"
+    },
+    {
+      "type": "header",
+      "content": "Header"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo image"
+    },
+    {
+      "type": "text",
+      "id": "logo_text",
+      "label": "Logo text",
+      "default": "Draft"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu",
+      "default": "main-menu"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Logo layout",
+      "default": "center",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "search_enable",
+      "label": "Show search icon",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "cart_enable",
+      "label": "Show cart icon",
+      "default": true
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link",
+      "info": "Button is disabled if empty"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Submit an inquiry"
+    }
+  ]
+}
 {% endschema %}
 
 <script type="application/ld+json">
@@ -225,7 +214,7 @@
   "@type": "Organization",
   "name": "{{ shop.name }}",
   {% if section.settings.logo %}
-    {% assign image_size = section.settings.logo.width | append:'x' %}
+  {% assign image_size = section.settings.logo.width | append:'x' %}
     "logo": "https:{{ section.settings.logo | img_url: image_size }}",
   {% endif %}
   "sameAs": [
@@ -240,6 +229,8 @@
   ],
   "url": "{{ shop.url }}{{ page.url }}"
 }
+
+
 </script>
 
 {% if template.name == 'index' %}
@@ -255,5 +246,7 @@
       },
       "url": "{{ shop.url }}{{ page.url }}"
     }
+  
+  
   </script>
 {% endif %}

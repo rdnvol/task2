@@ -32,6 +32,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   @include media ("≥widescreen") {
     overflow:visible !important;
+    font-size: $font-size-base + 2px;
   }
 }
 
@@ -58,12 +59,11 @@ a,
 span.btn-more,
 input[type="submit"],
 input[type="reset"] {
-  outline:none;
   @include animates;
 }
 
 // transition for svg
 svg {
   transition: stroke $animation-speed ease,
-  fill $animation-speed ease;
+              fill $animation-speed ease;
 }
