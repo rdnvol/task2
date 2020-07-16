@@ -14,7 +14,6 @@
   z-index: 100;
   padding: 20px 0;
   background: $l-gray;
-  box-shadow: 0 6px 12px 0 rgba(0, 0 ,0, 0.09);
   @include media ("≥widescreen") {
     position: relative;
     padding: 0;
@@ -24,6 +23,9 @@
     @include media ("≥widescreen") {
       z-index:10001;
     }
+  }
+  &.header__panel-shadow {
+    box-shadow: 0 6px 12px 0 rgba(0, 0 ,0, 0.09);
   }
 
   .row {
