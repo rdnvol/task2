@@ -12,7 +12,8 @@ module.exports = {
   mode: 'production',
   resolve: {
    alias: {
-     Scripts: path.resolve(__dirname, './src/scripts/templates')
+     Scripts: path.resolve(__dirname, './src/scripts/templates'),
+     Sections: path.resolve(__dirname, './src/scripts/sections')
    },
     extensions: ['.js', '.jsx']
   },
