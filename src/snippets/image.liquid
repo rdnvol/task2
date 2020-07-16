@@ -192,7 +192,7 @@
             {% if classes %} class="{{ classes }}"{% endif %}
          data-sizes="auto"
          alt="{{ alt | default: 'image description' }}"
-         src="{{ placeholder }}">
+         src="{{ placeholder }}" {{ data_attribute }}>
   </picture>
 {% else %}
   <picture>
@@ -203,7 +203,7 @@
       <source srcset="{{ t_srcset }}" media="(max-width: 1199px)">
     {% endif %}
     <source srcset="{{ d_srcset }}">
-    <img src="{{ d_src }}"{% if classes %} class="{{ classes }}"{% endif %} alt="{{ alt | default: 'image description' }}">
+    <img src="{{ d_src }}"{% if classes %} class="{{ classes }}"{% endif %} alt="{{ alt | default: 'image description' }}" {{ data_attribute }}>
   </picture>
 {% endif %}
 

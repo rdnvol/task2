@@ -1,0 +1,31 @@
+<ul class="header__action-menu d-flex flex-wrap align-items-center justify-content-center">
+  {% if section.settings.search_enable %}
+    <li class="d-none d-lg-block">
+      <a href="{{ routes.search_url }}" class="header__btn">
+        {%- render 'icon' with 'search' -%}
+      </a>
+    </li>
+  {% endif %}
+  {% if shop.customer_accounts_enabled %}
+    {% if customer %}
+      <li class="d-none d-xs-block">
+        <a href="{{ routes.account_login_url }}" class="header__btn">
+          {%- render 'icon' with 'account' -%}
+        </a>
+      </li>
+    {% else %}
+    {% endif %}
+  {% endif %}
+  {% if section.settings.cart_enable %}
+    <li>
+      <a href="{{ routes.cart_url }}" class="header__btn header__cart-btn" data-cart-count-wrapper>
+        {%- render 'icon' with 'cart' -%}
+        {% if cart.item_count > 0 %}
+          <span class="header__cart-btn__num" data-cart-count>
+            {{- cart.item_count -}}
+          </span>
+        {% endif %}
+      </a>
+    </li>
+  {% endif %}
+</ul>

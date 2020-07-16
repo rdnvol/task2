@@ -37,13 +37,15 @@ class CartCount extends Component {
     )
   }
 }
-
-render(
-  <Provider store={ store }>
-    <Connect actions={ actions }>
-      { ({item_count, cart, getCart}) => (
-        <CartCount item_count={ item_count } cart={cart} getCart={getCart}/>
-      ) }
-    </Connect>
-  </Provider>, document.querySelector('[data-cart-count]')
-)
+const ref = document.querySelector('[data-cart-count]');
+if (ref) {
+  render(
+    <Provider store={ store }>
+      <Connect actions={ actions }>
+        { ({item_count, cart, getCart}) => (
+          <CartCount item_count={ item_count } cart={cart} getCart={getCart}/>
+        ) }
+      </Connect>
+    </Provider>, ref
+  )
+}

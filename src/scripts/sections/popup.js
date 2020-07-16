@@ -26,7 +26,6 @@ register('popup', {
   
   // Shortcut function called when a section is loaded via 'sections.load()' or by the Theme Editor 'shopify:section:load' event.
   onLoad: function(e) {
-    console.log('------load--------')
     this.initPopup(this.container.dataset.days)
   },
   
