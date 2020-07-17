@@ -46,6 +46,6 @@ if (ref) {
           <CartCount item_count={ item_count } cart={cart} getCart={getCart}/>
         ) }
       </Connect>
-    </Provider>, ref
+    </Provider>, ref, ref.querySelector('a')
   )
 }
