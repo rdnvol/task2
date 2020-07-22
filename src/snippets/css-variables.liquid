@@ -15,7 +15,7 @@
     --color-main-background: {{ settings.color_main_bg }};
     --color-border: {{ settings.color_body_text | color_lighten: 50 }};
 
-    {% if settings.enable_fonts_library %}
+    {% unless settings.enable_fonts_library %}
       --font-heading: {{ settings.font_heading.family }}, {{ settings.font_heading.fallback_families }};
       --font-body: {{ settings.font_body.family }}, {{ settings.font_body.fallback_families }};
       --font-body-weight: {{ settings.font_body.weight }};
@@ -28,7 +28,7 @@
       --font-heading-weight: {{ settings.custom_heading_weight }};
 			--font-body-style: normal;
 			--font-heading-style: italic;
-    {% endif %}
+    {% endunless %}
 
     --font-body-bold-weight: {{ font_body_bold.weight | default: 'bold' }};
     
@@ -44,5 +44,7 @@
     --button-background-color: {{ settings.button_bg_color }};
     --button-hover-background-color: {{ settings.button_hover_bg_color }};
     --button-focus-background-color: {{ settings.button_focus_bg_color }};
+    --font-size-base: {{ settings.font_base_size }}px;
+    --heading-font-size: {{ settings.heading_base_size }}px;
   }
 </style>

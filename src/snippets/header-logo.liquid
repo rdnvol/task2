@@ -1,4 +1,10 @@
-{% if section.settings.logo != blank %}
+{% if section.settings.logo_svg != blank %}
+  <div class="logo">
+    <a href="{{ routes.root_url }}">
+      <img src="{{ section.settings.logo_svg | asset_url }}" alt="image description">
+    </a>
+  </div>
+{% elsif section.settings.logo != blank %}
   <div class="logo">
     <a href="{{ routes.root_url }}">
       <img src="{{ section.settings.logo | img_url:'172x' }}" alt="image description">
