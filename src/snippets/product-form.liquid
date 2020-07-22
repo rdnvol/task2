@@ -12,16 +12,20 @@
   </select>
   <div class="product__price">
     <div class="product__price__box d-flex flex-wrap align-items-center" data-price-wrapper>
-      <div data-product-price>
-        {{ current_variant.price | money }}
-      </div>
       {% if product.compare_at_price_max > product.price %}
+        <ins data-product-price>
+          {{ current_variant.price | money }}
+        </ins>
         <span class="accessibility" data-compare-text>{{ 'products.product.regular_price' | t }}</span>
-        <del data-compare-price>
-          {% if current_variant.compare_at_price > current_variant.price %}
+        {% if current_variant.compare_at_price > current_variant.price %}
+          <del data-compare-price>
             {{ current_variant.compare_at_price | money }}
-          {% endif %}
-        </del>
+          </del>
+        {% endif %}
+      {% else %}
+        <div data-product-price>
+          {{ current_variant.price | money }}
+        </div>
       {% endif %}
     </div>
     {% comment %}

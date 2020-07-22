@@ -37,7 +37,7 @@ $base-font-serif: 'Times New Roman', 'Times', 'Baskerville', 'Georgia', serif;
 // Body
 $base-text-color: $color-body-text !default;
 $base-background-color: $color-body !default;
-$font-size-base: 16px;
+$font-size-base: var(--font-size-base);
 $base-line-height: 1.5 !default;
 $base-font-family: $base-font-sans-serif !default;
 
@@ -72,7 +72,7 @@ $height-button-medium: 40px;
 $height-button-small: 32px;
 
 // Headers
-$headings-font-size: 36px;
+$headings-font-size: var(--heading-font-size);
 $headings-font-weight: $font-heading-weight;
 $headings-font-family: $font-heading !default;
 $headings-color: inherit !default;

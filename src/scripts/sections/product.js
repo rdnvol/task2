@@ -112,9 +112,11 @@ export class Product {
   updateVariantPrice(variant) {
     this.priceContainer.empty();
     if (variant) {
-      this.priceContainer.append(`<div>${ formatMoney(variant.price, theme.moneyFormat) }</div>`);
       if (variant.compare_at_price > variant.price) {
+        this.priceContainer.append(`<ins>${ formatMoney(variant.price, theme.moneyFormat) }</ins>`);
         this.priceContainer.append(`<del>${ formatMoney(variant.compare_at_price, theme.moneyFormat) }</del>`);
+      } else {
+        this.priceContainer.append(`<div>${ formatMoney(variant.price, theme.moneyFormat) }</div>`);
       }
     }
     
