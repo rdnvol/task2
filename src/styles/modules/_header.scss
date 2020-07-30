@@ -341,3 +341,18 @@
   background: $white;
   border-radius: 100%;
 }
+
+.header__search-form {
+  position: relative;
+
+  .button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    min-width: 40px;
+    padding: 6px;
+    background: $color-accent;
+    border: 1px solid $black;
+  }
+}
