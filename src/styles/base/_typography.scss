@@ -21,21 +21,21 @@ h6, .h6,
 h1, .h1 {
   font-size: $h1-font-size;
   @include media ("≥desktop") {
-    font-size: $h1-font-size + 14px;
+    font-size: calc(#{$h1-font-size} + 14px);
   }
 }
 
 h2, .h2 {
   font-size: $h2-font-size;
   @include media ("≥desktop") {
-    font-size: $h2-font-size + 10px;
+    font-size: calc(#{$h2-font-size} + 10px);
   }
 }
 
 h3, .h3 {
   font-size: $h3-font-size;
   @include media ("≥desktop") {
-    font-size: $h3-font-size + 5px;
+    font-size: calc(#{$h3-font-size} + 5px);
   }
 }
 
