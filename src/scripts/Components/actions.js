@@ -1,4 +1,5 @@
 import * as cart from "@shopify/theme-cart";
+import { removeTrapFocus } from "@shopify/theme-a11y";
 
 const actions = ({ setState }) => ({
   getCart() {
@@ -17,6 +18,7 @@ const actions = ({ setState }) => ({
       .catch(error => ({ error, loading: false }));
   },
   closePopup() {
+    removeTrapFocus()
     setState({popupActive: false})
   }
 });
