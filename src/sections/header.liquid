@@ -80,11 +80,18 @@
     </div>
   </div>
   <div class="container">
-    <form action="#" class="header__search-form">
-      <input type="search" placeholder="Search">
-      <button type="submit" class="button">
-        {%- include 'icon' with 'search' -%}
-      </button>
+    <form action="/search" method="get" role="search" class="header__search-form">
+      <input type="search"
+                     name="q"
+                     id="Search"
+                     value="{{ search.terms | escape }}"
+                     placeholder="{{ 'general.search.placeholder' | t }}">
+      {% include "button",
+        element: "button",
+        type: "icon",
+        class: 'btn page-search-form__button d-flex align-items-center',
+        snippet: 'icon-search'
+      %}
     </form>
     <ul class="main-menu menu-accordion">
       {% render 'nav-menu' %}
