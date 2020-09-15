@@ -1,0 +1,18 @@
+.benefits-item {
+  height: 100%;
+  padding: 30px 0;
+  @include media ("≥tablet") {
+    padding: 50px 0;
+  }
+}
+
+.benefits-item__img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  margin: 0 auto 24px;
+  overflow: hidden;
+  border-radius: 100%;
+}
