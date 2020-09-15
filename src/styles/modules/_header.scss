@@ -345,12 +345,16 @@
 .header__search-form {
   position: relative;
 
+  input {
+    padding-right: 50px;
+  }
+
   .button {
     position: absolute;
     top: 0;
     right: 0;
     bottom: 0;
-    min-width: 40px;
+    min-width: 44px;
     padding: 6px;
     background: $color-accent;
     border: 1px solid $black;
