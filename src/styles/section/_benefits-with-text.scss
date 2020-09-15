@@ -1,0 +1,32 @@
+.benefits-list__text-box {
+
+  p {
+    &:last-child {
+      margin: 0;
+    }
+  }
+}
+
+.benefits-list__items {
+  @extend %listreset;
+  padding-left: 34px;
+
+  li {
+    position: relative;
+    margin: 0 0 26px;
+    padding: 0 0 0 36px;
+    &:after {
+      content: "";
+      position: absolute;
+      top: 8px;
+      left: 4px;
+      width: 15px;
+      height: 8px;
+      border: 2px solid $black;
+      border-top: none;
+      border-right: none;
+      background: 0 0;
+      transform: rotate(-50deg);
+    }
+  }
+}
