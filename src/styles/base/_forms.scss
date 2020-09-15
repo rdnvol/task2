@@ -225,7 +225,7 @@ a.button {
 
 .page-search-form__button {
   margin-left: 12px;
-  min-height: 42px;
+  min-height: $height-form-elements;
 
   @include media("≥desktop") {
     margin-left: 30px;
