@@ -21,7 +21,7 @@
   }
 }
 
-.list-bullets {
+.list-checks {
 
   li {
     position: relative;
@@ -34,8 +34,7 @@
       width: 15px;
       height: 8px;
       border: 2px solid $black;
-      border-top: none;
-      border-right: none;
+      border-width: 0 0 2px 2px;
       transform: rotate(-50deg);
     }
   }
