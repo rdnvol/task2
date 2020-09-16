@@ -39,10 +39,13 @@
 }
 
 .plan-item__list {
-  @extend %listreset;
-  margin: 0 0 40px;
-  @include media ("≥tablet") {
-    margin: 0 0 22px;
+
+  ul {
+    @extend %listreset;
+    margin: 0 0 40px;
+    @include media ("≥tablet") {
+      margin: 0 0 22px;
+    }
   }
 
   li {
