@@ -1,0 +1,9 @@
+.newsletter-form {
+
+  .button {
+    min-width: 223px;
+    @include media ("<576px") {
+      width: 100%;
+    }
+  }
+}

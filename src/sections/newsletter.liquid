@@ -6,36 +6,40 @@
   - Heading: title of the newsletter section
   - Subheading: description of the newsletter section
 {%- endcomment -%}
-<div class="cccc">
 
+<div class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-9 col-lg-6 mx-auto">
+        {% if section.settings.subheading != blank %}
+          <h2 class="text-center">{{ section.settings.subheading | escape }}</h2>
+        {% endif %}
+        {% form 'customer', class: "newsletter-form" %}
+          {{ form.errors | default_errors }}
+          {% if form.posted_successfully? %}
+            <p>{{ 'general.newsletter_form.confirmation' | t }}</p>
+          {% else %}
+            <input type="hidden" name="contact[tags]" value="newsletter">
+            <div class="d-sm-flex align-items-sm-center">
+              <div class="input-holder w-100 mb-sm-0">
+                <input type="email"
+                  name="contact[email]"
+                  id="Email"
+                  value="{% if customer.email != blank %}{{ customer.email }}{% endif %}"
+                  placeholder="{{ 'general.newsletter_form.email_placeholder' | t }}"
+                  autocorrect="off"
+                  autocapitalize="off">
+              </div>
+              <button type="submit" name="commit" class="button" id="Subscribe">
+                <span>{{ 'general.newsletter_form.submit' | t }}</span>
+              </button>
+            </div>
+          {% endif %}
+        {% endform %}
+      </div>
+    </div>
+  </div>
 </div>
-<section>
-  {% if section.settings.section_title != blank %}
-    <label for="Email">{{ section.settings.section_title | escape }}</label>
-  {% endif %}
-  {% if section.settings.subheading != blank %}
-    <p>{{ section.settings.subheading | escape }}</p>
-  {% endif %}
-
-  {% form 'customer' %}
-    {{ form.errors | default_errors }}
-    {% if form.posted_successfully? %}
-      <p>{{ 'general.newsletter_form.confirmation' | t }}</p>
-    {% else %}
-      <input type="hidden" name="contact[tags]" value="newsletter">
-      <input type="email"
-        name="contact[email]"
-        id="Email"
-        value="{% if customer.email != blank %}{{ customer.email }}{% endif %}"
-        placeholder="{{ 'general.newsletter_form.email_placeholder' | t }}"
-        autocorrect="off"
-        autocapitalize="off">
-      <button type="submit" name="commit" id="Subscribe">
-        <span>{{ 'general.newsletter_form.submit' | t }}</span>
-      </button>
-    {% endif %}
-  {% endform %}
-</section>
 
 {% schema %}
   {
