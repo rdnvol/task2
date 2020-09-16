@@ -77,12 +77,12 @@ $headings-font-weight: $font-heading-weight;
 $headings-font-family: $font-heading !default;
 $headings-color: inherit !default;
 
-$h1-font-size: $headings-font-size !default; // 35px
-$h2-font-size: $headings-font-size - 10px !default; // 25px
-$h3-font-size: $headings-font-size - 15px !default; // 20px
-$h4-font-size: $headings-font-size - 19px !default; // 16px
-$h5-font-size: $headings-font-size - 21px !default; // 14px
-$h6-font-size: $headings-font-size - 23px !default; // 12px
+$h1-font-size: $headings-font-size !default; // 36px
+$h2-font-size: calc(#{$headings-font-size} - 11px) !default; // 25px
+$h3-font-size: calc(#{$headings-font-size} - 15px) !default; // 20px
+$h4-font-size: calc(#{$headings-font-size} - 20px) !default; // 16px
+$h5-font-size: calc(#{$headings-font-size} - 22px) !default; // 14px
+$h6-font-size: calc(#{$headings-font-size} - 24px) !default; // 12px
 
 
 $animation-speed: 0.3s;
