@@ -1,0 +1,89 @@
+.plans__heading-box {
+  max-width: 524px;
+  margin: 0 auto 20px;
+  @include media ("≥tablet") {
+    margin-bottom: 30px;
+  }
+
+  p {
+    &:last-child {
+      margin: 0;
+    }
+  }
+}
+
+.plans__items-row {
+  margin: 0 0 -20px;
+  overflow: hidden;
+}
+
+.plan-item {
+  max-width: 232px;
+  margin: 0 auto 20px;
+  padding: 44px 20px 0;
+}
+
+.plan-item__title {
+  margin: 0 0 22px;
+}
+
+.plan-item__img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  margin: 0 auto 24px;
+  overflow: hidden;
+  border-radius: 100%;
+}
+
+.plan-item__list {
+  @extend %listreset;
+  margin: 0 0 40px;
+  @include media ("≥tablet") {
+    margin: 0 0 22px;
+  }
+
+  li {
+    margin: 0 0 20px;
+    @include media ("≥tablet") {
+      margin: 0 0 17px;
+    }
+    @include media ("<768px") {
+      padding: 0 0 0 32px;
+    }
+    &:last-child {
+      margin: 0;
+    }
+  }
+}
+
+.plan-item__price {
+  @extend %listreset;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0 0 30px;
+  @include media ("≥tablet") {
+    margin: 0 0 40px;
+  }
+
+  li {
+    position: relative;
+    padding: 0 20px 0 0;
+    font-weight: bold;
+    &:after {
+      content: "|";
+      position: absolute;
+      top: 0;
+      right: 8px;
+    }
+    &:last-child {
+      padding: 0;
+      &::after {
+        content: "";
+      }
+    }
+  }
+}
