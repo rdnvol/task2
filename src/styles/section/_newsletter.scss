@@ -1,0 +1,23 @@
+.newsletter-form {
+  position: relative;
+
+  input {
+    padding-right: 234px;
+    @include media ("<576px") {
+      padding-right: 15px;
+    }
+  }
+
+  .button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 223px;
+    border: 1px solid $form-element-border-color;
+    @include media ("<576px") {
+      position: static;
+      width: 100%;
+      border: 1px solid $btn-border-color;
+    }
+  }
+}
