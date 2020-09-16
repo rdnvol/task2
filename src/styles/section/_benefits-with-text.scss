@@ -14,12 +14,18 @@
   }
 
   li {
-    position: relative;
     margin: 0 0 26px;
-    padding: 0 0 0 36px;
     &:last-child {
       margin: 0;
     }
+  }
+}
+
+.list-bullets {
+
+  li {
+    position: relative;
+    padding: 0 0 0 36px;
     &:after {
       content: "";
       position: absolute;
