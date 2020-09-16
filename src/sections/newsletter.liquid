@@ -14,13 +14,13 @@
         {% if section.settings.subheading != blank %}
           <h2 class="text-center">{{ section.settings.subheading | escape }}</h2>
         {% endif %}
-        {% form 'customer', class: "newsletter-form" %}
+        {% form 'customer', class: "newsletter-form d-sm-flex align-items-sm-center" %}
           {{ form.errors | default_errors }}
           {% if form.posted_successfully? %}
             <p>{{ 'general.newsletter_form.confirmation' | t }}</p>
           {% else %}
             <input type="hidden" name="contact[tags]" value="newsletter">
-            <div class="input-holder mb-sm-0">
+            <div class="input-holder w-100 mb-sm-0">
               <input type="email"
                 name="contact[email]"
                 id="Email"
