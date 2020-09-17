@@ -7,10 +7,13 @@
   }
 }
 
-.benefits-list__items {
-  @extend %listreset;
-  @include media ("≥tablet") {
-    padding-left: 34px;
+.benefits-list__items-block {
+
+  ul {
+    @extend %listreset;
+    @include media ("≥tablet") {
+      padding-left: 34px;
+    }
   }
 
   li {
@@ -21,7 +24,7 @@
   }
 }
 
-.list-checks {
+.list-checks-block {
 
   li {
     position: relative;

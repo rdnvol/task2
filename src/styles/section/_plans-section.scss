@@ -38,11 +38,14 @@
   border-radius: 100%;
 }
 
-.plan-item__list {
-  @extend %listreset;
-  margin: 0 0 40px;
-  @include media ("≥tablet") {
-    margin: 0 0 22px;
+.plan-item__list-block {
+
+  ul {
+    @extend %listreset;
+    margin: 0 0 40px;
+    @include media ("≥tablet") {
+      margin: 0 0 22px;
+    }
   }
 
   li {
