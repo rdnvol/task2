@@ -104,8 +104,10 @@ class Cart extends Component {
                       <p>{ formatMoney(this.props.cart.total_price, theme.moneyFormat) }</p>
                     </div>
                   </div>
-                  { this.renderDiscount() }
-                  <p dangerouslySetInnerHTML={ {__html: theme.cart.shipping_at_checkout} }></p>
+                  <div class="cart-form__total__text-box">
+                    { this.renderDiscount() }
+                    <p dangerouslySetInnerHTML={ {__html: theme.cart.shipping_at_checkout} }></p>
+                  </div>
                 </div>
                 <input type="submit" className="mb-3 button" name="checkout" value={ theme.cart.checkout }/>
               </div>
