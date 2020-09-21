@@ -43,10 +43,12 @@
                   <p data-cart-total>{{ cart.total_price | money }}</p>
                 </div>
               </div>
-              {% if cart.total_discounts > 0 %}
-                <p>{{ 'cart.general.savings' | t }} {{ cart.total_discounts | money }}</p>
-              {% endif %}
-              <p>{{ 'cart.general.shipping_at_checkout' | t }}</p>
+              <div class="cart-form__total__text-box">
+                {% if cart.total_discounts > 0 %}
+                  <p>{{ 'cart.general.savings' | t }} {{ cart.total_discounts | money }}</p>
+                {% endif %}
+                <p>{{ 'cart.general.shipping_at_checkout' | t }}</p>
+              </div>
             </div>
             <input type="submit" class="mb-3 button" name="checkout" value="{{ 'cart.general.checkout' | t }}">
           </div>
