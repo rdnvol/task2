@@ -1,11 +1,32 @@
 {
   "current": {
-    "color_accent": "#fcf113",
+    "color_accent": "#0f62fe",
     "color_body_text": "#000000",
     "color_main_bg": "#ffffff",
-    "enable_fonts_library": true,
+    "button_text_color": "#262c30",
+    "button_hover_color": "#fcf113",
+    "button_focus_text_color": "#262c30",
+    "button_border_color": "#000000",
+    "button_hover_border_color": "#000",
+    "button_focus_border_color": "#fcf113",
+    "button_bg_color": "#fcf113",
+    "button_hover_bg_color": "#000",
+    "button_focus_bg_color": "#fcf113",
+    "button_size": "button",
+    "checkout_button_text_color": "#262c30",
+    "checkout_button_hover_color": "#fcf113",
+    "checkout_button_focus_text_color": "#262c30",
+    "checkout_button_border_color": "#000000",
+    "checkout_button_hover_border_color": "#000",
+    "checkout_button_focus_border_color": "#fcf113",
+    "checkout_button_bg_color": "#fcf113",
+    "checkout_button_hover_bg_color": "#000",
+    "checkout_button_focus_bg_color": "#fcf113",
     "font_heading": "ff_tisa_n4",
+    "heading_base_size": 36,
     "font_body": "source_sans_pro_n4",
+    "font_base_size": 16,
+    "enable_fonts_library": false,
     "custom_body_weight": 300,
     "custom_heading_weight": 400,
     "share_image": "",
@@ -49,11 +70,16 @@
         "type": "home-hero",
         "settings": {
           "image": "",
+          "image_mobile": "",
           "title": "Title",
           "alignment": "justify-content-start align-items-center",
+          "alignment_text": "text-center",
           "text": "<p>Use overlay text to give your customers insight into your brand. Select imagery and text that relates to your style and story.</p>",
+          "color": "#ffffff",
+          "color_mobile": "#000000",
           "button_link": "shopify://collections/all",
-          "button_label": "Button label"
+          "button_label": "Button label",
+          "fullheight": false
         }
       },
       "1589983221519": {
@@ -70,11 +96,16 @@
         "type": "home-hero",
         "settings": {
           "image": "shopify://shop_images/Untitled_design.png",
+          "image_mobile": "",
           "title": "Image with text overlay",
           "alignment": "justify-content-start align-items-center",
+          "alignment_text": "text-center",
           "text": "<p>Use overlay text to give your customers insight into your brand. Select imagery and text that relates to your style and story.</p>",
+          "color": "#ffffff",
+          "color_mobile": "#000000",
           "button_link": "shopify://collections",
-          "button_label": "Button label"
+          "button_label": "Button label",
+          "fullheight": false
         }
       },
       "1589985337197": {
@@ -137,7 +168,47 @@
           "1589988667036"
         ],
         "settings": {
-          "show_payment_icons": true
+          "show_payment_icons": true,
+          "bg_color": "#ffffff",
+          "rights_text": "<p>All Rights Reserved. <a href=\"#\">Terms</a>, <a href=\"#\">Privacy &amp; Accessibility</a>.</p>"
+        }
+      },
+      "popup": {
+        "type": "popup",
+        "settings": {
+          "title": "Are you over 18?",
+          "text": "<p>This website requires you to be 18 or older to enter.</p>",
+          "button_text": "Yes, i am",
+          "days": "1",
+          "custom_html": "",
+          "enable": false
+        }
+      },
+      "header": {
+        "type": "header",
+        "settings": {
+          "announcement_bar_enabled": true,
+          "announcement_bar_home_page_only": false,
+          "announcement_bar_text": "Announce something here",
+          "announcement_bar_link": "",
+          "announcement_bar_bg_color": "#000",
+          "announcement_bar_text_color": "#fff",
+          "logo_svg": "logo-2.svg",
+          "logo": "",
+          "logo_text": "Draft",
+          "menu": "main-menu",
+          "layout": "center",
+          "search_enable": true,
+          "cart_enable": true,
+          "button_link": "",
+          "button_label": "Submit an inquiry",
+          "enable_shadow": true
+        }
+      },
+      "collection-template": {
+        "type": "collection-template",
+        "settings": {
+          "limit": 16
         }
       }
     },
@@ -173,13 +244,9 @@
             "collection-list-2"
           ],
           "settings": {}
-        },
-        "featured-product": {
-          "type": "featured-product",
-          "settings": {}
         }
       },
-      "content_for_index": ["collection-list", "featured-product"]
+      "content_for_index": ["collection-list"]
     }
   }
 }
