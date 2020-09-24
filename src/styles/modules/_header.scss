@@ -1,5 +1,8 @@
 .header__bar {
   background: $color-body;
+  a {
+    color: inherit;
+  }
 }
 
 .header__bar-list {
