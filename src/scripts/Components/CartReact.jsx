@@ -15,9 +15,6 @@ class Cart extends Component {
     this.ref = document.getElementById('cart');
   }
   
-  componentDidMount() {
-    // this.props.getCart();
-  }
   
   renderEmptyState() {
     return (
@@ -93,7 +90,7 @@ class Cart extends Component {
             </table>
       
             <div className="d-md-flex justify-content-between">
-              { this.ref.dataset.noteEnable ? this.renderNote() : '' }
+              { this.ref.dataset.noteEnable === 'true' ? this.renderNote() : '' }
               <div className="col-md-5 col-lg-4 px-0 ml-auto">
                 <div className="cart-form__total mb-4">
                   <div className="row">
