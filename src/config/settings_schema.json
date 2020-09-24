@@ -106,6 +106,64 @@
             "label": "Large"
           }
         ]
+      },
+      {
+        "type": "header",
+        "content": "Dynamic checkout button"
+      },
+      {
+        "type": "color",
+        "id": "checkout_button_text_color",
+        "label": "Text",
+        "default": "#262C30"
+      },
+      {
+        "type": "color",
+        "id": "checkout_button_hover_color",
+        "label": "Hover",
+        "default": "#A2AEB6"
+      },
+      {
+        "type": "color",
+        "id": "checkout_button_focus_text_color",
+        "label": "Focus text",
+        "default": "#262C30"
+      },
+      {
+        "type": "color",
+        "id": "checkout_button_border_color",
+        "label": "Border",
+        "default": "#FCF113"
+      },
+      {
+        "type": "color",
+        "id": "checkout_button_hover_border_color",
+        "label": "Hover border",
+        "default": "#000"
+      },
+      {
+        "type": "color",
+        "id": "checkout_button_focus_border_color",
+        "label": "Focus border",
+        "default": "#FCF113"
+      },
+      {
+        "type": "color",
+        "id": "checkout_button_bg_color",
+        "label": "Background",
+        "default": "#FCF113"
+      },
+      {
+        "type": "color",
+        "id": "checkout_button_hover_bg_color",
+        "label": "Background hover",
+        "default": "#000"
+      },
+      {
+        "type": "color",
+        "id": "checkout_button_focus_bg_color",
+        "label": "Background focus",
+        "default": "#FCF113"
       }
     ]
   },

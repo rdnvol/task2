@@ -61,6 +61,17 @@ $btn-focus-border-color: var(--button-focus-border-color) !default;
 $btn-padding: 12px 15px !default;
 $btn-font-size: inherit !default;
 
+// Dynamic checkout button
+$checkout-btn-color: var(--checkout-button-text-color) !default;
+$checkout-btn-hover-color: var(--checkout-button-hover-text-color) !default;
+$checkout-btn-focus-color: var(--checkout-button-focus-text-color) !default;
+$checkout-btn-background: var(--checkout-button-background-color) !default;
+$checkout-btn-hover-background: var(--checkout-button-hover-background-color) !default;
+$checkout-btn-focus-background: var(--checkout-button-focus-background-color) !default;
+$checkout-btn-border-color: var(--checkout-button-border-color) !default;
+$checkout-btn-hover-border-color: var(--checkout-button-hover-border-color) !default;
+$checkout-btn-focus-border-color: var(--checkout-button-focus-border-color) !default;
+
 // Forms
 $form-element-padding: $btn-padding !default;
 $form-element-border-color: $black !default;

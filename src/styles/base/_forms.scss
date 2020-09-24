@@ -279,20 +279,28 @@ a.button {
   min-width: 180px;
   min-height: $height-form-elements;
   padding: 12px 30px;
-  color: $btn-color;
+  color: $checkout-btn-color;
   line-height: 1;
   text-align: center;
   text-transform: uppercase;
-  background: $btn-background;
-  border: 1px solid $black;
+  background: $checkout-btn-background;
+  border: 1px solid $checkout-btn-border-color;
   border-radius: 0;
   cursor: pointer;
 
   &:hover,
   &:focus {
-    color: $btn-hover-color !important;
-    background: $btn-hover-background !important;
-    border-color: $btn-hover-border-color !important;
+    color: $checkout-btn-hover-color !important;
+    background: $checkout-btn-hover-background !important;
+    border-color: $checkout-btn-hover-border-color !important;
+  }
+
+  &:focus {
+    color: $checkout-btn-focus-color;
+    background: $checkout-btn-focus-background;
+    border-color: $checkout-btn-focus-border-color;
+    outline: 1px dashed $primary;
+    outline-offset: 3px;
   }
 
   &.disabled {
