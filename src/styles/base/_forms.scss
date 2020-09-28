@@ -299,7 +299,7 @@ a.button {
     color: $checkout-btn-focus-color;
     background: $checkout-btn-focus-background;
     border-color: $checkout-btn-focus-border-color;
-    outline: 1px dashed $primary;
+    outline: 1px dashed $checkout-btn-focus-border-color;
     outline-offset: 3px;
   }
 
