@@ -11,14 +11,14 @@
           {% if customer.orders.size != 0 %}
             <table class="order-table">
               <tbody>
+                <tr class="d-none d-md-table-row">
+                  <th>Order</th>
+                  <th>Date</th>
+                  <th>Payment Status</th>
+                  <th>Fulfillment Status</th>
+                  <th>Total</th>
+                </tr>
                 {% for order in customer.orders %}
-                  <tr class="d-none d-md-table-row">
-                    <th>Order</th>
-                    <th>Date</th>
-                    <th>Payment Status</th>
-                    <th>Fulfillment Status</th>
-                    <th>Total</th>
-                  </tr>
                   <tr>
                     <td data-label="Order">
                       {{ order.name | link_to: order.customer_url }}
