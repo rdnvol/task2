@@ -6,7 +6,7 @@
       </a>
     </li>
   {% endif %}
-  {% if shop.customer_accounts_enabled %}
+  {% if shop.customer_accounts_enabled and section.settings.enable_account_icon %}
     {% if customer %}
       {% assign link = routes.account_url %}
     {% else %}

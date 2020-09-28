@@ -80,19 +80,21 @@
     </div>
   </div>
   <div class="container">
-    <form action="/search" method="get" role="search" class="header__search-form">
-      <input type="search"
-                     name="q"
-                     id="Search"
-                     value="{{ search.terms | escape }}"
-                     placeholder="{{ 'general.search.placeholder' | t }}">
-      {% include "button",
-        element: "button",
-        type: "icon",
-        class: 'btn page-search-form__button d-flex align-items-center',
-        snippet: 'icon-search'
-      %}
-    </form>
+    {% if section.settings.enable_search_form %}
+      <form action="/search" method="get" role="search" class="header__search-form">
+        <input type="search"
+               name="q"
+               id="Search"
+               value="{{ search.terms | escape }}"
+               placeholder="{{ 'general.search.placeholder' | t }}">
+        {% include "button",
+          element: "button",
+          type: "icon",
+          class: 'btn page-search-form__button d-flex align-items-center',
+          snippet: 'icon-search'
+        %}
+      </form>
+    {% endif %}
     <ul class="main-menu menu-accordion">
       {% render 'nav-menu' %}
     </ul>
@@ -202,9 +204,21 @@
     },
     {
       "type": "checkbox",
+      "id": "enable_search_form",
+      "label": "Show search form on mobile",
+      "default": false
+    },
+    {
+      "type": "checkbox",
       "id": "cart_enable",
       "label": "Show cart icon",
       "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_account_icon",
+      "label": "Show account icon",
+      "default": false
     },
     {
       "type": "url",
