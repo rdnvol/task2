@@ -7,8 +7,9 @@
  * @namespace customerAddresses
  */
 
-import {AddressForm} from '@shopify/theme-addresses';
+import {CountryProvinceSelector} from '@shopify/theme-addresses';
 
+const countryProvinceSelector = new CountryProvinceSelector(window.theme.allCountryOptionTags);
 const selectors = {
   addressContainer: '[data-address]',
   addressFields: '[data-address-fields]',
@@ -28,8 +29,13 @@ function initializeAddressForm(container) {
       addressForm.classList.toggle(hideClass);
     });
   });
-
-  AddressForm(addressFields, 'en');
+  console.log('before addresses');
+  console.log("container.querySelector('#AddressCountry')", container.querySelector('[id^="AddressCountry"]'))
+  console.log("container.querySelector('#AddressProvince')", container.querySelector('[id^="AddressProvince"]'))
+  countryProvinceSelector.build(container.querySelector('[id^="AddressCountryNew"]'), container.querySelector('[id^="AddressProvinceNew"]'), {
+    onCountryChange: (provinces) => container.querySelector('[data-address-province-wrapper]').classList.toggle('d-none', !provinces.length),
+  });
+  // AddressForm(addressForm, 'en');
 
   if (deleteForm) {
     deleteForm.addEventListener('submit', (event) => {
