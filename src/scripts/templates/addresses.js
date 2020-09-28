@@ -7,9 +7,8 @@
  * @namespace customerAddresses
  */
 
-import {CountryProvinceSelector} from '@shopify/theme-addresses';
+import { AddressForm } from '@shopify/theme-addresses';
 
-const countryProvinceSelector = new CountryProvinceSelector(window.theme.allCountryOptionTags);
 const selectors = {
   addressContainer: '[data-address]',
   addressFields: '[data-address-fields]',
@@ -19,28 +18,39 @@ const selectors = {
 };
 const hideClass = 'hidden';
 
+function triggerDefaultValues(domElem) {
+  let elements = document.querySelectorAll(domElem);
+  [...elements].forEach((element, i) => {
+    let value = element.getAttribute('data-default');
+    [...element.options].forEach((option) => {
+      if (option.text === value) {
+        element.value = option.value;
+        element.dispatchEvent(new Event('change'));
+      }
+    });
+  });
+}
+
 function initializeAddressForm(container) {
   const addressFields = container.querySelector(selectors.addressFields);
   const addressForm = container.querySelector(selectors.addressForm);
   const deleteForm = container.querySelector(selectors.addressDeleteForm);
-
+  
   container.querySelectorAll(selectors.addressToggle).forEach((button) => {
     button.addEventListener('click', () => {
       addressForm.classList.toggle(hideClass);
     });
   });
-  console.log('before addresses');
-  console.log("container.querySelector('#AddressCountry')", container.querySelector('[id^="AddressCountry"]'))
-  console.log("container.querySelector('#AddressProvince')", container.querySelector('[id^="AddressProvince"]'))
-  countryProvinceSelector.build(container.querySelector('[id^="AddressCountryNew"]'), container.querySelector('[id^="AddressProvinceNew"]'), {
-    onCountryChange: (provinces) => container.querySelector('[data-address-province-wrapper]').classList.toggle('d-none', !provinces.length),
-  });
-  // AddressForm(addressForm, 'en');
-
+  AddressForm(addressFields, 'en')
+    .then(function () {
+      triggerDefaultValues('.address-country-option[data-default]')
+      triggerDefaultValues('.address-province-option[data-default]')
+    });
+  
   if (deleteForm) {
     deleteForm.addEventListener('submit', (event) => {
       const confirmMessage = deleteForm.getAttribute('data-confirm-message');
-
+      
       if (!window.confirm(confirmMessage || 'Are you sure you wish to delete this address?')) {
         event.preventDefault();
       }

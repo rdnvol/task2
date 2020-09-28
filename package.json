@@ -38,7 +38,7 @@
     "@babel/runtime": "^7.9.6",
     "@fancyapps/fancybox": "^3.5.7",
     "@shopify/theme-a11y": "^4.0.0",
-    "@shopify/theme-addresses": "1.0.0",
+    "@shopify/theme-addresses": "^3.0.3",
     "@shopify/theme-cart": "^4.0.0",
     "@shopify/theme-currency": "^3.1.0",
     "@shopify/theme-product": "^3.1.0",
