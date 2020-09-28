@@ -6,6 +6,18 @@
       </a>
     </li>
   {% endif %}
+  {% if shop.customer_accounts_enabled and section.settings.enable_account_icon %}
+    {% if customer %}
+      {% assign link = routes.account_url %}
+    {% else %}
+      {% assign link = routes.account_login_url %}
+    {% endif %}
+    <li class="d-none d-xs-block">
+      <a href="{{ link }}" class="header__btn">
+        {%- render 'icon' with 'account' -%}
+      </a>
+    </li>
+  {% endif %}
   {% if section.settings.cart_enable %}
     <li data-cart-count>
       <a href="{{ routes.cart_url }}" class="header__btn header__cart-btn" >
