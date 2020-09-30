@@ -17,11 +17,12 @@
           {% render "product-card" for products as product %}
         {% endif %}
       </div>
+      {% if paginate.pages > 1 %}
+        {% include 'pagination' %}
+      {% endif %}
     </div>
   </div>
-  {% if paginate.pages > 1 %}
-    {% include 'pagination' %}
-  {% endif %}
+
 {% endpaginate %}
 
 {% schema %}
