@@ -398,8 +398,6 @@
 }
 
 .pagination {
-  display: flex;
-  align-items: center;
 
   > * {
     margin: 0 24px 0 0;
@@ -410,73 +408,57 @@
 
   .next,
   .prev {
-
-    a {
-      position: relative;
-      display: block;
-      width: 70px;
-      height: 48px;
-      border: 1px solid $black;
-      &:before,
-      &:after {
-        content: "";
-        position: absolute;
-      }
-      &:before {
-        left: 50%;
-        top: 50%;
-        width: 8px;
-        height: 8px;
-        margin: 0 0 0 -2px;
-        border-style: solid;
-        border-width: 0 0 2px 2px;
-        border-color: #212b36;
-        transform: translate(-50%, -50%) rotate(45deg);
-      }
-      &:after {
-        top: 50%;
-        right: 26px;
-        width: 14px;
-        height: 2px;
-        background: #212b36;
-        transform: translate(0, -50%);
-      }
+    position: relative;
+    display: block;
+    width: 70px;
+    height: 48px;
+    border: 1px solid $black;
+    &:before,
+    &:after {
+      content: "";
+      position: absolute;
+    }
+    &:before {
+      left: 50%;
+      top: 50%;
+      width: 8px;
+      height: 8px;
+      margin: 0 0 0 -2px;
+      border-style: solid;
+      border-width: 0 0 2px 2px;
+      border-color: #212b36;
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
+    &:after {
+      top: 50%;
+      right: 26px;
+      width: 14px;
+      height: 2px;
+      background: #212b36;
+      transform: translate(0, -50%);
     }
     &.disabled {
-
-      a {
+      border-color: $secondary;
+      pointer-events: none;
+      &:before {
         border-color: $secondary;
-        pointer-events: none;
-        &:before {
-          border-color: $secondary;
-        }
-        &:after {
-          background: $secondary;
-        }
+      }
+      &:after {
+        background: $secondary;
       }
     }
   }
 
   .next {
-
-    a {
-      &:before {
-        margin: 0 0 0 4px;
-        transform: translate(-50%, -50%) rotate(-135deg);
-      }
+    &:before {
+      margin: 0 0 0 4px;
+      transform: translate(-50%, -50%) rotate(-135deg);
     }
-  }
-
-  a {
-    display: block;
-    width: 100%;
-    height: 100%;
   }
 
   .page {
     font-size: $font-size-base;
     line-height: 1.5;
-    letter-spacing: 0.03em;
   }
 }
 
