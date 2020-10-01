@@ -15,7 +15,9 @@
 
 .product-item__title {
   margin:0 0 10px;
-  font:600 #{$font-size-base}/1.25 $base-font-family;
+  font-size: $font-size-base;
+  line-height: 1.25;
+  font-weight: 600;
   @include media("≥desktop") {
     margin:0 0 15px;
   }

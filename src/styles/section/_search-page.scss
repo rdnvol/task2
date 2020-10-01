@@ -9,10 +9,11 @@
 }
 
 .search-item__title {
-  font:600 #{$font-size-base - 2px} $base-font-sans-serif;
+  font-size: calc(#{$font-size-base} - 2px);
+  font-weight: 600;
   letter-spacing: 0.05em;
   @include media("≥desktop") {
-    font-family: $font-size-base;
+    font-size: $font-size-base;
     letter-spacing: 0.02em;
   }
   &:last-child {
