@@ -347,6 +347,7 @@
 
 .header__search-form {
   position: relative;
+  margin: 20px 0 0;
 
   input {
     padding-right: 50px;
@@ -359,7 +360,7 @@
     bottom: 0;
     min-width: 44px;
     padding: 6px;
-    background: $color-accent;
+    background: $btn-background;
     border: 1px solid $black;
   }
 }
