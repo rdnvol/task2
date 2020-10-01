@@ -38,7 +38,9 @@
 
 .footer__title {
   margin:0 0 12px;
-  font:600 #{$font-size-base}/1.5 $base-font-family;
+  font-size: $font-size-base;
+  font-weight: 600;
+  line-height: 1.5;
   letter-spacing: 0.02em;
 }
 
