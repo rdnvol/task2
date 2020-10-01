@@ -16,7 +16,7 @@
   <div class="header__panel{% if section.settings.enable_shadow %} header__panel-shadow{% endif %}">
     <div class="container">
       <div class="row align-items-center">
-        <div class="col-4 {% if section.settings.layout == 'center' %}col-lg-5{% else %}col-lg-6 order-lg-2{% endif %}">
+        <div class="col-4 {% if section.settings.layout == 'center' %}col-lg-5{% else %}col-lg-6 order-lg-2 justify-content-center{% endif %}">
           <div class="menu">
             <div class="d-flex d-lg-none align-items-center">
               {% if section.settings.menu != blank %}
@@ -39,10 +39,10 @@
             {% endif %}
           </div>
         </div>
-        <div class="col-4 {% if section.settings.layout == 'center' %}col-lg-2{% else %}col-lg-2 order-lg-1{% endif %}">
+        <div class="col-4 {% if section.settings.layout == 'center' %}col-lg-2{% else %}col-lg-3 order-lg-1 d-lg-flex flex-lg-wrap align-items-center justify-content-start{% endif %}">
           {% render 'header-logo' %}
         </div>
-        <nav class="col-4 {% if section.settings.layout == 'center' %}col-lg-5{% else %}col-lg-4 order-lg-3{% endif %} d-flex flex-wrap align-items-center justify-content-end">
+        <nav class="col-4 {% if section.settings.layout == 'center' %}col-lg-5{% else %}col-lg-3 order-lg-3{% endif %} d-flex flex-wrap align-items-center justify-content-end">
           {% if section.settings.button_link != blank %}
             {% render "button",
               element: 'a',
