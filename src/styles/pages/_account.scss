@@ -162,7 +162,7 @@ button.button-add-new-address {
     padding:10px 0;
     @include media("≤767px"){
       position:relative;
-      display:block;
+      display: flex;
       width:100%;
     }
     @include media("≥tablet"){
@@ -176,9 +176,11 @@ button.button-add-new-address {
     &:before {
       @include media("≤767px") {
         content:attr(data-label);
-        display:inline-block;
+        flex-shrink: 0;
         vertical-align:top;
         width:130px;
+        padding: 0 10px 0 0;
+        font-size: 12px;
         font-weight:bold;
       }
     }
