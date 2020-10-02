@@ -176,7 +176,6 @@ button.button-add-new-address {
     &:before {
       @include media("≤767px") {
         content:attr(data-label);
-        display:inline-block;
         flex-shrink: 0;
         vertical-align:top;
         width:130px;
