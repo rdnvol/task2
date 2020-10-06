@@ -288,8 +288,7 @@ a.button {
   border-radius: 0;
   cursor: pointer;
 
-  &:hover,
-  &:focus {
+  &:hover {
     color: $checkout-btn-hover-color !important;
     background: $checkout-btn-hover-background !important;
     border-color: $checkout-btn-hover-border-color !important;
