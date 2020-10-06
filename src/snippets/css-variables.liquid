@@ -56,5 +56,10 @@
     --checkout-button-border-color: {{ settings.checkout_button_border_color }};
     --checkout-button-hover-border-color: {{ settings.checkout_button_hover_border_color }};
     --checkout-button-focus-border-color: {{ settings.checkout_button_focus_border_color }};
+    
+    {% if settings.elements_outline %}
+      --elements-outline: 1px dashed;
+      --color-outline: {{ settings.color_outline }}
+    {% endif %}
   }
 </style>

@@ -8,6 +8,22 @@
     "theme_support_url": "https://github.com/Shopify/starter-theme/issues"
   },
   {
+    "name": "Debug mode",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "elements_outline",
+        "label": "Show outlines for all elements"
+      },
+      {
+        "type": "color",
+        "id": "color_outline",
+        "label": "Outlines color",
+        "default": "#808080"
+      }
+    ]
+  },
+  {
     "name": "Colors",
     "settings": [
       {
