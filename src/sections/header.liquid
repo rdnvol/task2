@@ -42,7 +42,7 @@
         <div class="col-4 {% if section.settings.layout == 'center' %}col-lg-2{% else %}col-lg-3 order-lg-1 d-lg-flex flex-lg-wrap align-items-center justify-content-start{% endif %}">
           {% render 'header-logo' %}
         </div>
-        <nav class="col-4 {% if section.settings.layout == 'center' %}col-lg-5{% else %}col-lg-3 order-lg-3{% endif %} d-flex flex-wrap align-items-center justify-content-end">
+        <nav class="col-4 {% if section.settings.layout == 'center' %}col-lg-5{% else %}col-lg-3 order-lg-3 py-lg-3{% endif %} d-flex flex-wrap align-items-center justify-content-end">
           {% if section.settings.button_link != blank %}
             {% render "button",
               element: 'a',
