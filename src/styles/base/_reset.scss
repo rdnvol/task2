@@ -20,7 +20,7 @@ html {
 }
 
 * {
-  outline: 1px dashed gray;
+  outline: var(--elements-outline) var(--color-outline);
 }
 
 body {
