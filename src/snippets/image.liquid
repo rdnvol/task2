@@ -186,7 +186,11 @@
 {%- comment %}
   Check if crop filter is present
 {% endcomment -%}
-{% assign crop = crop | default: false %}
+{% if src contains "img-placeholder" %}
+  {% assign crop = 'center' %}
+{% else %}
+  {% assign crop = crop | default: false %}
+{% endif %}
 
 {% if asset_img_url %}
   {% if crop %}
