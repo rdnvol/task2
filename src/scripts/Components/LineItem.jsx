@@ -24,12 +24,12 @@ class LineItem extends Component {
       <div className="cart__product-img">
         <a href={ url }>
           <picture>
-            <source data-srcset={ resizeImageSrcset(image, '120x') }
+            <source data-srcset={ resizeImageSrcset(image, '71x88 ') }
                     media="(max-width: 767px)"
                     srcSet={ theme.placeholder_data }/>
-            <source data-srcset={ resizeImageSrcset(image, '240x') }
+            <source data-srcset={ resizeImageSrcset(image, '81x100') }
                     srcSet={ theme.placeholder_data }/>
-            <img data-src={ resizeImage(image, '240x') } className="lazyload" data-sizes="auto"
+            <img data-src={ resizeImage(image, '81x100') } className="lazyload" data-sizes="auto"
                  alt={ title }
                  src={ theme.placeholder_data }/>
           </picture>

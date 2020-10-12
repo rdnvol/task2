@@ -43,9 +43,9 @@ class Cart {
           <div class="col-3">
             <div class="cart-popup__item__img">
               <picture>
-                <source data-srcset="${ resizeImageSrcset(image, '70x') }" media="(max-width: 767px)" srcset="${ theme.placeholder_data }">
-                <source data-srcset="${ resizeImageSrcset(image, '80x') }" srcset="${ theme.placeholder_data }">
-                <img data-src="${ resizeImage(image, '80x') }" class="lazyload" data-sizes="auto" alt="image description" src="${ theme.placeholder_data }">
+                <source data-srcset="${ resizeImageSrcset(image, '63x79') }" media="(max-width: 767px)" srcset="${ theme.placeholder_data }">
+                <source data-srcset="${ resizeImageSrcset(image, '63x79') }" srcset="${ theme.placeholder_data }">
+                <img data-src="${ resizeImage(image, '63x79') }" class="lazyload" data-sizes="auto" alt="image description" src="${ theme.placeholder_data }">
               </picture>
             </div>
           </div>
