@@ -4,7 +4,15 @@
       <div class="col-md-6">
         <div class="feature-block__img">
           {%- if section.settings.image != blank -%}
-            {% include "image", src: section.settings.image, m:"375x", d:"635x" %}
+            {% include "image",
+            src: section.settings.image,
+            d:"635x794",
+            src_m: section.settings.image,
+            m:"345x431",
+            placeholder: 'img-placeholder.png',
+            p_d: '635x794',
+            p_m: '345x431',
+            %}
           {%- else -%}
             {{ 'image' | placeholder_svg_tag: "placeholder-svg" }}
           {%- endif -%}

@@ -53,12 +53,22 @@ export class Product {
   
   initGallery() {
     this.productGalleryThumbs = new Swiper(this.wrapper.find('.product-gallery-thumbs')[0], {
-      spaceBetween: 20,
+      spaceBetween: 18,
       slidesPerView: 3,
       freeMode: true,
       watchSlidesVisibility: true,
       watchSlidesProgress: true,
       speed: 800,
+      breakpoints: {
+        768: {
+          spaceBetween: 30,
+          slidesPerView: 3,
+          freeMode: true,
+          watchSlidesVisibility: true,
+          watchSlidesProgress: true,
+          speed: 800,
+        },
+      },
     });
     this.productGallery = new Swiper(this.wrapper.find('.product-gallery'), {
       speed: 800,

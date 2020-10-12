@@ -22,10 +22,10 @@ class CartJustAdded extends Component {
           <div className="col-3">
             <div className="cart-popup__item__img">
               <picture>
-                <source data-srcset={ resizeImageSrcset(image, '70x') } media="(max-width: 767px)"
+                <source data-srcset={ resizeImageSrcset(image, '63x79') } media="(max-width: 767px)"
                         srcSet={ theme.placeholder_data }/>
-                <source data-srcset={ resizeImageSrcset(image, '80x') } srcSet={ theme.placeholder_data }/>
-                <img data-src={ resizeImage(image, '80x') } className="lazyload" data-sizes="auto"
+                <source data-srcset={ resizeImageSrcset(image, '63x79') } srcSet={ theme.placeholder_data }/>
+                <img data-src={ resizeImage(image, '63x79') } className="lazyload" data-sizes="auto"
                      alt="image description" src={ theme.placeholder_data }/>
               </picture>
             </div>
