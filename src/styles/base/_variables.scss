@@ -90,10 +90,16 @@ $headings-color: inherit !default;
 
 $h1-font-size: $headings-font-size !default; // 36px
 $h2-font-size: calc(#{$headings-font-size} - 11px) !default; // 25px
-$h3-font-size: calc(#{$headings-font-size} - 15px) !default; // 20px
+$h3-font-size: calc(#{$headings-font-size} - 15px) !default; // 21px
 $h4-font-size: calc(#{$headings-font-size} - 20px) !default; // 16px
 $h5-font-size: calc(#{$headings-font-size} - 22px) !default; // 14px
 $h6-font-size: calc(#{$headings-font-size} - 24px) !default; // 12px
+$h1-font-size-desktop: calc(#{$headings-font-size} + 18px) !default; // 55px
+$h2-font-size-desktop: calc(#{$headings-font-size} + 6px) !default; // 42px
+$h3-font-size-desktop: calc(#{$headings-font-size} - 4px) !default; // 32px
+$h4-font-size-desktop: calc(#{$headings-font-size} - 8px) !default; // 28px
+$h5-font-size-desktop: calc(#{$headings-font-size} - 16px) !default; // 20px
+$h6-font-size-desktop: calc(#{$headings-font-size} - 20px) !default; // 16px
 
 
 $animation-speed: 0.3s;
