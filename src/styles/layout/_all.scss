@@ -462,6 +462,34 @@
   }
 }
 
+.spinner-holder {
+  margin: -90px 0 0;
+  padding: 36px 0 26px;
+  overflow: hidden;
+  @include media ("≥tablet") {
+    margin: -25px 0 0;
+    padding: 80px 0 32px;
+  }
+}
+
+.spinner {
+  margin: 0 auto;
+  width: 34px;
+  height: 34px;
+  border: 3px solid #dadada;
+  border-radius: 100%;
+  border-top-color: #333;
+  animation: spinner 1s linear infinite;
+  @include media ("≥tablet") {
+    width: 44px;
+    height: 44px;
+  }
+}
+
+@keyframes spinner {
+  to { transform: rotate(360deg); }
+}
+
 .placeholder-svg {
   width: 100%;
   height: inherit;
