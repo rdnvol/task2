@@ -479,14 +479,19 @@
   border: 3px solid #dadada;
   border-radius: 100%;
   border-top-color: #333;
-  animation: spin 1s linear infinite;
+  -webkit-animation: spinner 1s linear infinite;
+  animation: spinner 1s linear infinite;
   @include media ("≥tablet") {
     width: 44px;
     height: 44px;
   }
 }
 
-@keyframes spin {
+@-webkit-keyframes spinner {
+  to { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spinner {
   to { transform: rotate(360deg); }
 }
 
