@@ -462,6 +462,31 @@
   }
 }
 
+.spinner-holder {
+  padding: 40px 0;
+  @include media ("≥tablet") {
+    padding: 80px 0;
+  }
+}
+
+.spinner {
+  margin: 0 auto;
+  width: 34px;
+  height: 34px;
+  border: 3px solid #dadada;
+  border-radius: 100%;
+  border-top-color: #333;
+  animation: spin 1s linear infinite;
+  @include media ("≥tablet") {
+    width: 44px;
+    height: 44px;
+  }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
 .placeholder-svg {
   width: 100%;
   height: inherit;
