@@ -27,7 +27,8 @@
           {%- if section.settings.button_link != blank and section.settings.button_label != blank -%}
             {% render "button",
               href: section.settings.button_link,
-              text: section.settings.button_label
+              text: section.settings.button_label,
+              class: "button-spinner"
             %}
           {%- endif -%}
         </div>
