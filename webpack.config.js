@@ -65,8 +65,10 @@ module.exports = {
     }),
     new FileManagerPlugin({
       events: {
+        onStart: {
+          delete: ['./dist', './rc.zip']
+        },
         onEnd: {
-          delete: ['./dist', './rc.zip'],
           copy: [
             {source: './src/assets', destination: './dist/assets'},
             {source: './src/config', destination: './dist/config'},

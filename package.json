@@ -13,6 +13,7 @@
   "scripts": {
     "css": "node-sass src/styles/theme.scss | postcss -u autoprefixer | cleancss -O1 optimizeFontWeight:off --skip-rebase -o ./src/assets/theme.css.liquid",
     "js": "cross-env NODE_ENV=production webpack --progress",
+    "js:zip": "cross-env ZIP=true webpack --progress",
     "js:css": "npm run js && npm run css",
     "test": "node -r ./webpack.config.js && js:css",
     "watch:css": "onchange 'src/styles/**/*.scss' -- npm run css",
@@ -33,7 +34,7 @@
     "watch": "npm-run-all -p watch:css:win watch:js:dev watch:theme:dev:win",
     "deploy": "npm run build && cd ./src && theme deploy --vars=\"../.env\"",
     "start": "npm run deploy && npm run watch",
-    "zip": "cross-env ZIP=true npm run build"
+    "zip": "npm run css && npm run js:zip"
   },
   "dependencies": {
     "@babel/plugin-transform-react-jsx": "^7.10.4",
