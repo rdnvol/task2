@@ -1,33 +1,31 @@
 require('dotenv').config();
 const webpack = require('webpack');
 const TerserPlugin = require('terser-webpack-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-const WebpackShellPlugin = require('webpack-shell-plugin');
 const path = require('path');
 const nodeEnv = process.env.NODE_ENV || 'production';
+const zip = process.env.ZIP || false;
+const FileManagerPlugin = require('filemanager-webpack-plugin');
+
 
 module.exports = {
-  devtool: 'source-map',
+  devtool: nodeEnv === 'development' ? 'inline-source-map' : false,
   entry: './src/scripts/app.js',
-  mode: 'production',
+  mode: nodeEnv,
   resolve: {
-   alias: {
-     Scripts: path.resolve(__dirname, './src/scripts/templates'),
-     Sections: path.resolve(__dirname, './src/scripts/sections')
-   },
+    alias: {
+      Scripts: path.resolve(__dirname, './src/scripts/templates'),
+      Sections: path.resolve(__dirname, './src/scripts/sections')
+    },
     extensions: ['.js', '.jsx']
   },
   output: {
     path: path.resolve(__dirname, './src/assets'),
     filename: 'theme.js'
   },
-  optimization: nodeEnv == 'production' ? {
+  optimization: nodeEnv === 'production' ? {
     minimizer: [new TerserPlugin()],
   } : {
-    minimize: false,
-    minimizer: [new UglifyJsPlugin({
-      include: /theme.js$/
-    })]
+    minimize: false
   },
   module: {
     rules: [{
@@ -40,26 +38,55 @@ module.exports = {
         }
       }
     },
-    {
-      test: /scripts\/modernizr\.js$/,
-      loader: 'imports-loader?this=>window!exports-loader?window.Modernizr'
-    },
-    {
-      test: /\.(js|jsx)$/,
-      exclude: /node_modules/,
-      loader: "babel-loader",
-      options: {
-        plugins: [
-          ["@babel/transform-react-jsx", { "pragma": "h" }],
-          ["@babel/plugin-proposal-class-properties"]
-        ]
-      }
-    }]
+      {
+        test: /scripts\/modernizr\.js$/,
+        loader: 'imports-loader?this=>window!exports-loader?window.Modernizr'
+      },
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        loader: "babel-loader",
+        options: {
+          plugins: [
+            ["@babel/transform-react-jsx", {"pragma": "h"}],
+            ["@babel/plugin-proposal-class-properties"]
+          ]
+        }
+      }]
   },
-  plugins: [
+  plugins: zip ? [
     // env plugin
     new webpack.DefinePlugin({
-      'proccess.env': { NODE_ENV: JSON.stringify(nodeEnv) }
+      'proccess.env': {NODE_ENV: JSON.stringify(nodeEnv)}
+    }),
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery'
+    }),
+    new FileManagerPlugin({
+      events: {
+        onEnd: {
+          delete: ['./dist', './rc.zip'],
+          copy: [
+            {source: './src/assets', destination: './dist/assets'},
+            {source: './src/config', destination: './dist/config'},
+            {source: './src/layout', destination: './dist/layout'},
+            {source: './src/locales', destination: './dist/locales'},
+            {source: './src/sections', destination: './dist/sections'},
+            {source: './src/snippets', destination: './dist/snippets'},
+            {source: './src/templates', destination: './dist/templates'}
+          ],
+          archive: [
+            {source: './dist', destination: './rc.zip', format: 'zip'}
+          ],
+        },
+      },
+      runTasksInSeries: true,
+    })
+  ] : [
+    // env plugin
+    new webpack.DefinePlugin({
+      'proccess.env': {NODE_ENV: JSON.stringify(nodeEnv)}
     }),
     new webpack.ProvidePlugin({
       $: 'jquery',
