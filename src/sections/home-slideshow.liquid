@@ -28,7 +28,7 @@
           </div>
           <div class="slideshow-gallery__block">
             <div class="container position-relative h-100">
-              <div class="row h-100 {{ section.settings.alignment }} text-center">
+              <div class="row h-100 {{ block.settings.alignment }} text-center">
                 <div class="col-sm-10 col-md-6 col-lg-4">
                   <div class="slideshow-gallery__text-block {{ section.settings.text_size }}">
                     {% if block.settings.title != blank %}
@@ -96,50 +96,6 @@
           {
             "value": "slideshow-gallery__text-block--lg",
             "label": "Large"
-          }
-        ]
-      },
-      {
-        "type": "select",
-        "id": "alignment",
-        "label": "Text alignment",
-        "default": "justify-content-center align-items-center",
-        "options": [
-          {
-            "value": "justify-content-start align-items-top",
-            "label": "Top left"
-          },
-          {
-            "value": "justify-content-center align-items-top",
-            "label": "Top center"
-          },
-          {
-            "value": "justify-content-end align-items-top",
-            "label": "Top right"
-          },
-          {
-            "value": "justify-content-start align-items-center",
-            "label": "Middle left"
-          },
-          {
-            "value": "justify-content-center align-items-center",
-            "label": "Middle center"
-          },
-          {
-            "value": "justify-content-end align-items-center",
-            "label": "Middle right"
-          },
-          {
-            "value": "justify-content-start align-items-end",
-            "label": "Bottom left"
-          },
-          {
-            "value": "justify-content-center align-items-end",
-            "label": "Bottom center"
-          },
-          {
-            "value": "justify-content-end align-items-end",
-            "label": "Bottom right"
           }
         ]
       },
@@ -215,6 +171,50 @@
               },
               {
                 "value": "object-position: 100% 100%;",
+                "label": "Bottom right"
+              }
+            ]
+          },
+          {
+            "type": "select",
+            "id": "alignment",
+            "label": "Text alignment",
+            "default": "justify-content-center align-items-center",
+            "options": [
+              {
+                "value": "justify-content-start align-items-top",
+                "label": "Top left"
+              },
+              {
+                "value": "justify-content-center align-items-top",
+                "label": "Top center"
+              },
+              {
+                "value": "justify-content-end align-items-top",
+                "label": "Top right"
+              },
+              {
+                "value": "justify-content-start align-items-center",
+                "label": "Middle left"
+              },
+              {
+                "value": "justify-content-center align-items-center",
+                "label": "Middle center"
+              },
+              {
+                "value": "justify-content-end align-items-center",
+                "label": "Middle right"
+              },
+              {
+                "value": "justify-content-start align-items-end",
+                "label": "Bottom left"
+              },
+              {
+                "value": "justify-content-center align-items-end",
+                "label": "Bottom center"
+              },
+              {
+                "value": "justify-content-end align-items-end",
                 "label": "Bottom right"
               }
             ]
