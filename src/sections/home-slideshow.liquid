@@ -39,8 +39,8 @@
                   {% if block.settings.button_link != blank and block.settings.button_label != blank %}
                     {% render
                       'button',
-                      href: {{ block.settings.button_link }},
-                      text: {{ block.settings.button_label }},
+                      href: block.settings.button_link,
+                      text: block.settings.button_label,
                     %}
                   {% endif %}
                 </div>
