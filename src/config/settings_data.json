@@ -22,11 +22,11 @@
     "checkout_button_bg_color": "#fcf113",
     "checkout_button_hover_bg_color": "#000",
     "checkout_button_focus_bg_color": "#fcf113",
-    "font_heading": "ff_tisa_n4",
+    "font_heading": "abril_fatface_n4",
     "heading_base_size": 36,
     "font_body": "source_sans_pro_n4",
     "font_base_size": 16,
-    "enable_fonts_library": false,
+    "enable_fonts_library": true,
     "custom_body_weight": 300,
     "custom_heading_weight": 400,
     "share_image": "",
@@ -86,7 +86,7 @@
         "type": "home-featured-collection",
         "settings": {
           "title": "Featured collection",
-          "collection": "",
+          "collection": "test",
           "grid": 4,
           "rows": 2,
           "show_view_all": true
@@ -96,38 +96,37 @@
         "type": "home-hero",
         "settings": {
           "image": "shopify://shop_images/Untitled_design.png",
-          "image_mobile": "",
           "title": "Image with text overlay",
           "alignment": "justify-content-start align-items-center",
           "alignment_text": "text-center",
           "text": "<p>Use overlay text to give your customers insight into your brand. Select imagery and text that relates to your style and story.</p>",
-          "color": "#ffffff",
+          "color": "#000000",
           "color_mobile": "#000000",
           "button_link": "shopify://collections",
-          "button_label": "Button label",
+          "button_label": "Read more",
           "fullheight": false
         }
       },
       "1589985337197": {
         "type": "home-image-with-text",
         "settings": {
-          "image": "",
+          "image": "shopify://shop_images/working-at-night.jpg",
           "layout": "",
           "title": "Image with text",
-          "text": "<p>Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+          "text": "<p>Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p><p>Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p><p>Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
           "button_label": "Shop now",
-          "button_link": "/"
+          "button_link": "shopify://products/apple-macbook-pro-16-1tb-2019-silver"
         }
       },
       "1589985461361": {
         "type": "home-image-with-text",
         "settings": {
-          "image": "",
+          "image": "shopify://shop_images/woman-works-on-computer-at-home.jpg",
           "layout": "flex-md-row-reverse",
           "title": "Image with text",
           "text": "<p>Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
           "button_label": "Shop now",
-          "button_link": "/"
+          "button_link": "shopify://products/bird-scarf-product"
         }
       },
       "footer": {
@@ -143,7 +142,7 @@
           "1589988638820": {
             "type": "link_list",
             "settings": {
-              "title": "Quick links",
+              "title": "Explore",
               "menu": "footer"
             }
           },
@@ -151,7 +150,7 @@
             "type": "link_list",
             "settings": {
               "title": "Quick links",
-              "menu": "main-menu"
+              "menu": "footer-second-menu"
             }
           },
           "1589988667036": {
@@ -190,18 +189,17 @@
           "announcement_bar_enabled": true,
           "announcement_bar_home_page_only": false,
           "announcement_bar_text": "Announce something here",
-          "announcement_bar_link": "",
-          "announcement_bar_bg_color": "#000",
-          "announcement_bar_text_color": "#fff",
+          "announcement_bar_bg_color": "#000000",
+          "announcement_bar_text_color": "#ffffff",
           "logo_svg": "logo-2.svg",
-          "logo": "",
           "logo_text": "Draft",
           "menu": "main-menu",
-          "layout": "center",
+          "layout": "left",
           "search_enable": true,
+          "enable_search_form": true,
           "cart_enable": true,
-          "button_link": "",
-          "button_label": "Submit an inquiry",
+          "enable_account_icon": true,
+          "button_label": "Submit",
           "enable_shadow": true
         }
       },
@@ -210,13 +208,167 @@
         "settings": {
           "limit": 16
         }
+      },
+      "1601544214239": {
+        "type": "home-logos-list",
+        "blocks": {
+          "1601544214239-0": {
+            "type": "image",
+            "settings": {
+              "image": "shopify://shop_images/kisspng-angularjs-ruby-on-rails-typescript-web-application-icon-hacker-5ad97b80444060.9437504315242023682796.png",
+              "url": "shopify://collections/all"
+            }
+          },
+          "1601544214239-1": {
+            "type": "image",
+            "settings": {
+              "image": "shopify://shop_images/Untitled_design_475x478_crop_right_f25cf6b2-549a-4829-8f46-5651cbd98037.png",
+              "url": "shopify://collections/all"
+            }
+          },
+          "1601544214239-2": {
+            "type": "image",
+            "settings": {
+              "image": "shopify://shop_images/kisspng-angularjs-ruby-on-rails-typescript-web-application-icon-hacker-5ad97b80444060.9437504315242023682796.png",
+              "url": "shopify://collections/all"
+            }
+          },
+          "1601544214239-3": {
+            "type": "image",
+            "settings": {
+              "image": "shopify://shop_images/kisspng-angularjs-ruby-on-rails-typescript-web-application-icon-hacker-5ad97b80444060.9437504315242023682796.png",
+              "url": "shopify://collections/all"
+            }
+          }
+        },
+        "block_order": [
+          "1601544214239-0",
+          "1601544214239-1",
+          "1601544214239-2",
+          "1601544214239-3"
+        ],
+        "settings": {
+          "title": "Logo list"
+        }
+      },
+      "1601544682336": {
+        "type": "newsletter",
+        "settings": {
+          "section_title": "Subscribe to our newsletter",
+          "subheading": "A short sentence describing what someone will receive by subscribing"
+        }
+      },
+      "1601544716980": {
+        "type": "home-benefits",
+        "blocks": {
+          "1601544716980-0": {
+            "type": "image",
+            "settings": {
+              "image": "shopify://shop_images/Untitled_design_475x478_crop_right_f25cf6b2-549a-4829-8f46-5651cbd98037.png",
+              "title": "Ultra-speed Connection"
+            }
+          },
+          "1601544716980-1": {
+            "type": "image",
+            "settings": {
+              "image": "shopify://shop_images/Untitled_design_475x478_crop_right_f25cf6b2-549a-4829-8f46-5651cbd98037.png",
+              "title": "Ultra-speed Connection"
+            }
+          },
+          "1601544716980-2": {
+            "type": "image",
+            "settings": {
+              "image": "shopify://shop_images/Untitled_design_475x478_crop_right_f25cf6b2-549a-4829-8f46-5651cbd98037.png",
+              "title": "Ultra-speed Connection"
+            }
+          },
+          "1601544716980-3": {
+            "type": "image",
+            "settings": {
+              "image": "shopify://shop_images/Untitled_design_475x478_crop_right_f25cf6b2-549a-4829-8f46-5651cbd98037.png",
+              "title": "Ultra-speed Connection"
+            }
+          },
+          "1601544716980-4": {
+            "type": "image",
+            "settings": {
+              "image": "shopify://shop_images/Untitled_design_475x478_crop_right_f25cf6b2-549a-4829-8f46-5651cbd98037.png",
+              "title": "Ultra-speed Connection"
+            }
+          }
+        },
+        "block_order": [
+          "1601544716980-0",
+          "1601544716980-1",
+          "1601544716980-2",
+          "1601544716980-3",
+          "1601544716980-4"
+        ],
+        "settings": {}
+      },
+      "1601545071577": {
+        "type": "home-plans",
+        "blocks": {
+          "1601545071577-0": {
+            "type": "image",
+            "settings": {
+              "image": "shopify://shop_images/kisspng-angularjs-ruby-on-rails-typescript-web-application-icon-hacker-5ad97b80444060.9437504315242023682796.png",
+              "title": "Heading",
+              "subtitle": "Internet",
+              "features": "<ul class=\"plan-item__list list-checks text-left\">\n<li>Up to 50Mbps</li>\n<li>Night Turbo-Speed</li>\n<li>WiFi router</li>\n<li>Unlimited devices</li>\n</ul>",
+              "price": "$24.99",
+              "period": "month",
+              "button_link": "shopify://collections/all",
+              "button_label": "Get started"
+            }
+          },
+          "1601545071577-1": {
+            "type": "image",
+            "settings": {
+              "image": "shopify://shop_images/kisspng-angularjs-ruby-on-rails-typescript-web-application-icon-hacker-5ad97b80444060.9437504315242023682796.png",
+              "title": "Heading",
+              "subtitle": "Internet",
+              "features": "<ul class=\"plan-item__list list-checks text-left\">\n<li>Up to 50Mbps</li>\n<li>Night Turbo-Speed</li>\n<li>WiFi router</li>\n<li>Unlimited devices</li>\n</ul>",
+              "price": "$24.99",
+              "period": "month",
+              "button_link": "shopify://collections/all",
+              "button_label": "Get started"
+            }
+          },
+          "1601545071577-2": {
+            "type": "image",
+            "settings": {
+              "image": "shopify://shop_images/kisspng-angularjs-ruby-on-rails-typescript-web-application-icon-hacker-5ad97b80444060.9437504315242023682796.png",
+              "title": "Heading",
+              "subtitle": "Internet",
+              "features": "<ul class=\"plan-item__list list-checks text-left\">\n<li>Up to 50Mbps</li>\n<li>Night Turbo-Speed</li>\n<li>WiFi router</li>\n<li>Unlimited devices</li>\n</ul>",
+              "price": "$24.99",
+              "period": "month",
+              "button_link": "shopify://collections/all",
+              "button_label": "Get started"
+            }
+          }
+        },
+        "block_order": [
+          "1601545071577-0",
+          "1601545071577-1",
+          "1601545071577-2"
+        ],
+        "settings": {
+          "title": "Choose your plan",
+          "text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>"
+        }
       }
     },
     "content_for_index": [
       "1589984445229",
       "1589983221519",
       "1589985337197",
-      "1589985461361"
+      "1589985461361",
+      "1601544214239",
+      "1601544682336",
+      "1601544716980",
+      "1601545071577"
     ]
   },
   "presets": {
