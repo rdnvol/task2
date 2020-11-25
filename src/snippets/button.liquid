@@ -69,13 +69,21 @@
   {% endif %}
 {%- endcapture -%}
 
+{% capture type_attr %}
+  {% if type == 'icon' %}
+    text="{{ icon }}"
+  {% else %}
+    type="{{ type | default: "button" }}"
+  {% endif %}
+{% endcapture %}
+
 {%- case element -%}
 {%- when 'a' -%}
   <a href="{{ href | default: '#' }}" class="{{ classes }}" {{ data_attribute }}>
     {{- content -}}
   </a>
 {%- when 'button' -%}
-  <button type="{{ type | default: "button" }}" class="{{ classes }}" {{ data_attribute }} {{ other }}>
+  <button {{ type_attr }} class="{{ classes }}" {{ data_attribute }} {{ other }}>
     {{- content -}}
   </button>
 {%- when 'span' -%}
@@ -83,7 +91,7 @@
       {{- content -}}
     </span>
 {%- when 'input' -%}
-  <input type="{{ type | default: "button" }}"
+  <input {{ type_attr }}
          class="{{ classes }}" {{ data_attribute }}
          value="{{ text | default: "Button" }} {{ other }}"/>
 {%- endcase -%}
