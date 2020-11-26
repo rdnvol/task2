@@ -270,7 +270,7 @@
       {
         "type": "range",
         "id": "google_body_weight",
-        "label": "Heading font weight",
+        "label": "Body font weight",
         "default": 300,
         "min": 100,
         "max": 900,
