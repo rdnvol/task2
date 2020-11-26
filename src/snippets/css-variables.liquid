@@ -1,34 +1,50 @@
 <style>
-
-  {{ settings.font_heading | font_face }}
-  {{ settings.font_body | font_face }}
-
-  {%- assign font_body_bold = settings.font_body | font_modify: 'weight', 'bolder' -%}
-  {%- assign font_body_italic = settings.font_body | font_modify: 'style', 'italic' -%}
-
-  {{ font_body_bold | font_face }}
-  {{ font_body_italic | font_face }}
+  
+  {% if settings.font_library == 'shopify' %}
+    {{ settings.font_heading | font_face }}
+    {{ settings.font_body | font_face }}
+  
+    {%- assign font_body_bold = settings.font_body | font_modify: 'weight', 'bolder' -%}
+    {%- assign font_body_italic = settings.font_body | font_modify: 'style', 'italic' -%}
+  
+    {{ font_body_bold | font_face }}
+    {{ font_body_italic | font_face }}
+  {% endif %}
 
   :root {
     --color-accent: {{ settings.color_accent }};
     --color-body-text: {{ settings.color_body_text }};
     --color-main-background: {{ settings.color_main_bg }};
     --color-border: {{ settings.color_body_text | color_lighten: 50 }};
-
-    {% unless settings.enable_fonts_library %}
-      --font-heading: {{ settings.font_heading.family }}, {{ settings.font_heading.fallback_families }};
-      --font-body: {{ settings.font_body.family }}, {{ settings.font_body.fallback_families }};
-      --font-body-weight: {{ settings.font_body.weight }};
-			--font-body-style: {{ settings.font_body.style }};
-			--font-heading-style: {{ settings.font_heading.style }};
-    {% else %}
-      --font-heading: 'Didot', 'Times New Roman', 'Times', 'Baskerville', 'Georgia', serif;
-      --font-body: 'Neutraface', 'Arial', 'Helvetica Neue', 'Helvetica', sans-serif;
-      --font-body-weight: {{ settings.custom_body_weight }};
-      --font-heading-weight: {{ settings.custom_heading_weight }};
-			--font-body-style: normal;
-			--font-heading-style: italic;
-    {% endunless %}
+    {%- case settings.font_library -%}
+      {%- when 'shopify' -%}
+        --font-heading: {{ settings.font_heading.family }}, {{ settings.font_heading.fallback_families }};
+        --font-body: {{ settings.font_body.family }}, {{ settings.font_body.fallback_families }};
+        --font-body-weight: {{ settings.font_body.weight }};
+        --font-body-style: {{ settings.font_body.style }};
+        --font-heading-style: {{ settings.font_heading.style }};
+      {%- when 'google' -%}
+        --font-heading: '{{ settings.google_font_heading }}', 'Times New Roman', 'Times', 'Baskerville', 'Georgia', serif;
+        --font-body: '{{ settings.google_font_body }}', 'Arial', 'Helvetica Neue', 'Helvetica', sans-serif;
+        --font-body-weight: {{ settings.google_body_weight }};
+        --font-heading-weight: {{ settings.google_heading_weight }};
+        --font-body-style: {{ settings.google_body_style }};
+        --font-heading-style: {{ settings.google_heading_style }};
+      {%- when 'custom' -%}
+        --font-heading: '{{ settings.custom_font_heading }}', 'Times New Roman', 'Times', 'Baskerville', 'Georgia', serif;
+        --font-body: '{{ settings.custom_font_body }}', 'Arial', 'Helvetica Neue', 'Helvetica', sans-serif;
+        --font-body-weight: {{ settings.custom_body_weight }};
+        --font-heading-weight: {{ settings.custom_heading_weight }};
+        --font-body-style: {{ settings.custom_body_style }};
+        --font-heading-style: {{ settings.custom_heading_style }};
+      {%- when 'hardcoded' -%}
+        --font-heading: 'Didot', 'Times New Roman', 'Times', 'Baskerville', 'Georgia', serif;
+        --font-body: 'Neutraface', 'Arial', 'Helvetica Neue', 'Helvetica', sans-serif;
+        --font-body-weight: {{ settings.hardcoded_body_weight }};
+        --font-heading-weight: {{ settings.hardcoded_heading_weight }};
+        --font-body-style: normal;
+        --font-heading-style: italic;
+    {%- endcase -%}
 
     --font-body-bold-weight: {{ font_body_bold.weight | default: 'bold' }};
     
