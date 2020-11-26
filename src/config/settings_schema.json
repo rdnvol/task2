@@ -187,8 +187,103 @@
     "name": "Typography",
     "settings": [
       {
+        "type": "select",
+        "id": "font_library",
+        "label": "Font library",
+        "default": "custom",
+        "options": [
+          {
+            "value": "shopify",
+            "label": "Shopify"
+          },
+          {
+            "value": "google",
+            "label": "Google"
+          },
+          {
+            "value": "custom",
+            "label": "Custom"
+          },
+          {
+            "value": "hardcoded",
+            "label": "Hardcoded"
+          }
+        ]
+      },
+      {
         "type": "header",
-        "content": "Headings and Buttons"
+        "content": "Google library"
+      },
+      {
+        "type": "text",
+        "id": "google_font_heading",
+        "default": "Nerko One",
+        "label": "Headings"
+      },
+      {
+        "type": "select",
+        "id": "google_heading_style",
+        "label": "Heading font style",
+        "default": "normal",
+        "options": [
+          {
+            "value": "normal",
+            "label": "normal"
+          },
+          {
+            "value": "italic",
+            "label": "italic"
+          }
+        ]
+      },
+      {
+        "type": "range",
+        "id": "google_heading_weight",
+        "label": "Heading font weight",
+        "default": 300,
+        "min": 100,
+        "max": 900,
+        "step": 100
+      },
+      {
+        "type": "text",
+        "id": "google_font_body",
+        "default": "Roboto",
+        "label": "Body text"
+      },
+      {
+        "type": "select",
+        "id": "google_body_style",
+        "label": "Body font style",
+        "default": "normal",
+        "options": [
+          {
+            "value": "normal",
+            "label": "normal"
+          },
+          {
+            "value": "italic",
+            "label": "italic"
+          }
+        ]
+      },
+      {
+        "type": "range",
+        "id": "google_body_weight",
+        "label": "Body font weight",
+        "default": 300,
+        "min": 100,
+        "max": 900,
+        "step": 100
+      },
+      {
+        "type": "html",
+        "id": "google_integration",
+        "label": "Integration"
+      },
+      {
+        "type": "header",
+        "content": "Shopify library"
       },
       {
         "type": "font_picker",
@@ -204,10 +299,6 @@
         "step":  1,
         "label":  "Heading base size",
         "default": 36
-      },
-      {
-        "type": "header",
-        "content": "Body text"
       },
       {
         "type": "font_picker",
@@ -226,17 +317,18 @@
       },
       {
         "type": "header",
-        "content": "Custom font"
+        "content": "Hardcoded library"
       },
       {
         "type": "checkbox",
-        "id": "enable_fonts_library",
-        "label": "Enable custom fonts",
-        "default": true
+        "id": "hardcoded_font_swap",
+        "label": "Enable font swap",
+        "default": true,
+        "info": "If the font face is not loaded, any element attempting to use it must render a fallback font face. If the font face successfully loads during this period, it is used normally."
       },
       {
         "type": "range",
-        "id": "custom_body_weight",
+        "id": "hardcoded_body_weight",
         "label": "Custom body font weight",
         "default": 300,
         "min": 100,
@@ -245,9 +337,82 @@
       },
       {
         "type": "range",
-        "id": "custom_heading_weight",
+        "id": "hardcoded_heading_weight",
         "label": "Custom heading font weight",
         "default": 400,
+        "min": 100,
+        "max": 900,
+        "step": 100
+      },
+      {
+        "type": "header",
+        "content": "Custom library"
+      },
+      {
+        "type": "checkbox",
+        "id": "custom_font_swap",
+        "label": "Enable font swap",
+        "default": true,
+        "info": "If the font face is not loaded, any element attempting to use it must render a fallback font face. If the font face successfully loads during this period, it is used normally."
+      },
+      {
+        "type": "text",
+        "id": "custom_font_heading",
+        "default": "NeutrafaceText-Light",
+        "label": "Headings"
+      },
+      {
+        "type": "select",
+        "id": "custom_heading_style",
+        "label": "Heading font style",
+        "default": "normal",
+        "options": [
+          {
+            "value": "normal",
+            "label": "normal"
+          },
+          {
+            "value": "italic",
+            "label": "italic"
+          }
+        ]
+      },
+      {
+        "type": "range",
+        "id": "custom_heading_weight",
+        "label": "Heading font weight",
+        "default": 300,
+        "min": 100,
+        "max": 900,
+        "step": 100
+      },
+      {
+        "type": "text",
+        "id": "custom_font_body",
+        "default": "NeutrafaceText-Light",
+        "label": "Body text"
+      },
+      {
+        "type": "select",
+        "id": "custom_body_style",
+        "label": "Body font style",
+        "default": "normal",
+        "options": [
+          {
+            "value": "normal",
+            "label": "normal"
+          },
+          {
+            "value": "italic",
+            "label": "italic"
+          }
+        ]
+      },
+      {
+        "type": "range",
+        "id": "custom_body_weight",
+        "label": "Body font weight",
+        "default": 300,
         "min": 100,
         "max": 900,
         "step": 100
