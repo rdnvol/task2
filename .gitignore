@@ -73,3 +73,4 @@ secrets.json
 *.map
 *.code-workspace
 src/assets/*.js.map
+Jenkinsfile
