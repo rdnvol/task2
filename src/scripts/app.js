@@ -49,6 +49,7 @@ class App {
     // this.initHeaderOnScrollDown();
     this.initIosScroll();
     this.initAccordion();
+    this.initCurrencySwitcher();
 
     // Responsive fluid iframe
     $(".rte iframe").each(function(index) {
@@ -205,6 +206,16 @@ class App {
   
   setHeaderHeight() {
     document.documentElement.style.setProperty('--header-height', $('#header').css('height'));
+  }
+  
+  initCurrencySwitcher() {
+    function currencyFormSubmit(event) {
+      event.target.form.submit();
+    }
+    let currencySwitchers = document.querySelectorAll('.shopify-currency-form select');
+    if (currencySwitchers) {
+      currencySwitchers.forEach(el => el.addEventListener('change', currencyFormSubmit))
+    }
   }
 }
 
