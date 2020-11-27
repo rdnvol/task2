@@ -1,22 +1,9 @@
-{% render 'section-plans', title: section.settings.title, text: section.settings.text %}
+{% render 'section-plans', title: page.title, text: page.content %}
 
 {% schema %}
 {
   "name": "Plans",
-  "settings": [
-    {
-      "type": "text",
-      "id": "title",
-      "label": "Heading",
-      "default": "Choose your plan"
-    },
-    {
-      "type": "richtext",
-      "id": "text",
-      "label": "Body text",
-      "default": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>"
-    }
-  ],
+  "settings": [],
   "blocks": [
     {
       "type": "image",
@@ -68,23 +55,6 @@
           "id": "button_label",
           "label": "Button label",
           "default": "button"
-        }
-      ]
-    }
-  ],
-  "presets": [
-    {
-      "name": "Plans",
-      "category": "Text",
-      "blocks": [
-        {
-          "type": "image"
-        },
-        {
-          "type": "image"
-        },
-        {
-          "type": "image"
         }
       ]
     }
