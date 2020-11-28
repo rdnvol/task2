@@ -45,4 +45,18 @@
       {% endform %}
     </li>
   {% endif %}
+  {% if section.settings.language_switcher_enable %}
+    <li>
+      <select name="locales">
+        {% for locale in shop.published_locales %}
+          {% if locale.primary %}
+            {% assign locale_url = request.path %}
+          {% else %}
+            {% assign locale_url = locale.root_url | append: request.path %}
+          {% endif %}
+          <option {% if request.locale.name == locale.name %}selected{% endif %} data-path="{{ request.path }}" value="{{ locale.root_url }}">{{ locale.name }}</option>
+        {% endfor %}
+      </select>
+    </li>
+  {% endif %}
 </ul>

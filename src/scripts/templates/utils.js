@@ -49,3 +49,11 @@ export function getCookie(name) {
 export function deleteCookie(name) {
   setCookie(name, "", -1);
 }
+
+export function getLocaleAndPathname(locales) {
+  let curLocale = location.pathname.split('/')[1];
+  let primaryLocale = locales.find(locale => locale.primary);
+  let notPrimaryLocation = locales.find(locale => locale.iso_code === curLocale);
+  if (!notPrimaryLocation) return [primaryLocale, location.pathname];
+  return [notPrimaryLocation, location.pathname.replace(notPrimaryLocation.root_url, '')];
+}
