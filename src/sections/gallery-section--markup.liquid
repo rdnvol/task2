@@ -1,0 +1,68 @@
+<div class="section">
+  <div class="gallery-section">
+    <div class="row no-gutters">
+      <div class="col-md">
+        <div class="gallery-section__item">
+          <div class="gallery-section__img gallery-section__img--md">
+            {% render
+              'image',
+              asset_img_url: true,
+              src: 'gallery-img-01-2x.jpg',
+              d: '640x',
+              src_m: 'gallery-img-01-2x.jpg',
+              m: '375x',
+            %}
+          </div>
+        </div>
+      </div>
+      <div class="col-md">
+        <div class="gallery-section__item">
+          <div class="gallery-section__img gallery-section__img--md">
+            {% render
+              'image',
+              asset_img_url: true,
+              src: 'gallery-img-02-2x.jpg',
+              d: '640x',
+              src_m: 'gallery-img-02-2x.jpg',
+              m: '375x',
+            %}
+          </div>
+          <div class="gallery-section__title text-white">
+            <div class="h2 m-0">Title</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md">
+        <a href="#" class="gallery-section__link">
+          <div class="gallery-section__img gallery-section__img--md">
+            {% render
+              'image',
+              asset_img_url: true,
+              src: 'gallery-img-01-2x.jpg',
+              d: '640x',
+              src_m: 'gallery-img-01-2x.jpg',
+              m: '375x',
+            %}
+          </div>
+          <div class="gallery-section__title text-white">
+            <div class="h2 m-0">Title</div>
+          </div>
+        </a>
+      </div>
+      <div class="col-md">
+        <a href="#" class="gallery-section__link">
+          <div class="gallery-section__img gallery-section__img--md">
+            {% render
+              'image',
+              asset_img_url: true,
+              src: 'gallery-img-02-2x.jpg',
+              d: '640x',
+              src_m: 'gallery-img-02-2x.jpg',
+              m: '375x',
+            %}
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
