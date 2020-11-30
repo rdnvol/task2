@@ -1,0 +1,108 @@
+<div class="section page-section">
+  <div class="container">
+    <div class="page-title-block text-center">
+      <h1 class="h2">News</h1>
+    </div>
+    <div class="row">
+      <div class="col-md-8 col-lg-9">
+        <article role="article" class="post">
+            <header role="banner" class="post__header">
+              <h2 class="h3 post__title">
+                <a href="#">Post title</a>
+              </h2>
+              <div class="post__date">
+                <time datetime="2019-06-30">June 30 2019</time>
+              </div>
+              <a href="#">3 comments</a>
+            </header>
+          <a href="#" class="post__img">
+            {% render
+              'image',
+              asset_img_url: true,
+              src: 'img-placeholder.png',
+              d: '857x',
+              src_m: 'img-placeholder.png',
+              m: '375x',
+            %}
+          </a>
+          <div>
+            Phone:
+            <a href="tel:8127108025">812-710-8025</a>
+          </div>
+        </article>
+        <article role="article" class="post">
+          <header role="banner" class="post__header">
+            <h2 class="h3 post__title">
+              <a href="#">Post title</a>
+            </h2>
+            <div class="post__date">
+              <time datetime="2019-06-30">June 30 2019</time>
+            </div>
+            <a href="#">3 comments</a>
+          </header>
+          <a href="#" class="post__img">
+            {% render
+              'image',
+              asset_img_url: true,
+              src: 'img-placeholder.png',
+              d: '857x',
+              src_m: 'img-placeholder.png',
+              m: '375x',
+            %}
+          </a>
+          <div>
+            Phone:
+            <a href="tel:8127108025">812-710-8025</a>
+          </div>
+        </article>
+      </div>
+      <div class="col-md-4 col-lg-3">
+        <aside class="aside">
+          <h3>Recent articles</h3>
+          <div class="aside__item">
+            <h4 class="mb-2">
+              <a href="#">Post title</a>
+            </h4>
+            <div>
+              <time datetime="2019-06-30">Posted on June 30, 2019</time>
+            </div>
+          </div>
+          <div class="aside__item">
+            <h4 class="mb-2">
+              <a href="#">Post title</a>
+            </h4>
+            <div>
+              <time datetime="2019-06-30">Posted on June 30, 2019</time>
+            </div>
+          </div>
+          <h3 class="mb-3">Tags</h3>
+          <div class="aside__item">
+            <ul class="aside__tags-list">
+              <li>
+                <a href="#">all</a>
+              </li>
+              <li>
+                <a href="#">tag 1</a>
+              </li>
+              <li>
+                <a href="#">tag 2</a>
+              </li>
+              <li>
+                <a href="#">tag 3</a>
+              </li>
+              <li>
+                <a href="#">tag 4</a>
+              </li>
+              <li>
+                <a href="#">tag 5</a>
+              </li>
+              <li>
+                <a href="#">tag 6</a>
+              </li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </div>
+</div>

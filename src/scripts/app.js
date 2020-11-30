@@ -13,7 +13,7 @@ import fancybox from '@fancyapps/fancybox';
 
 
 // utils
-import { getCookie, deleteCookie, setCookie } from "Scripts/utils";
+import { getCookie, deleteCookie, setCookie, getLocaleAndPathname } from "Scripts/utils";
 
 'Scripts/utils';
 
@@ -49,6 +49,8 @@ class App {
     // this.initHeaderOnScrollDown();
     this.initIosScroll();
     this.initAccordion();
+    this.initCurrencySwitcher();
+    this.initLanguageSwitcher();
 
     // Responsive fluid iframe
     $(".rte iframe").each(function(index) {
@@ -205,6 +207,29 @@ class App {
   
   setHeaderHeight() {
     document.documentElement.style.setProperty('--header-height', $('#header').css('height'));
+  }
+  
+  initCurrencySwitcher() {
+    function currencyFormSubmit(event) {
+      event.target.form.submit();
+    }
+    let currencySwitchers = document.querySelectorAll('.shopify-currency-form select');
+    if (currencySwitchers.length) {
+      currencySwitchers.forEach(el => el.addEventListener('change', currencyFormSubmit))
+    }
+  }
+  
+  initLanguageSwitcher() {
+    const [curLocale, pathname] = getLocaleAndPathname(theme.published_locales);
+    let languageSwitchers = document.querySelectorAll('[name="locales"]');
+    if (languageSwitchers.length) {
+      languageSwitchers.forEach(el => el.addEventListener('change', (e) => {
+        let selectedLocale = e.target.value;
+        console.log('selectedLocale', selectedLocale)
+        console.log('pathname', pathname)
+        location.href = selectedLocale === '/' ? pathname : selectedLocale + pathname;
+      }))
+    }
   }
 }
 

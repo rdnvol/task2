@@ -1,0 +1,89 @@
+{% assign show_payment_icons = section.settings.show_payment_icons %}
+{%- capture payment_icon_markup -%}
+	{%- if show_payment_icons -%}
+		<div class="d-flex flex-wrap align-items-center justify-content-center pt-3">
+			{%- for type in shop.enabled_payment_types -%}
+				<div class="mx-3 mb-3">
+					{{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}
+				</div>
+			{%- endfor -%}
+		</div>
+	{%- endif -%}
+{%- endcapture -%}
+<footer id="footer">
+	<div class="container">
+		<div class="footer__holder">
+			<div class="row">
+				<div class="col-sm-12 col-lg-3 mb-6 mb-lg-0">
+					<a href="#" class="footer__logo">
+						<img data-src="{{ 'logo-2.svg' | asset_url }}" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" class="lazyload" data-sizes="auto" alt="image description">
+					</a>
+					<p>Dignissim suspendisse in est ante in nibh mauris cursus mattis. Arcu odio ut sem nulla pharetra diam sit amet nisl.</p>
+				</div>
+				<div class="col-sm-6 col-md-4 col-lg-3 mb-6 mb-md-0">
+					<nav class="footer__nav">
+						<h3 class="footer__title h5">Explore</h3>
+						<ul>
+							<li><a href="#">Home</a></li>
+							<li><a href="#">Shop</a></li>
+							<li><a href="#">Blog</a></li>
+							<li><a href="#">Contact</a></li>
+							<li><a href="#">Features</a></li>
+						</ul>
+					</nav>
+				</div>
+				<div class="col-sm-6 col-md-4 col-lg-3 mb-6 mb-md-0">
+					<nav class="footer__nav">
+						<h3 class="footer__title h5">Quick Links</h3>
+						<ul>
+							<li><a href="#">My Account</a></li>
+							<li><a href="#">Order History</a></li>
+							<li><a href="#">Wish List</a></li>
+							<li><a href="#">Newsletter</a></li>
+							<li><a href="#">Specials</a></li>
+						</ul>
+					</nav>
+				</div>
+				<div class="col-sm-6 col-md-4 col-lg-3">
+					<h3 class="footer__title h5">Connect</h3>
+					<p>Join our mailing list for updates</p>
+					<form action="#" class="footer__form pt-2">
+						<div class="d-flex align-items-center position-relative">
+							<input type="email" placeholder="Enter your email" class="footer__form__input">
+							<button type="submit" class="footer__form__button">
+								{%- include 'icon-arrow-right' -%}
+							</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="footer__panel text-center">
+			<div class="mb-4 mb-md-2">&copy; {{ 'now' | date: "%Y" }} <a href="#">Draft</a>. All Rights Reserved. <a href="#">Terms</a>, <a href="#">Privacy &amp; Accessibility</a>.</div>
+			<div>
+				{{ payment_icon_markup }}
+			</div>
+		</div>
+	</div>
+</footer>
+
+{% schema %}
+  {
+	"name": "Footer",
+	"settings": [
+	  {
+		"type": "link_list",
+		"id": "footer_linklist",
+		"label": "First menu",
+		"default": "footer"
+	  },
+	  {
+		"type": "checkbox",
+		"id": "show_payment_icons",
+		"label": "Show payment icons",
+		"default": false
+	  }
+	]
+  }
+
+{% endschema %}
