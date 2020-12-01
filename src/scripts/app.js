@@ -8,6 +8,7 @@ import 'lazysizes/plugins/bgset/ls.bgset';
 import 'lazysizes';
 import 'lazysizes/plugins/respimg/ls.respimg';
 import 'Scripts/jquery.plugins'
+import { SmoothScroll } from 'Scripts/jquery.plugins';
 import Swiper from 'swiper';
 import fancybox from '@fancyapps/fancybox';
 
@@ -51,6 +52,7 @@ class App {
     this.initAccordion();
     this.initCurrencySwitcher();
     this.initLanguageSwitcher();
+    this.initAnchors();
 
     // Responsive fluid iframe
     $(".rte iframe").each(function(index) {
@@ -230,6 +232,16 @@ class App {
         location.href = selectedLocale === '/' ? pathname : selectedLocale + pathname;
       }))
     }
+  }
+
+  initAnchors() {
+    new SmoothScroll({
+      anchorLinks: '.anchor-link',
+      activeClasses: 'active',
+      wheelBehavior: 'none',
+      extraOffset: $('.header__panel').height() || 0,
+      animDuration: 800,
+    });
   }
 }
 
