@@ -1,0 +1,303 @@
+{% include 'breadcrumbs--markup' %}
+<section data-section-id="{{ section.id }}" class="section page-section" data-section-type="product">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 mb-4 mb-md-0 d-none d-md-block">
+        <div class="swiper-container product-gallery">
+          <div class="swiper-wrapper align-items-center">
+            <div class="swiper-slide">
+              <div class="product-gallery__img">
+                {% render
+                  'image',
+                  asset_img_url: true,
+                  src: 'img-placeholder.png',
+                  d: '650x',
+                  src_m: 'img-placeholder.png',
+                  m: '375x',
+                  placeholder: 'img-placeholder.png',
+                  p_d: '650x',
+                  p_m: '375x',
+                %}
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="product-gallery__img">
+                {% render
+                  'image',
+                  asset_img_url: true,
+                  src: 'img-placeholder.png',
+                  d: '650x',
+                  src_m: 'img-placeholder.png',
+                  m: '375x',
+                  placeholder: 'img-placeholder.png',
+                  p_d: '650x',
+                  p_m: '375x',
+                %}
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="product-gallery__img">
+                {% render
+                  'image',
+                  asset_img_url: true,
+                  src: 'img-placeholder.png',
+                  d: '650x',
+                  src_m: 'img-placeholder.png',
+                  m: '375x',
+                  placeholder: 'img-placeholder.png',
+                  p_d: '650x',
+                  p_m: '375x',
+                %}
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="product-gallery__img">
+                {% render
+                  'image',
+                  asset_img_url: true,
+                  src: 'img-placeholder.png',
+                  d: '650x',
+                  src_m: 'img-placeholder.png',
+                  m: '375x',
+                  placeholder: 'img-placeholder.png',
+                  p_d: '650x',
+                  p_m: '375x',
+                %}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-container product-gallery-thumbs">
+          <div class="swiper-wrapper align-items-center">
+            <div class="swiper-slide">
+              <div class="product-gallery-thumbs__img">
+                {% render
+                  'image',
+                  asset_img_url: true,
+                  src: 'img-placeholder.png',
+                  d: '203x',
+                  src_m: 'img-placeholder.png',
+                  m: '105x',
+                  placeholder: 'img-placeholder.png',
+                  p_d: '203x',
+                  p_m: '105x',
+                %}
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="product-gallery-thumbs__img">
+                {% render
+                  'image',
+                  asset_img_url: true,
+                  src: 'img-placeholder.png',
+                  d: '203x',
+                  src_m: 'img-placeholder.png',
+                  m: '105x',
+                  placeholder: 'img-placeholder.png',
+                  p_d: '203x',
+                  p_m: '105x',
+                %}
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="product-gallery-thumbs__img">
+                {% render
+                  'image',
+                  asset_img_url: true,
+                  src: 'img-placeholder.png',
+                  d: '203x',
+                  src_m: 'img-placeholder.png',
+                  m: '105x',
+                  placeholder: 'img-placeholder.png',
+                  p_d: '203x',
+                  p_m: '105x',
+                %}
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="product-gallery-thumbs__img">
+                {% render
+                  'image',
+                  asset_img_url: true,
+                  src: 'img-placeholder.png',
+                  d: '203x',
+                  src_m: 'img-placeholder.png',
+                  m: '105x',
+                  placeholder: 'img-placeholder.png',
+                  p_d: '203x',
+                  p_m: '105x',
+                %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 mb-4 px-0 d-md-none">
+        <div class="product-gallery-mobile">
+          <div class="product-gallery-mobile__img">
+            {% render
+              'image',
+              asset_img_url: true,
+              src: 'img-placeholder.png',
+              d: '375x',
+              placeholder: 'img-placeholder.png',
+            %}
+          </div>
+          <div class="product-gallery-mobile__img">
+            {% render
+              'image',
+              asset_img_url: true,
+              src: 'img-placeholder.png',
+              d: '375x',
+              placeholder: 'img-placeholder.png',
+            %}
+          </div>
+          <div class="product-gallery-mobile__img">
+            {% render
+              'image',
+              asset_img_url: true,
+              src: 'img-placeholder.png',
+              d: '375x',
+              placeholder: 'img-placeholder.png',
+            %}
+          </div>
+          <div class="product-gallery-mobile__img">
+            {% render
+              'image',
+              asset_img_url: true,
+              src: 'img-placeholder.png',
+              d: '375x',
+              placeholder: 'img-placeholder.png',
+            %}
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <h1 class="product__title">{{ product.title }}</h1>
+        <div class="product__vendor mb-1 mb-md-2">{{ product.vendor }}</div>
+        {% form 'product', product, data-product-form: '', data-product-handle: product.handle, data-enable-history-state: 'true' %}
+          <div class="product__price" data-price-wrapper>
+            <div class="product__price__box d-flex flex-wrap align-items-center">
+              <div data-product-price>
+                $41.00
+              </div>
+              {% if product.compare_at_price_max > product.price %}
+                <span class="accessibility" data-compare-text>{{ 'products.product.regular_price' | t }}</span>
+                <del data-compare-price>
+                  {% if current_variant.compare_at_price > current_variant.price %}
+                    {{ current_variant.compare_at_price | money }}
+                  {% endif %}
+                </del>
+              {% endif %}
+            </div>
+            <div class="product__price__text">
+              <p>Tax included.</p>
+            </div>
+          </div>
+          {% unless product.has_only_default_variant %}
+            {% for option in product.options_with_values %}
+              <div class="js">
+                {% if forloop.index0 > 0 %}
+                  {% for value in option.values %}
+                    <input type="radio" id="Option{{ option.position }}-{{ value }}" name="options[{{ option.name }}]" value="{{ value }}"{% if option.selected_value == value %} checked{% endif %}>
+                    <label for="Option{{ option.position }}-{{ value }}">{{ value }}</label>
+                  {% endfor %}
+                {% else %}
+                  <label for="Option{{ option.position }}">
+                    {{ option.name }}
+                  </label>
+                  {% comment %}<select
+                    id="Option{{ option.position }}"
+                    name="options[{{ option.name | escape }}]">
+                    {% for value in option.values %}
+                      <option
+                        value="{{ value | escape }}"
+                        {% if option.selected_value == value %}selected="selected"{% endif %}>
+                        {{ value }}
+                      </option>
+                    {% endfor %}
+                  </select>{% endcomment %}
+                {% endif %}
+              </div>
+            {% endfor %}
+          {% endunless %}
+          <div class="product__row">
+            <div class="row mb-2">
+              <div class="col-sm-6">
+                <label class="product__label" for="size">Size</label>
+                <select name="id" id="size" class="product__select w-100">
+                  {% for variant in product.variants %}
+                    <option
+                      {% if variant == current_variant %}selected="selected"{% endif %}
+                      {% unless variant.available %}disabled="disabled"{% endunless %}
+                      value="{{ variant.id }}">
+                      {{ variant.title }}
+                    </option>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+            <div>
+              <label class="product__label" for="Quantity">{{ 'products.product.quantity' | t }}</label>
+              <input type="number" id="Quantity" name="quantity" value="1" min="1">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4">
+              <div class="product__row">
+                {% if current_variant.available %}
+                  {% render 'button',
+                    element: 'button',
+                    locales_text: 'products.product.add_to_cart',
+                    data_attribute: 'data-submit-button',
+                    class: 'w-100',
+                    name: 'add',
+                    other: 'name="add"',
+                    type: 'submit'
+                  %}
+                {% else %}
+                  {% render 'button',
+                    element: 'button',
+                    locales_text: 'products.product.sold_out',
+                    data_attribute: 'data-submit-button',
+                    class: 'w-100 disabled',
+                    other: 'name="add" disabled',
+                    type: 'submit'
+                  %}
+                {% endif %}
+              </div>
+              <div class="product__row">
+                <button type="button" class="w-100">buy it now</button>
+              </div>
+            </div>
+          </div>
+            
+          
+        {% endform %}
+        
+        <div class="product__row rte">
+          {{ product.description }}
+        </div>
+        
+        {% if section.settings.show_share_buttons %}
+          {% include 'social-sharing', share_title: product.title, share_permalink: product.url, share_image: product %}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  {%- include 'cart-popup' -%}
+</section>
+
+{% schema %}
+  {
+  "name": "Product pages",
+  "settings": [
+    {
+    "type": "checkbox",
+    "id": "show_share_buttons",
+    "label": "Show social sharing buttons",
+    "default": true
+    }
+  ]
+  }
+{% endschema %}
