@@ -4,7 +4,7 @@
       <div class="col-md-6">
         <div class="feature-block__img">
           {%- if section.settings.image != blank -%}
-            {% include "image",
+            {% render "image",
             src: section.settings.image,
             d:"635x794",
             src_m: section.settings.image,

@@ -12,11 +12,6 @@ import Swiper from 'swiper';
 import fancybox from '@fancyapps/fancybox';
 
 
-// utils
-import { getCookie, deleteCookie, setCookie } from "Scripts/utils";
-
-'Scripts/utils';
-
 // templates
 import product from "Sections/product";
 import 'Scripts/login'
@@ -30,6 +25,7 @@ import "Sections/popup";
 import "Sections/testimonials";
 import "Sections/video";
 import "Sections/slideshow";
+import "Sections/iframe-video";
 
 import Cart from "./Components/CartReact";
 import CartCount from "./Components/CartCount";
