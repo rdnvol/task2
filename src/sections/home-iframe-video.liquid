@@ -1,10 +1,14 @@
+{% assign hasText = false %}
+{% if section.settings.title != blank or section.settings.subtitle != blank or section.settings.button_link != blank %}
+  {% assign hasText = true %}
+{% endif %}
 <div class="section video-section"
      data-section-type="iframe-video"
      data-section-id="{{ section.id }}">
   <div {% unless section.settings.enable_full_width %}class="container"{% endunless %}>
     <div class="video-section__holder">
-      <div class="video-section__container video-section__container--overlay">
-        {% if section.settings.title != blank or section.settings.subtitle != blank or section.settings.button_link != blank %}
+      <div class="video-section__container {% if section.settings.enable_overlay and hasText %}video-section__container--overlay{% endif %}">
+        {% if hasText %}
           <div class="video-section__block {{ section.settings.text_color }}">
             {% if section.settings.title != blank %}
               <h2 class="mb-3">{{ section.settings.title }}</h2>
@@ -78,7 +82,7 @@
     },
     {
       "type": "checkbox",
-      "id": "enable",
+      "id": "enable_overlay",
       "label": "Darken video",
       "default": true,
       "info": "(overlay, will be used when text overlay exist)"
