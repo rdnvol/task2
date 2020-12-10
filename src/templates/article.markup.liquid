@@ -4,20 +4,19 @@
       <div class="col-md-8 col-lg-9">
         <article role="article" class="post post--single">
           <header role="banner" class="post__header">
-            <h1 class="post__title">{{ article.title }}</h1>
+            <h1 class="post__title">Post title</h1>
             <div class="post__date">
-              {{ article.published_at | time_tag: format: 'month_day_year' }}
+              <time datetime="2019-06-30">June 30 2019</time>
             </div>
-            {% if blog.comments_enabled? %}
-                <a href="#comments" class="anchor-link">{{ 'blogs.comments.with_count' | t: count: article.comments_count }}</a>
-              {% endif %}
+            <a href="#">2 comments</a>
           </header>
           <div class="post__img">
             {% render
               'image',
-              src: article.image.src,
+              asset_img_url: true,
+              src: 'img-placeholder.png',
               d: '857x',
-              src_m: article.image.src,
+              src_m: 'img-placeholder.png',
               m: '375x',
             %}
           </div>
@@ -28,36 +27,36 @@
             {% include 'social-sharing', share_title: article.title, share_permalink: article.url, share_image: article.image %}
           {% endif %}
         </article>
-        <div id="comments" class="post__discussion">
-          <h2 class="h3">{{ 'blogs.comments.block_title' | t }}</h2>
+        <div class="post__discussion">
+          <h2 class="h3">Comments</h2>
           <ul>
-            {% for comment in article.comments %}
-              <li>
-                <div class="post__comment rte">
-                  <div class="mb-3">
-                    <strong>{{ comment.author }}</strong>
-                    <div>
-                      {{ comment.created_at | time_tag: format: 'month_day_year_time' }}
-                    </div>
+            <li>
+              <div class="post__comment rte">
+                <div class="mb-3">
+                  <strong>Alex Smith</strong>
+                  <div>
+                    on <time datetime="2019-04-14 10:39">April 14, 2019 at 10:39AM</time>
                   </div>
-                  {{ comment.content }}
                 </div>
-              </li>
-            {% endfor %}
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veniam autem animi error fuga, vitae quis.</p>
+              </div>
+            </li>
+            <li>
+              <div class="post__comment rte">
+                <div class="mb-3">
+                  <strong>Alex Smith</strong>
+                  <div>
+                    on <time datetime="2019-04-14 10:39">April 14, 2019 at 10:39AM</time>
+                  </div>
+                </div>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veniam autem animi error fuga, vitae quis.</p>
+              </div>
+            </li>
           </ul>
         </div>
         {% form 'new_comment', article %}
           <h2 class="h3">{{ 'blogs.comments.title' | t }}</h2>
           {{ form.errors | default_errors }}
-          {% if comment and comment.status and comment.id != blank %}
-            <p class="form-success">
-            {% if blog.moderated? and comment.status != 'published' %}
-              {{ 'blogs.comments.success_moderated' | t }}
-            {% else %}
-              {{ 'blogs.comments.success' | t }}
-            {% endif %}
-            </p>
-          {% endif %}
           <div class="row">
             <div class="col-sm-6">
               <div class="input-holder">
@@ -108,7 +107,7 @@
           <input type="submit" class="button" value="{{ 'blogs.comments.post' | t }}">
         {% endform %}
       </div>
-      <!-- <div class="col-md-4 col-lg-3">
+      <div class="col-md-4 col-lg-3">
         <aside class="aside">
           <h3>Recent articles</h3>
           <div class="aside__item">
@@ -154,7 +153,7 @@
             </ul>
           </div>
         </aside>
-      </div> -->
+      </div>
     </div>
   </div>
 </div>

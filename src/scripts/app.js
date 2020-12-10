@@ -8,9 +8,15 @@ import 'lazysizes/plugins/bgset/ls.bgset';
 import 'lazysizes';
 import 'lazysizes/plugins/respimg/ls.respimg';
 import 'Scripts/jquery.plugins'
+import { SmoothScroll } from 'Scripts/jquery.plugins';
 import Swiper from 'swiper';
 import fancybox from '@fancyapps/fancybox';
 
+
+// utils
+import { getLocaleAndPathname } from "Scripts/utils";
+
+'Scripts/utils';
 
 // templates
 import product from "Sections/product";
@@ -45,6 +51,9 @@ class App {
     // this.initHeaderOnScrollDown();
     this.initIosScroll();
     this.initAccordion();
+    this.initCurrencySwitcher();
+    this.initLanguageSwitcher();
+    this.initAnchors();
 
     // Responsive fluid iframe
     $(".rte iframe").each(function(index) {
@@ -201,6 +210,39 @@ class App {
   
   setHeaderHeight() {
     document.documentElement.style.setProperty('--header-height', $('#header').css('height'));
+  }
+  
+  initCurrencySwitcher() {
+    function currencyFormSubmit(event) {
+      event.target.form.submit();
+    }
+    let currencySwitchers = document.querySelectorAll('.shopify-currency-form select');
+    if (currencySwitchers.length) {
+      currencySwitchers.forEach(el => el.addEventListener('change', currencyFormSubmit))
+    }
+  }
+  
+  initLanguageSwitcher() {
+    const [curLocale, pathname] = getLocaleAndPathname(theme.published_locales);
+    let languageSwitchers = document.querySelectorAll('[name="locales"]');
+    if (languageSwitchers.length) {
+      languageSwitchers.forEach(el => el.addEventListener('change', (e) => {
+        let selectedLocale = e.target.value;
+        console.log('selectedLocale', selectedLocale)
+        console.log('pathname', pathname)
+        location.href = selectedLocale === '/' ? pathname : selectedLocale + pathname;
+      }))
+    }
+  }
+
+  initAnchors() {
+    new SmoothScroll({
+      anchorLinks: '.anchor-link',
+      activeClasses: 'active',
+      wheelBehavior: 'none',
+      extraOffset: $('.header__panel').height() || 0,
+      animDuration: 800,
+    });
   }
 }
 

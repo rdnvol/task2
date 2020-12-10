@@ -75,6 +75,7 @@
     },
     "comments": {
       "title": "Leave a comment",
+      "block_title": "Comments",
       "name": "Name",
       "email": "Email",
       "message": "Message",
@@ -303,6 +304,7 @@
     }
   },
   "date_formats": {
-    "month_day_year": "%B %d, %Y"
+    "month_day_year": "%B %d, %Y",
+    "month_day_year_time": "on %B %d, %Y at %l:%M%p"
   }
 }
