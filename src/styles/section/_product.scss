@@ -106,3 +106,20 @@
 .product__select {
   display:block;
 }
+
+.product-gallery-mobile {
+  display: flex;
+  align-items: center;
+  margin: 0 -5px;
+  overflow-y: hidden;
+  overflow-x: visible;
+}
+
+.product-gallery-mobile__img {
+  margin-right: 16px;
+  min-width: 90%;
+
+  img {
+    min-width: 100%;
+  }
+}
