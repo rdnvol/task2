@@ -14,7 +14,7 @@ import fancybox from '@fancyapps/fancybox';
 
 
 // utils
-import { getCookie, deleteCookie, setCookie, getLocaleAndPathname } from "Scripts/utils";
+import { getLocaleAndPathname } from "Scripts/utils";
 
 'Scripts/utils';
 
@@ -31,6 +31,7 @@ import "Sections/popup";
 import "Sections/testimonials";
 import "Sections/video";
 import "Sections/slideshow";
+import "Sections/iframe-video";
 
 import Cart from "./Components/CartReact";
 import CartCount from "./Components/CartCount";
