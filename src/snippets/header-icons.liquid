@@ -30,33 +30,4 @@
       </a>
     </li>
   {% endif %}
-  {% if section.settings.currency_switcher_enable %}
-    <li>
-      {% form 'currency' %}
-        <select name="currency">
-          {% for currency in shop.enabled_currencies %}
-            {% if currency == cart.currency %}
-              <option selected="true">{{currency.iso_code}} {{currency.symbol}}</option>
-            {% else %}
-              <option>{{currency.iso_code}}</option>
-            {% endif %}
-          {% endfor %}
-        </select>
-      {% endform %}
-    </li>
-  {% endif %}
-  {% if section.settings.language_switcher_enable %}
-    <li>
-      <select name="locales">
-        {% for locale in shop.published_locales %}
-          {% if locale.primary %}
-            {% assign locale_url = request.path %}
-          {% else %}
-            {% assign locale_url = locale.root_url | append: request.path %}
-          {% endif %}
-          <option {% if request.locale.name == locale.name %}selected{% endif %} data-path="{{ request.path }}" value="{{ locale.root_url }}">{{ locale.name }}</option>
-        {% endfor %}
-      </select>
-    </li>
-  {% endif %}
 </ul>
