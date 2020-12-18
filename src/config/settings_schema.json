@@ -104,6 +104,13 @@
         "default": "#FCF113"
       },
       {
+        "type": "text",
+        "id": "button_border_raduis",
+        "default": "6px",
+        "label": "Button border radius",
+        "info": "Have to specify measurement units"
+      },
+      {
         "type": "select",
         "id": "button_size",
         "label": "Default button size",
