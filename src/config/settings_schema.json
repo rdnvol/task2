@@ -105,7 +105,7 @@
       },
       {
         "type": "text",
-        "id": "button_border_raduis",
+        "id": "button_border_radius",
         "default": "6px",
         "label": "Button border radius",
         "info": "Have to specify measurement units"
