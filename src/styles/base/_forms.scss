@@ -101,7 +101,7 @@ input[type='reset'],
 // input[type='file'],
 input[type='submit'] {
   -webkit-appearance: none;
-  -webkit-border-radius: $btn-border-radius;
+  -webkit-border-radius: $btn-border-rad;
   box-sizing: border-box;
   min-width: 178px;
   min-height: $height-form-elements;
@@ -113,7 +113,7 @@ input[type='submit'] {
   text-transform: uppercase;
   background: $btn-background;
   border: 1px solid $btn-border-color;
-  border-radius: $btn-border-radius;
+  border-radius: $btn-border-rad;
   cursor: pointer;
   &.button--lg {
     min-height: $height-button-large;
