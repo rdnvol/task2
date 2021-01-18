@@ -88,7 +88,6 @@ $headings-font-size: var(--heading-font-size);
 $headings-font-weight: $font-heading-weight;
 $headings-font-family: $font-heading !default;
 $headings-color: inherit !default;
-$logo-width: var(--header-logo-height);
 
 $h1-font-size: $headings-font-size !default; // 36px
 $h2-font-size: calc(#{$headings-font-size} - 11px) !default; // 25px
@@ -103,6 +102,7 @@ $h4-font-size-desktop: calc(#{$headings-font-size} - 8px) !default; // 28px
 $h5-font-size-desktop: calc(#{$headings-font-size} - 16px) !default; // 20px
 $h6-font-size-desktop: calc(#{$headings-font-size} - 20px) !default; // 16px
 
+$logo-width: var(--header-logo-width);
 
 $animation-speed: 0.3s;
 $menu-animation-speed: 0.2s;
