@@ -1,16 +1,16 @@
 .account-section {
-  padding:60px 0;
+  padding: 60px 0;
   @include media("≥tablet") {
-    padding:120px 0;
+    padding: 120px 0;
   }
 }
 
 .account-page__title {
-  margin:0 0 64px;
-  @include media("≥tablet"){
-    margin:0 0 74px;
+  margin: 0 0 64px;
+  @include media("≥tablet") {
+    margin: 0 0 74px;
   }
-  
+
   h1,
   .h1,
   h2,
@@ -20,20 +20,20 @@
       margin-bottom: 0;
     }
   }
-  
+
   p {
     &:last-child {
-      margin-bottom:0;
+      margin-bottom: 0;
     }
   }
 }
 
 .account-page__heading {
-  margin:0 0 34px;
+  margin: 0 0 34px;
   @include media("≥desktop") {
-    margin:0 0 44px;
+    margin: 0 0 44px;
   }
-  
+
   h1,
   .h1,
   h2,
@@ -43,32 +43,32 @@
       margin-bottom: 0;
     }
   }
-  
+
   p {
     &:last-child {
-      margin-bottom:0;
+      margin-bottom: 0;
     }
   }
 }
 
 .account-form {
   @extend %clearfix;
-  max-width:300px;
-  margin:0 auto;
-  color:$base-text-color;
+  max-width: 300px;
+  margin: 0 auto;
+  color: $base-text-color;
   &.account-form--address {
     max-width: 100%;
   }
 
   select {
-    display:block;
-    width:100%;
+    display: block;
+    width: 100%;
   }
-  
+
   button {
-    min-width:300px;
+    min-width: 300px;
     @include media("≥tablet") {
-      min-width:100%;
+      min-width: 100%;
     }
   }
 
@@ -82,146 +82,146 @@ button.button-add-new-address {
 }
 
 .open-close__account__holder {
-  padding:60px 0;
+  padding: 60px 0;
 }
 
 .input-holder {
-  position:relative;
+  position: relative;
   &[data-aria-hidden="true"] {
-    display:none;
+    display: none;
   }
 }
 
 .account-form__actions {
-  margin:0 0 20px;
+  margin: 0 0 20px;
   @include media("≥desktop") {
-    margin:0 0 30px;
+    margin: 0 0 30px;
   }
 }
 
 .account__block__item-holder {
-  @include media("≥tablet"){
-    margin-bottom:-45px;
+  @include media("≥tablet") {
+    margin-bottom: -45px;
   }
 }
 
 .account__block__item {
-  margin:0 0 30px;
-  @include media("≥tablet"){
-    margin-bottom:45px;
+  margin: 0 0 30px;
+  @include media("≥tablet") {
+    margin-bottom: 45px;
   }
-  
+
   p {
-    margin-bottom:0;
+    margin-bottom: 0;
   }
 }
 
 .order-table {
-  width:100%;
+  width: 100%;
   border-collapse: collapse;
-  margin:0 0 30px;
+  margin: 0 0 30px;
   @include media ("≥desktop") {
-    margin:0 0 60px;
+    margin: 0 0 60px;
   }
-  
+
   .order-name {
     @extend h5;
-    margin:0;
+    margin: 0;
     font-weight: normal;
-    
+
     a {
-      text-decoration:none;
+      text-decoration: none;
     }
   }
-  
+
   thead {
     @include media("≤767px") {
-      display:none;
+      display: none;
     }
   }
-  
+
   tbody,
   tfoot,
   tr {
-    @include media("≤767px"){
-      display:block;
-      width:100%;
+    @include media("≤767px") {
+      display: block;
+      width: 100%;
     }
   }
 
   tr {
-    border-bottom:1px solid #d0d2d3;
+    border-bottom: 1px solid #d0d2d3;
   }
-  
+
   th,
   td {
-    text-align:left;
+    text-align: left;
   }
-  
+
   td {
-    padding:10px 0;
-    @include media("≤767px"){
-      position:relative;
+    padding: 10px 0;
+    @include media("≤767px") {
+      position: relative;
       display: flex;
-      width:100%;
+      width: 100%;
     }
-    @include media("≥tablet"){
-      padding:20px 0;
+    @include media("≥tablet") {
+      padding: 20px 0;
     }
     &:empty {
       @include media("≤767px") {
-        display:none;
+        display: none;
       }
     }
-    &:before {
+    &::before {
       @include media("≤767px") {
-        content:attr(data-label);
+        content: attr(data-label);
         flex-shrink: 0;
-        vertical-align:top;
-        width:130px;
+        vertical-align: top;
+        width: 130px;
         padding: 0 10px 0 0;
         font-size: 12px;
-        font-weight:bold;
+        font-weight: bold;
       }
     }
   }
-  
+
   .small--hide {
     @include media("≤767px") {
-      display:none;
+      display: none;
     }
   }
-  
+
   dt,
   dd {
-    margin:0;
+    margin: 0;
   }
-  
+
   tfoot {
-    font-weight:bold;
+    font-weight: bold;
   }
 }
 
 .account__header {
-  margin:0 0 30px;
-  padding:0 0 13px;
-  border-bottom:1px solid $black;
-  @include media("≥tablet"){
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:0 0 16px;
+  margin: 0 0 30px;
+  padding: 0 0 13px;
+  border-bottom: 1px solid $black;
+  @include media("≥tablet") {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 0 16px;
   }
 }
 
 .account__sub-title {
-  margin:0 0 20px;
+  margin: 0 0 20px;
   text-transform: uppercase;
 }
 
 .account__customer-addresses {
   & + & {
-    margin-top:44px;
+    margin-top: 44px;
   }
 
   .button--address {
@@ -230,21 +230,21 @@ button.button-add-new-address {
 }
 
 .errors {
-  color:red;
-  margin:0 0 15px;
-  text-align:center;
-  
+  color: #ff0101;
+  margin: 0 0 15px;
+  text-align: center;
+
   ul {
     @extend %listreset;
   }
 }
 
 .shopify-challenge__container {
-  padding:20px 0 64px;
+  padding: 20px 0 64px;
   @include media ("≥desktop") {
-    padding:30px 0 74px;
+    padding: 30px 0 74px;
   }
-  
+
   .shopify-challenge__button.btn {
     display: block;
     min-width: 180px;

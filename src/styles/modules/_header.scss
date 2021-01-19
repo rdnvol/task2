@@ -22,13 +22,13 @@
     padding: 0;
   }
   .fixed-position & {
-    z-index:100;
+    z-index: 100;
     @include media ("≥widescreen") {
-      z-index:10001;
+      z-index: 10001;
     }
   }
   &.header__panel-shadow {
-    box-shadow: 0 6px 12px 0 rgba(0, 0 ,0, 0.09);
+    box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.09);
   }
 
   .row {
@@ -48,20 +48,20 @@
 .logo {
   padding: 0 10px;
   max-width: $logo-width;
-  height:auto;
-  margin:0 auto;
+  height: auto;
+  margin: 0 auto;
   .justify-content-start & {
     margin: 0;
   }
 
   a {
-    display:block;
-    height:100%;
+    display: block;
+    height: 100%;
   }
 
   img {
-    display:block;
-    width:100%;
+    display: block;
+    width: 100%;
   }
 }
 
@@ -75,19 +75,19 @@
 .menu-active {
 
   .menu__drop {
-    transform:translateX(0);
+    transform: translateX(0);
   }
 
   .menu__btn-opener {
-    &:after,
-    &:before {
-      transform:rotate(45deg);
-      top:50%;
-      left:25%;
-      right:25%;
+    &::after,
+    &::before {
+      transform: rotate(45deg);
+      top: 50%;
+      left: 25%;
+      right: 25%;
     }
-    &:after {
-      transform:rotate(-45deg);
+    &::after {
+      transform: rotate(-45deg);
     }
 
     span {
@@ -103,52 +103,53 @@
   right: 0;
   bottom: 0;
   background: $color-body;
-  z-index:1000;
-  @include media("≤1199px"){
-    overflow-y:auto;
-    overflow-x:hidden;
-    transform:translateX(-100%);
+  z-index: 1000;
+  @include media("≤1199px") {
+    overflow-y: auto;
+    overflow-x: hidden;
+    transform: translateX(-100%);
   }
   @include media("≥widescreen") {
-    position:static;
-    height:auto;
+    position: static;
+    height: auto;
     padding: 0;
-    transform:none;
-    border-top:none;
+    transform: none;
+    border-top: none;
     background: none;
   }
 }
 
 .menu__btn-opener {
-  display:block;
-  position:relative;
-  width:40px;
-  height:40px;
-  font-size:0;
-  line-height:0;
-  &:before,
-  &:after,
+  display: block;
+  position: relative;
+  width: 40px;
+  height: 40px;
+  font-size: 0;
+  line-height: 0;
+  &::before,
+  &::after,
   & span {
-    position:absolute;
-    top:50%;
-    left:20%;
-    right:20%;
-    height:2px;
-    transition:all $animation-speed ease;
-    background:$color-body-text;
+    position: absolute;
+    top: 50%;
+    left: 20%;
+    right: 20%;
+    height: 2px;
+    transition: all $animation-speed ease;
+    background: $color-body-text;
     border-radius: 2px;
   }
-  &:before,
-  &:after {
-    content:'';
-    top:30%;
+  &::before,
+  &::after {
+    content: "";
+    top: 30%;
   }
-  &:after {
-    top:70%;
+  &::after {
+    top: 70%;
   }
 }
 
 .main-menu {
+  @extend %transition;
   margin: 0;
   padding: 10px 0;
   list-style: none;
@@ -186,7 +187,7 @@
       &.has-drop {
 
         > a {
-          &:after {
+          &::after {
             transform: rotate(135deg);
           }
         }
@@ -208,16 +209,16 @@
 
       > a {
         position: relative;
-        &:after {
-          content: '';
+        &::after {
+          content: "";
           position: absolute;
-          top:50%;
-          right:12px;
-          width:10px;
-          height:10px;
-          margin-top:-7px;
-          border-style:solid;
-          border-width:0 0 1px 1px;
+          top: 50%;
+          right: 12px;
+          width: 10px;
+          height: 10px;
+          margin-top: -7px;
+          border-style: solid;
+          border-width: 0 0 1px 1px;
           border-color: $color-body-text;
           transform: rotate(-45deg);
           @include media ("≥widescreen") {
@@ -230,8 +231,8 @@
 
       .menu-accordion__slide {
         @include media ("≥widescreen") {
-          opacity:1;
-          height:auto;
+          opacity: 1;
+          height: auto;
           pointer-events: auto;
         }
       }
@@ -260,9 +261,9 @@
     padding: 0;
     list-style: none;
     @include media ("≥widescreen") {
-      margin:0 0 20px;
+      margin: 0 0 20px;
       padding: 0;
-      font-weight:300;
+      font-weight: 300;
     }
 
     li {
@@ -272,7 +273,7 @@
       &.active {
 
         > a {
-          color:$color-accent;
+          color: $color-accent;
         }
       }
     }
@@ -280,8 +281,8 @@
     a {
       &:hover {
         @include media ("≥widescreen") {
-          color:$color-accent;
-          text-decoration:none;
+          color: $color-accent;
+          text-decoration: none;
         }
       }
     }
@@ -298,22 +299,22 @@
 .menu-accordion__slide {
   @include media ("≥widescreen") {
     position: absolute;
-    left:0;
-    top:100%;
-    width:100%;
-    height:0;
-    opacity:0;
-    padding:0 30px 0 15px;
-    cursor:default;
-    pointer-events:none;
-    background:$l-gray;
-    z-index:1000;
+    left: 0;
+    top: 100%;
+    width: 100%;
+    height: 0;
+    opacity: 0;
+    padding: 0 30px 0 15px;
+    cursor: default;
+    pointer-events: none;
+    background: $l-gray;
+    z-index: 1000;
   }
 
   .container {
     @include media ("≥widescreen") {
-      padding-top:15px;
-      padding-bottom:30px;
+      padding-top: 15px;
+      padding-bottom: 30px;
     }
   }
 }
@@ -349,7 +350,7 @@
 
 .header__cart-btn__num {
   position: absolute;
-  right: 1px;
+  right: 0;
   top: 1px;
   width: 20px;
   height: 20px;

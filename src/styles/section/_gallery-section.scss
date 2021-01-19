@@ -56,7 +56,7 @@
 .gallery-section__link {
   position: relative;
   display: block;
-  &:before {
+  &::before {
     content: "";
     position: absolute;
     top: 0;

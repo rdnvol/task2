@@ -1,11 +1,11 @@
 html {
   box-sizing: border-box;
   @include media ("≥widescreen") {
-    overflow:visible !important;
+    overflow: visible !important;
   }
   &.scroll-fix {
     padding-bottom: 0 !important;
-    
+
     body {
       @include media ("≤1199px") {
         position: relative !important;
@@ -15,7 +15,9 @@ html {
   }
 }
 
-*, *:before, *:after {
+*,
+*::before,
+*::after {
   box-sizing: inherit;
 }
 
@@ -31,11 +33,11 @@ body {
   font-style: $font-body-style;
   font-size: $font-size-base;
   line-height: $base-line-height;
-  letter-spacing:0.45px;
+  letter-spacing: 0.45px;
   background: $base-background-color;
   -moz-osx-font-smoothing: grayscale;
   @include media ("≥widescreen") {
-    overflow:visible !important;
+    overflow: visible !important;
     font-size: calc(#{$font-size-base} + 2px);
   }
 }
@@ -56,7 +58,9 @@ img {
 }
 
 // google map fix
-.gm-style img {max-width: none}
+.gm-style img {
+  max-width: none;
+}
 
 button,
 a,

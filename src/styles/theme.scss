@@ -2,71 +2,69 @@
 // import your files
 
 $breakpoints: (
-  'xs-phone': 320px,
-  'phone': 375px,
-  'phone-l': 414px,
-  'tablet': 768px,
-  'desktop': 1024px,
-  'widescreen': 1200px,
-  'laptop': 1400px,
+  "xs-phone": 320px,
+  "phone": 375px,
+  "phone-l": 414px,
+  "tablet": 768px,
+  "desktop": 1024px,
+  "widescreen": 1200px,
+  "laptop": 1400px,
 );
 
 // keywords
 $media-expressions: (
-  'screen': 'screen',
-  'print': 'print',
-  'handheld': 'handheld',
-  'landscape': '(orientation: landscape)',
-  'portrait': '(orientation: portrait)',
-  'retina2x': '(-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi)',
-  'retina3x': '(-webkit-min-device-pixel-ratio: 2.5), (min-resolution: 240dpi)'
+  "screen": "screen",
+  "print": "print",
+  "handheld": "handheld",
+  "landscape": "(orientation: landscape)",
+  "portrait": "(orientation: portrait)",
+  "retina2x": "(-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi)",
+  "retina3x": "(-webkit-min-device-pixel-ratio: 2.5), (min-resolution: 240dpi)"
 );
 
 // ligatured operators ≥ ≤
 
-@import 'vendors/include-media';
-@import 'vendors/normalize';
-@import 'vendors/bootstrap-4-grid/grid';
-@import 'base/variables';
-@import 'base/functions';
-@import 'base/mixins';
-@import 'base/helpers';
-@import 'base/reset';
-@import 'base/typography';
-@import 'base/forms';
+@import "vendors/include-media";
+@import "vendors/normalize";
+@import "vendors/bootstrap-4-grid/grid";
+@import "base/variables";
+@import "base/functions";
+@import "base/mixins";
+@import "base/helpers";
+@import "base/reset";
+@import "base/typography";
+@import "base/forms";
 
-@import 'plugins/swiper';
-@import 'plugins/age-popup';
-@import 'plugins/jquery.fancybox';
-@import 'plugins/_jquery-background-video';
+@import "plugins/swiper";
+@import "plugins/age-popup";
+@import "plugins/jquery.fancybox";
+@import "plugins/_jquery-background-video";
 
-@import 'modules/header';
+@import "modules/header";
 
+@import "layout/password";
+@import "layout/all";
 
-@import 'layout/password';
-@import 'layout/all';
+@import "pages/account";
+@import "pages/blog";
+@import "pages/blog-article";
+@import "pages/cart";
+@import "pages/collections-list";
 
-@import 'pages/account';
-@import 'pages/blog';
-@import 'pages/blog-article';
-@import 'pages/cart';
-@import 'pages/collections-list';
+@import "section/hero";
+@import "section/featured-collection";
+@import "section/feature-block";
+@import "section/search-page";
+@import "section/product";
+@import "section/testimonials-block";
+@import "section/logos-block";
+@import "section/_gallery-section";
+@import "section/slideshow";
+@import "section/benefits";
+@import "section/benefits-with-text";
+@import "section/plans-section";
+@import "section/newsletter";
+@import "section/video-section";
 
-@import 'section/hero';
-@import 'section/featured-collection';
-@import 'section/feature-block';
-@import 'section/search-page';
-@import 'section/product';
-@import 'section/testimonials-block';
-@import 'section/logos-block';
-@import 'section/_gallery-section';
-@import 'section/slideshow';
-@import 'section/benefits';
-@import 'section/benefits-with-text';
-@import 'section/plans-section';
-@import 'section/newsletter';
-@import 'section/video-section';
-
-@import 'modules/cart-popup';
-@import 'modules/footer';
-
+@import "modules/cart-popup";
+@import "modules/footer";

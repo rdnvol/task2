@@ -37,12 +37,12 @@ button.cart-popup__close {
   width: 44px;
   height: 44px;
   &:hover {
-    
+
     .icon {
       color: $color-accent;
     }
   }
-  
+
   .icon {
     fill: currentColor;
   }
@@ -57,7 +57,7 @@ button.cart-popup__close {
 
 .cart-popup__item {
   margin: 0 0 15px;
-  
+
   p {
     margin: 0 0 8px;
     &:last-child {
