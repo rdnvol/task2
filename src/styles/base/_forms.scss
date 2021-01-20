@@ -33,8 +33,8 @@ textarea {
 
   &:-webkit-autofill {
     filter: none;
-    -webkit-box-shadow: 0 0 0 1000px #fff inset !important;
-    box-shadow: 0 0 0 1000px #fff inset !important;
+    -webkit-box-shadow: 0 0 0 1000px $white inset !important;
+    box-shadow: 0 0 0 1000px $white inset !important;
   }
 
   @include placeholder {

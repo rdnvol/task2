@@ -218,12 +218,12 @@
 
 .swiper-button-prev.swiper-button-white,
 .swiper-button-next.swiper-button-white {
-  --swiper-navigation-color: #fff;
+  --swiper-navigation-color: $white;
 }
 
 .swiper-button-prev.swiper-button-black,
 .swiper-button-next.swiper-button-black {
-  --swiper-navigation-color: #000;
+  --swiper-navigation-color: $black;
 }
 
 .swiper-button-lock {
@@ -392,11 +392,11 @@ button.swiper-pagination-bullet {
 }
 
 .swiper-pagination-white {
-  --swiper-pagination-color: #fff;
+  --swiper-pagination-color: $white;
 }
 
 .swiper-pagination-black {
-  --swiper-pagination-color: #000;
+  --swiper-pagination-color: $black;
 }
 
 .swiper-pagination-lock {
@@ -487,11 +487,11 @@ button.swiper-pagination-bullet {
 }
 
 .swiper-lazy-preloader-white {
-  --swiper-preloader-color: #fff;
+  --swiper-preloader-color: $white;
 }
 
 .swiper-lazy-preloader-black {
-  --swiper-preloader-color: #000;
+  --swiper-preloader-color: $black;
 }
 
 @keyframes swiper-preloader-spin {
@@ -579,7 +579,7 @@ button.swiper-pagination-bullet {
   bottom: 0;
   width: 100%;
   height: 100%;
-  background: #000;
+  background: $black;
   opacity: 0.6;
   -webkit-filter: blur(50px);
   filter: blur(50px);
