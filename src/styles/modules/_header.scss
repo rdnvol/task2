@@ -232,7 +232,14 @@
         @include media ("≥widescreen") {
           opacity:1;
           height:auto;
+          max-height: calc(100vh - var(--header-height));
           pointer-events: auto;
+          overflow-x: hidden;
+          overflow-y: visible;
+        }
+
+        .fixed-position & {
+          max-height: calc(100vh - var(--header-sticky-height));
         }
       }
     }
