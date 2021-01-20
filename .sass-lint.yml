@@ -20,6 +20,11 @@ rules:
   class-name-format:
     - 1
     - convention: hyphenatedbem
+      ignore:
+        - fancybox-can-zoomOut
+        - fancybox-can-zoomIn
+        - fancybox-button--arrow_left
+        - fancybox-button--arrow_right
   clean-import-paths:
     - 1
     - filename-extension: false
@@ -48,6 +53,8 @@ rules:
   id-name-format:
     - 1
     - convention: hyphenatedlowercase
+      ignore:
+        - icButton
   indentation:
     - 1
     - size: 2

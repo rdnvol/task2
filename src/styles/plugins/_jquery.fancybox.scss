@@ -339,7 +339,7 @@ body.compensate-for-scrollbar {
 }
 
 .fancybox-button:hover {
-  color:$white;
+  color: $white;
 }
 
 .fancybox-button:focus {
@@ -476,7 +476,7 @@ body.compensate-for-scrollbar {
   font-weight: 400;
   left: 0;
   line-height: 1.5;
-  padding: 75px 44px 25px 44px;
+  padding: 75px 44px 25px;
   pointer-events: none;
   right: 0;
   text-align: center;
@@ -633,7 +633,7 @@ body.compensate-for-scrollbar {
 }
 
 /* Styling for Small-Screen Devices */
-@media all and (max-height:576px) {
+@media all and (max-height: 576px) {
 
   .fancybox-slide {
     padding-left: 6px;
@@ -684,7 +684,7 @@ body.compensate-for-scrollbar {
   color: #222;
   font-size: 35px;
   font-weight: 700;
-  margin: 0 0 20px 0;
+  margin: 0 0 20px;
 }
 
 .fancybox-share p {
@@ -699,7 +699,7 @@ body.compensate-for-scrollbar {
   font-size: 14px;
   font-weight: 700;
   line-height: 40px;
-  margin: 0 5px 10px 5px;
+  margin: 0 5px 10px;
   min-width: 130px;
   padding: 0 15px;
   text-decoration: none;
@@ -764,7 +764,7 @@ body.compensate-for-scrollbar {
   border-radius: 0;
   color: #5d5b5b;
   font-size: 14px;
-  margin: 10px 0 0 0;
+  margin: 10px 0 0;
   outline: none;
   padding: 10px 15px;
   width: 100%;
@@ -778,7 +778,7 @@ body.compensate-for-scrollbar {
   margin: 0;
   -webkit-overflow-scrolling: touch;
   -ms-overflow-style: -ms-autohiding-scrollbar;
-  padding: 2px 2px 4px 2px;
+  padding: 2px 2px 4px;
   position: absolute;
   right: 0;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -875,7 +875,7 @@ body.compensate-for-scrollbar {
 }
 
 /* Styling for Small-Screen Devices */
-@media all and (max-width:576px) {
+@media all and (max-width: 576px) {
   .fancybox-thumbs {
     width: 110px;
   }

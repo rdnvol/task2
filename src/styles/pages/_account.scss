@@ -125,7 +125,7 @@ button.button-add-new-address {
   }
 
   .order-name {
-    @extend h5;
+    @extend %h5;
     margin: 0;
     font-weight: normal;
 

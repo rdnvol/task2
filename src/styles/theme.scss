@@ -38,7 +38,7 @@ $media-expressions: (
 @import "plugins/swiper";
 @import "plugins/age-popup";
 @import "plugins/jquery.fancybox";
-@import "plugins/_jquery-background-video";
+@import "plugins/jquery-background-video";
 
 @import "modules/header";
 
@@ -58,7 +58,7 @@ $media-expressions: (
 @import "section/product";
 @import "section/testimonials-block";
 @import "section/logos-block";
-@import "section/_gallery-section";
+@import "section/gallery-section";
 @import "section/slideshow";
 @import "section/benefits";
 @import "section/benefits-with-text";
