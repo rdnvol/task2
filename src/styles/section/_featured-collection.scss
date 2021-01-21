@@ -1,35 +1,35 @@
 .product-item {
-  margin:0 0 64px;
+  margin: 0 0 64px;
   @include media("≥576px") {
-    margin:0 0 30px;
+    margin: 0 0 30px;
   }
 }
 
 .product-item__img {
-  display:block;
-  margin:0 0 30px;
+  display: block;
+  margin: 0 0 30px;
   @include media("≥desktop") {
-    margin:0 0 5px;
+    margin: 0 0 5px;
   }
 }
 
 .product-item__title {
-  margin:0 0 10px;
+  margin: 0 0 10px;
   font-size: $font-size-base;
   line-height: 1.25;
   font-weight: 600;
   @include media("≥desktop") {
-    margin:0 0 15px;
+    margin: 0 0 15px;
   }
 }
 
 .product-item__price {
-  
+
   ins {
-    text-decoration:none;
+    text-decoration: none;
   }
-  
+
   del {
-    color:$danger;
+    color: $danger;
   }
 }

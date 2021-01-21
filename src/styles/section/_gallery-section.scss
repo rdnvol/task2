@@ -1,5 +1,5 @@
 .gallery-section {
-  @media only screen and (max-width:767px) {
+  @media only screen and (max-width: 767px) {
     max-width: 400px;
     margin: 0 auto;
   }
@@ -56,7 +56,7 @@
 .gallery-section__link {
   position: relative;
   display: block;
-  &:before {
+  &::before {
     content: "";
     position: absolute;
     top: 0;

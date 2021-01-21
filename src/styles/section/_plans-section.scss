@@ -75,7 +75,7 @@
     position: relative;
     padding: 0 20px 0 0;
     font-weight: bold;
-    &:after {
+    &::after {
       content: "|";
       position: absolute;
       top: 0;

@@ -7,12 +7,12 @@ fieldset {
   border-style: none;
 }
 
-input[type='text'],
-input[type='tel'],
-input[type='email'],
-input[type='search'],
-input[type='password'],
-input[type='number'],
+input[type="text"],
+input[type="tel"],
+input[type="email"],
+input[type="search"],
+input[type="password"],
+input[type="number"],
 //input[type='url'],
 // input[type='date'],
 textarea {
@@ -33,8 +33,8 @@ textarea {
 
   &:-webkit-autofill {
     filter: none;
-    -webkit-box-shadow: 0 0 0 1000px white inset !important;
-    box-shadow: 0 0 0 1000px white inset !important;
+    -webkit-box-shadow: 0 0 0 1000px $white inset !important;
+    box-shadow: 0 0 0 1000px $white inset !important;
   }
 
   @include placeholder {
@@ -42,7 +42,7 @@ textarea {
   }
 }
 
-input[type='number'] {
+input[type="number"] {
   width: 70px;
 }
 
@@ -58,7 +58,7 @@ select {
   letter-spacing: 0.05em;
   background: $base-background-color;
   border: 1px solid $form-element-border-color;
-  
+
   // &:focus {
   //   border-color: $form-element-focus-border-color;
   // }
@@ -67,9 +67,9 @@ select {
 .select-holder {
   position: relative;
 
-  &:after {
+  &::after {
     @include triangle(8px 6px, $black, down);
-    content: '';
+    content: "";
     position: absolute;
     right: 12px;
     top: 50%;
@@ -96,10 +96,10 @@ textarea {
 
 button,
 .button,
-input[type='button'],
-input[type='reset'],
-// input[type='file'],
-input[type='submit'] {
+input[type="button"],
+input[type="reset"],
+// input[type="file"],
+input[type="submit"] {
   -webkit-appearance: none;
   -webkit-border-radius: $btn-border-rad;
   box-sizing: border-box;

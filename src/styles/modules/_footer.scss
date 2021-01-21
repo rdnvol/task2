@@ -1,43 +1,43 @@
 [id="shopify-section-footer"] {
-  overflow:hidden;
+  overflow: hidden;
 }
 
 [id="footer"] {
-  position:relative;
+  position: relative;
 
   a {
-    text-decoration:none;
+    text-decoration: none;
     &:hover {
-      text-decoration:underline;
+      text-decoration: underline;
     }
   }
 
   p {
     &:last-child {
-      margin:0;
+      margin: 0;
     }
   }
 }
 
 .footer__holder {
-  padding:20px 0 64px;
+  padding: 20px 0 64px;
   @include media("≥widescreen") {
-    padding:74px 0;
+    padding: 74px 0;
   }
 }
 
 .footer__logo {
-  display:inline-block;
-  vertical-align:top;
-  margin:0 0 15px;
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 0 15px;
 
   img {
-    width:116px;
+    width: 116px;
   }
 }
 
 .footer__title {
-  margin:0 0 12px;
+  margin: 0 0 12px;
   font-size: $font-size-base;
   font-weight: 600;
   line-height: 1.5;
@@ -51,9 +51,9 @@
   }
 
   li {
-    margin:0 0 15px;
+    margin: 0 0 15px;
     &:last-child {
-      margin:0;
+      margin: 0;
     }
   }
 }
@@ -61,52 +61,52 @@
 .footer__form {
 
   .footer__form__input {
-    padding-right:55px;
+    padding-right: 55px;
   }
 
   .footer__form__button {
-    position:absolute;
-    right:1px;
-    top:1px;
-    bottom:1px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    width:48px;
-    min-width:auto;
-    min-height:auto;
-    padding:0;
-    background:none;
-    border:none;
+    position: absolute;
+    right: 1px;
+    top: 1px;
+    bottom: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    min-width: auto;
+    min-height: auto;
+    padding: 0;
+    background: none;
+    border: none;
     &:hover,
     &:focus {
-      background:$btn-background;
+      background: $btn-background;
 
       svg {
-        fill:$white;
+        fill: $white;
       }
     }
 
     svg {
-      fill:$gray;
-      width:16px;
-      height:12px;
+      fill: $gray;
+      width: 16px;
+      height: 12px;
     }
   }
 }
 
 .footer__panel {
-  padding:20px 0;
-  color:$gray;
+  padding: 20px 0;
+  color: $gray;
   font-size: calc(#{$font-size-base} - 4px);
-  line-height:1.25;
+  line-height: 1.25;
   letter-spacing: 0.05em;
-  text-transform:uppercase;
+  text-transform: uppercase;
   @include media("≥desktop") {
-    padding:10px 0;
+    padding: 10px 0;
   }
 
   a {
-    color:inherit;
+    color: inherit;
   }
 }

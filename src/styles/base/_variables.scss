@@ -32,7 +32,7 @@ $color-accent: var(--color-accent);
 $color-border: var(--color-border);
 
 $base-font-sans-serif: $font-body;
-$base-font-serif: 'Times New Roman', 'Times', 'Baskerville', 'Georgia', serif;
+$base-font-serif: "Times New Roman", "Times", "Baskerville", "Georgia", serif;
 
 // Body
 $base-text-color: $color-body-text !default;
@@ -45,7 +45,7 @@ $vertical-rhythm: ($base-line-height * 1em);
 
 $base-min-width: 320px;
 
-// Liks
+// Links
 $base-link-color: $color-body-text;
 
 // Buttons

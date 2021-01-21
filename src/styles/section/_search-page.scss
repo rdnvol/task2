@@ -1,10 +1,10 @@
 .search-item {
-  margin:0 0 20px;
+  margin: 0 0 20px;
   @include media("≥desktop") {
-    margin:0 0 44px;
+    margin: 0 0 44px;
   }
   &:last-child {
-    margin-bottom:0;
+    margin-bottom: 0;
   }
 }
 
@@ -17,7 +17,7 @@
     letter-spacing: 0.02em;
   }
   &:last-child {
-    margin:0;
+    margin: 0;
   }
 
   a {
@@ -27,21 +27,21 @@
 
 .search-item__price {
   @include media("≥tablet") {
-    text-align:right;
+    text-align: right;
   }
-  
+
   * {
-    display:inline-block;
-    margin:0 7px 0 0;
+    display: inline-block;
+    margin: 0 7px 0 0;
     @include media("≥tablet") {
-      margin:0 0 0 7px;
+      margin: 0 0 0 7px;
     }
   }
-  
+
   ins {
-    text-decoration:none;
+    text-decoration: none;
   }
-  
+
   del {
     color: $danger;
   }

@@ -7,8 +7,8 @@
 
 // clearfix
 %clearfix {
- &:after {
-    content: '';
+  &::after {
+    content: "";
     display: block;
     clear: both;
   }
@@ -20,57 +20,57 @@
 
 // transition
 %transition {
- transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
 .text-center {
-  text-align:center;
+  text-align: center;
 }
 
 .text-left {
-  text-align:left;
+  text-align: left;
 }
 
 .text-md-left {
   @include media ("≥tablet") {
-    text-align:left;
+    text-align: left;
   }
 }
 
 .text-right {
-  text-align:right;
+  text-align: right;
 }
 
 .text-md-right {
   @include media ("≥tablet") {
-    text-align:right;
+    text-align: right;
   }
 }
 
 .text-right-sm {
-  @include media("≥tablet", "<desktop"){
-    text-align:right;
+  @include media("≥tablet", "<desktop") {
+    text-align: right;
   }
 }
 
 .m-auto {
-  margin-left:auto;
-  margin-right:auto;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .sr-only {
-  position:absolute;
-  left:-9999px;
-  visibility:hidden;
+  position: absolute;
+  left: -9999px;
+  visibility: hidden;
 }
 
 .hidden {
-  display:none !important;
-  visibility:hidden !important;
+  display: none !important;
+  visibility: hidden !important;
 }
 
 .text-uppercase {
-  text-transform:uppercase;
+  text-transform: uppercase;
 }
 
 .d-xs-block {

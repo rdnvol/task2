@@ -1,12 +1,12 @@
-/// Creates a visual triangle. 
+/// Creates a visual triangle.
 /// Mixin takes ($size, $color, $direction)
 /// The $size argument can take one or two values—width height.
-/// The $color argument can take one or two 
+/// The $color argument can take one or two
 /// values—foreground-color background-color.
-/// 
+///
 /// @author http://bourbon.io/docs/#triangle
 ///
-/// $direction: 
+/// $direction:
 /// up, down, left, right, up-right, up-left, down-right, down-left
 /// @example scss - Usage
 ///   @include triangle(12px, gray, down);
@@ -32,7 +32,8 @@
       border-bottom: $width solid $background-color;
       border-left: $height solid $foreground-color;
       border-top: $width solid $background-color;
-    } @else if $direction == down {
+    } 
+    @else if $direction == down {
       border-left: $width solid $background-color;
       border-right: $width solid $background-color;
       border-top: $height solid $foreground-color;
@@ -110,7 +111,7 @@
 }
 
 @mixin animates {
-  
+
   @include media("≥desktop") {
     transition: color $animation-speed ease,
                 background $animation-speed ease,
