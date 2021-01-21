@@ -9,6 +9,10 @@
   
 files:
   include: "**/*.scss"
+  ignore:
+    - "src/styles/vendors/**/*.scss"
+    - "src/styles/base/_mixins.scss"
+    - "src/styles/plugins/_swiper.scss"
 options:
   formatter: stylish
   merge-default-rules: false
