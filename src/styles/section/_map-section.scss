@@ -1,0 +1,89 @@
+.map-section__block {
+  @include media ("≥tablet") {
+    min-height: 500px;
+  }
+
+  > .container {
+    @include media ("<tablet") {
+      padding: 0;
+    }
+  }
+}
+
+.map-section__img-holder {
+  position: relative;
+  overflow: hidden;
+  flex-basis: 100%;
+  @include media ("≥tablet") {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+  }
+}
+
+.map-section__img {
+  padding-top: 62.5%;
+  background: url("{{'gallery-img-01-2x.jpg' | asset_url}}") no-repeat;
+  background-size: cover;
+  background-position: top left;
+  @include media ("≥tablet") {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    padding-top: 0;
+  }
+  &.map-section__img--top-center {
+    background-position: top center;
+  }
+  &.map-section__img--top-right {
+    background-position: top right;
+  }
+  &.map-section__img--middle-left {
+    background-position: center left;
+  }
+  &.map-section__img--middle-center {
+    background-position: center center;
+  }
+  &.map-section__img--middle-right {
+    background-position: center right;
+  }
+  &.map-section__img--bottom-left {
+    background-position: bottom left;
+  }
+  &.map-section__img--bottom-center {
+    background-position: bottom center;
+  }
+  &.map-section__img--bottom-right {
+    background-position: bottom right;
+  }
+}
+
+.map-section__content {
+  position: relative;
+  z-index: 4;
+  padding: 30px;
+  background: $light;
+  @include media ("≥tablet") {
+    margin: 55px 0;
+    padding: 36px;
+    background: $white;
+  }
+
+  .icon {
+    margin: 0 12px 0 0;
+  }
+}
+
+.map-section__text-box {
+  margin: 0 0 15px;
+  &.rte {
+
+    p {
+      margin: 0 0 15px;
+    }
+  }
+}
