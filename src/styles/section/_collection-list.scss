@@ -1,0 +1,15 @@
+.collection-list-item {
+  border: 1px solid $gray;
+}
+
+.collection-list-item__text-box {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  bottom: 20px;
+  right: 20px;
+}
+
+.collection-list-item__title {
+  font-weight: 700;
+}
