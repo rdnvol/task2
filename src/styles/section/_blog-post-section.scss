@@ -3,11 +3,11 @@
   overflow: hidden
 }
 
-.blog-post-section-item {
+.blog-post-section__item {
   margin: 0 0 30px;
 }
 
-.blog-post-section-item__tags-list {
+.blog-post-section__tags-list {
   @extend %listreset;
   display: flex;
   flex-wrap: wrap;
@@ -18,7 +18,7 @@
   }
 }
 
-.blog-post-section-item__button-box {
+.blog-post-section__btn-box {
 
   .button {
     margin: 0 20px 0 0;
@@ -31,7 +31,7 @@
   }
 }
 
-.blog-post-section-item__comment-link {
+.blog-post-section__comment {
   padding: 8px 0;
   text-transform: uppercase;
 }

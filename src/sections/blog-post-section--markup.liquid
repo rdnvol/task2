@@ -1,11 +1,11 @@
-<div class="section blog-post-section">
+<section class="section blog-post-section">
   <div class="container">
     <h2 class="text-center">Blog posts</h2>
     <div class="blog-post-section__holder">
       <div class="row">
         <div class="col-md-4">
-          <article class="blog-post-section-item">
-            <a href="#" class="d-block mb-2">
+          <article class="blog-post-section__item">
+            <a href="#" class="image-container mb-2">
               {% render
                 'image',
                 asset_img_url: true,
@@ -25,7 +25,7 @@
             <div class="mb-3 rte">
               <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugit, delectus!</p>
             </div>
-            <ul class="blog-post-section-item__tags-list">
+            <ul class="blog-post-section__tags-list">
               <li>
                 <a href="#">tag 1</a>
               </li>
@@ -33,20 +33,20 @@
                 <a href="#">tag 2</a>
               </li>
             </ul>
-            <div class="blog-post-section-item__button-box d-flex flex-wrap align-items-center">
+            <div class="blog-post-section__btn-box d-flex flex-wrap align-items-center">
               {% render
                 'button',
                 element: 'a',
                 href: '#',
                 text: 'Read more',
               %}
-              <a href="#" class="blog-post-section-item__comment-link">1 comment</a>
+              <a href="#" class="blog-post-section__comment">1 comment</a>
             </div>
           </article>
         </div>
         <div class="col-md-4">
           <article class="blog-post-section-item">
-            <a href="#" class="d-block mb-2">
+            <a href="#" class="image-container mb-2">
               {% render
                 'image',
                 asset_img_url: true,
@@ -83,7 +83,7 @@
         </div>
         <div class="col-md-4">
           <article class="blog-post-section-item">
-            <a href="#" class="d-block mb-2">
+            <a href="#" class="image-container mb-2">
               {% render
                 'image',
                 asset_img_url: true,
@@ -124,4 +124,4 @@
       </div>
     </div>
   </div>
-</div>
+</section>
