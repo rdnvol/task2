@@ -1,5 +1,9 @@
 .collection-list-item {
   border: 1px solid $gray;
+  &:hover,
+  &:focus {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.09);
+  }
 }
 
 .collection-list-item__text-box {
@@ -8,6 +12,7 @@
   left: 20px;
   bottom: 20px;
   right: 20px;
+  z-index: 2;
 }
 
 .collection-list-item__title {
