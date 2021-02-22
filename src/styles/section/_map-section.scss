@@ -23,11 +23,9 @@
   }
 }
 
-.map-section__img {
+.map-section__img,
+.map-section__google-map {
   padding-top: 62.5%;
-  background: url("{{'gallery-img-01-2x.jpg' | asset_url}}") no-repeat;
-  background-size: cover;
-  background-position: top left;
   @include media ("≥tablet") {
     position: absolute;
     top: 0;
@@ -36,6 +34,12 @@
     right: 0;
     padding-top: 0;
   }
+}
+
+.map-section__img {
+  background: url("{{'gallery-img-01-2x.jpg' | asset_url}}") no-repeat;
+  background-size: cover;
+  background-position: top left;
   &.map-section__img--top-center {
     background-position: top center;
   }
@@ -80,6 +84,7 @@
 
 .map-section__text-box {
   margin: 0 0 15px;
+  font-style: normal;
   &.rte {
 
     p {
