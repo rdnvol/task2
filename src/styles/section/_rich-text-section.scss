@@ -1,13 +1,5 @@
 .rich-text-section {
-  @include media ("≥tablet") {
-    max-width: 66.66%;
-  }
-  &.rich-text-section--wide-display {
-    @include media ("≥tablet") {
-      max-width: 100%;
-    }
-  }
-  &.rich-text-section--sm {
+  &.rich-text-section--size-sm {
     font-size: calc(#{$font-size-base} - 2px);
     @include media ("≥desktop") {
       font-size: $font-size-base;
@@ -20,7 +12,7 @@
       }
     }
   }
-  &.rich-text-section--lg {
+  &.rich-text-section--size-lg {
     font-size: calc(#{$font-size-base} + 2px);
     @include media ("≥desktop") {
       font-size: calc(#{$font-size-base} + 4px);
