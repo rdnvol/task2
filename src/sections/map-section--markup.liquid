@@ -1,0 +1,32 @@
+<section class="section map-section">
+  <div class="container-fluid px-md-0">
+    <div class="map-section__block d-md-flex align-items-md-center position-relative">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-5 col-lg-4">
+            <div class="map-section__content text-center">
+              <h2 class="h3 mb-2">Our store</h2>
+              <address class="map-section__text-box rte">
+                <p>123 Fake St.<br>Toronto, Canada</p>
+                <p>Mon - Fri, 10am - 9pm<br>Saturday, 11am - 9pm<br>Sunday, 11am - 5pm</p>
+              </address>
+              {% include "button",
+                element: 'a',
+                href: '#',
+                class: 'd-inline-flex flex-row-reverse align-items-center',
+                text: 'Get directions',
+                snippet: 'icon',
+                icon: 'location'
+              %}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="map-section__img-holder map-section__img-holder--map-active">
+        <div class="map-section__img"></div>
+        <div id="google-map" class="map-section__google-map"></div>
+      </div>
+    </div>
+  </div>
+</section>
+<script async src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=&v=weekly"></script>
