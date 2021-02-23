@@ -54,6 +54,7 @@ class App {
     this.initCurrencySwitcher();
     this.initLanguageSwitcher();
     this.initAnchors();
+    this.initMap();
 
     // Responsive fluid iframe
     $(".rte iframe").each(function(index) {
@@ -243,6 +244,20 @@ class App {
       extraOffset: $('.header__panel').height() || 0,
       animDuration: 800,
     });
+  }
+
+  initMap() {
+    $(window).on('load', function() {
+      let map = new google.maps.Map(document.getElementById("google-map"), {
+        center: { lat: -34.397, lng: 150.644 },
+        zoom: 10,
+        disableDefaultUI: true,
+      });
+      new google.maps.Marker({
+        position: { lat: -34.397, lng: 150.644 },
+        map,
+      });
+    })
   }
 }
 

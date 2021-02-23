@@ -64,6 +64,22 @@
   &.map-section__img--bottom-right {
     background-position: bottom right;
   }
+
+  .map-section__img-holder--map-active & {
+    display: none;
+  }
+}
+
+.map-section__google-map {
+  display: none;
+  @include media ("<tablet") {
+    height: 55vh;
+    padding-top: 0;
+  }
+
+  .map-section__img-holder--map-active & {
+    display: block;
+  }
 }
 
 .map-section__content {
