@@ -1,0 +1,28 @@
+.rich-text-section {
+  &.rich-text-section--size-sm {
+    font-size: calc(#{$font-size-base} - 2px);
+    @include media ("≥desktop") {
+      font-size: $font-size-base;
+    }
+
+    .h3 {
+      font-size: calc(#{$h3-font-size} - 4px);
+      @include media ("≥desktop") {
+        font-size: calc(#{$h3-font-size-desktop} - 4px);
+      }
+    }
+  }
+  &.rich-text-section--size-lg {
+    font-size: calc(#{$font-size-base} + 2px);
+    @include media ("≥desktop") {
+      font-size: calc(#{$font-size-base} + 4px);
+    }
+
+    .h3 {
+      font-size: calc(#{$h3-font-size} + 4px);
+      @include media ("≥desktop") {
+        font-size: calc(#{$h3-font-size-desktop} + 4px);
+      }
+    }
+  }
+}
