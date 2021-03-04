@@ -11,6 +11,8 @@ import 'lazysizes';
 import 'lazysizes/plugins/respimg/ls.respimg';
 import '../helpers/jquery.plugins'
 import { SmoothScroll } from '../helpers/jquery.plugins';
+import Splide from '@splidejs/splide';
+import jcf from 'jcf';
 
 
 // utils
@@ -27,7 +29,6 @@ class App {
     this.init();
   }
 
-
   init() {
     this.setHeaderHeight();
     this.initMobileNav();
@@ -39,6 +40,8 @@ class App {
     this.initLanguageSwitcher();
     this.initAnchors();
     this.initMap();
+    this.initProductGallery();
+    this.initCustomForms();
 
     // Responsive fluid iframe
     $(".rte iframe").each(function(index) {
@@ -250,6 +253,40 @@ class App {
       }
     })
   }
+
+  initCustomForms() {
+    jcf.setOptions('Select', {
+        wrapNative: false,
+        wrapNativeOnMobile: false,
+    });
+    jcf.replaceAll('.custom-form');
+  }
+
+  initProductGallery() {
+    // Create and mount the thumbnails slider.
+    let productGallerySplideThumbs = new Splide( '.product-gallery-splide-thumbs', {
+      perPage: 3,
+      isNavigation: true,
+      gap: 30,
+      pagination: false,
+      arrows: false,
+      breakpoints : {
+        '768': {
+          gap: 18,
+        }
+      }
+    } ).mount();
+    // Create the main slider.
+    let productGallerySplide = new Splide('.product-gallery-splide', {
+      type: 'slide',
+      pagination: false,
+      arrows: false,
+      speed: 800,
+    });
+    // Set the thumbnails slider as a sync target and then call mount.
+    productGallerySplide.sync( productGallerySplideThumbs ).mount();
+  }
+
 }
 
 const app = new App();

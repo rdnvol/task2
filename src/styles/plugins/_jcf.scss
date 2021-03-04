@@ -1,0 +1,92 @@
+/* number input */
+.jcf-number {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  width: 70px;
+  height: 36px;
+  border: 1px solid $form-element-border-color;
+  overflow: hidden;
+  transition: border-color $animation-speed ease-in-out;
+  &:focus-within {
+    border-color: $blue;
+  }
+
+  input {
+    -moz-appearance: textfield;
+    display: block;
+    width: 20px;
+    height: 100%;
+    margin: 0 auto;
+    padding: 0;
+    font-size: calc(#{$font-size-base} - 2px);
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    background: none;
+    border: none;
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+    }
+
+    .custom-form--alt & {
+      font-size: $font-size-base;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+
+      .page-blue &,
+      .in-viewport & {
+        color: $white;
+      }
+    }
+  }
+
+  .jcf-btn-dec,
+  .jcf-btn-inc {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 24px;
+    height: 100%;
+    background: none;
+    cursor: pointer;
+    overflow: hidden;
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      background: #656c74;
+      transform: translate(-50%, -50%);
+      transition: background $animation-speed ease-in-out;
+    }
+    &:hover {
+      &::before,
+      &::after {
+        background: $blue;
+      }
+    }
+  }
+
+  .jcf-btn-dec {
+    left: 0;
+    &::before {
+      width: 10px;
+      height: 1px;
+    }
+  }
+
+  .jcf-btn-inc {
+    right: 0;
+    &::after {
+      width: 1px;
+      height: 10px;
+    }
+    &::before {
+      height: 1px;
+      width: 10px;
+    }
+  }
+}

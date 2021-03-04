@@ -43,6 +43,12 @@
 }
 
 .product__vendor {
+  color: #999;
+
+  mark {
+    color: #000;
+    background: none;
+  }
 
   p {
     &:last-child {
@@ -53,27 +59,31 @@
 
 .product__row {
   margin: 0 0 20px;
-  @include media("≥desktop") {
+  @include media("≥widescreen") {
     margin: 0 0 30px;
   }
 }
 
 .product__price {
-  margin: 0 0 45px;
-  @include media("≥desktop") {
-    margin: 0 0 55px;
+  margin: 0 0 15px;
+  @include media("≥widescreen") {
+    margin: 0 0 20px;
   }
 }
 
 .product__price__box {
   margin-bottom: 10px;
-  font: $font-heading-style calc(#{$font-size-base+4px}) $headings-font-family;
-  @include media("≥desktop") {
+  font: $font-heading-style calc(#{$font-size-base + 4px}) $headings-font-family;
+  @include media("≥widescreen") {
     margin: 0 0 14px;
   }
 
   > * {
     margin: 0 5px 0 0;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    font-weight: inherit;
   }
 
   ins {
