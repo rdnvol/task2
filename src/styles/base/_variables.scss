@@ -77,10 +77,10 @@ $dynamic-checkout-button-background-on-hover: var(--checkout-button-hover-backgr
 $dynamic-checkout-button-background-on-focus: var(--checkout-button-focus-background-color) !default;
 
 // Forms
-$form-element-padding: $button-padding !default;
-$form-element-border-color: $base-border !default;
-$form-element-focus-border-color: $base-border !default;
-$placeholder-color: $base-body-text !default;
+$form-element-padding: $btn-padding !default;
+$form-element-border-color: #e5e5e5 !default;
+$form-element-focus-border-color: #000 !default;
+$placeholder-color: #999 !default;
 $height-form-elements: 44px;
 $height-button-large: 48px;
 $height-button-medium: 40px;

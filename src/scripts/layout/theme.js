@@ -40,8 +40,8 @@ class App {
     this.initLanguageSwitcher();
     this.initAnchors();
     this.initMap();
-    this.initProductGallery();
     this.initCustomForms();
+    this.initProductGallery();
 
     // Responsive fluid iframe
     $(".rte iframe").each(function(index) {
@@ -197,7 +197,7 @@ class App {
     });
 
     $('.accordion').slideAccordion({
-      allowClickWhenExpanded: true,
+      allowClickWhenExpanded: false,
       activeClass: 'accordion--active',
       opener: '.accordion__opener',
       slider: '.accordion__slide',
@@ -274,9 +274,17 @@ class App {
     jcf.replaceAll('.custom-form');
   }
 
+  initCustomForms() {
+    jcf.setOptions('Select', {
+        wrapNative: false,
+        wrapNativeOnMobile: false,
+    });
+    jcf.replaceAll('.custom-form');
+  }
+
   initProductGallery() {
     // Create and mount the thumbnails slider.
-    let productGallerySplideThumbs = new Splide( '.product-gallery-splide-thumbs', {
+    const productGallerySplideThumbs = new Splide( '.product-gallery-splide-thumbs', {
       perPage: 3,
       isNavigation: true,
       gap: 30,
@@ -289,7 +297,7 @@ class App {
       }
     } ).mount();
     // Create the main slider.
-    let productGallerySplide = new Splide('.product-gallery-splide', {
+    const productGallerySplide = new Splide('.product-gallery-splide', {
       type: 'slide',
       pagination: false,
       arrows: false,

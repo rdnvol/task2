@@ -217,8 +217,8 @@
       </div>
       <div class="row">
         <div class="col-lg-8">
-          <div class="row custom-form">
-            <div class="col-lg-6">
+          <div class="row">
+            <div class="col-lg-6 custom-form">
               <label class="product__label accessibility" for="Quantity">
                 {{ 'products.product.quantity' | t }}
               </label>
@@ -269,9 +269,40 @@
     
   {% endform %}
   
-  <div class="product__row rte">
-    {{ product.description }}
-  </div>
+  <ul class="accordion">
+    <li class="accordion--active active">
+      <a href="#" class="accordion__opener">
+        Product Details
+      </a>
+      <div class="accordion__slide">
+        123
+      </div>
+    </li>
+    <li>
+      <a href="#" class="accordion__opener">
+        Specifications
+      </a>
+      <div class="accordion__slide">
+        123
+      </div>
+    </li>
+    <li>
+      <a href="#" class="accordion__opener">
+        Warranty & Services
+      </a>
+      <div class="accordion__slide">
+        123
+      </div>
+    </li>
+    <li>
+      <a href="#" class="accordion__opener">
+        Shipping & Returns
+      </a>
+      <div class="accordion__slide">
+        123
+      </div>
+    </li>
+  </ul>
   
   {% if section.settings.show_share_buttons %}
     {% include 'social-sharing', share_title: product.title, share_permalink: product.url, share_image: product %}
