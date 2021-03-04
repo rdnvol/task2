@@ -176,6 +176,7 @@ class App {
 
   // accordion menu init
   initAccordion() {
+
     ResponsiveHelper.addRange({
       '..1199': {
         on: function() {
@@ -194,6 +195,17 @@ class App {
         }
       }
     });
+
+    $('.accordion').slideAccordion({
+      allowClickWhenExpanded: true,
+      activeClass: 'accordion--active',
+      opener: '.accordion__opener',
+      slider: '.accordion__slide',
+      collapsible: true,
+      event: 'click',
+      animSpeed: 400
+    });
+
   }
 
   setHeaderHeight() {
