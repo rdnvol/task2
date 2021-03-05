@@ -1,31 +1,34 @@
-<div class="product-main-block__details text-md">
-  <div class="product__vendor mb-1 mb-md-2">
+<div class="product-main-block__details text-size-md">
+  <div class="product__vendor text-size-md">
     by <mark>{{ product.vendor }}</mark>
   </div>
-  <h1 class="product__title">{{ product.title }}</h1>
+  <h1 class="product__title h3">
+    {{ product.title }}
+  </h1>
   {% form 'product', product, data-product-form: '', data-product-handle: product.handle, data-enable-history-state: 'true' %}
+
     <div class="product__price" data-price-wrapper>
       <div class="product__price__box h5 d-flex flex-wrap align-items-center">
         {% if product.compare_at_price_max > product.price %}
-          <ins data-product-price>
+          <ins class="h5" data-product-price>
             $799.00
           </ins>
           <span class="accessibility" data-compare-text>
             {{ 'products.product.regular_price' | t }}
           </span>
           {% if current_variant.compare_at_price > current_variant.price %}
-            <del data-compare-price>
+            <del class="h5" data-compare-price>
               $999.00
             </del>
           {% endif %}
         {% else %}
-          <div data-product-price>
+          <div class="h5" data-product-price>
             $799.00
           </div>
-          <ins data-product-price>
+          <ins class="h5" data-product-price>
             $799.00
           </ins>
-          <del data-compare-price>
+          <del class="h5" data-compare-price>
             $999.00
           </del>
         {% endif %}
@@ -33,7 +36,7 @@
     </div>
     {% unless product.has_only_default_variant %}
       {% for option in product.options_with_values %}
-        <div class="js">
+        <div class="js d-none">
           {% if forloop.index0 > 0 %}
             {% for value in option.values %}
               <input type="radio" id="Option{{ option.position }}-{{ value }}" name="options[{{ option.name }}]" value="{{ value }}"{% if option.selected_value == value %} checked{% endif %}>
@@ -58,8 +61,11 @@
         </div>
       {% endfor %}
     {% endunless %}
+    <div class="product-main-block__rating-box">
+      No reviews
+    </div>
     <div class="product__row">
-      <div class="row mb-2">
+      <div class="row mb-2 d-none">
         <div class="col-sm-6 col-md-9 col-lg-6">
           <div class="product__variant-label-box mb-1">
             <span class="product__variant-label">Color:</span>
@@ -151,7 +157,7 @@
           </div>
         </div>
       </div>
-      <div class="row mb-2">
+      <div class="row mb-2 d-none">
         <div class="col-sm-6 col-md-9 col-lg-6">
           <div class="product__variant-label-box mb-1">
             <span class="product__variant-label">Select size:</span>
@@ -200,7 +206,7 @@
           </div>
         </div>
       </div>
-      <div class="row mb-2">
+      <div class="row mb-2 d-none">
         <div class="col-sm-7 col-lg-5 col-xl-4">
           <label class="product__label" for="size">Size</label>
           <select name="id" id="size" class="product__select w-100">
@@ -218,7 +224,7 @@
       <div class="row">
         <div class="col-lg-8">
           <div class="row">
-            <div class="col-lg-6 custom-form">
+            <div class="col-lg-6 mb-4 mb-lg-0 custom-form">
               <label class="product__label accessibility" for="Quantity">
                 {{ 'products.product.quantity' | t }}
               </label>
@@ -237,7 +243,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-sm-4">
+      <div class="col-sm-4 col-lg-8">
         <div class="product__row">
           {% if current_variant.available %}
             {% render 'button',
@@ -261,45 +267,106 @@
           {% endif %}
         </div>
         <div class="product__row">
-          <button type="button" class="w-100">buy it now</button>
+          <button type="button" class="w-100">Buy it now</button>
         </div>
       </div>
     </div>
-      
-    
+
   {% endform %}
   
-  <ul class="accordion">
-    <li class="accordion--active active">
-      <a href="#" class="accordion__opener">
+  <ul class="accordion mb-6 rte">
+    <li class="accordion--active">
+      <a href="#" class="accordion__opener title-1"> 
         Product Details
       </a>
       <div class="accordion__slide">
-        123
+        <div class="title-1">
+          DJI Mavic Air 2 Key Features
+        </div>
+        <ul>
+          <li>
+            8K Hyperlapse Time-Lapse Video
+          </li>
+          <li>
+            8K Hyperlapse Time-Lapse Video
+          </li>
+          <li>
+            8K Hyperlapse Time-Lapse Video
+          </li>
+          <li>
+            8K Hyperlapse Time-Lapse Video
+          </li>
+        </ul>
+        <div class="text-size-md">
+          <p>
+            A midrange drone with flagship features, the DJI Mavic Air 2 combines a foldable and portable frame with a high-end camera system. The 3-axis gimbal sports a 1/2" CMOS sensor capable of capturing 8K Hyperlapse time-lapse shots, 4K60 video, 240 fps slow-motion 1080p video, and up to 48MP stills.
+          </p>
+        </div>
       </div>
     </li>
     <li>
-      <a href="#" class="accordion__opener">
+      <a href="#" class="accordion__opener title-1">
         Specifications
       </a>
       <div class="accordion__slide">
-        123
+        <dl>
+          <dt>Brand</dt>
+          <dd>DJI</dd>
+          <dt>Dimensions - Depth</dt>
+          <dd>DJI</dd>
+          <dt>Brand</dt>
+          <dd>DJI</dd>
+          <dt>Dimensions - Depth</dt>
+          <dd>CP.MA.0000017603</dd>
+          <dt>Brand</dt>
+          <dd>DJI</dd>
+          <dt>Brand</dt>
+          <dd>DJI</dd>
+          <dt>Brand</dt>
+          <dd>DJI</dd>
+          <dt>Brand</dt>
+          <dd>DJI</dd>
+          <dt>Brand</dt>
+          <dd>DJI</dd>
+          <dt>Brand</dt>
+          <dd>DJI</dd>
+        </dl>
       </div>
     </li>
     <li>
-      <a href="#" class="accordion__opener">
+      <a href="#" class="accordion__opener title-1">
         Warranty & Services
       </a>
       <div class="accordion__slide">
-        123
+        <div class="text-size-md">
+          <p>
+            Free Technical Support
+          </p>
+        </div>
       </div>
     </li>
     <li>
-      <a href="#" class="accordion__opener">
+      <a href="#" class="accordion__opener title-1">
         Shipping & Returns
       </a>
       <div class="accordion__slide">
-        123
+        <ul>
+          <li>
+            Standard shipping via UPS Ground is included in the quoted price. 
+          </li>
+          <li>
+            Express shipping is via UPS. 
+          </li>
+          <li>
+            Please choose your shipping method at checkout. 
+          </li>
+          <li>
+            An additional Shipping and Handling fee will apply to express shipments. This fee will be quoted at checkout. 
+          </li>
+          <li>
+            Delivery is available to Alaska, Hawaii and Puerto Rico; however, an additional Shipping and Handling fee will apply. This fee will be quoted at checkout. Additional transit time may also be required. 
+          </li>
+        </ul>
       </div>
     </li>
   </ul>

@@ -45,7 +45,7 @@ $vertical-rhythm: ($base-line-height * 1em);
 $base-min-width: 320px;
 
 // Links
-$base-link-color: $base-links;
+$base-link-color: $base-links !default;
 
 // Buttons
 $button-text: var(--button-text-color) !default;
