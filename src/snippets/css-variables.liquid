@@ -6,8 +6,10 @@
   
     {%- assign font_body_bold = settings.font_body | font_modify: 'weight', 'bolder' -%}
     {%- assign font_body_italic = settings.font_body | font_modify: 'style', 'italic' -%}
+    {%- assign font_heading_bold = settings.font_heading | font_modify: 'weight', 'bolder' -%}
   
     {{ font_body_bold | font_face }}
+    {{ font_heading_bold | font_face }}
     {{ font_body_italic | font_face }}
   {% endif %}
 
@@ -21,6 +23,7 @@
         --font-heading: {{ settings.font_heading.family }}, {{ settings.font_heading.fallback_families }};
         --font-body: {{ settings.font_body.family }}, {{ settings.font_body.fallback_families }};
         --font-body-weight: {{ settings.font_body.weight }};
+        --font-heading-weight: {{ settings.font_heading.weight }};
         --font-body-style: {{ settings.font_body.style }};
         --font-heading-style: {{ settings.font_heading.style }};
       {%- when 'google' -%}
