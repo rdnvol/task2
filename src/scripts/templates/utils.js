@@ -205,15 +205,6 @@ export const FrameworkFeaturedVideo = (function() {
     console.log('here')
     var _this;
     _this = this;
-    // if (!_this.thumbnail) {
-    //   _this.youtubeVars.playsinline = 1;
-    //   _this.youtubeVars.fs = 0;
-    //   _this.youtubeVars.loop = 1;
-    //   _this.youtubeVars.iv_load_policy = 3;
-    //   _this.youtubeVars.showinfo = 0;
-    //   _this.youtubeVars.controls = 0;
-    //   _this.youtubeVars.playlist = _this.video_id;
-    // }
     return (_this.player = new YT.Player("player-" + _this.section_id, {
       videoId: _this.video_id,
       playerVars: _this.youtubeVars,
@@ -308,5 +299,12 @@ export const FrameworkFeaturedVideo = (function() {
         .hide();
     }, 350);
   };
+  FrameworkFeaturedVideo.prototype.update = function() {
+    var _this;
+    _this = this;
+    if (_this.video_type === "youtube") {
+      _this.insertYoutubePlayer();
+    }
+  }
   return FrameworkFeaturedVideo;
 })();
