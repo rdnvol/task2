@@ -248,15 +248,18 @@ class App {
 
   initMap() {
     $(window).on('load', function() {
-      let map = new google.maps.Map(document.getElementById("google-map"), {
-        center: { lat: -34.397, lng: 150.644 },
-        zoom: 10,
-        disableDefaultUI: true,
-      });
-      new google.maps.Marker({
-        position: { lat: -34.397, lng: 150.644 },
-        map,
-      });
+      const mapElement = document.getElementById("google-map");
+      if  (mapElement && google) {
+        let map = new google.maps.Map(mapElement, {
+          center: { lat: -34.397, lng: 150.644 },
+          zoom: 10,
+          disableDefaultUI: true,
+        });
+        new google.maps.Marker({
+          position: { lat: -34.397, lng: 150.644 },
+          map,
+        });
+      }
     })
   }
 }
