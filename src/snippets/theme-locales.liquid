@@ -21,17 +21,17 @@
       continue_browsing_html: {{ 'cart.general.continue_browsing_html' | t | json }},
       note: {{ 'cart.general.note' | t | json }},
       cookies: {{ 'cart.general.cookies_required' | t | json }},
-      savings: {{'cart.general.savings' | t | json }},
-      shipping_at_checkout: {{'cart.general.shipping_at_checkout' | t | json }},
+      savings: {{ 'cart.general.savings' | t | json }},
+      shipping_at_checkout: {{ 'cart.general.shipping_at_checkout' | t | json }},
       checkout: {{ 'cart.general.checkout' | t | json }},
-      remove: {{'cart.general.remove' | t | json}},
-      discounted_price: {{'cart.label.discounted_price' | t | json }},
-      original_price: {{'cart.label.original_price' | t | json }},
-      continue_shipping_html: {{'cart.general.continue_shopping_html' | t | json }}
+      remove: {{ 'cart.general.remove' | t | json }},
+      discounted_price: {{ 'cart.label.discounted_price' | t | json }},
+      original_price: {{ 'cart.label.original_price' | t | json }},
+      continue_shipping_html: {{ 'cart.general.continue_shopping_html' | t | json }}
 
     },
     placeholder_data: "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==",
-    placeholder_image:"{{ 'img-placeholder.png' | asset_img_url:'master' }}",
+    placeholder_image: "{{ 'img-placeholder.png' | asset_img_url: 'master' }}",
     moneyFormat: {{ shop.money_format | json }},
     published_locales: [
       {% for locale in shop.published_locales %}
