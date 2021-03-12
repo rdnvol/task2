@@ -49,12 +49,12 @@ class Cart extends Component {
   renderNote() {
     return (
       <div className="col-md-5 col-lg-4 px-0 mb-4 mb-md-0">
-        <label htmlFor="CartSpecialInstructions" className="d-inline-block mb-2">
+        <label htmlFor="CartSpecialInstructions" className="visually-hidden">
           <strong>
             { theme.cart.note }
           </strong>
         </label>
-        <textarea name="note" id="CartSpecialInstructions">{ this.state.cart?.note }</textarea>
+        <textarea name="note" placeholder="Special instructions for seller" id="CartSpecialInstructions">{ this.state.cart?.note }</textarea>
       </div>
     )
   }
@@ -66,55 +66,65 @@ class Cart extends Component {
           <div className="page-title-block text-center">
             <h1>{ theme.cart.title }</h1>
           </div>
-    
-          <form action="/cart" method="post" className="cart-form" noValidate>
-            <table className="cart-table mb-4">
-              <thead className="small--hide">
-              <tr>
-                <th>{ theme.cart.product }</th>
-                <th>{ theme.cart.price }</th>
-                <th>{ theme.cart.quantity }</th>
-                <th>{ theme.cart.total }</th>
-              </tr>
-              </thead>
-              <tbody>
-              { this.props.items.map(item =>
-                <LineItem
-                  item={ item }
-                  key={ item.key }
-                  updateCart={ this.props.getCart }
-                  removeItem={ this.props.removeItem }
-                  updateItem={ this.props.updateItem }/>
-              ) }
-              </tbody>
-            </table>
-      
-            <div className="d-md-flex justify-content-between">
-              { this.ref.dataset.noteEnable === 'true' ? this.renderNote() : '' }
-              <div className="col-md-5 col-lg-4 px-0 ml-auto">
-                <div className="cart-form__total mb-4">
-                  <div className="title-1 mb-3">
-                      { theme.cart.total }
-                      { formatMoney(this.props.cart.total_price, theme.moneyFormat) }
-                  </div>
-                  <div class="cart-form__total__text-box body-3">
-                    { this.renderDiscount() }
-                    <p dangerouslySetInnerHTML={ {__html: theme.cart.shipping_at_checkout} }></p>
+
+          <div className="row">
+            <div className="col-md-10 mx-md-auto">
+
+              <form action="/cart" method="post" className="cart-form" noValidate>
+
+                <table className="cart-table body-2 mb-6">
+                  <thead className="small--hide">
+                  <tr>
+                    <th>{ theme.cart.product }</th>
+                    <th>{ theme.cart.price }</th>
+                    <th>{ theme.cart.quantity }</th>
+                    <th>{ theme.cart.total }</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  { this.props.items.map(item =>
+                    <LineItem
+                      item={ item }
+                      key={ item.key }
+                      updateCart={ this.props.getCart }
+                      removeItem={ this.props.removeItem }
+                      updateItem={ this.props.updateItem }/>
+                  ) }
+                  </tbody>
+                </table>
+
+                <div className="d-md-flex justify-content-between">
+                  { this.ref.dataset.noteEnable === 'true' ? this.renderNote() : '' }
+                  <div className="col-md-5 col-lg-4 px-0 ml-auto">
+                    <div className="cart-form__total mb-4">
+                      <div className="title-1 mb-3">
+                          <div className="mr-2">
+                            { theme.cart.total }
+                          </div>
+                          { formatMoney(this.props.cart.total_price, theme.moneyFormat) }
+                      </div>
+                      <div className="cart-form__total__text-box body-3">
+                        { this.renderDiscount() }
+                        <p dangerouslySetInnerHTML={ {__html: theme.cart.shipping_at_checkout} }></p>
+                      </div>
+                    </div>
+                    <div className="row">
+                      <div className="col-12 col-lg-6">
+                        <button type="button" className="button button--secondary">
+                          Update
+                        </button>
+                      </div>
+                      <div className="col-12 col-lg-6">
+                        <input type="submit" className="mb-3 button" name="checkout" value={ theme.cart.checkout }/>
+                      </div>
+                    </div>
                   </div>
                 </div>
-                <div className="row">
-                  <div className="col-12 col-lg-6">
-                    <button type="button" className="button button--secondary">
-                      Update
-                    </button>
-                  </div>
-                  <div className="col-12 col-lg-6">
-                    <input type="submit" className="mb-3 button" name="checkout" value={ theme.cart.checkout }/>
-                  </div>
-                </div>
-              </div>
+
+              </form>
+
             </div>
-          </form>
+          </div>
         </div>
     )
   }
