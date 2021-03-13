@@ -1,97 +1,99 @@
 {% comment %}
   NOTE:
-    Renders an image
-    Accepts:
-    - src: {string} or {object} desktop image name you want to render (example 'image.png' or section.settings.image)
-    - asset_img_url: {boolean} if true renders an image from assets folder
-    - d: {string} desktop width and height of image for img_url filter (example only width '650x', only height 'x650', both '650x650');
-    - src_m: {string} or {object} mobile image name you want to render (example 'image.png' or section.settings.image)
-            if isn't passed uses desktop image
-    - m: {string} mobile width and height of image for img_url filter
-    - src_t: {string} or {object} tablet image name you want to render (example 'image.png' or section.settings.image)
-    - t: {string} tablet width and height of image for img_url filter
-    - crop: {string} for cropping image if needed (example 'center', 'left', 'right')
-    - lazyload: {boolean} for lazyload image (true by default);
-    - placeholder: {string} image for placeholder (default is 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==')
-    - p_d: {string} desktop width and height of image for img_url filter
-           (if only width set the snippet is double it example '650x' will be rendered as asset_img_url:'650x650', crop: 'center');
-    - p_m: {string} mobile width and height of image for img_url filter
-     (if only width set the snippet is double it example '650x' will be rendered as asset_img_url:'650x650', crop: 'center');
-    for usage:
-    without lazyload
-    {% render
-      'image',
-      asset_img_url: true,
-      src: 'image-src.png',
-      d: '650x',
-      src_m: 'image-src-m.png',
-      m: '375x',
-      src_t: 'image-src-t.png',
-      t: '375x',
-      crop: 'center',
-      lazyload: false,
-      placeholder: 'img-placeholder.png',
-    %}
-    with lazyload
-    {% render
-      'image',
-      asset_img_url: true,
-      src: 'image-src.png',
-      d: '650x',
-      src_m: 'image-src-m.png',
-      m: '375x',
-    %}
-    with metafield (accentuate)
-    {% render
-      'image',
-      metafield: true
-      src: 'test-image.png?options=',
-      d: 'w_430',
-      src_m: 'test-image.png?options=',
-      m: 'w_120,h_260',
-      placeholder: 'img-placeholder.png',
-      p_d: '541x720',
-      p_m: '282x375',
-      crop: 'center',
-    %}
+Renders an image
+  Accepts:
+  - src: {string} or {object} desktop image name you want to render (example 'image.png' or section.settings.image)
+  - asset_img_url: {boolean} if true renders an image from assets folder
+  - d: {string} desktop width and height of image for img_url filter (example only width '650x', only height 'x650', both '650x650');
+  - src_m: {string} or {object} mobile image name you want to render (example 'image.png' or section.settings.image)
+  if isn't passed uses desktop image
+  - m: {string} mobile width and height of image for img_url filter
+  - src_t: {string} or {object} tablet image name you want to render (example 'image.png' or section.settings.image)
+  - t: {string} tablet width and height of image for img_url filter
+  - crop: {string} for cropping image if needed (example 'center', 'left', 'right')
+  - lazyload: {boolean} for lazyload image (true by default);
+  - placeholder: {string} image for placeholder (default is 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==')
+  - p_d: {string} (optional) desktop width and height of image for img_url filter
+  (if isn't set uses dimensions of desktop image)
+  (if only width set the snippet is double it example '650x' will be rendered as asset_img_url:'650x650', crop: 'center');
+  - p_m: {string} (optional) mobile width and height of image for img_url filter
+  (if isn't set uses dimensions of mobile image)
+  (if only width set the snippet is double it example '650x' will be rendered as asset_img_url:'650x650', crop: 'center');
+  for usage:
+  without lazyload
+{% render
+  'image',
+  asset_img_url: true,
+  src: 'image-src.png',
+  d: '650x',
+  src_m: 'image-src-m.png',
+  m: '375x',
+  src_t: 'image-src-t.png',
+  t: '375x',
+  crop: 'center',
+  lazyload: false,
+  placeholder: 'img-placeholder.png',
+%}
+  with lazyload
+{% render
+  'image',
+  asset_img_url: true,
+  src: 'image-src.png',
+  d: '650x',
+  src_m: 'image-src-m.png',
+  m: '375x',
+%}
+  with metafield (accentuate)
+{% render
+  'image',
+  metafield: true
+  src: 'test-image.png?options=',
+  d: 'w_430',
+  src_m: 'test-image.png?options=',
+  m: 'w_120,h_260',
+  placeholder: 'img-placeholder.png',
+  p_d: '541x720',
+  p_m: '282x375',
+  crop: 'center',
+%}
 {% endcomment %}
 
 {% if metafield %}
   {% assign src_mobile = src_m | default: src %}
   {% assign src_tablet = src_t | default: src %}
-  
+
   {% assign d = d | default: '' %}
   {% assign m = m | default: d %}
   {% assign t = t | default: d %}
-  
-  {% assign d_size_arr = d | split:',' %}
+
+  {% assign d_size_arr = d | split: ',' %}
   {% assign d_width = d_size_arr | first | split: 'w_' | last %}
   {% assign d_height = d_size_arr | last | split: 'h_' | last %}
-  
-  {% assign t_size_arr = t | split:',' %}
+
+  {% assign t_size_arr = t | split: ',' %}
   {% assign t_width = t_size_arr | first | split: 'w_' | last %}
   {% assign t_height = t_size_arr | last | split: 'h_' | last %}
-  
-  {% assign m_size_arr = m | split:',' %}
+
+  {% assign m_size_arr = m | split: ',' %}
   {% assign m_width = m_size_arr | first | split: 'w_' | last %}
   {% assign m_height = m_size_arr | last | split: 'h_' | last %}
 {% else %}
   {% assign src_mobile = src_m | default: src %}
   {% assign src_tablet = src_t | default: src %}
-  
+
   {% assign d = d | default: 'master' %}
   {% assign m = m | default: d %}
   {% assign t = t | default: d %}
-  
-  {% assign d_size_arr = d | split:'x' %}
+
+  {% assign d_size_arr = d | split: 'x' %}
   {% assign d_width = d_size_arr | first %}
   {% assign d_height = d_size_arr | last %}
-  
-  {% assign t_size_arr = t | split:'x' %}
+
+  {% assign t_size_arr = t | split: 'x' %}
   {% assign t_width = t_size_arr | first %}
   {% assign t_height = t_size_arr | last %}
-  
-  {% assign m_size_arr = m | split:'x' %}
+
+  {% assign m_size_arr = m | split: 'x' %}
   {% assign m_width = m_size_arr | first %}
   {% assign m_height = m_size_arr | last %}
 {% endif %}
@@ -168,21 +170,6 @@
   {% assign classes = class | append: " lazyload" | strip %}
 {% endif %}
 
-{% assign p_d_default = d_width | append: "x" | append: d_width %}
-{% assign p_m_default = m_width | append: "x" | append: m_width %}
-{% assign p_d = p_d | default: p_d_default %}
-{% assign p_m = p_m | default: p_m_default %}
-
-{% if placeholder %}
-  {% assign placeholder = placeholder | asset_img_url: p_d, crop: 'center' %}
-  {% assign placeholder_m = placeholder | asset_img_url: p_m, crop: 'center' %}
-  {% assign placeholder_t = placeholder | asset_img_url: p_t, crop: 'center' %}
-{% else %}
-  {% assign placeholder = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' %}
-  {% assign placeholder_m = placeholder %}
-  {% assign placeholder_t = placeholder %}
-{% endif %}
-
 {%- comment %}
   Check if crop filter is present
 {% endcomment -%}
@@ -192,68 +179,91 @@
   {% assign crop = crop | default: false %}
 {% endif %}
 
+{% assign pd_heigth = d_width | divided_by: src.aspect_ratio | ceil %}
+{% assign pm_heigth = m_width | divided_by: src_m.aspect_ratio | ceil %}
+{% assign pt_heigth = t_width | divided_by: src_t.aspect_ratio | ceil %}
+
+{% assign p_d_default = d_width | append: "x" | append: pd_heigth %}
+{% assign p_m_default = m_width | append: "x" | append: pm_heigth %}
+{% assign p_t_default = m_width | append: "x" | append: pt_heigth %}
+
+{% assign p_d = p_d | default: p_d_default %}
+{% assign p_m = p_m | default: p_m_default %}
+{% assign p_t = p_t | default: p_t_default %}
+
+{% if placeholder %}
+  {% assign placeholder_d = placeholder | asset_img_url: p_d, crop: 'center' %}
+  {% assign placeholder_m = placeholder | asset_img_url: p_m, crop: 'center' %}
+  {% assign placeholder_t = placeholder | asset_img_url: p_t, crop: 'center' %}
+{% else %}
+  {% assign placeholder = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' %}
+  {% assign placeholder_d = placeholder %}
+  {% assign placeholder_m = placeholder %}
+  {% assign placeholder_t = placeholder %}
+{% endif %}
+
 {% if asset_img_url %}
   {% if crop %}
-    {% assign d_src = src | asset_img_url:d, crop: crop %}
-    {% assign d_src_2x = src | asset_img_url:d2x, crop: crop %}
+    {% assign d_src = src | asset_img_url: d, crop: crop %}
+    {% assign d_src_2x = src | asset_img_url: d2x, crop: crop %}
     {% assign d_srcset = d_src | append: ", " | append: d_src_2x | append: ' 2x' %}
-    
-    {% assign t_src = src_tablet | asset_img_url:t, crop: crop %}
-    {% assign t_src_2x = src_tablet | asset_img_url:t2x, crop: crop %}
+
+    {% assign t_src = src_tablet | asset_img_url: t, crop: crop %}
+    {% assign t_src_2x = src_tablet | asset_img_url: t2x, crop: crop %}
     {% assign t_srcset = t_src | append: ", " | append: t_src_2x | append: ' 2x' %}
-    
-    {% assign m_src = src_mobile | asset_img_url:m, crop: crop %}
-    {% assign m_src_2x = src_mobile | asset_img_url:m2x, crop: crop %}
+
+    {% assign m_src = src_mobile | asset_img_url: m, crop: crop %}
+    {% assign m_src_2x = src_mobile | asset_img_url: m2x, crop: crop %}
     {% assign m_srcset = m_src | append: ", " | append: m_src_2x | append: ' 2x' %}
   {% else %}
-    {% assign d_src = src | asset_img_url:d %}
-    {% assign d_src_2x = src | asset_img_url:d2x %}
+    {% assign d_src = src | asset_img_url: d %}
+    {% assign d_src_2x = src | asset_img_url: d2x %}
     {% assign d_srcset = d_src | append: ", " | append: d_src_2x | append: ' 2x' %}
-    
-    {% assign t_src = src_tablet | asset_img_url:t %}
-    {% assign t_src_2x = src_tablet | asset_img_url:t2x %}
+
+    {% assign t_src = src_tablet | asset_img_url: t %}
+    {% assign t_src_2x = src_tablet | asset_img_url: t2x %}
     {% assign t_srcset = t_src | append: ", " | append: t_src_2x | append: ' 2x' %}
-    
-    {% assign m_src = src_mobile | asset_img_url:m %}
-    {% assign m_src_2x = src_mobile | asset_img_url:m2x %}
+
+    {% assign m_src = src_mobile | asset_img_url: m %}
+    {% assign m_src_2x = src_mobile | asset_img_url: m2x %}
     {% assign m_srcset = m_src | append: ", " | append: m_src_2x | append: ' 2x' %}
   {% endif %}
-  {% elsif metafield %}
-  {% assign d_src = src | append:d %}
-  {% assign d_src_2x = src | append:d2x %}
+{% elsif metafield %}
+  {% assign d_src = src | append: d %}
+  {% assign d_src_2x = src | append: d2x %}
   {% assign d_srcset = d_src | append: ", " | append: d_src_2x | append: ' 2x' %}
-  
-  {% assign t_src = src_tablet | append:t %}
-  {% assign t_src_2x = src_tablet | append:t2x %}
+
+  {% assign t_src = src_tablet | append: t %}
+  {% assign t_src_2x = src_tablet | append: t2x %}
   {% assign t_srcset = t_src | append: ", " | append: t_src_2x | append: ' 2x' %}
-  
-  {% assign m_src = src_mobile | append:m %}
-  {% assign m_src_2x = src_mobile | append:m2x %}
+
+  {% assign m_src = src_mobile | append: m %}
+  {% assign m_src_2x = src_mobile | append: m2x %}
   {% assign m_srcset = m_src | append: ", " | append: m_src_2x | append: ' 2x' %}
 {% else %}
   {% if crop %}
-    {% assign d_src = src | img_url:d, crop: crop %}
-    {% assign d_src_2x = src | img_url:d2x, crop: crop %}
+    {% assign d_src = src | img_url: d, crop: crop %}
+    {% assign d_src_2x = src | img_url: d2x, crop: crop %}
     {% assign d_srcset = d_src | append: ", " | append: d_src_2x | append: ' 2x' %}
-    
-    {% assign t_src = src_tablet | img_url:t, crop: crop %}
-    {% assign t_src_2x = src_tablet | img_url:t2x, crop: crop %}
+
+    {% assign t_src = src_tablet | img_url: t, crop: crop %}
+    {% assign t_src_2x = src_tablet | img_url: t2x, crop: crop %}
     {% assign t_srcset = t_src | append: ", " | append: t_src_2x | append: ' 2x' %}
-    
-    {% assign m_src = src_mobile | img_url:m, crop: crop %}
-    {% assign m_src_2x = src_mobile | img_url:m2x, crop: crop %}
+
+    {% assign m_src = src_mobile | img_url: m, crop: crop %}
+    {% assign m_src_2x = src_mobile | img_url: m2x, crop: crop %}
     {% assign m_srcset = m_src | append: ", " | append: m_src_2x | append: ' 2x' %}
   {% else %}
-    {% assign d_src = src | img_url:d %}
-    {% assign d_src_2x = src | img_url:d2x %}
+    {% assign d_src = src | img_url: d %}
+    {% assign d_src_2x = src | img_url: d2x %}
     {% assign d_srcset = d_src | append: ", " | append: d_src_2x | append: ' 2x' %}
-    
-    {% assign t_src = src_tablet | img_url:t %}
-    {% assign t_src_2x = src_tablet | img_url:t2x %}
+
+    {% assign t_src = src_tablet | img_url: t %}
+    {% assign t_src_2x = src_tablet | img_url: t2x %}
     {% assign t_srcset = t_src | append: ", " | append: t_src_2x | append: ' 2x' %}
-    
-    {% assign m_src = src_mobile | img_url:m %}
-    {% assign m_src_2x = src_mobile | img_url:m2x %}
+
+    {% assign m_src = src_mobile | img_url: m %}
+    {% assign m_src_2x = src_mobile | img_url: m2x %}
     {% assign m_srcset = m_src | append: ", " | append: m_src_2x | append: ' 2x' %}
   {% endif %}
 {% endif %}
@@ -266,12 +276,12 @@
     {% if src_t %}
       <source data-srcset="{{ t_srcset }}" media="(max-width: 1199px)" srcset="{{ placeholder_t }}">
     {% endif %}
-    <source data-srcset="{{ d_srcset }}" srcset="{{ placeholder }}">
+    <source data-srcset="{{ d_srcset }}" srcset="{{ placeholder_d }}">
     <img data-src="{{ d_src }}"
-            {% if classes %} class="{{ classes }}"{% endif %}
+        {% if classes %} class="{{ classes }}"{% endif %}
          data-sizes="auto"
          alt="{{ alt | default: 'image description' }}"
-         src="{{ placeholder }}" {{ data_attribute }}>
+         src="{{ placeholder_d }}" {{ data_attribute }}>
   </picture>
 {% else %}
   <picture>
@@ -282,7 +292,8 @@
       <source srcset="{{ t_srcset }}" media="(max-width: 1199px)">
     {% endif %}
     <source srcset="{{ d_srcset }}">
-    <img src="{{ d_src }}"{% if classes %} class="{{ classes }}"{% endif %} alt="{{ alt | default: 'image description' }}" {{ data_attribute }}>
+    <img src="{{ d_src }}"{% if classes %} class="{{ classes }}"{% endif %}
+         alt="{{ alt | default: 'image description' }}" {{ data_attribute }}>
   </picture>
 {% endif %}
 

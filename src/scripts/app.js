@@ -16,10 +16,8 @@ import fancybox from '@fancyapps/fancybox';
 // utils
 import { getLocaleAndPathname } from "Scripts/utils";
 
-'Scripts/utils';
-
 // templates
-import product from "Sections/product";
+import "Sections/product";
 import 'Scripts/login'
 import 'Scripts/addresses'
 
