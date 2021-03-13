@@ -1,5 +1,7 @@
 name: ThemeCheck
 
+on: [push, pull_request]
+
 jobs:
   theme-check:
     runs-on: ubuntu-latest
