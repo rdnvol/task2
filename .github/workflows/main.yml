@@ -1,7 +1,7 @@
 name: ThemeCheck
 
 jobs:
-  build-and-deploy:
+  theme-check:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -13,4 +13,4 @@ jobs:
       - name: Install Shopify/theme-check
         run: gem install theme-check
       - name: Run theme-check
-        run: btheme-check
+        run: theme-check
