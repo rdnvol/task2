@@ -61,6 +61,20 @@ $button-text-on-disabled: var(--button-text-on-disabled) !default;
 $button-border-on-disabled: var(--button-border-on-disabled) !default;
 $button-background-on-disabled: var(--button-background-on-disabled) !default;
 
+// Secondary buttons
+$secondary-button-text: var(--secondary-button-text-color) !default;
+$secondary-button-text-on-hover: var(--secondary-button-hover-text-color) !default;
+$secondary-button-text-on-focus: var(--secondary-button-focus-text-color) !default;
+$secondary-button-border: var(--secondary-button-border-color) !default;
+$secondary-button-border-on-hover: var(--secondary-button-hover-border-color) !default;
+$secondary-button-border-on-focus: var(--secondary-button-focus-border-color) !default;
+$secondary-button-background: var(--secondary-button-background-color) !default;
+$secondary-button-background-on-hover: var(--secondary-button-hover-background-color) !default;
+$secondary-button-background-on-focus: var(--secondary-button-focus-background-color) !default;
+$secondary-button-text-on-disabled: var(--secondary-button-text-on-disabled) !default;
+$secondary-button-border-on-disabled: var(--secondary-button-border-on-disabled) !default;
+$secondary-button-background-on-disabled: var(--secondary-button-background-on-disabled) !default;
+
 $button-padding: 12px 15px !default;
 $button-font-size: inherit !default;
 $button-border-radius: var(--button-border-radius) !default;
