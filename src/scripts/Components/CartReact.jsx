@@ -109,12 +109,12 @@ class Cart extends Component {
                       </div>
                     </div>
                     <div className="row">
-                      <div className="col-12 col-lg-6 d-md-flex align-items-start justify-content-md-end mb-3 mb-lg-0">
+                      <div className="col-12 col-lg-6 mb-3 mb-lg-0">
                         <button type="button" className="button button--secondary w-100">
                           Update
                         </button>
                       </div>
-                      <div className="col-12 col-lg-6 d-md-flex align-items-start justify-content-md-end">
+                      <div className="col-12 col-lg-6">
                         <input type="submit" className="mb-3 w-100 button" name="checkout" value={ theme.cart.checkout }/>
                       </div>
                     </div>
