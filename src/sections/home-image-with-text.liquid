@@ -6,12 +6,12 @@
           {%- if section.settings.image != blank -%}
             {% render "image",
             src: section.settings.image,
-            d:"635x794",
+            d: "635x794",
             src_m: section.settings.image,
-            m:"345x431",
+            m: "345x431",
             placeholder: 'img-placeholder.png',
             p_d: '635x794',
-            p_m: '345x431',
+            p_m: '345x431'
             %}
           {%- else -%}
             {{ 'image' | placeholder_svg_tag: "placeholder-svg" }}

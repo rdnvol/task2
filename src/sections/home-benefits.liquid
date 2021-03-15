@@ -1,7 +1,7 @@
 <div class="section">
   <div class="container">
     <div class="row justify-content-md-center">
-      {% for block in section.blocks  %}
+      {% for block in section.blocks %}
         <div class="col-6 col-md-4 col-lg-2" {{ block.shopify_attributes }}>
           <div class="benefits-item text-center">
             <div class="benefits-item__img">
@@ -11,7 +11,7 @@
                   src: block.settings.image,
                   d: '50x',
                   placeholder: 'img-placeholder.png',
-                  p_d: '50x',
+                  p_d: '50x'
                 %}
               {% else %}
                 {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
