@@ -3,7 +3,9 @@
     
     <div data-has-items {% if cart.item_count == 0 %}class="d-none"{% endif %}>
       <div class="page-title-block text-center">
-        <h1>{{ 'cart.general.title' | t }}</h1>
+        <h1 class="h2">
+          {{ 'cart.general.title' | t }}
+        </h1>
       </div>
       
       <form action="/cart" method="post" class="cart-form" novalidate>

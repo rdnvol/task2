@@ -22,7 +22,7 @@ class Cart extends Component {
         <div className="col-md-8 mx-auto">
           <div className="text-center">
             <div className="page-title-block">
-              <h1>{ theme.cart.title }</h1>
+              <h1 className="h2">{ theme.cart.title }</h1>
             </div>
             
             <div className="supports-cookies">
@@ -48,7 +48,7 @@ class Cart extends Component {
   
   renderNote() {
     return (
-      <div className="col-md-5 col-lg-4 px-0 mb-4 mb-md-0">
+      <div className="col-md-5 mb-4 mb-md-0">
         <label htmlFor="CartSpecialInstructions" className="visually-hidden">
           <strong>
             { theme.cart.note }
@@ -64,7 +64,7 @@ class Cart extends Component {
     return (
         <div>
           <div className="page-title-block text-center">
-            <h1>{ theme.cart.title }</h1>
+            <h1 className="h2">{ theme.cart.title }</h1>
           </div>
 
           <div className="row">
@@ -72,7 +72,7 @@ class Cart extends Component {
 
               <form action="/cart" method="post" className="cart-form" noValidate>
 
-                <table className="cart-table body-2 mb-6">
+                <table className="cart-table body-2 mb-8 mb-md-6">
                   <thead className="small--hide">
                   <tr>
                     <th>{ theme.cart.product }</th>
@@ -93,11 +93,11 @@ class Cart extends Component {
                   </tbody>
                 </table>
 
-                <div className="d-md-flex justify-content-between">
+                <div className="row justify-content-md-between">
                   { this.ref.dataset.noteEnable === 'true' ? this.renderNote() : '' }
-                  <div className="col-md-5 col-lg-4 px-0 ml-auto">
+                  <div className="col-md-5 ml-auto">
                     <div className="cart-form__total mb-4">
-                      <div className="title-1 mb-3">
+                      <div className="title-1 d-flex justify-content-between justify-content-md-end">
                           <div className="mr-2">
                             { theme.cart.total }
                           </div>
@@ -109,13 +109,13 @@ class Cart extends Component {
                       </div>
                     </div>
                     <div className="row">
-                      <div className="col-12 col-lg-6">
-                        <button type="button" className="button button--secondary">
+                      <div className="col-12 col-lg-6 d-md-flex align-items-start justify-content-md-end mb-3 mb-lg-0">
+                        <button type="button" className="button button--secondary w-100">
                           Update
                         </button>
                       </div>
-                      <div className="col-12 col-lg-6">
-                        <input type="submit" className="mb-3 button" name="checkout" value={ theme.cart.checkout }/>
+                      <div className="col-12 col-lg-6 d-md-flex align-items-start justify-content-md-end">
+                        <input type="submit" className="mb-3 w-100 button" name="checkout" value={ theme.cart.checkout }/>
                       </div>
                     </div>
                   </div>
