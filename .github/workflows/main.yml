@@ -3,11 +3,22 @@ name: ThemeCheck
 on: [push, pull_request]
 
 jobs:
-  theme-check:
+
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      - name: Use Node.js 12
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+      - run: npm install
+      - run: npm run js:css
+
+  theme-check:
+    runs-on: ubuntu-latest
+    steps:
       - name: Setup Ruby
         uses: actions/setup-ruby@v1
         with:
