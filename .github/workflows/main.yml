@@ -27,7 +27,7 @@ jobs:
       - name: NPM install
         run: npm install
       - name: Build
-      run: npm run build
+        run: npm run build
       - name: Setup Ruby
         uses: actions/setup-ruby@v1
         with:
