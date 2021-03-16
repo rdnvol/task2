@@ -18,14 +18,14 @@
               src: article.image.src,
               d: '857x',
               src_m: article.image.src,
-              m: '375x',
+              m: '375x'
             %}
           </div>
           <div class="post__text-block rte">
             {{ article.content }}
           </div>
           {% if settings.social_sharing_blog %}
-            {% include 'social-sharing', share_title: article.title, share_permalink: article.url, share_image: article.image %}
+            {% render 'social-sharing', share_title: article.title, share_permalink: article.url, share_image: article.image %}
           {% endif %}
         </article>
         <div id="comments" class="post__discussion">

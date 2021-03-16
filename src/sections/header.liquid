@@ -26,7 +26,7 @@
               {% endif %}
               {% if section.settings.search_enable %}
                 <a href="{{ routes.search_url }}" class="header__btn d-none d-xs-inline-flex d-lg-none">
-                  {%- include 'icon' with 'search' -%}
+                  {%- render 'icon' with 'search' -%}
                 </a>
               {% endif %}
             </div>
@@ -87,12 +87,14 @@
                id="Search"
                value="{{ search.terms | escape }}"
                placeholder="{{ 'general.search.placeholder' | t }}">
-        {% include "button",
+        {% comment %}theme-check-disable ConvertIncludeToRender{% endcomment %}
+        {% render "button",
           element: "button",
           type: "icon",
           class: 'btn page-search-form__button d-flex align-items-center',
           snippet: 'icon-search'
         %}
+        {% comment %}theme-check-enable{% endcomment %}
       </form>
     {% endif %}
     <ul class="main-menu menu-accordion">

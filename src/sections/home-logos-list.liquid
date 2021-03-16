@@ -2,7 +2,7 @@
   <div class="container">
     <h2 class="text-center">{{ section.settings.title }}</h2>
     <div class="row justify-content-center mb-n4">
-      {% for block in section.blocks  %}
+      {% for block in section.blocks %}
         <div class="col-6 col-sm-4 col-lg-3 mb-4" {{ block.shopify_attributes }}>
           <div class="logos-item">
             {% if block.settings.url %}
@@ -14,7 +14,7 @@
                 {% render
                   'image',
                   src: block.settings.image,
-                  d: '300x',
+                  d: '300x'
                   %}
               {% else %}
                 {{ 'image' | placeholder_svg_tag: "placeholder-svg" }}

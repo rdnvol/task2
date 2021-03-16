@@ -2,12 +2,9 @@
   if product.title
 		assign compare_at_price = product.compare_at_price
 		assign price = product.price
-		assign available = product.available
-		assign variant = product.variants.first
 	else
 		assign compare_at_price = 2999
 		assign price = 1999
-		assign available = true
 	endif
 
 	assign money_price = price | money

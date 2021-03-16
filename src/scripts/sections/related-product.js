@@ -32,5 +32,6 @@ class RelatedProducts {
   async init() {
     let relatedProductsData = await this.initRelatedProducts();
     this.wrapper.html($(relatedProductsData).find('.container'))
+    console.log('loaded recommendations')
   }
 }

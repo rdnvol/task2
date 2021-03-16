@@ -3,7 +3,6 @@ import bgVideo from 'jquery-background-video';
 
 register('video', {
   
-  
   initBackgroundVideo: function() {
     $(`[data-section-id="${this.id}"] .jquery-background-video`).bgVideo({
       fadeIn: 1000,

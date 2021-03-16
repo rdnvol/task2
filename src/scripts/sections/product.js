@@ -1,7 +1,7 @@
 import { getUrlWithVariant, ProductForm } from '@shopify/theme-product-form';
 import { formatMoney } from '@shopify/theme-currency';
 import Swiper from "swiper";
-import { addItem, getCart } from "Scripts/cartAjaxCall";
+import { addItem, getCart } from "../helpers/cartAjaxCall";
 import { register } from '@shopify/theme-sections';
 
 register('product', {

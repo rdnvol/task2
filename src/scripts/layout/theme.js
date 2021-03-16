@@ -1,3 +1,5 @@
+import '../../styles/theme.scss';
+
 // plugins
 require("expose-loader?$!jquery");
 import 'picturefill';
@@ -7,41 +9,25 @@ import 'lazysizes/plugins/rias/ls.rias';
 import 'lazysizes/plugins/bgset/ls.bgset';
 import 'lazysizes';
 import 'lazysizes/plugins/respimg/ls.respimg';
-import 'Scripts/jquery.plugins'
-import { SmoothScroll } from 'Scripts/jquery.plugins';
-import Swiper from 'swiper';
-import fancybox from '@fancyapps/fancybox';
+import '../helpers/jquery.plugins'
+import { SmoothScroll } from '../helpers/jquery.plugins';
 
 
 // utils
-import { getLocaleAndPathname } from "Scripts/utils";
+import { getLocaleAndPathname } from "../helpers/utils";
 
-// templates
-import "Sections/product";
-import 'Scripts/login'
-import 'Scripts/addresses'
-
-// sections
-import { load } from '@shopify/theme-sections';
-load('*');
-import "Sections/related-product";
-import "Sections/popup";
-import "Sections/testimonials";
-import "Sections/video";
-import "Sections/slideshow";
-import "Sections/iframe-video";
-
-import Cart from "./Components/CartReact";
-import CartCount from "./Components/CartCount";
-import CartPopup from "./Components/CartPopup";
+// Cart
+import "Components/CartReact";
+import "Components/CartCount";
+import "Components/CartPopup";
 
 
 class App {
   constructor() {
     this.init();
   }
-  
-  
+
+
   init() {
     this.setHeaderHeight();
     this.initMobileNav();
@@ -206,11 +192,11 @@ class App {
       }
     });
   }
-  
+
   setHeaderHeight() {
     document.documentElement.style.setProperty('--header-height', $('#header').css('height'));
   }
-  
+
   initCurrencySwitcher() {
     function currencyFormSubmit(event) {
       event.target.form.submit();
@@ -220,7 +206,7 @@ class App {
       currencySwitchers.forEach(el => el.addEventListener('change', currencyFormSubmit))
     }
   }
-  
+
   initLanguageSwitcher() {
     const [curLocale, pathname] = getLocaleAndPathname(theme.published_locales);
     let languageSwitchers = document.querySelectorAll('[name="locales"]');

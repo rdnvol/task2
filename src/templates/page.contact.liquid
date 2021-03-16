@@ -24,7 +24,7 @@
 									id="ContactFormName"
 									placeholder="{{ 'contact.form.name' | t }}"
 									required
-									value="{% if form[name] %}{{ form[name] }}{% elsif customer %}{{ customer.name }}{% endif %}">
+									value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}">
 							</div>
 						</div>
 						<div class="col-md-6">
@@ -49,7 +49,7 @@
 							id="ContactFormPhone"
 							placeholder="{{ 'contact.form.phone' | t }}"
 							required
-							value="{% if form[phone] %}{{ form.phone }}{% elsif customer %}{{ customer.phone }}{% endif %}"
+							value="{% if form.phone %}{{ form.phone }}{% elsif customer %}{{ customer.phone }}{% endif %}"
 							pattern="[0-9\-]*">
 					</div>
 					<div class="input-holder">

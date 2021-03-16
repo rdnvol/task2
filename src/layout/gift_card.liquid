@@ -1,3 +1,4 @@
+{% comment %}theme-check-disable{% endcomment %}
 <!doctype html>
 <html class="no-js" lang="{{ shop.locale }}">
 <head>
@@ -17,10 +18,10 @@
 
   <meta name="description" content="{{ 'gift_cards.issued.subtext' | t }}">
 
-  {% include 'style-tags', layout: 'gift_card' %}
-  {% include 'css-variables' %}
+  {% render 'style-tags', layout: 'gift_card' %}
+  {% render 'css-variables' %}
 
-  {% include 'script-tags', layout: 'gift_card' %}
+  {% render 'script-tags', layout: 'gift_card' %}
 
   {{ content_for_header }}
 </head>

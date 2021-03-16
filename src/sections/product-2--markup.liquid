@@ -1,4 +1,4 @@
-{% include 'breadcrumbs--markup' %}
+{% render 'breadcrumbs--markup' %}
 <section data-section-id="{{ section.id }}" class="section page-section" data-section-type="product">
   <div class="container">
     <div class="row">
@@ -16,7 +16,7 @@
                   m: '375x',
                   placeholder: 'img-placeholder.png',
                   p_d: '650x',
-                  p_m: '375x',
+                  p_m: '375x'
                 %}
               </div>
             </div>
@@ -31,7 +31,7 @@
                   m: '375x',
                   placeholder: 'img-placeholder.png',
                   p_d: '650x',
-                  p_m: '375x',
+                  p_m: '375x'
                 %}
               </div>
             </div>
@@ -46,7 +46,7 @@
                   m: '375x',
                   placeholder: 'img-placeholder.png',
                   p_d: '650x',
-                  p_m: '375x',
+                  p_m: '375x'
                 %}
               </div>
             </div>
@@ -61,7 +61,7 @@
                   m: '375x',
                   placeholder: 'img-placeholder.png',
                   p_d: '650x',
-                  p_m: '375x',
+                  p_m: '375x'
                 %}
               </div>
             </div>
@@ -80,7 +80,7 @@
                   m: '105x',
                   placeholder: 'img-placeholder.png',
                   p_d: '203x',
-                  p_m: '105x',
+                  p_m: '105x'
                 %}
               </div>
             </div>
@@ -95,7 +95,7 @@
                   m: '105x',
                   placeholder: 'img-placeholder.png',
                   p_d: '203x',
-                  p_m: '105x',
+                  p_m: '105x'
                 %}
               </div>
             </div>
@@ -110,7 +110,7 @@
                   m: '105x',
                   placeholder: 'img-placeholder.png',
                   p_d: '203x',
-                  p_m: '105x',
+                  p_m: '105x'
                 %}
               </div>
             </div>
@@ -125,7 +125,7 @@
                   m: '105x',
                   placeholder: 'img-placeholder.png',
                   p_d: '203x',
-                  p_m: '105x',
+                  p_m: '105x'
                 %}
               </div>
             </div>
@@ -140,7 +140,7 @@
               asset_img_url: true,
               src: 'img-placeholder.png',
               d: '375x',
-              placeholder: 'img-placeholder.png',
+              placeholder: 'img-placeholder.png'
             %}
           </div>
           <div class="product-gallery-mobile__img">
@@ -149,7 +149,7 @@
               asset_img_url: true,
               src: 'img-placeholder.png',
               d: '375x',
-              placeholder: 'img-placeholder.png',
+              placeholder: 'img-placeholder.png'
             %}
           </div>
           <div class="product-gallery-mobile__img">
@@ -158,7 +158,7 @@
               asset_img_url: true,
               src: 'img-placeholder.png',
               d: '375x',
-              placeholder: 'img-placeholder.png',
+              placeholder: 'img-placeholder.png'
             %}
           </div>
           <div class="product-gallery-mobile__img">
@@ -167,7 +167,7 @@
               asset_img_url: true,
               src: 'img-placeholder.png',
               d: '375x',
-              placeholder: 'img-placeholder.png',
+              placeholder: 'img-placeholder.png'
             %}
           </div>
         </div>
@@ -280,12 +280,12 @@
         </div>
         
         {% if section.settings.show_share_buttons %}
-          {% include 'social-sharing', share_title: product.title, share_permalink: product.url, share_image: product %}
+          {% render 'social-sharing', share_title: product.title, share_permalink: product.url, share_image: product %}
         {% endif %}
       </div>
     </div>
   </div>
-  {%- include 'cart-popup' -%}
+  {%- render 'cart-popup' -%}
 </section>
 
 {% schema %}

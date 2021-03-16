@@ -1,5 +1,5 @@
 import { register } from '@shopify/theme-sections';
-import { FrameworkFeaturedVideo } from "Scripts/utils";
+import { FrameworkFeaturedVideo } from "../helpers/utils";
 
 register('iframe-video', {
   

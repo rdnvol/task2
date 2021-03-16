@@ -6,6 +6,7 @@
  * @namespace password
  */
 
+console.log('test')
 const selectors = {
   recoverPasswordFormTriggers: '[data-recover-toggle]',
   recoverPasswordForm: '[data-recover-form]',

@@ -42,7 +42,6 @@
     <p>{{ 'gift_cards.issued.remaining_html' | t: balance: formatted_current_balance }}</p>
   {% endif %}
 
-  {%- assign code_size = gift_card.code | format_code | size -%}
   <span id="GiftCardDigits" class="giftcard__code" data-gift-card-digits>{{ gift_card.code | format_code }}</span>
 
   <p>{{ 'gift_cards.issued.redeem' | t }}</p>

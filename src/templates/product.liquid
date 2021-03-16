@@ -1,6 +1,6 @@
 {% section 'product' %}
 {% section 'product-recommendations' %}
-
+{% assign current_variant = product.selected_or_first_available_variant %}
 <script type="application/ld+json">
 {
   "@context": "http://schema.org/",
