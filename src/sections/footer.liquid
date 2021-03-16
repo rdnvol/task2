@@ -88,13 +88,6 @@
           <div class="locales-wrapper">
             <select name="locales" class="w-100 mb-2">
               {% for locale in shop.published_locales %}
-                {% liquid
-                  if locale.primary
-                    assign locale_url = request.path
-                  else
-                    assign locale_url = locale.root_url | append: request.path
-                  endif
-                %}
                 <option {% if request.locale.name == locale.name %}selected{% endif %}
                         data-path="{{ request.path }}" value="{{ locale.root_url }}">{{ locale.name }}</option>
               {% endfor %}

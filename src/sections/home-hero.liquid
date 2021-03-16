@@ -21,7 +21,7 @@
           {%- endif -%}
           {{ section.settings.text }}
           {%- if section.settings.button_link != blank and section.settings.button_label != blank -%}
-            {% include 'button',
+            {% render 'button',
               href: section.settings.button_link,
               text: section.settings.button_label
             %}

@@ -4,13 +4,10 @@
 
   case section.settings.grid
     when 2
-      assign max_height = 530
       assign grid_item_width = 'col-sm-6 col-lg-6'
     when 3
-      assign max_height = 345
       assign grid_item_width = 'col-sm-6 col-lg-4'
     when 4
-      assign max_height = 250
       assign grid_item_width = 'col-sm-6 col-lg-3'
   endcase
 
@@ -22,13 +19,13 @@
     <div class="row">
       {% liquid
         for product in collection.products limit: product_limit
-          render "product-card", product: product
+          render "product-card", product: product, grid_item_width: grid_item_width
         else
           for i in (1..product_limit)
             capture current
               cycle 1, 2, 3, 4, 5, 6
             endcapture
-            render "product-card--empty", index: current
+            render "product-card--empty", index: current, grid_item_width: grid_item_width
           endfor
         endfor
       %}

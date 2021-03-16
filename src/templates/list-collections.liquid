@@ -7,7 +7,7 @@
       {% for collection in collections %}
         <div class="col-sm-6 col-lg-3">
           <div class="collection-item text-center">
-            <a class="collection-item__img" href="{{ collection.url }}" title="{{ 'collections.general.link_title' | t: title: title }}">
+            <a class="collection-item__img" href="{{ collection.url }}" title="{{ 'collections.general.link_title' | t: title: collection.title }}">
               {% assign image = collection.image | default: collection.products[0].featured_image %}
               {% render
                 'image',
@@ -20,7 +20,7 @@
             </a>
             <div class="collection-item__box">
               <h2 class="h4 collection-item__title">
-                <a href="{{ collection.url }}" title="{{ 'collections.general.link_title' | t: title: title }}">{{ collection.title }}</a>
+                <a href="{{ collection.url }}" title="{{ 'collections.general.link_title' | t: title: collection.title }}">{{ collection.title }}</a>
               </h2>
               <p>{{ collection.all_products_count }} {{ collection.all_products_count | pluralize: 'product', 'products' }}</p>
             </div>
