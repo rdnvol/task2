@@ -36,7 +36,7 @@ pipeline {
            -v `pwd`:/home/jenkins/workspace \\
            -w /home/jenkins/workspace \\
            hub.bystrov.agency/ci/node:latest \\
-           npm run js:css
+           npm run build
            """
       }
     }
