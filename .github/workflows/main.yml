@@ -18,6 +18,8 @@ jobs:
 
   theme-check:
     runs-on: ubuntu-latest
+    needs:
+      - build
     steps:
       - name: Setup Ruby
         uses: actions/setup-ruby@v1
