@@ -59,7 +59,7 @@ pipeline {
            -v ${APP_ENV_FILE}:/home/jenkins/workspace/.env \\
            -w /home/jenkins/workspace/src \\
            hub.bystrov.agency/ci/themekit:latest \\
-           theme deploy --vars='../.env'
+           npm run theme:deploy
            """
       }
       post {
