@@ -45,7 +45,7 @@
                            placeholder="{{ 'general.newsletter_form.email_placeholder' | t }}"
                            class="footer__form__input">
                     <button type="submit" class="footer__form__button">
-                      {%- include 'icon-arrow-right' -%}
+                      {%- render 'icon-arrow-right' -%}
                     </button>
                   </div>
                 {% endform %}
@@ -88,11 +88,13 @@
           <div class="locales-wrapper">
             <select name="locales" class="w-100 mb-2">
               {% for locale in shop.published_locales %}
-                {% if locale.primary %}
-                  {% assign locale_url = request.path %}
-                {% else %}
-                  {% assign locale_url = locale.root_url | append: request.path %}
-                {% endif %}
+                {% liquid
+                  if locale.primary
+                    assign locale_url = request.path
+                  else
+                    assign locale_url = locale.root_url | append: request.path
+                  endif
+                %}
                 <option {% if request.locale.name == locale.name %}selected{% endif %}
                         data-path="{{ request.path }}" value="{{ locale.root_url }}">{{ locale.name }}</option>
               {% endfor %}
@@ -103,7 +105,7 @@
     </div>
     <div class="footer__panel text-center">
       {% capture copy %}
-        &copy; {{ 'now' | date: "%Y" }} {{ shop.name | link_to: routes.root_url | l_strip }}.
+        &copy; {{ 'now' | date: "%Y" }} {{ shop.name | link_to: routes.root_url | lstrip }}.
       {% endcapture %}
       {% assign first_part = copy | prepend:'<p>' %}
       {% assign rights_text = section.settings.rights_text | replace: '<p>', first_part %}

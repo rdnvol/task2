@@ -1,13 +1,15 @@
 <!doctype html>
 <html class="no-js supports-no-cookies" lang="{{ shop.locale }}">
   <head>
-    {% render 'theme-meta' %}
-    {% render 'theme-seo' %}
-    {% render 'theme-head-styles' %}
+    {% liquid
+      render 'theme-meta'
+      render 'theme-seo'
+      render 'theme-head-styles'
 
-    {% render 'theme-locales' %}
-    {% render 'theme-head-scripts' %}
-    {% render 'head-third-party-scripts' %}
+      render 'theme-locales'
+      render 'theme-head-scripts'
+      render 'head-third-party-scripts'
+    %}
 
     {{ content_for_header }}
   </head>

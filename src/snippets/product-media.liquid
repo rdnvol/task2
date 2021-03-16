@@ -28,7 +28,7 @@
       </div>
     {%- endif -%}
   {% when 'external_video' %}
-    <div class="swiper-slide" style="padding-top: {{ 1 | divided_by: media.aspect_ratio | times: 100}}%;" data-media-id="{{ media.id }}">
+    <div class="swiper-slide" style="padding-top: {{ 1 | divided_by: media.aspect_ratio | times: 100 }}%;" data-media-id="{{ media.id }}">
       {{ media | external_video_tag }}
     </div>
   {% when 'video' %}

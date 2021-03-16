@@ -8,7 +8,7 @@
         <div class="col-sm-6 col-lg-3">
           <div class="collection-item text-center">
             <a class="collection-item__img" href="{{ collection.url }}" title="{{ 'collections.general.link_title' | t: title: title }}">
-              {% assign image = collection.image | default: collection.products[0].featured_image%}
+              {% assign image = collection.image | default: collection.products[0].featured_image %}
               {% render
                 'image',
                 src: image,

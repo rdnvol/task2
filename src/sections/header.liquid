@@ -26,7 +26,7 @@
               {% endif %}
               {% if section.settings.search_enable %}
                 <a href="{{ routes.search_url }}" class="header__btn d-none d-xs-inline-flex d-lg-none">
-                  {%- include 'icon' with 'search' -%}
+                  {%- render 'icon' with 'search' -%}
                 </a>
               {% endif %}
             </div>

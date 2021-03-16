@@ -13,7 +13,7 @@
             <div class="swiper-slide" {{ block.shopify_attributes }} data-index="{{ forloop.index }}" data-swiper-id="{{ section.id }}">
               <blockquote class=" testimonials-slider__blockquote text-center">
                 <div class="testimonials-slider__icon">
-                  {%- include 'icon' with 'quote' -%}
+                  {%- render 'icon' with 'quote' -%}
                 </div>
                 <div class="testimonials-slider__text-block rte">
                   {{ block.settings.quote }}
