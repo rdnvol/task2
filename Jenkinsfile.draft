@@ -51,18 +51,16 @@ pipeline {
             message: "*draft-theme* deploy(#${BUILD_NUMBER}) started. <${env.RUN_DISPLAY_URL}|View progress>"
         )
         echo 'Deploying'
-        dir("dist") {
-          sh """
+        sh """
            docker run --rm --name ${THEME_CONTAINER_NAME} \\
            -v /home/jenkins/.ssh:/home/jenkins/.ssh \\
            -v /home/jenkins/.npm:/home/jenkins/.npm \\
            -v `pwd`:/home/jenkins/workspace \\
            -v ${APP_ENV_FILE}:/home/jenkins/workspace/.env \\
-           -w /home/jenkins/workspace/src \\
+           -w /home/jenkins/workspace/dist \\
            hub.bystrov.agency/ci/themekit:latest \\
-           ls -la
+           theme deploy --vars=\\"../.env\\"
            """
-        }
       }
       post {
         success {
