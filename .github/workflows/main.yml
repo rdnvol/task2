@@ -14,7 +14,7 @@ jobs:
         with:
           node-version: '12.x'
       - run: npm install
-      - run: npm run js:css
+      - run: npm run build
 
   theme-check:
     runs-on: ubuntu-latest
