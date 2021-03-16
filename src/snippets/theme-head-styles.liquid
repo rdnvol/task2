@@ -1,5 +1,5 @@
-{% render 'social-meta-tags' %}
 {% render 'css-variables' %}
 {{ 'font-face.css' | asset_url | stylesheet_tag }}
-{{ 'theme.css' | asset_url | stylesheet_tag }}
+{% render 'style-tags', layout: 'theme' %}
+{{ 'custom-theme.css' | asset_url | stylesheet_tag }}
 {% render 'google-fonts' %}

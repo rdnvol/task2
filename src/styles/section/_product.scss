@@ -67,7 +67,7 @@
 
 .product__price__box {
   margin-bottom: 10px;
-  font: $font-heading-style calc(#{$font-size-base + 4px}) $headings-font-family;
+  font: $font-heading-style calc(#{$font-size-base+4px}) $headings-font-family;
   @include media("≥desktop") {
     margin: 0 0 14px;
   }
