@@ -74,3 +74,4 @@ secrets.json
 *.code-workspace
 src/assets/*.js.map
 Jenkinsfile
+stats.json
