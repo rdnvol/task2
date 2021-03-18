@@ -18,8 +18,10 @@
   Template specific overides
 {% endcomment %}
 {%- if template.name == 'product' -%}
-  {%- assign og_title = product.title | strip_html -%}
-  {%- assign og_type = 'product' -%}
+  {% liquid
+    assign og_title = product.title | strip_html
+    assign og_type = 'product'
+  %}
   {%- capture og_image_tags -%}
     {%- for image in product.images limit: 3 -%}
       <meta property="og:image" content="http:{{ image | img_url: 'master' }}">
@@ -31,9 +33,11 @@
   {%- endcapture -%}
 
 {%- elsif template.name == 'article' -%}
-  {%- assign og_title = article.title | strip_html -%}
-  {%- assign og_type = 'article' -%}
-  {%- assign og_description = article.excerpt_or_content | strip_html -%}
+  {% liquid
+    assign og_title = article.title | strip_html
+    assign og_type = 'article'
+    assign og_description = article.excerpt_or_content | strip_html
+  %}
   {%- if article.image -%}
     {%- capture og_image_tags -%}
       <meta property="og:image" content="http:{{ article.image | img_url: 'master' }}">
@@ -45,8 +49,10 @@
   {%- endif -%}
 
 {%- elsif template.name == 'collection' -%}
-  {%- assign og_title = collection.title | strip_html -%}
-  {%- assign og_type = 'product.group' -%}
+  {% liquid
+    assign og_title = collection.title | strip_html
+    assign og_type = 'product.group'
+  %}
   {%- if collection.image -%}
     {%- capture og_image_tags -%}
       <meta property="og:image" content="http:{{ collection.image | img_url: 'master' }}">
@@ -58,9 +64,11 @@
   {%- endif -%}
 
 {%- elsif template.name == 'password' -%}
-  {%- assign og_title = shop.name -%}
-  {%- assign og_url = shop.url -%}
-  {%- assign og_description = shop.description | default: shop.name -%}
+  {% liquid
+    assign og_title = shop.name
+    assign og_url = shop.url
+    assign og_description = shop.description | default: shop.name
+  %}
 {%- endif -%}
 
 <meta property="og:site_name" content="{{ shop.name }}">
