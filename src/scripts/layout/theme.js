@@ -194,7 +194,11 @@ class App {
   }
 
   setHeaderHeight() {
-    document.documentElement.style.setProperty('--header-height', $('#header').css('height'));
+    $(window).on('load resize scroll', function() {
+      document.documentElement.style.setProperty('--header-height', $('#header').css('height'));
+      document.documentElement.style.setProperty('--header-sticky-height', $('.header__panel').css('height'));
+      document.documentElement.style.setProperty('--announcements-bar-height', $('.header__bar').css('height'));
+    });
   }
 
   initCurrencySwitcher() {
