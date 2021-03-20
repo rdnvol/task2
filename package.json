@@ -22,7 +22,8 @@
     "start": "cross-env DEPLOY=true && npm run watch",
     "analyze": "cross-env NODE_ENV=production BUNDLE_ANALIZER=true WEBPACK_PERFORMANCE=true webpack --progress ",
     "zip": "npm run js:zip",
-    "lint:fix": "theme-check -a"
+    "lint": "npm run build && theme-check",
+    "lint:fix": "npm run build && theme-check -a"
   },
   "dependencies": {
     "@babel/plugin-transform-react-jsx": "^7.10.4",

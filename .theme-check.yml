@@ -16,7 +16,7 @@ ConvertIncludeToRender:
   enabled: true
 
 LiquidTag:
-  enabled: false
+  enabled: true
   min_consecutive_statements: 4
 
 MissingTemplate:
