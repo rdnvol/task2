@@ -21,9 +21,6 @@ html {
   box-sizing: inherit;
 }
 
-* {
-  outline: var(--elements-outline) var(--color-outline);
-}
 
 body {
   min-width: $base-min-width;
