@@ -1,13 +1,13 @@
 <style>
-  
+
   {% if settings.font_library == 'shopify' %}
     {{ settings.font_heading | font_face }}
     {{ settings.font_body | font_face }}
-  
+
     {%- assign font_body_bold = settings.font_body | font_modify: 'weight', 'bolder' -%}
     {%- assign font_body_italic = settings.font_body | font_modify: 'style', 'italic' -%}
     {%- assign font_heading_bold = settings.font_heading | font_modify: 'weight', 'bolder' -%}
-  
+
     {{ font_body_bold | font_face }}
     {{ font_heading_bold | font_face }}
     {{ font_body_italic | font_face }}
@@ -18,6 +18,23 @@
     --color-body-text: {{ settings.color_body_text }};
     --color-main-background: {{ settings.color_main_bg }};
     --color-border: {{ settings.color_body_text | color_lighten: 50 }};
+    --base-footer-background: #f8f8f8;
+    --base-accordion-background: #f1f1f1;
+    --base-links: #0f62fe;
+    --base-sale-price: #f00036;
+    --base-icons: #000;
+    --base-icons-on-hover: #333;
+    --base-secondary-background: #f1f1f1;
+    --base-border: #999;
+
+    /* Messages */
+    --messages-error: #da1d28;
+    --messages-success: #27ae60;
+
+    /* Customizable */
+    --customizable-base-text: #fff;
+
+    /* Font library */
     {%- case settings.font_library -%}
       {%- when 'shopify' -%}
         --font-heading: {{ settings.font_heading.family }}, {{ settings.font_heading.fallback_families }};
@@ -50,7 +67,7 @@
     {%- endcase -%}
 
     --font-body-bold-weight: {{ font_body_bold.weight | default: 'bold' }};
-    
+
     --header-logo-width: 106px;
 
     --button-text-color: {{ settings.button_text_color }};
@@ -65,7 +82,7 @@
     --button-border-radius: {{ settings.button_border_radius }};
     --font-size-base: {{ settings.font_base_size }}px;
     --heading-font-size: {{ settings.heading_base_size }}px;
-  
+
     --checkout-button-text-color: {{ settings.checkout_button_text_color }};
     --checkout-button-hover-text-color: {{ settings.checkout_button_hover_color }};
     --checkout-button-focus-text-color: {{ settings.checkout_button_focus_text_color }};
@@ -75,7 +92,7 @@
     --checkout-button-border-color: {{ settings.checkout_button_border_color }};
     --checkout-button-hover-border-color: {{ settings.checkout_button_hover_border_color }};
     --checkout-button-focus-border-color: {{ settings.checkout_button_focus_border_color }};
-    
+
     {% if settings.elements_outline %}
       --elements-outline: 1px dashed;
       --color-outline: {{ settings.color_outline }}
