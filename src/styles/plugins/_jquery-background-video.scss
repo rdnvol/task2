@@ -149,14 +149,14 @@
 .jquery-background-video-pauseplay.play::before {
   border-top: 10px solid transparent;
   border-bottom: 10px solid transparent;
-  border-left: 15px solid $white;
+  border-left: 15px solid #fff;
 }
 
 .jquery-background-video-pauseplay.pause::before,
 .jquery-background-video-pauseplay.pause::after {
-  border-top: 10px solid $white;
-  border-bottom: 10px solid $white;
-  border-left: 5px solid $white;
+  border-top: 10px solid #fff;
+  border-bottom: 10px solid #fff;
+  border-left: 5px solid #fff;
 }
 
 .jquery-background-video-pauseplay.pause::after {

@@ -7,25 +7,25 @@ $font-heading-style: var(--font-heading-style);
 $font-body-bold-weight: var(--font-body-bold-weight);
 $font-heading-weight: var(--font-heading-weight);
 
-// Colors
-$primary:       #000;
-$secondary:     #a2aeb6;
-$success:       #27ae60;
-$info:          #0f62fe;
-$danger:        #da1d28;
-$light:         #f0f4f6;
-$dark:          #262c30;
-$black: #000;
-$white: #fff;
-$d-gray: $dark;
-$gray: #999;
-$l-gray: $light;
+// Base
+$base-body-text: var(--color-body-text) !default;
+$base-secondary-text: var(--base-secondary-text) !default;
+$base-body-background: var(--color-main-background) !default;
+$base-footer-background: var(--base-footer-background) !default;
+$base-accordion-background: var(--base-accordion-background) !default;
+$base-links: var(--base-links) !default;
+$base-sale-price: var(--base-sale-price) !default;
+$base-icons: var(--base-icons) !default;
+$base-icons-on-hover: var(--base-icons-on-hover) !default;
+$base-secondary-background: var(--base-secondary-background) !default;
+$base-border: var(--base-border) !default;
 
-// Text colors
-$color-body-text: var(--color-body-text);
+// Messages
+$messages-error: var(--messages-error) !default;
+$messages-success: var(--messages-success) !default;
 
-// Background colors
-$color-body: var(--color-main-background);
+// Customizable
+$customizable-base-text: var(--customizable-base-text) !default;
 
 // Other colors
 $color-accent: var(--color-accent);
@@ -35,8 +35,7 @@ $base-font-sans-serif: $font-body;
 $base-font-serif: "Times New Roman", "Times", "Baskerville", "Georgia", serif;
 
 // Body
-$base-text-color: $color-body-text !default;
-$base-background-color: $color-body !default;
+$base-background-color: $base-body-background !default;
 $font-size-base: var(--font-size-base);
 $base-line-height: 1.5 !default;
 $base-font-family: $base-font-sans-serif !default;
@@ -46,38 +45,42 @@ $vertical-rhythm: ($base-line-height * 1em);
 $base-min-width: 320px;
 
 // Links
-$base-link-color: $color-body-text;
+$base-link-color: $base-links;
 
 // Buttons
-$btn-color: var(--button-text-color) !default;
-$btn-hover-color: var(--button-hover-text-color) !default;
-$btn-focus-color: var(--button-focus-text-color) !default;
-$btn-background: var(--button-background-color) !default;
-$btn-hover-background: var(--button-hover-background-color) !default;
-$btn-focus-background: var(--button-focus-background-color) !default;
-$btn-border-color: var(--button-border-color) !default;
-$btn-hover-border-color: var(--button-hover-border-color) !default;
-$btn-focus-border-color: var(--button-focus-border-color) !default;
-$btn-padding: 12px 15px !default;
-$btn-font-size: inherit !default;
-$btn-border-rad: var(--button-border-radius) !default;
+$button-text: var(--button-text-color) !default;
+$button-text-on-hover: var(--button-hover-text-color) !default;
+$button-text-on-focus: var(--button-focus-text-color) !default;
+$button-border: var(--button-border-color) !default;
+$button-border-on-hover: var(--button-hover-border-color) !default;
+$button-border-on-focus: var(--button-focus-border-color) !default;
+$button-background: var(--button-background-color) !default;
+$button-background-on-hover: var(--button-hover-background-color) !default;
+$button-background-on-focus: var(--button-focus-background-color) !default;
+$button-text-on-disabled: var(--button-text-on-disabled) !default;
+$button-border-on-disabled: var(--button-border-on-disabled) !default;
+$button-background-on-disabled: var(--button-background-on-disabled) !default;
+
+$button-padding: 12px 15px !default;
+$button-font-size: inherit !default;
+$button-border-radius: var(--button-border-radius) !default;
 
 // Dynamic checkout button
-$checkout-btn-color: var(--checkout-button-text-color) !default;
-$checkout-btn-hover-color: var(--checkout-button-hover-text-color) !default;
-$checkout-btn-focus-color: var(--checkout-button-focus-text-color) !default;
-$checkout-btn-background: var(--checkout-button-background-color) !default;
-$checkout-btn-hover-background: var(--checkout-button-hover-background-color) !default;
-$checkout-btn-focus-background: var(--checkout-button-focus-background-color) !default;
-$checkout-btn-border-color: var(--checkout-button-border-color) !default;
-$checkout-btn-hover-border-color: var(--checkout-button-hover-border-color) !default;
-$checkout-btn-focus-border-color: var(--checkout-button-focus-border-color) !default;
+$dynamic-checkout-button-text: var(--checkout-button-text-color) !default;
+$dynamic-checkout-button-text-on-hover: var(--checkout-button-hover-text-color) !default;
+$dynamic-checkout-button-text-on-focus: var(--checkout-button-focus-text-color) !default;
+$dynamic-checkout-button-border: var(--checkout-button-border-color) !default;
+$dynamic-checkout-button-border-on-hover: var(--checkout-button-hover-border-color) !default;
+$dynamic-checkout-button-border-on-focus: var(--checkout-button-focus-border-color) !default;
+$dynamic-checkout-button-background: var(--checkout-button-background-color) !default;
+$dynamic-checkout-button-background-on-hover: var(--checkout-button-hover-background-color) !default;
+$dynamic-checkout-button-background-on-focus: var(--checkout-button-focus-background-color) !default;
 
 // Forms
-$form-element-padding: $btn-padding !default;
-$form-element-border-color: $black !default;
-$form-element-focus-border-color: $d-gray !default;
-$placeholder-color: $color-body-text !default;
+$form-element-padding: $button-padding !default;
+$form-element-border-color: $base-border !default;
+$form-element-focus-border-color: $base-border !default;
+$placeholder-color: $base-body-text !default;
 $height-form-elements: 44px;
 $height-button-large: 48px;
 $height-button-medium: 40px;

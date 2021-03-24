@@ -55,7 +55,7 @@
   @extend %clearfix;
   max-width: 300px;
   margin: 0 auto;
-  color: $base-text-color;
+  color: $base-body-text;
   &.account-form--address {
     max-width: 100%;
   }
@@ -205,7 +205,7 @@ button.button-add-new-address {
 .account__header {
   margin: 0 0 30px;
   padding: 0 0 13px;
-  border-bottom: 1px solid $black;
+  border-bottom: 1px solid $base-border;
   @include media("≥tablet") {
     display: flex;
     justify-content: space-between;

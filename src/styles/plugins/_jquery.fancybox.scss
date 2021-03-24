@@ -175,7 +175,7 @@ body.compensate-for-scrollbar {
 }
 
 .fancybox-content {
-  background: $white;
+  background: $base-body-background;
   display: inline-block;
   margin: 0;
   max-width: 100%;
@@ -267,7 +267,7 @@ body.compensate-for-scrollbar {
 }
 
 .fancybox-slide--video .fancybox-content {
-  background: $black;
+  background: $base-border;
 }
 
 .fancybox-slide--map .fancybox-content {
@@ -275,7 +275,7 @@ body.compensate-for-scrollbar {
 }
 
 .fancybox-slide--iframe .fancybox-content {
-  background: $white;
+  background: $base-body-background;
 }
 
 .fancybox-video,
@@ -298,7 +298,7 @@ body.compensate-for-scrollbar {
 }
 
 .fancybox-error {
-  background: $white;
+  background: $messages-error;
   cursor: default;
   max-width: 400px;
   padding: 40px;
@@ -339,7 +339,7 @@ body.compensate-for-scrollbar {
 }
 
 .fancybox-button:hover {
-  color: $white;
+  color: #fff;
 }
 
 .fancybox-button:focus {
@@ -406,7 +406,7 @@ body.compensate-for-scrollbar {
   background: transparent;
   border: 0;
   border-radius: 0;
-  color: $black;
+  color: $base-body-text;
   cursor: pointer;
   opacity: 0.8;
   padding: 8px;
@@ -417,7 +417,7 @@ body.compensate-for-scrollbar {
 }
 
 .fancybox-close-small:hover {
-  color: $white;
+  color: #fff;
   opacity: 1;
 }
 
@@ -508,7 +508,7 @@ body.compensate-for-scrollbar {
 }
 
 .fancybox-caption a:hover {
-  color: $white;
+  color: #fff;
   text-decoration: underline;
 }
 
@@ -517,7 +517,7 @@ body.compensate-for-scrollbar {
   animation: fancybox-rotate 1s linear infinite;
   background: transparent;
   border: 4px solid #888;
-  border-bottom-color: $white;
+  border-bottom-color: #fff;
   border-radius: 50%;
   height: 50px;
   left: 50%;
@@ -713,7 +713,7 @@ body.compensate-for-scrollbar {
 
 .fancybox-share__button:visited,
 .fancybox-share__button:link {
-  color: $white;
+  color: $base-body-text;
 }
 
 .fancybox-share__button:hover {
@@ -754,7 +754,7 @@ body.compensate-for-scrollbar {
 }
 
 .fancybox-share__button svg path {
-  fill: $white;
+  fill: #fff;
 }
 
 .fancybox-share__input {
@@ -822,7 +822,7 @@ body.compensate-for-scrollbar {
 }
 
 .fancybox-thumbs-y .fancybox-thumbs__list::-webkit-scrollbar-track {
-  background: $white;
+  background: $base-body-background;
   border-radius: 10px;
   box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
 }
