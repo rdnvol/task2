@@ -26,6 +26,9 @@ $color-body-text: var(--color-body-text);
 // Background colors
 $color-body: var(--color-main-background);
 
+// Customizable
+$customizable-base-text: var(--customizable-base-text) !default;
+
 // Other colors
 $color-accent: var(--color-accent);
 $color-border: var(--color-border);
