@@ -75,4 +75,3 @@ secrets.json
 src/assets/*.js.map
 Jenkinsfile
 stats.json
-*.lock
