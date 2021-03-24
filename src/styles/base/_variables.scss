@@ -20,11 +20,9 @@ $base-icons-on-hover: var(--base-icons-on-hover) !default;
 $base-secondary-background: var(--base-secondary-background) !default;
 $base-border: var(--base-border) !default;
 
-// Text colors
-$color-body-text: var(--color-body-text);
-
-// Background colors
-$color-body: var(--color-main-background);
+// Messages
+$messages-error: var(--messages-error) !default;
+$messages-success: var(--messages-success) !default;
 
 // Customizable
 $customizable-base-text: var(--customizable-base-text) !default;
