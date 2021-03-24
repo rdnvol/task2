@@ -108,7 +108,6 @@ input[type="submit"] {
   min-width: 178px;
   min-height: $height-form-elements;
   padding: 10px 15px;
-  color: $btn-color;
   font-family: $font-heading;
   line-height: 1;
   color: $button-text;
@@ -163,7 +162,7 @@ input[type="submit"] {
   }
 
   &.default {
-    color: $base-text-color;
+    color: $base-body-text;
     min-width: 0;
     min-height: 0;
     width: auto;

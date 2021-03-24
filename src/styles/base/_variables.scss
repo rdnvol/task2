@@ -35,8 +35,7 @@ $base-font-sans-serif: $font-body;
 $base-font-serif: "Times New Roman", "Times", "Baskerville", "Georgia", serif;
 
 // Body
-$base-text-color: $color-body-text !default;
-$base-background-color: $color-body !default;
+$base-background-color: $base-body-background !default;
 $font-size-base: var(--font-size-base);
 $base-line-height: 1.5 !default;
 $base-font-family: $base-font-sans-serif !default;
@@ -46,7 +45,7 @@ $vertical-rhythm: ($base-line-height * 1em);
 $base-min-width: 320px;
 
 // Links
-$base-link-color: $color-body-text;
+$base-link-color: $base-links;
 
 // Buttons
 $button-text: var(--button-text-color) !default;

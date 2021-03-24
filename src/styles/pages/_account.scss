@@ -55,7 +55,7 @@
   @extend %clearfix;
   max-width: 300px;
   margin: 0 auto;
-  color: $base-text-color;
+  color: $base-body-text;
   &.account-form--address {
     max-width: 100%;
   }
