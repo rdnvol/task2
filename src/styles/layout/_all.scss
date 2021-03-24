@@ -505,13 +505,16 @@
 
 .accordion__slide {
   display: none;
-  padding: 15px;
-  background: $base-body-background;
-  box-shadow: 0 5px 13px rgba(0, 0, 0, 0.04);
 
   .accordion--active & {
     display: block;
   }
+}
+
+.accordion__block {
+  padding: 15px;
+  background: $base-body-background;
+  box-shadow: 0 5px 13px rgba(0, 0, 0, 0.04);
 }
 
 .spinner-holder {
