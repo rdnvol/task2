@@ -65,14 +65,6 @@
   color: $customizable-base-text;
 }
 
-.text-size-md {
-  font-size: $font-size-base;
-}
-
-.text-size-sm {
-  font-size: calc(#{$font-size-base} - 2px);
-}
-
 .breadcrumbs {
   display: flex;
   flex-wrap: wrap;
