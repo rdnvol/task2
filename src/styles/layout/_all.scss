@@ -50,11 +50,11 @@
 }
 
 .text-size-md {
-  font-size: calc(#{$font-size-base} - 2px);
+  font-size: $font-size-base;
 }
 
 .text-size-sm {
-  font-size: calc(#{$font-size-base} - 4px);
+  font-size: calc(#{$font-size-base} - 2px);
 }
 
 .text-white {
@@ -80,7 +80,8 @@
       content: "/";
       display: inline-block;
       vertical-align: middle;
-      margin: -1px 0 0 -2px;
+      margin: -1px 0 0 0;
+      color: $base-secondary-text;
     }
   }
 
@@ -197,9 +198,6 @@
   font-size: calc(#{$font-size-base} - 2px);
   text-transform: uppercase;
   overflow: hidden;
-  @include media ("≥widescreen") {
-    font-size: calc(#{$font-size-base} - 4px);
-  }
 
   li {
     margin: 0 15px 15px 0;
@@ -214,12 +212,12 @@
     justify-content: center;
     width: 44px;
     height: 44px;
-    color: $base-body-text;
+    color: $base-icons;
     text-decoration: none;
-    background: $base-footer-background;
+    background: $base-secondary-background;
     border-radius: 100%;
     &:hover {
-      background: #e5e5e5;
+      background: $base-footer-background;
     }
   }
 }
@@ -257,15 +255,15 @@
     }
 
     > li {
-      padding: 0 0 0 10px;
+      padding: 0 0 0 12px;
       position: relative;
       &::before {
         content: "";
         position: absolute;
-        top: 7px;
+        top: 9px;
         left: 0;
-        width: 5px;
-        height: 5px;
+        width: 6px;
+        height: 6px;
         border-radius: 100%;
         background: $base-body-text;
       }
@@ -469,7 +467,7 @@
 .accordion__opener {
   display: block;
   position: relative;
-  padding: 9px 15px;
+  padding: 8px 14px 7px;
   color: $base-body-text;
   text-decoration: none;
   background: $base-accordion-background;
@@ -479,7 +477,6 @@
     content: "";
     position: absolute;
     top: 50%;
-    right: 12px;
     background: $black;
     transform: translate(-50%, -50%);
     transition: opacity $animation-speed ease-in-out;
@@ -487,11 +484,13 @@
   &::before {
     height: 2px;
     width: 12px;
+    right: 7px;
   }
   &::after {
     width: 2px;
     height: 12px;
-    right: 22px;
+    right: 17px;
+
     .accordion--active & {
       opacity: 0;
     }

@@ -16,7 +16,7 @@
 .header__panel {
   z-index: 100;
   padding: 20px 0;
-  background: $base-border;
+  background: $base-body-background;
   @include media ("≥widescreen") {
     position: relative;
     padding: 0;

@@ -283,28 +283,24 @@ class App {
   }
 
   initProductGallery() {
-    // Create and mount the thumbnails slider.
-    const productGallerySplideThumbs = new Splide( '.product-gallery-splide-thumbs', {
-      perPage: 3,
-      isNavigation: true,
-      gap: 30,
-      pagination: false,
-      arrows: false,
-      breakpoints : {
-        '768': {
-          gap: 18,
-        }
-      }
-    } ).mount();
     // Create the main slider.
     const productGallerySplide = new Splide('.product-gallery-splide', {
-      type: 'slide',
-      pagination: false,
-      arrows: false,
+      type: 'loop',
+      perPage: 1,
+      gap: 0,
+      pagination: true,
+      arrows: true,
       speed: 800,
-    });
-    // Set the thumbnails slider as a sync target and then call mount.
-    productGallerySplide.sync( productGallerySplideThumbs ).mount();
+      breakpoints: {
+        767: {
+          gap: 20,
+          padding: {
+            left : 0,
+            right: '70px',
+          },
+        },
+      }
+    } ).mount();
   }
 
 }
