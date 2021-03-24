@@ -1,0 +1,34 @@
+<div class="pt-6 pt-md-7">
+  <div class="container">
+    {% include 'breadcrumbs--markup' %}
+  </div>
+</div>
+<section data-section-id="{{ section.id }}" class="section page-section" data-section-type="product">
+  <div class="container">
+    <div class="product-main-block position-relative">
+      <div class="row">
+        <div class="col-md-6 mb-4 mb-md-0">
+          {% include 'product-images--markup' %}
+        </div>
+        <div class="col-md-6">
+          {% include 'product-main-block--sticky--markup' %}
+        </div>
+      </div>
+    </div>
+  </div>
+  {%- include 'cart-popup' -%}
+</section>
+
+{% schema %}
+  {
+  "name": "Product pages",
+  "settings": [
+    {
+    "type": "checkbox",
+    "id": "show_share_buttons",
+    "label": "Show social sharing buttons",
+    "default": true
+    }
+  ]
+  }
+{% endschema %}
