@@ -118,4 +118,10 @@
       --color-outline: {{ settings.color_outline }}
     {% endif %}
   }
+
+  {% if settings.elements_outline %}
+  * {
+    outline: var(--elements-outline) var(--color-outline);
+  }
+  {% endif %}
 </style>

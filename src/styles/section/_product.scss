@@ -8,8 +8,12 @@
   width: 100%;
   height: 100%;
 
+  picture {
+    width: 100%;
+  }
+
   img {
-    width: auto;
+    max-width: none;
   }
 }
 
@@ -38,11 +42,46 @@
   }
 }
 
+.product-main-block__img-holder {
+  @include media("≤767px") {
+    overflow-x: auto;
+    overflow-y: hidden;
+    margin: 0 calc(#{-$grid-gutter-width} / 2) 0 0;
+    scroll-snap-type: x mandatory;
+  }
+}
+
+.product-main-block__img-item {
+  @include media("≤767px") {
+    flex-shrink: 0;
+    width: calc(100% - 69px);
+    margin-right: 20px;
+    scroll-snap-align: start;
+  }
+}
+
+.product-main-block__details {
+  &.product-main-block__details--sticky {
+    @include media ("≥tablet") {
+      position: sticky;
+      top: var(--header-sticky-height);
+      padding: 5px 0 0;
+    }
+  }
+}
+
 .product__title {
-  margin: 0;
+  margin: 0 0 4px;
 }
 
 .product__vendor {
+  color: #999;
+  margin: 0 0 8px;
+
+  mark {
+    color: #000;
+    background: none;
+  }
 
   p {
     &:last-child {
@@ -53,27 +92,17 @@
 
 .product__row {
   margin: 0 0 20px;
-  @include media("≥desktop") {
+  @include media("≥widescreen") {
     margin: 0 0 30px;
   }
 }
 
-.product__price {
-  margin: 0 0 45px;
-  @include media("≥desktop") {
-    margin: 0 0 55px;
-  }
-}
-
 .product__price__box {
-  margin-bottom: 10px;
-  font: $font-heading-style calc(#{$font-size-base+4px}) $headings-font-family;
-  @include media("≥desktop") {
-    margin: 0 0 14px;
-  }
+  margin: 0 0 3px;
 
   > * {
-    margin: 0 5px 0 0;
+    font-weight: inherit;
+    margin: 0 5px 5px 0;
   }
 
   ins {
@@ -86,12 +115,19 @@
 }
 
 .product__price__text {
-  font-size: $font-size-base - 2px;
+  font-size: calc(#{$font-size-base} - 4px);
 
   p {
     &:last-child {
       margin: 0;
     }
+  }
+}
+
+.product-main-block__rating-box {
+  margin: 0 0 40px;
+  @include media ("≥widescreen") {
+    margin: 0 0 77px;
   }
 }
 
@@ -125,4 +161,17 @@
 
 .product__variant-label {
   font-weight: bold;
+}
+
+.product-gallery-splide {
+  position: relative;
+  margin: 0 -20px 20px 0;
+  @include media ("≥tablet") {
+    margin-right: 0;
+  }
+
+  .splide__list {
+    display: flex;
+    align-items: center;
+  }
 }

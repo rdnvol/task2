@@ -81,6 +81,14 @@ h6,
   }
 }
 
+.title-1 {
+  font-size: $font-size-base;
+  font-weight: 500;
+  @include media ("≥widescreen") {
+    font-size: calc(#{$font-size-base} + 2px);
+  }
+}
+
 p {
   margin: 0 0 15px;
   @include media("≥tablet") {

@@ -45,7 +45,7 @@ $vertical-rhythm: ($base-line-height * 1em);
 $base-min-width: 320px;
 
 // Links
-$base-link-color: $base-links;
+$base-link-color: $base-links !default;
 
 // Buttons
 $button-text: var(--button-text-color) !default;
@@ -92,9 +92,9 @@ $dynamic-checkout-button-background-on-focus: var(--checkout-button-focus-backgr
 
 // Forms
 $form-element-padding: $button-padding !default;
-$form-element-border-color: $base-border !default;
-$form-element-focus-border-color: $base-border !default;
-$placeholder-color: $base-body-text !default;
+$form-element-border-color: #e5e5e5 !default;
+$form-element-focus-border-color: #000 !default;
+$placeholder-color: #999 !default;
 $height-form-elements: 44px;
 $height-button-large: 48px;
 $height-button-medium: 40px;

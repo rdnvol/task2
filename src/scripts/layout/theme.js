@@ -11,6 +11,8 @@ import 'lazysizes';
 import 'lazysizes/plugins/respimg/ls.respimg';
 import '../helpers/jquery.plugins'
 import { SmoothScroll } from '../helpers/jquery.plugins';
+import Splide from '@splidejs/splide';
+import jcf from 'jcf';
 
 
 // utils
@@ -27,7 +29,6 @@ class App {
     this.init();
   }
 
-
   init() {
     this.setHeaderHeight();
     this.initMobileNav();
@@ -39,6 +40,8 @@ class App {
     this.initLanguageSwitcher();
     this.initAnchors();
     this.initMap();
+    this.initCustomForms();
+    this.initProductGallery();
 
     // Responsive fluid iframe
     $(".rte iframe").each(function(index) {
@@ -173,6 +176,7 @@ class App {
 
   // accordion menu init
   initAccordion() {
+
     ResponsiveHelper.addRange({
       '..1199': {
         on: function() {
@@ -191,6 +195,17 @@ class App {
         }
       }
     });
+
+    $('.accordion').slideAccordion({
+      allowClickWhenExpanded: false,
+      activeClass: 'accordion--active',
+      opener: '.accordion__opener',
+      slider: '.accordion__slide',
+      collapsible: true,
+      event: 'click',
+      animSpeed: 400
+    });
+
   }
 
   setHeaderHeight() {
@@ -250,6 +265,44 @@ class App {
       }
     })
   }
+
+  initCustomForms() {
+    jcf.setOptions('Select', {
+        wrapNative: false,
+        wrapNativeOnMobile: false,
+    });
+    jcf.replaceAll('.custom-form');
+  }
+
+  initCustomForms() {
+    jcf.setOptions('Select', {
+        wrapNative: false,
+        wrapNativeOnMobile: false,
+    });
+    jcf.replaceAll('.custom-form');
+  }
+
+  initProductGallery() {
+    // Create the main slider.
+    const productGallerySplide = new Splide('.product-gallery-splide', {
+      type: 'loop',
+      perPage: 1,
+      gap: 0,
+      pagination: true,
+      arrows: true,
+      speed: 800,
+      breakpoints: {
+        767: {
+          gap: 20,
+          padding: {
+            left : 0,
+            right: '70px',
+          },
+        },
+      }
+    } ).mount();
+  }
+
 }
 
 const app = new App();
