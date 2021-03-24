@@ -16,7 +16,7 @@
 .header__panel {
   z-index: 100;
   padding: 20px 0;
-  background: $l-gray;
+  background: $base-border;
   @include media ("≥widescreen") {
     position: relative;
     padding: 0;
@@ -42,7 +42,7 @@
 
 .header__panel-mobile {
   padding: 20px 0;
-  background: $l-gray;
+  background: $base-secondary-background;
 }
 
 .logo {
@@ -314,7 +314,7 @@
     padding: 0 30px 0 15px;
     cursor: default;
     pointer-events: none;
-    background: $l-gray;
+    background: $base-secondary-background;
     z-index: 1000;
   }
 
@@ -365,7 +365,7 @@
   font-size: 12px;
   line-height: 14px;
   text-align: center;
-  background: $white;
+  background: $base-body-background;
   border-radius: 100%;
 }
 
@@ -384,7 +384,7 @@
     bottom: 0;
     min-width: 44px;
     padding: 6px;
-    background: $btn-background;
-    border: 1px solid $black;
+    background: $button-background;
+    border: 1px solid $button-border;
   }
 }

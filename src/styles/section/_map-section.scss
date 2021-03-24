@@ -86,11 +86,10 @@
   position: relative;
   z-index: 4;
   padding: 30px;
-  background: $light;
+  background: $base-footer-background;
   @include media ("≥tablet") {
     margin: 55px 0;
     padding: 36px;
-    background: $white;
   }
 
   .icon {

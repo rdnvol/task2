@@ -55,7 +55,7 @@
   width: 80%;
   margin: -20px auto 0;
   padding: 20px 0;
-  background: $white;
+  background: $base-body-background;
   @include media("≥tablet") {
     position: absolute;
     left: 0;
@@ -67,7 +67,7 @@
     margin: 0;
     padding: 0;
     background: none;
-    color: $white;
+    color: #fff;
     opacity: 0;
     transform: translateY(50px);
     transition: opacity, transform 0.6s cubic-bezier(0.44, 0.13, 0.48, 0.87);
@@ -125,7 +125,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: $black;
+    background: $base-border;
     opacity: 0.4;
   }
 }

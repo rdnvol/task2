@@ -33,8 +33,8 @@ textarea {
 
   &:-webkit-autofill {
     filter: none;
-    -webkit-box-shadow: 0 0 0 1000px $white inset !important;
-    box-shadow: 0 0 0 1000px $white inset !important;
+    -webkit-box-shadow: 0 0 0 1000px #fff inset !important;
+    box-shadow: 0 0 0 1000px #fff inset !important;
   }
 
   @include placeholder {
@@ -68,7 +68,7 @@ select {
   position: relative;
 
   &::after {
-    @include triangle(8px 6px, $black, down);
+    @include triangle(8px 6px, $base-border, down);
     content: "";
     position: absolute;
     right: 12px;
@@ -101,7 +101,9 @@ input[type="reset"],
 // input[type="file"],
 input[type="submit"] {
   -webkit-appearance: none;
-  -webkit-border-radius: $btn-border-rad;
+  -webkit-border-radius: $button-border-radius;
+  display: inline-block;
+  vertical-align: top;
   box-sizing: border-box;
   min-width: 178px;
   min-height: $height-form-elements;
@@ -109,11 +111,11 @@ input[type="submit"] {
   color: $btn-color;
   font-family: $font-heading;
   line-height: 1;
+  color: $button-text;
   text-align: center;
-  text-transform: uppercase;
-  background: $btn-background;
-  border: 1px solid $btn-border-color;
-  border-radius: $btn-border-rad;
+  background: $button-background;
+  border: 1px solid $button-border;
+  border-radius: $button-border-radius;
   cursor: pointer;
   &.button--lg {
     min-height: $height-button-large;
@@ -136,26 +138,25 @@ input[type="submit"] {
     }
   }
 
-  &:hover,
-  &:focus {
-    color: $btn-hover-color;
-    background: $btn-hover-background;
-    border-color: $btn-hover-border-color;
+  &:hover {
+    color: $button-text-on-hover;
+    background: $button-background-on-hover;
+    border-color: $button-border-on-hover;
   }
 
   &:focus {
-    color: $btn-focus-color;
-    background: $btn-focus-background;
-    border-color: $btn-focus-border-color;
-    outline: 1px dashed $btn-focus-border-color;
+    color: $button-text-on-focus;
+    background: $button-background-on-focus;
+    border-color: $button-border-on-focus;
+    outline: 1px dashed $button-border-on-focus;
     outline-offset: 3px;
   }
 
   &.disabled,
   &:disabled {
-    color: $secondary;
-    background: $light;
-    border-color: $light;
+    color: $button-text-on-disabled;
+    background: $button-background-on-disabled;
+    border-color: $button-border-on-disabled;
     pointer-events: none;
     cursor: default;
     outline: none !important;
@@ -234,7 +235,7 @@ a.button {
         + .custom-label {
           &::before {
             background: none;
-            border-color: $black;
+            border-color: $base-border;
           }
 
           picture {
@@ -256,10 +257,10 @@ a.button {
       &:hover {
 
         + .custom-label {
-          color: $white;
+          color: #fff;
           &::before {
-            background: $black;
-            border-color: $black;
+            background: $base-border;
+            border-color: $base-border;
           }
         }
       }
@@ -281,7 +282,7 @@ a.button {
 
       + .custom-label {
         &::before {
-          background: $black;
+          background: $base-border;
         }
       }
     }
@@ -315,11 +316,10 @@ a.button {
     top: 3px;
     width: 16px;
     height: 16px;
-    border: 1px solid $black;
-    background: $white;
+    border: 1px solid $base-border;
+    background: $base-body-background;
     border-radius: 100%;
-    transition: background-color $animation-speed ease,
-                border-color $animation-speed ease;
+    transition: background-color $animation-speed ease, border-color $animation-speed ease;
 
     .custom-input--colors & {
       top: 0;
@@ -335,7 +335,7 @@ a.button {
       width: 100%;
       height: 100%;
       background: none;
-      border-color: $l-gray;
+      border-color: $base-border;
       border-radius: 0;
     }
   }
@@ -370,7 +370,7 @@ a.button {
     font-size: calc(#{$font-size-base} - 6px);
     font-weight: 700;
     background: none;
-    border-color: $l-gray;
+    border-color: $base-border;
     transition: color $animation-speed ease-in-out;
 
     > * {
@@ -447,32 +447,33 @@ a.button {
   min-width: 180px;
   min-height: $height-form-elements;
   padding: 12px 30px;
-  color: $checkout-btn-color;
+  color: $dynamic-checkout-button-text;
   line-height: 1;
   text-align: center;
   text-transform: uppercase;
-  background: $checkout-btn-background;
-  border: 1px solid $checkout-btn-border-color;
-  border-radius: $btn-border-rad;
+  background: $dynamic-checkout-button-background;
+  border: 1px solid $dynamic-checkout-button-border;
+  border-radius: $button-border-radius;
   cursor: pointer;
 
   &:hover {
-    color: $checkout-btn-hover-color !important;
-    background: $checkout-btn-hover-background !important;
-    border-color: $checkout-btn-hover-border-color !important;
+    color: $dynamic-checkout-button-text-on-hover !important;
+    background: $dynamic-checkout-button-background-on-hover !important;
+    border-color: $dynamic-checkout-button-border-on-hover !important;
   }
 
   &:focus {
-    color: $checkout-btn-focus-color;
-    background: $checkout-btn-focus-background;
-    border-color: $checkout-btn-focus-border-color;
-    outline: 1px dashed $checkout-btn-focus-border-color;
+    color: $dynamic-checkout-button-text-on-focus;
+    background: $dynamic-checkout-button-background-on-focus;
+    border-color: $dynamic-checkout-button-border-on-focus;
+    outline: 1px dashed $dynamic-checkout-button-border-on-focus;
     outline-offset: 3px;
   }
 
   &.disabled {
-    color: $white;
-    background: $gray;
+    color: $button-text-on-disabled;
+    background: $button-background-on-disabled;
+    border-color: $button-border-on-disabled;
     pointer-events: none;
     cursor: default;
   }

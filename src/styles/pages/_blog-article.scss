@@ -8,7 +8,7 @@
 .post__discussion {
   margin: 0 0 30px;
   padding: 20px 0 0;
-  border-top: 1px solid $gray;
+  border-top: 1px solid $base-border;
 
   ul {
     @extend %listreset;
@@ -35,5 +35,5 @@
 .comment-form {
   margin: 0 0 30px;
   padding: 20px 0 0;
-  border-top: 1px solid $gray;
+  border-top: 1px solid $base-border;
 }

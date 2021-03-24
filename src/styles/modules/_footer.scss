@@ -78,17 +78,18 @@
     padding: 0;
     background: none;
     border: none;
+    border-radius: 0;
     &:hover,
     &:focus {
-      background: $btn-background;
+      background: $button-background;
 
       svg {
-        fill: $white;
+        fill: #fff;
       }
     }
 
     svg {
-      fill: $gray;
+      fill: $base-icons;
       width: 16px;
       height: 12px;
     }
@@ -97,7 +98,7 @@
 
 .footer__panel {
   padding: 20px 0;
-  color: $gray;
+  color: $base-body-text;
   font-size: calc(#{$font-size-base} - 4px);
   line-height: 1.25;
   letter-spacing: 0.05em;
