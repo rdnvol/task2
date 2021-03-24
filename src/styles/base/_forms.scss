@@ -136,13 +136,11 @@ input[type="submit"] {
       margin-left: 7px;
     }
   }
-
   &:hover {
     color: $button-text-on-hover;
     background: $button-background-on-hover;
     border-color: $button-border-on-hover;
   }
-
   &:focus {
     color: $button-text-on-focus;
     background: $button-background-on-focus;
@@ -150,7 +148,6 @@ input[type="submit"] {
     outline: 1px dashed $button-border-on-focus;
     outline-offset: 3px;
   }
-
   &.disabled,
   &:disabled {
     color: $button-text-on-disabled;
@@ -160,7 +157,6 @@ input[type="submit"] {
     cursor: default;
     outline: none !important;
   }
-
   &.default {
     color: $base-body-text;
     min-width: 0;
@@ -172,7 +168,28 @@ input[type="submit"] {
     background: none;
     border: none;
   }
-
+  &.button--secondary {
+    color: $secondary-button-text;
+    background: $secondary-button-background;
+    border-color: $secondary-button-border;
+    &:hover {
+      color: $secondary-button-text-on-hover;
+      background: $secondary-button-background-on-hover;
+      border-color: $secondary-button-border-on-hover;
+    }
+    &:focus {
+      color: $secondary-button-text-on-focus;
+      background: $secondary-button-background-on-focus;
+      border-color: $secondary-button-border-on-focus;
+      outline: 1px dashed $secondary-button-border-on-focus;
+    }
+    &.disabled,
+    &:disabled {
+      color: $secondary-button-text-on-disabled;
+      background: $secondary-button-background-on-disabled;
+      border-color: $secondary-button-border-on-disabled;
+    }
+  }
   &.btn {
     display: inline-flex;
     align-items: center;
