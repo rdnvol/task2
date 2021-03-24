@@ -27,9 +27,9 @@ class LineItem extends Component {
             <source data-srcset={ resizeImageSrcset(image, '71x88 ') }
                     media="(max-width: 767px)"
                     srcSet={ theme.placeholder_data }/>
-            <source data-srcset={ resizeImageSrcset(image, '81x100') }
+            <source data-srcset={ resizeImageSrcset(image, '71x88') }
                     srcSet={ theme.placeholder_data }/>
-            <img data-src={ resizeImage(image, '81x100') } className="lazyload" data-sizes="auto"
+            <img data-src={ resizeImage(image, '71x88') } className="lazyload" data-sizes="auto"
                  alt={ title }
                  src={ theme.placeholder_data }/>
           </picture>
@@ -90,51 +90,64 @@ class LineItem extends Component {
     return (
       <tr className="responsive-table-row">
         <td>
-          <div className="row">
-            <div className="col-4 col-md-3">
-              { this.renderImage(item) }
-            </div>
-            <div className="col-8 col-md-9">
-              <div className="cart__product-text">
+          <div className="d-flex align-items-start">
+            { this.renderImage(item) }
+            <div className="cart__product-text">
+              <div className="cart__product-vendor body-3">
+                { vendor }
+              </div>
+              <div className="mb-3 mb-md-2">
                 <a href={ url } className="cart__product-link">
-                  <strong>
-                    { product_title }
-                  </strong>
-                </a>
-                { this.renderItemOptions(item) }
-                <p>{ vendor }</p>
-                { this.renderProperties(properties) }
-                
-                <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" onClick={ this.removeItem }>
-                  <small>{ theme.cart.remove }</small>
+                  { product_title }
                 </a>
               </div>
+              <div className="d-md-none mb-3">
+                <label htmlFor={ `updates_mobile_${ key }` } className="visually-hidden">Qty</label>
+                <span class="jcf-number">
+                  <input type="number"
+                        name="updates[]"
+                        id={ `updates_mobile_${ key }` }
+                        value={ quantity }
+                        onChange={ debounce(this.updateItem, 200) }
+                        min="0"
+                        aria-label={ theme.cart.quantity }/>
+                  <span class="jcf-btn-inc"></span>
+                  <span class="jcf-btn-dec jcf-disabled"></span>
+                </span>
+              </div>
+              <div className="d-none">
+                { this.renderItemOptions(item) }
+                { this.renderProperties(properties) }
+              </div>
+              <a className="cart__button-remove body-3" href="/cart/change?line={{ forloop.index }}&amp;quantity=0" onClick={ this.removeItem }>
+                { theme.cart.remove }
+              </a>
             </div>
           </div>
         </td>
         <td>
-          <div className="mb-4 mb-md-0">
+          <div className="product__price__box mb-4 mb-md-0">
             { this.renderPrice(item) }
-          </div>
-          <div className="d-flex d-md-none align-items-center justify-content-end">
-            <label htmlFor={ `updates_mobile_${ key }` } className="mr-2">Qty</label>
-            <input type="number"
-                   name="updates[]"
-                   id={ `updates_mobile_${ key }` }
-                   value={ quantity }
-                   onChange={ debounce(this.updateItem, 200) }
-                   min="0"
-                   aria-label={ theme.cart.quantity }/>
+            <ins>
+              $449.00
+            </ins>
+            <del>
+              $559.00
+            </del>
           </div>
         </td>
         <td>
-          <input type="number"
-                 name="updates[]"
-                 id={ `updates_${ key }` }
-                 value={ quantity }
-                 onChange={ debounce(this.updateItem, 200) }
-                 min="0"
-                 aria-label={ theme.cart.quantity }/>
+          <span class="jcf-number">
+            <input type="number"
+                  name="updates[]"
+                  id={ `updates_${ key }` }
+                  value={ quantity }
+                  onChange={ debounce(this.updateItem, 200) }
+                  min="0"
+                  aria-label={ theme.cart.quantity }/>
+            <span class="jcf-btn-inc"></span>
+            <span class="jcf-btn-dec jcf-disabled"></span>
+          </span>
         </td>
         <td>
           { formatMoney(line_price, theme.moneyFormat) }

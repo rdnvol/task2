@@ -1,13 +1,15 @@
-<div class="section" id="cart" data-note-enable="{{ settings.cart_notes_enable }}">
+<div id="cart" data-note-enable="{{ settings.cart_notes_enable }}">
   <div class="container">
     
     <div data-has-items {% if cart.item_count == 0 %}class="d-none"{% endif %}>
       <div class="page-title-block text-center">
-        <h1>{{ 'cart.general.title' | t }}</h1>
+        <h1 class="h2">
+          {{ 'cart.general.title' | t }}
+        </h1>
       </div>
       
       <form action="/cart" method="post" class="cart-form" novalidate>
-        <table class="cart-table mb-4">
+        <table class="cart-table body-2 mb-4">
           <thead class="small--hide">
           <tr>
             <th>{{ 'cart.label.product' | t }}</th>
@@ -67,8 +69,15 @@
           Cart empty state
           {% endcomment %}
           <div class="supports-cookies">
-            <p>{{ 'cart.general.empty' | t }}</p>
-            <p>{{ 'cart.general.continue_browsing_html' | t }}</p>
+            <p>
+              {% render
+                'button',
+                element: 'a',
+                href: '#',
+                class: 'button--secondary',
+                text: 'Return to shop'
+              %}
+            </p>
           </div>
           
           {% comment %}
