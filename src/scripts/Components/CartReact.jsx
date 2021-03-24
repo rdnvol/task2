@@ -93,20 +93,25 @@ class Cart extends Component {
               { this.ref.dataset.noteEnable === 'true' ? this.renderNote() : '' }
               <div className="col-md-5 col-lg-4 px-0 ml-auto">
                 <div className="cart-form__total mb-4">
-                  <div className="row">
-                    <div className="col-8">
-                      <p>{ theme.cart.total }</p>
-                    </div>
-                    <div className="col-4">
-                      <p>{ formatMoney(this.props.cart.total_price, theme.moneyFormat) }</p>
-                    </div>
+                  <div className="title-1 mb-3">
+                      { theme.cart.total }
+                      { formatMoney(this.props.cart.total_price, theme.moneyFormat) }
                   </div>
-                  <div class="cart-form__total__text-box">
+                  <div class="cart-form__total__text-box body-3">
                     { this.renderDiscount() }
                     <p dangerouslySetInnerHTML={ {__html: theme.cart.shipping_at_checkout} }></p>
                   </div>
                 </div>
-                <input type="submit" className="mb-3 button" name="checkout" value={ theme.cart.checkout }/>
+                <div className="row">
+                  <div className="col-12 col-lg-6">
+                    <button type="button" className="button button--secondary">
+                      Update
+                    </button>
+                  </div>
+                  <div className="col-12 col-lg-6">
+                    <input type="submit" className="mb-3 button" name="checkout" value={ theme.cart.checkout }/>
+                  </div>
+                </div>
               </div>
             </div>
           </form>

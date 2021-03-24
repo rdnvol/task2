@@ -97,9 +97,7 @@ class LineItem extends Component {
             <div className="col-8 col-md-9">
               <div className="cart__product-text">
                 <a href={ url } className="cart__product-link">
-                  <strong>
                     { product_title }
-                  </strong>
                 </a>
                 { this.renderItemOptions(item) }
                 <p>{ vendor }</p>
@@ -113,8 +111,14 @@ class LineItem extends Component {
           </div>
         </td>
         <td>
-          <div className="mb-4 mb-md-0">
+          <div className="product__price__box mb-4 mb-md-0">
             { this.renderPrice(item) }
+            <ins>
+              123
+            </ins>
+            <del>
+              123
+            </del>
           </div>
           <div className="d-flex d-md-none align-items-center justify-content-end">
             <label htmlFor={ `updates_mobile_${ key }` } className="mr-2">Qty</label>

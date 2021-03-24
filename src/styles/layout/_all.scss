@@ -377,9 +377,9 @@
 }
 
 .page-title-block {
-  margin: 0 0 20px;
+  padding: 20px 0;
   @include media("≥desktop") {
-    margin: 0 0 30px;
+    padding: 30px 0;
   }
 
   h1,
