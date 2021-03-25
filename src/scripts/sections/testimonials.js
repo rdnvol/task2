@@ -35,7 +35,6 @@ register('testimonials', {
         },
       }
     });
-    console.log("Swiper", this.swiper)
   },
   
   // Shortcut function called when a section is loaded via 'sections.load()' or by the Theme Editor 'shopify:section:load' event.
