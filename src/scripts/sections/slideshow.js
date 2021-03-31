@@ -3,15 +3,8 @@ import Swiper from "swiper";
 
 register('slideshow', {
   
-  _findCurrentSwiper(swiperId) {
-    if (this.swipers.length) {
-      return this.swipers.find(swiper => swiper.wrapperEl.dataset.swiperId === this.id);
-    }
-    return this.swipers
-  },
-  
   _slideToBlock: function (index) {
-    this._findCurrentSwiper().slideTo(index);
+    this.swiper.slideTo(index);
   },
   
   initTestimonialsSlider: function () {
@@ -21,7 +14,7 @@ register('slideshow', {
     let loop = blocksLength > 1;
     console.log('loop', loop)
     let autoplay = autorotate ? { delay } : false;
-    this.swipers = new Swiper('.slideshow-gallery', {
+    this.swiper = new Swiper(this.container.querySelector('.swiper-container'), {
       speed: 800,
       watchOverflow: true,
       loop,
@@ -55,13 +48,13 @@ register('slideshow', {
   
   // Shortcut function called when a section unloaded by the Theme Editor 'shopify:section:unload' event.
   onUnload: function (e) {
-    this._findCurrentSwiper().destroy();
+    this.swiper.destroy();
     // Do something when a section instance is unloaded
   },
   
   // Shortcut function called when a section is deselected by the Theme Editor 'shopify:section:deselect' event.
   onDeselect: function () {
-    this._findCurrentSwiper().slideTo(1);
+    this.swiper.slideTo(1);
     // Do something when a section instance is deselected
   },
   // Shortcut function called when a section block is selected by the Theme Editor 'shopify:block:select' event.
@@ -72,7 +65,7 @@ register('slideshow', {
   
   // Shortcut function called when a section block is deselected by the Theme Editor 'shopify:block:deselect' event.
   onBlockDeselect: function (e) {
-    this._findCurrentSwiper().slideTo(1);
+    this.swiper.slideTo(1);
     // Do something when a section block is deselected
   }
 });
