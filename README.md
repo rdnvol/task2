@@ -12,7 +12,7 @@
    * [watch](#watch)
    * [start](#start)
    * [open](#open)
-   * [analyze](#Bundle analyzer)
+   * [analyze](#bundle-analyzer)
    * [zip](#zip)
 4. [Linters](#linters)
 
@@ -159,6 +159,8 @@ yarn analyze
 Uses `webpack-bundle-analyzer` plugin
 Analyzes the bundles that webpack created. This tool creates a visual mapping of modules
 included in a JS bundle.
+
+![analyzer](https://raw.githubusercontent.com/bystrovagency/draft-theme/master/lib/analyzer.png?token=ACWSBVSYRGDKMNDFMSFU7RTANXYDW)
 
 ### Zip
 ```

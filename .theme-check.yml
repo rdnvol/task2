@@ -8,6 +8,7 @@ ignore:
   - templates/*(markup)
   - sections/*markup.liquid
   - templates/*markup.liquid
+  - snippets/*markup.liquid
   - templates/page.typography.liquid
   - templates/page.typography.liquid
   - templates/product.markup-2.liquid
@@ -37,7 +38,7 @@ SyntaxError:
 
 TemplateLength:
   enabled: true
-  max_length: 200
+  max_length: 350
   # Exclude content of {% schema %} in line count
   exclude_schema: true
 
@@ -97,3 +98,6 @@ AssetSizeJavaScript:
 AssetSizeCSS:
   enabled: false
   threshold_in_bytes: 100_000
+
+ImgWidthAndHeight:
+  enabled: false
