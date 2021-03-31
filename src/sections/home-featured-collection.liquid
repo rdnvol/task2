@@ -15,7 +15,7 @@
 
 <div class="section">
   <div class="container">
-    <h2 class="text-center">Featured collection</h2>
+    <h2 class="text-center">{{ section.settings.title }}</h2>
     <div class="row">
       {% liquid
         for product in collection.products limit: product_limit
