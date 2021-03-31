@@ -8,10 +8,10 @@ const exec = require('child_process').exec;
 const webpack = require('webpack');
 const TerserPlugin = require('terser-webpack-plugin');
 const path = require('path');
-const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const FileManagerPlugin = require('filemanager-webpack-plugin');
 const TerserJSPlugin = require('terser-webpack-plugin');
@@ -19,7 +19,7 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const getTemplateEntrypoints = require('./lib/utilities/get-template-entrypoints');
 const getLayoutEntrypoints = require('./lib/utilities/get-layout-entrypoints');
-const {colors} = require("./lib/colors");
+const { colors } = require("./lib/colors");
 const settings = require('./lib/config').init();
 
 let isRunning = false
@@ -69,16 +69,16 @@ const zipPlugin = [
       },
       onEnd: {
         copy: [
-          {source: './src/assets', destination: './dist/assets'},
-          {source: './src/config', destination: './dist/config'},
-          {source: './src/layout', destination: './dist/layout'},
-          {source: './src/locales', destination: './dist/locales'},
-          {source: './src/sections', destination: './dist/sections'},
-          {source: './src/snippets', destination: './dist/snippets'},
-          {source: './src/templates', destination: './dist/templates'}
+          { source: './src/assets', destination: './dist/assets' },
+          { source: './src/config', destination: './dist/config' },
+          { source: './src/layout', destination: './dist/layout' },
+          { source: './src/locales', destination: './dist/locales' },
+          { source: './src/sections', destination: './dist/sections' },
+          { source: './src/snippets', destination: './dist/snippets' },
+          { source: './src/templates', destination: './dist/templates' }
         ],
         archive: [
-          {source: './dist', destination: './rc.zip', format: 'zip'}
+          { source: './dist', destination: './rc.zip', format: 'zip' }
         ],
       },
     },
@@ -98,20 +98,24 @@ const AfterBuildHook = {
   apply: (compiler) => {
     env === DEV
       ? compiler.hooks.afterEmit.tap('AfterEmitPlugin', (compilation) => {
-      if (!isRunning) {
-        console.log('----------- RELOAD --------')
-        exec('npm run theme:deploy && npm run watch:theme:dev:win', { shell: true, stdio: 'inherit', stdout: 'inherit' })
-          .stdout.on('data', (data) => {
-          console.log(`\x1b[1m%s${colors.fg.yellow}`, data.toString());
-        })
-      }
-      isRunning = true;
-    }) :
+        if (!isRunning) {
+          console.log('----------- RELOAD --------')
+          exec('npm run theme:deploy && npm run watch:theme:dev:win', {
+            shell: true,
+            stdio: 'inherit',
+            stdout: 'inherit'
+          })
+            .stdout.on('data', (data) => {
+            console.log(`\x1b[1m%s${ colors.fg.yellow }`, data.toString());
+          })
+        }
+        isRunning = true;
+      }) :
       compiler.hooks.done.tap('AfterEmitPlugin', (compilation) => {
         if (deploy) {
           exec('npm run theme:deploy', { shell: true, stdio: 'inherit', stdout: 'inherit' })
             .stdout.on('data', (data) => {
-            console.log(`\x1b[1m%s${colors.fg.yellow}`, data.toString());
+            console.log(`\x1b[1m%s${ colors.fg.yellow }`, data.toString());
           })
         }
       })
@@ -139,6 +143,7 @@ module.exports = {
       Scripts: path.resolve(__dirname, './src/scripts/templates'),
       Sections: path.resolve(__dirname, './src/scripts/sections'),
       Components: path.resolve(__dirname, './src/scripts/Components'),
+      Styles: path.resolve(__dirname, './src/styles')
     },
     extensions: ['.js', '.jsx']
   },
@@ -209,7 +214,7 @@ module.exports = {
         loader: "babel-loader",
         options: {
           plugins: [
-            ["@babel/transform-react-jsx", {"pragma": "h"}],
+            ["@babel/transform-react-jsx", { "pragma": "h" }],
             ["@babel/plugin-proposal-class-properties"]
           ]
         }
@@ -310,12 +315,16 @@ module.exports = {
     }),
     // env plugin
     new webpack.DefinePlugin({
-      'proccess.env': {NODE_ENV: JSON.stringify(env)}
+      'proccess.env': { NODE_ENV: JSON.stringify(env) }
     }),
     new webpack.ProvidePlugin({
       $: 'jquery',
       jQuery: 'jquery'
     }),
-    AfterBuildHook
+    new BundleAnalyzerPlugin({
+      analyzerMode: bundleAnalyzerEnabled ? 'server' : 'disabled',
+    }),
+    AfterBuildHook,
+    // WebpackBundleAnalyzerHook
   ]
 };

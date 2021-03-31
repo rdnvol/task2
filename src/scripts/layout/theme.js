@@ -1,4 +1,4 @@
-import '../../styles/theme.scss';
+import 'Styles/theme.scss';
 
 // plugins
 require("expose-loader?$!jquery");
