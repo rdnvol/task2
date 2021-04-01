@@ -1,6 +1,6 @@
 - pipeline: "Build and deploy"
   trigger_mode: "ON_EVERY_PUSH"
-  ref_name: "master"
+  ref_name: "issue-470"
   ref_type: "BRANCH"
   priority: "NORMAL"
   fail_on_prepare_env_warning: true
