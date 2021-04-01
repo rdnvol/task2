@@ -1,4 +1,4 @@
-- pipeline: "Create Release Candidate"
+- pipeline: "Build and deploy"
   trigger_mode: "ON_EVERY_PUSH"
   ref_name: "master"
   ref_type: "BRANCH"
@@ -9,7 +9,7 @@
   - action: "Build Project"
     type: "BUILD"
     working_directory: "/buddy/draft-theme"
-    docker_image_name: "library/node"
+    docker_image_name: "library/node:14"
     docker_image_tag: "latest"
     execute_commands:
     - "npm install"
