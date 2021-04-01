@@ -30,7 +30,7 @@
     - "theme deploy --themeid=$theme_id --password=$password --store=$store"
     trigger_condition: "ALWAYS"
     shell: "SH"
-    integration_hash: "o2j50r4KGRb4V8q1eBLZQxgy91"
+    integration_hash: "X2lwGqLkzPdy7rLzaQrov3KBgA"
   variables:
   - key: "theme_id"
     value: "120160387204"
