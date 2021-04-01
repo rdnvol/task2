@@ -1,6 +1,6 @@
 - pipeline: "Create Release Candidate"
   trigger_mode: "ON_EVERY_PUSH"
-  ref_name: "new-releases"
+  ref_name: "master"
   ref_type: "BRANCH"
   priority: "NORMAL"
   fail_on_prepare_env_warning: true
