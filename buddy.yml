@@ -14,7 +14,7 @@
     execute_commands:
     - "npm install"
     - "npm uninstall --save-dev node-sass"
-    - "npm install --save-dev node-sass"
+    - "npm install --save-dev node-sass@4.14"
     - "npm run build"
     setup_commands:
     - "curl -s https://raw.githubusercontent.com/Shopify/themekit/master/scripts/install.py |  python"
