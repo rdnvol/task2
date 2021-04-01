@@ -4,7 +4,7 @@ const DEV = 'development';
 
 // Libraries
 require('dotenv').config();
-const exec = require('child_process').exec;
+const exec = require('child_process').spawn;
 const webpack = require('webpack');
 const TerserPlugin = require('terser-webpack-plugin');
 const path = require('path');
@@ -100,23 +100,24 @@ const AfterBuildHook = {
       ? compiler.hooks.afterEmit.tap('AfterEmitPlugin', (compilation) => {
         if (!isRunning) {
           console.log('----------- RELOAD --------')
-          exec('npm run theme:deploy && npm run watch:theme:dev:win', {
+          const start = exec('npm run theme:deploy && npm run watch:theme:dev:win', {
             shell: true,
             stdio: 'inherit',
             stdout: 'inherit'
           })
-            .stdout.on('data', (data) => {
-            console.log(`\x1b[1m%s${ colors.fg.yellow }`, data.toString());
-          })
+          start.on('close', (code) => {
+            console.log(`child process exited with code ${ code }`);
+            isRunning = false;
+          });
         }
         isRunning = true;
       }) :
       compiler.hooks.done.tap('AfterEmitPlugin', (compilation) => {
         if (deploy) {
-          exec('npm run theme:deploy', { shell: true, stdio: 'inherit', stdout: 'inherit' })
-            .stdout.on('data', (data) => {
-            console.log(`\x1b[1m%s${ colors.fg.yellow }`, data.toString());
-          })
+          const start = exec('npm run theme:deploy', { shell: true, stdio: 'inherit', stdout: 'inherit' })
+          start.on('close', (code) => {
+            console.log(`child process exited with code ${ code }`);
+          });
         }
       })
   }

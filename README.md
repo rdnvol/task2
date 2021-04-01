@@ -117,7 +117,7 @@ The examples will be shown with using `yarn` for npm users just use `npm run <co
 - [watch](#watch)
 - [start](#start)
 - [open](#open)
-- [analyze](#Bundle analyzer)
+- [analyze](#bundle-analyzer)
 - [zip](#zip)
 
 

@@ -1,13 +1,16 @@
 <style>
 
-  {% if settings.font_library == 'shopify' %}
-    {{ settings.font_heading | font_face }}
-    {{ settings.font_body | font_face }}
+  {% liquid
+    if settings.font_library == "shopify"
+      echo settings.font_heading | font_face
+      echo settings.font_body | font_face
 
-    {%- assign font_body_bold = settings.font_body | font_modify: 'weight', 'bolder' -%}
-    {%- assign font_body_italic = settings.font_body | font_modify: 'style', 'italic' -%}
-    {%- assign font_heading_bold = settings.font_heading | font_modify: 'weight', 'bolder' -%}
-
+      assign font_body_bold = settings.font_body | font_modify: 'weight', 'bolder'
+      assign font_body_italic = settings.font_body | font_modify: 'style', 'italic'
+      assign font_heading_bold = settings.font_heading | font_modify: 'weight', 'bolder'
+    endif
+  %}
+  {% if font_body_bold or font_heading_bold or font_body_italic %}
     {{ font_body_bold | font_face }}
     {{ font_heading_bold | font_face }}
     {{ font_body_italic | font_face }}
