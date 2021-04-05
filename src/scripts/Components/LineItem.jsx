@@ -16,10 +16,23 @@ class LineItem extends Component {
   updateItem = e => {
     let key = this.props.item.key;
     let quantity = +e.target.value;
-    this.props.updateItem(key, {quantity});
+    this.props.updateItem(key, { quantity });
   }
   
-  renderImage({image, title, url}) {
+  changeQuantity(action, element) {
+    let changeEvent = new Event('change');
+    switch (action) {
+      case '+':
+        element.value = ++element.value
+        element.dispatchEvent(changeEvent);
+        break;
+      case '-':
+        element.value = --element.value
+        element.dispatchEvent(changeEvent);
+    }
+  }
+  
+  renderImage({ image, title, url }) {
     return (
       <div className="cart__product-img">
         <a href={ url }>
@@ -51,22 +64,28 @@ class LineItem extends Component {
     }
   }
   
-  renderPrice({original_line_price, line_price, original_price, price}) {
+  renderPrice({ original_line_price, line_price, original_price, price }) {
     if (original_line_price !== line_price) {
       return (
         <Fragment>
-          <span className="visually-hidden">{ theme.cart.discounted_price }</span>
-          { formatMoney(price, theme.moneyFormat) }
-          <span className="visually-hidden">{ theme.cart.original_price }</span>
-          <s>{ formatMoney(line_price, theme.moneyFormat) }</s>
+          <ins>
+            { formatMoney(price, theme.moneyFormat) }
+          </ins>
+          <del>
+            { formatMoney(line_price, theme.moneyFormat) }
+          </del>
         </Fragment>
       )
     } else {
-      return formatMoney(price, theme.moneyFormat)
+      return (
+        <div>
+          { formatMoney(price, theme.moneyFormat) }
+        </div>
+      )
     }
   }
   
-  renderItemOptions({options_with_values, product_has_only_default_variant}) {
+  renderItemOptions({ options_with_values, product_has_only_default_variant }) {
     if (!product_has_only_default_variant) {
       return options_with_values.map(option =>
         <div>{ option.name }: { option.value }</div>
@@ -74,7 +93,7 @@ class LineItem extends Component {
     }
   }
   
-  render({item, updateCart}) {
+  render({ item, updateCart }) {
     const {
       key,
       image,
@@ -105,21 +124,24 @@ class LineItem extends Component {
                 <label htmlFor={ `updates_mobile_${ key }` } className="visually-hidden">Qty</label>
                 <span class="jcf-number">
                   <input type="number"
-                        name="updates[]"
-                        id={ `updates_mobile_${ key }` }
-                        value={ quantity }
-                        onChange={ debounce(this.updateItem, 200) }
-                        min="0"
-                        aria-label={ theme.cart.quantity }/>
-                  <span class="jcf-btn-inc"></span>
-                  <span class="jcf-btn-dec jcf-disabled"></span>
+                         name="updates[]"
+                         ref={ c => this.mobileQuantityInput = c }
+                         id={ `updates_mobile_${ key }` }
+                         value={ this.props.item.quantity }
+                         onChange={ debounce(this.updateItem, 200) }
+                         min="0"
+                         aria-label={ theme.cart.quantity }/>
+                  <span class="jcf-btn-inc" onClick={ () => this.changeQuantity('+', this.mobileQuantityInput) }/>
+                  <span class="jcf-btn-dec jcf-disabled"
+                        onClick={ () => this.changeQuantity('-', this.mobileQuantityInput) }/>
                 </span>
               </div>
               <div className="d-none">
                 { this.renderItemOptions(item) }
                 { this.renderProperties(properties) }
               </div>
-              <a className="cart__button-remove body-3" href="/cart/change?line={{ forloop.index }}&amp;quantity=0" onClick={ this.removeItem }>
+              <a className="cart__button-remove body-3" href="/cart/change?line={{ forloop.index }}&amp;quantity=0"
+                 onClick={ this.removeItem }>
                 { theme.cart.remove }
               </a>
             </div>
@@ -128,25 +150,20 @@ class LineItem extends Component {
         <td>
           <div className="product__price__box mb-4 mb-md-0">
             { this.renderPrice(item) }
-            <ins>
-              $449.00
-            </ins>
-            <del>
-              $559.00
-            </del>
           </div>
         </td>
         <td>
           <span class="jcf-number">
             <input type="number"
-                  name="updates[]"
-                  id={ `updates_${ key }` }
-                  value={ quantity }
-                  onChange={ debounce(this.updateItem, 200) }
-                  min="0"
-                  aria-label={ theme.cart.quantity }/>
-            <span class="jcf-btn-inc"></span>
-            <span class="jcf-btn-dec jcf-disabled"></span>
+                   name="updates[]"
+                   ref={ c => this.quantityInput = c }
+                   id={ `updates_${ key }` }
+                   value={ this.props.item.quantity }
+                   onChange={ debounce(this.updateItem, 200) }
+                   min="0"
+                   aria-label={ theme.cart.quantity }/>
+            <span className="jcf-btn-inc" onClick={ () => this.changeQuantity('+', this.quantityInput) }/>
+            <span className="jcf-btn-dec" onClick={ () => this.changeQuantity('-', this.quantityInput) }/>
           </span>
         </td>
         <td>
