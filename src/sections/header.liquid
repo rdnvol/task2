@@ -88,11 +88,12 @@
                value="{{ search.terms | escape }}"
                placeholder="{{ 'general.search.placeholder' | t }}">
         {% comment %}theme-check-disable ConvertIncludeToRender{% endcomment %}
-        {% render "button",
+        {% include "button",
           element: "button",
           type: "icon",
           class: 'btn page-search-form__button d-flex align-items-center',
-          snippet: 'icon-search'
+          snippet: 'icon',
+          icon: 'search'
         %}
         {% comment %}theme-check-enable{% endcomment %}
       </form>
