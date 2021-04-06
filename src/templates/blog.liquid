@@ -30,8 +30,11 @@
               </a>
             {% endif %}
             <div>
-              {{ 'customer.addresses.phone' | t }}:
-              <a href="tel:8127108025">812-710-8025</a>
+              {% if article.excerpt.size > 0 %}
+                {{ article.excerpt }}
+              {% else %}
+                {{ article.content | strip_html | truncate: 150 }}
+              {% endif %}
             </div>
           </article>
         {% endfor %}
