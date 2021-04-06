@@ -46,6 +46,72 @@
         "default": "#fff"
       },
       {
+        "type": "color",
+        "id": "color_base_footer_background",
+        "label": "Footer background",
+        "default": "#f8f8f8"
+      },
+      {
+        "type": "color",
+        "id": "color_base_accordion_background",
+        "label": "Accordion background",
+        "default": "#f1f1f1"
+      },
+      {
+        "type": "color",
+        "id": "color_base_links",
+        "label": "Base links",
+        "default": "#0f62fe"
+      },
+      {
+        "type": "color",
+        "id": "color_base_sale_price",
+        "label": "Sale price",
+        "default": "#f00036"
+      },
+      {
+        "type": "color",
+        "id": "color_base_icons",
+        "label": "Icons",
+        "default": "#000"
+      },
+      {
+        "type": "color",
+        "id": "color_base_icons_on_hover",
+        "label": "Icons on hover",
+        "default": "#333"
+      },
+      {
+        "type": "color",
+        "id": "color_base_secondary_background",
+        "label": "Secondary background",
+        "default": "#f1f1f1"
+      },
+      {
+        "type": "color",
+        "id": "color_base_border",
+        "label": "Border",
+        "default": "#e5e5e5"
+      },
+      {
+        "type": "color",
+        "id": "color_messages_error",
+        "label": "Messages error",
+        "default": "#da1d28"
+      },
+      {
+        "type": "color",
+        "id": "color_messages_success",
+        "label": "Messages success",
+        "default": "#27ae60"
+      },
+      {
+        "type": "color",
+        "id": "customizable_base_text",
+        "label": "Base text",
+        "default": "#fff"
+      },
+      {
         "type": "header",
         "content": "Buttons colors"
       },
@@ -94,14 +160,32 @@
       {
         "type": "color",
         "id": "button_hover_bg_color",
-        "label": "Background hover",
+        "label": "Background on hover",
         "default": "#000"
       },
       {
         "type": "color",
         "id": "button_focus_bg_color",
-        "label": "Background focus",
+        "label": "Background on focus",
         "default": "#FCF113"
+      },
+      {
+        "type": "color",
+        "id": "button_text_on_disabled",
+        "label": "Text on disabled",
+        "default": "#000"
+      },
+      {
+        "type": "color",
+        "id": "button_border_on_disabled",
+        "label": "Border on disabled",
+        "default": "#e5e5e5"
+      },
+      {
+        "type": "color",
+        "id": "button_background_on_disabled",
+        "label": "Background on disabled",
+        "default": "#e5e5e5"
       },
       {
         "type": "text",
@@ -187,6 +271,82 @@
         "id": "checkout_button_focus_bg_color",
         "label": "Background focus",
         "default": "#FCF113"
+      },
+      {
+        "type": "header",
+        "content": "Secondary checkout button"
+      },
+      {
+        "type": "color",
+        "id": "secondary_button_text_color",
+        "label": "Text",
+        "default": "#000"
+      },
+      {
+        "type": "color",
+        "id": "secondary_button_hover_text_color",
+        "label": "Text on hover",
+        "default": "#fff"
+      },
+      {
+        "type": "color",
+        "id": "secondary_button_focus_text_color",
+        "label": "Text on focus",
+        "default": "#000"
+      },
+      {
+        "type": "color",
+        "id": "secondary_button_border_color",
+        "label": "Border",
+        "default": "#000"
+      },
+      {
+        "type": "color",
+        "id": "secondary_button_hover_border_color",
+        "label": "Border on hover",
+        "default": "#000"
+      },
+      {
+        "type": "color",
+        "id": "secondary_button_focus_border_color",
+        "label": "Border on focus",
+        "default": "#000"
+      },
+      {
+        "type": "color",
+        "id": "secondary_button_background_color",
+        "label": "Background",
+        "default": "#fff"
+      },
+      {
+        "type": "color",
+        "id": "secondary_button_hover_background_color",
+        "label": "Background on hover",
+        "default": "#000"
+      },
+      {
+        "type": "color",
+        "id": "secondary_button_focus_background_color",
+        "label": "Background on focus",
+        "default": "#fff"
+      },
+      {
+        "type": "color",
+        "id": "secondary_button_text_on_disabled",
+        "label": "Text on disabled",
+        "default": "#e5e5e5"
+      },
+      {
+        "type": "color",
+        "id": "secondary_button_border_on_disabled",
+        "label": "Border on disabled",
+        "default": "#fff"
+      },
+      {
+        "type": "color",
+        "id": "secondary_button_background_on_disabled",
+        "label": "Background on disabled",
+        "default": "#fff"
       }
     ]
   },
