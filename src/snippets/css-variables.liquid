@@ -21,21 +21,21 @@
     --color-body-text: {{ settings.color_body_text }};
     --color-main-background: {{ settings.color_main_bg }};
     --color-border: {{ settings.color_body_text | color_lighten: 50 }};
-    --base-footer-background: #f8f8f8;
-    --base-accordion-background: #f1f1f1;
-    --base-links: #0f62fe;
-    --base-sale-price: #f00036;
-    --base-icons: #000;
-    --base-icons-on-hover: #333;
-    --base-secondary-background: #f1f1f1;
-    --base-border: #e5e5e5;
+    --base-footer-background: {{ settings.color_base_footer_background }};
+    --base-accordion-background: {{ settings.color_base_accordion_background }};
+    --base-links: {{ settings.color_base_links }};
+    --base-sale-price: {{ settings.color_base_sale_price }};
+    --base-icons: {{ settings.color_base_icons }};
+    --base-icons-on-hover: {{ settings.color_base_icons_on_hover }};
+    --base-secondary-background: {{ settings.color_base_secondary_background }};
+    --base-border: {{ settings.color_base_border }};
 
     /* Messages */
-    --messages-error: #da1d28;
-    --messages-success: #27ae60;
+    --messages-error: {{ settings.color_messages_error }};
+    --messages-success: {{ settings.color_messages_success }};
 
     /* Customizable */
-    --customizable-base-text: #fff;
+    --customizable-base-text: {{ settings.customizable_base_text }};
 
     /* Font library */
     {%- case settings.font_library -%}
@@ -86,24 +86,24 @@
     --button-background-color: {{ settings.button_bg_color }};
     --button-hover-background-color: {{ settings.button_hover_bg_color }};
     --button-focus-background-color: {{ settings.button_focus_bg_color }};
-    --button-text-on-disabled: #000;
-    --button-border-on-disabled: #e5e5e5;
-    --button-background-on-disabled: #e5e5e5;
+    --button-text-on-disabled: {{ settings.button_text_on_disabled }};
+    --button-border-on-disabled: {{ settings.button_border_on_disabled }};
+    --button-background-on-disabled: {{ settings.button_background_on_disabled }};
     --button-border-radius: {{ settings.button_border_radius }};
 
     /* Checkout button colors */
-    --secondary-button-text-color: #000;
-    --secondary-button-hover-text-color: #fff;
-    --secondary-button-focus-text-color: #000;
-    --secondary-button-border-color: #000;
-    --secondary-button-hover-border-color: #000;
-    --secondary-button-focus-border-color: #000;
-    --secondary-button-background-color: #fff;
-    --secondary-button-hover-background-color: #000;
-    --secondary-button-focus-background-color: #fff;
-    --secondary-button-text-on-disabled: #e5e5e5;
-    --secondary-button-border-on-disabled: #fff;
-    --secondary-button-background-on-disabled: #fff;
+    --secondary-button-text-color: {{ settings.secondary_button_text_color }};
+    --secondary-button-hover-text-color: {{ settings.secondary_button_hover_text_color }};
+    --secondary-button-focus-text-color: {{ settings.secondary_button_focus_text_color }};
+    --secondary-button-border-color: {{ settings.secondary_button_border_color }};
+    --secondary-button-hover-border-color: {{ settings.secondary_button_hover_border_color }};
+    --secondary-button-focus-border-color: {{ settings.secondary_button_focus_border_color }};
+    --secondary-button-background-color: {{ settings.secondary_button_background_color }};
+    --secondary-button-hover-background-color: {{ settings.secondary_button_hover_background_color }};
+    --secondary-button-focus-background-color: {{ settings.secondary_button_focus_background_color }};
+    --secondary-button-text-on-disabled: {{ settings.secondary_button_text_on_disabled }};
+    --secondary-button-border-on-disabled: {{ settings.secondary_button_border_on_disabled }};
+    --secondary-button-background-on-disabled: {{ settings.secondary_button_background_on_disabled }};
 
     /* Checkout button colors */
     --checkout-button-text-color: {{ settings.checkout_button_text_color }};
