@@ -234,27 +234,27 @@ Renders an image
   if asset_img_url
     if crop
       assign d_src = src | asset_img_url: d, crop: crop
-      assign d_src_2x = src | asset_img_url: d2x, crop: crop
+      assign d_src_2x = src | asset_img_url: d, scale: 2, crop: crop
       assign d_srcset = d_src | append: ", " | append: d_src_2x | append: ' 2x'
 
       assign t_src = src_tablet | asset_img_url: t, crop: crop
-      assign t_src_2x = src_tablet | asset_img_url: t2x, crop: crop
+      assign t_src_2x = src_tablet | asset_img_url: t, scale: 2, crop: crop
       assign t_srcset = t_src | append: ", " | append: t_src_2x | append: ' 2x'
 
       assign m_src = src_mobile | asset_img_url: m, crop: crop
-      assign m_src_2x = src_mobile | asset_img_url: m2x, crop: crop
+      assign m_src_2x = src_mobile | asset_img_url: m, scale: 2, crop: crop
       assign m_srcset = m_src | append: ", " | append: m_src_2x | append: ' 2x'
     else
       assign d_src = src | asset_img_url: d
-      assign d_src_2x = src | asset_img_url: d2x
+      assign d_src_2x = src | asset_img_url: d, scale: 2
       assign d_srcset = d_src | append: ", " | append: d_src_2x | append: ' 2x'
 
       assign t_src = src_tablet | asset_img_url: t
-      assign t_src_2x = src_tablet | asset_img_url: t2x
+      assign t_src_2x = src_tablet | asset_img_url: t, scale: 2
       assign t_srcset = t_src | append: ", " | append: t_src_2x | append: ' 2x'
 
       assign m_src = src_mobile | asset_img_url: m
-      assign m_src_2x = src_mobile | asset_img_url: m2x
+      assign m_src_2x = src_mobile | asset_img_url: m, scale: 2
       assign m_srcset = m_src | append: ", " | append: m_src_2x | append: ' 2x'
     endif
   elsif metafield
@@ -272,59 +272,59 @@ Renders an image
   else
     if crop
       assign d_src = src | img_url: d, crop: crop
-      assign d_src_2x = src | img_url: d2x, crop: crop
+      assign d_src_2x = src | img_url: d, scale: 2, crop: crop
       assign d_srcset = d_src | append: ", " | append: d_src_2x | append: ' 2x'
 
       assign t_src = src_tablet | img_url: t, crop: crop
-      assign t_src_2x = src_tablet | img_url: t2x, crop: crop
+      assign t_src_2x = src_tablet | img_url: t, scale: 2, crop: crop
       assign t_srcset = t_src | append: ", " | append: t_src_2x | append: ' 2x'
 
       assign m_src = src_mobile | img_url: m, crop: crop
-      assign m_src_2x = src_mobile | img_url: m2x, crop: crop
+      assign m_src_2x = src_mobile | img_url: m, scale:2, crop: crop
       assign m_srcset = m_src | append: ", " | append: m_src_2x | append: ' 2x'
     else
       assign d_src = src | img_url: d
-      assign d_src_2x = src | img_url: d2x
+      assign d_src_2x = src | img_url: d, scale: 2
       assign d_srcset = d_src | append: ", " | append: d_src_2x | append: ' 2x'
 
       assign t_src = src_tablet | img_url: t
-      assign t_src_2x = src_tablet | img_url: t2x
+      assign t_src_2x = src_tablet | img_url: t, scale: 2
       assign t_srcset = t_src | append: ", " | append: t_src_2x | append: ' 2x'
 
       assign m_src = src_mobile | img_url: m
-      assign m_src_2x = src_mobile | img_url: m2x
+      assign m_src_2x = src_mobile | img_url: m, scale: 2
       assign m_srcset = m_src | append: ", " | append: m_src_2x | append: ' 2x'
     endif
   endif
 %}
 
 {% if lazyload %}
-<picture>
-{% if src_m %}
-  <source data-srcset="{{ m_srcset }}" media="(max-width: 767px)" srcset="{{ placeholder_m }}">
-{% endif %}
-{% if src_t %}
-  <source data-srcset="{{ t_srcset }}" media="(max-width: 1199px)" srcset="{{ placeholder_t }}">
-{% endif %}
-<source data-srcset="{{ d_srcset }}" srcset="{{ placeholder_d }}">
-<img data-src="{{ d_src }}"
-    {% if classes %} class="{{ classes }}"{% endif %}
-     data-sizes="auto"
-     alt="{{ alt | default: 'image description' }}"
-     src="{{ placeholder_d }}" {{ data_attribute }}>
-</picture>
+  <picture>
+    {% if src_m %}
+      <source data-srcset="{{ m_srcset }}" media="(max-width: 767px)" srcset="{{ placeholder_m }}">
+    {% endif %}
+    {% if src_t %}
+      <source data-srcset="{{ t_srcset }}" media="(max-width: 1199px)" srcset="{{ placeholder_t }}">
+    {% endif %}
+    <source data-srcset="{{ d_srcset }}" srcset="{{ placeholder_d }}">
+    <img data-src="{{ d_src }}"
+        {% if classes %} class="{{ classes }}"{% endif %}
+         data-sizes="auto"
+         alt="{{ alt | default: 'image description' }}"
+         src="{{ placeholder_d }}" {{ data_attribute }}>
+  </picture>
 {% else %}
-<picture>
-{% if src_m %}
-  <source srcset="{{ m_srcset }}" media="(max-width: 767px)">
-{% endif %}
-{% if src_t %}
-  <source srcset="{{ t_srcset }}" media="(max-width: 1199px)">
-{% endif %}
-<source srcset="{{ d_srcset }}">
-<img src="{{ d_src }}"{% if classes %} class="{{ classes }}"{% endif %}
-     alt="{{ alt | default: 'image description' }}" {{ data_attribute }}>
-</picture>
+  <picture>
+    {% if src_m %}
+      <source srcset="{{ m_srcset }}" media="(max-width: 767px)">
+    {% endif %}
+    {% if src_t %}
+      <source srcset="{{ t_srcset }}" media="(max-width: 1199px)">
+    {% endif %}
+    <source srcset="{{ d_srcset }}">
+    <img src="{{ d_src }}"{% if classes %} class="{{ classes }}"{% endif %}
+         alt="{{ alt | default: 'image description' }}" {{ data_attribute }}>
+  </picture>
 {% endif %}
 
 
