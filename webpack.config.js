@@ -15,11 +15,9 @@ const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const FileManagerPlugin = require('filemanager-webpack-plugin');
 const TerserJSPlugin = require('terser-webpack-plugin');
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const getTemplateEntrypoints = require('./lib/utilities/get-template-entrypoints');
 const getLayoutEntrypoints = require('./lib/utilities/get-layout-entrypoints');
-const { colors } = require("./lib/colors");
 const settings = require('./lib/config').init();
 
 let isRunning = false
