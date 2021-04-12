@@ -1,11 +1,8 @@
 import { h, Component, render } from "preact";
 import { Connect, Provider } from "redux-zero/preact";
+import { formatMoney } from "@shopify/theme-currency/currency";
 import store from "./store";
 import actions from "./actions";
-
-import { formatMoney } from "@shopify/theme-currency/currency";
-import * as cart from '@shopify/theme-cart';
-
 import LineItem from "./LineItem";
 
 class Cart extends Component {

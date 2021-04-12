@@ -6,7 +6,6 @@ const DEV = 'development';
 require('dotenv').config();
 const exec = require('child_process').spawn;
 const webpack = require('webpack');
-const TerserPlugin = require('terser-webpack-plugin');
 const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -18,6 +17,7 @@ const TerserJSPlugin = require('terser-webpack-plugin');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const getTemplateEntrypoints = require('./lib/utilities/get-template-entrypoints');
 const getLayoutEntrypoints = require('./lib/utilities/get-layout-entrypoints');
+const getChunkName = require('./lib/utilities/get-chunk-name')
 const settings = require('./lib/config').init();
 
 let isRunning = false
@@ -156,17 +156,19 @@ module.exports = {
     ignored: /node_modules/,
     aggregateTimeout: 1000,
   },
-  // optimization: env === PROD ? {
-  //   minimizer: [new TerserPlugin()],
-  // } : {
-  //   minimize: false
-  // },
   optimization: { // Defining more chunks aside from the entry JS points
     minimize: true,
     minimizer,
     splitChunks: {
-      chunks: 'all',
-      automaticNameDelimiter: '--',
+      cacheGroups: {
+        defaultVendors: false,
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: getChunkName,
+          chunks: 'initial',
+          priority: 5,
+        },
+      },
     },
   },
   module: {
@@ -323,7 +325,7 @@ module.exports = {
     new BundleAnalyzerPlugin({
       analyzerMode: bundleAnalyzerEnabled ? 'server' : 'disabled',
     }),
-    AfterBuildHook,
-    // WebpackBundleAnalyzerHook
+    AfterBuildHook
   ]
 };
+

@@ -175,3 +175,4 @@ class LineItem extends Component {
 }
 
 export default LineItem;
+
