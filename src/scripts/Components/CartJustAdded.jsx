@@ -1,4 +1,5 @@
 import { h, Component } from "preact";
+import {Image} from "./Image";
 
 class CartJustAdded extends Component {
   constructor(props) {
@@ -15,19 +16,13 @@ class CartJustAdded extends Component {
   }
   
   render({justAdded}) {
-    const {image, product_title, quantity} = justAdded;
+    const {featured_image, product_title, quantity, id} = justAdded;
     return (
       <div className="cart-popup__item">
         <div className="row align-items-center">
           <div className="col-3">
             <div className="cart-popup__item__img">
-              <picture>
-                <source data-srcset={ resizeImageSrcset(image, '63x79') } media="(max-width: 767px)"
-                        srcSet={ theme.placeholder_data }/>
-                <source data-srcset={ resizeImageSrcset(image, '63x79') } srcSet={ theme.placeholder_data }/>
-                <img data-src={ resizeImage(image, '63x79') } className="lazyload" data-sizes="auto"
-                     alt="image description" src={ theme.placeholder_data }/>
-              </picture>
+              <Image key={id} src={featured_image.url} sizes={['63x79']} alt={featured_image.alt} ratio={featured_image.aspect_ratio}/>
             </div>
           </div>
           <div className="col-6">
