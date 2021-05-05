@@ -37,7 +37,7 @@
 }
 
 .map-section__img {
-  background: url("{{'gallery-img-01-2x.jpg' | asset_url}}") no-repeat;
+  background: url("{{ 'img-placeholder.png' | asset_url }}") no-repeat;
   background-size: cover;
   background-position: top left;
   &.map-section__img--top-center {

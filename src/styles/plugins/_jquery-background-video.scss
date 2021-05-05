@@ -56,7 +56,7 @@
   left: -1px;
   bottom: -1px;
   pointer-events: none; /* Allows right click menu on the video */
-  background: url("{{'video-section-img.jpg' | asset_url}}") no-repeat;
+  background: url("{{ 'img-placeholder.png' | asset_url }}") no-repeat;
   background-position: 50% 50%;
   background-size: cover;
   opacity: 1;
