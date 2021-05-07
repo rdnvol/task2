@@ -58,6 +58,11 @@
   color: #fff;
 }
 
+ins {
+  text-decoration: none;
+  color: $base-sale-price;
+}
+
 .breadcrumbs {
   display: flex;
   flex-wrap: wrap;
