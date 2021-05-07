@@ -1,4 +1,6 @@
 {% assign limit = section.settings.limit %}
+
+{% render 'page-hero', image: collection.image %}
 {% render 'breadcrumbs' %}
 {% paginate collection.products by limit %}
   <div class="section page-section">

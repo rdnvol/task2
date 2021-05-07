@@ -1,0 +1,14 @@
+
+{% if image != blank %}
+  <div class="page-hero">
+    {% render
+      'image',
+      asset_img_url: true,
+      src: 'img-placeholder.png',
+      d: '1440x300',
+      src_m: 'img-placeholder.png',
+      m: '375x200',
+      placeholder: 'img-placeholder.png'
+  %}
+  </div>
+{% endif %}
