@@ -6,6 +6,9 @@
       <div class="text-center">
         <h1 class="h2">{{ collection.title }}</h1>
       </div>
+      <div class="text-center py-5">
+        {{ 'collections.general.no_matches' | t }}
+      </div>
       <div class="row py-4">
         {% liquid
           assign products = collection.products
