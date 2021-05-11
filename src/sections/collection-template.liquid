@@ -1,32 +1,28 @@
-{% assign limit = section.settings.limit %}
+{% liquid
+  assign limit = section.settings.limit
+  assign products = collection.products
 
-{% render 'page-hero', image: collection.image %}
-{% render 'breadcrumbs' %}
+  render 'page-hero', image: collection.image
+  render 'breadcrumbs'
+%}
+
 {% paginate collection.products by limit %}
   <div class="section page-section">
     <div class="container">
       <div class="text-center">
         <h1 class="h2">{{ collection.title }}</h1>
       </div>
-      <div class="text-center py-5">
-        {{ 'collections.general.no_matches' | t }}
-      </div>
-      <div class="row py-4">
-        {% liquid
-          assign products = collection.products
-
-          if products.size == 0
-            for i in (1..limit)
-              capture current
-                cycle 1, 2, 3, 4, 5, 6
-              endcapture
-              render "product-card--empty", grid_item_width: 'col-6 col-lg-3', index: current
-            endfor
-          else
-            render "product-card" for products as product, grid_item_width: 'col-6 col-lg-3'
-          endif
-        %}
-      </div>
+      {% if products.size == 0 %}
+        <div class="text-center py-5">
+          {{ 'collections.general.no_matches' | t }}
+        </div>
+      {% else %}
+        <div class="row py-4">
+          {% liquid
+              render "product-card" for products as product, grid_item_width: 'col-6 col-lg-3'
+          %}
+        </div>
+      {% endif %}
       {% if paginate.pages > 1 %}
         {% render 'pagination' %}
       {% endif %}
