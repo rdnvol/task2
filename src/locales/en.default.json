@@ -129,7 +129,9 @@
       "view_all": "view all",
       "no_matches": "Sorry, there are no products in this collection",
       "link_title": "Browse our {{ title }} collection",
-      "products_amount": "{{ amount }} products"
+      "products_amount": "{{ amount }} products",
+      "product": "product",
+      "products": "products"
     }
   },
   "contact": {
