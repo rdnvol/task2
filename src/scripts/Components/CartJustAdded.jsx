@@ -29,7 +29,7 @@ class CartJustAdded extends Component {
             <div className="cart-popup__item__title">{ product_title }</div>
             { this.renderItemOptions(justAdded) }
           </div>
-          <div className="col-3 text-right">Qty: { quantity }</div>
+          <div className="col-3 text-right">{theme.cart.quantity} { quantity }</div>
         </div>
       </div>
     )
