@@ -3,6 +3,9 @@
     "accessibility": {
       "skip_to_content": "Skip to content"
     },
+    "breadcrumbs": {
+      "home": "Home"
+    },
     "meta": {
       "tags": "Tagged \"{{ tags }}\"",
       "page": "Page {{ page }}"
@@ -33,6 +36,7 @@
       "powered_by_shopify_html": "This shop will be powered by {{ shopify }}"
     },
     "social": {
+      "share": "Share",
       "share_on_facebook": "Share",
       "share_on_twitter": "Tweet",
       "share_on_pinterest": "Pin it",
@@ -106,7 +110,10 @@
       "continue_browsing_html": "Continue browsing <a href=\"/collections/all\">here</a>.",
       "item_quantity": "Item quantity",
       "continue_shopping_html": "<a href=\"#\">Continue shopping</a>",
-      "savings": "You're saving"
+      "savings": "You're saving",
+      "just_added_to_your_cart": "Just added to your cart",
+      "view_cart": "View cart",
+      "special_instructions_placeholder": "View Special instructions for seller"
     },
     "label": {
       "product": "Product",
@@ -122,7 +129,9 @@
       "view_all": "view all",
       "no_matches": "Sorry, there are no products in this collection",
       "link_title": "Browse our {{ title }} collection",
-      "products_amount": "{{ amount }} products"
+      "products_amount": "{{ amount }} products",
+      "product": "product",
+      "products": "products"
     }
   },
   "contact": {

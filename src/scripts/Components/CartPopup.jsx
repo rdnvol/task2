@@ -37,7 +37,7 @@ class CartPopup extends Component {
       <div className={ `cart-popup text-black ${ active ? 'active' : '' }` }>
         <div className="cart-popup__header">
           <div className="cart-popup__heading">
-            Just added to your cart
+            {theme.cart.just_added_to_your_cart}
           </div>
           <div>
             <button className="cart-popup__close default" onClick={ closePopup }>
@@ -53,7 +53,7 @@ class CartPopup extends Component {
             { justAdded.id && <CartJustAdded justAdded={ justAdded }/> }
           </div>
           <div className="text-center">
-            <a href="/cart" className="button w-100">View cart <span>({ item_count })</span></a>
+            <a href="/cart" className="button w-100">{theme.cart.view_cart} <span>({ item_count })</span></a>
             <div className="pt-2" dangerouslySetInnerHTML={ {__html: theme.cart.continue_shipping_html} }/>
           </div>
         </div>

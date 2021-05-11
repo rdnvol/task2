@@ -1,3 +1,7 @@
+{% liquid
+  assign product_placeholder = 'collections.general.product' | t
+  assign products_placeholder = 'collections.general.products' | t
+%}
 <div class="section page-section">
   <div class="container">
     <div class="page-title-block text-center">
@@ -22,7 +26,7 @@
               <h2 class="h4 collection-item__title">
                 <a href="{{ collection.url }}" title="{{ 'collections.general.link_title' | t: title: collection.title }}">{{ collection.title }}</a>
               </h2>
-              <p>{{ collection.all_products_count }} {{ collection.all_products_count | pluralize: 'product', 'products' }}</p>
+              <p>{{ collection.all_products_count }} {{ collection.all_products_count | pluralize: product_placeholder, products_placeholder }}</p>
             </div>
           </div>
         </div>
