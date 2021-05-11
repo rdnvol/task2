@@ -112,7 +112,8 @@
       "continue_shopping_html": "<a href=\"#\">Continue shopping</a>",
       "savings": "You're saving",
       "just_added_to_your_cart": "Just added to your cart",
-      "view_cart": "View cart"
+      "view_cart": "View cart",
+      "special_instructions_placeholder": "View Special instructions for seller"
     },
     "label": {
       "product": "Product",

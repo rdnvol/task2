@@ -51,7 +51,7 @@ class Cart extends Component {
             { theme.cart.note }
           </strong>
         </label>
-        <textarea name="note" placeholder="Special instructions for seller" id="CartSpecialInstructions">{ this.state.cart?.note }</textarea>
+        <textarea name="note" placeholder={theme.cart.special_instructions_placeholder} id="CartSpecialInstructions">{ this.state.cart?.note }</textarea>
       </div>
     )
   }
