@@ -16,13 +16,13 @@ register('product', {
   },
   
   // Shortcut function called when a section is loaded via 'sections.load()' or by the Theme Editor 'shopify:section:load' event.
-  onLoad: function(e) {
+  onLoad: function (e) {
     this._initProduct(this.container.dataset.handle);
     // Do something when a section instance is loaded
   },
   
   // Shortcut function called when a section unloaded by the Theme Editor 'shopify:section:unload' event.
-  onUnload: function() {
+  onUnload: function () {
     // Do something when a section instance is unloaded
   }
 });
@@ -49,7 +49,13 @@ export class Product {
         });
         this.initSelectedVariant();
       })
-    this.initChangeTitleOnDynamicBtn();
+    this.waitForElement('.shopify-payment-button__button--unbranded')
+      .then(node => {
+        console.log(node)
+        setTimeout(() => node.innerText = 'test', 100)
+        
+      });
+    // this.initChangeTitleOnDynamicBtn();
   }
   
   initGallery() {
@@ -86,7 +92,7 @@ export class Product {
   updateVariantUrl(variant) {
     if (!variant) return;
     const url = getUrlWithVariant(window.location.href, variant.id);
-    window.history.replaceState({path: url}, '', url);
+    window.history.replaceState({ path: url }, '', url);
   }
   
   onOptionChange(event) {
@@ -152,19 +158,45 @@ export class Product {
     addItem(this.form.element)
       .then((item) => {
         console.log('set state item', item)
-        getCart().then(({item_count, items}) => {
-          Store.setState({justAdded: item, popupActive: true})
-          Store.setState({item_count, popupActive: true, items})
+        getCart().then(({ item_count, items }) => {
+          Store.setState({ justAdded: item, popupActive: true })
+          Store.setState({ item_count, popupActive: true, items })
         })
       });
   }
   
+  waitForElement = (selector) => {
+    return new Promise((resolve, reject) => {
+      let element = document.querySelector(selector);
+      // if (element) {
+      //   resolve(element);
+      //   return;
+      // }
+      let observer = new MutationObserver(mutations => {
+        mutations.forEach(function (mutation) {
+          let nodes = Array.from(mutation.addedNodes);
+          console.log('nodes', nodes);
+          for (let node of nodes) {
+            let button = node?.querySelector(selector);
+            console.log('button', button)
+            if (button && !button.disabled) {
+              observer.disconnect();
+              resolve(button);
+              return;
+            }
+          };
+        });
+      });
+      observer.observe(document.documentElement, { childList: true, subtree: true });
+    });
+  }
+  
   initChangeTitleOnDynamicBtn() {
-    const observer = new MutationObserver(function(mutations) {
-      mutations.forEach(function (mutation, index) {
+    const observer = new MutationObserver(function (mutations) {
+      mutations.forEach((mutation) => {
         let newNodes = mutation.addedNodes;
-        if( newNodes.length != 0 ) {
-          let $nodes = $( newNodes );
+        if (newNodes.length != 0) {
+          let $nodes = $(newNodes);
           $nodes.each(function () {
             let node = $(this);
             const dynamicBtn = node.find('.shopify-payment-button__button--unbranded');
@@ -177,6 +209,7 @@ export class Product {
     });
     let config = {
       subtree: true,
+      attributes: true,
       childList: true
     };
     observer.observe($('.shopify-payment-button')[0], config);
