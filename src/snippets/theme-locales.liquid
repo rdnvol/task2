@@ -34,6 +34,7 @@
     },
     placeholder_data: "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==",
     placeholder_image: "{{ 'img-placeholder.png' | asset_img_url: 'master' }}",
+    dynamic_button_placeholder: {{ 'products.product.dynamic_button_placeholder' | t | json }},
     moneyFormat: {{ shop.money_format | json }},
     published_locales: [
       {% for locale in shop.published_locales %}

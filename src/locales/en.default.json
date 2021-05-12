@@ -294,7 +294,8 @@
       "on_sale_from_html": "On Sale from {{ price }}",
       "from_text_html": "From {{ price }}",
       "quantity": "Quantity",
-      "add_to_cart": "Add to Cart"
+      "add_to_cart": "Add to Cart",
+      "dynamic_button_placeholder": "Buy it now2"
     }
   },
   "gift_cards": {

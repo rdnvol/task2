@@ -49,13 +49,12 @@ export class Product {
         });
         this.initSelectedVariant();
       })
-    this.waitForElement('.shopify-payment-button__button--unbranded')
-      .then(node => {
-        console.log(node)
-        setTimeout(() => node.innerText = 'test', 100)
-        
-      });
-    // this.initChangeTitleOnDynamicBtn();
+    this.waitForElement('.shopify-payment-button__button--unbranded').then(node => {
+      const dynamicButtonPlaceholder = window.theme.dynamic_button_placeholder;
+      setTimeout(() => {
+        node.innerHTML = dynamicButtonPlaceholder;
+      }, 500)
+    })
   }
   
   initGallery() {
@@ -165,20 +164,13 @@ export class Product {
       });
   }
   
-  waitForElement = (selector) => {
+   waitForElement = (selector) => {
     return new Promise((resolve, reject) => {
-      let element = document.querySelector(selector);
-      // if (element) {
-      //   resolve(element);
-      //   return;
-      // }
       let observer = new MutationObserver(mutations => {
         mutations.forEach(function (mutation) {
           let nodes = Array.from(mutation.addedNodes);
-          console.log('nodes', nodes);
           for (let node of nodes) {
-            let button = node?.querySelector(selector);
-            console.log('button', button)
+            let button = node.querySelector(selector);
             if (button && !button.disabled) {
               observer.disconnect();
               resolve(button);
@@ -187,32 +179,8 @@ export class Product {
           };
         });
       });
-      observer.observe(document.documentElement, { childList: true, subtree: true });
+      observer.observe(this.wrapper.find('.shopify-payment-button')[0], { subtree: true, attributes: true, childList: true });
     });
-  }
-  
-  initChangeTitleOnDynamicBtn() {
-    const observer = new MutationObserver(function (mutations) {
-      mutations.forEach((mutation) => {
-        let newNodes = mutation.addedNodes;
-        if (newNodes.length != 0) {
-          let $nodes = $(newNodes);
-          $nodes.each(function () {
-            let node = $(this);
-            const dynamicBtn = node.find('.shopify-payment-button__button--unbranded');
-            debugger;
-            dynamicBtn[0].innerHTML = "hello"
-            console.log("dynamicBtn[0]", dynamicBtn[0].innerHTML);
-          })
-        }
-      })
-    });
-    let config = {
-      subtree: true,
-      attributes: true,
-      childList: true
-    };
-    observer.observe($('.shopify-payment-button')[0], config);
   }
 }
 
