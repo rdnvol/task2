@@ -49,6 +49,7 @@ export class Product {
         });
         this.initSelectedVariant();
       })
+    this.initChangeTitleOnDynamicBtn();
   }
   
   initGallery() {
@@ -156,6 +157,29 @@ export class Product {
           Store.setState({item_count, popupActive: true, items})
         })
       });
+  }
+  
+  initChangeTitleOnDynamicBtn() {
+    const observer = new MutationObserver(function(mutations) {
+      mutations.forEach(function (mutation, index) {
+        let newNodes = mutation.addedNodes;
+        if( newNodes.length != 0 ) {
+          let $nodes = $( newNodes );
+          $nodes.each(function () {
+            let node = $(this);
+            const dynamicBtn = node.find('.shopify-payment-button__button--unbranded');
+            debugger;
+            dynamicBtn[0].innerHTML = "hello"
+            console.log("dynamicBtn[0]", dynamicBtn[0].innerHTML);
+          })
+        }
+      })
+    });
+    let config = {
+      subtree: true,
+      childList: true
+    };
+    observer.observe($('.shopify-payment-button')[0], config);
   }
 }
 
