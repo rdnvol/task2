@@ -53,7 +53,8 @@ export class Product {
       const dynamicButtonPlaceholder = window.theme.dynamic_button_placeholder;
       setTimeout(() => {
         node.innerHTML = dynamicButtonPlaceholder;
-      }, 500)
+        node.style.display = 'block';
+      }, 0)
     })
   }
   
