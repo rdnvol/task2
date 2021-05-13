@@ -16,13 +16,13 @@ register('product', {
   },
   
   // Shortcut function called when a section is loaded via 'sections.load()' or by the Theme Editor 'shopify:section:load' event.
-  onLoad: function(e) {
+  onLoad: function (e) {
     this._initProduct(this.container.dataset.handle);
     // Do something when a section instance is loaded
   },
   
   // Shortcut function called when a section unloaded by the Theme Editor 'shopify:section:unload' event.
-  onUnload: function() {
+  onUnload: function () {
     // Do something when a section instance is unloaded
   }
 });
@@ -49,6 +49,13 @@ export class Product {
         });
         this.initSelectedVariant();
       })
+    this.waitForElement('.shopify-payment-button__button--unbranded').then(node => {
+      const dynamicButtonPlaceholder = window.theme.dynamic_button_placeholder;
+      setTimeout(() => {
+        node.innerHTML = dynamicButtonPlaceholder;
+        node.style.display = 'block';
+      }, 0)
+    })
   }
   
   initGallery() {
@@ -85,7 +92,7 @@ export class Product {
   updateVariantUrl(variant) {
     if (!variant) return;
     const url = getUrlWithVariant(window.location.href, variant.id);
-    window.history.replaceState({path: url}, '', url);
+    window.history.replaceState({ path: url }, '', url);
   }
   
   onOptionChange(event) {
@@ -151,11 +158,30 @@ export class Product {
     addItem(this.form.element)
       .then((item) => {
         console.log('set state item', item)
-        getCart().then(({item_count, items}) => {
-          Store.setState({justAdded: item, popupActive: true})
-          Store.setState({item_count, popupActive: true, items})
+        getCart().then(({ item_count, items }) => {
+          Store.setState({ justAdded: item, popupActive: true })
+          Store.setState({ item_count, popupActive: true, items })
         })
       });
+  }
+  
+   waitForElement = (selector) => {
+    return new Promise((resolve, reject) => {
+      let observer = new MutationObserver(mutations => {
+        mutations.forEach(function (mutation) {
+          let nodes = Array.from(mutation.addedNodes);
+          for (let node of nodes) {
+            let button = node.querySelector(selector);
+            if (button && !button.disabled) {
+              observer.disconnect();
+              resolve(button);
+              return;
+            }
+          };
+        });
+      });
+      observer.observe(this.wrapper.find('.shopify-payment-button')[0], { subtree: true, attributes: true, childList: true });
+    });
   }
 }
 
