@@ -170,5 +170,5 @@
 
 .shopify-payment-button__button--unbranded,
 .shopify-payment-button__button--hidden {
-  display: none;
+  display: none !important;
 }
