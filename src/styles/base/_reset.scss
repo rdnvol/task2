@@ -21,7 +21,6 @@ html {
   box-sizing: inherit;
 }
 
-
 body {
   min-width: $base-min-width;
   color: $base-body-text;
@@ -69,6 +68,5 @@ input[type="reset"] {
 
 // transition for svg
 svg {
-  transition: stroke $animation-speed ease,
-              fill $animation-speed ease;
+  transition: stroke $animation-speed ease, fill $animation-speed ease;
 }
