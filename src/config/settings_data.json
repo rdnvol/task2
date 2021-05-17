@@ -62,13 +62,6 @@
     "checkout_error_color": "#e32c2b",
     "enable_fonts_library": true,
     "sections": {
-      "footer--markup": {
-        "type": "footer--markup",
-        "settings": {
-          "footer_linklist": "footer",
-          "show_payment_icons": false
-        }
-      },
       "home-hero": {
         "type": "home-hero",
         "settings": {
