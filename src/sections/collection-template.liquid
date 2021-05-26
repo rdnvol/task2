@@ -19,7 +19,9 @@
       {% else %}
         <div class="row py-4">
           {% liquid
-            render "product-card" for products as product, grid_item_width: 'col-6 col-lg-3'
+            for product in products limit: limit
+              render "product-card", product: product, grid_item_width: 'col-6 col-lg-3'
+            endfor
           %}
         </div>
       {% endif %}
