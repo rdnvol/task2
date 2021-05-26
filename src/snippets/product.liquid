@@ -82,11 +82,11 @@
         {% endunless %}
         
         <div class="product__row rte">
-          {% unless product %}
+          {% if product.description %}
             {{ product.description }}
           {% else %}
             {{ 'homepage.onboarding.product_description' | t }}
-          {% endunless %}
+          {% endif %}
         </div>
         
         {% if section.settings.show_share_buttons %}
