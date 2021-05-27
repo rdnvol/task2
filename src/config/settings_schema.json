@@ -694,5 +694,16 @@
         "info": "Will be scaled down to 32 x 32px"
       }
     ]
+  },
+  {
+    "name": "Google maps",
+    "settings": [
+      {
+        "type": "text",
+        "id": "gm_key",
+        "label": "API key",
+        "default": "YOUR_API_KEY"
+      }
+    ]
   }
 ]
