@@ -168,6 +168,14 @@
   }
 }
 
+.size-chart-link {
+  font-size: 14px;
+  color: $base-body-text;
+  position: absolute;
+  right: 15px;
+  text-decoration: none;
+}
+
 .shopify-payment-button__button--unbranded {
   display: none;
 }
