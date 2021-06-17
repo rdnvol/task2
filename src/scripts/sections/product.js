@@ -81,7 +81,9 @@ export class Product {
         },
       },
     });
-    this.productGallery = new Swiper(this.wrapper.find('.product-gallery'), {
+    console.log('swiper ', this.wrapper.find('.product-gallery'))
+    console.log("this.productGalleryThumbs", this.productGalleryThumbs)
+    this.productGallery = new Swiper(this.wrapper.find('.product-gallery')[0], {
       speed: 800,
       // navigation: {
       //   nextEl: '.swiper-button-next',
@@ -146,7 +148,7 @@ export class Product {
   slideToVariantImage(variant) {
     if (variant) {
       const imageLabel = variant.featured_media ? variant.featured_media.preview_image.src : '';
-      const imagePosition = variant.featured_media ? variant.featured_media.position - 1 : '';
+      const imagePosition = variant.featured_media ? variant.featured_media.position - 1 : 0;
       this.productGallery.slideTo(imagePosition);
     }
   }
@@ -154,7 +156,9 @@ export class Product {
   initSelectedVariant() {
     console.log(this.form.variant());
     const currentIndex = this.form.variant().featured_media ? this.form.variant().featured_media.position - 1 : 0;
-    this.productGallery.slideTo(currentIndex)
+    if (currentIndex) {
+      this.slideToVariantImage(this.form.variant())
+    }
   }
   
   initAddToBag(event) {
