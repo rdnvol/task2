@@ -284,7 +284,9 @@ class App {
 
   initProductGallery() {
     // Create the main slider.
-    const productGallerySplide = new Splide('.product-gallery-splide', {
+    const element = document.querySelector('.product-gallery-splide');
+    if (!element) return;
+    const productGallerySplide = new Splide(element, {
       type: 'loop',
       perPage: 1,
       gap: 0,

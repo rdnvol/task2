@@ -1,8 +1,10 @@
 import { getUrlWithVariant, ProductForm } from '@shopify/theme-product-form';
 import { formatMoney } from '@shopify/theme-currency';
 import Swiper from "swiper";
-import { addItem, getCart } from "../helpers/cartAjaxCall";
 import { register } from '@shopify/theme-sections';
+import { addItem, getCart } from "../helpers/cartAjaxCall";
+import fancybox from '@fancyapps/fancybox';
+import { setCookie } from "../helpers/utils";
 
 register('product', {
   _initProduct(handle) {
@@ -37,8 +39,10 @@ export class Product {
     this.submitButtonText = this.wrapper.find('[data-submit-button]');
     this.priceContainer = this.wrapper.find('[data-price-wrapper]');
     this.shopifyButtons = this.wrapper.find('[data-shopify="payment-button"]');
+    this.sizeChart = this.wrapper.find('.size-chart-link');
     
     this.initGallery();
+    this.sizeChartInit();
     this.getProduct()
       .then(product => {
         this.product = product;
@@ -77,7 +81,9 @@ export class Product {
         },
       },
     });
-    this.productGallery = new Swiper(this.wrapper.find('.product-gallery'), {
+    console.log('swiper ', this.wrapper.find('.product-gallery'))
+    console.log("this.productGalleryThumbs", this.productGalleryThumbs)
+    this.productGallery = new Swiper(this.wrapper.find('.product-gallery')[0], {
       speed: 800,
       // navigation: {
       //   nextEl: '.swiper-button-next',
@@ -142,7 +148,7 @@ export class Product {
   slideToVariantImage(variant) {
     if (variant) {
       const imageLabel = variant.featured_media ? variant.featured_media.preview_image.src : '';
-      const imagePosition = variant.featured_media ? variant.featured_media.position - 1 : '';
+      const imagePosition = variant.featured_media ? variant.featured_media.position - 1 : 0;
       this.productGallery.slideTo(imagePosition);
     }
   }
@@ -150,7 +156,9 @@ export class Product {
   initSelectedVariant() {
     console.log(this.form.variant());
     const currentIndex = this.form.variant().featured_media ? this.form.variant().featured_media.position - 1 : 0;
-    this.productGallery.slideTo(currentIndex)
+    if (currentIndex) {
+      this.slideToVariantImage(this.form.variant())
+    }
   }
   
   initAddToBag(event) {
@@ -165,7 +173,7 @@ export class Product {
       });
   }
   
-   waitForElement = (selector) => {
+  waitForElement = (selector) => {
     return new Promise((resolve, reject) => {
       let observer = new MutationObserver(mutations => {
         mutations.forEach(function (mutation) {
@@ -177,11 +185,22 @@ export class Product {
               resolve(button);
               return;
             }
-          };
+          }
+          ;
         });
       });
-      observer.observe(this.wrapper.find('.shopify-payment-button')[0], { subtree: true, attributes: true, childList: true });
+      observer.observe(this.wrapper.find('.shopify-payment-button')[0], {
+        subtree: true,
+        attributes: true,
+        childList: true
+      });
     });
+  }
+  
+  sizeChartInit() {
+    $(this.sizeChart).fancybox({
+      autoFocus: false
+    })
   }
 }
 
