@@ -21,11 +21,13 @@
             {%- case block.type -%}
             {%- when 'text' -%}
               <div class="col-sm-12 col-lg-3 mb-6 mb-lg-0 {% unless forloop.last %}mb-6 mb-lg-0{% endunless %}">
-                <a href="{{ routes.root_url }}" class="footer__logo">
-                  <img data-src="{{ block.settings.icon | asset_url }}"
-                       src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" class="lazyload"
-                       data-sizes="auto" alt="image description">
-                </a>
+                {% if block.settings.icon != blank %}
+                  <a href="{{ routes.root_url }}" class="footer__logo">
+                    <img data-src="{{ block.settings.icon | asset_url }}"
+                        src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" class="lazyload"
+                        data-sizes="auto" alt="image description">
+                  </a>
+                {% endif %}
                 {{ block.settings.text }}
               </div>
             {%- when 'newsletter' -%}
