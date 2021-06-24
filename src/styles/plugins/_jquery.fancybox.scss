@@ -886,3 +886,9 @@ body.compensate-for-scrollbar {
     max-width: calc(100% - 10px);
   }
 }
+
+.fancybox-slide {
+  #main {
+    overflow: auto;
+  }
+}
