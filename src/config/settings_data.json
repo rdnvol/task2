@@ -4,6 +4,7 @@
     "color_accent": "#0f62fe",
     "color_body_text": "#000000",
     "color_main_bg": "#ffffff",
+    "color_base_links": "#000000",
     "button_text_color": "#262c30",
     "button_hover_color": "#fcf113",
     "button_focus_text_color": "#262c30",
