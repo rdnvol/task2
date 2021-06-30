@@ -20,7 +20,7 @@
       "from_text_html": "Починаючи з  {{price}}",
       "quantity": "Кількість",
       "add_to_cart": "Додати в кошик",
-      "dynamic_button_placeholder": "Купити зараз"
+      "dynamic_button_placeholder": "Купити зараз",
       "size_chart": "Таблиця розмірів"
     }
   },
