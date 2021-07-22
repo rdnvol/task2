@@ -24,9 +24,9 @@ let isRunning = false
 
 // Variables and settings
 const env = process.env.NODE_ENV || DEV;
+const cli = process.env.CLI === 'true';
 const zip = process.env.ZIP || false;
 const deploy = process.env.DEPLOY == 'true';
-console.log(deploy);
 const bundleAnalyzerEnabled = !!process.env.BUNDLE_ANALIZER;
 const webpackPerformanceAnalyzerEnabled = !!process.env.WEBPACK_PERFORMANCE;
 const cleanDistPluginsDisabled = !!process.env.CLEAN_DIST_DISABLED;
@@ -94,7 +94,8 @@ if (!zip) {
 
 const AfterBuildHook = {
   apply: (compiler) => {
-    env === DEV
+    if (!cli) {
+      env === DEV
       ? compiler.hooks.afterEmit.tap('AfterEmitPlugin', (compilation) => {
         if (!isRunning) {
           console.log('----------- RELOAD --------')
@@ -118,6 +119,23 @@ const AfterBuildHook = {
           });
         }
       })
+    } else {
+      compiler.hooks.afterEmit.tap('AfterEmitPlugin', (compilation) => {
+        if (!isRunning) {
+          console.log('----------- Starting Shopify CLI --------')
+          const start = exec('cd ./dist && shopify theme serve', {
+            shell: true,
+            stdio: 'inherit',
+            stdout: 'inherit'
+          })
+          start.on('close', (code) => {
+            console.log(`child process exited with code ${ code }`);
+            isRunning = false;
+          });
+        }
+        isRunning = true;
+      })
+    }
   }
 }
 

@@ -20,6 +20,7 @@
     "watch": "npm run watch:theme:dev:win",
     "deploy": "cross-env DEPLOY=true npm run js",
     "start": "cross-env DEPLOY=true && npm run watch:js:dev",
+    "start:cli": "cross-env CLI=true npm run watch:js:dev",
     "analyze": "cross-env NODE_ENV=production BUNDLE_ANALIZER=true WEBPACK_PERFORMANCE=true webpack --progress ",
     "zip": "npm run js:zip",
     "lint": "npm run build && theme-check",
