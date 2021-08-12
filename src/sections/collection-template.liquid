@@ -1,5 +1,5 @@
 {% liquid
-  assign limit = section.settings.limit
+  assign limit = settings.limit
   assign products = collection.products
 
   render 'page-hero', image: collection.image
@@ -7,7 +7,10 @@
 %}
 
 {% paginate collection.products by limit %}
-  <div class="section page-section">
+  <div class="section page-section"
+       data-section-id="{{ section.id }}"
+       data-section-type="collection"
+       data-infinite="{{ section.settings.enable_infinite }}">
     <div class="container">
       <div class="text-center">
         <h1 class="h2">{{ collection.title }}</h1>
@@ -17,7 +20,7 @@
           {{ 'collections.general.no_matches' | t }}
         </div>
       {% else %}
-        <div class="row py-4">
+        <div class="row py-4 js-products-wrapper">
           {% liquid
             for product in collection.products
               render "product-card", product: product, grid_item_width: 'col-6 col-lg-3'
@@ -25,8 +28,14 @@
           %}
         </div>
       {% endif %}
-      {% if paginate.pages > 1 %}
-        {% render 'pagination', paginate: paginate %}
+      {% if section.settings.enable_infinite %}
+        <div class="spinner-holder">
+          <div class="spinner"></div>
+        </div>
+      {% else %}
+        {% if paginate.pages > 1 %}
+          {% render 'pagination', paginate: paginate %}
+        {% endif %}
       {% endif %}
     </div>
   </div>
@@ -38,13 +47,10 @@
   "name": "Collection",
   "settings": [
     {
-      "type": "range",
-      "id": "limit",
-      "label": "Products per page",
-      "min": 4,
-      "max": 48,
-      "step": 4,
-      "default": 16
+      "type": "checkbox",
+      "id": "enable_infinite",
+      "label": "Enable infinite scroll",
+      "default": false
     }
   ]
 }

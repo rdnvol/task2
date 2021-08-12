@@ -129,7 +129,7 @@ export const FrameworkFeaturedVideo = (function() {
       _this.checkAPIScriptExists();
     }
   }
-  
+
   FrameworkFeaturedVideo.prototype.checkAPIScriptExists = function() {
     var _this;
     _this = this;
@@ -147,7 +147,7 @@ export const FrameworkFeaturedVideo = (function() {
       }
     }
   };
-  
+
   FrameworkFeaturedVideo.prototype.playerInit = function() {
     var _this;
     _this = this;
@@ -175,7 +175,7 @@ export const FrameworkFeaturedVideo = (function() {
       }
     }
   };
-  
+
   FrameworkFeaturedVideo.prototype.insertAPIScript = function(api_url) {
     var _this, first_script_tag, script_tag;
     _this = this;
@@ -188,7 +188,7 @@ export const FrameworkFeaturedVideo = (function() {
       };
     } else {
       theme.utils.youtubeScriptAdded = true;
-      
+
       $(window).on("theme.utils.youtubeAPIReady", function() {
         console.log('ready')
         return _this.insertYoutubePlayer();
@@ -200,7 +200,7 @@ export const FrameworkFeaturedVideo = (function() {
       first_script_tag
     );
   };
-  
+
   FrameworkFeaturedVideo.prototype.insertYoutubePlayer = function() {
     console.log('here')
     var _this;
@@ -214,7 +214,7 @@ export const FrameworkFeaturedVideo = (function() {
       }
     }));
   };
-  
+
   FrameworkFeaturedVideo.prototype.youtubeReady = function() {
     var _this;
     _this = this;
@@ -223,7 +223,7 @@ export const FrameworkFeaturedVideo = (function() {
     }
     return _this.player.playVideo();
   };
-  
+
   FrameworkFeaturedVideo.prototype.youtubeEvents = function(event) {
     var YTP, _this, remains;
     _this = this;
@@ -245,7 +245,7 @@ export const FrameworkFeaturedVideo = (function() {
       }
     }
   };
-  
+
   FrameworkFeaturedVideo.prototype.insertVimeoPlayer = function() {
     var _this;
     _this = this;
@@ -264,7 +264,7 @@ export const FrameworkFeaturedVideo = (function() {
     }
     return _this.player.play();
   };
-  
+
   FrameworkFeaturedVideo.prototype.vimeoEvents = function() {
     var _this;
     _this = this;
@@ -276,7 +276,7 @@ export const FrameworkFeaturedVideo = (function() {
       return _this.player.pause();
     });
   };
-  
+
   FrameworkFeaturedVideo.prototype.playButtonListener = function() {
     var _this;
     _this = this;
@@ -287,7 +287,7 @@ export const FrameworkFeaturedVideo = (function() {
         return _this.hideThumbnail();
       });
   };
-  
+
   FrameworkFeaturedVideo.prototype.hideThumbnail = function() {
     var _this;
     _this = this;
