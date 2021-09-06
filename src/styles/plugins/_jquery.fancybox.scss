@@ -888,7 +888,12 @@ body.compensate-for-scrollbar {
 }
 
 .fancybox-slide {
-  #main {
-    overflow: auto;
+
+  .container {
+
+    .rte {
+      overflow-x: auto;
+      overflow-y: hidden;
+    }
   }
 }
