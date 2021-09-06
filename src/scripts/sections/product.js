@@ -199,7 +199,10 @@ export class Product {
   
   sizeChartInit() {
     $(this.sizeChart).fancybox({
-      autoFocus: false
+      autoFocus: false,
+      afterLoad: (fancybox) => {
+        fancybox.current.$content.find('table').wrap('<div class="table-holder"></div>')
+      }
     })
   }
 }

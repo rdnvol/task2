@@ -335,6 +335,11 @@ ins {
     }
   }
 
+  .table-holder {
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+
   table {
     border: 1px solid #dcdcdc;
     border-collapse: collapse;
