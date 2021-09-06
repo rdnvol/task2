@@ -274,14 +274,6 @@ class App {
     jcf.replaceAll('.custom-form');
   }
 
-  initCustomForms() {
-    jcf.setOptions('Select', {
-        wrapNative: false,
-        wrapNativeOnMobile: false,
-    });
-    jcf.replaceAll('.custom-form');
-  }
-
   initProductGallery() {
     // Create the main slider.
     const element = document.querySelector('.product-gallery-splide');
