@@ -1,0 +1,11 @@
+{
+  "name": "Collection Pagination",
+  "sections": {
+    "main": {
+      "type": "collection-pagination-template"
+    }
+  },
+  "order": [
+    "main"
+  ]
+}
