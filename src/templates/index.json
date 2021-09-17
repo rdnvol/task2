@@ -1,0 +1,161 @@
+{
+  "sections": {
+    "home_hero": {
+      "type": "home-hero"
+    },
+    "home_featured_collection": {
+      "type": "home-featured-collection"
+    },
+    "home_image_with_text": {
+      "type": "home-image-with-text"
+    },
+    "home_logos_list": {
+      "type": "home-logos-list",
+      "settings": {
+        "title": "Logo list"
+      },
+      "blocks": {
+        "image1": {
+          "type": "image",
+          "settings": {
+            "image": "",
+            "url": ""
+          }
+        },
+        "image2": {
+          "type": "image",
+          "settings": {
+            "image": "",
+            "url": ""
+          }
+        },
+        "image3": {
+          "type": "image",
+          "settings": {
+            "image": "",
+            "url": ""
+          }
+        },
+        "image4": {
+          "type": "image",
+          "settings": {
+            "image": "",
+            "url": ""
+          }
+        }
+      },
+      "block_order": [
+        "image1",
+        "image2",
+        "image3",
+        "image4"
+      ]
+    },
+    "newsletter": {
+      "type": "newsletter"
+    },
+    "home_benefits": {
+      "type": "home-benefits",
+      "blocks": {
+        "image1": {
+          "type": "image",
+          "settings": {
+            "image": "",
+            "title": "Ultra-speed Connection"
+          }
+        },
+        "image2": {
+          "type": "image",
+          "settings": {
+            "image": "",
+            "title": "Ultra-speed Connection"
+          }
+        },
+        "image3": {
+          "type": "image",
+          "settings": {
+            "image": "",
+            "title": "Ultra-speed Connection"
+          }
+        },
+        "image4": {
+          "type": "image",
+          "settings": {
+            "image": "",
+            "title": "Ultra-speed Connection"
+          }
+        },
+        "image5": {
+          "type": "image",
+          "settings": {
+            "image": "",
+            "title": "Ultra-speed Connection"
+          }
+        },
+        "image6": {
+          "type": "image",
+          "settings": {
+            "image": "",
+            "title": "Ultra-speed Connection"
+          }
+        }
+      },
+      "block_order": [
+        "image1",
+        "image2",
+        "image3",
+        "image4",
+        "image5",
+        "image6"
+      ]
+    },
+    "home_plans": {
+      "type": "home-plans",
+      "settings": {
+        "title": "Choose your plan",
+        "text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>"
+      },
+      "blocks": {
+        "image1": {
+          "type": "image",
+          "settings": {
+            "image": "",
+            "title": "Ultra-speed Connection"
+          }
+        },
+        "image2": {
+          "type": "image",
+          "settings": {
+            "image": "",
+            "title": "Ultra-speed Connection"
+          }
+        },
+        "image3": {
+          "type": "image",
+          "settings": {
+            "image": "",
+            "title": "Ultra-speed Connection"
+          }
+        }
+      },
+      "block_order": [
+        "image1",
+        "image2",
+        "image3"
+      ]
+    },
+    "home_iframe_video": {
+      "type": "home-iframe-video"
+    }
+  },
+  "order": [
+    "home_hero",
+    "home_featured_collection",
+    "home_image_with_text",
+    "home_logos_list",
+    "newsletter",
+    "home_benefits",
+    "home_plans",
+    "home_iframe_video"
+  ]
+}
