@@ -1,10 +1,10 @@
-{
+{ "name": "Collection",
   "sections": {
-    "collection_template": {
+    "main": {
       "type": "collection-template"
     }
   },
   "order": [
-    "collection_template"
+    "main"
   ]
 }
