@@ -139,8 +139,10 @@ const AfterBuildHook = {
   }
 }
 
+console.log('DEV', env)
+
 module.exports = {
-  devtool: env === DEV ? 'inline-source-map' : false,
+  devtool: env === DEV ? 'eval-source-map' : false,
   entry: {
     ...getLayoutEntrypoints(settings),
     ...getTemplateEntrypoints(settings),
@@ -162,7 +164,7 @@ module.exports = {
       Components: path.resolve(__dirname, './src/scripts/Components'),
       Styles: path.resolve(__dirname, './src/styles')
     },
-    extensions: ['.js', '.jsx']
+    extensions: ['.js', '.jsx', '.tsx', '.ts']
   },
   output: { // Config for JS outputs
     filename: '[name].js',
@@ -228,15 +230,9 @@ module.exports = {
         }
       },
       {
-        test: /\.(js|jsx)$/,
+        test: /\.(js|jsx|tsx|ts)$/,
         exclude: /node_modules/,
-        loader: "babel-loader",
-        options: {
-          plugins: [
-            ["@babel/transform-react-jsx", { "pragma": "h" }],
-            ["@babel/plugin-proposal-class-properties"]
-          ]
-        }
+        loader: "ts-loader",
       }
     ]
   },
