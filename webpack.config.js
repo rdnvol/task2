@@ -139,8 +139,6 @@ const AfterBuildHook = {
   }
 }
 
-console.log('DEV', env)
-
 module.exports = {
   devtool: env === DEV ? 'eval-source-map' : false,
   entry: {
