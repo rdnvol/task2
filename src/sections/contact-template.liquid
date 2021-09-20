@@ -78,13 +78,11 @@
             name="contact[body]"
             id="ContactFormMessage"
             required
-            placeholder="{{ 'contact.form.message' | t }}"
-          >
-							{%- if form.body -%}
-								{{- form.body -}}
-							{%- endif -%}
-						</textarea
-          >
+            placeholder="{{ 'contact.form.message' | t }}">
+            {%- if form.body -%}
+              {{- form.body -}}
+            {%- endif -%}
+          </textarea>
         </div>
         <input
           type="submit"
