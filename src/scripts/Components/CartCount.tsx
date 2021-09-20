@@ -3,17 +3,23 @@ import { Connect, Provider } from "redux-zero/preact";
 import store from "./store";
 import actions from "./actions";
 
-class CartCount extends Component {
-  constructor(props) {
+interface Props {
+  cart: {},
+  getCart: () => {},
+  item_count: number
+}
+
+class CartCount extends Component<Props> {
+  constructor(props: Props) {
     super(props);
   }
-  
+
   componentDidMount() {
     if (this.props.cart !== {}) {
       this.props.getCart();
     }
   }
-  
+
   renderCount() {
     return (
       <span className="header__cart-btn__num">
@@ -21,8 +27,8 @@ class CartCount extends Component {
       </span>
     )
   }
-  
-  render({item_count}) {
+
+  render({item_count}: Props) {
     return (
       <a href="/cart" className="header__btn header__cart-btn">
         <svg className="icon icon--cart" role="img" aria-label="Icon Cart" width="17" height="17" viewBox="0 0 17 17"
@@ -42,7 +48,7 @@ if (ref) {
   render(
     <Provider store={ store }>
       <Connect actions={ actions }>
-        { ({item_count, cart, getCart}) => (
+        { ({item_count, cart, getCart}: any) => (
           <CartCount item_count={ item_count } cart={cart} getCart={getCart}/>
         ) }
       </Connect>
