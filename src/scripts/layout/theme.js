@@ -12,7 +12,6 @@ import 'lazysizes/plugins/respimg/ls.respimg';
 import '../helpers/jquery.plugins'
 import { SmoothScroll } from '../helpers/jquery.plugins';
 import Splide from '@splidejs/splide';
-import jcf from 'jcf';
 
 
 // utils
@@ -40,7 +39,6 @@ class App {
     this.initLanguageSwitcher();
     this.initAnchors();
     this.initMap();
-    this.initCustomForms();
     this.initProductGallery();
 
     // Responsive fluid iframe
@@ -264,14 +262,6 @@ class App {
         });
       }
     })
-  }
-
-  initCustomForms() {
-    jcf.setOptions('Select', {
-        wrapNative: false,
-        wrapNativeOnMobile: false,
-    });
-    jcf.replaceAll('.custom-form');
   }
 
   initProductGallery() {
