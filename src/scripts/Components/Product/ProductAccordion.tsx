@@ -1,6 +1,47 @@
-import { h, FunctionComponent } from "preact";
+//@ts-ignore
+import { h, FunctionComponent } from 'preact';
+import { useEffect } from 'preact/hooks';
+import '../../helpers/jquery.plugins';
 
 const ProductAccordion: FunctionComponent = () => {
+  const initAccordion = () => {
+    //@ts-ignore
+    ResponsiveHelper.addRange({
+      '..1199': {
+        on: function () {
+          //@ts-ignore
+          $('.menu-accordion').slideAccordion({
+            allowClickWhenExpanded: true,
+            activeClass: 'active',
+            opener: '.menu-accordion__opener',
+            slider: '.menu-accordion__slide',
+            collapsible: true,
+            event: 'click',
+            animSpeed: 400,
+          });
+        },
+        off: function () {
+          //@ts-ignore
+          $('.menu-accordion').slideAccordion('destroy');
+        },
+      },
+    });
+    //@ts-ignore
+    $('.accordion').slideAccordion({
+      allowClickWhenExpanded: false,
+      activeClass: 'accordion--active',
+      opener: '.accordion__opener',
+      slider: '.accordion__slide',
+      collapsible: true,
+      event: 'click',
+      animSpeed: 400,
+    });
+  };
+
+  useEffect(() => {
+    initAccordion();
+  }, []);
+
   return (
     <ul class="accordion mb-6 rte">
       <li class="accordion--active">

@@ -1,43 +1,44 @@
-import { h, FunctionComponent, Fragment } from "preact";
-import { useMemo } from "preact/hooks";
+import { h, FunctionComponent, Fragment } from 'preact';
+import { useMemo } from 'preact/hooks';
 
-import { ProductType } from "../../types";
-import theme from "../../helpers/themeSettings";
-import Button from "../Button";
+import { addItem } from '../../helpers/cartAjaxCall';
+import { ProductType } from '../../types';
+import ProductOptionSelection from './ProductOptionSelection';
+import theme from '../../helpers/themeSettings';
+import Button from '../Button';
 
 const ProductForm: FunctionComponent<{ product: ProductType }> = ({
   product,
 }) => {
-  console.log("Product from Product Form", product);
-  //   const productPrice = useMemo(() => {
-  //     if (product.compare_at_price_max > product.price) {
-  //       return (
-  //         <Fragment>
-  //           <ins data-product-price>{product.compare_at_price_max}</ins>
-  //           <span class="accessibility" data-compare-text>
-  //             {theme.product.regular_price}
-  //           </span>
-  //         </Fragment>
-  //       );
-  //     } else {
-  //       return (
-  //         <div data-product-price>
-  //           {product.selected_or_first_available_variant.price}
-  //         </div>
-  //       );
-  //     }
-  //   }, [product]);
+  const productPrice = useMemo(() => {
+    if (product.compare_at_price_max > product.price) {
+      return (
+        <Fragment>
+          <ins data-product-price>{product.compare_at_price_max}</ins>
+          <span class="accessibility" data-compare-text>
+            {theme.product.regular_price}
+          </span>
+        </Fragment>
+      );
+    } else {
+      return (
+        <div data-product-price>
+          {product?.selected_or_first_available_variant?.price}
+        </div>
+      );
+    }
+  }, [product]);
 
-  //   console.log("Product price", productPrice);
+  console.log('Product price', productPrice);
 
   return (
     <form>
       <div class="product__price" data-price-wrapper>
         <div class="product__price__box h5 d-flex flex-wrap align-items-center">
-          {/* {productPrice} */}
+          {productPrice}
         </div>
       </div>
-      {/* {!product.has_only_default_variant &&
+      {!product.has_only_default_variant &&
         product.options_with_values.map((option, index) => (
           <div class="js">
             {index > 0 ? (
@@ -58,12 +59,10 @@ const ProductForm: FunctionComponent<{ product: ProductType }> = ({
               <label for={`Option${option.position}`}>{option.name}</label>
             )}
           </div>
-        ))
-        } */}
+        ))}
       <div class="product__row">
-        {/* {% render 'product-option-selection--markup' %} */}
-        {/* <ProductOptionSelection /> */}
-        {/* <div class="row mb-2">
+        <ProductOptionSelection />
+        <div class="row mb-2">
           <div class="col-sm-7 col-lg-5">
             <label class="product__label" for="size">
               Variant
@@ -82,7 +81,7 @@ const ProductForm: FunctionComponent<{ product: ProductType }> = ({
               ))}
             </select>
           </div>
-        </div> */}
+        </div>
         <div class="row">
           <div class="col-lg-8">
             <div class="row">
@@ -98,37 +97,31 @@ const ProductForm: FunctionComponent<{ product: ProductType }> = ({
                   min="1"
                 />
               </div>
-              {/* <div class="col-lg-6">
+              <div class="col-lg-6">
                 <Button
                   type="button"
                   className="button--secondary w-100"
                   text={theme.cart.addToCart}
                 />
-              </div> */}
+              </div>
             </div>
           </div>
         </div>
       </div>
       <div class="row">
         <div class="col-sm-4 col-lg-8">
-          {/* <div class="product__row">
+          <div class="product__row">
             {product.selected_or_first_available_variant.available ? (
               <Button
                 type="submit"
-                other='name="add"'
                 name="add"
                 className="w-100"
                 text={theme.cart.addToCart}
               />
             ) : (
-              <Button
-                type="submit"
-                other='name="add"'
-                disabled={true}
-                text={theme.cart.soldOut}
-              />
+              <Button type="submit" disabled={true} text={theme.cart.soldOut} />
             )}
-          </div> */}
+          </div>
           <div class="product__row">
             <button type="button" class="w-100">
               Buy it now

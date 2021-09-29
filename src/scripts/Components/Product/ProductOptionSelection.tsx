@@ -1,6 +1,7 @@
-import { h, FunctionComponent, Fragment } from "preact";
+import { h, FunctionComponent, Fragment } from 'preact';
 
-import { Image } from "../Image";
+import theme from '../../helpers/themeSettings';
+import { Image } from '../Image';
 
 const ProductOptionSelection = () => {
   return (
@@ -19,7 +20,7 @@ const ProductOptionSelection = () => {
               checked
             />
             <label for="filter-field-colors-01" class="custom-label">
-              {/* <Image sizes={["26x26", "26x26"]} /> */}
+              <Image src={theme.placeholder_image} sizes={['26x26', '26x26']} />
             </label>
           </div>
           <div class="input-holder custom-input custom-input--colors d-inline-flex">
@@ -29,7 +30,7 @@ const ProductOptionSelection = () => {
               name="filter-field-colors"
             />
             <label for="filter-field-colors-02" class="custom-label">
-              {/* <Image sizes={["26x26", "26x26"]} /> */}
+              <Image src={theme.placeholder_image} sizes={['26x26', '26x26']} />
             </label>
           </div>
           <div class="input-holder custom-input custom-input--colors d-inline-flex">
@@ -39,7 +40,7 @@ const ProductOptionSelection = () => {
               name="filter-field-colors"
             />
             <label for="filter-field-colors-03" class="custom-label">
-              {/* <Image sizes={["26x26", "26x26"]} /> */}
+              <Image src={theme.placeholder_image} sizes={['26x26', '26x26']} />
             </label>
           </div>
           <div class="input-holder custom-input custom-input--colors d-inline-flex">
@@ -49,7 +50,7 @@ const ProductOptionSelection = () => {
               name="filter-field-colors"
             />
             <label for="filter-field-colors-04" class="custom-label">
-              {/* <Image sizes={["26x26", "26x26"]} /> */}
+              <Image src={theme.placeholder_image} sizes={['26x26', '26x26']} />
             </label>
           </div>
           <div class="input-holder custom-input custom-input--colors d-inline-flex">
@@ -59,7 +60,7 @@ const ProductOptionSelection = () => {
               name="filter-field-colors"
             />
             <label for="filter-field-colors-05" class="custom-label">
-              {/* <Image sizes={["26x26", "26x26"]} /> */}
+              <Image src={theme.placeholder_image} sizes={['26x26', '26x26']} />
             </label>
           </div>
           <div class="input-holder custom-input custom-input--colors d-inline-flex">
@@ -69,7 +70,7 @@ const ProductOptionSelection = () => {
               name="filter-field-colors"
             />
             <label for="filter-field-colors-06" class="custom-label">
-              {/* <Image sizes={["26x26", "26x26"]} /> */}
+              <Image src={theme.placeholder_image} sizes={['26x26', '26x26']} />
             </label>
           </div>
           <div class="input-holder custom-input custom-input--colors d-inline-flex">
@@ -79,7 +80,7 @@ const ProductOptionSelection = () => {
               name="filter-field-colors"
             />
             <label for="filter-field-colors-07" class="custom-label">
-              {/* <Image sizes={["26x26", "26x26"]} /> */}
+              <Image src={theme.placeholder_image} sizes={['26x26', '26x26']} />
             </label>
           </div>
         </div>
