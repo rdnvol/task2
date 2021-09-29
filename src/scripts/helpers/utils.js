@@ -3,35 +3,35 @@ export function resizeImage(value, size) {
     ? value
         .replace(
           /_(pico|icon|thumb|small|compact|medium|large|grande|original|1024x1024|2048x2048|master)+\./g,
-          "."
+          '.'
         )
         .replace(/\.jpg|\.png|\.gif|\.jpeg/g, function (match) {
-          return "_" + size + match;
+          return '_' + size + match;
         })
-    : "";
+    : '';
 }
 
 export function resizeImageSrcset(value, size) {
-  let width = +size.split("x")[0];
-  let height = +size.split("x")[1] ? +size.split("x")[1] : "";
+  let width = +size.split('x')[0];
+  let height = +size.split('x')[1] ? +size.split('x')[1] : '';
   let image_1x = value
     .replace(
       /_(pico|icon|thumb|small|compact|medium|large|grande|original|1024x1024|2048x2048|master)+\./g,
-      "."
+      '.'
     )
     .replace(/\.jpg|\.png|\.gif|\.jpeg/g, function (match) {
-      return "_" + width + "x" + height + match;
+      return '_' + width + 'x' + height + match;
     });
-  let image_2x_size = height ? width * 2 + "x" + height * 2 : width * 2 + "x";
+  let image_2x_size = height ? width * 2 + 'x' + height * 2 : width * 2 + 'x';
   let image_2x = value
     .replace(
       /_(pico|icon|thumb|small|compact|medium|large|grande|original|1024x1024|2048x2048|master)+\./g,
-      "."
+      '.'
     )
     .replace(/\.jpg|\.png|\.gif|\.jpeg/g, function (match) {
-      return "_" + image_2x_size + match;
+      return '_' + image_2x_size + match;
     });
-  return image_1x + ", " + image_2x + " 2x";
+  return image_1x + ', ' + image_2x + ' 2x';
 }
 
 window.resizeImage = resizeImage;
@@ -41,28 +41,28 @@ export function setCookie(name, value, days) {
   if (days) {
     var date = new Date();
     date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
-    var expires = "; expires=" + date.toGMTString();
-  } else var expires = "";
-  document.cookie = name + "=" + value + expires + "; path=/";
+    var expires = '; expires=' + date.toGMTString();
+  } else var expires = '';
+  document.cookie = name + '=' + value + expires + '; path=/';
 }
 
 export function getCookie(name) {
-  var nameEQ = name + "=";
-  var ca = document.cookie.split(";");
+  var nameEQ = name + '=';
+  var ca = document.cookie.split(';');
   for (var i = 0; i < ca.length; i++) {
     var c = ca[i];
-    while (c.charAt(0) == " ") c = c.substring(1, c.length);
+    while (c.charAt(0) == ' ') c = c.substring(1, c.length);
     if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
   }
   return null;
 }
 
 export function deleteCookie(name) {
-  setCookie(name, "", -1);
+  setCookie(name, '', -1);
 }
 
 export function getLocaleAndPathname(locales) {
-  let curLocale = location.pathname.split("/")[1];
+  let curLocale = location.pathname.split('/')[1];
   let primaryLocale = locales.find((locale) => locale.primary);
   let notPrimaryLocation = locales.find(
     (locale) => locale.iso_code === curLocale
@@ -70,7 +70,7 @@ export function getLocaleAndPathname(locales) {
   if (!notPrimaryLocation) return [primaryLocale, location.pathname];
   return [
     notPrimaryLocation,
-    location.pathname.replace(notPrimaryLocation.root_url, ""),
+    location.pathname.replace(notPrimaryLocation.root_url, ''),
   ];
 }
 
@@ -81,13 +81,13 @@ var bind = function (fn, me) {
   };
 };
 
-function createObjectFromString(str = "") {
-  var string = str.replace(/\s+/g, "");
-  var arr = string.split(",");
+function createObjectFromString(str = '') {
+  var string = str.replace(/\s+/g, '');
+  var arr = string.split(',');
   var res = {};
   arr.forEach((item, i) => {
-    var name = item.split(":")[0];
-    var value = item.split(":")[1];
+    var name = item.split(':')[0];
+    var value = item.split(':')[1];
     res[name] = value;
   });
   return res;
@@ -95,7 +95,7 @@ function createObjectFromString(str = "") {
 export const FrameworkFeaturedVideo = (function () {
   window.onYouTubeIframeAPIReady = function () {
     $(function () {
-      $(window).trigger("theme.utils.youtubeAPIReady");
+      $(window).trigger('theme.utils.youtubeAPIReady');
     });
   };
   function FrameworkFeaturedVideo(root) {
@@ -112,10 +112,10 @@ export const FrameworkFeaturedVideo = (function () {
     this.playerInit = this.playerInit.bind(this);
     this.checkAPIScriptExists = this.checkAPIScriptExists.bind(this);
     _this = this;
-    _this.video_type = _this.root.data("videoType");
-    _this.video_id = _this.root.data("videoId");
-    _this.thumbnail = _this.root.data("thumbnail");
-    _this.section_id = _this.root.data("sectionId");
+    _this.video_type = _this.root.data('videoType');
+    _this.video_id = _this.root.data('videoId');
+    _this.thumbnail = _this.root.data('thumbnail');
+    _this.section_id = _this.root.data('sectionId');
     _this.youtubeVars = {
       playsinline: 1,
       fs: 0,
@@ -130,7 +130,7 @@ export const FrameworkFeaturedVideo = (function () {
     };
     Object.assign(
       _this.youtubeVars,
-      createObjectFromString(_this.root.data("options"))
+      createObjectFromString(_this.root.data('options'))
     );
     _this.vimeoVars = {
       muted: 1,
@@ -152,17 +152,17 @@ export const FrameworkFeaturedVideo = (function () {
   FrameworkFeaturedVideo.prototype.checkAPIScriptExists = function () {
     var _this;
     _this = this;
-    if (_this.video_type === "vimeo") {
+    if (_this.video_type === 'vimeo') {
       if (theme.utils.vimeoScriptAdded) {
         return _this.playerInit();
       } else {
-        return _this.insertAPIScript("https://player.vimeo.com/api/player.js");
+        return _this.insertAPIScript('https://player.vimeo.com/api/player.js');
       }
     } else {
       if (theme.utils.youtubeScriptAdded) {
         return _this.playerInit();
       } else {
-        return _this.insertAPIScript("https://www.youtube.com/iframe_api");
+        return _this.insertAPIScript('https://www.youtube.com/iframe_api');
       }
     }
   };
@@ -170,14 +170,14 @@ export const FrameworkFeaturedVideo = (function () {
   FrameworkFeaturedVideo.prototype.playerInit = function () {
     var _this;
     _this = this;
-    if (_this.video_type === "vimeo") {
+    if (_this.video_type === 'vimeo') {
       if (_this.thumbnail) {
         return _this.insertVimeoPlayer();
       } else {
-        $(window).on("load", function () {
+        $(window).on('load', function () {
           return _this.insertVimeoPlayer();
         });
-        return _this.root.on("theme:section:load", function () {
+        return _this.root.on('theme:section:load', function () {
           return _this.insertVimeoPlayer();
         });
       }
@@ -185,10 +185,10 @@ export const FrameworkFeaturedVideo = (function () {
       if (_this.thumbnail) {
         return _this.insertYoutubePlayer();
       } else {
-        $(window).on("load", function () {
+        $(window).on('load', function () {
           return _this.insertYoutubePlayer();
         });
-        return _this.root.on("theme:section:load", function () {
+        return _this.root.on('theme:section:load', function () {
           return _this.insertYoutubePlayer();
         });
       }
@@ -198,9 +198,9 @@ export const FrameworkFeaturedVideo = (function () {
   FrameworkFeaturedVideo.prototype.insertAPIScript = function (api_url) {
     var _this, first_script_tag, script_tag;
     _this = this;
-    script_tag = document.createElement("script");
+    script_tag = document.createElement('script');
     script_tag.src = api_url;
-    if (_this.video_type === "vimeo") {
+    if (_this.video_type === 'vimeo') {
       theme.utils.vimeoScriptAdded = true;
       script_tag.onload = function () {
         return _this.insertVimeoPlayer();
@@ -208,12 +208,12 @@ export const FrameworkFeaturedVideo = (function () {
     } else {
       theme.utils.youtubeScriptAdded = true;
 
-      $(window).on("theme.utils.youtubeAPIReady", function () {
-        console.log("ready");
+      $(window).on('theme.utils.youtubeAPIReady', function () {
+        console.log('ready');
         return _this.insertYoutubePlayer();
       });
     }
-    first_script_tag = document.getElementsByTagName("script")[0];
+    first_script_tag = document.getElementsByTagName('script')[0];
     return first_script_tag.parentNode.insertBefore(
       script_tag,
       first_script_tag
@@ -221,10 +221,10 @@ export const FrameworkFeaturedVideo = (function () {
   };
 
   FrameworkFeaturedVideo.prototype.insertYoutubePlayer = function () {
-    console.log("here");
+    console.log('here');
     var _this;
     _this = this;
-    return (_this.player = new YT.Player("player-" + _this.section_id, {
+    return (_this.player = new YT.Player('player-' + _this.section_id, {
       videoId: _this.video_id,
       playerVars: _this.youtubeVars,
       events: {
@@ -275,7 +275,7 @@ export const FrameworkFeaturedVideo = (function () {
       _this.vimeoVars.loop = 1;
     }
     _this.player = new Vimeo.Player(
-      "player-" + _this.section_id,
+      'player-' + _this.section_id,
       _this.vimeoVars
     );
     if (_this.thumbnail) {
@@ -290,7 +290,7 @@ export const FrameworkFeaturedVideo = (function () {
     _this.player.getDuration().then(function (duration) {
       return _this.player.addCuePoint(duration - 0.3, {});
     });
-    return _this.player.on("cuepoint", function () {
+    return _this.player.on('cuepoint', function () {
       _this.player.setCurrentTime(0);
       return _this.player.pause();
     });
@@ -300,8 +300,8 @@ export const FrameworkFeaturedVideo = (function () {
     var _this;
     _this = this;
     return _this.root
-      .find(".feature-video--play svg, .feature-video--play-mobile svg")
-      .on("click", function () {
+      .find('.feature-video--play svg, .feature-video--play-mobile svg')
+      .on('click', function () {
         _this.checkAPIScriptExists();
         return _this.hideThumbnail();
       });
@@ -313,7 +313,7 @@ export const FrameworkFeaturedVideo = (function () {
     return setTimeout(function () {
       return _this.root
         .find(
-          ".feature-video--header, .feature-video--thumbnail, .feature-video--play-mobile"
+          '.feature-video--header, .feature-video--thumbnail, .feature-video--play-mobile'
         )
         .hide();
     }, 350);
@@ -321,7 +321,7 @@ export const FrameworkFeaturedVideo = (function () {
   FrameworkFeaturedVideo.prototype.update = function () {
     var _this;
     _this = this;
-    if (_this.video_type === "youtube") {
+    if (_this.video_type === 'youtube') {
       _this.insertYoutubePlayer();
     }
   };
