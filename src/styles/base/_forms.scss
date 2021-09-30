@@ -93,11 +93,8 @@ textarea {
   border-radius: 10px;
 }
 
-button,
 .button,
-input[type="button"],
 input[type="reset"],
-// input[type="file"],
 input[type="submit"] {
   -webkit-appearance: none;
   -webkit-border-radius: $button-border-radius;
