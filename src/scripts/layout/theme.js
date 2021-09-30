@@ -1,4 +1,5 @@
 import 'Styles/theme.scss';
+import '../Components/store';
 
 // plugins
 require('expose-loader?$!jquery');

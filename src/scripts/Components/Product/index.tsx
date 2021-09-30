@@ -1,11 +1,17 @@
-import { h, FunctionComponent } from "preact";
+import { h, FunctionComponent } from 'preact';
 
-import { ProductType } from "../../types";
-import ProductGallery from "./ProductGallery";
-import ProductMainBlock from "./ProductMainBlock";
+import { ProductType, AddItemType } from '../../types';
+import ProductGallery from './ProductGallery';
+import ProductMainBlock from './ProductMainBlock';
 
-const Product: FunctionComponent<{ product: ProductType }> = ({ product }) => {
-  console.log("Product data", product);
+interface Props {
+  product: ProductType;
+  addItem: AddItemType;
+}
+
+const Product: FunctionComponent<Props> = ({ product, addItem }) => {
+  console.log('Product data', product);
+  console.log('add item function', addItem);
   return (
     <div class="container">
       <div class="product-main-block position-relative">
@@ -14,7 +20,7 @@ const Product: FunctionComponent<{ product: ProductType }> = ({ product }) => {
             <ProductGallery media={product.media} />
           </div>
           <div class="col-md-6">
-            <ProductMainBlock product={product} />
+            <ProductMainBlock addItem={addItem} product={product} />
           </div>
         </div>
       </div>

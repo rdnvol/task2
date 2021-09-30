@@ -1,7 +1,6 @@
 import { h, Component, render } from 'preact';
 import { Connect, Provider } from 'redux-zero/preact';
 import { formatMoney } from '@shopify/theme-currency/currency';
-import store from './store';
 import actions from './actions';
 import LineItem from './LineItem';
 
@@ -149,7 +148,7 @@ export default Cart;
 const cartElement = document.getElementById('cart');
 if (cartElement) {
   render(
-    <Provider store={store}>
+    <Provider store={window.Store}>
       <Connect actions={actions}>
         {(props) => (
           <Cart

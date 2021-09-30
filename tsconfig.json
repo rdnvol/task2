@@ -10,6 +10,6 @@
   },
   "include": [
     "./src/scripts/**/*.tsx",
-    "./src/scripts/**/*.ts", 
+    "./src/scripts/**/*.ts", "src/scripts/Components/store.ts", "src/scripts/templates/product.variants-swatcher.ts", "src/scripts/sections/product-variants-swatcher.tsx", 
     ]
 }

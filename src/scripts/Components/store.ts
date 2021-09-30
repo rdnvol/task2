@@ -1,4 +1,5 @@
 import createStore from 'redux-zero';
+import theme from '../helpers/themeSettings';
 
 const { items, item_count } = theme.cartState;
 const initialState = {
@@ -10,4 +11,5 @@ const initialState = {
 const store = createStore(initialState);
 
 export default store;
+//@ts-ignore
 window.Store = store;

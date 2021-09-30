@@ -2,6 +2,19 @@ import * as cart from '@shopify/theme-cart';
 import { removeTrapFocus } from '@shopify/theme-a11y';
 
 const actions = ({ setState }) => ({
+  addItem(state, id, options) {
+    return cart.addItem(id, options).then((item) => {
+      console.log('Added item from actions', item);
+      cart.getState().then(({ item_count, items }) => {
+        Store.setState({
+          ...Store.getState(),
+          justAdded: item,
+          item_count,
+          items,
+        });
+      });
+    });
+  },
   getCart() {
     return cart
       .getState()

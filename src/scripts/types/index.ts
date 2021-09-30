@@ -50,10 +50,10 @@ export interface VariantType {
   weight: number;
 }
 
-export interface OptionsWithValuesType {
+export interface OptionWithValuesType {
   name: string;
   position: number;
-  values: string[];
+  values: string[] | [];
   selected_value?: string | null;
 }
 
@@ -76,7 +76,7 @@ export interface ProductType {
   media: MediaType[];
   options: string[];
   options_by_name: any;
-  options_with_values: OptionsWithValuesType[];
+  options_with_values: OptionWithValuesType[];
   price: number;
   price_max: number;
   price_min: number;
@@ -115,3 +115,8 @@ export interface ButtonType {
   other?: any;
   data_attribute?: string;
 }
+
+export type AddItemType = (
+  id: string,
+  options: { quantity?: number; properties?: object }
+) => Promise<any>;
