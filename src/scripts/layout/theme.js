@@ -1,4 +1,5 @@
 import 'Styles/theme.scss';
+import "@fancyapps/ui/dist/fancybox.css";
 
 // plugins
 require("expose-loader?$!jquery");
