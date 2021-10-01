@@ -1,5 +1,6 @@
 import 'Styles/theme.scss';
 import '../Components/store';
+import '@fancyapps/ui/dist/fancybox.css';
 
 // plugins
 require('expose-loader?$!jquery');
@@ -13,6 +14,7 @@ import 'lazysizes/plugins/respimg/ls.respimg';
 import '../helpers/jquery.plugins';
 import { SmoothScroll } from '../helpers/jquery.plugins';
 import Splide from '@splidejs/splide';
+import { Fancybox } from '@fancyapps/ui';
 
 // utils
 import { getLocaleAndPathname } from '../helpers/utils';
@@ -48,6 +50,8 @@ class App {
     if (!('ontouchstart' in document.documentElement)) {
       $('html').addClass('no-touch');
     }
+
+    Fancybox.bind('[data-fancybox]', {});
   }
 
   // initialize fixed blocks on scroll
