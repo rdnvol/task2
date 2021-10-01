@@ -33,7 +33,7 @@ const ProductColorOptionItem: FunctionComponent<Props> = ({
           style={{
             width: '25px',
             height: '25px',
-            backgroundColor: color,
+            backgroundColor: color.replace(' ', ''),
             display: 'inline-block',
           }}
         ></span>
