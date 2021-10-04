@@ -1,10 +1,10 @@
-import { register } from "@shopify/theme-sections";
-import { FrameworkFeaturedVideo } from "../helpers/utils.js";
+import { register } from '@shopify/theme-sections';
+import { FrameworkFeaturedVideo } from '../helpers/utils.js';
 
-register("iframe-video", {
+register('iframe-video', {
   initIframeVideo: function () {
     this.iframeVideo = new FrameworkFeaturedVideo(
-      $(this.container).find(".media-block__video")
+      $(this.container).find('.media-block__video')
     );
     if (Shopify.designMode) {
       setTimeout(() => {

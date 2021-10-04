@@ -1,22 +1,22 @@
-import { getCookie, deleteCookie, setCookie } from "../helpers/utils.js";
-import { register } from "@shopify/theme-sections";
-import fancybox from "@fancyapps/fancybox";
+import { getCookie, deleteCookie, setCookie } from '../helpers/utils.js';
+import { register } from '@shopify/theme-sections';
+import fancybox from '@fancyapps/fancybox';
 
-register("popup", {
+register('popup', {
   _openFancybox: function (cooke_name, days) {
-    $.fancybox.open($("#popup"), {
+    $.fancybox.open($('#popup'), {
       modal: true,
       autoFocus: false,
       afterClose: function (instance, slide) {
-        setCookie(cooke_name, "no", days);
+        setCookie(cooke_name, 'no', days);
       },
     });
   },
 
   initPopup: function (days = 1) {
     $(document).ready(() => {
-      const cookie_popup1_name = "show_cookie_message_popup1";
-      if (getCookie(cookie_popup1_name) !== "no") {
+      const cookie_popup1_name = 'show_cookie_message_popup1';
+      if (getCookie(cookie_popup1_name) !== 'no') {
         this._openFancybox(cookie_popup1_name, days);
       }
     });

@@ -30,7 +30,13 @@
       continue_shipping_html: {{ 'cart.general.continue_shopping_html' | t | json }},
       just_added_to_your_cart: {{ 'cart.general.just_added_to_your_cart' | t | json }},
       view_cart: {{ 'cart.general.view_cart' | t | json }},
-      special_instructions_placeholder: {{ 'cart.general.special_instructions_placeholder' | t | json }}
+      special_instructions_placeholder: {{ 'cart.general.special_instructions_placeholder' | t | json }},
+      addToCart: {{ 'cart.general.add_to_cart' | t | json }},
+      soldOut: {{ 'products.product.sold_out' | t | json }}
+    },
+    product: {
+      regular_price: {{ 'products.product.regular_price' | t | json }},
+      quantity: {{ 'products.product.quantity' | t | json }}
     },
     placeholder_data: "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==",
     placeholder_image: "{{ 'img-placeholder.png' | asset_img_url: 'master' }}",
