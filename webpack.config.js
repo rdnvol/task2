@@ -1,25 +1,25 @@
 // Constants
-const PROD = "production";
-const DEV = "development";
+const PROD = 'production';
+const DEV = 'development';
 
 // Libraries
-import dotenv from "dotenv";
-import * as execute from "child_process";
-import webpack from "webpack";
-import path from "path";
-import { fileURLToPath } from "url";
-import { CleanWebpackPlugin } from "clean-webpack-plugin";
-import HtmlWebpackPlugin from "html-webpack-plugin";
-import CopyWebpackPlugin from "copy-webpack-plugin";
-import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer";
-import MiniCssExtractPlugin from "mini-css-extract-plugin";
-import FileManagerPlugin from "filemanager-webpack-plugin";
-import TerserJSPlugin from "terser-webpack-plugin";
-import FriendlyErrorsWebpackPlugin from "friendly-errors-webpack-plugin";
-import getTemplateEntrypoints from "./lib/utilities/get-template-entrypoints.js";
-import getLayoutEntrypoints from "./lib/utilities/get-layout-entrypoints.js";
-import getChunkName from "./lib/utilities/get-chunk-name.js";
-import { settings } from "./lib/config.js";
+import dotenv from 'dotenv';
+import * as execute from 'child_process';
+import webpack from 'webpack';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { CleanWebpackPlugin } from 'clean-webpack-plugin';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import CopyWebpackPlugin from 'copy-webpack-plugin';
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import FileManagerPlugin from 'filemanager-webpack-plugin';
+import TerserJSPlugin from 'terser-webpack-plugin';
+import FriendlyErrorsWebpackPlugin from 'friendly-errors-webpack-plugin';
+import getTemplateEntrypoints from './lib/utilities/get-template-entrypoints.js';
+import getLayoutEntrypoints from './lib/utilities/get-layout-entrypoints.js';
+import getChunkName from './lib/utilities/get-chunk-name.js';
+import { settings } from './lib/config.js';
 
 dotenv.config();
 
@@ -30,14 +30,14 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const exec = execute.spawn;
 const env = process.env.NODE_ENV || DEV;
-const cli = process.env.CLI === "true";
+const cli = process.env.CLI === 'true';
 const zip = process.env.ZIP || false;
-const deploy = process.env.DEPLOY == "true";
+const deploy = process.env.DEPLOY == 'true';
 const bundleAnalyzerEnabled = !!process.env.BUNDLE_ANALIZER;
 const webpackPerformanceAnalyzerEnabled = !!process.env.WEBPACK_PERFORMANCE;
 const cleanDistPluginsDisabled = !!process.env.CLEAN_DIST_DISABLED;
 
-console.log("Settings is", settings);
+console.log('Settings is', settings);
 
 // Clean files on build but not watch
 const cleanDistPlugins = cleanDistPluginsDisabled
@@ -53,9 +53,9 @@ const bundleAnalyzerPlugin = !bundleAnalyzerEnabled
   ? []
   : [
       new BundleAnalyzerPlugin({
-        analyzerMode: "disabled",
+        analyzerMode: 'disabled',
         generateStatsFile: env === PROD,
-        statsFilename: path.resolve(__dirname, "stats.json"),
+        statsFilename: path.resolve(__dirname, 'stats.json'),
       }),
     ];
 
@@ -73,19 +73,19 @@ const zipPlugin = [
   new FileManagerPlugin({
     events: {
       onStart: {
-        delete: ["./dist", "./rc.zip"],
+        delete: ['./dist', './rc.zip'],
       },
       onEnd: {
         copy: [
-          { source: "./src/assets", destination: "./dist/assets" },
-          { source: "./src/config", destination: "./dist/config" },
-          { source: "./src/layout", destination: "./dist/layout" },
-          { source: "./src/locales", destination: "./dist/locales" },
-          { source: "./src/sections", destination: "./dist/sections" },
-          { source: "./src/snippets", destination: "./dist/snippets" },
-          { source: "./src/templates", destination: "./dist/templates" },
+          { source: './src/assets', destination: './dist/assets' },
+          { source: './src/config', destination: './dist/config' },
+          { source: './src/layout', destination: './dist/layout' },
+          { source: './src/locales', destination: './dist/locales' },
+          { source: './src/sections', destination: './dist/sections' },
+          { source: './src/snippets', destination: './dist/snippets' },
+          { source: './src/templates', destination: './dist/templates' },
         ],
-        archive: [{ source: "./dist", destination: "./rc.zip", format: "zip" }],
+        archive: [{ source: './dist', destination: './rc.zip', format: 'zip' }],
       },
     },
     runTasksInSeries: true,
@@ -104,46 +104,46 @@ const AfterBuildHook = {
   apply: (compiler) => {
     if (!cli) {
       env === DEV
-        ? compiler.hooks.afterEmit.tap("AfterEmitPlugin", (compilation) => {
+        ? compiler.hooks.afterEmit.tap('AfterEmitPlugin', (compilation) => {
             if (!isRunning) {
-              console.log("----------- RELOAD --------");
+              console.log('----------- RELOAD --------');
               const start = exec(
-                "npm run theme:deploy && npm run watch:theme:dev:win",
+                'npm run theme:deploy && npm run watch:theme:dev:win',
                 {
                   shell: true,
-                  stdio: "inherit",
-                  stdout: "inherit",
+                  stdio: 'inherit',
+                  stdout: 'inherit',
                 }
               );
-              start.on("close", (code) => {
+              start.on('close', (code) => {
                 console.log(`child process exited with code ${code}`);
                 isRunning = false;
               });
             }
             isRunning = true;
           })
-        : compiler.hooks.done.tap("AfterEmitPlugin", (compilation) => {
+        : compiler.hooks.done.tap('AfterEmitPlugin', (compilation) => {
             if (deploy) {
-              const start = exec("npm run theme:deploy", {
+              const start = exec('npm run theme:deploy', {
                 shell: true,
-                stdio: "inherit",
-                stdout: "inherit",
+                stdio: 'inherit',
+                stdout: 'inherit',
               });
-              start.on("close", (code) => {
+              start.on('close', (code) => {
                 console.log(`child process exited with code ${code}`);
               });
             }
           });
     } else {
-      compiler.hooks.afterEmit.tap("AfterEmitPlugin", (compilation) => {
+      compiler.hooks.afterEmit.tap('AfterEmitPlugin', (compilation) => {
         if (!isRunning) {
-          console.log("----------- Starting Shopify CLI --------");
-          const start = exec("cd ./dist && shopify theme serve", {
+          console.log('----------- Starting Shopify CLI --------');
+          const start = exec('cd ./dist && shopify theme serve', {
             shell: true,
-            stdio: "inherit",
-            stdout: "inherit",
+            stdio: 'inherit',
+            stdout: 'inherit',
           });
-          start.on("close", (code) => {
+          start.on('close', (code) => {
             console.log(`child process exited with code ${code}`);
             isRunning = false;
           });
@@ -155,13 +155,13 @@ const AfterBuildHook = {
 };
 
 export default {
-  devtool: env === DEV ? "eval-source-map" : false,
+  devtool: env === DEV ? 'eval-source-map' : false,
   entry: {
     ...getLayoutEntrypoints(settings),
     ...getTemplateEntrypoints(settings),
   },
   performance: {
-    hints: webpackPerformanceAnalyzerEnabled ? "error" : "warning",
+    hints: webpackPerformanceAnalyzerEnabled ? 'error' : 'warning',
     maxAssetSize: 1000000, // Diff set at 300kb but never reached, increased to avoid fail
     maxEntrypointSize: 1000000, // Diff set at 300kb but never reached, increased to avoid fail
     // assetFilter: function assetFilter(assetFilename) {
@@ -172,19 +172,19 @@ export default {
   mode: env,
   resolve: {
     alias: {
-      Scripts: path.resolve(__dirname, "./src/scripts/templates"),
-      Sections: path.resolve(__dirname, "./src/scripts/sections"),
-      Components: path.resolve(__dirname, "./src/scripts/Components"),
-      Styles: path.resolve(__dirname, "./src/styles"),
+      Scripts: path.resolve(__dirname, './src/scripts/templates'),
+      Sections: path.resolve(__dirname, './src/scripts/sections'),
+      Components: path.resolve(__dirname, './src/scripts/Components'),
+      Styles: path.resolve(__dirname, './src/styles'),
     },
-    extensions: [".js", ".jsx", ".tsx", ".ts"],
+    extensions: ['.js', '.jsx', '.tsx', '.ts'],
   },
   output: {
     // Config for JS outputs
-    filename: "[name].js",
+    filename: '[name].js',
     path: settings.theme.dist.assets,
-    publicPath: "",
-    chunkFilename: "[name].chunk.[chunkhash:5].js",
+    publicPath: '',
+    chunkFilename: '[name].chunk.[chunkhash:5].js',
   },
   watchOptions: {
     ignored: /node_modules/,
@@ -200,7 +200,7 @@ export default {
         vendor: {
           test: /[\\/]node_modules[\\/]/,
           name: getChunkName,
-          chunks: "initial",
+          chunks: 'initial',
           priority: 5,
         },
       },
@@ -212,22 +212,22 @@ export default {
         test: /\.s[ac]?ss$/i, // Find all scss imports and convert them to css files
         use: [
           {
-            loader: env === DEV ? "style-loader" : MiniCssExtractPlugin.loader,
+            loader: env === DEV ? 'style-loader' : MiniCssExtractPlugin.loader,
             options: {
               esModule: false,
             },
           },
           {
-            loader: "css-loader",
+            loader: 'css-loader',
             options: {
               importLoaders: 2,
               url: false,
               sourceMap: env === DEV,
             },
           },
-          "postcss-loader",
+          'postcss-loader',
           {
-            loader: "sass-loader",
+            loader: 'sass-loader',
             options: {
               sourceMap: env === DEV,
             },
@@ -236,22 +236,22 @@ export default {
       },
       {
         test: /\.css$/i,
-        use: ["style-loader", "css-loader"],
+        use: ['style-loader', 'css-loader'],
       },
       {
         test: /\.js$/,
         exclude: /node_modules\/(?!(dom7|swiper)\/).*/,
         use: {
-          loader: "babel-loader",
+          loader: 'babel-loader',
           options: {
-            presets: ["@babel/preset-env"],
+            presets: ['@babel/preset-env'],
           },
         },
       },
       {
         test: /\.(js|jsx|tsx|ts)$/,
         exclude: /node_modules/,
-        loader: "ts-loader",
+        loader: 'ts-loader',
       },
     ],
   },
@@ -298,13 +298,13 @@ export default {
     }),
     new MiniCssExtractPlugin({
       // Combines all css into chunked files
-      filename: "[name].css",
-      chunkFilename: "[name].css",
+      filename: '[name].css',
+      chunkFilename: '[name].css',
     }),
     new HtmlWebpackPlugin({
-      excludeChunks: ["static"],
+      excludeChunks: ['static'],
       filename: `${settings.theme.dist.snippets}/script-tags.liquid`,
-      template: "./lib/script-tags.html",
+      template: './lib/script-tags.html',
       inject: false,
       minify:
         env === PROD
@@ -329,9 +329,9 @@ export default {
       liquidLayouts: getLayoutEntrypoints(settings),
     }),
     new HtmlWebpackPlugin({
-      excludeChunks: ["static"],
+      excludeChunks: ['static'],
       filename: `${settings.theme.dist.snippets}/style-tags.liquid`,
-      template: "./lib/style-tags.html",
+      template: './lib/style-tags.html',
       inject: false,
       minify:
         env === PROD
@@ -357,14 +357,14 @@ export default {
     }),
     // env plugin
     new webpack.DefinePlugin({
-      "proccess.env": { NODE_ENV: JSON.stringify(env) },
+      'proccess.env': { NODE_ENV: JSON.stringify(env) },
     }),
     new webpack.ProvidePlugin({
-      $: "jquery",
-      jQuery: "jquery",
+      $: 'jquery',
+      jQuery: 'jquery',
     }),
     new BundleAnalyzerPlugin({
-      analyzerMode: bundleAnalyzerEnabled ? "server" : "disabled",
+      analyzerMode: bundleAnalyzerEnabled ? 'server' : 'disabled',
     }),
     AfterBuildHook,
   ],
