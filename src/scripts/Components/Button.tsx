@@ -1,6 +1,6 @@
-import { h, FunctionComponent } from "preact";
+import { h, FunctionComponent } from 'preact';
 
-import { ButtonType } from "../types";
+import { ButtonType } from '../types';
 
 const Button: FunctionComponent<ButtonType> = ({
   type,
