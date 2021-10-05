@@ -1,4 +1,4 @@
-import { load } from "@shopify/theme-sections";
-import "Sections/product-variants-swatcher";
+import { load } from '@shopify/theme-sections';
+import 'Sections/product-variants-swatcher';
 
-load("*");
+load('*');
