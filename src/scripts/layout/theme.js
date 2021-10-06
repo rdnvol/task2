@@ -317,7 +317,7 @@ class App {
     const callback = function(mutationsList, observer) {
       for (let mutation of mutationsList) {
         if (mutation.addedNodes[0] && mutation.addedNodes[0]["Fancybox"] != undefined) {
-          const backdrop = document.querySelector('.fancybox__slide.is-selected.has-inline');
+          const backdrop = document.querySelector('.fancybox__slide.is-selected');
           backdrop.addEventListener('click', function(e) {
             e.preventDefault()
           })

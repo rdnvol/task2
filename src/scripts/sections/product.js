@@ -3,7 +3,7 @@ import { formatMoney } from '@shopify/theme-currency';
 import Swiper from 'swiper';
 import { register } from '@shopify/theme-sections';
 import { addItem, getCart } from '../helpers/cartAjaxCall';
-import fancybox from '@fancyapps/fancybox';
+import { Fancybox } from "@fancyapps/ui/src/Fancybox/Fancybox.js";
 import { setCookie } from '../helpers/utils';
 
 register('product', {
@@ -214,13 +214,19 @@ export class Product {
   };
 
   sizeChartInit() {
-    $(this.sizeChart).fancybox({
-      autoFocus: false,
-      afterLoad: (fancybox) => {
-        fancybox.current.$content
-          .find('table')
-          .wrap('<div class="table-holder"></div>');
-      },
+    Fancybox.bind(".size-chart-link",
+    {
+      closeButton: "outside",
+      on: {
+        reveal: () => { 
+          let table = document.querySelector('table')
+          let tableWrapper = document.createElement('div');
+          tableWrapper.classList.add('table-holder');
+          tableWrapper.appendChild(table);
+          document.querySelector('.fancybox__content').innerHTML = '';
+          document.querySelector('.fancybox__content').appendChild(tableWrapper)
+         }
+      }
     });
   }
 }
