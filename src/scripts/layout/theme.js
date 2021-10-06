@@ -42,6 +42,7 @@ class App {
     this.initAnchors();
     this.initMap();
     this.initProductGallery();
+    this.fancyboxBackdrop();
 
     // Responsive fluid iframe
     $(".rte iframe").each(function(index) {
@@ -289,6 +290,28 @@ class App {
         },
       }
     } ).mount();
+  }
+
+  fancyboxBackdrop() {
+    let target =  document.querySelector('body')
+    const config = {
+      childList: true
+    };
+
+    const callback = function(mutationsList, observer) {
+      for (let mutation of mutationsList) {
+        if (mutation.addedNodes[0] && mutation.addedNodes[0]["Fancybox"] != undefined) {
+          const backdrop = document.querySelector('.fancybox__slide.is-selected.has-inline');
+          backdrop.addEventListener('click', function(e) {
+            e.preventDefault()
+          })
+          observer.disconnect();
+        }
+      }
+    };
+
+    const observer = new MutationObserver(callback);
+    observer.observe(target, config);
   }
 
 }

@@ -6,3 +6,7 @@
   padding: 30px;
   border: 1px solid $base-border;
 }
+
+#popup .carousel__button.is-close {
+  display: none;
+}
