@@ -1,4 +1,4 @@
-function resizeImage(value, size) {
+export function resizeImage(value, size) {
   return value
     ? value
         .replace(
@@ -11,7 +11,7 @@ function resizeImage(value, size) {
     : '';
 }
 
-function resizeImageSrcset(value, size) {
+export function resizeImageSrcset(value, size) {
   let width = +size.split('x')[0];
   let height = +size.split('x')[1] ? +size.split('x')[1] : '';
   let image_1x = value

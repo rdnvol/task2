@@ -1,5 +1,6 @@
 import 'Styles/theme.scss';
-import "@fancyapps/ui/dist/fancybox.css";
+import '../Components/store';
+import '@fancyapps/ui/dist/fancybox.css';
 
 // plugins
 require('expose-loader?$!jquery');
@@ -13,7 +14,7 @@ import 'lazysizes/plugins/respimg/ls.respimg';
 import '../helpers/jquery.plugins';
 import { SmoothScroll } from '../helpers/jquery.plugins';
 import Splide from '@splidejs/splide';
-import { Fancybox } from "@fancyapps/ui";
+import { Fancybox } from '@fancyapps/ui';
 
 // utils
 import { getLocaleAndPathname } from '../helpers/utils';

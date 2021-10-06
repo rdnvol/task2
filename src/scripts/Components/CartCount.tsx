@@ -1,6 +1,5 @@
 import { h, Component, render } from 'preact';
 import { Connect, Provider } from 'redux-zero/preact';
-import store from './store';
 import actions from './actions';
 
 interface Props {
@@ -53,7 +52,8 @@ class CartCount extends Component<Props> {
 const ref = document.querySelector('[data-cart-count]');
 if (ref) {
   render(
-    <Provider store={store}>
+    //@ts-ignore
+    <Provider store={window.Store}>
       <Connect actions={actions}>
         {({ item_count, cart, getCart }: any) => (
           <CartCount item_count={item_count} cart={cart} getCart={getCart} />

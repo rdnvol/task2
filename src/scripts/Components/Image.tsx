@@ -1,9 +1,19 @@
-import { h, render } from 'preact';
+import { h, FunctionComponent } from 'preact';
 
-export const Image = ({ src, sizes, alt, ratio = 1 }) => {
-  const width = sizes[sizes.length - 1];
-  const height = Math.ceil(width / ratio);
-  const placeholderSize = `${width}x${height}`;
+import { ImageType } from '../types';
+import { resizeImage, resizeImageSrcset } from '../helpers/utils';
+import theme from '../helpers/themeSettings';
+
+export const Image: FunctionComponent<ImageType> = ({
+  src,
+  sizes,
+  alt,
+  ratio = 1,
+}) => {
+  const width: number = parseInt(sizes[sizes.length - 1]);
+  const height: number = Math.ceil(width / ratio);
+  const placeholderSize: string = `${width}x${height}`;
+
   return (
     <picture>
       {sizes.length > 0 &&

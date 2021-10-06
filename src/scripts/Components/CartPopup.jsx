@@ -2,7 +2,6 @@ import { trapFocus } from '@shopify/theme-a11y';
 import { h, Component, render } from 'preact';
 import CartJustAdded from './CartJustAdded';
 import { Connect, Provider } from 'redux-zero/preact';
-import store from './store';
 import actions from './actions';
 
 class CartPopup extends Component {
@@ -77,7 +76,7 @@ class CartPopup extends Component {
 let ref = document.querySelector('#cart-popup');
 if (ref) {
   render(
-    <Provider store={store}>
+    <Provider store={window.Store}>
       <Connect actions={actions}>
         {({ justAdded, item_count, popupActive, closePopup }) => (
           <CartPopup
