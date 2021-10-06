@@ -1,8 +1,9 @@
 import 'Styles/theme.scss';
-import "@fancyapps/ui/dist/fancybox.css";
+import '../Components/store';
+import '@fancyapps/ui/dist/fancybox.css';
 
 // plugins
-require("expose-loader?$!jquery");
+require('expose-loader?$!jquery');
 import 'picturefill';
 import 'lazysizes/plugins/object-fit/ls.object-fit';
 import 'lazysizes/plugins/parent-fit/ls.parent-fit';
@@ -10,20 +11,18 @@ import 'lazysizes/plugins/rias/ls.rias';
 import 'lazysizes/plugins/bgset/ls.bgset';
 import 'lazysizes';
 import 'lazysizes/plugins/respimg/ls.respimg';
-import '../helpers/jquery.plugins'
+import '../helpers/jquery.plugins';
 import { SmoothScroll } from '../helpers/jquery.plugins';
 import Splide from '@splidejs/splide';
-import { Fancybox } from "@fancyapps/ui";
-
+import { Fancybox } from '@fancyapps/ui';
 
 // utils
-import { getLocaleAndPathname } from "../helpers/utils";
+import { getLocaleAndPathname } from '../helpers/utils';
 
 // Cart
-import "Components/CartReact";
-import "Components/CartCount";
-import "Components/CartPopup";
-
+import 'Components/CartReact';
+import 'Components/CartCount';
+import 'Components/CartPopup';
 
 class App {
   constructor() {
@@ -45,7 +44,7 @@ class App {
     this.fancyboxBackdrop();
 
     // Responsive fluid iframe
-    $(".rte iframe").each(function(index) {
+    $('.rte iframe').each(function (index) {
       $(this).wrap('<div class="fluid-iframe"></div>');
     });
 
@@ -64,7 +63,7 @@ class App {
       container: '.page-wrapper',
       positionType: 'fixed',
       animDelay: 0,
-      showAfterScrolled: false
+      showAfterScrolled: false,
     });
   }
 
@@ -75,11 +74,11 @@ class App {
     let delta = 5;
     let navbarHeight = $('.sticky-wrap-header__panel').outerHeight();
 
-    $(window).scroll(function(event) {
+    $(window).scroll(function (event) {
       didScroll = true;
     });
 
-    setInterval(function() {
+    setInterval(function () {
       if (didScroll) {
         hasScrolled();
         didScroll = false;
@@ -90,17 +89,20 @@ class App {
       let st = $(window).scrollTop();
       // Make sure they scroll more than delta
 
-      if (Math.abs(lastScrollTop - st) <= delta)
-        return;
+      if (Math.abs(lastScrollTop - st) <= delta) return;
       // If they scrolled down and are past the navbar, add class .nav-up.
       // This is necessary so you never see what is "behind" the navbar.
       if (st > lastScrollTop && st > navbarHeight) {
         // Scroll Down
-        $('.sticky-wrap-header__panel').removeClass('nav-down').addClass('nav-up');
+        $('.sticky-wrap-header__panel')
+          .removeClass('nav-down')
+          .addClass('nav-up');
       } else {
         // Scroll Up
         if (st + $(window).height() < $(document).height()) {
-          $('.sticky-wrap-header__panel').removeClass('nav-up').addClass('nav-down');
+          $('.sticky-wrap-header__panel')
+            .removeClass('nav-up')
+            .addClass('nav-down');
         }
       }
       lastScrollTop = st;
@@ -110,48 +112,48 @@ class App {
   initIosScroll() {
     ResponsiveHelper.addRange({
       '..1199': {
-        on: function() {
+        on: function () {
           let $docEl = $('html, body'),
             $wrap = $('.page-wrapper'),
             scrollTop;
-          $(".page-wrapper__opener").on("click", function(e) {
+          $('.page-wrapper__opener').on('click', function (e) {
             window.headerPanel = $('.header__panel');
             window.stickyWrap = $('.sticky-wrap-header__panel');
             window.headerPanelStyle = headerPanel.attr('style');
             window.stickyWrapStyle = stickyWrap.attr('style');
-            if ($('html').hasClass("scroll-fix")) {
+            if ($('html').hasClass('scroll-fix')) {
               $.unlockBody();
-              $('html').removeClass("scroll-fix");
+              $('html').removeClass('scroll-fix');
             } else {
               $.lockBody();
-              $('html').addClass("scroll-fix");
+              $('html').addClass('scroll-fix');
             }
             setTimeout(() => {
-              window.headerPanel.attr('style', window.headerPanelStyle)
-              window.stickyWrap.attr('style', window.stickyWrapStyle)
+              window.headerPanel.attr('style', window.headerPanelStyle);
+              window.stickyWrap.attr('style', window.stickyWrapStyle);
               if (window.headerPanelStyle !== '') {
-                window.stickyWrap.addClass('fixed-position')
+                window.stickyWrap.addClass('fixed-position');
               }
-            }, 100)
+            }, 100);
           });
-          $.unlockBody = function() {
+          $.unlockBody = function () {
             $docEl.css({
-              height: "",
-              overflow: ""
+              height: '',
+              overflow: '',
             });
             $wrap.css({
-              top: ''
+              top: '',
             });
             window.scrollTo(0, scrollTop);
-            window.setTimeout(function() {
+            window.setTimeout(function () {
               scrollTop = null;
             }, 0);
           };
-          $.lockBody = function() {
+          $.lockBody = function () {
             if (window.pageYOffset) {
               scrollTop = window.pageYOffset;
               $wrap.css({
-                top: -(scrollTop)
+                top: -scrollTop,
               });
             }
             $docEl.css({
@@ -160,10 +162,10 @@ class App {
             });
           };
         },
-        off: function() {
-          $(".page-wrapper__opener").off();
-        }
-      }
+        off: function () {
+          $('.page-wrapper__opener').off();
+        },
+      },
     });
   }
 
@@ -173,16 +175,15 @@ class App {
       menuActiveClass: 'menu-active',
       menuOpener: '.menu__opener',
       menuDrop: '.menu',
-      hideOnClickOutside: false
+      hideOnClickOutside: false,
     });
   }
 
   // accordion menu init
   initAccordion() {
-
     ResponsiveHelper.addRange({
       '..1199': {
-        on: function() {
+        on: function () {
           $('.menu-accordion').slideAccordion({
             allowClickWhenExpanded: true,
             activeClass: 'active',
@@ -190,13 +191,13 @@ class App {
             slider: '.menu-accordion__slide',
             collapsible: true,
             event: 'click',
-            animSpeed: 400
+            animSpeed: 400,
           });
         },
-        off: function() {
+        off: function () {
           $('.menu-accordion').slideAccordion('destroy');
-        }
-      }
+        },
+      },
     });
 
     $('.accordion').slideAccordion({
@@ -206,16 +207,24 @@ class App {
       slider: '.accordion__slide',
       collapsible: true,
       event: 'click',
-      animSpeed: 400
+      animSpeed: 400,
     });
-
   }
 
   setHeaderHeight() {
-    $(window).on('load resize scroll', function() {
-      document.documentElement.style.setProperty('--header-height', $('#header').css('height'));
-      document.documentElement.style.setProperty('--header-sticky-height', $('.header__panel').css('height'));
-      document.documentElement.style.setProperty('--announcements-bar-height', $('.header__bar').css('height'));
+    $(window).on('load resize scroll', function () {
+      document.documentElement.style.setProperty(
+        '--header-height',
+        $('#header').css('height')
+      );
+      document.documentElement.style.setProperty(
+        '--header-sticky-height',
+        $('.header__panel').css('height')
+      );
+      document.documentElement.style.setProperty(
+        '--announcements-bar-height',
+        $('.header__bar').css('height')
+      );
     });
   }
 
@@ -223,9 +232,13 @@ class App {
     function currencyFormSubmit(event) {
       event.target.form.submit();
     }
-    let currencySwitchers = document.querySelectorAll('.shopify-currency-form select');
+    let currencySwitchers = document.querySelectorAll(
+      '.shopify-currency-form select'
+    );
     if (currencySwitchers.length) {
-      currencySwitchers.forEach(el => el.addEventListener('change', currencyFormSubmit))
+      currencySwitchers.forEach((el) =>
+        el.addEventListener('change', currencyFormSubmit)
+      );
     }
   }
 
@@ -233,12 +246,15 @@ class App {
     const [curLocale, pathname] = getLocaleAndPathname(theme.published_locales);
     let languageSwitchers = document.querySelectorAll('[name="locales"]');
     if (languageSwitchers.length) {
-      languageSwitchers.forEach(el => el.addEventListener('change', (e) => {
-        let selectedLocale = e.target.value;
-        console.log('selectedLocale', selectedLocale)
-        console.log('pathname', pathname)
-        location.href = selectedLocale === '/' ? pathname : selectedLocale + pathname;
-      }))
+      languageSwitchers.forEach((el) =>
+        el.addEventListener('change', (e) => {
+          let selectedLocale = e.target.value;
+          console.log('selectedLocale', selectedLocale);
+          console.log('pathname', pathname);
+          location.href =
+            selectedLocale === '/' ? pathname : selectedLocale + pathname;
+        })
+      );
     }
   }
 
@@ -253,9 +269,9 @@ class App {
   }
 
   initMap() {
-    $(window).on('load', function() {
-      const mapElement = document.getElementById("google-map");
-      if  (mapElement && google) {
+    $(window).on('load', function () {
+      const mapElement = document.getElementById('google-map');
+      if (mapElement && google) {
         let map = new google.maps.Map(mapElement, {
           center: { lat: -34.397, lng: 150.644 },
           zoom: 10,
@@ -266,7 +282,7 @@ class App {
           map,
         });
       }
-    })
+    });
   }
 
   initProductGallery() {
@@ -284,12 +300,12 @@ class App {
         767: {
           gap: 20,
           padding: {
-            left : 0,
+            left: 0,
             right: '70px',
           },
         },
-      }
-    } ).mount();
+      },
+    }).mount();
   }
 
   fancyboxBackdrop() {
@@ -317,4 +333,3 @@ class App {
 }
 
 const app = new App();
-

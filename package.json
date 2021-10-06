@@ -38,6 +38,7 @@
     "@shopify/theme-product-form": "^3.1.0",
     "@shopify/theme-sections": "^3.1.0",
     "@splidejs/splide": "^2.4.21",
+    "@types/jquery": "^3.5.6",
     "awesome-debounce-promise": "^2.1.0",
     "axios": "^0.21.2",
     "browser-sync": "^2.26.14",

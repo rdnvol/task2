@@ -6,7 +6,6 @@
  * @namespace password
  */
 
-console.log('test')
 const selectors = {
   recoverPasswordFormTriggers: '[data-recover-toggle]',
   recoverPasswordForm: '[data-recover-form]',
@@ -33,7 +32,9 @@ function checkUrlHash() {
  *  Show/Hide recover password form
  */
 function toggleRecoverPasswordForm() {
-  document.querySelector(selectors.recoverPasswordForm).classList.toggle('hidden');
+  document
+    .querySelector(selectors.recoverPasswordForm)
+    .classList.toggle('hidden');
   document.querySelector(selectors.loginForm).classList.toggle('hidden');
 }
 
@@ -50,11 +51,12 @@ function resetPasswordSuccess() {
 }
 
 if (document.querySelector(selectors.recoverPasswordForm)) {
-  console.log("Hello");
   checkUrlHash();
   resetPasswordSuccess();
 
-  document.querySelectorAll(selectors.recoverPasswordFormTriggers).forEach((trigger) => {
-    trigger.addEventListener('click', onShowHidePasswordForm);
-  });
+  document
+    .querySelectorAll(selectors.recoverPasswordFormTriggers)
+    .forEach((trigger) => {
+      trigger.addEventListener('click', onShowHidePasswordForm);
+    });
 }
