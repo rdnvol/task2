@@ -44,7 +44,7 @@
         {% endif %}
       </div>
     </div>
-    {% unless product.has_only_default_variant %}
+    {% unless product.has_only_default_variant != true %}
       {% for option in product.options_with_values %}
         <div class="js">
           {% if forloop.index0 > 0 %}
