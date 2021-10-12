@@ -2,7 +2,7 @@ import 'Styles/theme.scss';
 import '@fancyapps/ui/dist/fancybox.css';
 
 // plugins
-require('expose-loader?$!jquery');
+import 'expose-loader?$!jquery';
 import 'picturefill';
 import 'lazysizes/plugins/object-fit/ls.object-fit.js';
 import 'lazysizes/plugins/parent-fit/ls.parent-fit.js';
@@ -14,6 +14,7 @@ import '../helpers/jquery.plugins.js';
 import { SmoothScroll } from '../helpers/jquery.plugins.js';
 import Splide from '@splidejs/splide';
 import { Fancybox } from '@fancyapps/ui';
+import 'Components/store'
 
 // utils
 import { getLocaleAndPathname } from '../helpers/utils.js';
