@@ -71,10 +71,10 @@
           "title": "Title",
           "alignment": "justify-content-start align-items-center",
           "alignment_text": "text-center",
-          "text": "<p>Use overlay text to give your customers insight into your brand. Select imagery and text that relates to your style and story.</p>",
+          "text": "<p>Use overlay text to give your customers insight into your brand. Select imagery and text that relates to your style and story.<\/p>",
           "color": "#ffffff",
           "color_mobile": "#000000",
-          "button_link": "shopify://collections/all",
+          "button_link": "shopify:\/\/collections\/all",
           "button_label": "Button label",
           "fullheight": false
         }
@@ -92,14 +92,14 @@
       "1589984445229": {
         "type": "home-hero",
         "settings": {
-          "image": "shopify://shop_images/Untitled_design.png",
+          "image": "shopify:\/\/shop_images\/Untitled_design.png",
           "title": "Image with text overlay",
           "alignment": "justify-content-start align-items-center",
           "alignment_text": "text-center",
-          "text": "<p>Use overlay text to give your customers insight into your brand. Select imagery and text that relates to your style and story.</p>",
+          "text": "<p>Use overlay text to give your customers insight into your brand. Select imagery and text that relates to your style and story.<\/p>",
           "color": "#000000",
           "color_mobile": "#000000",
-          "button_link": "shopify://collections",
+          "button_link": "shopify:\/\/collections",
           "button_label": "Read more",
           "fullheight": false
         }
@@ -107,23 +107,23 @@
       "1589985337197": {
         "type": "home-image-with-text",
         "settings": {
-          "image": "shopify://shop_images/working-at-night.jpg",
+          "image": "shopify:\/\/shop_images\/working-at-night.jpg",
           "layout": "",
           "title": "Image with text",
-          "text": "<p>Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p><p>Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p><p>Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+          "text": "<p>Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p><p>Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p><p>Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>",
           "button_label": "Shop now",
-          "button_link": "shopify://products/apple-macbook-pro-16-1tb-2019-silver"
+          "button_link": "shopify:\/\/products\/apple-macbook-pro-16-1tb-2019-silver"
         }
       },
       "1589985461361": {
         "type": "home-image-with-text",
         "settings": {
-          "image": "shopify://shop_images/woman-works-on-computer-at-home.jpg",
+          "image": "shopify:\/\/shop_images\/woman-works-on-computer-at-home.jpg",
           "layout": "flex-md-row-reverse",
           "title": "Image with text",
-          "text": "<p>Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+          "text": "<p>Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>",
           "button_label": "Shop now",
-          "button_link": "shopify://products/bird-scarf-product"
+          "button_link": "shopify:\/\/products\/bird-scarf-product"
         }
       },
       "footer": {
@@ -133,7 +133,7 @@
             "type": "text",
             "settings": {
               "icon": "logo-2.svg",
-              "text": "<p>Dignissim suspendisse in est ante in nibh mauris cursus mattis. Arcu odio ut sem nulla pharetra diam sit amet nisl.</p>"
+              "text": "<p>Dignissim suspendisse in est ante in nibh mauris cursus mattis. Arcu odio ut sem nulla pharetra diam sit amet nisl.<\/p>"
             }
           },
           "1589988638820": {
@@ -166,7 +166,7 @@
         "settings": {
           "show_payment_icons": true,
           "bg_color": "#ffffff",
-          "rights_text": "<p>All Rights Reserved. <a href=\"#\">Terms</a>, <a href=\"#\">Privacy &amp; Accessibility</a>.</p>",
+          "rights_text": "<p>All Rights Reserved. <a href=\"#\">Terms<\/a>, <a href=\"#\">Privacy &amp; Accessibility<\/a>.<\/p>",
           "currency_switcher_enable": true,
           "language_switcher_enable": true
         }
@@ -175,7 +175,7 @@
         "type": "popup",
         "settings": {
           "title": "Are you over 18?",
-          "text": "<p>This website requires you to be 18 or older to enter.</p>",
+          "text": "<p>This website requires you to be 18 or older to enter.<\/p>",
           "button_text": "Yes, i am",
           "days": "1",
           "custom_html": "",
@@ -205,7 +205,6 @@
       "collection-template": {
         "type": "collection-template",
         "settings": {
-          "limit": 16
         }
       },
       "1601544214239": {
@@ -214,29 +213,29 @@
           "1601544214239-0": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/kisspng-angularjs-ruby-on-rails-typescript-web-application-icon-hacker-5ad97b80444060.9437504315242023682796.png",
-              "url": "shopify://collections/all"
+              "image": "shopify:\/\/shop_images\/kisspng-angularjs-ruby-on-rails-typescript-web-application-icon-hacker-5ad97b80444060.9437504315242023682796.png",
+              "url": "shopify:\/\/collections\/all"
             }
           },
           "1601544214239-1": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/Untitled_design_475x478_crop_right_f25cf6b2-549a-4829-8f46-5651cbd98037.png",
-              "url": "shopify://collections/all"
+              "image": "shopify:\/\/shop_images\/Untitled_design_475x478_crop_right_f25cf6b2-549a-4829-8f46-5651cbd98037.png",
+              "url": "shopify:\/\/collections\/all"
             }
           },
           "1601544214239-2": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/kisspng-angularjs-ruby-on-rails-typescript-web-application-icon-hacker-5ad97b80444060.9437504315242023682796.png",
-              "url": "shopify://collections/all"
+              "image": "shopify:\/\/shop_images\/kisspng-angularjs-ruby-on-rails-typescript-web-application-icon-hacker-5ad97b80444060.9437504315242023682796.png",
+              "url": "shopify:\/\/collections\/all"
             }
           },
           "1601544214239-3": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/kisspng-angularjs-ruby-on-rails-typescript-web-application-icon-hacker-5ad97b80444060.9437504315242023682796.png",
-              "url": "shopify://collections/all"
+              "image": "shopify:\/\/shop_images\/kisspng-angularjs-ruby-on-rails-typescript-web-application-icon-hacker-5ad97b80444060.9437504315242023682796.png",
+              "url": "shopify:\/\/collections\/all"
             }
           }
         },
@@ -263,35 +262,35 @@
           "1601544716980-0": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/Untitled_design_475x478_crop_right_f25cf6b2-549a-4829-8f46-5651cbd98037.png",
+              "image": "shopify:\/\/shop_images\/Untitled_design_475x478_crop_right_f25cf6b2-549a-4829-8f46-5651cbd98037.png",
               "title": "Ultra-speed Connection"
             }
           },
           "1601544716980-1": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/Untitled_design_475x478_crop_right_f25cf6b2-549a-4829-8f46-5651cbd98037.png",
+              "image": "shopify:\/\/shop_images\/Untitled_design_475x478_crop_right_f25cf6b2-549a-4829-8f46-5651cbd98037.png",
               "title": "Ultra-speed Connection"
             }
           },
           "1601544716980-2": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/Untitled_design_475x478_crop_right_f25cf6b2-549a-4829-8f46-5651cbd98037.png",
+              "image": "shopify:\/\/shop_images\/Untitled_design_475x478_crop_right_f25cf6b2-549a-4829-8f46-5651cbd98037.png",
               "title": "Ultra-speed Connection"
             }
           },
           "1601544716980-3": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/Untitled_design_475x478_crop_right_f25cf6b2-549a-4829-8f46-5651cbd98037.png",
+              "image": "shopify:\/\/shop_images\/Untitled_design_475x478_crop_right_f25cf6b2-549a-4829-8f46-5651cbd98037.png",
               "title": "Ultra-speed Connection"
             }
           },
           "1601544716980-4": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/Untitled_design_475x478_crop_right_f25cf6b2-549a-4829-8f46-5651cbd98037.png",
+              "image": "shopify:\/\/shop_images\/Untitled_design_475x478_crop_right_f25cf6b2-549a-4829-8f46-5651cbd98037.png",
               "title": "Ultra-speed Connection"
             }
           }
@@ -303,7 +302,8 @@
           "1601544716980-3",
           "1601544716980-4"
         ],
-        "settings": {}
+        "settings": {
+        }
       },
       "1601545071577": {
         "type": "home-plans",
@@ -311,39 +311,39 @@
           "1601545071577-0": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/kisspng-angularjs-ruby-on-rails-typescript-web-application-icon-hacker-5ad97b80444060.9437504315242023682796.png",
+              "image": "shopify:\/\/shop_images\/kisspng-angularjs-ruby-on-rails-typescript-web-application-icon-hacker-5ad97b80444060.9437504315242023682796.png",
               "title": "Heading",
               "subtitle": "Internet",
-              "features": "<ul class=\"plan-item__list list-checks text-left\">\n<li>Up to 50Mbps</li>\n<li>Night Turbo-Speed</li>\n<li>WiFi router</li>\n<li>Unlimited devices</li>\n</ul>",
+              "features": "<ul class=\"plan-item__list list-checks text-left\">\n<li>Up to 50Mbps<\/li>\n<li>Night Turbo-Speed<\/li>\n<li>WiFi router<\/li>\n<li>Unlimited devices<\/li>\n<\/ul>",
               "price": "$24.99",
               "period": "month",
-              "button_link": "shopify://collections/all",
+              "button_link": "shopify:\/\/collections\/all",
               "button_label": "Get started"
             }
           },
           "1601545071577-1": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/kisspng-angularjs-ruby-on-rails-typescript-web-application-icon-hacker-5ad97b80444060.9437504315242023682796.png",
+              "image": "shopify:\/\/shop_images\/kisspng-angularjs-ruby-on-rails-typescript-web-application-icon-hacker-5ad97b80444060.9437504315242023682796.png",
               "title": "Heading",
               "subtitle": "Internet",
-              "features": "<ul class=\"plan-item__list list-checks text-left\">\n<li>Up to 50Mbps</li>\n<li>Night Turbo-Speed</li>\n<li>WiFi router</li>\n<li>Unlimited devices</li>\n</ul>",
+              "features": "<ul class=\"plan-item__list list-checks text-left\">\n<li>Up to 50Mbps<\/li>\n<li>Night Turbo-Speed<\/li>\n<li>WiFi router<\/li>\n<li>Unlimited devices<\/li>\n<\/ul>",
               "price": "$24.99",
               "period": "month",
-              "button_link": "shopify://collections/all",
+              "button_link": "shopify:\/\/collections\/all",
               "button_label": "Get started"
             }
           },
           "1601545071577-2": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/kisspng-angularjs-ruby-on-rails-typescript-web-application-icon-hacker-5ad97b80444060.9437504315242023682796.png",
+              "image": "shopify:\/\/shop_images\/kisspng-angularjs-ruby-on-rails-typescript-web-application-icon-hacker-5ad97b80444060.9437504315242023682796.png",
               "title": "Heading",
               "subtitle": "Internet",
-              "features": "<ul class=\"plan-item__list list-checks text-left\">\n<li>Up to 50Mbps</li>\n<li>Night Turbo-Speed</li>\n<li>WiFi router</li>\n<li>Unlimited devices</li>\n</ul>",
+              "features": "<ul class=\"plan-item__list list-checks text-left\">\n<li>Up to 50Mbps<\/li>\n<li>Night Turbo-Speed<\/li>\n<li>WiFi router<\/li>\n<li>Unlimited devices<\/li>\n<\/ul>",
               "price": "$24.99",
               "period": "month",
-              "button_link": "shopify://collections/all",
+              "button_link": "shopify:\/\/collections\/all",
               "button_label": "Get started"
             }
           }
@@ -355,13 +355,13 @@
         ],
         "settings": {
           "title": "Choose your plan",
-          "text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>"
+          "text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.<\/p>"
         }
       },
       "home-iframe-video": {
         "type": "home-iframe-video",
         "settings": {
-          "video": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+          "video": "https:\/\/www.youtube.com\/watch?v=_9VUPq3SxOc",
           "enable_full_width": true,
           "title": "Heading",
           "subheading": "Subheading",
@@ -373,7 +373,7 @@
       "160819240302c38667": {
         "type": "home-iframe-video",
         "settings": {
-          "video": "https://vimeo.com/420059153",
+          "video": "https:\/\/vimeo.com\/420059153",
           "enable_full_width": true,
           "title": "",
           "subheading": "",
@@ -397,7 +397,8 @@
   },
   "presets": {
     "Default": {
-      "content_for_index": []
+      "content_for_index": [
+      ]
     }
   }
 }

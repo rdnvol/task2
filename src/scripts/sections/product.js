@@ -41,7 +41,7 @@ export class Product {
     this.sizeChart = this.wrapper.find('.size-chart-link');
 
     this.initGallery();
-    this.sizeChartInit();
+    // this.sizeChartInit();
     this.getProduct().then((product) => {
       this.product = product;
       console.log(this.product);
@@ -53,6 +53,7 @@ export class Product {
     });
     this.waitForElement('.shopify-payment-button__button--unbranded').then(
       (node) => {
+        console.log('Node from waitForElement', node);
         const dynamicButtonPlaceholder =
           window.theme.dynamic_button_placeholder;
         setTimeout(() => {
@@ -191,6 +192,7 @@ export class Product {
   }
 
   waitForElement = (selector) => {
+    console.log('Selector is', selector);
     return new Promise((resolve, reject) => {
       let observer = new MutationObserver((mutations) => {
         mutations.forEach(function (mutation) {
@@ -213,14 +215,14 @@ export class Product {
     });
   };
 
-  sizeChartInit() {
-    $(this.sizeChart).fancybox({
-      autoFocus: false,
-      afterLoad: (fancybox) => {
-        fancybox.current.$content
-          .find('table')
-          .wrap('<div class="table-holder"></div>');
-      },
-    });
-  }
+  // sizeChartInit() {
+  //   $(this.sizeChart).fancybox({
+  //     autoFocus: false,
+  //     afterLoad: (fancybox) => {
+  //       fancybox.current.$content
+  //         .find('table')
+  //         .wrap('<div class="table-holder"></div>');
+  //     },
+  //   });
+  // }
 }
