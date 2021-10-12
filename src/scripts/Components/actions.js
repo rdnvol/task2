@@ -5,9 +5,10 @@ const actions = ({ setState }) => ({
   addItem(state, id, options) {
     return cart.addItem(id, options).then((item) => {
       console.log('Added item from actions', item);
-      cart.getState().then(({ item_count, items }) => {
+      cart.getState().then((cart) => {
+        const { item_count, items } = cart;
         Store.setState({
-          ...Store.getState(),
+          cart,
           justAdded: item,
           item_count,
           items,

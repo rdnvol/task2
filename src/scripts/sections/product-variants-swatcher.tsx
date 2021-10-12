@@ -14,8 +14,6 @@ register('product-variants-swatcher', {
     } catch (error) {
       console.warn(error);
     }
-    //@ts-ignore
-    console.log('Window store', window.Store);
     render(
       //@ts-ignore
       <Provider store={window.Store}>
