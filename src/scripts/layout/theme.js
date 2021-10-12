@@ -1,23 +1,23 @@
 import 'Styles/theme.scss';
-import '../Components/store';
 import '@fancyapps/ui/dist/fancybox.css';
 
 // plugins
-require('expose-loader?$!jquery');
+import 'expose-loader?$!jquery';
 import 'picturefill';
-import 'lazysizes/plugins/object-fit/ls.object-fit';
-import 'lazysizes/plugins/parent-fit/ls.parent-fit';
-import 'lazysizes/plugins/rias/ls.rias';
-import 'lazysizes/plugins/bgset/ls.bgset';
+import 'lazysizes/plugins/object-fit/ls.object-fit.js';
+import 'lazysizes/plugins/parent-fit/ls.parent-fit.js';
+import 'lazysizes/plugins/rias/ls.rias.js';
+import 'lazysizes/plugins/bgset/ls.bgset.js';
 import 'lazysizes';
-import 'lazysizes/plugins/respimg/ls.respimg';
-import '../helpers/jquery.plugins';
-import { SmoothScroll } from '../helpers/jquery.plugins';
+import 'lazysizes/plugins/respimg/ls.respimg.js';
+import '../helpers/jquery.plugins.js';
+import { SmoothScroll } from '../helpers/jquery.plugins.js';
 import Splide from '@splidejs/splide';
 import { Fancybox } from '@fancyapps/ui';
+import 'Components/store'
 
 // utils
-import { getLocaleAndPathname } from '../helpers/utils';
+import { getLocaleAndPathname } from '../helpers/utils.js';
 
 // Cart
 import 'Components/CartReact';

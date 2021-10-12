@@ -1,5 +1,6 @@
 import { h, FunctionComponent, Fragment } from 'preact';
 import { useMemo, useEffect, useState } from 'preact/hooks';
+import { formatMoney } from '@shopify/theme-currency/currency';
 
 import { addItem } from '../../helpers/cartAjaxCall';
 import { ProductType, AddItemType } from '../../types';
@@ -16,6 +17,7 @@ interface Props {
 
 const ProductForm: FunctionComponent<Props> = ({ product, addItem }) => {
   const colorOpt = 'color';
+  const titleOpt = 'title';
   const [variantOptions, setVariantOptions] = useState({});
   const [chosenVariant, setChosenVariant] = useState(null);
 
@@ -23,19 +25,32 @@ const ProductForm: FunctionComponent<Props> = ({ product, addItem }) => {
     if (product.compare_at_price_max > product.price) {
       return (
         <Fragment>
-          <ins data-product-price>{product.compare_at_price_max}</ins>
+          <ins data-product-price>
+            {formatMoney(product.compare_at_price_max, theme.moneyFormat)}
+          </ins>
           <span class="accessibility" data-compare-text>
-            {theme.product.regular_price}
+            {formatMoney(theme.product.regular_price, theme.moneyFormat)}
           </span>
         </Fragment>
       );
     } else {
       return (
         <div data-product-price>
-          {product?.selected_or_first_available_variant?.price}
+          {formatMoney(
+            product?.selected_or_first_available_variant?.price,
+            theme.moneyFormat
+          )}
         </div>
       );
     }
+  }, [product]);
+
+  
+  const productRenderCheck = useMemo(() => {
+    return (
+      product?.options_with_values?.length &&
+      product?.options_with_values[0].name.toLowerCase() !== titleOpt
+    );
   }, [product]);
 
   const handleSubmit = async (e) => {
@@ -47,8 +62,6 @@ const ProductForm: FunctionComponent<Props> = ({ product, addItem }) => {
       const item = await addItem(chosenVariant?.id, {
         quantity: chosenVariant.quantity,
       });
-
-      console.log('Item added', item);
     } catch (error) {
       console.log(error);
     }
@@ -83,21 +96,13 @@ const ProductForm: FunctionComponent<Props> = ({ product, addItem }) => {
     if (!keys.length || !values.length || !product) return;
 
     if (keys.length === values.length) {
-      console.log('Values are', values);
+
       const variant = product?.variants?.find(
         (variant) => JSON.stringify(variant.options) === JSON.stringify(values)
       );
-      console.log('Product is', product);
-      console.log('Variant is', variant);
-
       setChosenVariant(variant);
     }
   }, [variantOptions]);
-
-  console.log('Product price', productPrice);
-  console.log('Variant options', variantOptions);
-  console.log('Product from productform', product);
-  console.log('Chosen variant', chosenVariant);
 
   return (
     <form onSubmit={handleSubmit}>
@@ -129,7 +134,7 @@ const ProductForm: FunctionComponent<Props> = ({ product, addItem }) => {
           </div>
         ))} */}
       <div class="product__row">
-        {product?.options_with_values?.length &&
+        {productRenderCheck && product?.options_with_values?.length &&
           product?.options_with_values.map((option, idx) =>
             option.name.toLowerCase() === colorOpt ? (
               <ProductColorOptionWrapper

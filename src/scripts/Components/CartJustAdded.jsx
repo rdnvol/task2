@@ -4,7 +4,6 @@ import { Image } from './Image';
 class CartJustAdded extends Component {
   constructor(props) {
     super(props);
-    console.log('justAdded', props.justAdded);
   }
 
   renderItemOptions({ options_with_values, product_has_only_default_variant }) {
