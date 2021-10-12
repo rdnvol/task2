@@ -10,8 +10,6 @@ interface Props {
 }
 
 const Product: FunctionComponent<Props> = ({ product, addItem }) => {
-  console.log('Product data', product);
-  console.log('add item function', addItem);
   return (
     <div class="container">
       <div class="product-main-block position-relative">

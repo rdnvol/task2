@@ -1,4 +1,4 @@
-import { getCookie, deleteCookie, setCookie } from '../helpers/utils';
+import { getCookie, deleteCookie, setCookie } from '../helpers/utils.js';
 import { register } from '@shopify/theme-sections';
 import fancybox from '@fancyapps/fancybox';
 

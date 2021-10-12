@@ -3,26 +3,32 @@ const PROD = 'production';
 const DEV = 'development';
 
 // Libraries
-require('dotenv').config();
-const exec = require('child_process').spawn;
-const webpack = require('webpack');
-const path = require('path');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const FileManagerPlugin = require('filemanager-webpack-plugin');
-const TerserJSPlugin = require('terser-webpack-plugin');
-const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
-const getTemplateEntrypoints = require('./lib/utilities/get-template-entrypoints');
-const getLayoutEntrypoints = require('./lib/utilities/get-layout-entrypoints');
-const getChunkName = require('./lib/utilities/get-chunk-name');
-const settings = require('./lib/config').init();
+import dotenv from 'dotenv';
+import * as execute from 'child_process';
+import webpack from 'webpack';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { CleanWebpackPlugin } from 'clean-webpack-plugin';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import CopyWebpackPlugin from 'copy-webpack-plugin';
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import FileManagerPlugin from 'filemanager-webpack-plugin';
+import TerserJSPlugin from 'terser-webpack-plugin';
+import FriendlyErrorsWebpackPlugin from 'friendly-errors-webpack-plugin';
+import getTemplateEntrypoints from './lib/utilities/get-template-entrypoints.js';
+import getLayoutEntrypoints from './lib/utilities/get-layout-entrypoints.js';
+import getChunkName from './lib/utilities/get-chunk-name.js';
+import { settings } from './lib/config.js';
+
+dotenv.config();
 
 let isRunning = false;
 
 // Variables and settings
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const exec = execute.spawn;
 const env = process.env.NODE_ENV || DEV;
 const cli = process.env.CLI === 'true';
 const zip = process.env.ZIP || false;
@@ -30,6 +36,8 @@ const deploy = process.env.DEPLOY == 'true';
 const bundleAnalyzerEnabled = !!process.env.BUNDLE_ANALIZER;
 const webpackPerformanceAnalyzerEnabled = !!process.env.WEBPACK_PERFORMANCE;
 const cleanDistPluginsDisabled = !!process.env.CLEAN_DIST_DISABLED;
+
+console.log('Settings is', settings);
 
 // Clean files on build but not watch
 const cleanDistPlugins = cleanDistPluginsDisabled
@@ -146,7 +154,7 @@ const AfterBuildHook = {
   },
 };
 
-module.exports = {
+export default {
   devtool: env === DEV ? 'eval-source-map' : false,
   entry: {
     ...getLayoutEntrypoints(settings),
@@ -252,41 +260,42 @@ module.exports = {
     ...bundleAnalyzerPlugin,
     ...cleanDistPlugins,
     ...zipPlugin,
-    new CopyWebpackPlugin([
-      {
-        from: settings.theme.src.assets,
-        to: settings.theme.dist.assets,
-        flatten: true,
-      },
-      {
-        from: settings.theme.src.layout,
-        to: settings.theme.dist.layout,
-      },
-      {
-        from: settings.theme.src.locales,
-        to: settings.theme.dist.locales,
-      },
-      {
-        from: settings.theme.src.snippets,
-        to: settings.theme.dist.snippets,
-      },
-      {
-        from: settings.theme.src.sections,
-        to: settings.theme.dist.sections,
-      },
-      {
-        from: settings.theme.src.templates,
-        to: settings.theme.dist.templates,
-      },
-      {
-        from: settings.theme.src.config,
-        to: settings.theme.dist.config,
-      },
-      {
-        from: settings.theme.src.yml,
-        to: settings.theme.dist.yml,
-      },
-    ]),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: settings.theme.src.assets,
+          to: settings.theme.dist.assets,
+        },
+        {
+          from: settings.theme.src.layout,
+          to: settings.theme.dist.layout,
+        },
+        {
+          from: settings.theme.src.locales,
+          to: settings.theme.dist.locales,
+        },
+        {
+          from: settings.theme.src.snippets,
+          to: settings.theme.dist.snippets,
+        },
+        {
+          from: settings.theme.src.sections,
+          to: settings.theme.dist.sections,
+        },
+        {
+          from: settings.theme.src.templates,
+          to: settings.theme.dist.templates,
+        },
+        {
+          from: settings.theme.src.config,
+          to: settings.theme.dist.config,
+        },
+        {
+          from: settings.theme.src.yml,
+          to: settings.theme.dist.yml,
+        },
+      ],
+    }),
     new MiniCssExtractPlugin({
       // Combines all css into chunked files
       filename: '[name].css',
@@ -359,4 +368,7 @@ module.exports = {
     }),
     AfterBuildHook,
   ],
+  node: {
+    __dirname: true,
+  },
 };
