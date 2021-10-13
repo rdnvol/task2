@@ -41,7 +41,6 @@ export class Product {
     this.sizeChart = this.wrapper.find('.size-chart-link');
 
     this.initGallery();
-    // this.sizeChartInit();
     this.getProduct().then((product) => {
       this.product = product;
       console.log(this.product);
@@ -53,7 +52,6 @@ export class Product {
     });
     this.waitForElement('.shopify-payment-button__button--unbranded').then(
       (node) => {
-        console.log('Node from waitForElement', node);
         const dynamicButtonPlaceholder =
           window.theme.dynamic_button_placeholder;
         setTimeout(() => {
@@ -86,8 +84,6 @@ export class Product {
         },
       }
     );
-    console.log('swiper ', this.wrapper.find('.product-gallery'));
-    console.log('this.productGalleryThumbs', this.productGalleryThumbs);
     this.productGallery = new Swiper(this.wrapper.find('.product-gallery')[0], {
       speed: 800,
       // navigation: {
@@ -107,9 +103,8 @@ export class Product {
   }
 
   onOptionChange(event) {
-    console.log('event', event);
     const variant = event.dataset.variant;
-    // console.log(variant);
+
     this.slideToVariantImage(variant);
     this.updateVariantPrice(variant);
     this.updateSubmitButton(variant);
@@ -171,7 +166,6 @@ export class Product {
   }
 
   initSelectedVariant() {
-    console.log(this.form.variant());
     const currentIndex = this.form.variant().featured_media
       ? this.form.variant().featured_media.position - 1
       : 0;
@@ -183,7 +177,6 @@ export class Product {
   initAddToBag(event) {
     event.preventDefault();
     addItem(this.form.element).then((item) => {
-      console.log('set state item', item);
       getCart().then(({ item_count, items }) => {
         Store.setState({ justAdded: item, popupActive: true });
         Store.setState({ item_count, popupActive: true, items });
@@ -192,7 +185,6 @@ export class Product {
   }
 
   waitForElement = (selector) => {
-    console.log('Selector is', selector);
     return new Promise((resolve, reject) => {
       let observer = new MutationObserver((mutations) => {
         mutations.forEach(function (mutation) {
@@ -214,15 +206,4 @@ export class Product {
       });
     });
   };
-
-  // sizeChartInit() {
-  //   $(this.sizeChart).fancybox({
-  //     autoFocus: false,
-  //     afterLoad: (fancybox) => {
-  //       fancybox.current.$content
-  //         .find('table')
-  //         .wrap('<div class="table-holder"></div>');
-  //     },
-  //   });
-  // }
 }

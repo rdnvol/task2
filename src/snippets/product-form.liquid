@@ -41,11 +41,6 @@
           <div class="col-sm-7 col-lg-5">
             {% assign size_option = 'products.product.size' | t | downcase %}
             {% assign options = product.options | downcase %}
-            <script>
-              console.log("Show size chart", {{ show_size_chart | json }})
-              console.log("Size chart url", {{ size_chart_url | json }})
-              console.log("Options are", {{ options | json }})
-            </script>
             {% if forloop.first and show_size_chart and size_chart_url != blank and options contains size_option %}
               <a class="size-chart-link"
                  data-type="ajax"
