@@ -42,6 +42,7 @@ class App {
     this.initMap();
     this.initProductGallery();
     this.fancyboxBackdrop();
+    this.fancyboxModalCloseButton();
 
     // Responsive fluid iframe
     $('.rte iframe').each(function (index) {
@@ -330,6 +331,11 @@ class App {
     observer.observe(target, config);
   }
 
+  fancyboxModalCloseButton() {
+    document.body.addEventListener('click', e => {
+      ('fancyboxClose' in e.target.dataset) && window.fancybox.close(true);
+    })
+  }
 }
 
 const app = new App();

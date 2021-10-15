@@ -2,12 +2,6 @@ import { getCookie, deleteCookie, setCookie } from '../helpers/utils.js';
 import { register } from '@shopify/theme-sections';
 import { Fancybox } from "@fancyapps/ui/src/Fancybox/Fancybox.js";
 
-
-  // modal: true,
-  // autoFocus: false,
-  // afterClose: function(instance, slide) {
-  //   setCookie(cooke_name, 'no', days);
-  // }
 register('popup', {
   _openFancybox: function(cooke_name, days) {
     const fancybox = Fancybox.show ([{
@@ -23,11 +17,6 @@ register('popup', {
         }
       }
     })
-    this.modalCloseButton();
-  },
-
-  modalCloseButton: function() {
-    this.container.querySelector('[data-fancybox-close]').addEventListener('click', function(e) {e.preventDefault(), Fancybox.close()});
   },
 
   initPopup: function (days = 1) {

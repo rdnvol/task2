@@ -2,7 +2,7 @@ import { getUrlWithVariant, ProductForm } from '@shopify/theme-product-form';
 import { formatMoney } from '@shopify/theme-currency';
 import Swiper from 'swiper';
 import { register } from '@shopify/theme-sections';
-import { addItem, getCart } from '../helpers/cartAjaxCall';
+// import { addItem, getCart } from '../helpers/cartAjaxCall';
 import { Fancybox } from "@fancyapps/ui/src/Fancybox/Fancybox.js";
 import { setCookie } from '../helpers/utils';
 
@@ -214,13 +214,17 @@ export class Product {
   };
 
   sizeChartInit() {
+    
     Fancybox.bind(".size-chart-link",
     {
       closeButton: "outside",
+      showClass: "size-chart",
       on: {
         reveal: () => { 
-          let table = document.querySelector('table')
+          let table = document.querySelector('.fancybox__content main#main');
           let tableWrapper = document.createElement('div');
+          let parentElement = document.querySelector('.size-chart-link').parentNode
+          parentElement.insertBefore(tableWrapper, document.querySelector('.size-chart-link'))
           tableWrapper.classList.add('table-holder');
           tableWrapper.appendChild(table);
           document.querySelector('.fancybox__content').innerHTML = '';
