@@ -30,7 +30,6 @@
   "dependencies": {
     "@babel/plugin-transform-react-jsx": "^7.10.4",
     "@babel/runtime": "^7.9.6",
-    "@fancyapps/fancybox": "^3.5.7",
     "@fancyapps/ui": "^4.0.5",
     "@shopify/theme-a11y": "^4.0.0",
     "@shopify/theme-addresses": "^3.0.3",

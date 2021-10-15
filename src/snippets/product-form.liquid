@@ -44,9 +44,7 @@
             {% if forloop.first and show_size_chart and size_chart_url != blank and options contains size_option %}
               <a class="size-chart-link"
                  data-type="ajax"
-                 data-filter="#main"
-                 data-src="{{ size_chart_url }}"
-                 href="javascript:;">{{ 'products.product.size_chart' | t }}</a>
+                 href="{{ size_chart_url }}">{{ 'products.product.size_chart' | t }}</a>
             {% endif %}
             <label class="product__label" for="Option{{ option.position }}">
               {% if show_variant_label %}
