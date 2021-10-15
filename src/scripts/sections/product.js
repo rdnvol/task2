@@ -2,7 +2,6 @@ import { getUrlWithVariant, ProductForm } from '@shopify/theme-product-form';
 import { formatMoney } from '@shopify/theme-currency';
 import Swiper from 'swiper';
 import { register } from '@shopify/theme-sections';
-// import { addItem, getCart } from '../helpers/cartAjaxCall';
 import { Fancybox } from "@fancyapps/ui/src/Fancybox/Fancybox.js";
 import { setCookie } from '../helpers/utils';
 
