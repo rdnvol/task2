@@ -204,9 +204,7 @@
       },
       "collection-template": {
         "type": "collection-template",
-        "settings": {
-          "limit": 16
-        }
+        "settings": {}
       },
       "1601544214239": {
         "type": "home-logos-list",
