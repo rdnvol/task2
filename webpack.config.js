@@ -37,8 +37,6 @@ const bundleAnalyzerEnabled = !!process.env.BUNDLE_ANALIZER;
 const webpackPerformanceAnalyzerEnabled = !!process.env.WEBPACK_PERFORMANCE;
 const cleanDistPluginsDisabled = !!process.env.CLEAN_DIST_DISABLED;
 
-console.log('Settings is', settings);
-
 // Clean files on build but not watch
 const cleanDistPlugins = cleanDistPluginsDisabled
   ? []
