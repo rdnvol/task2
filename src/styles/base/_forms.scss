@@ -64,7 +64,6 @@ select {
 
 .select-holder {
   position: relative;
-
   &::after {
     @include triangle(8px 6px, $base-border, down);
     content: "";
@@ -427,7 +426,6 @@ a.button {
       width: 100%;
       height: 50px !important;
       border-radius: 0 !important;
-
       &:hover,
       &:focus {
         opacity: 0.8;
@@ -444,7 +442,6 @@ a.button {
   .button {
     min-height: 50px !important;
     padding: 18px 10px 19px;
-
     &:hover,
     &:focus {
       opacity: 0.8;
@@ -459,20 +456,19 @@ a.button {
   min-width: 180px;
   min-height: $height-form-elements;
   padding: 12px 30px;
-  color: $dynamic-checkout-button-text;
+  font-family: $font-heading;
   line-height: 1;
   text-align: center;
+  color: $dynamic-checkout-button-text;
   background: $dynamic-checkout-button-background;
   border: 1px solid $dynamic-checkout-button-border;
   border-radius: $button-border-radius;
   cursor: pointer;
-
   &:hover {
     color: $dynamic-checkout-button-text-on-hover !important;
     background: $dynamic-checkout-button-background-on-hover !important;
     border-color: $dynamic-checkout-button-border-on-hover !important;
   }
-
   &:focus {
     color: $dynamic-checkout-button-text-on-focus;
     background: $dynamic-checkout-button-background-on-focus;
@@ -480,7 +476,6 @@ a.button {
     outline: 1px dashed $dynamic-checkout-button-border-on-focus;
     outline-offset: 3px;
   }
-
   &.disabled {
     color: $button-text-on-disabled;
     background: $button-background-on-disabled;
