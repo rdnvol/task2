@@ -45,6 +45,7 @@ const ProductForm: FunctionComponent<Props> = ({ product, addItem }) => {
     }
   }, [product]);
 
+  
   const productRenderCheck = useMemo(() => {
     return (
       product?.options_with_values?.length &&
@@ -95,6 +96,7 @@ const ProductForm: FunctionComponent<Props> = ({ product, addItem }) => {
     if (!keys.length || !values.length || !product) return;
 
     if (keys.length === values.length) {
+
       const variant = product?.variants?.find(
         (variant) => JSON.stringify(variant.options) === JSON.stringify(values)
       );
@@ -132,7 +134,7 @@ const ProductForm: FunctionComponent<Props> = ({ product, addItem }) => {
           </div>
         ))} */}
       <div class="product__row">
-        {productRenderCheck &&
+        {productRenderCheck && product?.options_with_values?.length &&
           product?.options_with_values.map((option, idx) =>
             option.name.toLowerCase() === colorOpt ? (
               <ProductColorOptionWrapper
