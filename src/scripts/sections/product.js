@@ -40,6 +40,7 @@ export class Product {
     this.sizeChart = this.wrapper.find('.size-chart-link');
 
     this.initGallery();
+    this.sizeChartInit();
     this.getProduct().then((product) => {
       this.product = product;
       console.log(this.product);
