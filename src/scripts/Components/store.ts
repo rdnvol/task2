@@ -1,15 +1,15 @@
-import createStore from 'redux-zero';
-import theme from '../helpers/themeSettings';
+import { configureStore } from '@reduxjs/toolkit';
 
-const { items, item_count } = theme.cartState;
-const initialState = {
-  cart: theme.cartState,
-  items,
-  item_count,
-  justAdded: {},
-};
-const store = createStore(initialState);
+import { cartReducer } from '../features/cart/cartSlice';
 
-export default store;
-//@ts-ignore
+const store = configureStore({
+  reducer: {
+    cart: cartReducer,
+  },
+});
+
+export type RootState = ReturnType<typeof store.getState>;
+
+export type AppDispatch = typeof store.dispatch;
+
 window.Store = store;

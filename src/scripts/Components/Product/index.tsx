@@ -6,10 +6,9 @@ import ProductMainBlock from './ProductMainBlock';
 
 interface Props {
   product: ProductType;
-  addItem: AddItemType;
 }
 
-const Product: FunctionComponent<Props> = ({ product, addItem }) => {
+const Product: FunctionComponent<Props> = ({ product }) => {
   return (
     <div class="container">
       <div class="product-main-block position-relative">
@@ -18,7 +17,7 @@ const Product: FunctionComponent<Props> = ({ product, addItem }) => {
             <ProductGallery media={product.media} />
           </div>
           <div class="col-md-6">
-            <ProductMainBlock addItem={addItem} product={product} />
+            <ProductMainBlock product={product} />
           </div>
         </div>
       </div>

@@ -2,7 +2,8 @@ import { h, FunctionComponent, Fragment } from 'preact';
 import { useMemo, useEffect, useState } from 'preact/hooks';
 import { formatMoney } from '@shopify/theme-currency/currency';
 
-import { addItem } from '../../helpers/cartAjaxCall';
+import { useAppSelector, useAppDispatch } from '../hook';
+import { addItem } from '../../features/cart/cartSlice';
 import { ProductType, AddItemType } from '../../types';
 import ProductOptionSelection from './ProductOptionSelection';
 import ProductColorOptionWrapper from './ProductColorOptionWrapper';
@@ -11,11 +12,12 @@ import theme from '../../helpers/themeSettings';
 import Button from '../Button';
 
 interface Props {
-  addItem: AddItemType;
   product: ProductType;
 }
 
-const ProductForm: FunctionComponent<Props> = ({ product, addItem }) => {
+const ProductForm: FunctionComponent<Props> = ({ product }) => {
+  const state = useAppSelector((state) => state);
+  const dispatch = useAppDispatch();
   const colorOpt = 'color';
   const titleOpt = 'title';
   const [variantOptions, setVariantOptions] = useState({});
@@ -45,7 +47,6 @@ const ProductForm: FunctionComponent<Props> = ({ product, addItem }) => {
     }
   }, [product]);
 
-  
   const productRenderCheck = useMemo(() => {
     return (
       product?.options_with_values?.length &&
@@ -59,9 +60,14 @@ const ProductForm: FunctionComponent<Props> = ({ product, addItem }) => {
     if (!chosenVariant) return;
 
     try {
-      const item = await addItem(chosenVariant?.id, {
-        quantity: chosenVariant.quantity,
-      });
+      dispatch(
+        addItem({
+          id: chosenVariant?.id,
+          quantity: {
+            quantity: chosenVariant.quantity,
+          },
+        })
+      );
     } catch (error) {
       console.log(error);
     }
@@ -96,7 +102,6 @@ const ProductForm: FunctionComponent<Props> = ({ product, addItem }) => {
     if (!keys.length || !values.length || !product) return;
 
     if (keys.length === values.length) {
-
       const variant = product?.variants?.find(
         (variant) => JSON.stringify(variant.options) === JSON.stringify(values)
       );
@@ -134,7 +139,8 @@ const ProductForm: FunctionComponent<Props> = ({ product, addItem }) => {
           </div>
         ))} */}
       <div class="product__row">
-        {productRenderCheck && product?.options_with_values?.length &&
+        {productRenderCheck &&
+          product?.options_with_values?.length &&
           product?.options_with_values.map((option, idx) =>
             option.name.toLowerCase() === colorOpt ? (
               <ProductColorOptionWrapper
