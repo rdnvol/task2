@@ -28,6 +28,9 @@ class CartCount extends Component<Props> {
   render({ item_count }: Props) {
     return (
       <a href="/cart" className="header__btn header__cart-btn">
+        <span className="visually-hidden">
+          Cart link
+        </span>
         <svg
           className="icon icon--cart"
           role="img"

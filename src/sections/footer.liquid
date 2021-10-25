@@ -20,7 +20,7 @@
           {%- for block in section.blocks -%}
             {%- case block.type -%}
             {%- when 'text' -%}
-              <div class="col-sm-12 col-lg-3 mb-6 mb-lg-0 {% unless forloop.last %}mb-6 mb-lg-0{% endunless %}">
+              <div class="col-sm-12 col-lg-3 mb-6 mb-lg-0">
                 {% if block.settings.icon != blank %}
                   <a href="{{ routes.root_url }}" class="footer__logo">
                     <img data-src="{{ block.settings.icon | asset_url }}"
