@@ -3,7 +3,7 @@ import { useMemo, useEffect, useState } from 'preact/hooks';
 import { formatMoney } from '@shopify/theme-currency/currency';
 
 import { useAppSelector, useAppDispatch } from '../hook';
-import { addItem } from '../../features/cart/cartSlice';
+import { addItem } from '../../redux/features/cart/cartSlice';
 import { ProductType, AddItemType } from '../../types';
 import ProductOptionSelection from './ProductOptionSelection';
 import ProductColorOptionWrapper from './ProductColorOptionWrapper';
@@ -16,12 +16,12 @@ interface Props {
 }
 
 const ProductForm: FunctionComponent<Props> = ({ product }) => {
-  const state = useAppSelector((state) => state);
   const dispatch = useAppDispatch();
   const colorOpt = 'color';
   const titleOpt = 'title';
   const [variantOptions, setVariantOptions] = useState({});
   const [chosenVariant, setChosenVariant] = useState(null);
+  const [productQuantity, setProductQuantity] = useState(1);
 
   const productPrice = useMemo(() => {
     if (product.compare_at_price_max > product.price) {
@@ -64,19 +64,13 @@ const ProductForm: FunctionComponent<Props> = ({ product }) => {
         addItem({
           id: chosenVariant?.id,
           quantity: {
-            quantity: chosenVariant.quantity,
+            quantity: productQuantity,
           },
         })
       );
     } catch (error) {
       console.log(error);
     }
-  };
-
-  const setQuantity = (quantity: string) => {
-    if (!chosenVariant) return;
-
-    setChosenVariant({ ...chosenVariant, quantity: parseInt(quantity) });
   };
 
   useEffect(() => {
@@ -159,8 +153,8 @@ const ProductForm: FunctionComponent<Props> = ({ product }) => {
             )
           )}
         <ProductQuantity
-          setQuantity={setQuantity}
-          quantity={chosenVariant?.quantity ?? 1}
+          setQuantity={setProductQuantity}
+          quantity={productQuantity}
         />
       </div>
       <div class="row">

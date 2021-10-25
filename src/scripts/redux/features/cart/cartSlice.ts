@@ -1,9 +1,8 @@
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import * as cart from '@shopify/theme-cart';
-import { removeTrapFocus } from '@shopify/theme-a11y';
 
-import { CartItem, CartType } from '../../types/index';
-import theme from '../../helpers/themeSettings';
+import { CartItem, CartType } from '../../../types/index';
+import theme from '../../../helpers/themeSettings';
 
 export interface CartState {
   cart: CartType;
@@ -17,12 +16,12 @@ export interface CartState {
 
 export interface AddItemToCartType {
   id: any;
-  quantity: { [key: string]: { [key: string]: number } };
+  quantity?: { [key: string]: number };
 }
 
 export interface UpdateItemType {
   id: any;
-  options: { [key: string]: any };
+  options?: { [key: string]: any };
 }
 
 const { items, item_count } = theme.cartState;
@@ -49,9 +48,10 @@ export const addItem = createAsyncThunk(
   async ({ id, quantity }: AddItemToCartType) => {
     try {
       const item = await cart.addItem(id, quantity);
-      const { item_count, items } = await cart.getState();
 
-      return { item, item_count, items };
+      const cartData = await cart.getState();
+
+      return { item, cartData };
     } catch (error) {
       console.log(error);
     }
@@ -97,8 +97,10 @@ export const cartSlice = createSlice({
   initialState,
   reducers: {
     closePopup: (state) => {
-      removeTrapFocus();
-      state.popupActive = false;
+      return {
+        ...state,
+        popupActive: false,
+      };
     },
   },
   extraReducers: (builder) => {
@@ -106,16 +108,23 @@ export const cartSlice = createSlice({
       state.loading = true;
     }),
       builder.addCase(addItem.fulfilled, (state, { payload }) => {
-        state.loading = false;
+        return {
+          ...state,
+          cart: payload.cartData,
+          justAdded: payload.item,
+          item_count: payload.cartData.item_count,
+          items: payload.cartData.items,
+          popupActive: true,
+        };
       }),
-      builder.addCase(addItem.rejected, (state) => {
+      builder.addCase(addItem.rejected, (state, { payload }) => {
         state.loading = false;
       }),
       builder.addCase(removeItem.pending, (state) => {
         state.loading = true;
       }),
       builder.addCase(removeItem.fulfilled, (state, { payload }) => {
-        state = {
+        return {
           ...state,
           cart: payload,
           items: payload.items,
@@ -130,8 +139,13 @@ export const cartSlice = createSlice({
         state.loading = true;
       }),
       builder.addCase(updateItem.fulfilled, (state, { payload }) => {
-        state.loading = false;
-        console.log('Update item fullfiled');
+        return {
+          ...state,
+          cart: payload,
+          items: payload.items,
+          item_count: payload.item_count,
+          loading: false,
+        };
       }),
       builder.addCase(updateItem.rejected, (state) => {
         state.loading = false;
@@ -140,7 +154,7 @@ export const cartSlice = createSlice({
         state.loading = false;
       }),
       builder.addCase(getCart.fulfilled, (state, { payload }) => {
-        state = {
+        return {
           ...state,
           cart: payload.cart,
           items: payload.items,

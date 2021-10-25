@@ -3,11 +3,12 @@ import { Provider } from 'react-redux';
 import { formatMoney } from '@shopify/theme-currency/currency';
 
 import { useAppSelector } from '../Components/hook';
+import {cartSelector} from "../redux/selectors"
 import theme from '../helpers/themeSettings';
 import LineItem from './LineItem';
 
 const Cart: FunctionComponent = () => {
-  const { cart } = useAppSelector((state) => state);
+  const cart = useAppSelector(cartSelector);
   const ref = document.getElementById('cart');
 
   const renderEmptyState = () => {

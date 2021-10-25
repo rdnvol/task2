@@ -3,13 +3,15 @@ import { h, render, FunctionComponent } from 'preact';
 import { useEffect, useRef } from 'preact/hooks';
 import { Provider } from 'react-redux';
 
-import { useAppSelector } from '../Components/hook';
-import { closePopup } from '../features/cart/cartSlice';
+import { useAppSelector, useAppDispatch } from '../Components/hook';
+import {cartSelector} from "../redux/selectors"
+import { closePopup } from '../redux/features/cart/cartSlice';
 import theme from '../helpers/themeSettings';
 import CartJustAdded from './CartJustAdded';
 
 const CartPopup: FunctionComponent = () => {
-  const { cart } = useAppSelector((state) => state);
+  const dispatch = useAppDispatch();
+  const cart = useAppSelector(cartSelector);
   const cartRef = useRef<HTMLDivElement>();
 
   useEffect(() => {
@@ -30,7 +32,7 @@ const CartPopup: FunctionComponent = () => {
 
   const initCloseEvent = (e) => {
     if (!e.target.closest(`.${cartRef.current.className}`)) {
-      closePopup();
+      dispatch(closePopup());
     }
   };
 
@@ -44,7 +46,10 @@ const CartPopup: FunctionComponent = () => {
           {theme.cart.just_added_to_your_cart}
         </div>
         <div>
-          <button className="cart-popup__close default" onClick={closePopup}>
+          <button
+            className="cart-popup__close default"
+            onClick={() => dispatch(closePopup())}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="20"

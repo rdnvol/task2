@@ -9,7 +9,7 @@ import { resizeImage, resizeImageSrcset } from '../helpers/utils';
 import {
   removeItem as removeItemAction,
   updateItem as updateItemAction,
-} from '../features/cart/cartSlice';
+} from '../redux/features/cart/cartSlice';
 import theme from '../helpers/themeSettings';
 
 interface PropsType {
@@ -31,19 +31,32 @@ const LineItem: FunctionComponent<PropsType> = ({ item }) => {
     const key = item.key;
     const quantity = +e.target.value;
 
-    updateItemAction({ id: key, options: { quantity } });
+    dispatch(updateItemAction({ id: key, options: { quantity } }));
   };
 
   const changeQuantity = (action, element) => {
-    let changeEvent = new Event('change');
+    const key = item.key;
+
     switch (action) {
       case '+':
         element.value = ++element.value;
-        element.dispatchEvent(changeEvent);
+
+        dispatch(
+          updateItemAction({
+            id: key,
+            options: { quantity: parseInt(element.value) },
+          })
+        );
+
         break;
       case '-':
         element.value = --element.value;
-        element.dispatchEvent(changeEvent);
+        dispatch(
+          updateItemAction({
+            id: key,
+            options: { quantity: parseInt(element.value) },
+          })
+        );
     }
   };
 

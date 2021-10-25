@@ -18,7 +18,6 @@ const ProductColorOptionWrapper: FunctionComponent<Props> = ({
   variantOptions,
   setVariantOptions,
 }) => {
-  console.log('Option from Product color option', option);
   return (
     option.values?.length && (
       <div class="row mb-2">

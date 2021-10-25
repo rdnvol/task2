@@ -14,7 +14,7 @@ import '../helpers/jquery.plugins.js';
 import { SmoothScroll } from '../helpers/jquery.plugins.js';
 import Splide from '@splidejs/splide';
 import { Fancybox } from '@fancyapps/ui';
-import 'Components/store';
+import '../redux/store.ts';
 
 // utils
 import { getLocaleAndPathname } from '../helpers/utils.js';

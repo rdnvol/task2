@@ -1,10 +1,11 @@
 import { h, render, FunctionComponent } from 'preact';
 import { Provider } from 'react-redux';
 
+import {cartSelector} from "../redux/selectors"
 import { useAppSelector } from '../Components/hook';
 
 const CartCount: FunctionComponent = () => {
-  const { cart } = useAppSelector((state) => state);
+  const cart = useAppSelector(cartSelector);
 
   const renderCount = () => {
     return (
