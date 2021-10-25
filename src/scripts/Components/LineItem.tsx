@@ -108,8 +108,8 @@ const LineItem: FunctionComponent<PropsType> = ({ item }) => {
     if (original_price !== final_price) {
       return (
         <Fragment>
-          <ins>{formatMoney(price, theme.moneyFormat)}</ins>
-          <del>{formatMoney(final_price, theme.moneyFormat)}</del>
+          <ins>{formatMoney(final_price, theme.moneyFormat)}</ins>
+          <del>{formatMoney(original_price, theme.moneyFormat)}</del>
         </Fragment>
       );
     } else {
