@@ -3,6 +3,7 @@
     "stylelint-config-standard",
     "stylelint-config-shopify",
     "stylelint-config-prettier",
+    "stylelint-config-sass-guidelines",
     "stylelint-config-hudochenkov/order"
   ],
   "plugins": [
