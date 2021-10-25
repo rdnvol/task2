@@ -14,7 +14,7 @@
         {% if section.settings.subheading != blank %}
           <h2 class="text-center">{{ section.settings.subheading | escape }}</h2>
         {% endif %}
-        {% form 'customer', class: "newsletter-form" %}
+        {% form 'customer', id: "newsletter-form", class: "newsletter-form" %}
           {{ form.errors | default_errors }}
           {% if form.posted_successfully? %}
             <p>{{ 'general.newsletter_form.confirmation' | t }}</p>
