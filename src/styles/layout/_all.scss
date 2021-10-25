@@ -39,8 +39,27 @@
 .container {
   max-width: 1360px;
   margin: 0 auto;
-  padding: 0 15px;
+  padding: 0 calc(#{$grid-gutter-width} / 2);
 }
+
+.row {
+  margin: 0 calc(#{$grid-gutter-width} / 2 * -1);
+  &.no-gutters {
+    margin-right: 0;
+    margin-left: 0;
+
+    > .col {
+      padding-right: 0;
+      padding-left: 0;
+    }
+  }
+
+  > .col {
+    padding-left: calc(#{$grid-gutter-width} / 2);
+    padding-right: calc(#{$grid-gutter-width} / 2);
+  }
+}
+
 
 .customizable-base-text {
   color: $customizable-base-text;
