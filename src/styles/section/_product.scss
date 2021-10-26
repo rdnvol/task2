@@ -44,9 +44,9 @@
 
 .product-main-block__img-holder {
   @include media("≤767px") {
+    margin: 0 calc(#{-$grid-gutter-width} / 2) 0 0;
     overflow-x: auto;
     overflow-y: hidden;
-    margin: 0 calc(#{-$grid-gutter-width} / 2) 0 0;
     scroll-snap-type: x mandatory;
   }
 }
@@ -75,8 +75,8 @@
 }
 
 .product__vendor {
-  color: #999;
   margin: 0 0 8px;
+  color: #999;
 
   mark {
     color: #000;
@@ -101,8 +101,8 @@
   margin: 0 0 3px;
 
   > * {
-    font-weight: inherit;
     margin: 0 5px 5px 0;
+    font-weight: inherit;
   }
 }
 
@@ -124,9 +124,9 @@
 }
 
 .product__label {
-  margin: 0 0 4px;
   display: inline-block;
   vertical-align: top;
+  margin: 0 0 4px;
   font-size: $font-size-base - 2px;
 }
 
@@ -138,13 +138,13 @@
   display: flex;
   align-items: center;
   margin: 0 -5px;
-  overflow-y: hidden;
   overflow-x: visible;
+  overflow-y: hidden;
 }
 
 .product-gallery-mobile__img {
-  margin-right: 16px;
   min-width: 90%;
+  margin-right: 16px;
 
   img {
     min-width: 100%;
@@ -169,10 +169,10 @@
 }
 
 .size-chart-link {
-  font-size: 14px;
-  color: $base-body-text;
   position: absolute;
   right: 15px;
+  font-size: 14px;
+  color: $base-body-text;
   text-decoration: none;
 }
 
