@@ -2,6 +2,9 @@
   {% if section.settings.search_enable %}
     <li class="d-none d-lg-block">
       <a href="{{ routes.search_url }}" class="header__btn">
+        <span class="visually-hidden">
+          Search
+        </span>
         {%- render 'icon' with 'search' -%}
       </a>
     </li>
@@ -16,6 +19,9 @@
     %}
     <li class="d-none d-xs-block">
       <a href="{{ link }}" class="header__btn">
+        <span class="visually-hidden">
+          Go to account page
+        </span>
         {%- render 'icon' with 'account' -%}
       </a>
     </li>

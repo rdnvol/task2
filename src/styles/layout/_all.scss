@@ -9,52 +9,10 @@
   position: relative;
 }
 
-.accessibility {
-  position: absolute;
-  top: auto;
-  left: -100000px;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  &:focus {
-    position: static;
-    width: auto;
-    height: auto;
-  }
-}
-
-.visually-hidden {
-  position: absolute;
-  clip: rect(0 0 0 0);
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  padding: 0;
-  white-space: nowrap;
-  border: 0;
-  overflow: hidden;
-}
-
 .container {
   max-width: 1360px;
   margin: 0 auto;
   padding: 0 15px;
-}
-
-.customizable-base-text {
-  color: $customizable-base-text;
-}
-
-.text-size-md {
-  font-size: $font-size-base;
-}
-
-.text-size-sm {
-  font-size: calc(#{$font-size-base} - 2px);
-}
-
-.text-white {
-  color: #fff;
 }
 
 ins {

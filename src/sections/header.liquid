@@ -26,6 +26,9 @@
               {% endif %}
               {% if section.settings.search_enable %}
                 <a href="{{ routes.search_url }}" class="header__btn d-none d-xs-inline-flex d-lg-none">
+                  <span class="visually-hidden">
+                    Search
+                  </span>
                   {%- render 'icon' with 'search' -%}
                 </a>
               {% endif %}
@@ -88,10 +91,10 @@
                value="{{ search.terms | escape }}"
                placeholder="{{ 'general.search.placeholder' | t }}">
         {% comment %}theme-check-disable ConvertIncludeToRender{% endcomment %}
-        {% include "button",
-          element: "button",
-          type: "icon",
+        {% include 'button',
+          element: 'button',
           class: 'btn page-search-form__button d-flex align-items-center',
+          text: 'Search on store',
           snippet: 'icon',
           icon: 'search'
         %}
