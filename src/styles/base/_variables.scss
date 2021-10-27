@@ -30,6 +30,7 @@ $customizable-base-text: var(--customizable-base-text) !default;
 // Other colors
 $color-accent: var(--color-accent);
 $color-border: var(--color-border);
+$black: #000;
 
 $base-font-sans-serif: $font-body;
 $base-font-serif: "Times New Roman", "Times", "Baskerville", "Georgia", serif;
@@ -123,3 +124,6 @@ $logo-width: var(--header-logo-width);
 
 $animation-speed: 0.3s;
 $menu-animation-speed: 0.2s;
+
+// Grid variables
+$grid-gutter-width: 30px;
