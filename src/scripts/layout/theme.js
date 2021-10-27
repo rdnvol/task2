@@ -2,7 +2,6 @@ import 'Styles/theme.scss';
 import '@fancyapps/ui/dist/fancybox.css';
 
 // plugins
-// import 'expose-loader?$!jquery';
 import 'picturefill';
 import 'lazysizes/plugins/object-fit/ls.object-fit.js';
 import 'lazysizes/plugins/parent-fit/ls.parent-fit.js';
