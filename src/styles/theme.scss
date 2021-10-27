@@ -1,5 +1,6 @@
 @charset 'UTF-8';
-// import your files
+
+/* Import your files */
 
 $breakpoints: (
   "xs-phone": 320px,
@@ -11,7 +12,8 @@ $breakpoints: (
   "laptop": 1400px,
 );
 
-// keywords
+/* keywords */
+
 $media-expressions: (
   "screen": "screen",
   "print": "print",
@@ -22,7 +24,7 @@ $media-expressions: (
   "retina3x": "(-webkit-min-device-pixel-ratio: 2.5), (min-resolution: 240dpi)"
 );
 
-// ligatured operators ≥ ≤
+/* ligatured operators ≥ ≤ */
 
 @import "vendors/include-media";
 @import "vendors/normalize";
@@ -40,7 +42,7 @@ $media-expressions: (
 @import "plugins/swiper";
 @import "plugins/age-popup";
 @import "plugins/jquery-background-video";
-@import 'plugins/jcf';
+@import "plugins/jcf";
 
 @import "modules/header";
 

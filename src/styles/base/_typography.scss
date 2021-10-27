@@ -1,4 +1,4 @@
-// Typography
+/* Typography */
 
 h1,
 .h1,
@@ -13,11 +13,11 @@ h5,
 h6,
 .h6,
 .h {
-  font-family: $headings-font-family;
-  font-weight: $headings-font-weight;
   margin: 0 0 20px;
-  font-style: $font-heading-style;
+  font-family: $headings-font-family;
   line-height: 1.5;
+  font-weight: $headings-font-weight;
+  font-style: $font-heading-style;
   color: $headings-color;
   @include media("≥desktop") {
     margin: 0 0 30px;

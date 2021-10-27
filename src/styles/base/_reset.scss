@@ -23,18 +23,18 @@ html {
 
 body {
   min-width: $base-min-width;
-  color: $base-body-text;
   font-family: $font-body;
-  font-weight: $font-body-weight;
-  font-style: $font-body-style;
   font-size: $font-size-base;
   line-height: $base-line-height;
+  font-weight: $font-body-weight;
+  font-style: $font-body-style;
   letter-spacing: 0.45px;
+  color: $base-body-text;
   background: $base-background-color;
   -moz-osx-font-smoothing: grayscale;
   @include media ("≥widescreen") {
-    overflow: visible !important;
     font-size: calc(#{$font-size-base} + 2px);
+    overflow: visible !important;
   }
 }
 
