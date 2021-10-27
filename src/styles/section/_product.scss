@@ -19,13 +19,13 @@
 
 .product-gallery-thumbs {
 
-  .swiper-slide {
+  .splide__slide {
     opacity: 0.4;
-  }
-
-  .swiper-slide-thumb-active {
-    opacity: 1;
-    transition: opacity $animation-speed ease;
+    &.is-active {
+      opacity: 1;
+      transition: opacity $animation-speed ease;
+      border: none !important;
+    }
   }
 }
 

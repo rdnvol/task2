@@ -1242,10 +1242,10 @@
   resolved "https://registry.yarnpkg.com/@shopify/theme-sections/-/theme-sections-3.1.0.tgz#6b2859c032cf7bbeddfd62cbee85ec4b97a31fe5"
   integrity sha512-BXH+vZRdmhcLu6TODxHrSVumclG/ePNoDS7vPjHzTdfZZKUSmxXhPEkR38OWnTVqvbpJ1ccW/qdXZS8UtP7/LA==
 
-"@splidejs/splide@^2.4.21":
-  version "2.4.21"
-  resolved "https://registry.yarnpkg.com/@splidejs/splide/-/splide-2.4.21.tgz#ad1954d8d8822c9bfea0d3dc6a119358b88581ad"
-  integrity sha512-LdIwSnmNsGybCCnA3QG2dOeRv/rQl46jf7FflXxMGX0ADYWyL6UJHWJbMZvHBi5I67uRJY1ga/W+CvJ39nH26A==
+"@splidejs/splide@^3.2.1":
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/@splidejs/splide/-/splide-3.2.1.tgz#f270ee96fb954f2addb38b16de12ae948e80a90c"
+  integrity sha512-P6gBp+JtsG67ZnHWxzA8jGc7rZQ1nls7CDJQkQeexxXdFu+4myouRIzXhooU/uWdQDNEQ4ttgC3F1+T1tgstuw==
 
 "@types/archiver@^5.1.1":
   version "5.1.1"

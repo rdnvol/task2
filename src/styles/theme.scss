@@ -27,8 +27,7 @@ $media-expressions: (
 @import "vendors/include-media";
 @import "vendors/normalize";
 @import "vendors/bootstrap-4-grid/grid";
-@import "vendors/splide/core/splide-core";
-@import "vendors/splide/themes/default/splide-default";
+@import "vendors/splide/splide-default";
 
 @import "base/variables";
 @import "base/functions";
