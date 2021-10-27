@@ -62,8 +62,8 @@ export class Product {
   }
 
   initGallery() {
-    document.addEventListener( 'DOMContentLoaded', function () {
-      const main = new Splide( '.product-gallery', {
+    document.addEventListener( 'DOMContentLoaded',  () => {
+      this.splide = new Splide( this.wrapper.find('.product-gallery')[0], {
         type      : 'slide',
         perPage: 1,
         rewind    : false,
@@ -71,7 +71,7 @@ export class Product {
         arrows    : false,
       } );
 
-      const thumbnails = new Splide( '.product-gallery-thumbs', {
+      const thumbnails = new Splide( this.wrapper.find('.product-gallery-thumbs')[0], {
         perPage: 3,
         gap         : 10,
         rewind      : false,
@@ -79,9 +79,9 @@ export class Product {
         arrows    : false,
         isNavigation: true,
       } );
-    
-      main.sync( thumbnails );
-      main.mount();
+
+      this.splide.sync( thumbnails );
+      this.splide.mount();
       thumbnails.mount();
     } );
   }
@@ -151,7 +151,7 @@ export class Product {
       const imagePosition = variant.featured_media
         ? variant.featured_media.position - 1
         : 0;
-      this.productGallery.slideTo(imagePosition);
+      this.splide.go(imagePosition);
     }
   }
 
