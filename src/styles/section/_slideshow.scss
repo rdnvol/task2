@@ -1,20 +1,19 @@
 .slideshow-gallery {
   padding: 0 0 30px;
 
-  .swiper-pagination {
-    bottom: 5px;
+  .splide__pagination {
+    bottom: 40px;
   }
 
-  .swiper-button-next,
-  .swiper-button-prev {
+  .splide__arrow {
     top: 30%;
     @include media ("≥tablet") {
       top: 50%;
     }
   }
 
-  .swiper-slide {
-    &.swiper-slide-active {
+  .splide__slide {
+    &.is-active {
 
       .slideshow-gallery__block {
         @include media ("≥tablet") {
