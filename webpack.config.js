@@ -20,6 +20,7 @@ import getTemplateEntrypoints from './lib/utilities/get-template-entrypoints.js'
 import getLayoutEntrypoints from './lib/utilities/get-layout-entrypoints.js';
 import getChunkName from './lib/utilities/get-chunk-name.js';
 import { settings } from './lib/config.js';
+import StylelintPlugin from 'stylelint-webpack-plugin'
 
 dotenv.config();
 
@@ -369,6 +370,7 @@ export default {
       analyzerMode: bundleAnalyzerEnabled ? 'server' : 'disabled',
     }),
     AfterBuildHook,
+    new StylelintPlugin(),
   ],
   node: {
     __dirname: true,

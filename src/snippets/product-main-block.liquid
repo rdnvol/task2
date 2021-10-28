@@ -1,17 +1,5 @@
 {% liquid
   assign current_variant = product.selected_or_first_available_variant
-  assign collection_name =  product.collections | first
-  if current_variant.inventory_quantity < 6
-    assign quantity = current_variant.inventory_quantity
-  else
-    assign quantity = 6
-  endif
-  assign details = 'products.two_column.details' | t
-  assign care = 'products.two_column.care' | t
-  assign dimension = 'products.two_column.dimension' | t
-  assign warranty = 'products.two_column.warranty' | t
-  assign protection = 'products.two_column.protection' | t
-  assign story = product.metafields.product.story
 %}
 
 <div class="product-main-block__details body-2">
@@ -77,7 +65,6 @@
       </div>
     {%- endcomment -%}
     <div class="product__row">
-      {% render 'product-option-selection--markup' %}
       <div class="row mb-2">
         <div class="col-sm-7 col-lg-5">
           <label class="product__label" for="size">Variant</label>
@@ -145,10 +132,10 @@
     </div>
 
   {% endform %}
-  
+
   <ul class="accordion mb-6 rte">
     <li class="accordion--active">
-      <a href="#" class="accordion__opener title-1"> 
+      <a href="#" class="accordion__opener title-1">
         Product Details
       </a>
       <div class="accordion__slide">
@@ -231,27 +218,27 @@
         <div class="accordion__block">
           <ul>
             <li>
-              Standard shipping via UPS Ground is included in the quoted price. 
+              Standard shipping via UPS Ground is included in the quoted price.
             </li>
             <li>
-              Express shipping is via UPS. 
+              Express shipping is via UPS.
             </li>
             <li>
-              Please choose your shipping method at checkout. 
+              Please choose your shipping method at checkout.
             </li>
             <li>
-              An additional Shipping and Handling fee will apply to express shipments. This fee will be quoted at checkout. 
+              An additional Shipping and Handling fee will apply to express shipments. This fee will be quoted at checkout.
             </li>
             <li>
-              Delivery is available to Alaska, Hawaii and Puerto Rico; however, an additional Shipping and Handling fee will apply. This fee will be quoted at checkout. Additional transit time may also be required. 
+              Delivery is available to Alaska, Hawaii and Puerto Rico; however, an additional Shipping and Handling fee will apply. This fee will be quoted at checkout. Additional transit time may also be required.
             </li>
           </ul>
         </div>
       </div>
     </li>
   </ul>
-  
+
   {% if section.settings.show_share_buttons %}
-    {% include 'social-sharing', share_title: product.title, share_permalink: product.url, share_image: product %}
+    {% render 'social-sharing', share_title: product.title, share_permalink: product.url, share_image: product %}
   {% endif %}
 </div>

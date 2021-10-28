@@ -35,14 +35,14 @@
     {%- if main -%}
       <div class="splide__slide">
         <div class="jquery-background-video-wrapper">
-          {{ media | video_tag: controls: true | replace:'<video', '<video class="jquery-background-video" autoplay loop' }}
-          <div class="video-overlay" style="background-image:url({{media.preview_image | img_url:'565x'}});"></div>
+          {{ media | video_tag: controls: true | replace: '<video', '<video class="jquery-background-video" autoplay loop' }}
+          <div class="video-overlay" style="background-image: url({{ media.preview_image | img_url: '565x' }});"></div>
         </div>
       </div>
     {%- else -%}
       <div class="splide__slide">
         <div class="product-block__gallery__switcher">
-          <img src="{{media.preview_image | img_url:'200x'}}" alt="Hayden Expanding Floss">
+          <img src="{{media.preview_image | img_url: '200x'}}" alt="Hayden Expanding Floss">
         </div>
       </div>
     {%- endif -%}

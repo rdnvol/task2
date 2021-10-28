@@ -1,6 +1,6 @@
 <div class="pt-6 pt-md-7">
   <div class="container">
-    {% include 'breadcrumbs' %}
+    {% render 'breadcrumbs' %}
   </div>
 </div>
 <section data-section-id="{{ section.id }}" class="section page-section" data-section-type="product">
@@ -8,18 +8,18 @@
     <div class="product-main-block position-relative">
       <div class="row">
         <div class="col-md-6 mb-4 mb-md-0">
-          {% include 'product-gallery' %}
+          {% render 'product-gallery' %}
         </div>
         <div class="col-md-6">
-          {% include 'product-main-block' %}
+          {% render 'product-main-block' %}
         </div>
       </div>
     </div>
   </div>
-  {%- include 'cart-popup' -%}
+  {%- render 'cart-popup' -%}
 </section>
 
-{% include 'schema' %}
+{% render 'schema' %}
 
 {% schema %}
   {

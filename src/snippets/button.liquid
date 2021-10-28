@@ -13,7 +13,7 @@
     - data_attribute: {string} for adding data attributes.
                   If you want more than one it should be separated with space (example 'data-fancybox data-custom-attr')
     - snippet: {string} for adding icons or other snippets (except element 'input')
-    - icon: {string} passed for a snippet as a parametr (will be rendered as {% include 'snippet-name' with 'icon' %})
+    - icon: {string} passed for a snippet as a parametr (will be rendered as {% render 'snippet-name' with 'icon' %})
     - other: {string} for other parameters (example 'name="test" disabled="disabled"') only for button type 'button' and 'input'
     for usage:
     {% render "button",
@@ -32,7 +32,7 @@
       data_attribute: 'data-text'
     %}
     usage with snippet:
-    {% include "button",
+    {% render "button",
       element: 'a',
       href: '/',
       class: 'class2 class3',
@@ -41,7 +41,7 @@
       snippet: 'snippet-name',
       icon: 'name'
     %}
-    
+
 {% endcomment %}
 
 {%- capture classes -%}
@@ -60,12 +60,12 @@
 {%- capture content -%}
   {% if type == 'icon' %}
     {%- if snippet -%}
-      {% include snippet with icon %}
+      {% render 'icon' with icon %}
     {%- endif -%}
    {% else %}
      {{- text_content -}}
      {%- if snippet -%}
-       {% include snippet with icon %}
+       {% render 'icon' with icon %}
      {%- endif -%}
   {% endif %}
 {%- endcapture -%}

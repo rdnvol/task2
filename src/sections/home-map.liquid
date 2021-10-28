@@ -15,13 +15,13 @@
                   </address>
                 {% endif %}
                 {% if section.settings.map_btn_url != blank %}
-                  {% include "button",
+                  {% render "button",
                     element: 'a',
                     href: section.settings.map_btn_url,
                     class: 'd-inline-flex flex-row-reverse align-items-center',
                     locales_text: 'contact.location'
                     text: 'Get directions',
-                    snippet: 'icon',
+                    snippet: true,
                     icon: 'location'
                   %}
                 {% endif %}
