@@ -174,6 +174,10 @@ export default {
       Sections: path.resolve(__dirname, './src/scripts/sections'),
       Components: path.resolve(__dirname, './src/scripts/Components'),
       Styles: path.resolve(__dirname, './src/styles'),
+      react: 'preact/compat',
+      'react-dom/test-utils': 'preact/test-utils',
+      'react-dom': 'preact/compat', // Must be below test-utils
+      'react/jsx-runtime': 'preact/jsx-runtime',
     },
     extensions: ['.js', '.jsx', '.tsx', '.ts'],
   },

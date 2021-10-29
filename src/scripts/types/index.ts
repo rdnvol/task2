@@ -17,16 +17,17 @@ export interface PreviewImageType {
   width: number;
 }
 
-export interface MediaType {
+export interface FeaturedImageType extends PreviewImageType {
   alt: string | null;
-  aspect_ratio: number;
-  height: number;
+  url: string | null;
+}
+
+export interface MediaType extends PreviewImageType {
+  alt: string | null;
   id: number;
   media_type: string;
   position: number;
   preview_image: PreviewImageType;
-  src: string;
-  width: number;
 }
 
 export interface VariantType {
@@ -52,8 +53,9 @@ export interface VariantType {
 
 export interface OptionWithValuesType {
   name: string;
-  position: number;
-  values: string[] | [];
+  position?: number;
+  values?: string[] | [];
+  value?: string | null;
   selected_value?: string | null;
 }
 
@@ -114,6 +116,60 @@ export interface ButtonType {
   disabled?: boolean;
   other?: any;
   data_attribute?: string;
+}
+
+export interface CartType {
+  attributes?: string | null;
+  cart_level_discount_applications?: any;
+  currency?: string | null;
+  discount_applications?: any;
+  item_count: number;
+  items: CartItem[] | [];
+  items_subtotal_price: number;
+  note: string | null;
+  original_total_price: number;
+  taxes_included: boolean;
+  total_discount: number;
+  total_price: number;
+  total_weight: number;
+}
+
+export interface CartItem {
+  discounted_price: number;
+  discounts: any[];
+  featured_image: FeaturedImageType;
+  final_line_price: number | null;
+  final_price: number | null;
+  gift_card: boolean;
+  grams: number;
+  handle: string;
+  id: number;
+  image: string;
+  key: string;
+  line_level_discount_allocations: any[];
+  line_level_total_discount: number;
+  line_price: number;
+  options_with_values: OptionWithValuesType[];
+  original_line_price: number;
+  original_price: number;
+  price: number;
+  product_description: string;
+  product_has_only_default_variant: boolean;
+  product_id: number;
+  product_title: string | null;
+  product_type: string | null;
+  properties: { [key: string]: string };
+  quantity: number;
+  requires_shipping: boolean;
+  sku: string;
+  taxable: boolean;
+  title: string;
+  total_discount: number;
+  url: string | null;
+  variant_id: number;
+  variant_options: string[];
+  variant_title: string | null;
+  vendor: string;
 }
 
 export type AddItemType = (

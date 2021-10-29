@@ -1,50 +1,30 @@
-import { h, Component, render } from 'preact';
-import { Connect, Provider } from 'redux-zero/preact';
+import { h, render, FunctionComponent } from 'preact';
+import { Provider } from 'react-redux';
 import theme from '../helpers/themeSettings';
-import actions from './actions';
+import {cartSelector} from "../redux/selectors"
+import { useAppSelector } from '../Components/hook';
 
-interface Props {
-  cart: {};
-  getCart: () => {};
-  item_count: number;
-}
+const CartCount: FunctionComponent = () => {
+  const cart = useAppSelector(cartSelector);
 
-class CartCount extends Component<Props> {
-  constructor(props: Props) {
-    super(props);
-  }
-
-  componentDidMount() {
-    if (this.props.cart !== {}) {
-      this.props.getCart();
-    }
-  }
-
-  renderCount() {
+  const renderCount = () => {
     return (
-      <span className="header__cart-btn__num">{this.props.item_count}</span>
+      <span className="header__cart-btn__num">{cart.cart.item_count}</span>
     );
-  }
+  };
+  return (
+    <a href="/cart" className="header__btn header__cart-btn">
+      <div dangerouslySetInnerHTML={{__html: theme.icons.cart}}/>
+      {cart.cart.item_count > 0 ? renderCount() : ''}
+    </a>
+  );
+};
 
-  render({ item_count }: Props) {
-    return (
-      <a href="/cart" className="header__btn header__cart-btn">
-        <div dangerouslySetInnerHTML={{__html: theme.icons.cart}}/>
-        {item_count > 0 ? this.renderCount() : ''}
-      </a>
-    );
-  }
-}
 const ref = document.querySelector('[data-cart-count]');
 if (ref) {
   render(
-    //@ts-ignore
     <Provider store={window.Store}>
-      <Connect actions={actions}>
-        {({ item_count, cart, getCart }: any) => (
-          <CartCount item_count={item_count} cart={cart} getCart={getCart} />
-        )}
-      </Connect>
+      <CartCount />
     </Provider>,
     ref,
     ref.querySelector('a')

@@ -1,8 +1,7 @@
 import { h, render } from 'preact';
 import { register } from '@shopify/theme-sections';
-import { Provider, Connect } from 'redux-zero/preact';
+import { Provider } from 'react-redux';
 
-import actions from '../Components/actions';
 import Product from '../Components/Product/index';
 
 register('product-variants-swatcher', {
@@ -17,9 +16,7 @@ register('product-variants-swatcher', {
     render(
       //@ts-ignore
       <Provider store={window.Store}>
-        <Connect actions={actions}>
-          {(props) => <Product {...props} product={product} />}
-        </Connect>
+        <Product product={product} />
       </Provider>,
       this.container
     );

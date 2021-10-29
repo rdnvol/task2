@@ -1,8 +1,9 @@
 import { h, FunctionComponent } from 'preact';
+import { StateUpdater } from 'preact/hooks';
 
 interface Props {
   quantity: number;
-  setQuantity: (quantity: number | string) => void;
+  setQuantity: StateUpdater<number>;
 }
 
 const ProductQuantity: FunctionComponent<Props> = ({
@@ -23,9 +24,17 @@ const ProductQuantity: FunctionComponent<Props> = ({
               name="quantity"
               value={quantity}
               min="1"
-              onChange={(e) =>
-                setQuantity((e.target as HTMLInputElement).value)
-              }
+              onChange={(e) => {
+                if (!(e.target as HTMLInputElement).value) {
+                  return setQuantity(1);
+                }
+                setQuantity(parseInt((e.target as HTMLInputElement).value));
+              }}
+              onBlur={(e) => {
+                if (!(e.target as HTMLInputElement).value) {
+                  return setQuantity(1);
+                }
+              }}
             />
           </div>
         </div>
