@@ -206,15 +206,13 @@
   display: inline-block;
   height: 8px;
   margin: 3px;
-  opacity: .7;
   padding: 0;
   transition: transform .2s linear;
   width: 8px
 }
 
 .splide__pagination__page.is-active {
-  background: #fff;
-  transform: scale(1.4)
+  transform: scale(1.4);
 }
 
 .splide__pagination__page:hover {

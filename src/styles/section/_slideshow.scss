@@ -1,14 +1,16 @@
 .slideshow-gallery {
-  padding: 0 0 30px;
 
   .splide__pagination {
-    bottom: 40px;
+    bottom: 10px;
   }
 
   .splide__arrow {
     top: 30%;
     @include media ("≥tablet") {
       top: 50%;
+    }
+    &:disabled {
+      display: none;
     }
   }
 
