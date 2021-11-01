@@ -21,10 +21,10 @@
                      value="{{ search.terms | escape }}"
                      placeholder="{{ 'general.search.placeholder' | t }}">
               {% comment %}theme-check-disable{% endcomment %}
-              {% include "button",
-                element: "button",
-                type: "icon",
+              {% include 'button',
+                element: 'button',
                 class: 'btn page-search-form__button d-flex align-items-center',
+                text: 'Search on store',
                 snippet: 'icon',
                 icon: 'search'
               %}

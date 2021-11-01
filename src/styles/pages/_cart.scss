@@ -9,15 +9,15 @@
 
   th,
   td {
-    text-align: left;
     padding: 10px 0;
+    text-align: left;
     @include media ("≥tablet") {
       padding: 17px 10px;
     }
     &:first-child {
       width: 60%;
-      padding-left: 0;
       padding-right: 0;
+      padding-left: 0;
       @include media ("≥tablet") {
         width: 40%;
       }
@@ -42,8 +42,8 @@
       @include media ("≥tablet") {
         display: table-cell;
         width: 19%;
-        padding-left: 0;
         padding-right: 0;
+        padding-left: 0;
         text-align: right;
       }
     }
@@ -131,8 +131,8 @@
 
 .cart__product-link {
   font-size: $font-size-base;
-  text-decoration: none;
   color: $base-body-text;
+  text-decoration: none;
   @include media ("≥widescreen") {
     font-size: calc(#{$font-size-base} + 2px);
   }

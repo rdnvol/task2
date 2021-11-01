@@ -1,7 +1,11 @@
 dist/
+input/
 node_modules/
+src/styles/theme.scss
 src/styles/vendors
-src/styles/base/_mixins.scss
 src/styles/base/_functions.scss
+src/styles/base/_helpers.scss
+src/styles/base/_mixins.scss
+src/styles/base/_variables.scss
 src/styles/plugins/_swiper.scss
 src/snippets/css-variables.liquid
