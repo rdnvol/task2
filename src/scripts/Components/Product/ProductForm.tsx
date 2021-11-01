@@ -2,7 +2,7 @@ import { h, FunctionComponent, Fragment } from 'preact';
 import { useMemo, useEffect, useState } from 'preact/hooks';
 import { formatMoney } from '@shopify/theme-currency/currency';
 
-import { useAppSelector, useAppDispatch } from '../hook';
+import { useSelector, useDispatch } from '../hook';
 import { addItem } from '../../redux/features/cart/cartSlice';
 import { ProductType, AddItemType } from '../../types';
 import ProductOptionSelection from './ProductOptionSelection';
@@ -16,7 +16,7 @@ interface Props {
 }
 
 const ProductForm: FunctionComponent<Props> = ({ product }) => {
-  const dispatch = useAppDispatch();
+  const dispatch = useDispatch();
   const colorOpt = 'color';
   const titleOpt = 'title';
   const [variantOptions, setVariantOptions] = useState({});

@@ -1,7 +1,7 @@
 import { h, Fragment, FunctionComponent } from 'preact';
 import { useRef } from 'preact/hooks';
 import { formatMoney } from '@shopify/theme-currency/currency';
-import { useAppDispatch } from './hook';
+import { useDispatch } from './hook';
 import { debounce } from 'debounce';
 
 import { CartItem } from '../types/index';
@@ -17,7 +17,7 @@ interface PropsType {
 }
 
 const LineItem: FunctionComponent<PropsType> = ({ item }) => {
-  const dispatch = useAppDispatch();
+  const dispatch = useDispatch();
 
   const mobileQuantityInputRef = useRef<HTMLInputElement>();
   const quantityInputRef = useRef<HTMLInputElement>();

@@ -3,15 +3,15 @@ import { h, render, FunctionComponent } from 'preact';
 import { useEffect, useRef } from 'preact/hooks';
 import { Provider } from 'react-redux';
 
-import { useAppSelector, useAppDispatch } from '../Components/hook';
+import { useSelector, useDispatch } from '../Components/hook';
 import {cartSelector} from "../redux/selectors"
 import { closePopup } from '../redux/features/cart/cartSlice';
 import theme from '../helpers/themeSettings';
 import CartJustAdded from './CartJustAdded';
 
 const CartPopup: FunctionComponent = () => {
-  const dispatch = useAppDispatch();
-  const cart = useAppSelector(cartSelector);
+  const dispatch = useDispatch();
+  const cart = useSelector(cartSelector);
   const cartRef = useRef<HTMLDivElement>();
 
   useEffect(() => {
