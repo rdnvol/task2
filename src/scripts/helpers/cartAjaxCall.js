@@ -6,7 +6,6 @@ export function addItem(data) {
   };
   const request = $.post(params);
   request.fail((data) => {
-    console.log('failed');
     console.log(data);
   });
   return request;

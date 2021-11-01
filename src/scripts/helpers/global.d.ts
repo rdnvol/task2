@@ -1,7 +1,8 @@
-// export {};
+export {};
 
-// declare global {
-//   interface Window {
-//     Store: any;
-//   }
-// }
+declare global {
+  interface Window {
+    Store: any;
+    cart: any;
+  }
+}

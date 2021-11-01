@@ -2,7 +2,8 @@ import { h, FunctionComponent, Fragment } from 'preact';
 import { useMemo, useEffect, useState } from 'preact/hooks';
 import { formatMoney } from '@shopify/theme-currency/currency';
 
-import { addItem } from '../../helpers/cartAjaxCall';
+import { useSelector, useDispatch } from '../hook';
+import { addItem } from '../../redux/features/cart/cartSlice';
 import { ProductType, AddItemType } from '../../types';
 import ProductOptionSelection from './ProductOptionSelection';
 import ProductColorOptionWrapper from './ProductColorOptionWrapper';
@@ -11,15 +12,16 @@ import theme from '../../helpers/themeSettings';
 import Button from '../Button';
 
 interface Props {
-  addItem: AddItemType;
   product: ProductType;
 }
 
-const ProductForm: FunctionComponent<Props> = ({ product, addItem }) => {
+const ProductForm: FunctionComponent<Props> = ({ product }) => {
+  const dispatch = useDispatch();
   const colorOpt = 'color';
   const titleOpt = 'title';
   const [variantOptions, setVariantOptions] = useState({});
   const [chosenVariant, setChosenVariant] = useState(null);
+  const [productQuantity, setProductQuantity] = useState(1);
 
   const productPrice = useMemo(() => {
     if (product.compare_at_price_max > product.price) {
@@ -45,7 +47,6 @@ const ProductForm: FunctionComponent<Props> = ({ product, addItem }) => {
     }
   }, [product]);
 
-  
   const productRenderCheck = useMemo(() => {
     return (
       product?.options_with_values?.length &&
@@ -59,18 +60,17 @@ const ProductForm: FunctionComponent<Props> = ({ product, addItem }) => {
     if (!chosenVariant) return;
 
     try {
-      const item = await addItem(chosenVariant?.id, {
-        quantity: chosenVariant.quantity,
-      });
+      dispatch(
+        addItem({
+          id: chosenVariant?.id,
+          quantity: {
+            quantity: productQuantity,
+          },
+        })
+      );
     } catch (error) {
       console.log(error);
     }
-  };
-
-  const setQuantity = (quantity: string) => {
-    if (!chosenVariant) return;
-
-    setChosenVariant({ ...chosenVariant, quantity: parseInt(quantity) });
   };
 
   useEffect(() => {
@@ -96,7 +96,6 @@ const ProductForm: FunctionComponent<Props> = ({ product, addItem }) => {
     if (!keys.length || !values.length || !product) return;
 
     if (keys.length === values.length) {
-
       const variant = product?.variants?.find(
         (variant) => JSON.stringify(variant.options) === JSON.stringify(values)
       );
@@ -134,7 +133,8 @@ const ProductForm: FunctionComponent<Props> = ({ product, addItem }) => {
           </div>
         ))} */}
       <div class="product__row">
-        {productRenderCheck && product?.options_with_values?.length &&
+        {productRenderCheck &&
+          product?.options_with_values?.length &&
           product?.options_with_values.map((option, idx) =>
             option.name.toLowerCase() === colorOpt ? (
               <ProductColorOptionWrapper
@@ -153,8 +153,8 @@ const ProductForm: FunctionComponent<Props> = ({ product, addItem }) => {
             )
           )}
         <ProductQuantity
-          setQuantity={setQuantity}
-          quantity={chosenVariant?.quantity ?? 1}
+          setQuantity={setProductQuantity}
+          quantity={productQuantity}
         />
       </div>
       <div class="row">

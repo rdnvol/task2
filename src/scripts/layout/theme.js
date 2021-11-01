@@ -13,7 +13,7 @@ import '../helpers/jquery.plugins.js';
 import { SmoothScroll } from '../helpers/jquery.plugins.js';
 import Splide from '@splidejs/splide';
 import { Fancybox } from '@fancyapps/ui';
-import 'Components/store'
+import '../redux/store.ts';
 
 // utils
 import { getLocaleAndPathname } from '../helpers/utils.js';
@@ -309,18 +309,23 @@ class App {
   }
 
   fancyboxBackdrop() {
-    let target =  document.querySelector('body')
+    let target = document.querySelector('body');
     const config = {
-      childList: true
+      childList: true,
     };
 
-    const callback = function(mutationsList, observer) {
+    const callback = function (mutationsList, observer) {
       for (let mutation of mutationsList) {
-        if (mutation.addedNodes[0] && mutation.addedNodes[0]["Fancybox"] != undefined) {
-          const backdrop = document.querySelector('.fancybox__slide.is-selected');
-          backdrop.addEventListener('click', function(e) {
-            e.preventDefault()
-          })
+        if (
+          mutation.addedNodes[0] &&
+          mutation.addedNodes[0]['Fancybox'] != undefined
+        ) {
+          const backdrop = document.querySelector(
+            '.fancybox__slide.is-selected'
+          );
+          backdrop.addEventListener('click', function (e) {
+            e.preventDefault();
+          });
           observer.disconnect();
         }
       }
@@ -331,9 +336,9 @@ class App {
   }
 
   fancyboxModalCloseButton() {
-    document.body.addEventListener('click', e => {
-      ('fancyboxClose' in e.target.dataset) && window.fancybox.close(true);
-    })
+    document.body.addEventListener('click', (e) => {
+      'fancyboxClose' in e.target.dataset && window.fancybox.close(true);
+    });
   }
 }
 
