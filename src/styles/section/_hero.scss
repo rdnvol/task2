@@ -10,24 +10,24 @@
 
     .hero__img {
       position: absolute;
-      left: 0;
       top: 0;
       right: 0;
       bottom: 0;
+      left: 0;
       margin: 0;
 
       img {
-        object-fit: cover;
         height: 100%;
+        object-fit: cover;
       }
     }
 
     .hero__block {
       position: absolute;
-      left: 0;
       top: 30px;
       right: 0;
       bottom: 30px;
+      left: 0;
       z-index: 4;
     }
   }
@@ -43,10 +43,10 @@
 .hero__block {
   @include media("≥tablet") {
     position: absolute;
-    left: 0;
     top: 30px;
     right: 0;
     bottom: 30px;
+    left: 0;
     z-index: 4;
   }
 }

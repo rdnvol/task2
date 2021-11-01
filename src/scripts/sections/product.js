@@ -1,6 +1,6 @@
 import { getUrlWithVariant, ProductForm } from '@shopify/theme-product-form';
 import { formatMoney } from '@shopify/theme-currency';
-import Swiper from 'swiper';
+import Splide from '@splidejs/splide';
 import { register } from '@shopify/theme-sections';
 import { Fancybox } from '@fancyapps/ui/src/Fancybox/Fancybox.js';
 import { addItem, getCart } from '../helpers/cartAjaxCall.js';
@@ -62,37 +62,28 @@ export class Product {
   }
 
   initGallery() {
-    this.productGalleryThumbs = new Swiper(
-      this.wrapper.find('.product-gallery-thumbs')[0],
-      {
-        spaceBetween: 18,
-        slidesPerView: 3,
-        freeMode: true,
-        watchSlidesVisibility: true,
-        watchSlidesProgress: true,
-        speed: 800,
-        breakpoints: {
-          768: {
-            spaceBetween: 30,
-            slidesPerView: 3,
-            freeMode: true,
-            watchSlidesVisibility: true,
-            watchSlidesProgress: true,
-            speed: 800,
-          },
-        },
-      }
-    );
-    this.productGallery = new Swiper(this.wrapper.find('.product-gallery')[0], {
-      speed: 800,
-      // navigation: {
-      //   nextEl: '.swiper-button-next',
-      //   prevEl: '.swiper-button-prev',
-      // },
-      thumbs: {
-        swiper: this.productGalleryThumbs,
-      },
-    });
+    document.addEventListener( 'DOMContentLoaded',  () => {
+      this.splide = new Splide( this.wrapper.find('.product-gallery')[0], {
+        type      : 'slide',
+        perPage: 1,
+        rewind    : false,
+        pagination: false,
+        arrows    : false,
+      } );
+
+      const thumbnails = new Splide( this.wrapper.find('.product-gallery-thumbs')[0], {
+        perPage: 3,
+        gap         : 10,
+        rewind      : false,
+        pagination  : false,
+        arrows    : false,
+        isNavigation: true,
+      } );
+
+      this.splide.sync( thumbnails );
+      this.splide.mount();
+      thumbnails.mount();
+    } );
   }
 
   updateVariantUrl(variant) {
@@ -160,7 +151,7 @@ export class Product {
       const imagePosition = variant.featured_media
         ? variant.featured_media.position - 1
         : 0;
-      this.productGallery.slideTo(imagePosition);
+      this.splide.go(imagePosition);
     }
   }
 

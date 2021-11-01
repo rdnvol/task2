@@ -18,8 +18,8 @@
 
       .slideshow-gallery__block {
         @include media ("≥tablet") {
-          transform: translateY(0);
           opacity: 1;
+          transform: translateY(0);
         }
       }
     }
@@ -58,24 +58,24 @@
   background: $base-body-background;
   @include media("≥tablet") {
     position: absolute;
-    left: 0;
     top: 30px;
     right: 0;
     bottom: 30px;
+    left: 0;
     z-index: 4;
     width: 100%;
     margin: 0;
     padding: 0;
-    background: none;
     color: #fff;
+    background: none;
     opacity: 0;
-    transform: translateY(50px);
     transition: opacity, transform 0.6s cubic-bezier(0.44, 0.13, 0.48, 0.87);
+    transform: translateY(50px);
   }
 
   .container {
-    padding: 0 60px;
     box-sizing: border-box;
+    padding: 0 60px;
     @include media ("≥laptop") {
       padding: 0 30px;
     }
@@ -122,9 +122,9 @@
   @include media ("≥tablet") {
     position: absolute;
     top: 0;
-    left: 0;
     right: 0;
     bottom: 0;
+    left: 0;
     background: $base-border;
     opacity: 0.4;
   }
