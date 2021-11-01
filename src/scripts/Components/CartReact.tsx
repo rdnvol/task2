@@ -3,12 +3,14 @@ import { Provider } from 'react-redux';
 import { formatMoney } from '@shopify/theme-currency/currency';
 
 import { useAppSelector } from '../Components/hook';
-import {cartSelector} from "../redux/selectors"
+import { cartSelector } from '../redux/selectors';
 import theme from '../helpers/themeSettings';
 import LineItem from './LineItem';
 
 const Cart: FunctionComponent = () => {
-  const cart = useAppSelector(cartSelector);
+  const {
+    cart: { total_discount, note, items, total_price },
+  } = useAppSelector(cartSelector);
   const ref = document.getElementById('cart');
 
   const renderEmptyState = () => {
@@ -39,10 +41,10 @@ const Cart: FunctionComponent = () => {
   };
 
   const renderDiscount = () => {
-    if (cart.cart.total_discount > 0)
+    if (total_discount > 0)
       return (
         <p>
-          {theme.cart.savings} {formatMoney(cart.cart.total_discount)}
+          {theme.cart.savings} {formatMoney(total_discount)}
         </p>
       );
   };
@@ -58,7 +60,7 @@ const Cart: FunctionComponent = () => {
           placeholder={theme.cart.special_instructions_placeholder}
           id="CartSpecialInstructions"
         >
-          {cart.cart?.note}
+          {note}
         </textarea>
       </div>
     );
@@ -84,19 +86,19 @@ const Cart: FunctionComponent = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {cart.cart.items.map((item) => (
+                  {items.map((item) => (
                     <LineItem item={item} />
                   ))}
                 </tbody>
               </table>
 
               <div className="row justify-content-md-between">
-                {ref.dataset.noteEnable === 'true' ? renderNote() : ''}
+                {ref.dataset.noteEnable === 'true' && renderNote()}
                 <div className="col-md-5 ml-auto">
                   <div className="cart-form__total mb-4">
                     <div className="title-1 d-flex justify-content-between justify-content-md-end">
                       <div className="mr-2">{theme.cart.total}</div>
-                      {formatMoney(cart.cart.total_price, theme.moneyFormat)}
+                      {formatMoney(total_price, theme.moneyFormat)}
                     </div>
                     <div className="cart-form__total__text-box body-3">
                       {renderDiscount()}
@@ -126,7 +128,7 @@ const Cart: FunctionComponent = () => {
 
   return (
     <div className="container">
-      {cart.cart && cart.items.length ? renderCart() : renderEmptyState()}
+      {items?.length ? renderCart() : renderEmptyState()}
     </div>
   );
 };
