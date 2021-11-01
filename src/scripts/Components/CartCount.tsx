@@ -1,21 +1,23 @@
 import { h, render, FunctionComponent } from 'preact';
 import { Provider } from 'react-redux';
-import theme from '../helpers/themeSettings';
+
 import { cartSelector } from '../redux/selectors';
-import { useAppSelector } from '../Components/hook';
+import { useSelector } from '../Components/hook';
+import theme from '../helpers/themeSettings';
 
 const CartCount: FunctionComponent = () => {
-  const cart = useAppSelector(cartSelector);
+  const {
+    cart: { item_count },
+  } = useSelector(cartSelector);
 
   const renderCount = () => {
-    return (
-      <span className="header__cart-btn__num">{cart.cart.item_count}</span>
-    );
+    return <span className="header__cart-btn__num">{item_count}</span>;
   };
+
   return (
     <a href="/cart" className="header__btn header__cart-btn">
-      <div dangerouslySetInnerHTML={{ __html: theme.icons.cart }} />
-      {cart.cart.item_count > 0 ? renderCount() : ''}
+      <span dangerouslySetInnerHTML={{ __html: theme.icons.cart_icon }}></span>
+      {item_count > 0 && renderCount()}
     </a>
   );
 };
