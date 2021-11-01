@@ -41,6 +41,7 @@ export class Product {
 
     this.sizeChartInit()
     this.initGallery();
+    this.sizeChartInit();
     this.getProduct().then((product) => {
       this.product = product;
       console.log(this.product);
