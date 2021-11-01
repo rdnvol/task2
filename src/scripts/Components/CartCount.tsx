@@ -2,13 +2,13 @@ import { h, render, FunctionComponent } from 'preact';
 import { Provider } from 'react-redux';
 
 import { cartSelector } from '../redux/selectors';
-import { useAppSelector } from '../Components/hook';
+import { useSelector } from '../Components/hook';
 import theme from '../helpers/themeSettings';
 
 const CartCount: FunctionComponent = () => {
   const {
     cart: { item_count },
-  } = useAppSelector(cartSelector);
+  } = useSelector(cartSelector);
 
   const renderCount = () => {
     return <span className="header__cart-btn__num">{item_count}</span>;
