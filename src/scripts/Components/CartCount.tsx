@@ -16,7 +16,7 @@ const CartCount: FunctionComponent = () => {
 
   return (
     <a href="/cart" className="header__btn header__cart-btn">
-      <span dangerouslySetInnerHTML={{ __html: theme.icons.cart_icon }}></span>
+      <div dangerouslySetInnerHTML={{ __html: theme.icons.cart }}></div>
       {item_count > 0 && renderCount()}
     </a>
   );

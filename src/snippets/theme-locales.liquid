@@ -4,9 +4,6 @@
   window.theme = {
     cartState: {{ cart | json }},
     template: {{ template | json }},
-    icons: {
-      cart_icon: {%- render 'icon' with 'cart', json: true -%}
-    },
     strings: {
       addToCart: {{ 'products.product.add_to_cart' | t | json }},
       soldOut: {{ 'products.product.sold_out' | t | json }},
