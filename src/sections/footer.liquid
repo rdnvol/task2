@@ -20,7 +20,7 @@
           {%- for block in section.blocks -%}
             {%- case block.type -%}
             {%- when 'text' -%}
-              <div class="col-sm-12 col-lg-3 mb-6 mb-lg-0 {% unless forloop.last %}mb-6 mb-lg-0{% endunless %}">
+              <div class="col-sm-12 col-lg-3 mb-6 mb-lg-0">
                 {% if block.settings.icon != blank %}
                   <a href="{{ routes.root_url }}" class="footer__logo">
                     <img data-src="{{ block.settings.icon | asset_url }}"
@@ -47,6 +47,9 @@
                            placeholder="{{ 'general.newsletter_form.email_placeholder' | t }}"
                            class="footer__form__input">
                     <button type="submit" class="footer__form__button">
+                      <span class="accessibility">
+                        Button submit
+                      </span>
                       {%- render 'icon-arrow-right' -%}
                     </button>
                   </div>
@@ -75,7 +78,10 @@
       <div class="col-12 d-flex justify-content-center pt-3">
         {% if section.settings.currency_switcher_enable %}
           {% form 'currency', class: 'pr-3' %}
-            <select name="currency" class="w-100 mb-2">
+            <label for="field-currency-01" class="accessibility">
+              Select currency
+            </label>
+            <select name="currency" class="w-100 mb-2" id="field-currency-01">
               {% for currency in shop.enabled_currencies %}
                 {% if currency == cart.currency %}
                   <option selected="true">{{ currency.iso_code }} {{ currency.symbol }}</option>
@@ -88,7 +94,10 @@
         {% endif %}
         {% if section.settings.language_switcher_enable %}
           <div class="locales-wrapper">
-            <select name="locales" class="w-100 mb-2">
+            <label for="field-locales-01" class="accessibility">
+              Select locales
+            </label>
+            <select name="locales" class="w-100 mb-2" id="field-locales-01">
               {% for locale in shop.published_locales %}
                 <option {% if request.locale.name == locale.name %}selected{% endif %}
                         data-path="{{ request.path }}" value="{{ locale.root_url }}">{{ locale.name }}</option>

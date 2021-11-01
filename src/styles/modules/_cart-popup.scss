@@ -4,10 +4,10 @@
   z-index: 10002;
   width: 100%;
   font-size: $font-size-base - 2px;
-  border: 1px solid $base-border;
   background: $base-body-background;
-  transform: translateY(-100%);
+  border: 1px solid $base-border;
   transition: transform $animation-speed ease;
+  transform: translateY(-100%);
   @include media("≥tablet") {
     right: 0;
     width: 372px;

@@ -9,58 +9,15 @@
   position: relative;
 }
 
-.accessibility {
-  position: absolute;
-  left: -100000px;
-  top: auto;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-
-  &:focus {
-    position: static;
-    width: auto;
-    height: auto;
-  }
-}
-
-.visually-hidden {
-  border: 0;
-  clip: rect(0 0 0 0);
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  width: 1px;
-  white-space: nowrap;
-}
-
 .container {
   max-width: 1360px;
   margin: 0 auto;
   padding: 0 15px;
 }
 
-.customizable-base-text {
-  color: $customizable-base-text;
-}
-
-.text-size-md {
-  font-size: $font-size-base;
-}
-
-.text-size-sm {
-  font-size: calc(#{$font-size-base} - 2px);
-}
-
-.text-white {
-  color: #fff;
-}
-
 ins {
-  text-decoration: none;
   color: $base-sale-price;
+  text-decoration: none;
 }
 
 .breadcrumbs {
@@ -82,7 +39,7 @@ ins {
       content: "/";
       display: inline-block;
       vertical-align: middle;
-      margin: -1px 0 0 0;
+      margin: -1px 0 0;
       color: $base-secondary-text;
     }
   }
@@ -98,10 +55,10 @@ ins {
 
 .bg-stretch {
   position: absolute;
-  left: 0;
   top: 0;
   right: 0;
   bottom: 0;
+  left: 0;
   background-position: 50% 50%;
   background-size: cover;
 
@@ -121,32 +78,32 @@ ins {
     position: absolute;
     top: 0;
     left: 0;
+    z-index: 1;
     width: 100%;
     height: 100%;
     margin: 0;
     border: none;
-    z-index: 1;
   }
 }
 
 .image-container {
   position: relative;
+  z-index: 1;
   display: block;
   width: 100%;
   padding: 100% 0 0;
-  z-index: 1;
   overflow: hidden;
 
   img {
     position: absolute;
-    left: 50%;
     top: 50%;
-    min-width: 100%;
-    min-height: 100%;
+    left: 50%;
     width: auto;
+    min-width: 100%;
     height: auto;
-    transform: translate(-50%, -50%);
+    min-height: 100%;
     object-fit: cover;
+    transform: translate(-50%, -50%);
   }
 }
 
@@ -246,8 +203,8 @@ ins {
 .rte {
 
   ul {
-    padding: 0;
     margin: 0 0 15px;
+    padding: 0;
     list-style: none;
     @include media("≥tablet") {
       margin: 0 0 20px;
@@ -257,8 +214,8 @@ ins {
     }
 
     > li {
-      padding: 0 0 0 12px;
       position: relative;
+      padding: 0 0 0 12px;
       &::before {
         content: "";
         position: absolute;
@@ -266,8 +223,8 @@ ins {
         left: 0;
         width: 6px;
         height: 6px;
-        border-radius: 100%;
         background: $base-body-text;
+        border-radius: 100%;
       }
     }
   }
@@ -351,8 +308,8 @@ ins {
 
     th,
     td {
-      padding: 10px 7px;
       vertical-align: top;
+      padding: 10px 7px;
       border: 1px solid #dcdcdc;
     }
   }
@@ -420,13 +377,13 @@ ins {
       position: absolute;
     }
     &::before {
-      left: 50%;
       top: 50%;
+      left: 50%;
       width: 8px;
       height: 8px;
       margin: 0 0 0 -2px;
-      border-style: solid;
       border-width: 0 0 2px 2px;
+      border-style: solid;
       border-color: #212b36;
       transform: translate(-50%, -50%) rotate(45deg);
     }
@@ -472,8 +429,8 @@ ins {
 }
 
 .accordion__opener {
-  display: block;
   position: relative;
+  display: block;
   padding: 8px 14px 7px;
   color: $base-body-text;
   text-decoration: none;
@@ -485,18 +442,18 @@ ins {
     position: absolute;
     top: 50%;
     background: $black;
-    transform: translate(-50%, -50%);
     transition: opacity $animation-speed ease-in-out;
+    transform: translate(-50%, -50%);
   }
   &::before {
-    height: 2px;
-    width: 12px;
     right: 7px;
+    width: 12px;
+    height: 2px;
   }
   &::after {
+    right: 17px;
     width: 2px;
     height: 12px;
-    right: 17px;
 
     .accordion--active & {
       opacity: 0;
@@ -535,12 +492,12 @@ ins {
 }
 
 .spinner {
-  margin: 0 auto;
   width: 34px;
   height: 34px;
+  margin: 0 auto;
   border: 3px solid #dadada;
-  border-radius: 100%;
   border-top-color: #333;
+  border-radius: 100%;
   animation: spinner 1s linear infinite;
   @include media ("≥tablet") {
     width: 44px;
@@ -563,9 +520,9 @@ ins {
   }
   &::before {
     top: 0;
-    left: 0;
     right: 0;
     bottom: 0;
+    left: 0;
     background: $button-background;
   }
   &::after {
@@ -574,10 +531,10 @@ ins {
     width: 24px;
     height: 24px;
     border: 3px solid #dadada;
-    border-radius: 100%;
     border-top-color: #333;
-    animation: spinner-alt 1s linear infinite;
+    border-radius: 100%;
     transform: translate(-50%, -50%);
+    animation: spinner-alt 1s linear infinite;
   }
 }
 
@@ -593,8 +550,8 @@ ins {
 .placeholder-svg {
   width: 100%;
   height: inherit;
-  fill: #fff;
   background: #c4c4c4;
+  fill: #fff;
 }
 
 img[data-sizes="auto"] {
@@ -618,16 +575,14 @@ img[data-sizes="auto"] {
 
 // Shopify Preview bar iframe styles
 #preview-bar-iframe {
-  border-right: 15px solid #5c6ac4 !important;
-  transform: translate3d(calc(-100% + 15px), 0, 0) !important;
-  transition-delay: 5s !important;
   width: calc(100% + 15px) !important;
-
+  border-right: 15px solid #5c6ac4 !important;
+  transition-delay: 5s !important;
+  transform: translate3d(calc(-100% + 15px), 0, 0) !important;
   &:hover {
-    transform: translate3d(0, 0, 0) !important;
     transition-delay: 0s !important;
+    transform: translate3d(0, 0, 0) !important;
   }
-
   & + #preview-bar-iframe {
     display: none;
   }
