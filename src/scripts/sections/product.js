@@ -39,7 +39,9 @@ export class Product {
     this.shopifyButtons = this.wrapper.find('[data-shopify="payment-button"]');
     this.sizeChart = this.wrapper.find('.size-chart-link');
 
+    this.sizeChartInit()
     this.initGallery();
+    this.sizeChartInit();
     this.getProduct().then((product) => {
       this.product = product;
       console.log(this.product);

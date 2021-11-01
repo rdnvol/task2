@@ -37,6 +37,9 @@
       addToCart: {{ 'cart.general.add_to_cart' | t | json }},
       soldOut: {{ 'products.product.sold_out' | t | json }}
     },
+    icons: {
+      cart: {% render "icon", icon: 'cart', json: true %}
+    },
     product: {
       regular_price: {{ 'products.product.regular_price' | t | json }},
       quantity: {{ 'products.product.quantity' | t | json }}
