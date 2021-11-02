@@ -237,16 +237,6 @@ export default {
         use: ['style-loader', 'css-loader'],
       },
       {
-        test: /\.js$/,
-        exclude: /node_modules\/(?!(dom7|swiper)\/).*/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env'],
-          },
-        },
-      },
-      {
         test: /\.(js|jsx|tsx|ts)$/,
         exclude: /node_modules/,
         loader: 'ts-loader',
