@@ -6,13 +6,13 @@
      data-blocks="{{ section.blocks.size }}"
      data-slides-every="{{ section.settings.change_every }}">
   <div class="splide slideshow-gallery">
-    <div class="splide__track" data-swiper-id="{{ section.id }}">
+    <div class="splide__track">
       <div class="splide__list">
         {% for block in section.blocks %}
           {%- capture image_position -%}
             style="{{ block.settings.image_position }}"
           {%- endcapture -%}
-          <div class="splide__slide" {{ block.shopify_attributes }} data-index="{{ forloop.index }}">
+          <div class="splide__slide" {{ block.shopify_attributes }} data-index="{{ forloop.index0 }}">
             <div class="slideshow-gallery__img {{ section.settings.slide_height }}">
               {% if block.settings.image != blank %}
                 {% render

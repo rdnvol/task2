@@ -52,7 +52,7 @@ register('testimonials', {
   },
   // Shortcut function called when a section block is selected by the Theme Editor 'shopify:block:select' event.
   onBlockSelect: function (e) {
-    this._slideToBlock(e.target.dataset.index);
+    this._slideToBlock(+e.target.dataset.index);
     // Do something when a section block is selected
   },
 
