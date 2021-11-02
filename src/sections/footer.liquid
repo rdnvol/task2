@@ -111,7 +111,7 @@
       {% capture copy %}
         &copy; {{ 'now' | date: "%Y" }} {{ shop.name | link_to: routes.root_url | lstrip }}.
       {% endcapture %}
-      {% assign first_part = copy | prepend:'<p>' %}
+      {% assign first_part = copy | prepend: '<p>' %}
       {% assign rights_text = section.settings.rights_text | replace: '<p>', first_part %}
       <div {% if show_payment_icons %}class="mb-4 mb-md-2"{% endif %}>
         {% if section.settings.rights_text != blank %}{{ rights_text }}{% else %}{{ copy }}{% endif %}

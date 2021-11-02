@@ -1,5 +1,5 @@
 {% if section.settings.image != blank %}
-  {% assign image = section.settings.image | img_url:'master' %}
+  {% assign image = section.settings.image | img_url: 'master' %}
 {% else %}
   {% assign image = 'img-placeholder.png' | asset_url %}
 {% endif %}
