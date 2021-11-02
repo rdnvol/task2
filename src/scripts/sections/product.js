@@ -3,7 +3,12 @@ import { formatMoney } from '@shopify/theme-currency';
 import Splide from '@splidejs/splide';
 import { register } from '@shopify/theme-sections';
 import { Fancybox } from '@fancyapps/ui/src/Fancybox/Fancybox.js';
-import { addItem, getCart } from '../helpers/cartAjaxCall.js';
+import { addItem } from '../helpers/cartAjaxCall.js';
+import {
+  getCart,
+  openPopup,
+  addJustAdded,
+} from '../redux/features/cart/cartSlice.ts';
 
 register('product', {
   _initProduct(handle) {
@@ -39,7 +44,7 @@ export class Product {
     this.shopifyButtons = this.wrapper.find('[data-shopify="payment-button"]');
     this.sizeChart = this.wrapper.find('.size-chart-link');
 
-    this.sizeChartInit()
+    this.sizeChartInit();
     this.initGallery();
     this.sizeChartInit();
     this.getProduct().then((product) => {
@@ -64,28 +69,31 @@ export class Product {
   }
 
   initGallery() {
-    document.addEventListener( 'DOMContentLoaded',  () => {
-      this.splide = new Splide( this.wrapper.find('.product-gallery')[0], {
-        type      : 'slide',
+    document.addEventListener('DOMContentLoaded', () => {
+      this.splide = new Splide(this.wrapper.find('.product-gallery')[0], {
+        type: 'slide',
         perPage: 1,
-        rewind    : false,
+        rewind: false,
         pagination: false,
-        arrows    : false,
-      } );
+        arrows: false,
+      });
 
-      const thumbnails = new Splide( this.wrapper.find('.product-gallery-thumbs')[0], {
-        perPage: 3,
-        gap         : 10,
-        rewind      : false,
-        pagination  : false,
-        arrows    : false,
-        isNavigation: true,
-      } );
+      const thumbnails = new Splide(
+        this.wrapper.find('.product-gallery-thumbs')[0],
+        {
+          perPage: 3,
+          gap: 10,
+          rewind: false,
+          pagination: false,
+          arrows: false,
+          isNavigation: true,
+        }
+      );
 
-      this.splide.sync( thumbnails );
+      this.splide.sync(thumbnails);
       this.splide.mount();
       thumbnails.mount();
-    } );
+    });
   }
 
   updateVariantUrl(variant) {
@@ -168,15 +176,11 @@ export class Product {
 
   initAddToBag(event) {
     event.preventDefault();
+    console.log('Init add to bag has been called');
     addItem(this.form.element).then((item) => {
-      getCart().then(({ item_count, items }) => {
-        Store.setState({
-          justAdded: item,
-          popupActive: true,
-          item_count,
-          items,
-        });
-      });
+      window.Store.dispatch(addJustAdded(item));
+      window.Store.dispatch(getCart());
+      window.Store.dispatch(openPopup());
     });
   }
 

@@ -28,11 +28,11 @@ const ProductForm: FunctionComponent<Props> = ({ product }) => {
       return (
         <Fragment>
           <ins data-product-price>
-            {formatMoney(product.compare_at_price_max, theme.moneyFormat)}
+            {formatMoney(product.price, theme.moneyFormat)}
           </ins>
-          <span class="accessibility" data-compare-text>
-            {formatMoney(theme.product.regular_price, theme.moneyFormat)}
-          </span>
+          <del data-compare-text>
+            {formatMoney(product.compare_at_price_max, theme.moneyFormat)}
+          </del>
         </Fragment>
       );
     } else {
@@ -103,6 +103,49 @@ const ProductForm: FunctionComponent<Props> = ({ product }) => {
     }
   }, [variantOptions]);
 
+  useEffect(() => {
+    const payment_button_wrapper = document.getElementById(
+      'payment-button-wrapper'
+    );
+
+    const config = { attributes: true, childList: true, subtree: true };
+
+    const callback = (mutationList, _) => {
+      for (const mutation of mutationList) {
+        if (mutation.type === 'childList') {
+          document.dispatchEvent(new Event('payment-button-loaded'));
+        }
+      }
+    };
+
+    const observer = new MutationObserver(callback);
+
+    observer.observe(payment_button_wrapper, config);
+
+    document.addEventListener('payment-button-loaded', () => {
+      const payment_button = document.querySelector('.shopify-payment-button');
+
+      document.getElementById('payment-button').appendChild(payment_button);
+    });
+
+    return () => {
+      document.removeEventListener('payment-button-loaded', () => null);
+      observer.disconnect();
+    };
+  }, []);
+
+  useEffect(() => {
+    const paymentButtonSelect = document.getElementById(
+      'payment-button-select'
+    ) as HTMLSelectElement;
+
+    if (!chosenVariant || !paymentButtonSelect) return;
+
+    Array.apply(null, paymentButtonSelect.options).find(
+      (option) => parseInt(option.value) === chosenVariant.id
+    ).selected = 'true';
+  }, [chosenVariant]);
+
   return (
     <form onSubmit={handleSubmit}>
       <div class="product__price" data-price-wrapper>
@@ -164,7 +207,7 @@ const ProductForm: FunctionComponent<Props> = ({ product }) => {
               <Button
                 type="submit"
                 name="add"
-                className="w-100"
+                className="button w-100"
                 text={
                   !chosenVariant || !chosenVariant?.available
                     ? theme.strings.unavailable
@@ -173,14 +216,15 @@ const ProductForm: FunctionComponent<Props> = ({ product }) => {
                 disabled={!chosenVariant || !chosenVariant?.available}
               />
             ) : (
-              <Button type="submit" disabled={true} text={theme.cart.soldOut} />
+              <Button
+                className="button w-100"
+                type="submit"
+                disabled={true}
+                text={theme.cart.soldOut}
+              />
             )}
           </div>
-          <div class="product__row">
-            <button type="button" class="w-100">
-              Buy it now
-            </button>
-          </div>
+          <div id="payment-button" class="product__row"></div>
         </div>
       </div>
     </form>

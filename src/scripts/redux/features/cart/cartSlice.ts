@@ -102,6 +102,18 @@ export const cartSlice = createSlice({
         popupActive: false,
       };
     },
+    openPopup: (state) => {
+      return {
+        ...state,
+        popupActive: true,
+      };
+    },
+    addJustAdded: (state, { payload }) => {
+      return {
+        ...state,
+        justAdded: payload,
+      };
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(addItem.pending, (state) => {
@@ -168,5 +180,5 @@ export const cartSlice = createSlice({
   },
 });
 
-export const { closePopup } = cartSlice.actions;
+export const { closePopup, openPopup, addJustAdded } = cartSlice.actions;
 export const cartReducer = cartSlice.reducer;

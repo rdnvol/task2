@@ -6,6 +6,8 @@
 <section data-section-id="{{ section.id }}" class="section page-section" data-section-type="product-variants-swatcher">
 </section>
 
+{% render "dynamic-checkout" with product %}
+
 <script type="application/json" id="product-json">
     {% render 'product-json' %}
 </script>
