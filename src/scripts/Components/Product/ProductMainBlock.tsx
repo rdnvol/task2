@@ -16,7 +16,7 @@ const ProductMainBlock: FunctionComponent<Props> = ({ product }) => {
       </div>
       <h1 class="product__title h3">{product.title}</h1>
       <ProductForm product={product} />
-      <ProductAccordion />
+      <ProductAccordion product={product} />
     </div>
   );
 };
