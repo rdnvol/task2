@@ -1,7 +1,8 @@
-{% render 'breadcrumbs' %}
-{% render 'product' with product as product %}
-
-{% include "schema" %}
+{% liquid
+  render 'breadcrumbs'
+  render 'product' with product as product
+  render "schema"
+%}
 
 {% schema %}
 {

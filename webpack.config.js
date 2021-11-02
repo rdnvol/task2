@@ -20,6 +20,7 @@ import getTemplateEntrypoints from './lib/utilities/get-template-entrypoints.js'
 import getLayoutEntrypoints from './lib/utilities/get-layout-entrypoints.js';
 import getChunkName from './lib/utilities/get-chunk-name.js';
 import { settings } from './lib/config.js';
+import StylelintPlugin from 'stylelint-webpack-plugin'
 
 dotenv.config();
 
@@ -241,16 +242,6 @@ export default {
         use: ['style-loader', 'css-loader'],
       },
       {
-        test: /\.js$/,
-        exclude: /node_modules\/(?!(dom7|swiper)\/).*/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env'],
-          },
-        },
-      },
-      {
         test: /\.(js|jsx|tsx|ts)$/,
         exclude: /node_modules/,
         loader: 'ts-loader',
@@ -369,6 +360,7 @@ export default {
       analyzerMode: bundleAnalyzerEnabled ? 'server' : 'disabled',
     }),
     AfterBuildHook,
+    new StylelintPlugin(),
   ],
   node: {
     __dirname: true,

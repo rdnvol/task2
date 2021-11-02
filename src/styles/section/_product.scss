@@ -22,9 +22,9 @@
   .splide__slide {
     opacity: 0.4;
     &.is-active {
+      border: none !important;
       opacity: 1;
       transition: opacity $animation-speed ease;
-      border: none !important;
     }
   }
 }

@@ -1,6 +1,6 @@
 <div class="pt-6 pt-md-7">
   <div class="container">
-    {% include 'breadcrumbs' %}
+    {% render 'breadcrumbs' %}
   </div>
 </div>
 <section data-section-id="{{ section.id }}" class="section page-section" data-section-type="product-variants-swatcher">
@@ -11,9 +11,9 @@
 <script type="application/json" id="product-json">
     {% render 'product-json' %}
 </script>
-  
-{% include 'schema' %}
-  
+
+{% render 'schema' %}
+
 {% schema %}
 {
     "name": "Product pages",

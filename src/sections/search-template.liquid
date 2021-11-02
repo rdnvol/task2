@@ -21,11 +21,11 @@
                      value="{{ search.terms | escape }}"
                      placeholder="{{ 'general.search.placeholder' | t }}">
               {% comment %}theme-check-disable{% endcomment %}
-              {% include 'button',
+              {% render 'button',
                 element: 'button',
                 class: 'btn page-search-form__button d-flex align-items-center',
                 text: 'Search on store',
-                snippet: 'icon',
+                snippet: true,
                 icon: 'search'
               %}
               {% comment %}theme-check-enable{% endcomment %}
@@ -96,7 +96,7 @@
               </div>
             {% endfor %}
             {% comment %}{% if paginate.pages > 1 %}
-              {% include 'pagination' %}
+              {% render 'pagination' %}
             {% endif %}{% endcomment %}
           {% endif %}
         {% endif %}
