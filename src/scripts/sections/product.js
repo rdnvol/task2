@@ -212,22 +212,29 @@ export class Product {
       showClass: 'size-chart',
       on: {
         reveal: () => {
-          let table = document.querySelector('.fancybox__content main#main');
-          let tableWrapper = document.createElement('div');
-          let parentElement =
-            document.querySelector('.size-chart-link').parentNode;
-          parentElement.insertBefore(
-            tableWrapper,
-            document.querySelector('.size-chart-link')
-          );
-          tableWrapper.classList.add('table-holder');
-          tableWrapper.appendChild(table);
-          document.querySelector('.fancybox__content').innerHTML = '';
-          document
-            .querySelector('.fancybox__content')
-            .appendChild(tableWrapper);
+          let tableContainer = document.querySelector('.fancybox__content main#main .container'),
+          sizeChartBtn = document.querySelector('.size-chart-link'),
+          fancyboxParent = document.querySelector('.fancybox__content');
+          draftSizeChartElem(fancyboxParent, tableContainer, sizeChartBtn);
         },
       },
     });
+    function draftSizeChartElem(fancyboxParent, tableContainer, sizeChartBtn) {
+      let tableWrapper = document.createElement('div');
+      let parentElement =
+        sizeChartBtn.parentNode;
+        wrap(tableContainer.querySelector('.rte table'), tableWrapper)
+      parentElement.insertBefore(tableWrapper, sizeChartBtn);
+      tableWrapper.classList.add('table-holder');
+      tableContainer.removeAttribute('class')
+      tableContainer.querySelector('.rte').appendChild(tableWrapper);
+      fancyboxParent.innerHTML = '';
+      fancyboxParent.appendChild(tableContainer);
+    }
+
+    function wrap(el, wrapper) {
+      el.parentNode.insertBefore(wrapper, el);
+      wrapper.appendChild(el);
+  }
   }
 }
