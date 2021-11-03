@@ -5,57 +5,56 @@
      data-autorotate="{{ section.settings.enable_autorotate }}"
      data-blocks="{{ section.blocks.size }}"
      data-slides-every="{{ section.settings.change_every }}">
-  <div class="swiper-container slideshow-gallery">
-    <div class="swiper-wrapper" data-swiper-id="{{ section.id }}">
-      {% for block in section.blocks %}
-        {%- capture image_position -%}
-          style="{{ block.settings.image_position }}"
-        {%- endcapture -%}
-        <div class="swiper-slide" {{ block.shopify_attributes }} data-index="{{ forloop.index }}">
-          <div class="slideshow-gallery__img {{ section.settings.slide_height }}">
-            {% if block.settings.image != blank %}
-              {% render
-                'image',
-                src: block.settings.image,
-                d: '650x',
-                src_m: block.settings.image,
-                m: '375x',
-                data_attribute: image_position
-              %}
-            {% else %}
-              {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}
-            {% endif %}
-          </div>
-          <div class="slideshow-gallery__block">
-            <div class="container position-relative h-100">
-              <div class="row h-100 {{ block.settings.alignment }} text-center">
-                <div class="col-sm-10 col-md-6 col-lg-4">
-                  <div class="slideshow-gallery__text-block {{ section.settings.text_size }}">
-                    {% if block.settings.title != blank %}
-                      <div class="slideshow-gallery__title">{{ block.settings.title }}</div>
+  <div class="splide slideshow-gallery">
+    <div class="splide__track">
+      <div class="splide__list">
+        {% for block in section.blocks %}
+          {%- capture image_position -%}
+            style="{{ block.settings.image_position }}"
+          {%- endcapture -%}
+          <div class="splide__slide" {{ block.shopify_attributes }} data-index="{{ forloop.index0 }}">
+            <div class="slideshow-gallery__img {{ section.settings.slide_height }}">
+              {% if block.settings.image != blank %}
+                {% render
+                  'image',
+                  src: block.settings.image,
+                  d: '650x',
+                  src_m: block.settings.image,
+                  m: '375x',
+                  data_attribute: image_position
+                %}
+              {% else %}
+                {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}
+              {% endif %}
+            </div>
+            <div class="slideshow-gallery__block">
+              <div class="container position-relative h-100">
+                <div class="row h-100 {{ block.settings.alignment }} text-center">
+                  <div class="col-sm-10 col-md-6 col-lg-4">
+                    <div class="slideshow-gallery__text-block {{ section.settings.text_size }}">
+                      {% if block.settings.title != blank %}
+                        <div class="slideshow-gallery__title">{{ block.settings.title }}</div>
+                      {% endif %}
+                      {{ block.settings.text }}
+                    </div>
+                    {% if block.settings.button_link != blank and block.settings.button_label != blank %}
+                      {% render
+                        'button',
+                        href: block.settings.button_link,
+                        text: block.settings.button_label,
+                      %}
                     {% endif %}
-                    {{ block.settings.text }}
                   </div>
-                  {% if block.settings.button_link != blank and block.settings.button_label != blank %}
-                    {% render
-                      'button',
-                      href: block.settings.button_link,
-                      text: block.settings.button_label,
-                    %}
-                  {% endif %}
                 </div>
               </div>
             </div>
+            {% if section.settings.enable_overlay %}
+              <div class="slideshow-gallery__overlay"></div>
+            {% endif %}
           </div>
-          {% if section.settings.enable_overlay %}
-            <div class="slideshow-gallery__overlay"></div>
-          {% endif %}
-        </div>
-      {% endfor %}
+        {% endfor %}
+      </div>
     </div>
-    <div class="swiper-pagination"></div>
-    <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div>
   </div>
 </div>
 

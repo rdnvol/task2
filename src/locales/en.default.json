@@ -110,10 +110,11 @@
       "continue_browsing_html": "Continue browsing <a href=\"/collections/all\">here</a>.",
       "item_quantity": "Item quantity",
       "continue_shopping_html": "<a href=\"#\">Continue shopping</a>",
-      "savings": "You're saving",
+      "savings": "You’re saving",
       "just_added_to_your_cart": "Just added to your cart",
       "view_cart": "View cart",
-      "special_instructions_placeholder": "View Special instructions for seller"
+      "special_instructions_placeholder": "View Special instructions for seller",
+      "add_to_cart": "Add to cart"
     },
     "label": {
       "product": "Product",

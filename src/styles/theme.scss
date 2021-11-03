@@ -17,7 +17,8 @@ $breakpoints: (
   "laptop": 1400px,
 );
 
-// keywords
+/* keywords */
+
 $media-expressions: (
   "screen": "screen",
   "print": "print",
@@ -28,15 +29,12 @@ $media-expressions: (
   "retina3x": "(-webkit-min-device-pixel-ratio: 2.5), (min-resolution: 240dpi)"
 );
 
-// ligatured operators ≥ ≤
+/* ligatured operators ≥ ≤ */
 
 @import "vendors/include-media";
 @import "vendors/normalize";
 @import "vendors/bootstrap-4-grid/grid";
-@import "vendors/splide/core/splide-core";
-// @import "vendors/splide/themes/sea-green/splide-sea-green";
-// @import "vendors/splide/themes/sky-blue/splide-sky-blue";
-@import "vendors/splide/themes/default/splide-default";
+@import "vendors/splide/splide-default";
 
 @import "base/variables";
 @import "base/functions";
@@ -46,11 +44,9 @@ $media-expressions: (
 @import "base/typography";
 @import "base/forms";
 
-@import "plugins/swiper";
 @import "plugins/age-popup";
-@import "plugins/jquery.fancybox";
 @import "plugins/jquery-background-video";
-@import 'plugins/jcf';
+@import "plugins/jcf";
 
 @import "modules/header";
 

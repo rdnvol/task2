@@ -1,5 +1,6 @@
 {%- capture icon_class -%}icon icon--{{ icon }}{%- endcapture -%}
 
+{% capture json_icon %}
 {%- case icon -%}
 
   {%- when 'account' -%}
@@ -33,3 +34,10 @@
   </svg>
 
 {%- endcase -%}
+{% endcapture %}
+
+{% if json %}
+  {{ json_icon | strip | json }}
+{% else %}
+  {{ json_icon }}
+{% endif %}

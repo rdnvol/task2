@@ -118,8 +118,8 @@ button.button-add-new-address {
 
 .order-table {
   width: 100%;
-  border-collapse: collapse;
   margin: 0 0 30px;
+  border-collapse: collapse;
   @include media ("≥desktop") {
     margin: 0 0 60px;
   }
@@ -176,8 +176,8 @@ button.button-add-new-address {
     &::before {
       @include media("≤767px") {
         content: attr(data-label);
-        flex-shrink: 0;
         vertical-align: top;
+        flex-shrink: 0;
         width: 130px;
         padding: 0 10px 0 0;
         font-size: 12px;
@@ -208,8 +208,8 @@ button.button-add-new-address {
   border-bottom: 1px solid $base-border;
   @include media("≥tablet") {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
     padding: 0 0 16px;
   }
 }
@@ -230,8 +230,8 @@ button.button-add-new-address {
 }
 
 .errors {
-  color: #ff0101;
   margin: 0 0 15px;
+  color: #ff0101;
   text-align: center;
 
   ul {

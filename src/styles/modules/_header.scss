@@ -1,5 +1,6 @@
 .header__bar {
   background: $base-body-background;
+
   a {
     color: inherit;
   }
@@ -46,10 +47,10 @@
 }
 
 .logo {
-  padding: 0 10px;
   max-width: $logo-width;
   height: auto;
   margin: 0 auto;
+  padding: 0 10px;
   .justify-content-start & {
     margin: 0;
   }
@@ -81,10 +82,10 @@
   .menu__btn-opener {
     &::after,
     &::before {
-      transform: rotate(45deg);
       top: 50%;
-      left: 25%;
       right: 25%;
+      left: 25%;
+      transform: rotate(45deg);
     }
     &::after {
       transform: rotate(-45deg);
@@ -99,29 +100,29 @@
 .menu__drop {
   position: fixed;
   top: 0;
-  left: 0;
   right: 0;
   bottom: 0;
-  background: $base-body-background;
+  left: 0;
   z-index: 1000;
+  background: $base-body-background;
   @include media("≤1199px") {
-    overflow-y: auto;
-    overflow-x: hidden;
     transform: translateX(-100%);
+    overflow-x: hidden;
+    overflow-y: auto;
   }
   @include media("≥widescreen") {
     position: static;
     height: auto;
     padding: 0;
-    transform: none;
-    border-top: none;
     background: none;
+    border-top: none;
+    transform: none;
   }
 }
 
 .menu__btn-opener {
-  display: block;
   position: relative;
+  display: block;
   width: 40px;
   height: 40px;
   font-size: 0;
@@ -131,12 +132,12 @@
   & span {
     position: absolute;
     top: 50%;
-    left: 20%;
     right: 20%;
+    left: 20%;
     height: 2px;
-    transition: all $animation-speed ease;
     background: $base-body-text;
     border-radius: 2px;
+    transition: all $animation-speed ease;
   }
   &::before,
   &::after {
@@ -217,8 +218,8 @@
           width: 10px;
           height: 10px;
           margin-top: -7px;
-          border-style: solid;
           border-width: 0 0 1px 1px;
+          border-style: solid;
           border-color: $base-body-text;
           transform: rotate(-45deg);
           @include media ("≥widescreen") {
@@ -231,9 +232,9 @@
 
       .menu-accordion__slide {
         @include media ("≥widescreen") {
-          opacity: 1;
           height: auto;
           max-height: calc(100vh - var(--header-height));
+          opacity: 1;
           pointer-events: auto;
           overflow-x: hidden;
           overflow-y: visible;
@@ -306,16 +307,16 @@
 .menu-accordion__slide {
   @include media ("≥widescreen") {
     position: absolute;
-    left: 0;
     top: 100%;
+    left: 0;
+    z-index: 1000;
     width: 100%;
     height: 0;
-    opacity: 0;
     padding: 0 30px 0 15px;
+    background: $base-secondary-background;
+    opacity: 0;
     cursor: default;
     pointer-events: none;
-    background: $base-secondary-background;
-    z-index: 1000;
   }
 
   .container {
@@ -357,8 +358,8 @@
 
 .header__cart-btn__num {
   position: absolute;
-  right: 0;
   top: 1px;
+  right: 0;
   width: 20px;
   height: 20px;
   padding: 2px;

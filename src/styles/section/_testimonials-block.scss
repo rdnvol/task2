@@ -1,10 +1,10 @@
 .testimonials-slider {
 
-  .swiper-wrapper {
+  .splide__track {
     margin: 0 0 50px;
   }
 
-  .swiper-pagination {
+  .splide__pagination {
     position: initial;
   }
 }
@@ -14,7 +14,7 @@
 
   cite {
     &::before {
-      content: '\2014 \0020';
+      content: "\2014 \0020";
     }
   }
 }
@@ -23,9 +23,9 @@
   margin: 0 0 20px;
 
   svg {
+    vertical-align: middle;
     width: 20px;
     height: 20px;
-    vertical-align: middle;
   }
 }
 

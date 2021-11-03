@@ -95,6 +95,15 @@ AssetSizeJavaScript:
   enabled: false
   threshold_in_bytes: 10_000
 
+RemoteAsset:
+  enabled: false
+
+ImgLazyLoading:
+  enabled: false
+
+DeprecateLazysizes:
+  enabled: false
+
 AssetSizeCSS:
   enabled: false
   threshold_in_bytes: 100_000

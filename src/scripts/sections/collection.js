@@ -1,6 +1,6 @@
-import {register} from '@shopify/theme-sections';
+import { register } from '@shopify/theme-sections';
 
-register("collection", {
+register('collection', {
   observeCollectionWrapper() {
     const options = {
       threshold: 1,
@@ -14,10 +14,10 @@ register("collection", {
   },
 
   _showSpinner() {
-    this.spinner.classList.remove("d-none");
+    this.spinner.classList.remove('d-none');
   },
   _hideSpinner() {
-    this.spinner.classList.add("d-none");
+    this.spinner.classList.add('d-none');
   },
 
   _handleIntersection(entries) {
@@ -31,13 +31,13 @@ register("collection", {
   },
 
   initInfiniteScroll() {
-    const isInfinite = this.container.dataset.infinite === "true";
+    const isInfinite = this.container.dataset.infinite === 'true';
     if (!isInfinite) return;
 
     this.page = 2;
-    this.spinnerHolder = this.container.querySelector(".spinner-holder");
-    this.spinner = this.spinnerHolder.querySelector(".spinner");
-    this.productsWrapper = this.container.querySelector(".js-products-wrapper");
+    this.spinnerHolder = this.container.querySelector('.spinner-holder');
+    this.spinner = this.spinnerHolder.querySelector('.spinner');
+    this.productsWrapper = this.container.querySelector('.js-products-wrapper');
     this.observeCollectionWrapper();
   },
 
@@ -48,7 +48,7 @@ register("collection", {
       $(this.productsWrapper).append(nextProducts);
       this.page++;
     } catch (e) {
-      console.error("Error", e);
+      console.error('Error', e);
     }
   },
 
@@ -57,4 +57,3 @@ register("collection", {
     this.initInfiniteScroll();
   },
 });
-

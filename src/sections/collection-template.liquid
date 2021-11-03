@@ -12,8 +12,13 @@
        data-section-type="collection"
        data-infinite="{{ section.settings.enable_infinite }}">
     <div class="container">
-      <div class="text-center">
-        <h1 class="h2">{{ collection.title }}</h1>
+      <div class="page-title-block text-center pt-0">
+        <h1 class="h2 mb-2">{{ collection.title }}</h1>
+        {% if collection.description != blank %}
+          <div class="rte text-size-md">
+            {{ collection.description }}
+          </div>
+        {% endif %}
       </div>
       {% if products.size == 0 %}
         <div class="text-center py-5">

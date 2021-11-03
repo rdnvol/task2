@@ -12,7 +12,6 @@ files:
   ignore:
     - "src/styles/vendors/**/*.scss"
     - "src/styles/base/_mixins.scss"
-    - "src/styles/plugins/_swiper.scss"
     - "src/styles/plugins/_jquery.fancybox.scss"
 options:
   formatter: stylish

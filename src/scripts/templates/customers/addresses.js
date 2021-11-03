@@ -35,23 +35,26 @@ function initializeAddressForm(container) {
   const addressFields = container.querySelector(selectors.addressFields);
   const addressForm = container.querySelector(selectors.addressForm);
   const deleteForm = container.querySelector(selectors.addressDeleteForm);
-  
+
   container.querySelectorAll(selectors.addressToggle).forEach((button) => {
     button.addEventListener('click', () => {
       addressForm.classList.toggle(hideClass);
     });
   });
-  AddressForm(addressFields, 'en')
-    .then(function () {
-      triggerDefaultValues('.address-country-option[data-default]')
-      triggerDefaultValues('.address-province-option[data-default]')
-    });
-  
+  AddressForm(addressFields, 'en').then(function () {
+    triggerDefaultValues('.address-country-option[data-default]');
+    triggerDefaultValues('.address-province-option[data-default]');
+  });
+
   if (deleteForm) {
     deleteForm.addEventListener('submit', (event) => {
       const confirmMessage = deleteForm.getAttribute('data-confirm-message');
-      
-      if (!window.confirm(confirmMessage || 'Are you sure you wish to delete this address?')) {
+
+      if (
+        !window.confirm(
+          confirmMessage || 'Are you sure you wish to delete this address?'
+        )
+      ) {
         event.preventDefault();
       }
     });

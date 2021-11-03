@@ -1,12 +1,12 @@
 {%- comment -%}
   This is a required section for the Shopify Theme Store.
   It is available in the "Header" section in the theme editor.
-  
+
   Theme Store required settings
   - Show announcement
   - Text: message to announce
   - Link: link of the announcement bar
-  
+
   Theme Store optional settings
   - Home page only: only shows on the home page
 {%- endcomment -%}
@@ -26,6 +26,9 @@
               {% endif %}
               {% if section.settings.search_enable %}
                 <a href="{{ routes.search_url }}" class="header__btn d-none d-xs-inline-flex d-lg-none">
+                  <span class="visually-hidden">
+                    Search
+                  </span>
                   {%- render 'icon' with 'search' -%}
                 </a>
               {% endif %}
@@ -87,15 +90,13 @@
                id="Search"
                value="{{ search.terms | escape }}"
                placeholder="{{ 'general.search.placeholder' | t }}">
-        {% comment %}theme-check-disable ConvertIncludeToRender{% endcomment %}
-        {% include "button",
-          element: "button",
-          type: "icon",
+        {% render 'button',
+          element: 'button',
           class: 'btn page-search-form__button d-flex align-items-center',
-          snippet: 'icon',
+          text: 'Search on store',
+          snippet: true,
           icon: 'search'
         %}
-        {% comment %}theme-check-enable{% endcomment %}
       </form>
     {% endif %}
     <ul class="main-menu menu-accordion">
@@ -254,7 +255,7 @@
   "@type": "Organization",
   "name": "{{ shop.name }}",
   {% if section.settings.logo %}
-  {% assign image_size = section.settings.logo.width | append:'x' %}
+    {% assign image_size = section.settings.logo.width | append: 'x' %}
     "logo": "https:{{ section.settings.logo | img_url: image_size }}",
   {% endif %}
   "sameAs": [
@@ -286,7 +287,7 @@
       },
       "url": "{{ shop.url }}{{ page.url }}"
     }
-  
-  
+
+
   </script>
 {% endif %}

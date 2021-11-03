@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist/",
+    "module": "es6",
+    "target": "es5",
+    "jsx": "react",
+    "jsxFactory": "h",
+    "allowJs": true,
+    "moduleResolution": "node",
+    "skipLibCheck": true
+  },
+  "include": [
+    "./src/scripts/**/*.tsx",
+    "./src/scripts/**/*.ts", "src/scripts/redux/store.ts", "src/scripts/templates/product.variants-swatcher.ts", "src/scripts/sections/product-variants-swatcher.tsx", 
+    ]
+}

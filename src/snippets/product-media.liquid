@@ -1,7 +1,7 @@
 {% case media.media_type %}
   {% when 'image' %}
     {%- if main -%}
-      <div class="swiper-slide">
+      <div class="splide__slide">
         <div class="product-gallery__img" data-position="{{ media.position }}">
           {% render
             'image',
@@ -14,7 +14,7 @@
         </div>
       </div>
     {%- else -%}
-      <div class="swiper-slide">
+      <div class="splide__slide">
         <div class="product-gallery-thumbs__img">
           {% render
             'image',
@@ -28,21 +28,21 @@
       </div>
     {%- endif -%}
   {% when 'external_video' %}
-    <div class="swiper-slide" style="padding-top: {{ 1 | divided_by: media.aspect_ratio | times: 100 }}%;" data-media-id="{{ media.id }}">
+    <div class="splide__slide" style="padding-top: {{ 1 | divided_by: media.aspect_ratio | times: 100 }}%;" data-media-id="{{ media.id }}">
       {{ media | external_video_tag }}
     </div>
   {% when 'video' %}
     {%- if main -%}
-      <div class="swiper-slide">
+      <div class="splide__slide">
         <div class="jquery-background-video-wrapper">
-          {{ media | video_tag: controls: true | replace:'<video', '<video class="jquery-background-video" autoplay loop' }}
-          <div class="video-overlay" style="background-image:url({{media.preview_image | img_url:'565x'}});"></div>
+          {{ media | video_tag: controls: true | replace: '<video', '<video class="jquery-background-video" autoplay loop' }}
+          <div class="video-overlay" style="background-image: url({{ media.preview_image | img_url: '565x' }});"></div>
         </div>
       </div>
     {%- else -%}
-      <div class="swiper-slide">
+      <div class="splide__slide">
         <div class="product-block__gallery__switcher">
-          <img src="{{media.preview_image | img_url:'200x'}}" alt="Hayden Expanding Floss">
+          <img src="{{media.preview_image | img_url: '200x'}}" alt="Hayden Expanding Floss">
         </div>
       </div>
     {%- endif -%}

@@ -205,7 +205,6 @@
       "collection-template": {
         "type": "collection-template",
         "settings": {
-          "limit": 16
         }
       },
       "1601544214239": {
@@ -303,7 +302,8 @@
           "1601544716980-3",
           "1601544716980-4"
         ],
-        "settings": {}
+        "settings": {
+        }
       },
       "1601545071577": {
         "type": "home-plans",
@@ -397,7 +397,9 @@
   },
   "presets": {
     "Default": {
-      "content_for_index": []
+      "content_for_index": [
+
+      ]
     }
   }
 }

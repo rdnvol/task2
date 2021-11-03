@@ -39,8 +39,8 @@
 .footer__title {
   margin: 0 0 12px;
   font-size: $font-size-base;
-  font-weight: 600;
   line-height: 1.5;
+  font-weight: 600;
   letter-spacing: 0.02em;
 }
 
@@ -66,8 +66,8 @@
 
   .footer__form__button {
     position: absolute;
-    right: 1px;
     top: 1px;
+    right: 1px;
     bottom: 1px;
     display: flex;
     align-items: center;
@@ -89,19 +89,19 @@
     }
 
     svg {
-      fill: $base-icons;
       width: 16px;
       height: 12px;
+      fill: $base-icons;
     }
   }
 }
 
 .footer__panel {
   padding: 20px 0;
-  color: $base-body-text;
   font-size: calc(#{$font-size-base} - 4px);
   line-height: 1.25;
   letter-spacing: 0.05em;
+  color: $base-body-text;
   text-transform: uppercase;
   @include media("≥desktop") {
     padding: 10px 0;
