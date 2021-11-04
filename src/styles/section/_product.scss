@@ -178,8 +178,11 @@
 
 .fancybox__content {
   &.size-chart {
-    max-width: 700px;
+    max-width: 100%;
     padding: 20px;
+    @include media ("≥tablet") {
+      max-width: 700px;
+    }
     @include media ("≥desktop") {
       padding: 36px;
     }

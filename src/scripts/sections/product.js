@@ -210,6 +210,7 @@ export class Product {
     Fancybox.bind('.size-chart-link', {
       closeButton: 'outside',
       showClass: 'size-chart',
+      dragToClose: false,
       on: {
         reveal: () => {
           let tableContainer = document.querySelector('.fancybox__content main#main .container'),
