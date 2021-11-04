@@ -12,7 +12,7 @@
 .container {
   max-width: 1360px;
   margin: 0 auto;
-  padding: 0 15px;
+  padding: 0 calc(#{$grid-gutter-width} / 2);
 }
 
 ins {
@@ -138,7 +138,7 @@ ins {
     &:hover {
 
       svg {
-        fill: $blue;
+        fill: $color-accent;
       }
     }
   }
