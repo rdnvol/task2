@@ -176,9 +176,22 @@
   text-decoration: none;
 }
 
-// .shopify-payment-button__button--unbranded {
-//   display: none;
-// }
+.fancybox__content {
+  &.size-chart {
+    max-width: 100%;
+    padding: 20px;
+    @include media ("≥tablet") {
+      max-width: 700px;
+    }
+    @include media ("≥desktop") {
+      padding: 36px;
+    }
+
+    .page-title-block {
+      padding-top: 0;
+    }
+  }
+}
 
 .shopify-payment-button__button--hidden {
   display: none !important;
