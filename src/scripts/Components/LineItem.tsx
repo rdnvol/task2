@@ -100,11 +100,7 @@ const LineItem: FunctionComponent<PropsType> = ({ item }) => {
     }
   };
 
-  const renderPrice = ({
-    original_price,
-    price,
-    final_price
-  }) => {
+  const renderPrice = ({ original_price, price, final_price }) => {
     if (original_price !== final_price) {
       return (
         <Fragment>
@@ -215,7 +211,7 @@ const LineItem: FunctionComponent<PropsType> = ({ item }) => {
           />
         </span>
       </td>
-      <td>{formatMoney(item.line_price, theme.moneyFormat)}</td>
+      <td>{formatMoney(item.final_line_price, theme.moneyFormat)}</td>
     </tr>
   );
 };

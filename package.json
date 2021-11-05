@@ -14,7 +14,7 @@
     "js": "cross-env NODE_ENV=production webpack --progress",
     "js:zip": "cross-env NODE_ENV=production ZIP=true webpack --progress",
     "watch:js:dev": "cross-env NODE_ENV=development webpack --progress --watch ",
-    "watch:theme:dev:win": "cd ./dist && theme open --vars=\"../.env\" && theme watch --vars=\"../.env\"",
+    "watch:theme:dev:win": "cd ./dist && theme open --vars=\"../.env\" && theme watch --allow-live --vars=\"../.env\"",
     "theme:deploy": "cd ./dist && theme deploy --vars=\"../.env\" --allow-live",
     "theme:open": "cd ./src && theme open --vars=\"../.env\"",
     "build": "cross-env DEPLOY=false npm run js",
