@@ -6,9 +6,7 @@ import { useSelector } from '../Components/hook';
 import theme from '../helpers/themeSettings';
 
 const CartCount: FunctionComponent = () => {
-  const {
-    cart: { item_count },
-  } = useSelector(cartSelector);
+  const { item_count } = useSelector(cartSelector);
 
   const renderCount = () => {
     return <span className="header__cart-btn__num">{item_count}</span>;

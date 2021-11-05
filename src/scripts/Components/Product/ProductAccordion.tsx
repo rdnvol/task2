@@ -1,9 +1,15 @@
 //@ts-ignore
 import { h, FunctionComponent } from 'preact';
 import { useEffect } from 'preact/hooks';
+
+import { ProductType } from '../../types';
 import '../../helpers/jquery.plugins';
 
-const ProductAccordion: FunctionComponent = () => {
+interface PropsType {
+  product: ProductType;
+}
+
+const ProductAccordion: FunctionComponent<PropsType> = ({ product }) => {
   const initAccordion = () => {
     //@ts-ignore
     ResponsiveHelper.addRange({
@@ -49,24 +55,10 @@ const ProductAccordion: FunctionComponent = () => {
           Product Details
         </a>
         <div class="accordion__slide">
-          <div class="accordion__block">
-            <div class="title-1 mb-2">DJI Mavic Air 2 Key Features</div>
-            <ul>
-              <li>8K Hyperlapse Time-Lapse Video</li>
-              <li>8K Hyperlapse Time-Lapse Video</li>
-              <li>8K Hyperlapse Time-Lapse Video</li>
-              <li>8K Hyperlapse Time-Lapse Video</li>
-            </ul>
-            <div class="body-2">
-              <p>
-                A midrange drone with flagship features, the DJI Mavic Air 2
-                combines a foldable and portable frame with a high-end camera
-                system. The 3-axis gimbal sports a 1/2" CMOS sensor capable of
-                capturing 8K Hyperlapse time-lapse shots, 4K60 video, 240 fps
-                slow-motion 1080p video, and up to 48MP stills.
-              </p>
-            </div>
-          </div>
+          <div
+            class="accordion__block"
+            dangerouslySetInnerHTML={{ __html: product.description }}
+          ></div>
         </div>
       </li>
       <li>

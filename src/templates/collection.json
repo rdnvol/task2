@@ -1,4 +1,5 @@
-{ "name": "Collection",
+{
+  "name": "Collection",
   "sections": {
     "main": {
       "type": "collection-template"

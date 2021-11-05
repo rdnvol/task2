@@ -280,7 +280,7 @@ Renders an image
       assign t_srcset = t_src | append: ", " | append: t_src_2x | append: ' 2x'
 
       assign m_src = src_mobile | img_url: m, crop: crop
-      assign m_src_2x = src_mobile | img_url: m, scale:2, crop: crop
+      assign m_src_2x = src_mobile | img_url: m, scale: 2, crop: crop
       assign m_srcset = m_src | append: ", " | append: m_src_2x | append: ' 2x'
     else
       assign d_src = src | img_url: d

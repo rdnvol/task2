@@ -1,3 +1,4 @@
 src/assets/static/
 dist/
+src/script/helpers/jquery.plugins.js
 node_modules/

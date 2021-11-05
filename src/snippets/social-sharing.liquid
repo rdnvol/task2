@@ -5,7 +5,7 @@
 	</li>
 	<li>
 		{% if settings.share_facebook %}
-			<a target="_blank" href="//www.facebook.com/sharer.php?u={{ shop.url | append: share_permalink }}">
+			<a target="_blank" href="//www.facebook.com/sharer.php?u={{ routes.root_url | append: share_permalink }}">
 				{% render 'icon-facebook' %}
 				<span class="accessibility" aria-hidden="true">{{ 'general.social.share_on_facebook' | t }}</span>
 				<span class="accessibility">{{ 'general.social.alt_text.share_on_facebook' | t }}</span>
