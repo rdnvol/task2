@@ -1,6 +1,11 @@
 @charset 'UTF-8';
 
-/* Import your files */
+// import tailwind files
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+// import your files
 
 $breakpoints: (
   "xs-phone": 320px,
