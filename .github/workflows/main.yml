@@ -41,6 +41,7 @@ jobs:
           lhci_github_token: ${{ secrets.LHCI_GITHUB_TOKEN }}
           lhci_min_score_performance: 0.3
           lhci_min_score_accessibility: 0.3
+          theme_root: ./dist
   theme-check:
     runs-on: ubuntu-latest
     steps:
