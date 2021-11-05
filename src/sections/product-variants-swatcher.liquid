@@ -12,6 +12,8 @@
     {% render 'product-json' %}
 </script>
 
+{% render "section-json", settings_id: "product-settings" %}
+
 {% render 'schema' %}
 
 {% schema %}
@@ -23,6 +25,22 @@
     "id": "show_share_buttons",
     "label": "Show social sharing buttons",
     "default": true
+    },
+    {
+      "type": "select",
+      "id": "swatcher_type",
+      "label": "Swatchers Type",
+      "options": [
+        {
+          "value": "variants",
+          "label": "Variants"
+        },
+        {
+          "value": "products",
+          "label": "Products"
+        }
+      ],
+      "default": "products"
     }
     ]
 }
