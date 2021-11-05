@@ -22,8 +22,9 @@ register('collection', {
 
   _handleIntersection(entries) {
     entries.map(async (entry) => {
+      const productsCount = this.container.dataset.productsQuantity;
       if (entry.isIntersecting) {
-        this._showSpinner();
+        this.productsQuantity < +productsCount ? this._showSpinner(): false
         await this.fetchNextPage();
         this._hideSpinner();
       }
@@ -35,6 +36,7 @@ register('collection', {
     if (!isInfinite) return;
 
     this.page = 2;
+    this.productsQuantity = this.container.querySelector('.js-products-wrapper').children.length;
     this.spinnerHolder = this.container.querySelector('.spinner-holder');
     this.spinner = this.spinnerHolder.querySelector('.spinner');
     this.productsWrapper = this.container.querySelector('.js-products-wrapper');
@@ -45,6 +47,10 @@ register('collection', {
     const url = location.href + `?view=pagination&page=${this.page}`;
     try {
       const nextProducts = await (await fetch(url)).text();
+      const loadedProductsLength = $(nextProducts).filter((index, item) => {
+        return index % 2 === 0
+      }).length;
+      this.productsQuantity += loadedProductsLength;
       $(this.productsWrapper).append(nextProducts);
       this.page++;
     } catch (e) {
