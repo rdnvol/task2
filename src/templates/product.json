@@ -12,11 +12,14 @@
         "size_chart_url": "shopify://pages/size-chart"
       },
       "blocks": {
+        "vendor": {
+          "type": "vendor"
+        },
         "title": {
           "type": "title"
         }
       },
-      "block_order": ["title"]
+      "block_order": ["vendor", "title"]
     },
     "product-recommendations": {
       "type": "product-recommendations",
