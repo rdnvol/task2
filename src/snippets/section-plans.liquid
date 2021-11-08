@@ -9,10 +9,10 @@
       </div>
     {% endif %}
     {% if section.blocks.size > 0 %}
-      <div class="plans__items-row">
-        <div class="row justify-content-md-center">
+      <div class="plans__items-row flow-root">
+        <div class="md:flex md:flex-wrap md:justify-center">
           {% for block in section.blocks %}
-            <div class="col-md-4" {{ block.shopify_attributes }}>
+            <div class="md:w-4/12 md:px-4" {{ block.shopify_attributes }}>
               <div class="plan-item text-center">
                 {% if block.settings.subtitle != blank %}
                   <div class="mb-2">{{ block.settings.subtitle }}</div>
