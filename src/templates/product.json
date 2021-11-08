@@ -10,7 +10,13 @@
         "show_share_buttons": true,
         "show_size_chart": true,
         "size_chart_url": "shopify://pages/size-chart"
-      }
+      },
+      "blocks": {
+        "title": {
+          "type": "title"
+        }
+      },
+      "block_order": ["title"]
     },
     "product-recommendations": {
       "type": "product-recommendations",

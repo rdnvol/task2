@@ -36,11 +36,16 @@
         {% endunless %}
       </div>
       <div class="col-md-6">
-        {% unless section_onboarding %}
-          <h1 class="product__title">{{ product.title }}</h1>
-        {% else %}
-          <h1 class="product__title">{{ 'homepage.onboarding.product_title' | t }}</h1>
-        {% endunless %}
+        {% for block in section.blocks %}
+           {% case block.type %}
+             {% when "title" %}
+              {% unless section_onboarding %}
+                  <h1 class="product__title" {{ block.shopify_attributes }}>{{ product.title }}</h1>
+              {% else %}
+                  <h1 class="product__title">{{ 'homepage.onboarding.product_title' | t }}</h1>
+              {% endunless %}    
+           {% endcase %}
+        {% endfor %}
         {% if section.settings.show_vendor %}
           <div class="product__vendor mb-1 mb-md-2">{{ product.vendor }}</div>
         {% endif %}

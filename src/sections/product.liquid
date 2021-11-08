@@ -6,7 +6,7 @@
 
 {% schema %}
 {
-  "name": "Product",
+  "name": "Product Information",
   "settings": [
     {
       "type": "checkbox",
@@ -48,6 +48,16 @@
       "type": "url",
       "id": "size_chart_url",
       "label": "Size chart url"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "@app"
+    },
+    {
+      "type": "title",
+      "name": "Title",
+      "limit": 1
     }
   ]
 }
