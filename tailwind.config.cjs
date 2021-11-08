@@ -1,7 +1,7 @@
 module.exports = {
   // mode: 'jit',
   purge: {
-    enabled: false,
+    enabled: true,
     content: [
       './**/*.liquid',
       './**/Components/*.js',
