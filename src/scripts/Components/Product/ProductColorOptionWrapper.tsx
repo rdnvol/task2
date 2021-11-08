@@ -29,7 +29,7 @@ const ProductColorOptionWrapper: FunctionComponent<Props> = ({
   setQuantity,
 }) => {
   const { swatchProducts, swatchTypes } = useContext(SwatcherProductsContext);
-  const { settings, chosenProduct, setChosenProduct } =
+  const { settings, chosenProduct, setChosenProduct, enhanceProduct } =
     useContext(ProductContext);
 
   const renderVariants = useMemo(() => {
@@ -37,6 +37,7 @@ const ProductColorOptionWrapper: FunctionComponent<Props> = ({
 
     return option.values.map((color, idx) => (
       <ProductColorOptionItem
+        enhanceProduct={enhanceProduct}
         chosenVariant={chosenVariant}
         variants={variants}
         settings={settings}
@@ -65,6 +66,7 @@ const ProductColorOptionWrapper: FunctionComponent<Props> = ({
 
       return (
         <ProductColorOptionItem
+          enhanceProduct={enhanceProduct}
           product={product}
           chosenProduct={chosenProduct}
           settings={settings}

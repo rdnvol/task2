@@ -25,7 +25,7 @@ const Product: FunctionComponent<Props> = ({
   const { setSwatchProducts, swatchTypes } = useContext(
     SwatcherProductsContext
   );
-  const { setSettings, setChosenProduct, chosenProduct } =
+  const { setSettings, setChosenProduct, chosenProduct, enhanceProduct } =
     useContext(ProductContext);
   const [{ response }, doFetch] = useFetch();
 
@@ -56,19 +56,7 @@ const Product: FunctionComponent<Props> = ({
   useEffect(() => {
     if (!product || settings.swatcher_type !== swatchTypes.products) return;
 
-    let swatchName = product.tags.find((tag) => tag.includes('color_name'));
-
-    if (swatchName) swatchName = swatchName.split(':')[1];
-
-    let swatchColor = product.tags.find((tag) => tag.includes('color'));
-
-    if (swatchColor) swatchColor = swatchColor.split(':').slice(1).join(':');
-
-    setChosenProduct({
-      ...product,
-      swatchName,
-      swatchColor,
-    });
+    enhanceProduct(product);
   }, [product]);
 
   return (

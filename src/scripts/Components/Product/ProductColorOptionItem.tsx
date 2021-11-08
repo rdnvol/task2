@@ -20,6 +20,7 @@ interface Props {
   setChosenProduct?: StateUpdater<any>;
   setChosenVariant?: StateUpdater<any>;
   setQuantity?: StateUpdater<any>;
+  enhanceProduct?: StateUpdater<any>;
 }
 
 const ProductColorOptionItem: FunctionComponent<Props> = ({
@@ -37,6 +38,7 @@ const ProductColorOptionItem: FunctionComponent<Props> = ({
   product,
   chosenProduct,
   setChosenVariant,
+  enhanceProduct,
 }) => {
   const renderSwatchColor = () => {
     const imageReg = /(https?:\/\/.*\.(?:png|jpg))/i;
@@ -66,22 +68,10 @@ const ProductColorOptionItem: FunctionComponent<Props> = ({
 
   const handleChange = useCallback(() => {
     if (settings.swatcher_type === swatchTypes.products && !variants) {
-      let swatchName = product?.tags.find((tag) => tag.includes('color_name'));
-
-      if (swatchName) swatchName = swatchName.split(':')[1];
-
-      let swatchColor = product?.tags.find((tag) => tag.includes('color'));
-
-      if (swatchColor) swatchColor = swatchColor.split(':').slice(1).join(':');
-
       return () => {
         window.history.replaceState({}, '', product?.handle);
 
-        setChosenProduct({
-          ...product,
-          swatchName,
-          swatchColor,
-        });
+        enhanceProduct(product);
 
         setChosenVariant(product?.first_available_variant);
         setQuantity(1);

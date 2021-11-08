@@ -8,17 +8,46 @@ interface PropTypes {
   children: ComponentChildren;
 }
 
+interface EnchancedProductType extends ProductType {
+  swatchName: string;
+  swatchColor: string;
+}
+
 export const ProductContext = createContext(null);
 
 const { Provider } = ProductContext;
 
 const ProductProvider: FunctionComponent<PropTypes> = ({ children }) => {
   const [settings, setSettings] = useState(null);
-  const [chosenProduct, setChosenProduct] = useState<ProductType | null>(null);
+  const [chosenProduct, setChosenProduct] = useState<
+    ProductType | EnchancedProductType | null
+  >(null);
+
+  const enhanceProduct = (product: EnchancedProductType) => {
+    let swatchName = product.tags.find((tag) => tag.includes('color_name'));
+
+    if (swatchName) swatchName = swatchName.split(':')[1];
+
+    let swatchColor = product.tags.find((tag) => tag.includes('color'));
+
+    if (swatchColor) swatchColor = swatchColor.split(':').slice(1).join(':');
+
+    setChosenProduct({
+      ...product,
+      swatchName,
+      swatchColor,
+    });
+  };
 
   return (
     <Provider
-      value={{ settings, chosenProduct, setSettings, setChosenProduct }}
+      value={{
+        settings,
+        chosenProduct,
+        setSettings,
+        setChosenProduct,
+        enhanceProduct,
+      }}
     >
       {children}
     </Provider>

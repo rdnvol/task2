@@ -48,8 +48,6 @@ const ProductGallery: FunctionComponent<PropTypes> = ({
       isNavigation: true,
     });
 
-    splide.on('lazyload:loaded', () => {});
-
     splide.sync(thumbnails);
     splide.mount();
     thumbnails.mount();
@@ -65,55 +63,40 @@ const ProductGallery: FunctionComponent<PropTypes> = ({
     };
   }, [chosenProduct]);
 
+  const images =
+    settings?.swatcher_type === swatchTypes.variants
+      ? media
+      : chosenProduct?.media;
+
   return (
     <Fragment>
       <div class="product-gallery-splide">
-        <div class="splide__track" style={{ height: 600 }}>
+        <div class="splide__track">
           <div class="splide__list">
-            {settings?.swatcher_type === swatchTypes.variants
-              ? media.map((mediaItem, idx) => (
-                  <div class="splide__slide">
-                    <div class="product-gallery__img">
-                      <Image
-                        key={mediaItem.aspect_ratio + idx}
-                        src={mediaItem.src}
-                        sizes={['635x791', '290x364']}
-                        ratio={mediaItem.aspect_ratio}
-                      />
-                    </div>
-                  </div>
-                ))
-              : chosenProduct?.media.map((mediaItem, idx) => (
-                  <div class="splide__slide">
-                    <div class="product-gallery__img">
-                      <Image
-                        key={mediaItem.aspect_ratio + idx}
-                        src={mediaItem.src}
-                        sizes={['635x791', '290x364']}
-                        ratio={mediaItem.aspect_ratio}
-                      />
-                    </div>
-                  </div>
-                ))}
+            {images?.map((mediaItem, idx) => (
+              <div class="splide__slide">
+                <div class="product-gallery__img">
+                  <Image
+                    key={mediaItem.aspect_ratio + idx}
+                    src={mediaItem.src}
+                    sizes={['635x791', '290x364']}
+                    ratio={mediaItem.aspect_ratio}
+                  />
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
       <div class="splide product-gallery-thumbs">
         <div className="splide__track">
           <div className="splide__list align-items-center">
-            {settings?.swatcher_type === swatchTypes.variants
-              ? media.map((mediaItem, idx) => (
-                  <ProductThumbnail
-                    key={mediaItem.aspect_ratio + idx}
-                    media={mediaItem}
-                  />
-                ))
-              : chosenProduct?.media.map((mediaItem, idx) => (
-                  <ProductThumbnail
-                    key={mediaItem.aspect_ratio + idx}
-                    media={mediaItem}
-                  />
-                ))}
+            {images?.map((mediaItem, idx) => (
+              <ProductThumbnail
+                key={mediaItem.aspect_ratio + idx}
+                media={mediaItem}
+              />
+            ))}
           </div>
         </div>
       </div>
