@@ -162,7 +162,6 @@ export class Product {
       const imagePosition = variant.featured_media
         ? variant.featured_media.position - 1
         : 0;
-      console.log('slide', imagePosition)
       this.splide.go(imagePosition);
     }
   }
