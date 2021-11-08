@@ -11,8 +11,8 @@
   <div class="container">
     <div class="row">
       <div class="col-md-9 col-lg-6 mx-auto">
-        {% if section.settings.section_title != blank %}
-          <h2 class="text-center">{{ section.settings.section_title | escape }}</h2>
+        {% if section.settings.title != blank %}
+          <h2 class="text-center">{{ section.settings.title | escape }}</h2>
         {% endif %}
         {% assign form_id = 'newsletter-form-' | append: section.id %}
         {% form 'customer', id: form_id, class: "newsletter-form" %}
@@ -48,7 +48,7 @@
     "settings": [
       {
         "type": "text",
-        "id": "section_title",
+        "id": "title",
         "label": "Heading",
         "default": "A short sentence describing what someone will receive by subscribing"
       },
