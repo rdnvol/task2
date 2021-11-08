@@ -91,15 +91,6 @@ const ProductForm: FunctionComponent<Props> = ({ product }) => {
     setVariantOptions(optionNames);
   }, [product.options_with_values]);
 
-  function updateUrlParameter(param, value) {
-    const regExp = new RegExp(param + '(.+?)(&|$)', 'g');
-    const newUrl = window.location.href.replace(
-      regExp,
-      param + '=' + value + '$2'
-    );
-    window.history.pushState('', '', newUrl);
-  }
-
   useEffect(() => {
     const keys = Object.keys(variantOptions);
     const values = Object.values(variantOptions);

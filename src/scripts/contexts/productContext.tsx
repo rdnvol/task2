@@ -23,7 +23,7 @@ const ProductProvider: FunctionComponent<PropTypes> = ({ children }) => {
     ProductType | EnchancedProductType | null
   >(null);
 
-  const enhanceProduct = (product: EnchancedProductType) => {
+  const getSwatchData = (product: ProductType) => {
     let swatchName = product.tags.find((tag) => tag.includes('color_name'));
 
     if (swatchName) swatchName = swatchName.split(':')[1];
@@ -31,6 +31,12 @@ const ProductProvider: FunctionComponent<PropTypes> = ({ children }) => {
     let swatchColor = product.tags.find((tag) => tag.includes('color'));
 
     if (swatchColor) swatchColor = swatchColor.split(':').slice(1).join(':');
+
+    return { swatchName, swatchColor };
+  };
+
+  const enhanceProduct = (product: EnchancedProductType) => {
+    const { swatchName, swatchColor } = getSwatchData(product);
 
     setChosenProduct({
       ...product,
@@ -47,6 +53,7 @@ const ProductProvider: FunctionComponent<PropTypes> = ({ children }) => {
         setSettings,
         setChosenProduct,
         enhanceProduct,
+        getSwatchData,
       }}
     >
       {children}

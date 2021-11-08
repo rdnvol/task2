@@ -29,8 +29,13 @@ const ProductColorOptionWrapper: FunctionComponent<Props> = ({
   setQuantity,
 }) => {
   const { swatchProducts, swatchTypes } = useContext(SwatcherProductsContext);
-  const { settings, chosenProduct, setChosenProduct, enhanceProduct } =
-    useContext(ProductContext);
+  const {
+    settings,
+    chosenProduct,
+    setChosenProduct,
+    enhanceProduct,
+    getSwatchData,
+  } = useContext(ProductContext);
 
   const renderVariants = useMemo(() => {
     if (!option?.values?.length) return;
@@ -56,13 +61,7 @@ const ProductColorOptionWrapper: FunctionComponent<Props> = ({
     if (!swatchProducts) return;
 
     return swatchProducts.map((product, idx) => {
-      let swatchName = product.tags.find((tag) => tag.includes('color_name'));
-
-      if (swatchName) swatchName = swatchName.split(':')[1];
-
-      let swatchColor = product.tags.find((tag) => tag.includes('color'));
-
-      if (swatchColor) swatchColor = swatchColor.split(':').slice(1).join(':');
+      const { swatchName, swatchColor } = getSwatchData(product);
 
       return (
         <ProductColorOptionItem
