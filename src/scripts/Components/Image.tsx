@@ -14,22 +14,24 @@ export const Image: FunctionComponent<ImageType> = ({
   const height: number = Math.ceil(width / ratio);
   const placeholderSize: string = `${width}x${height}`;
 
+  const imageSrc = src ?? theme.placeholder_image;
+
   return (
     <picture>
       {sizes.length > 0 &&
         sizes.map((size) => (
           <source
-            data-srcset={resizeImageSrcset(src, size)}
+            data-srcset={resizeImageSrcset(imageSrc, size)}
             media={`(max-width: ${size}px)`}
             srcSet={theme.placeholder_data}
           />
         ))}
       <source
-        data-srcset={resizeImageSrcset(src, sizes[0])}
+        data-srcset={resizeImageSrcset(imageSrc, sizes[0])}
         srcSet={theme.placeholder_data}
       />
       <img
-        data-src={resizeImage(src, sizes[0])}
+        data-src={resizeImage(imageSrc, sizes[0])}
         className="lazyload"
         data-sizes="auto"
         alt={alt}
