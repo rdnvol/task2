@@ -17,9 +17,12 @@
         },
         "title": {
           "type": "title"
+        },
+        "price": {
+          "type": "price"
         }
       },
-      "block_order": ["vendor", "title"]
+      "block_order": ["vendor", "title", "price"]
     },
     "product-recommendations": {
       "type": "product-recommendations",
