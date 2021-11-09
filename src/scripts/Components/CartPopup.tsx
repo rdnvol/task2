@@ -6,6 +6,7 @@ import { h, render, FunctionComponent } from 'preact';
 import { useEffect, useRef } from 'preact/hooks';
 import { Provider } from 'react-redux';
 
+
 import { useSelector, useDispatch } from '../redux/hook';
 import { cartSelector } from '../redux/selectors';
 import { closePopup } from '../redux/features/cart/cartSlice';

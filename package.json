@@ -5,7 +5,6 @@
   "description": "Original theme for projects from scratch.",
   "author": "BA",
   "sasslintConfig": ".",
-  "type": "module",
   "engines": {
     "node": ">=10.0.0",
     "npm": ">=6.0.0"
@@ -59,7 +58,6 @@
     "@tailwindcss/aspect-ratio": "^0.2.1",
     "awesome-debounce-promise": "^2.1.0",
     "axios": "^0.21.2",
-    "browser-sync": "^2.26.14",
     "debounce": "^1.2.0",
     "dotenv": "^8.2.0",
     "esm": "^3.2.25",
@@ -81,7 +79,6 @@
     "redux-zero": "^5.1.7",
     "stylelint": "^14.0.0",
     "stylelint-config-sass-guidelines": "^8.0.0",
-    "stylelint-config-shopify": "^7.4.0",
     "stylelint-config-standard": "^23.0.0",
     "stylelint-config-standard-scss": "^2.0.0",
     "stylelint-declaration-block-no-ignored-properties": "^2.4.0",

@@ -16,10 +16,10 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import FileManagerPlugin from 'filemanager-webpack-plugin';
 import TerserJSPlugin from 'terser-webpack-plugin';
 import FriendlyErrorsWebpackPlugin from 'friendly-errors-webpack-plugin';
-import getTemplateEntrypoints from './lib/utilities/get-template-entrypoints.js';
-import getLayoutEntrypoints from './lib/utilities/get-layout-entrypoints.js';
-import getChunkName from './lib/utilities/get-chunk-name.js';
-import { settings } from './lib/config.js';
+import getTemplateEntrypoints from './lib/utilities/get-template-entrypoints.mjs';
+import getLayoutEntrypoints from './lib/utilities/get-layout-entrypoints.mjs';
+import getChunkName from './lib/utilities/get-chunk-name.mjs';
+import { settings } from './lib/config.mjs';
 import StylelintPlugin from 'stylelint-webpack-plugin'
 
 dotenv.config();

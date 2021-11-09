@@ -301,6 +301,7 @@
       "size_chart": "Size Chart",
       "size": "size",
       "color_title": "Color"
+      "starting_at": "From"
     }
   },
   "gift_cards": {

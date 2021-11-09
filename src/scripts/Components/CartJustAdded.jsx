@@ -18,6 +18,7 @@ class CartJustAdded extends Component {
 
   render({ justAdded }) {
     const { featured_image, product_title, quantity, id } = justAdded;
+
     return (
       <div className="cart-popup__item">
         <div className="row align-items-center">
