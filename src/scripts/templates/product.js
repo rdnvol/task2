@@ -3,5 +3,6 @@ import 'Sections/product';
 import 'Sections/related-product';
 import 'Sections/iframe-video';
 import 'Sections/testimonials';
+import 'Sections/slideshow';
 
 load('*');
