@@ -299,7 +299,8 @@
       "add_to_cart": "Add to Cart",
       "dynamic_button_placeholder": "Buy it now",
       "size_chart": "Size Chart",
-      "size": "size"
+      "size": "size",
+      "starting_at": "From"
     }
   },
   "gift_cards": {

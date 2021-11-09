@@ -15,9 +15,13 @@
           <div class="splide product-gallery">
             <div class="splide__track">
               <div class="splide__list align-items-center">
-                {% for media in product.media %}
-                  {% render 'product-media' media: media, main: true %}
-                {% endfor %}
+                {% if product.media.size > 0 %}
+                  {% for media in product.media %}
+                    {% render 'product-media' media: media, main: true %}
+                  {% endfor %}
+                {% else %}
+                  {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                {% endif %}
               </div>
             </div>
           </div>

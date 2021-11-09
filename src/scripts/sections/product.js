@@ -74,6 +74,7 @@ export class Product {
 
   initGallery() {
     document.addEventListener('DOMContentLoaded', () => {
+      const slidesLength = this.wrapper.find('.splide__slide').length;
       this.splide = new Splide(this.wrapper.find('.product-gallery')[0], {
         type: 'slide',
         perPage: 1,
@@ -93,10 +94,11 @@ export class Product {
           isNavigation: true,
         }
       );
-
-      this.splide.sync(thumbnails);
+      if (slidesLength > 1) {
+        this.splide.sync(thumbnails);
+        thumbnails.mount();
+      }
       this.splide.mount();
-      thumbnails.mount();
     });
   }
 
