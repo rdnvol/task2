@@ -1,9 +1,13 @@
-import { trapFocus as trapFocusShopify } from '@shopify/theme-a11y';
+import {
+  trapFocus as trapFocusShopify,
+  removeTrapFocus,
+} from '@shopify/theme-a11y';
 import { h, render, FunctionComponent } from 'preact';
 import { useEffect, useRef } from 'preact/hooks';
 import { Provider } from 'react-redux';
 
-import { useSelector, useDispatch } from '../Components/hook';
+
+import { useSelector, useDispatch } from '../redux/hook';
 import { cartSelector } from '../redux/selectors';
 import { closePopup } from '../redux/features/cart/cartSlice';
 import theme from '../helpers/themeSettings';
@@ -24,6 +28,10 @@ const CartPopup: FunctionComponent = () => {
     if (cart.popupActive && cartRef.current) {
       trapFocus();
     }
+
+    return () => {
+      removeTrapFocus();
+    };
   }, [cart.popupActive, cartRef]);
 
   const trapFocus = () => {

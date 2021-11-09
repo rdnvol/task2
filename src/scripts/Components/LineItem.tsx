@@ -1,7 +1,7 @@
 import { h, Fragment, FunctionComponent } from 'preact';
 import { useRef } from 'preact/hooks';
 import { formatMoney } from '@shopify/theme-currency/currency';
-import { useDispatch } from './hook';
+import { useDispatch } from '../redux/hook';
 import { debounce } from 'debounce';
 
 import { CartItem } from '../types/index';

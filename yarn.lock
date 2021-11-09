@@ -1504,11 +1504,22 @@
   resolved "https://registry.yarnpkg.com/@shopify/theme-sections/-/theme-sections-3.1.0.tgz#6b2859c032cf7bbeddfd62cbee85ec4b97a31fe5"
   integrity sha512-BXH+vZRdmhcLu6TODxHrSVumclG/ePNoDS7vPjHzTdfZZKUSmxXhPEkR38OWnTVqvbpJ1ccW/qdXZS8UtP7/LA==
 
+"@splidejs/react-splide@^0.6.7":
+  version "0.6.7"
+  resolved "https://registry.yarnpkg.com/@splidejs/react-splide/-/react-splide-0.6.7.tgz#07b6ea98a78b330199764842ebff30410a66dd8b"
+  integrity sha512-gd7oAMi4jMBwY/R1OzqJgsrMxepfzooiPzwtAIkJtu89+idLluXl+JmigGc8yv7a7x2o20fE1Aw06suO49JVGQ==
+  dependencies:
+    "@splidejs/splide" "^3.2.2"
+
 "@splidejs/splide@^3.2.1":
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/@splidejs/splide/-/splide-3.2.1.tgz#f270ee96fb954f2addb38b16de12ae948e80a90c"
   integrity sha512-P6gBp+JtsG67ZnHWxzA8jGc7rZQ1nls7CDJQkQeexxXdFu+4myouRIzXhooU/uWdQDNEQ4ttgC3F1+T1tgstuw==
 
+"@splidejs/splide@^3.2.2":
+  version "3.2.2"
+  resolved "https://registry.yarnpkg.com/@splidejs/splide/-/splide-3.2.2.tgz#8851442d298017d5b79e48a9bf7ea77fb1268590"
+  integrity sha512-FRYPlQLPmCiO3GzHg8Y8wAm2Aqg8IT0ScSVCw/pxbQ9wFZviCYkon3WaHBFtewSp8n8+GmdHr3HgH2th+Pr8hQ==
 "@tailwindcss/aspect-ratio@^0.2.1":
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/@tailwindcss/aspect-ratio/-/aspect-ratio-0.2.1.tgz#a7ce776688b8218d9559a6918f0bccc58f0f16dd"

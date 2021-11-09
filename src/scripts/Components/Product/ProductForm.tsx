@@ -1,8 +1,8 @@
 import { h, FunctionComponent, Fragment } from 'preact';
-import { useMemo, useEffect, useState } from 'preact/hooks';
+import { useMemo, useEffect, useState, useContext } from 'preact/hooks';
 import { formatMoney } from '@shopify/theme-currency/currency';
 
-import { useSelector, useDispatch } from '../hook';
+import { useDispatch } from '../../redux/hook';
 import { addItem } from '../../redux/features/cart/cartSlice';
 import { ProductType, AddItemType } from '../../types';
 import ProductOptionSelection from './ProductOptionSelection';
@@ -10,6 +10,8 @@ import ProductColorOptionWrapper from './ProductColorOptionWrapper';
 import ProductQuantity from './ProductQuantity';
 import theme from '../../helpers/themeSettings';
 import Button from '../Button';
+import { SwatcherProductsContext } from '../../contexts/swatcherProductsContext';
+import { ProductContext } from '../../contexts/productContext';
 
 interface Props {
   product: ProductType;
@@ -17,10 +19,13 @@ interface Props {
 
 const ProductForm: FunctionComponent<Props> = ({ product }) => {
   const dispatch = useDispatch();
+  const { swatcherProducts, swatchTypes } = useContext(SwatcherProductsContext);
+  const { settings } = useContext(ProductContext);
   const colorOpt = 'color';
   const titleOpt = 'title';
   const [variantOptions, setVariantOptions] = useState({});
   const [chosenVariant, setChosenVariant] = useState(null);
+  const [chosenProduct, setChosenProduct] = useState(null);
   const [productQuantity, setProductQuantity] = useState(1);
 
   const productPrice = useMemo(() => {
@@ -48,11 +53,8 @@ const ProductForm: FunctionComponent<Props> = ({ product }) => {
   }, [product]);
 
   const productRenderCheck = useMemo(() => {
-    return (
-      product?.options_with_values?.length &&
-      product?.options_with_values[0].name.toLowerCase() !== titleOpt
-    );
-  }, [product]);
+    return product?.options_with_values?.length;
+  }, [product.options_with_values]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -99,6 +101,10 @@ const ProductForm: FunctionComponent<Props> = ({ product }) => {
       const variant = product?.variants?.find(
         (variant) => JSON.stringify(variant.options) === JSON.stringify(values)
       );
+
+      const url = new URL(window.location as any);
+      url.searchParams.set('variant', `${variant?.id}`);
+      window.history.pushState({}, '', url);
       setChosenVariant(variant);
     }
   }, [variantOptions]);
@@ -141,9 +147,11 @@ const ProductForm: FunctionComponent<Props> = ({ product }) => {
 
     if (!chosenVariant || !paymentButtonSelect) return;
 
-    Array.apply(null, paymentButtonSelect.options).find(
+    const searchingOption = Array.apply(null, paymentButtonSelect.options).find(
       (option) => parseInt(option.value) === chosenVariant.id
-    ).selected = 'true';
+    );
+
+    if (searchingOption) searchingOption.selected = 'true';
   }, [chosenVariant]);
 
   return (
@@ -153,38 +161,25 @@ const ProductForm: FunctionComponent<Props> = ({ product }) => {
           {productPrice}
         </div>
       </div>
-      {/* {!product.has_only_default_variant &&
-        product.options_with_values.map((option, index) => (
-          <div class="js">
-            {index > 0 ? (
-              option.values.map((value) => (
-                <Fragment>
-                  <input
-                    type="radio"
-                    id={`Option${option.position}-${value}`}
-                    name={`options[${option.name}]" value="${value}`}
-                    checked={option.selected_value == value}
-                  />
-                  <label for={`Option${option.position}-${value}`}>
-                    {value}
-                  </label>
-                </Fragment>
-              ))
-            ) : (
-              <label for={`Option${option.position}`}>{option.name}</label>
-            )}
-          </div>
-        ))} */}
       <div class="product__row">
+        {settings?.swatcher_type === swatchTypes.products && (
+          <ProductColorOptionWrapper
+            setQuantity={setProductQuantity}
+            setChosenVariant={setChosenVariant}
+          />
+        )}
         {productRenderCheck &&
           product?.options_with_values?.length &&
           product?.options_with_values.map((option, idx) =>
             option.name.toLowerCase() === colorOpt ? (
               <ProductColorOptionWrapper
+                variants={true}
+                chosenProduct={chosenProduct}
                 key={idx}
                 option={option}
                 setVariantOptions={setVariantOptions}
                 variantOptions={variantOptions}
+                chosenVariant={chosenVariant}
               />
             ) : (
               <ProductOptionSelection
