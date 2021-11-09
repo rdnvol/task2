@@ -23,9 +23,18 @@
         },
         "variant_picker": {
           "type": "variant_picker"
+        },
+        "quantity_selector": {
+          "type": "quantity_selector"
         }
       },
-      "block_order": ["vendor", "title", "price", "variant_picker"]
+      "block_order": [
+        "vendor",
+        "title",
+        "price",
+        "variant_picker",
+        "quantity_selector"
+      ]
     },
     "product-recommendations": {
       "type": "product-recommendations",
