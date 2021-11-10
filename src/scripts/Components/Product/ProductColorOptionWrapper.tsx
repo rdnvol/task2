@@ -103,9 +103,11 @@ const ProductColorOptionWrapper: FunctionComponent<Props> = ({
             </Fragment>
           )}
         </div>
-        {settings?.swatcher_type === swatchTypes.products && !variants
-          ? renderProducts
-          : renderVariants}
+        <div class="flex flex-wrap">
+          {settings?.swatcher_type === swatchTypes.products && !variants
+            ? renderProducts
+            : renderVariants}
+        </div>
       </div>
     </div>
     // )
