@@ -40,14 +40,20 @@
         {% endunless %}
       </div>
       <div class="col-md-6">
-        {% unless section_onboarding %}
-          <h1 class="product__title">{{ product.title }}</h1>
-        {% else %}
-          <h1 class="product__title">{{ 'homepage.onboarding.product_title' | t }}</h1>
-        {% endunless %}
-        {% if section.settings.show_vendor %}
-          <div class="product__vendor mb-1 mb-md-2">{{ product.vendor }}</div>
-        {% endif %}
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when "title" %}
+              {% unless section_onboarding %}
+                  <h1 class="product__title" {{ block.shopify_attributes }}>{{ product.title }}</h1>
+              {% else %}
+                  <h1 class="product__title">{{ 'homepage.onboarding.product_title' | t }}</h1>
+              {% endunless %} 
+            {% when "vendor" %}   
+              {% if section.settings.show_vendor %}
+                <div class="product__vendor mb-1 mb-md-2" {{ block.shopify_attributes }}>{{ product.vendor }}</div>
+              {% endif %}
+          {% endcase %}
+        {% endfor %}
         {% unless section_onboarding %}
           {% render 'product-form',
             product: product,

@@ -1,43 +1,110 @@
 import { h, FunctionComponent } from 'preact';
-import { StateUpdater } from 'preact/hooks';
+import { StateUpdater, useMemo, useCallback } from 'preact/hooks';
 
 import { Image } from '../Image';
+import { ProductType, VariantType } from '../../types/index';
 import theme from '../../helpers/themeSettings';
 
 interface Props {
+  chosenVariant?: VariantType;
+  variants?: boolean;
+  product?: ProductType;
+  settings?: { [key: string]: string };
+  swatchTypes?: { variants: string; products?: string };
   color: string;
   idx: number;
   name: string;
-  variantOptions: object;
-  setVariantOptions: StateUpdater<any>;
+  variantOptions?: object;
+  chosenProduct?: ProductType;
+  setVariantOptions?: StateUpdater<any>;
+  setChosenProduct?: StateUpdater<any>;
+  setChosenVariant?: StateUpdater<any>;
+  setQuantity?: StateUpdater<any>;
+  enhanceProduct?: StateUpdater<any>;
 }
 
 const ProductColorOptionItem: FunctionComponent<Props> = ({
+  chosenVariant,
+  variants,
   color,
   idx,
   name,
   variantOptions,
   setVariantOptions,
+  setChosenProduct,
+  setQuantity,
+  swatchTypes,
+  settings,
+  product,
+  chosenProduct,
+  setChosenVariant,
+  enhanceProduct,
 }) => {
+  const renderSwatchColor = () => {
+    const imageReg = /(https?:\/\/.*\.(?:png|jpg))/i;
+    let isImage = imageReg.test(color);
+
+    return isImage ? (
+      <Image src={color} sizes={['26x26', '26x26']} />
+    ) : (
+      <span
+        style={{
+          width: '25px',
+          height: '25px',
+          backgroundColor: color.replace(' ', ''),
+          display: 'inline-block',
+        }}
+      ></span>
+    );
+  };
+
+  const isChecked = useMemo(() => {
+    if (settings?.swatcher_type === swatchTypes.products && !variants) {
+      return product?.id === chosenProduct?.id;
+    }
+
+    return variantOptions && variantOptions[name] === color;
+  }, [settings, product, chosenProduct, variantOptions]);
+
+  const handleChange = useCallback(() => {
+    if (settings.swatcher_type === swatchTypes.products && !variants) {
+      return () => {
+        window.history.replaceState({}, '', product?.handle);
+
+        enhanceProduct(product);
+
+        setChosenVariant(product?.first_available_variant);
+        setQuantity(1);
+      };
+    }
+
+    return () => {
+      setVariantOptions({ ...variantOptions, [name]: color });
+    };
+  }, [swatchTypes, product?.handle, variantOptions, chosenVariant]);
+
   return (
     <div class="input-holder custom-input custom-input--colors d-inline-flex">
       <input
         id={`filter-field-colors-01-${idx}-${name}`}
         type="radio"
         name={`filter-field-colors-${idx}-${name}`}
-        onChange={() => setVariantOptions({ ...variantOptions, [name]: color })}
-        checked={variantOptions && variantOptions[name] === color}
+        onChange={handleChange()}
+        checked={isChecked}
       />
       <label for={`filter-field-colors-01-${idx}-${name}`} class="custom-label">
-        <span
-          style={{
-            width: '25px',
-            height: '25px',
-            backgroundColor: color.replace(' ', ''),
-            display: 'inline-block',
-          }}
-        ></span>
-        {/* <Image src={theme.placeholder_image} sizes={['26x26', '26x26']} /> */}
+        {settings?.swatcher_type === swatchTypes.variants ? (
+          <span
+            style={{
+              width: '25px',
+              height: '25px',
+              backgroundColor: color.replace(' ', ''),
+              display: 'inline-block',
+            }}
+          ></span>
+        ) : (
+          renderSwatchColor()
+        )}
       </label>
     </div>
   );
