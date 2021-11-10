@@ -27,6 +27,11 @@ register('product', {
     // Do something when a section instance is loaded
   },
 
+  onBlockSelect: function (e) {
+    this._initProduct(this.container.dataset.handle);
+    // Do something when a section block is selected
+  },
+
   // Shortcut function called when a section unloaded by the Theme Editor 'shopify:section:unload' event.
   onUnload: function () {
     // Do something when a section instance is unloaded
@@ -215,21 +220,22 @@ export class Product {
       dragToClose: false,
       on: {
         reveal: () => {
-          let tableContainer = document.querySelector('.fancybox__content main#main .container'),
-          sizeChartBtn = document.querySelector('.size-chart-link'),
-          fancyboxParent = document.querySelector('.fancybox__content');
+          let tableContainer = document.querySelector(
+              '.fancybox__content main#main .container'
+            ),
+            sizeChartBtn = document.querySelector('.size-chart-link'),
+            fancyboxParent = document.querySelector('.fancybox__content');
           draftSizeChartElem(fancyboxParent, tableContainer, sizeChartBtn);
         },
       },
     });
     function draftSizeChartElem(fancyboxParent, tableContainer, sizeChartBtn) {
       let tableWrapper = document.createElement('div');
-      let parentElement =
-        sizeChartBtn.parentNode;
-        wrap(tableContainer.querySelector('.rte table'), tableWrapper)
+      let parentElement = sizeChartBtn.parentNode;
+      wrap(tableContainer.querySelector('.rte table'), tableWrapper);
       parentElement.insertBefore(tableWrapper, sizeChartBtn);
       tableWrapper.classList.add('table-holder');
-      tableContainer.removeAttribute('class')
+      tableContainer.removeAttribute('class');
       tableContainer.querySelector('.rte').appendChild(tableWrapper);
       fancyboxParent.innerHTML = '';
       fancyboxParent.appendChild(tableContainer);
@@ -238,6 +244,6 @@ export class Product {
     function wrap(el, wrapper) {
       el.parentNode.insertBefore(wrapper, el);
       wrapper.appendChild(el);
-  }
+    }
   }
 }

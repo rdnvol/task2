@@ -2,6 +2,12 @@
 {% if product == empty %}
   {%- assign section_onboarding = true -%}
 {% endif %}
+{%- assign current_variant = product.selected_or_first_available_variant -%}
+{%- assign show_size_chart = section.settings.show_size_chart -%}
+{%- assign size_chart_url = section.settings.size_chart_url -%}
+{%- assign show_variant_label = section.settings.show_variant_label -%}
+{%- assign product_form_id = 'product-form-' | append: section.id -%}
+{% assign show_quantity = section.settings.show_quantity %}
 
 <section data-section-id="{{ section.id }}"
          class="section page-section"
@@ -52,11 +58,109 @@
               {% if section.settings.show_vendor %}
                 <div class="product__vendor mb-1 mb-md-2" {{ block.shopify_attributes }}>{{ product.vendor }}</div>
               {% endif %}
+            {% when "price" %}
+             <div>Price test</div>
+              <div class="product__price" {{ block.shopify_attributes }}>
+                <div class="product__price__box d-flex flex-wrap align-items-center" data-price-wrapper>
+                  {% if product.compare_at_price_max > product.price %}
+                    <ins data-product-price>
+                      {{ current_variant.price | money }}
+                    </ins>
+                    <span class="accessibility" data-compare-text>{{ 'products.product.regular_price' | t }}</span>
+                    {% if current_variant.compare_at_price > current_variant.price %}
+                      <del data-compare-price>
+                        {{ current_variant.compare_at_price | money }}
+                      </del>
+                    {% endif %}
+                  {% else %}
+                    <div data-product-price>
+                      {{ current_variant.price | money }}
+                    </div>
+                  {% endif %}
+                </div>
+                {{ form | payment_terms }}
+                {% comment %}
+                  <div class="product__price__text">
+                  <p>Tax included.</p>
+                </div>
+                {% endcomment %}
+              </div>
+            {% when "variant_picker" %}
+              {% unless product.has_only_default_variant %}
+              <variant-selects class="no-js-hidden" data-section="{{ section.id }}" data-url="{{ product.url }}" {{ block.shopify_attributes }}></variant-selects>
+              {% for option in product.options_with_values %}
+                <div class="row mb-2">
+                  <div class="col-sm-7 col-lg-5">
+                    {% assign size_option = 'products.product.size' | t | downcase %}
+                    {% assign options = product.options | downcase %}
+                    {% if forloop.first and show_size_chart and size_chart_url != blank and options contains size_option %}
+                      <a class="size-chart-link"
+                        data-type="ajax"
+                        href="{{ size_chart_url }}">{{ 'products.product.size_chart' | t }}</a>
+                    {% endif %}
+                    <label class="product__label" for="Option{{ option.position }}">
+                      {% if show_variant_label %}
+                        {{ option.name }}
+                      {% endif %}
+                    </label>
+                    <select
+                      class="product__select w-100"
+                      id="Option{{ option.position }}"
+                      name="options[{{ option.name | escape }}]"
+                      form="{{ product_form_id }}"
+                      >
+                      {% for value in option.values %}
+                        <option
+                                value="{{ value | escape }}"
+                                {% if option.selected_value == value %}selected="selected"{% endif %}>
+                          {{ value }}
+                        </option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                </div>
+              {% endfor %}
+              <script type="application/json">
+                {{ product.variants | json }}
+              </script>
+            </variant-selects>
+            {% endunless %}
+            {% when "quantity_selector" %}
+            {% if show_quantity %}
+              <div class="row">
+                <div class="col-sm-7 col-lg-5">
+                  <label class="product__label" for="Quantity">{{ 'products.product.quantity' | t }}</label>
+                  <input type="number" id="Quantity" class="w-100" name="quantity" value="1" min="1">
+                </div>
+              </div>
+            {% endif %}
+            <noscript class="product-form__noscript-wrapper-{{ section.id }}">
+              <div class="product-form__input{% if product.has_only_default_variant %} hidden{% endif %}">
+                <label class="form__label" for="Variants-{{ section.id }}">{{ 'products.product.product_variants' | t }}</label>
+                <div class="select">
+                  <select name="id" id="Variants-{{ section.id }}" class="select__select" form="{{ product_form_id }}">
+                    {%- for variant in product.variants -%}
+                      <option
+                        {% if variant == product.selected_or_first_available_variant %}selected="selected"{% endif %}
+                        {% if variant.available == false %}disabled{% endif %}
+                        value="{{ variant.id }}"
+                      >
+                        {{ variant.title }}
+                        {%- if variant.available == false %} - {{ 'products.product.sold_out' | t }}{% endif %}
+                        - {{ variant.price | money | strip_html }}
+                      </option>
+                    {%- endfor -%}
+                  </select>
+                  {% render 'icon-caret' %}
+                </div>
+              </div>
+            </noscript>
           {% endcase %}
         {% endfor %}
         {% unless section_onboarding %}
           {% render 'product-form',
             product: product,
+            blocks: section.blocks,
             show_quantity: section.settings.show_quantity,
             show_variant_label: section.settings.show_variant_label,
             show_size_chart: section.settings.show_size_chart,
