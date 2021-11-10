@@ -7,6 +7,7 @@
 {%- assign size_chart_url = section.settings.size_chart_url -%}
 {%- assign show_variant_label = section.settings.show_variant_label -%}
 {%- assign product_form_id = 'product-form-' | append: section.id -%}
+{% assign show_quantity = section.settings.show_quantity %}
 
 <section data-section-id="{{ section.id }}"
          class="section page-section"
@@ -123,6 +124,15 @@
               </script>
             </variant-selects>
             {% endunless %}
+            {% when "quantity_selector" %}
+            {% if show_quantity %}
+              <div class="row">
+                <div class="col-sm-7 col-lg-5">
+                  <label class="product__label" for="Quantity">{{ 'products.product.quantity' | t }}</label>
+                  <input type="number" id="Quantity" class="w-100" name="quantity" value="1" min="1">
+                </div>
+              </div>
+            {% endif %}
             <noscript class="product-form__noscript-wrapper-{{ section.id }}">
               <div class="product-form__input{% if product.has_only_default_variant %} hidden{% endif %}">
                 <label class="form__label" for="Variants-{{ section.id }}">{{ 'products.product.product_variants' | t }}</label>
