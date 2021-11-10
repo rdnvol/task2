@@ -39,7 +39,8 @@
     },
     product: {
       regular_price: {{ 'products.product.regular_price' | t | json }},
-      quantity: {{ 'products.product.quantity' | t | json }}
+      quantity: {{ 'products.product.quantity' | t | json }},
+      color_title: {{ 'products.product.color_title' | t | json }}
     },
     placeholder_data: "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==",
     placeholder_image: "{{ 'img-placeholder.png' | asset_img_url: 'master' }}",

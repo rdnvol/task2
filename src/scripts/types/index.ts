@@ -91,7 +91,7 @@ export interface ProductType {
   selected_selling_plan_allocation: string | null;
   selected_variant: VariantType | null;
   selling_plan_groups: string[] | [];
-  tags: string[] | [];
+  tags: string[];
   template_suffix: string | null;
   title: string;
   type: string;
