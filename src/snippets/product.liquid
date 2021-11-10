@@ -59,7 +59,6 @@
                 <div class="product__vendor mb-1 mb-md-2" {{ block.shopify_attributes }}>{{ product.vendor }}</div>
               {% endif %}
             {% when "price" %}
-             <div>Price test</div>
               <div class="product__price" {{ block.shopify_attributes }}>
                 <div class="product__price__box d-flex flex-wrap align-items-center" data-price-wrapper>
                   {% if product.compare_at_price_max > product.price %}
