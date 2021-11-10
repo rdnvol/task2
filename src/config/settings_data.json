@@ -94,7 +94,7 @@
         "settings": {
           "image": "shopify://shop_images/Untitled_design.png",
           "title": "Image with text overlay",
-          "alignment": "justify-content-start align-items-center",
+          "alignment": "items-center justify-start",
           "alignment_text": "text-center",
           "text": "<p>Use overlay text to give your customers insight into your brand. Select imagery and text that relates to your style and story.</p>",
           "color": "#000000",

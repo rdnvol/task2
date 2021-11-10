@@ -2,7 +2,7 @@ import { h, FunctionComponent, render } from 'preact';
 import { Provider } from 'react-redux';
 import { formatMoney } from '@shopify/theme-currency/currency';
 
-import { useSelector } from '../Components/hook';
+import { useSelector } from '../redux/hook';
 import { cartSelector } from '../redux/selectors';
 import theme from '../helpers/themeSettings';
 import LineItem from './LineItem';
