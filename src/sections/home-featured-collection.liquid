@@ -32,7 +32,7 @@
     </div>
     {%- if section.settings.show_view_all -%}
       {% assign button_label = 'collections.general.view_all' | t %}
-      <div class="pt-sm-4 text-center">
+      <div class="sm:pt-4 text-center">
         {% render 'button',
           href: collection.url,
           text: button_label

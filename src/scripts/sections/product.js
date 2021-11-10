@@ -25,6 +25,11 @@ register('product', {
     // Do something when a section instance is loaded
   },
 
+  onBlockSelect: function (e) {
+    this._initProduct(this.container.dataset.handle);
+    // Do something when a section block is selected
+  },
+
   // Shortcut function called when a section unloaded by the Theme Editor 'shopify:section:unload' event.
   onUnload: function () {
     // Do something when a section instance is unloaded
