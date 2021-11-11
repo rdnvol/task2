@@ -4,12 +4,12 @@
       {% if section.settings.title != blank %}
         <h2 class="text-center">{{ section.settings.title }}</h2>
       {% endif %}
-      <div class="row mb-n4">
+      <div class="grid md:grid-cols-3 gap-4">
         {% for block in section.blocks %}
           {% assign collection = collections[block.settings.collection] %}
           {% if collection != blank %}
-            <div class="col-md-4 mb-4" {{ block.shopify_attributes }}>
-              <a href="{{ collection.url }}" class="collection-list-item d-block position-relative">
+            <div {{ block.shopify_attributes }}>
+              <a href="{{ collection.url }}" class="collection-list-item block relative">
                 <div class="collection-list-item__img image-container">
                   {% render
                     'image',
@@ -20,7 +20,7 @@
                     placeholder: 'img-placeholder.png',
                   %}
                 </div>
-                <div class="collection-list-item__text-box d-flex align-items-center justify-content-center text-center customizable-base-text">
+                <div class="collection-list-item__text-box flex items-center justify-center text-center customizable-base-text">
                   <h3 class="collection-list-item__title mb-0">{{ collection.title }}</h3>
                 </div>
               </a>
