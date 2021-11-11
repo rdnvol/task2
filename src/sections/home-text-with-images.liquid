@@ -4,9 +4,9 @@
       {% if section.settings.title != blank %}
         <h2 class="text-center">{{ section.settings.title }}</h2>
       {% endif %}
-      <div class="row mb-n5">
+      <div class="md:grid md:grid-cols-3 md:gap-8 -mb-5 md:mb-0">
         {% for block in section.blocks %}
-          <div class="col-md-4 mb-5">
+          <div class="mb-5 md:mb-0">
             <div class="mb-2 image-container">
               {% if block.settings.image != blank %}
                 {% render
