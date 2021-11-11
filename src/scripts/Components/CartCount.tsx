@@ -2,7 +2,7 @@ import { h, render, FunctionComponent } from 'preact';
 import { Provider } from 'react-redux';
 
 import { cartSelector } from '../redux/selectors';
-import { useSelector } from '../Components/hook';
+import { useSelector } from '../redux/hook';
 import theme from '../helpers/themeSettings';
 
 const CartCount: FunctionComponent = () => {

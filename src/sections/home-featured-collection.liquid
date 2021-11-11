@@ -4,11 +4,11 @@
 
   case section.settings.grid
     when 2
-      assign grid_item_width = 'col-sm-6 col-lg-6'
+      assign grid_item_width = 'grid-cols-1 sm:grid-cols-2'
     when 3
-      assign grid_item_width = 'col-sm-6 col-lg-4'
+      assign grid_item_width = 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'
     when 4
-      assign grid_item_width = 'col-sm-6 col-lg-3'
+      assign grid_item_width = 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4'
   endcase
 
 %}
@@ -16,23 +16,23 @@
 <div class="section">
   <div class="container">
     <h2 class="text-center">{{ section.settings.title }}</h2>
-    <div class="row">
+    <div class="grid {{ grid_item_width }} gap-8 gap-y-0">
       {% liquid
         for product in collection.products limit: product_limit
-          render "product-card", product: product, grid_item_width: grid_item_width
+          render "product-card", product: product, grid_item_width: ''
         else
           for i in (1..product_limit)
             capture current
               cycle 1, 2, 3, 4, 5, 6
             endcapture
-            render "product-card--empty", index: current, grid_item_width: grid_item_width
+            render "product-card--empty", index: current, grid_item_width: ''
           endfor
         endfor
       %}
     </div>
     {%- if section.settings.show_view_all -%}
       {% assign button_label = 'collections.general.view_all' | t %}
-      <div class="pt-sm-4 text-center">
+      <div class="sm:pt-4 text-center">
         {% render 'button',
           href: collection.url,
           text: button_label

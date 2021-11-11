@@ -325,8 +325,8 @@ a.button {
 
     .custom-input--colors & {
       top: 0;
-      width: 26px;
-      height: 26px;
+      width: 100%;
+      height: 100%;
       background: none;
       border-color: transparent;
       border-radius: 0;
@@ -343,10 +343,23 @@ a.button {
   }
 
   .custom-input--colors & {
+    display: block;
     width: 26px;
     height: 26px;
     padding: 0;
     background: none;
+    overflow: hidden;
+
+    > span {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    img {
+      height: 100%;
+      object-fit: cover;
+    }
 
     picture {
       display: flex;
@@ -354,10 +367,6 @@ a.button {
       justify-content: center;
       width: 100%;
       height: 100%;
-
-      img {
-        height: 100%;
-      }
     }
   }
 

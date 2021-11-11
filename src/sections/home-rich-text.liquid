@@ -1,9 +1,9 @@
 {% if section.settings.title != blank or section.settings.copy != blank %}
   <section class="section">
     <div class="container">
-      <div class="row">
-        <div class="col-md-8 mx-auto">
-          <div class="rich-text-section rich-text-section--size-sm rte text-center">
+      <div class="md:flex md:justify-center">
+        <div class="md:w-8/12">
+          <div class="rich-text-section rte text-center">
             {% if section.settings.title != blank %}
               <h2 class="h3">{{ section.settings.title }}</h2>
             {% endif %}

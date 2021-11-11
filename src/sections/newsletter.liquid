@@ -9,10 +9,12 @@
 
 <div class="section">
   <div class="container">
-    <div class="row">
-      <div class="col-md-9 col-lg-6 mx-auto">
+    <div class="md:flex">
+      <div class="md:w-9/12 lg:w-6/12 mx-auto">
         {% if section.settings.subheading != blank %}
-          <h2 class="text-center">{{ section.settings.subheading | escape }}</h2>
+          <h2 class="text-center">
+            {{ section.settings.subheading | escape }}
+          </h2>
         {% endif %}
         {% assign form_id = 'newsletter-form-' | append: section.id %}
         {% form 'customer', id: form_id, class: "newsletter-form" %}
@@ -21,8 +23,8 @@
             <p>{{ 'general.newsletter_form.confirmation' | t }}</p>
           {% else %}
             <input type="hidden" name="contact[tags]" value="newsletter">
-            <div class="d-sm-flex align-items-sm-center">
-              <div class="input-holder w-100 mb-sm-0">
+            <div class="sm:flex sm:items-center">
+              <div class="input-holder w-100 sm:mb-0">
                 <input type="email"
                   name="contact[email]"
                   id="Email"
@@ -48,14 +50,8 @@
     "settings": [
       {
         "type": "text",
-        "id": "section_title",
+        "id": "title",
         "label": "Heading",
-        "default": "Subscribe to our newsletter"
-      },
-      {
-        "type": "text",
-        "id": "subheading",
-        "label": "Subheading",
         "default": "A short sentence describing what someone will receive by subscribing"
       },
       {

@@ -10,7 +10,35 @@
         "show_share_buttons": true,
         "show_size_chart": true,
         "size_chart_url": "shopify://pages/size-chart"
-      }
+      },
+      "blocks": {
+        "vendor": {
+          "type": "vendor"
+        },
+        "title": {
+          "type": "title"
+        },
+        "price": {
+          "type": "price"
+        },
+        "variant_picker": {
+          "type": "variant_picker"
+        },
+        "quantity_selector": {
+          "type": "quantity_selector"
+        },
+        "description": {
+          "type": "description"
+        }
+      },
+      "block_order": [
+        "vendor",
+        "title",
+        "price",
+        "variant_picker",
+        "quantity_selector",
+        "description"
+      ]
     },
     "product-recommendations": {
       "type": "product-recommendations",

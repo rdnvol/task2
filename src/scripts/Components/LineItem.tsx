@@ -1,7 +1,7 @@
 import { h, Fragment, FunctionComponent } from 'preact';
 import { useRef } from 'preact/hooks';
 import { formatMoney } from '@shopify/theme-currency/currency';
-import { useDispatch } from './hook';
+import { useDispatch } from '../redux/hook';
 import { debounce } from 'debounce';
 
 import { CartItem } from '../types/index';
@@ -10,6 +10,7 @@ import {
   removeItem as removeItemAction,
   updateItem as updateItemAction,
 } from '../redux/features/cart/cartSlice';
+import { Image } from '../Components/Image';
 import theme from '../helpers/themeSettings';
 
 interface PropsType {
@@ -64,24 +65,7 @@ const LineItem: FunctionComponent<PropsType> = ({ item }) => {
     return (
       <div className="cart__product-img">
         <a href={url}>
-          <picture>
-            <source
-              data-srcset={resizeImageSrcset(image, '71x88 ')}
-              media="(max-width: 767px)"
-              srcSet={theme.placeholder_data}
-            />
-            <source
-              data-srcset={resizeImageSrcset(image, '71x88')}
-              srcSet={theme.placeholder_data}
-            />
-            <img
-              data-src={resizeImage(image, '71x88')}
-              className="lazyload"
-              data-sizes="auto"
-              alt={title}
-              src={theme.placeholder_data}
-            />
-          </picture>
+          <Image src={image} sizes={['71x88', '71x88']} />
         </a>
       </div>
     );
