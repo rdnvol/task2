@@ -2,7 +2,7 @@
 {%- capture payment_icon_markup -%}
   {%- if show_payment_icons -%}
     <div>
-      <div class="d-flex flex-wrap align-items-center justify-content-center pt-3">
+      <div class="flex flex-wrap items-center justify-center pt-3">
         {%- for type in shop.enabled_payment_types -%}
           <div class="mx-3 mb-3">
             {{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}
@@ -16,11 +16,11 @@
   <div class="container">
     {%- if section.blocks.size != 0 -%}
       <div class="footer__holder">
-        <div class="row">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-8">
           {%- for block in section.blocks -%}
             {%- case block.type -%}
             {%- when 'text' -%}
-              <div class="col-sm-12 col-lg-3 mb-6 mb-lg-0">
+              <div class="sm:col-span-full lg:col-span-1 mb-6 lg:mb-0">
                 {% if block.settings.icon != blank %}
                   <a href="{{ routes.root_url }}" rel="nofollow" class="footer__logo">
                     <img data-src="{{ block.settings.icon | asset_url }}"
@@ -32,7 +32,7 @@
               </div>
             {%- when 'newsletter' -%}
               <div
-                  class="col-sm-6 col-md-4 col-lg-3 {% unless forloop.last %}mb-6 mb-lg-0{% endunless %}" {{ block.shopify_attributes }}>
+                  class="{% unless forloop.last %}mb-6 lg:mb-0{% endunless %}" {{ block.shopify_attributes }}>
                 <h3 class="footer__title h5">{{ block.settings.title }}</h3>
                 <p>{{ 'general.newsletter_form.newsletter_email' | t }}</p>
                 {% form 'customer', novalidate: 'novalidate', class: "footer__form pt-2" %}
@@ -42,7 +42,7 @@
                       {{ 'general.newsletter_form.confirmation' | t }}
                     </p>
                   {%- endif -%}
-                  <div class="d-flex align-items-center position-relative">
+                  <div class="position-relative">
                     <input type="email" name="contact[email]"
                            placeholder="{{ 'general.newsletter_form.email_placeholder' | t }}"
                            class="footer__form__input">
@@ -57,7 +57,7 @@
               </div>
             {%- when 'link_list' -%}
             {%- assign footer_linklist = block.settings.menu -%}
-              <div class="col-sm-6 col-md-4 col-lg-3 {% unless forloop.last %}mb-6 mb-lg-0{% endunless %}">
+              <div class="{% unless forloop.last %}mb-6 lg:mb-0{% endunless %}">
                 <nav class="footer__nav">
                   {%- if block.settings.title != blank -%}
                     <h3 class="footer__title h5">{{ block.settings.title }}</h3>
@@ -74,38 +74,36 @@
         </div>
       </div>
     {%- endif -%}
-    <div class="row">
-      <div class="col-12 d-flex justify-content-center pt-3">
-        {% if section.settings.currency_switcher_enable %}
-          {% form 'currency', class: 'pr-3' %}
-            <label for="field-currency-01" class="accessibility">
-              Select currency
-            </label>
-            <select name="currency" class="w-100 mb-2" id="field-currency-01">
-              {% for currency in shop.enabled_currencies %}
-                {% if currency == cart.currency %}
-                  <option selected="true">{{ currency.iso_code }} {{ currency.symbol }}</option>
-                {% else %}
-                  <option>{{ currency.iso_code }}</option>
-                {% endif %}
-              {% endfor %}
-            </select>
-          {% endform %}
-        {% endif %}
-        {% if section.settings.language_switcher_enable %}
-          <div class="locales-wrapper">
-            <label for="field-locales-01" class="accessibility">
-              Select locales
-            </label>
-            <select name="locales" class="w-100 mb-2" id="field-locales-01">
-              {% for locale in shop.published_locales %}
-                <option {% if request.locale.name == locale.name %}selected{% endif %}
-                        data-path="{{ request.path }}" value="{{ locale.root_url }}">{{ locale.name }}</option>
-              {% endfor %}
-            </select>
-          </div>
-        {% endif %}
-      </div>
+    <div class="flex justify-center pt-3">
+      {% if section.settings.currency_switcher_enable %}
+        {% form 'currency', class: 'pr-3' %}
+          <label for="field-currency-01" class="accessibility">
+            Select currency
+          </label>
+          <select name="currency" class="w-100 mb-2" id="field-currency-01">
+            {% for currency in shop.enabled_currencies %}
+              {% if currency == cart.currency %}
+                <option selected="true">{{ currency.iso_code }} {{ currency.symbol }}</option>
+              {% else %}
+                <option>{{ currency.iso_code }}</option>
+              {% endif %}
+            {% endfor %}
+          </select>
+        {% endform %}
+      {% endif %}
+      {% if section.settings.language_switcher_enable %}
+        <div class="locales-wrapper">
+          <label for="field-locales-01" class="accessibility">
+            Select locales
+          </label>
+          <select name="locales" class="w-100 mb-2" id="field-locales-01">
+            {% for locale in shop.published_locales %}
+              <option {% if request.locale.name == locale.name %}selected{% endif %}
+                      data-path="{{ request.path }}" value="{{ locale.root_url }}">{{ locale.name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+      {% endif %}
     </div>
     <div class="footer__panel text-center">
       {% capture copy %}
@@ -113,7 +111,7 @@
       {% endcapture %}
       {% assign first_part = copy | prepend: '<p>' %}
       {% assign rights_text = section.settings.rights_text | replace: '<p>', first_part %}
-      <div {% if show_payment_icons %}class="mb-4 mb-md-2"{% endif %}>
+      <div {% if show_payment_icons %}class="mb-4 md:mb-2"{% endif %}>
         {% if section.settings.rights_text != blank %}{{ rights_text }}{% else %}{{ copy }}{% endif %}
       </div>
       {{ payment_icon_markup }}
