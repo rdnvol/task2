@@ -1,9 +1,9 @@
 <section class="section map-section">
-  <div class="container-fluid px-md-0">
-    <div class="map-section__block d-md-flex align-items-md-center position-relative">
+  <div class="container-fluid md:px-0">
+    <div class="map-section__block relative md:flex md:items-center">
       <div class="container">
-        <div class="row">
-          <div class="col-md-5 col-lg-4">
+        <div class="md:flex">
+          <div class="md:w-5/12 lg:w-4/12">
             {% if section.settings.title != blank or section.settings.address != blank or section.settings.map_url != blank %}
               <div class="map-section__content text-center">
                 {% if section.settings.title != blank %}
@@ -19,7 +19,7 @@
                     element: 'a',
                     href: section.settings.map_btn_url,
                     class: 'd-inline-flex flex-row-reverse align-items-center',
-                    locales_text: 'contact.location'
+                    locales_text: 'contact.location',
                     text: 'Get directions',
                     snippet: true,
                     icon: 'location'
