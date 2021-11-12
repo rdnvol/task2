@@ -2,63 +2,71 @@
   <section class="section blog-post-section">
     <div class="container">
       {% if section.settings.title != blank %}
-        <h2 class="text-center">{{ section.settings.title }}</h2>
+        <h2 class="text-center">
+          {{ section.settings.title }}
+        </h2>
       {% endif %}
-      <div class="blog-post-section__holder">
-        <div class="row">
-          {% for block in section.blocks %}
-            {% assign article = articles[block.settings.article] %}
-            {% if article != blank %}
-              <div class="col-md-4" {{ block.shopify_attributes }}>
-                <article class="blog-post-section__item">
-                  <a href="{{ article.url }}" class="image-container mb-2">
-                    {% render
-                      'image',
-                      src: article.image,
-                      d: '413x',
-                      src_m: article.image,
-                      m: '345x',
-                      placeholder: 'img-placeholder.png',
-                    %}
-                  </a>
-                  <h3 class="mb-0">
-                    <a href="{{ article.url }}">{{ article.title }}</a>
-                  </h3>
-                  <div class="mb-3">
-                    <time datetime="{{ article.published_at | date: "%Y-%m-%d" }}">{{ article.published_at | date: "%b %d %Y" }}</time>
-                  </div>
-                  <div class="mb-3 rte">
-                    {{ article.excerpt_or_content }}
-                  </div>
-                  <ul class="blog-post-section__tags-list">
-                    {% for tag in article.tags %}
-                      <li>
-                        <a href="/blogs/{{ article.handle | split: '/' | first }}/tagged/{{ tag | handle }}">{{ tag }}</a>
-                      </li>
-                    {% endfor %}
-                  </ul>
-                  <div class="blog-post-section__btn-box d-flex flex-wrap align-items-center">
-                    {% render
-                      'button',
-                      element: 'a',
-                      href: 'article.url',
-                      text: 'Read more',
-                    %}
-                    {% if article.comments_enabled? %}
-                      <a href="{{ article.comment_post_url }}" class="blog-post-section__comment">
-                        {% if article.comments_count > 0 and article.comments_count <= 1 %}
-                          {{ article.comments_count | append: ' comment' }}
-                        {% elsif article.comments_count > 0 %}
-                          {{ article.comments_count | append: ' comments' }}
-                        {% endif %}
-                        </a>
-                    {% endif %}
-                  </div>
-                </article>
+      <div class="md:grid md:grid-cols-3 md:gap-8">
+        {% for block in section.blocks %}
+          {% assign article = articles[block.settings.article] %}
+          {% if article != blank %}
+            <article class="mb-6 md:mb-0" {{ block.shopify_attributes }}>
+              {% if article.image != blank %}
+                <a href="{{ article.url }}" class="image-container mb-2">
+                  {% render
+                    'image',
+                    src: article.image,
+                    d: '413x',
+                    src_m: article.image,
+                    m: '345x',
+                    placeholder: 'img-placeholder.png',
+                  %}
+                </a>
+              {% endif %}
+              <h3 class="mb-0">
+                <a href="{{ article.url }}" class="inline-block align-top">
+                  {{ article.title }}
+                </a>
+              </h3>
+              <div class="mb-3">
+                <time datetime="{{ article.published_at | date: "%Y-%m-%d" }}">
+                  {{ article.published_at | date: "%b %d %Y" }}
+                </time>
               </div>
-            {% endif %}
-          {% endfor %}
-        </div>
+              <div class="mb-3 rte">
+                {{ article.excerpt_or_content }}
+              </div>
+              {% if article.tags.size > 0 %}
+                <ul class="flex flex-wrap space-x-3 mb-3">
+                  {% for tag in article.tags %}
+                    <li class="mb-2">
+                      <a href="/blogs/{{ article.handle | split: '/' | first }}/tagged/{{ tag | handle }}">
+                        {{ tag }}
+                      </a>
+                    </li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+              <div class="flex flex-wrap items-center space-x-4">
+                {% render
+                  'button',
+                  element: 'a',
+                  href: article.url,
+                  text: 'Read more',
+                %}
+                {% if article.comments_enabled? %}
+                  <a href="{{ article.comment_post_url }}" class="py-2 uppercase">
+                    {% if article.comments_count > 0 and article.comments_count <= 1 %}
+                      {{ article.comments_count | append: ' comment' }}
+                    {% elsif article.comments_count > 0 %}
+                      {{ article.comments_count | append: ' comments' }}
+                    {% endif %}
+                  </a>
+                {% endif %}
+              </div>
+            </article>
+          {% endif %}
+        {% endfor %}
       </div>
     </div>
   </section>

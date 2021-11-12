@@ -1,11 +1,11 @@
 <div class="section">
   <div class="gallery-section">
-    <div class="row no-gutters">
+    <div class="md:grid md:grid-flow-col md:auto-cols-fr">
       {% for block in section.blocks %}
         {%- capture image_position -%}
           style="{{ block.settings.alignment }}"
         {%- endcapture -%}
-        <div class="col-md" {{ block.shopify_attributes }}>
+        <div {{ block.shopify_attributes }}>
           
           {% if block.settings.link != blank %}
           <a href="{{ block.settings.link }}" class="gallery-section__link">

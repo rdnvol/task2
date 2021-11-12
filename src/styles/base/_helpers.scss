@@ -23,6 +23,12 @@
   transition: all 0.3s ease-in-out;
 }
 
+.sr-only {
+  position: absolute;
+  left: -9999px;
+  visibility: hidden;
+}
+
 .accessibility {
   position: absolute;
   left: -100000px;
@@ -49,22 +55,10 @@
   white-space: nowrap;
 }
 
-.text-center {
-  text-align: center;
-}
-
-.text-left {
-  text-align: left;
-}
-
 .text-md-left {
   @include media ("≥tablet") {
     text-align: left;
   }
-}
-
-.text-right {
-  text-align: right;
 }
 
 .text-md-right {
@@ -77,22 +71,6 @@
   @include media("≥tablet", "<desktop") {
     text-align: right;
   }
-}
-
-.m-auto {
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.sr-only {
-  position: absolute;
-  left: -9999px;
-  visibility: hidden;
-}
-
-.hidden {
-  display: none !important;
-  visibility: hidden !important;
 }
 
 .text-uppercase {

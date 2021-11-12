@@ -16,9 +16,7 @@ register('product', {
     console.log(this);
     if (handle) {
       window.Product = new Product(this.container);
-      console.log('Product section loaded');
     } else {
-      console.log('onboarding product');
     }
   },
 
@@ -26,6 +24,11 @@ register('product', {
   onLoad: function (e) {
     this._initProduct(this.container.dataset.handle);
     // Do something when a section instance is loaded
+  },
+
+  onBlockSelect: function (e) {
+    this._initProduct(this.container.dataset.handle);
+    // Do something when a section block is selected
   },
 
   // Shortcut function called when a section unloaded by the Theme Editor 'shopify:section:unload' event.
@@ -49,11 +52,9 @@ export class Product {
     this.sizeChartInit();
     this.getProduct().then((product) => {
       this.product = product;
-      console.log(this.product);
-      this.form = new ProductForm(this.formElement[0], this.product, {
-        onOptionChange: this.onOptionChange.bind(this),
-        onFormSubmit: this.initAddToBag.bind(this),
-      });
+      this.initVariantSelects();
+      this.getVariantData();
+      this.initSubmit();
       this.initSelectedVariant();
     });
     this.waitForElement('.shopify-payment-button__button--unbranded').then(
@@ -66,6 +67,49 @@ export class Product {
         }, 0);
       }
     );
+  }
+
+  initVariantSelects() {
+    this.variantSelects = document.getElementById('variant-selects');
+    this.variantSelects.addEventListener(
+      'change',
+      this.onVariantChange.bind(this, this.variantSelects)
+    );
+  }
+
+  onVariantChange(el) {
+    this.updateOptions(el);
+    this.updateMasterId();
+    this.onOptionChange(this.currentVariant);
+    this.updateVariantInput(this.currentVariant);
+  }
+
+  updateOptions(el) {
+    this.options = Array.from(el.querySelectorAll('select'), (select) => {
+      return select.value;
+    });
+  }
+
+  updateMasterId() {
+    this.currentVariant = this.variantData.find((variant) => {
+      return !variant.options
+        .map((option, index) => {
+          return this.options[index] === option;
+        })
+        .includes(false);
+    });
+  }
+
+  updateVariantInput(variant) {
+    const productForms = document.querySelectorAll(
+      `#product-form-${this.variantSelects.dataset.section}`
+    );
+
+    productForms.forEach((productForm) => {
+      const input = productForm.querySelector('input[name="id"]');
+      input.value = variant.id;
+      input.dispatchEvent(new Event('change', { bubbles: true }));
+    });
   }
 
   initGallery() {
@@ -104,9 +148,7 @@ export class Product {
     window.history.replaceState({ path: url }, '', url);
   }
 
-  onOptionChange(event) {
-    const variant = event.dataset.variant;
-
+  onOptionChange(variant) {
     this.slideToVariantImage(variant);
     this.updateVariantPrice(variant);
     this.updateSubmitButton(variant);
@@ -176,11 +218,47 @@ export class Product {
     }
   }
 
+  initSubmit() {
+    const form = document.getElementById(
+      `product-form-${this.variantSelects.dataset.section}`
+    );
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      this.initAddToBag(e);
+    });
+  }
+
   initAddToBag(event) {
     event.preventDefault();
-    console.log('Init add to bag has been called');
-    addItem(this.form.element).then((item) => {
-      window.Store.dispatch(addJustAdded(item));
+
+    const serializedForm = $(event.target).serializeArray();
+
+    const variantId = serializedForm.find((item) => item.name === 'id')?.value;
+
+    const quantity = document.getElementById('Quantity').value;
+
+    const properties = serializedForm.reduce((acc, curr) => {
+      if (curr.name.includes('properties')) {
+        const prop = curr.name.split('[')[1].split(']')[0];
+        acc = { ...acc, [prop]: curr.value };
+      }
+      return acc;
+    }, {});
+
+    const data = {
+      items: [
+        {
+          quantity,
+          id: variantId,
+          properties,
+        },
+      ],
+    };
+
+    addItem(data).then((response) => {
+      const { items } = response;
+      window.Store.dispatch(addJustAdded(items[0]));
       window.Store.dispatch(getCart());
       window.Store.dispatch(openPopup());
     });
@@ -209,6 +287,15 @@ export class Product {
     });
   };
 
+  getVariantData() {
+    const variantSelects = document.getElementById('variant-selects');
+    this.variantData =
+      this.variantData ||
+      JSON.parse(
+        variantSelects.querySelector('[type="application/json"]').textContent
+      );
+  }
+
   sizeChartInit() {
     Fancybox.bind('.size-chart-link', {
       closeButton: 'outside',
@@ -216,21 +303,22 @@ export class Product {
       dragToClose: false,
       on: {
         reveal: () => {
-          let tableContainer = document.querySelector('.fancybox__content main#main .container'),
-          sizeChartBtn = document.querySelector('.size-chart-link'),
-          fancyboxParent = document.querySelector('.fancybox__content');
+          let tableContainer = document.querySelector(
+              '.fancybox__content main#main .container'
+            ),
+            sizeChartBtn = document.querySelector('.size-chart-link'),
+            fancyboxParent = document.querySelector('.fancybox__content');
           draftSizeChartElem(fancyboxParent, tableContainer, sizeChartBtn);
         },
       },
     });
     function draftSizeChartElem(fancyboxParent, tableContainer, sizeChartBtn) {
       let tableWrapper = document.createElement('div');
-      let parentElement =
-        sizeChartBtn.parentNode;
-        wrap(tableContainer.querySelector('.rte table'), tableWrapper)
+      let parentElement = sizeChartBtn.parentNode;
+      wrap(tableContainer.querySelector('.rte table'), tableWrapper);
       parentElement.insertBefore(tableWrapper, sizeChartBtn);
       tableWrapper.classList.add('table-holder');
-      tableContainer.removeAttribute('class')
+      tableContainer.removeAttribute('class');
       tableContainer.querySelector('.rte').appendChild(tableWrapper);
       fancyboxParent.innerHTML = '';
       fancyboxParent.appendChild(tableContainer);
@@ -239,6 +327,6 @@ export class Product {
     function wrap(el, wrapper) {
       el.parentNode.insertBefore(wrapper, el);
       wrapper.appendChild(el);
-  }
+    }
   }
 }

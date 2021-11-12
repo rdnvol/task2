@@ -1,5 +1,10 @@
 @charset 'UTF-8';
 
+// import tailwind files
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
 // import your files
 
 $breakpoints: (
@@ -70,7 +75,6 @@ $media-expressions: (
 @import "section/video-section";
 @import "section/collection-list";
 @import "section/rich-text-section";
-@import "section/blog-post-section";
 @import "section/map-section";
 @import "section/page-hero";
 

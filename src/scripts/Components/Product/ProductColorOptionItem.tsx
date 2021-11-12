@@ -49,10 +49,7 @@ const ProductColorOptionItem: FunctionComponent<Props> = ({
     ) : (
       <span
         style={{
-          width: '25px',
-          height: '25px',
           backgroundColor: color.replace(' ', ''),
-          display: 'inline-block',
         }}
       ></span>
     );
@@ -84,7 +81,7 @@ const ProductColorOptionItem: FunctionComponent<Props> = ({
   }, [swatchTypes, product?.handle, variantOptions, chosenVariant]);
 
   return (
-    <div class="input-holder custom-input custom-input--colors d-inline-flex">
+    <div class="input-holder custom-input custom-input--colors inline-flex">
       <input
         id={`filter-field-colors-01-${idx}-${name}`}
         type="radio"
@@ -96,10 +93,7 @@ const ProductColorOptionItem: FunctionComponent<Props> = ({
         {settings?.swatcher_type === swatchTypes.variants ? (
           <span
             style={{
-              width: '25px',
-              height: '25px',
               backgroundColor: color.replace(' ', ''),
-              display: 'inline-block',
             }}
           ></span>
         ) : (
