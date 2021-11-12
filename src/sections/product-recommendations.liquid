@@ -4,7 +4,7 @@
        data-section-type="product-recommendations"
        data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit={{ section.settings.limit }}"
        data-section-id="{{ section.id }}"
-       data-product-id="{{ product.id }}">
+       data-product-id="{{ product.id }}"
        data-limit="{{ section.settings.limit }}">
     {%- if recommendations.performed and recommendations.products_count > 0 -%}
       <div class="container">
