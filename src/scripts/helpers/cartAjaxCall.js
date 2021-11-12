@@ -1,7 +1,7 @@
 export function addItem(data) {
   const params = {
     url: '/cart/add.js',
-    data: $(data).serialize(),
+    data,
     dataType: 'json',
   };
   const request = $.post(params);
