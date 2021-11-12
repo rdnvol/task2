@@ -2,10 +2,11 @@
   <div class="section"
        id="product-recommendations"
        data-section-type="product-recommendations"
+       data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit={{ section.settings.limit }}"
        data-section-id="{{ section.id }}"
        data-product-id="{{ product.id }}"
        data-limit="{{ section.settings.limit }}">
-    {%- if recommendations.products_count > 0 -%}
+    {%- if recommendations.performed and recommendations.products_count > 0 -%}
       <div class="container">
         <h2 class="text-center">{{ section.settings.title }}</h2>
         <div class="sm:grid sm:grid-cols-2 lg:grid-cols-4 sm:gap-x-8 js-products">
