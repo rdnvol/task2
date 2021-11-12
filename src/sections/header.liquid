@@ -15,17 +15,17 @@
   {% render 'header-announcement' %}
   <div class="header__panel{% if section.settings.enable_shadow %} header__panel-shadow{% endif %}">
     <div class="container">
-      <div class="row align-items-center">
-        <div class="col-4 {% if section.settings.layout == 'center' %}col-lg-5{% else %}col-lg-6 order-lg-2 justify-content-center{% endif %}">
+      <div class="flex items-center -mx-4">
+        <div class="w-4/12 {% if section.settings.layout == 'center' %}lg:w-5/12{% else %}w-6/12 lg:order-2 justify-center{% endif %} px-4">
           <div class="menu">
-            <div class="d-flex d-lg-none align-items-center">
+            <div class="flex lg:hidden items-center">
               {% if section.settings.menu != blank %}
                 <a href="#" class="menu__opener menu__btn-opener page-wrapper__opener">
                   <span>Menu</span>
                 </a>
               {% endif %}
               {% if section.settings.search_enable %}
-                <a href="{{ routes.search_url }}" class="header__btn d-none d-xs-inline-flex d-lg-none">
+                <a href="{{ routes.search_url }}" class="header__btn hidden xs:inline-flex lg:hidden">
                   <span class="visually-hidden">
                     Search
                   </span>
@@ -34,7 +34,7 @@
               {% endif %}
             </div>
             {% if section.settings.menu != blank %}
-              <nav class="menu__drop d-none d-lg-block">
+              <nav class="menu__drop hidden lg:block">
                 <ul id="nav" class="main-menu menu-accordion">
                   {% render 'nav-menu' %}
                 </ul>
@@ -42,16 +42,17 @@
             {% endif %}
           </div>
         </div>
-        <div class="col-4 {% if section.settings.layout == 'center' %}col-lg-2{% else %}col-lg-3 order-lg-1 d-lg-flex flex-lg-wrap align-items-center justify-content-start{% endif %}">
+        <div class="w-4/12 {% if section.settings.layout == 'center' %}lg:w-2/12{% else %}w-3/12 lg:order-1 lg:flex lg:flex-wrap lg:items-center lg:justify-start{% endif %} px-4">
           {% render 'header-logo' %}
         </div>
-        <nav class="col-4 {% if section.settings.layout == 'center' %}col-lg-5{% else %}col-lg-3 order-lg-3 py-lg-3{% endif %} d-flex flex-wrap align-items-center justify-content-end">
+        <nav class="w-4/12 {% if section.settings.layout == 'center' %}lg:w-5/12{% else %}w-3/12 lg:order-3 lg:py-3{% endif %} flex flex-wrap items-center justify-end px-4">
           {% if section.settings.button_link != blank %}
-            {% render "button",
-              element: 'a',
-              href: section.settings.button_link,
-              class: 'button d-none d-lg-block',
-              text: section.settings.button_label %}
+            <div class="hidden lg:inline-block">
+              {% render "button",
+                element: 'a',
+                href: section.settings.button_link,
+                text: section.settings.button_label %}
+            </div>
           {% endif %}
           {% render 'header-icons' %}
         </nav>
