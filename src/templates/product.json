@@ -29,6 +29,9 @@
         },
         "quantity_selector": {
           "type": "quantity_selector"
+        },
+        "description": {
+          "type": "description"
         }
       },
       "block_order": [
@@ -37,7 +40,8 @@
         "price",
         "variant_picker",
         "buy_buttons",
-        "quantity_selector"
+        "quantity_selector",
+        "description"
       ]
     },
     "product-recommendations": {
