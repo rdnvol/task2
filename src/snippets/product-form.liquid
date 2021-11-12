@@ -1,5 +1,5 @@
 {%- assign current_variant = product.selected_or_first_available_variant -%}
-{% form 'product', product, id: id, data-product-form: '', data-product-handle: product.handle, data-enable-history-state: 'true' %}
+{% form 'product', product, id: id, data-product-form: '', data-product-handle: product.handle, data-enable-history-state: 'true', data-type: 'add-to-cart-form' %}
   <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
   
   <div class="row">
