@@ -8,13 +8,13 @@
     {%- if recommendations.products_count > 0 -%}
       <div class="container">
         <h2 class="text-center">{{ section.settings.title }}</h2>
-        <div class="row js-products">
+        <div class="sm:grid sm:grid-cols-2 lg:grid-cols-4 sm:gap-x-8 js-products">
           {%- for product in recommendations.products -%}
-            {% render "product-card", product: product %}
+            {% render "product-card", product: product , grid_item_width: '' %}
           {%- endfor -%}
         </div>
         {% if section.settings.button_link != blank %}
-          <div class="pt-sm-4 text-center">
+          <div class="sm:pt-4 text-center">
             {% render "button",
               href: section.settings.button_link,
               text: section.settings.button_label
