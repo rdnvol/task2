@@ -24,7 +24,7 @@ class RelatedProducts {
   }
 
   async initRelatedProducts() {
-    const url = `/recommendations/products?section_id=product-recommendations&limit=${this.limit}&product_id=${this.productId}`;
+    const url = this.wrapper.data('url');
     const response = await fetch(url);
     return await response.text();
   }
