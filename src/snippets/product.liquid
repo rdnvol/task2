@@ -11,6 +11,7 @@
 {%- assign show_dynamic_button = section.settings.show_dynamic_button -%}
 
 
+
 <section data-section-id="{{ section.id }}"
          class="section page-section"
          data-section-type="product"
@@ -80,109 +81,6 @@
                   {% endif %}
                 </div>
                 {{ form | payment_terms }} 
-              </div>
-            {% when "variant_picker" %}
-              {% unless product.has_only_default_variant %}
-              <variant-selects class="no-js-hidden" data-section="{{ section.id }}" data-url="{{ product.url }}" {{ block.shopify_attributes }}></variant-selects>
-              {% for option in product.options_with_values %}
-                <div class="row mb-2">
-                  <div class="col-sm-7 col-lg-5">
-                    {% assign size_option = 'products.product.size' | t | downcase %}
-                    {% assign options = product.options | downcase %}
-                    {% if forloop.first and show_size_chart and size_chart_url != blank and options contains size_option %}
-                      <a class="size-chart-link"
-                        data-type="ajax"
-                        href="{{ size_chart_url }}">{{ 'products.product.size_chart' | t }}</a>
-                    {% endif %}
-                    <label class="product__label" for="Option{{ option.position }}">
-                      {% if show_variant_label %}
-                        {{ option.name }}
-                      {% endif %}
-                    </label>
-                    <select
-                      class="product__select w-100"
-                      id="Option{{ option.position }}"
-                      name="options[{{ option.name | escape }}]"
-                      form="{{ product_form_id }}"
-                      >
-                      {% for value in option.values %}
-                        <option
-                                value="{{ value | escape }}"
-                                {% if option.selected_value == value %}selected="selected"{% endif %}>
-                          {{ value }}
-                        </option>
-                      {% endfor %}
-                    </select>
-                  </div>
-                </div>
-              {% endfor %}
-              <script type="application/json">
-                {{ product.variants | json }}
-              </script>
-            </variant-selects>
-            {% endunless %}
-            {% when "quantity_selector" %}
-              {% if show_quantity %}
-                <div class="row">
-                  <div class="col-sm-7 col-lg-5">
-                    <label class="product__label" for="Quantity">{{ 'products.product.quantity' | t }}</label>
-                    <input type="number" id="Quantity" class="w-100" name="quantity" value="1" min="1">
-                  </div>
-                </div>
-              {% endif %}
-              <noscript class="product-form__noscript-wrapper-{{ section.id }}">
-                <div class="product-form__input{% if product.has_only_default_variant %} hidden{% endif %}">
-                  <label class="form__label" for="Variants-{{ section.id }}">{{ 'products.product.product_variants' | t }}</label>
-                  <div class="select">
-                    <select name="id" id="Variants-{{ section.id }}" class="select__select" form="{{ product_form_id }}">
-                      {%- for variant in product.variants -%}
-                        <option
-                          {% if variant == product.selected_or_first_available_variant %}selected="selected"{% endif %}
-                          {% if variant.available == false %}disabled{% endif %}
-                          value="{{ variant.id }}"
-                        >
-                          {{ variant.title }}
-                          {%- if variant.available == false %} - {{ 'products.product.sold_out' | t }}{% endif %}
-                          - {{ variant.price | money | strip_html }}
-                        </option>
-                      {%- endfor -%}
-                    </select>
-                    {% render 'icon-caret' %}
-                  </div>
-                </div>
-              </noscript>
-            {% when "description" %}
-              <div class="product__row rte">
-                {% if product.description %}
-                  {{ product.description }}
-                {% else %}
-                  {{ 'homepage.onboarding.product_description' | t }}
-                {% endif %}
-              </div>
-            {% when "share" %}
-            {% if section.settings.show_share_buttons %}
-              {% render 'social-sharing', share_title: product.title, share_permalink: product.url, share_image: product %}
-            {% endif %}
-          {% endcase %}
-        {% endfor %}
-        {% unless section_onboarding %}
-          {% render 'product-form',
-            product: product,
-            blocks: section.blocks,
-            show_quantity: section.settings.show_quantity,
-            show_variant_label: section.settings.show_variant_label,
-            show_size_chart: section.settings.show_size_chart,
-            size_chart_url: section.settings.size_chart_url,
-            show_dynamic_button: section.settings.show_dynamic_button
-          %}
-        {% else %}
-          <form >
-            <div class="product__price">
-              <div class="product__price__box d-flex flex-wrap align-items-center" data-price-wrapper>
-                <div data-product-price>
-                  {{ 1999 | money }}
-                </div>
-                {{ form | payment_terms }}
               </div>
             {% when "variant_picker" %}
               {% unless product.has_only_default_variant %}
@@ -262,19 +160,50 @@
                       </div>
                     </div>
                   </div>
-                </form>
-              {% endunless %}
+             {% endunless %}
             {% when "quantity_selector" %}
-            {% if show_quantity %}
-              <div class="row">
-                <div class="col-sm-7 col-lg-5">
-                  <label class="product__label" for="Quantity">{{ 'products.product.quantity' | t }}</label>
-                  <input type="number" id="Quantity" class="w-100" name="quantity" value="1" min="1">
+              {% if show_quantity %}
+                <div class="row">
+                  <div class="col-sm-7 col-lg-5">
+                    <label class="product__label" for="Quantity">{{ 'products.product.quantity' | t }}</label>
+                    <input type="number" id="Quantity" class="w-100" name="quantity" value="1" min="1">
+                  </div>
                 </div>
+              {% endif %}
+              <noscript class="product-form__noscript-wrapper-{{ section.id }}">
+                <div class="product-form__input{% if product.has_only_default_variant %} hidden{% endif %}">
+                  <label class="form__label" for="Variants-{{ section.id }}">{{ 'products.product.product_variants' | t }}</label>
+                  <div class="select">
+                    <select name="id" id="Variants-{{ section.id }}" class="select__select" form="{{ product_form_id }}">
+                      {%- for variant in product.variants -%}
+                        <option
+                          {% if variant == product.selected_or_first_available_variant %}selected="selected"{% endif %}
+                          {% if variant.available == false %}disabled{% endif %}
+                          value="{{ variant.id }}"
+                        >
+                          {{ variant.title }}
+                          {%- if variant.available == false %} - {{ 'products.product.sold_out' | t }}{% endif %}
+                          - {{ variant.price | money | strip_html }}
+                        </option>
+                      {%- endfor -%}
+                    </select>
+                    {% render 'icon-caret' %}
+                  </div>
+                </div>
+              </noscript>
+            {% when "description" %}
+              <div class="product__row rte">
+                {% if product.description %}
+                  {{ product.description }}
+                {% else %}
+                  {{ 'homepage.onboarding.product_description' | t }}
+                {% endif %}
               </div>
-            </div>
-          </form>
-        {% endunless %}
+          {% endcase %}
+        {% endfor %}
+        {% if section.settings.show_share_buttons %}
+          {% render 'social-sharing', share_title: product.title, share_permalink: product.url, share_image: product %}
+        {% endif %}
       </div>
     </div>
   </div>
