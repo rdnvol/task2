@@ -231,17 +231,26 @@ export class Product {
   initAddToBag(event) {
     event.preventDefault();
 
-    const variantId = $(event.target)
-      .serializeArray()
-      .find((item) => item.name === 'id')?.value;
+    const serializedForm = $(event.target).serializeArray();
+
+    const variantId = serializedForm.find((item) => item.name === 'id')?.value;
 
     const quantity = document.getElementById('Quantity').value;
+
+    const properties = serializedForm.reduce((acc, curr) => {
+      if (curr.name.includes('properties')) {
+        const prop = curr.name.split('[')[1].split(']')[0];
+        acc = { ...acc, [prop]: curr.value };
+      }
+      return acc;
+    }, {});
 
     const data = {
       items: [
         {
           quantity,
           id: variantId,
+          properties,
         },
       ],
     };
