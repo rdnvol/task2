@@ -1,7 +1,7 @@
 <div class="section page-section" id="content" tabindex="0">
   <div class="container">
-    <div class="row">
-      <div class="col-md-10 col-lg-8 mx-md-auto">
+    <div class="md:flex">
+      <div class="md:w-10/12 xl:w-8/12 md:mx-auto">
         <div class="account-page__title text-center">
           <h1 class="h2 mb-2">{{ 'customer.account.title' | t }}</h1>
           <a href="/account/logout">Log out</a>
@@ -11,7 +11,7 @@
           {% if customer.orders.size != 0 %}
             <table class="order-table">
               <tbody>
-                <tr class="d-none d-md-table-row">
+                <tr class="hidden md:table-row">
                   <th>Order</th>
                   <th>Date</th>
                   <th>Payment Status</th>
