@@ -1,6 +1,6 @@
-<ul class="header__action-menu d-flex flex-wrap align-items-center justify-content-center">
+<ul class="header__action-menu flex items-center justify-center">
   {% if section.settings.search_enable %}
-    <li class="d-none d-lg-block">
+    <li class="hidden xl:block">
       <a href="{{ routes.search_url }}" class="header__btn">
         <span class="visually-hidden">
           Search
@@ -17,7 +17,7 @@
         assign link = routes.account_login_url
       endif
     %}
-    <li class="d-none d-xs-block">
+    <li class="hidden xs:block">
       <a href="{{ link }}" class="header__btn">
         <span class="visually-hidden">
           Go to account page

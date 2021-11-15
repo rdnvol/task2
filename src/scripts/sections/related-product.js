@@ -19,12 +19,17 @@ class RelatedProducts {
   constructor(elem) {
     this.wrapper = $(elem);
     this.limit = this.wrapper.data('limit');
-    this.productId = this.wrapper.data('product-id');
-    this.init();
+
+    const handleIntersection = (entries, observer) => {
+      if (!entries[0].isIntersecting) return;
+      observer.unobserve(this.wrapper[0]);
+      this.init();
+    }
+    new IntersectionObserver(handleIntersection.bind(this), {rootMargin: '0px 0px 200px 0px'}).observe(this.wrapper[0]);
   }
 
   async initRelatedProducts() {
-    const url = `/recommendations/products?section_id=product-recommendations&limit=${this.limit}&product_id=${this.productId}`;
+    const url = this.wrapper.data('url');
     const response = await fetch(url);
     return await response.text();
   }
