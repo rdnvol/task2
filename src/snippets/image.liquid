@@ -311,7 +311,7 @@ Renders an image
         {% if classes %} class="{{ classes }}"{% endif %}
          data-sizes="auto"
          width="{{ src.width }}"
-         height="{{ src.width | divided_by : src.aspect_ratio }}"
+         height="{{ src.width | divided_by: src.aspect_ratio | floor }}"
          alt="{{ alt | default: 'image description' }}"
          src="{{ placeholder_d }}" {{ data_attribute }}>
   </picture>
