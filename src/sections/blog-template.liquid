@@ -3,11 +3,11 @@
       <div class="page-title-block text-center">
         <h1 class="h2">{{ blog.title }}</h1>
       </div>
-      <div class="row">
-        <div class="col-md-8 col-lg-9">
+      <div class="md:flex">
+        <div class="md:w-8/12 xl:w-9/12 md:mx-auto">
           {% for article in blog.articles %}
             <article role="article" class="post">
-              <header role="banner" class="post__header">
+              <header class="post__header">
                 <h2 class="h3 post__title">
                   <a href="{{ article.url }}">{{ article.title }}</a>
                 </h2>
