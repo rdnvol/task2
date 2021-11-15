@@ -5,14 +5,19 @@
 <div class="{{ grid_item_width }}">
   <div class="product-item text-center">
     <a href="{{ product.url | within: collection }}" class="product-item__img">
-      {% render
+      {% if product.featured_image != blank %}
+        {% render
           "image",
           src: product.featured_image,
           d: '302x376',
           src_m: product.featured_image,
           m: '162x202',
           placeholder: 'img-placeholder.png'
-      %}
+        %}
+      {% else %}
+        {{ 'image' | placeholder_svg_tag: "placeholder-svg" }}
+      {% endif %}
+
     </a>
     <div class="product-item__box">
       <h3 class="product-item__title">

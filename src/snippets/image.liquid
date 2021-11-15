@@ -310,6 +310,8 @@ Renders an image
     <img data-src="{{ d_src }}"
         {% if classes %} class="{{ classes }}"{% endif %}
          data-sizes="auto"
+         width="{{ src.width }}"
+         height="{{ src.width | divided_by : src.aspect_ratio }}"
          alt="{{ alt | default: 'image description' }}"
          src="{{ placeholder_d }}" {{ data_attribute }}>
   </picture>
@@ -323,7 +325,9 @@ Renders an image
     {% endif %}
     <source srcset="{{ d_srcset }}">
     <img src="{{ d_src }}"{% if classes %} class="{{ classes }}"{% endif %}
-         alt="{{ alt | default: 'image description' }}" {{ data_attribute }}>
+         alt="{{ alt | default: 'image description' }}"
+         width="{{ src.width }}"
+         height="{{ src.width | divided_by : src.aspect_ratio }}" {{ data_attribute }}>
   </picture>
 {% endif %}
 
