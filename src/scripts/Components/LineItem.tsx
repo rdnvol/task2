@@ -1,5 +1,5 @@
 import { h, Fragment, FunctionComponent } from 'preact';
-import { useRef } from 'preact/hooks';
+import { useRef, useState, useEffect } from 'preact/hooks';
 import { formatMoney } from '@shopify/theme-currency/currency';
 import { useDispatch } from '../redux/hook';
 import { debounce } from 'debounce';
@@ -18,6 +18,7 @@ interface PropsType {
 }
 
 const LineItem: FunctionComponent<PropsType> = ({ item }) => {
+  const [inputValue, setInputValue] = useState<number | null>(null);
   const dispatch = useDispatch();
 
   const mobileQuantityInputRef = useRef<HTMLInputElement>();
@@ -31,32 +32,40 @@ const LineItem: FunctionComponent<PropsType> = ({ item }) => {
   const updateItem = (e) => {
     const key = item.key;
     const quantity = +e.target.value;
+    setInputValue(quantity);
 
     dispatch(updateItemAction({ id: key, options: { quantity } }));
   };
 
-  const changeQuantity = (action, element) => {
+  const changeQuantity = (action) => {
     const key = item.key;
 
     switch (action) {
       case '+':
-        element.value = ++element.value;
-
-        dispatch(
-          updateItemAction({
-            id: key,
-            options: { quantity: parseInt(element.value) },
-          })
+        let valueToIncrease = inputValue + 1;
+        setInputValue(inputValue + 1);
+        debounce(
+          dispatch(
+            updateItemAction({
+              id: key,
+              options: { quantity: valueToIncrease },
+            })
+          ),
+          200
         );
 
         break;
       case '-':
-        element.value = --element.value;
-        dispatch(
-          updateItemAction({
-            id: key,
-            options: { quantity: parseInt(element.value) },
-          })
+        let valueToDecrease = inputValue - 1;
+        setInputValue(inputValue - 1);
+        debounce(
+          dispatch(
+            updateItemAction({
+              id: key,
+              options: { quantity: valueToDecrease },
+            })
+          ),
+          200
         );
     }
   };
@@ -110,6 +119,12 @@ const LineItem: FunctionComponent<PropsType> = ({ item }) => {
     }
   };
 
+  useEffect(() => {
+    if (!item || inputValue) return;
+
+    setInputValue(item?.quantity);
+  }, []);
+
   return (
     <tr className="responsive-table-row">
       <td>
@@ -135,22 +150,15 @@ const LineItem: FunctionComponent<PropsType> = ({ item }) => {
                   name="updates[]"
                   ref={mobileQuantityInputRef}
                   id={`updates_mobile_${item.key}`}
-                  value={item.quantity}
-                  onChange={debounce(updateItem, 200)}
+                  value={inputValue}
+                  onBlur={updateItem}
                   min="0"
                   aria-label={theme.cart.quantity}
                 />
-                <span
-                  class="jcf-btn-inc"
-                  onClick={() =>
-                    changeQuantity('+', mobileQuantityInputRef.current)
-                  }
-                />
+                <span class="jcf-btn-inc" onClick={() => changeQuantity('+')} />
                 <span
                   class="jcf-btn-dec jcf-disabled"
-                  onClick={() =>
-                    changeQuantity('-', mobileQuantityInputRef.current)
-                  }
+                  onClick={() => changeQuantity('-')}
                 />
               </span>
             </div>
@@ -180,19 +188,13 @@ const LineItem: FunctionComponent<PropsType> = ({ item }) => {
             name="updates[]"
             ref={quantityInputRef}
             id={`updates_${item.key}`}
-            value={item.quantity}
-            onChange={debounce(updateItem, 200)}
+            value={inputValue}
+            onBlur={updateItem}
             min="0"
             aria-label={theme.cart.quantity}
           />
-          <span
-            className="jcf-btn-inc"
-            onClick={() => changeQuantity('+', quantityInputRef.current)}
-          />
-          <span
-            className="jcf-btn-dec"
-            onClick={() => changeQuantity('-', quantityInputRef.current)}
-          />
+          <span className="jcf-btn-inc" onClick={() => changeQuantity('+')} />
+          <span className="jcf-btn-dec" onClick={() => changeQuantity('-')} />
         </span>
       </td>
       <td>{formatMoney(item.final_line_price, theme.moneyFormat)}</td>
