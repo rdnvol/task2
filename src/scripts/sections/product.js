@@ -15,9 +15,7 @@ register('product', {
     console.log(this);
     if (handle) {
       window.Product = new Product(this.container);
-      console.log('Product section loaded');
     } else {
-      console.log('onboarding product');
     }
   },
 
@@ -53,11 +51,9 @@ export class Product {
     this.sizeChartInit();
     this.getProduct().then((product) => {
       this.product = product;
-      console.log(this.product);
-      this.form = new ProductForm(this.formElement[0], this.product, {
-        onOptionChange: this.onOptionChange.bind(this),
-        onFormSubmit: this.initAddToBag.bind(this),
-      });
+      this.initVariantSelects();
+      this.getVariantData();
+      this.initSubmit();
       this.initSelectedVariant();
     });
     this.waitForElement('.shopify-payment-button__button--unbranded').then(
@@ -70,6 +66,49 @@ export class Product {
         }, 0);
       }
     );
+  }
+
+  initVariantSelects() {
+    this.variantSelects = document.getElementById('variant-selects');
+    this.variantSelects.addEventListener(
+      'change',
+      this.onVariantChange.bind(this, this.variantSelects)
+    );
+  }
+
+  onVariantChange(el) {
+    this.updateOptions(el);
+    this.updateMasterId();
+    this.onOptionChange(this.currentVariant);
+    this.updateVariantInput(this.currentVariant);
+  }
+
+  updateOptions(el) {
+    this.options = Array.from(el.querySelectorAll('select'), (select) => {
+      return select.value;
+    });
+  }
+
+  updateMasterId() {
+    this.currentVariant = this.variantData.find((variant) => {
+      return !variant.options
+        .map((option, index) => {
+          return this.options[index] === option;
+        })
+        .includes(false);
+    });
+  }
+
+  updateVariantInput(variant) {
+    const productForms = document.querySelectorAll(
+      `#product-form-${this.variantSelects.dataset.section}`
+    );
+
+    productForms.forEach((productForm) => {
+      const input = productForm.querySelector('input[name="id"]');
+      input.value = variant.id;
+      input.dispatchEvent(new Event('change', { bubbles: true }));
+    });
   }
 
   initGallery() {
@@ -108,9 +147,7 @@ export class Product {
     window.history.replaceState({ path: url }, '', url);
   }
 
-  onOptionChange(event) {
-    const variant = event.dataset.variant;
-
+  onOptionChange(variant) {
     this.slideToVariantImage(variant);
     this.updateVariantPrice(variant);
     this.updateSubmitButton(variant);
@@ -180,11 +217,47 @@ export class Product {
     }
   }
 
+  initSubmit() {
+    const form = document.getElementById(
+      `product-form-${this.variantSelects.dataset.section}`
+    );
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      this.initAddToBag(e);
+    });
+  }
+
   initAddToBag(event) {
     event.preventDefault();
-    console.log('Init add to bag has been called');
-    addItem(this.form.element).then((item) => {
-      window.Store.dispatch(addJustAdded(item));
+
+    const serializedForm = $(event.target).serializeArray();
+
+    const variantId = serializedForm.find((item) => item.name === 'id')?.value;
+
+    const quantity = document.getElementById('Quantity').value;
+
+    const properties = serializedForm.reduce((acc, curr) => {
+      if (curr.name.includes('properties')) {
+        const prop = curr.name.split('[')[1].split(']')[0];
+        acc = { ...acc, [prop]: curr.value };
+      }
+      return acc;
+    }, {});
+
+    const data = {
+      items: [
+        {
+          quantity,
+          id: variantId,
+          properties,
+        },
+      ],
+    };
+
+    addItem(data).then((response) => {
+      const { items } = response;
+      window.Store.dispatch(addJustAdded(items[0]));
       window.Store.dispatch(getCart());
       window.Store.dispatch(openPopup());
     });
@@ -212,6 +285,15 @@ export class Product {
       });
     });
   };
+
+  getVariantData() {
+    const variantSelects = document.getElementById('variant-selects');
+    this.variantData =
+      this.variantData ||
+      JSON.parse(
+        variantSelects.querySelector('[type="application/json"]').textContent
+      );
+  }
 
   sizeChartInit() {
     Fancybox.bind('.size-chart-link', {

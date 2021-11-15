@@ -11,16 +11,18 @@
           {% assign article = articles[block.settings.article] %}
           {% if article != blank %}
             <article class="mb-6 md:mb-0" {{ block.shopify_attributes }}>
-              <a href="{{ article.url }}" class="image-container mb-2">
-                {% render
-                  'image',
-                  src: article.image,
-                  d: '413x',
-                  src_m: article.image,
-                  m: '345x',
-                  placeholder: 'img-placeholder.png',
-                %}
-              </a>
+              {% if article.image != blank %}
+                <a href="{{ article.url }}" class="image-container mb-2">
+                  {% render
+                    'image',
+                    src: article.image,
+                    d: '413x',
+                    src_m: article.image,
+                    m: '345x',
+                    placeholder: 'img-placeholder.png',
+                  %}
+                </a>
+              {% endif %}
               <h3 class="mb-0">
                 <a href="{{ article.url }}" class="inline-block align-top">
                   {{ article.title }}
@@ -34,15 +36,17 @@
               <div class="mb-3 rte">
                 {{ article.excerpt_or_content }}
               </div>
-              <ul class="flex flex-wrap space-x-3 mb-3">
-                {% for tag in article.tags %}
-                  <li class="mb-2">
-                    <a href="/blogs/{{ article.handle | split: '/' | first }}/tagged/{{ tag | handle }}">
-                      {{ tag }}
-                    </a>
-                  </li>
-                {% endfor %}
-              </ul>
+              {% if article.tags.size > 0 %}
+                <ul class="flex flex-wrap space-x-3 mb-3">
+                  {% for tag in article.tags %}
+                    <li class="mb-2">
+                      <a href="/blogs/{{ article.handle | split: '/' | first }}/tagged/{{ tag | handle }}">
+                        {{ tag }}
+                      </a>
+                    </li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
               <div class="flex flex-wrap items-center space-x-4">
                 {% render
                   'button',
