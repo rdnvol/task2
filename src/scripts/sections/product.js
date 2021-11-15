@@ -54,6 +54,8 @@ export class Product {
       this.product = product;
       this.initVariantSelects();
       this.getVariantData();
+      this.updateOptions(this.variantSelects)
+      this.updateMasterId();
       this.initSubmit();
       this.initSelectedVariant();
     });
@@ -210,11 +212,11 @@ export class Product {
   }
 
   initSelectedVariant() {
-    const currentIndex = this.form.variant().featured_media
-      ? this.form.variant().featured_media.position - 1
+    const currentIndex = this.currentVariant.featured_media
+      ? this.currentVariant.featured_media.position - 1
       : 0;
     if (currentIndex) {
-      this.slideToVariantImage(this.form.variant());
+      this.slideToVariantImage(this.currentVariant);
     }
   }
 
