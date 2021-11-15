@@ -1,9 +1,9 @@
 <div class="section page-section">
   <div class="container">
-    <div class="row">
-      <div class="col-md-8 col-lg-9">
+    <div class="md:flex">
+      <div class="md:w-8/12 xl:w-9/12 md:mx-auto">
         <article role="article" class="post post--single">
-          <header role="banner" class="post__header">
+          <header class="post__header">
             <h1 class="post__title">{{ article.title }}</h1>
             <div class="post__date">
               {{ article.published_at | time_tag: format: 'month_day_year' }}
@@ -59,36 +59,32 @@
                 {% endif %}
               </p>
             {% endif %}
-            <div class="row">
-              <div class="col-sm-6">
-                <div class="input-holder">
-                  <label for="CommentAuthor" class="label-hidden label">
-                    {{ 'blogs.comments.name' | t }}
-                  </label>
-                  <input type="text"
-                         name="comment[author]"
-                         id="CommentAuthor"
-                         class="{% if form.errors contains 'author' %}input-error{% endif %}"
-                         placeholder="{{ 'blogs.comments.name' | t }}"
-                         value="{{ form.author }}"
-                         autocapitalize="words">
-                </div>
+            <div class="sm:grid sm:grid-cols-2 sm:gap-x-8">
+              <div class="input-holder">
+                <label for="CommentAuthor" class="label-hidden label">
+                  {{ 'blogs.comments.name' | t }}
+                </label>
+                <input type="text"
+                        name="comment[author]"
+                        id="CommentAuthor"
+                        class="{% if form.errors contains 'author' %}input-error{% endif %}"
+                        placeholder="{{ 'blogs.comments.name' | t }}"
+                        value="{{ form.author }}"
+                        autocapitalize="words">
               </div>
-              <div class="col-sm-6">
-                <div class="input-holder">
-                  <label for="CommentEmail" class="label-hidden label">
-                    {{ 'blogs.comments.email' | t }}
-                  </label>
-                  <input type="email"
-                         name="comment[email]"
-                         id="CommentEmail"
-                         class="{% if form.errors contains 'email' %}input-error{% endif %}"
-                         placeholder="{{ 'blogs.comments.email' | t }}"
-                         value="{{ form.email }}"
-                         spellcheck="false"
-                         autocomplete="off"
-                         autocapitalize="off">
-                </div>
+              <div class="input-holder">
+                <label for="CommentEmail" class="label-hidden label">
+                  {{ 'blogs.comments.email' | t }}
+                </label>
+                <input type="email"
+                        name="comment[email]"
+                        id="CommentEmail"
+                        class="{% if form.errors contains 'email' %}input-error{% endif %}"
+                        placeholder="{{ 'blogs.comments.email' | t }}"
+                        value="{{ form.email }}"
+                        spellcheck="false"
+                        autocomplete="off"
+                        autocapitalize="off">
               </div>
             </div>
             <div class="input-holder">
@@ -110,7 +106,7 @@
           {% endform %}
         {% endif %}
       </div>
-      <!-- <div class="col-md-4 col-lg-3">
+      <!-- <div class="md:w-4/12 xl:w-3/12 pt-8 md:pt-0 md:pl-6">
         <aside class="aside">
           <h3>Recent articles</h3>
           <div class="aside__item">

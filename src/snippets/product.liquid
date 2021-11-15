@@ -25,7 +25,7 @@
               <div class="splide__list align-items-center">
                 {% if product.media.size > 0 %}
                   {% for media in product.media %}
-                    {% render 'product-media' media: media, main: true %}
+                    {% render 'product-media', media: media, main: true %}
                   {% endfor %}
                 {% else %}
                   {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
@@ -38,7 +38,7 @@
           <div class="splide__track">
             <div class="splide__list align-items-center">
               {% for media in product.media %}
-                {% render 'product-media' media: media %}
+                {% render 'product-media', media: media %}
               {% endfor %}
             </div>
           </div>
@@ -56,8 +56,8 @@
                   <h1 class="product__title" {{ block.shopify_attributes }}>{{ product.title }}</h1>
               {% else %}
                   <h1 class="product__title">{{ 'homepage.onboarding.product_title' | t }}</h1>
-              {% endunless %} 
-            {% when "vendor" %}   
+              {% endunless %}
+            {% when "vendor" %}
               {% if section.settings.show_vendor %}
                 <div class="product__vendor mb-1 mb-md-2" {{ block.shopify_attributes }}>{{ product.vendor }}</div>
               {% endif %}
@@ -80,7 +80,7 @@
                     </div>
                   {% endif %}
                 </div>
-                {{ form | payment_terms }} 
+                {{ form | payment_terms }}
               </div>
             {% when "variant_picker" %}
               {% unless product.has_only_default_variant %}
