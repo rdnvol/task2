@@ -20,6 +20,13 @@
         "@type": "Thing",
         "name": "{{ product.vendor | escape }}"
       },
+      {% if product.metafields.yotpo.reviews_count and product.metafields.yotpo.reviews_count != "0" %}
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "{{ product.metafields.yotpo.reviews_average }}",
+        "reviewCount": "{{ product.metafields.yotpo.reviews_count }}"
+      },
+      {% endif %}
       {% if product.variants %}
         "offers": [
           {% for variant in product.variants %}
