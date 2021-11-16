@@ -11,9 +11,9 @@
 				<a href="/account" class="link-sm">{{ 'customer.account.return' | t }}</a>
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-lg-8 offset-lg-2">
-				<div class="account__header">
+		<div class="xl:flex">
+			<div class="xl:w-8/12 xl:mx-auto">
+				<div class="account__header md:flex md:items-center md:justify-between">
 					<h2 class="h2 account__sub-title">{{ 'customer.order.title' | t: name: order.name }}</h2>
 					<div>
 						<time datetime="2019-12-18T05:47:00">{{ 'customer.order.date' | t: date: order.created_at | date: "%B %d, %Y %I:%M%p" }}</time>
@@ -40,35 +40,37 @@
 						{% for line_item in order.line_items %}
 							<tr id="{{ line_item.key }}" class="responsive-table-row">
 								<td data-label="{{ 'customer.order.product' | t }}">
-									{{ line_item.title | link_to: line_item.product.url }}
-									{% if line_item.fulfillment %}
-										<dl>
-											<dt>{{ 'customer.order.fulfilled_at' | t }}</dt>
-											<dd>{{ line_item.fulfillment.created_at | date: format: 'month_day_year' }}</dd>
-
-											{% if line_item.fulfillment.tracking_url %}
-												<dt>{{ 'customer.order.tracking_url' | t }}</dt>
-												<dd>
-													<a href="{{ line_item.fulfillment.tracking_url }}">
-														{{ 'customer.order.track_shipment' | t }}
-													</a>
-												</dd>
-											{% endif %}
-
-											<dt>{{ 'customer.order.tracking_company' | t }}</dt>
-											<dd>{{ line_item.fulfillment.tracking_company }}</dd>
-
-											{% if line_item.fulfillment.tracking_number %}
-												<dt>{{ 'customer.order.tracking_number' | t }}</dt>
-												<dd>{{ line_item.fulfillment.tracking_number }}</dd>
-											{% endif %}
-										</dl>
-									{% endif %}
+									<div>
+										{{ line_item.title | link_to: line_item.product.url }}
+										{% if line_item.fulfillment %}
+											<dl>
+												<dt>{{ 'customer.order.fulfilled_at' | t }}</dt>
+												<dd>{{ line_item.fulfillment.created_at | date: format: 'month_day_year' }}</dd>
+	
+												{% if line_item.fulfillment.tracking_url %}
+													<dt>{{ 'customer.order.tracking_url' | t }}</dt>
+													<dd>
+														<a href="{{ line_item.fulfillment.tracking_url }}">
+															{{ 'customer.order.track_shipment' | t }}
+														</a>
+													</dd>
+												{% endif %}
+	
+												<dt>{{ 'customer.order.tracking_company' | t }}</dt>
+												<dd>{{ line_item.fulfillment.tracking_company }}</dd>
+	
+												{% if line_item.fulfillment.tracking_number %}
+													<dt>{{ 'customer.order.tracking_number' | t }}</dt>
+													<dd>{{ line_item.fulfillment.tracking_number }}</dd>
+												{% endif %}
+											</dl>
+										{% endif %}
+									</div>
 								</td>
-								<td data-label="{{ 'customer.order.sku' | t }}">{{ line_item.sku }}</td>
-								<td data-label="{{ 'customer.order.price' | t }}">{{ line_item.price | money }}</td>
-								<td data-label="{{ 'customer.order.quantity' | t }}">{{ line_item.quantity }}</td>
-								<td data-label="{{ 'customer.order.total' | t }}">{{ line_item.quantity | times: line_item.price | money }}</td>
+								<td data-label="{{ 'customer.order.sku' | t }}"> <div>{{ line_item.sku }}</div></td>
+								<td data-label="{{ 'customer.order.price' | t }}"><div>{{ line_item.price | money }}</div></td>
+								<td data-label="{{ 'customer.order.quantity' | t }}"><div>{{ line_item.quantity }}</div></td>
+								<td data-label="{{ 'customer.order.total' | t }}"><div>{{ line_item.quantity | times: line_item.price | money }}</div></td>
 							</tr>
 						{% endfor %}
 					</tbody>
