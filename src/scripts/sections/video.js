@@ -3,13 +3,15 @@ import bgVideo from 'jquery-background-video';
 
 register('video', {
   initBackgroundVideo: function () {
-    bgVideo;
-    $(`[data-section-id="${this.id}"] .jquery-background-video`).bgVideo({
-      fadeIn: 1000,
-      showPausePlay: true,
-      pausePlayXPos: 'right',
-      pausePlayYPos: 'top',
-    });
+    afterScrollEnable(false, this.container, () => {
+      bgVideo;
+      $(`[data-section-id="${this.id}"] .jquery-background-video`).bgVideo({
+        fadeIn: 1000,
+        showPausePlay: true,
+        pausePlayXPos: 'right',
+        pausePlayYPos: 'top',
+      });
+    })
   },
 
   // Shortcut function called when a section is loaded via 'sections.load()' or by the Theme Editor 'shopify:section:load' event.

@@ -327,3 +327,15 @@ export const FrameworkFeaturedVideo = (function () {
   };
   return FrameworkFeaturedVideo;
 })();
+
+export function afterScrollEnable(loadInit, el, callback) {
+  window.addEventListener('scroll', function () {
+    if ( loadInit ) {
+      return
+    }
+    if ( el.offsetTop <= window.innerHeight + document.querySelector('html').scrollTop ) {
+      loadInit = true
+      callback()
+    }
+  })
+} 
