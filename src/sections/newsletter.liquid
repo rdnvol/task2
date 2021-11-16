@@ -11,9 +11,9 @@
   <div class="container">
     <div class="md:flex">
       <div class="md:w-9/12 lg:w-6/12 mx-auto">
-        {% if section.settings.subheading != blank %}
+        {% if section.settings.title != blank %}
           <h2 class="text-center">
-            {{ section.settings.subheading | escape }}
+            {{ section.settings.title | escape }}
           </h2>
         {% endif %}
         {% assign form_id = 'newsletter-form-' | append: section.id %}
@@ -52,7 +52,7 @@
         "type": "text",
         "id": "title",
         "label": "Heading",
-        "default": "A short sentence describing what someone will receive by subscribing"
+        "default": "Join our mailing list for updates"
       },
       {
         "type": "paragraph",
