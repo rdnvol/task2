@@ -1,7 +1,7 @@
 <div class="section page-section" id="content" tabindex="0">
   <div class="container">
-    <div class="row">
-      <div class="col-md-10 col-lg-8 mx-md-auto">
+    <div class="md:flex">
+      <div class="md:w-10/12 xl:w-8/12 md:mx-auto">
         <div class="page-title-block text-center">
           <h1 class="h2 mb-2">{{ 'customer.account.title' | t }}</h1>
           <p>
@@ -123,11 +123,11 @@
                     {{ 'customer.addresses.set_default' | t }}
                   </label>
                 </div>
-                <div class="row">
-                  <div class="col-12 col-sm-5 col-md-4 col-xl-3 mb-3 mb-sm-0">
+                <div class="grid sm:grid-cols-2 md:grid-cols-3 2xl:grid-cols-4 gap-x-8 gap-y-4">
+                  <div>
                     <button class="button button--address" type="submit">{{ 'customer.addresses.add' | t }}</button>
                   </div>
-                  <div class="col-12 col-sm-5 col-md-4 col-xl-3">
+                  <div>
                     <button class="button button--address" type="button" data-address-toggle>
                       {{ 'customer.addresses.cancel' | t }}
                     </button>
@@ -142,13 +142,13 @@
                 <div class="h3 account__sub-title">{{ 'customer.addresses.default' | t }}</div>
               {% endif %}
               {{ address | format_address }}
-              <div class="row">
-                <div class="col-6 col-sm-3 col-lg-2">
+              <div class="grid grid-cols-2 sm:grid-cols-4 xl:grid-cols-6 gap-x-8">
+                <div>
                   <button class="button button--address" type="button" data-address-toggle>
                     {{ 'customer.addresses.edit' | t }}
                   </button>
                 </div>
-                <div class="col-6 col-sm-3 col-lg-2">
+                <div>
                   <form data-address-delete-form method="post" action="/account/addresses/{{ address.id }}"
                         data-confirm-message="{{ 'customer.addresses.delete_confirm' | t }}">
                     <input type="hidden" name="_method" value="delete"/>
@@ -272,12 +272,12 @@
                       {{ 'customer.addresses.set_default' | t }}
                     </label>
                   </div>
-                  <div class="row">
-                    <div class="col-12 col-sm-5 col-md-4 col-xl-3 mb-3 mb-sm-0">
+                  <div class="grid sm:grid-cols-2 md:grid-cols-3 2xl:grid-cols-4 gap-x-8 gap-y-4">
+                    <div>
                       <button class="button button--address"
                               type="submit">{{ 'customer.addresses.update' | t }}</button>
                     </div>
-                    <div class="col-12 col-sm-5 col-md-4 col-xl-3">
+                    <div>
                       <button class="button button--address" type="button" data-address-toggle
                               data-form-id="{{ form.id }}">
                         {{ 'customer.addresses.cancel' | t }}
