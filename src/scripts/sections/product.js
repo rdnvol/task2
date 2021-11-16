@@ -212,9 +212,7 @@ export class Product {
   }
 
   initSelectedVariant() {
-    const currentIndex = this.currentVariant.featured_media
-      ? this.currentVariant.featured_media.position - 1
-      : 0;
+    const currentIndex = this.currentVariant?.featured_media?.position - 1 || 0;
     if (currentIndex) {
       this.slideToVariantImage(this.currentVariant);
     }
