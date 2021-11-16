@@ -1,7 +1,7 @@
 import { getUrlWithVariant, ProductForm } from '@shopify/theme-product-form';
 import { formatMoney } from '@shopify/theme-currency';
 import Splide from '@splidejs/splide';
-import "@google/model-viewer";
+import '@google/model-viewer';
 import { register } from '@shopify/theme-sections';
 import { Fancybox } from '@fancyapps/ui/src/Fancybox/Fancybox.js';
 import { addItem } from '../helpers/cartAjaxCall.js';
@@ -103,15 +103,15 @@ export class Product {
   }
 
   updateVariantInput(variant) {
-    const productForms = document.querySelectorAll(
+    const productForm = document.querySelector(
       `#product-form-${this.variantSelects.dataset.section}`
     );
 
-    productForms.forEach((productForm) => {
-      const input = productForm.querySelector('input[name="id"]');
-      input.value = variant.id;
-      input.dispatchEvent(new Event('change', { bubbles: true }));
-    });
+    const input = productForm.querySelector('input[name="id"]');
+
+    input.disabled = false;
+    input.value = variant.id;
+    input.dispatchEvent(new Event('change', { bubbles: true }));
   }
 
   initGallery() {
