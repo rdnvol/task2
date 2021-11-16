@@ -55,7 +55,7 @@
   position: relative;
   width: 80%;
   margin: -20px auto 0;
-  padding: 20px 0;
+  padding: 20px 0 40px;
   background: $base-body-background;
   @include media("≥tablet") {
     position: absolute;
@@ -101,6 +101,9 @@
         font-size: 65px;
       }
     }
+  }
+  &:last-child {
+    margin-bottom: 0;
   }
 
   p {
