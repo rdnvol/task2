@@ -3,7 +3,7 @@ import bgVideo from 'jquery-background-video';
 
 register('video', {
   initBackgroundVideo: function () {
-    afterScrollEnable(false, this.container, () => {
+    afterScrollEnable(this.container, () => {
       bgVideo;
       $(`[data-section-id="${this.id}"] .jquery-background-video`).bgVideo({
         fadeIn: 1000,

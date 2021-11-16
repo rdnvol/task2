@@ -4,7 +4,7 @@ import { afterScrollEnable, FrameworkFeaturedVideo } from '../helpers/utils.js';
 register('iframe-video', {
   
   initIframeVideo: function () {
-    afterScrollEnable(false, this.container, () => {
+    afterScrollEnable(this.container, () => {
       this.iframeVideo = new FrameworkFeaturedVideo(
         $(this.container).find('.media-block__video')
       );
