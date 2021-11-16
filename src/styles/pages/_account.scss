@@ -212,9 +212,6 @@ button.button-add-new-address {
   padding: 0 0 13px;
   border-bottom: 1px solid $base-border;
   @include media("≥tablet") {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     padding: 0 0 16px;
   }
 }
