@@ -10,8 +10,6 @@
 {%- assign show_quantity = section.settings.show_quantity -%}
 {%- assign show_dynamic_button = section.settings.show_dynamic_button -%}
 
-
-
 <section data-section-id="{{ section.id }}"
          class="section page-section"
          data-section-type="product"
@@ -25,7 +23,7 @@
               <div class="splide__list align-items-center">
                 {% if product.media.size > 0 %}
                   {% for media in product.media %}
-                    {% render 'product-media' media: media, main: true %}
+                    {% render 'product-media', media: media, main: true %}
                   {% endfor %}
                 {% else %}
                   {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
@@ -38,7 +36,7 @@
           <div class="splide__track">
             <div class="splide__list align-items-center">
               {% for media in product.media %}
-                {% render 'product-media' media: media %}
+                {% render 'product-media', media: media %}
               {% endfor %}
             </div>
           </div>
@@ -56,8 +54,8 @@
                   <h1 class="product__title" {{ block.shopify_attributes }}>{{ product.title }}</h1>
               {% else %}
                   <h1 class="product__title">{{ 'homepage.onboarding.product_title' | t }}</h1>
-              {% endunless %} 
-            {% when "vendor" %}   
+              {% endunless %}
+            {% when "vendor" %}
               {% if section.settings.show_vendor %}
                 <div class="product__vendor mb-1 mb-md-2" {{ block.shopify_attributes }}>{{ product.vendor }}</div>
               {% endif %}
