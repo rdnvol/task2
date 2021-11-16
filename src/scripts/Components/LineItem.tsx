@@ -11,6 +11,7 @@ import {
   updateItem as updateItemAction,
 } from '../redux/features/cart/cartSlice';
 import { Image } from '../Components/Image';
+import useDebounce from '../hooks/useDebounce';
 import theme from '../helpers/themeSettings';
 
 interface PropsType {
@@ -29,48 +30,30 @@ const LineItem: FunctionComponent<PropsType> = ({ item }) => {
     dispatch(removeItemAction({ key: item.key }));
   };
 
-  const updateItem = (e) => {
+  const updateItem = (quantity) => {
+    console.log('OnChange triggered');
     const key = item.key;
-    const quantity = +e.target.value;
-    setInputValue(quantity);
+    // const quantity = +e.target.value;
+    console.log('Quantity from updateItem is', quantity);
 
     dispatch(updateItemAction({ id: key, options: { quantity } }));
   };
 
-  const changeQuantity = (action) => {
+  const handleChange = (quantity) => {
     const key = item.key;
-
-    switch (action) {
-      case '+':
-        let valueToIncrease = inputValue + 1;
-        setInputValue(inputValue + 1);
-        debounce(
-          dispatch(
-            updateItemAction({
-              id: key,
-              options: { quantity: valueToIncrease },
-            })
-          ),
-          200
-        );
-
-        break;
-      case '-':
-        let valueToDecrease = inputValue - 1;
-        setInputValue(inputValue - 1);
-        debounce(
-          dispatch(
-            updateItemAction({
-              id: key,
-              options: { quantity: valueToDecrease },
-            })
-          ),
-          200
-        );
-    }
+    dispatch(
+      updateItemAction({
+        id: key,
+        options: { quantity },
+      })
+    );
   };
 
-  const renderImage = ({ image, title, url }) => {
+  const changeQuantity = useDebounce(() => {
+    updateItem(inputValue);
+  }, 500);
+
+  const renderImage = ({ image, url }) => {
     return (
       <div className="cart__product-img">
         <a href={url}>
@@ -150,15 +133,29 @@ const LineItem: FunctionComponent<PropsType> = ({ item }) => {
                   name="updates[]"
                   ref={mobileQuantityInputRef}
                   id={`updates_mobile_${item.key}`}
-                  value={inputValue}
-                  onBlur={updateItem}
+                  value={item.quantity}
+                  onChange={(e) =>
+                    setInputValue(
+                      parseInt((e.target as HTMLInputElement).value)
+                    )
+                  }
+                  onBlur={() => updateItem(inputValue)}
                   min="0"
                   aria-label={theme.cart.quantity}
                 />
-                <span class="jcf-btn-inc" onClick={() => changeQuantity('+')} />
+                <span
+                  class="jcf-btn-inc"
+                  onMouseDown={() => {
+                    setInputValue(inputValue + 1);
+                  }}
+                  onMouseUp={changeQuantity}
+                />
                 <span
                   class="jcf-btn-dec jcf-disabled"
-                  onClick={() => changeQuantity('-')}
+                  onMouseDown={() => {
+                    setInputValue(inputValue - 1);
+                  }}
+                  onMouseUp={changeQuantity}
                 />
               </span>
             </div>
@@ -189,12 +186,27 @@ const LineItem: FunctionComponent<PropsType> = ({ item }) => {
             ref={quantityInputRef}
             id={`updates_${item.key}`}
             value={inputValue}
-            onBlur={updateItem}
+            onChange={(e) =>
+              setInputValue(parseInt((e.target as HTMLInputElement).value))
+            }
+            onBlur={() => updateItem(inputValue)}
             min="0"
             aria-label={theme.cart.quantity}
           />
-          <span className="jcf-btn-inc" onClick={() => changeQuantity('+')} />
-          <span className="jcf-btn-dec" onClick={() => changeQuantity('-')} />
+          <span
+            className="jcf-btn-inc"
+            onMouseDown={() => {
+              setInputValue(inputValue + 1);
+            }}
+            onMouseUp={changeQuantity}
+          />
+          <span
+            className="jcf-btn-dec"
+            onMouseDown={() => {
+              setInputValue(inputValue - 1);
+            }}
+            onMouseUp={changeQuantity}
+          />
         </span>
       </td>
       <td>{formatMoney(item.final_line_price, theme.moneyFormat)}</td>
