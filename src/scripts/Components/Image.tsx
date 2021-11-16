@@ -34,6 +34,8 @@ export const Image: FunctionComponent<ImageType> = ({
         data-src={resizeImage(imageSrc, sizes[0])}
         className="lazyload"
         data-sizes="auto"
+        width={width}
+        height={height}
         alt={alt}
         src={theme.placeholder_image.replace('1x1', placeholderSize)}
       />
