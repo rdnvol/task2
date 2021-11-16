@@ -1,5 +1,5 @@
 import { h, Fragment, FunctionComponent } from 'preact';
-import { useRef } from 'preact/hooks';
+import { useRef, useState, useEffect } from 'preact/hooks';
 import { formatMoney } from '@shopify/theme-currency/currency';
 import { useDispatch } from '../redux/hook';
 import { debounce } from 'debounce';
@@ -11,6 +11,7 @@ import {
   updateItem as updateItemAction,
 } from '../redux/features/cart/cartSlice';
 import { Image } from '../Components/Image';
+import useDebounce from '../hooks/useDebounce';
 import theme from '../helpers/themeSettings';
 
 interface PropsType {
@@ -18,6 +19,7 @@ interface PropsType {
 }
 
 const LineItem: FunctionComponent<PropsType> = ({ item }) => {
+  const [inputValue, setInputValue] = useState<number | null>(null);
   const dispatch = useDispatch();
 
   const mobileQuantityInputRef = useRef<HTMLInputElement>();
@@ -28,40 +30,30 @@ const LineItem: FunctionComponent<PropsType> = ({ item }) => {
     dispatch(removeItemAction({ key: item.key }));
   };
 
-  const updateItem = (e) => {
+  const updateItem = (quantity) => {
+    console.log('OnChange triggered');
     const key = item.key;
-    const quantity = +e.target.value;
+    // const quantity = +e.target.value;
+    console.log('Quantity from updateItem is', quantity);
 
     dispatch(updateItemAction({ id: key, options: { quantity } }));
   };
 
-  const changeQuantity = (action, element) => {
+  const handleChange = (quantity) => {
     const key = item.key;
-
-    switch (action) {
-      case '+':
-        element.value = ++element.value;
-
-        dispatch(
-          updateItemAction({
-            id: key,
-            options: { quantity: parseInt(element.value) },
-          })
-        );
-
-        break;
-      case '-':
-        element.value = --element.value;
-        dispatch(
-          updateItemAction({
-            id: key,
-            options: { quantity: parseInt(element.value) },
-          })
-        );
-    }
+    dispatch(
+      updateItemAction({
+        id: key,
+        options: { quantity },
+      })
+    );
   };
 
-  const renderImage = ({ image, title, url }) => {
+  const changeQuantity = useDebounce(() => {
+    updateItem(inputValue);
+  }, 500);
+
+  const renderImage = ({ image, url }) => {
     return (
       <div className="cart__product-img">
         <a href={url}>
@@ -110,6 +102,12 @@ const LineItem: FunctionComponent<PropsType> = ({ item }) => {
     }
   };
 
+  useEffect(() => {
+    if (!item || inputValue) return;
+
+    setInputValue(item?.quantity);
+  }, []);
+
   return (
     <tr className="responsive-table-row">
       <td>
@@ -136,21 +134,28 @@ const LineItem: FunctionComponent<PropsType> = ({ item }) => {
                   ref={mobileQuantityInputRef}
                   id={`updates_mobile_${item.key}`}
                   value={item.quantity}
-                  onChange={debounce(updateItem, 200)}
+                  onChange={(e) =>
+                    setInputValue(
+                      parseInt((e.target as HTMLInputElement).value)
+                    )
+                  }
+                  onBlur={() => updateItem(inputValue)}
                   min="0"
                   aria-label={theme.cart.quantity}
                 />
                 <span
                   class="jcf-btn-inc"
-                  onClick={() =>
-                    changeQuantity('+', mobileQuantityInputRef.current)
-                  }
+                  onMouseDown={() => {
+                    setInputValue(inputValue + 1);
+                  }}
+                  onMouseUp={changeQuantity}
                 />
                 <span
                   class="jcf-btn-dec jcf-disabled"
-                  onClick={() =>
-                    changeQuantity('-', mobileQuantityInputRef.current)
-                  }
+                  onMouseDown={() => {
+                    setInputValue(inputValue - 1);
+                  }}
+                  onMouseUp={changeQuantity}
                 />
               </span>
             </div>
@@ -180,18 +185,27 @@ const LineItem: FunctionComponent<PropsType> = ({ item }) => {
             name="updates[]"
             ref={quantityInputRef}
             id={`updates_${item.key}`}
-            value={item.quantity}
-            onChange={debounce(updateItem, 200)}
+            value={inputValue}
+            onChange={(e) =>
+              setInputValue(parseInt((e.target as HTMLInputElement).value))
+            }
+            onBlur={() => updateItem(inputValue)}
             min="0"
             aria-label={theme.cart.quantity}
           />
           <span
             className="jcf-btn-inc"
-            onClick={() => changeQuantity('+', quantityInputRef.current)}
+            onMouseDown={() => {
+              setInputValue(inputValue + 1);
+            }}
+            onMouseUp={changeQuantity}
           />
           <span
             className="jcf-btn-dec"
-            onClick={() => changeQuantity('-', quantityInputRef.current)}
+            onMouseDown={() => {
+              setInputValue(inputValue - 1);
+            }}
+            onMouseUp={changeQuantity}
           />
         </span>
       </td>
