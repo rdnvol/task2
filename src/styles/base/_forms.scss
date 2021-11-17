@@ -232,7 +232,8 @@ a.button {
       top: 0;
       width: 26px;
       height: 26px;
-      &:checked {
+      &:checked,
+      &:focus {
 
         + .custom-label {
           &::before {
@@ -256,7 +257,8 @@ a.button {
       width: 32px;
       height: 32px;
       &:checked,
-      &:hover {
+      &:hover,
+      &:focus {
 
         + .custom-label {
           color: #fff;

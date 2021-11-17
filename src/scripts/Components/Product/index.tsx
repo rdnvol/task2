@@ -62,11 +62,11 @@ const Product: FunctionComponent<Props> = ({
   return (
     <div class="container">
       <div class="product-main-block position-relative">
-        <div class="row">
-          <div class="col-md-6 mb-4 mb-md-0">
+        <div class="md:flex md:space-x-8">
+          <div class="md:w-6/12 mb-4 md:mb-0">
             <ProductGallery media={product.media} />
           </div>
-          <div class="col-md-6">
+          <div class="md:w-6/12">
             <ProductMainBlock product={product} />
           </div>
         </div>

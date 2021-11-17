@@ -86,8 +86,8 @@ const ProductColorOptionWrapper: FunctionComponent<Props> = ({
 
   return (
     // option.values?.length && (
-    <div class="row mb-2">
-      <div class="col-sm-6 col-md-9 col-lg-6">
+    <div class="sm:flex mb-2">
+      <div class="sm:w-6/12 md:w-9/12 lg:w-6/12">
         <div class="product__variant-label-box mb-1">
           {settings?.swatcher_type === swatchTypes.products && !variants ? (
             <Fragment>

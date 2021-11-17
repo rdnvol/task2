@@ -157,7 +157,7 @@ const ProductForm: FunctionComponent<Props> = ({ product }) => {
   return (
     <form onSubmit={handleSubmit}>
       <div class="product__price" data-price-wrapper>
-        <div class="product__price__box h5 d-flex flex-wrap align-items-center">
+        <div class="product__price__box h5 flex flex-wrap items-center">
           {productPrice}
         </div>
       </div>
@@ -195,8 +195,8 @@ const ProductForm: FunctionComponent<Props> = ({ product }) => {
           quantity={productQuantity}
         />
       </div>
-      <div class="row">
-        <div class="col-sm-4 col-lg-8">
+      <div class="sm:flex">
+        <div class="sm:w-7/12 lg:w-5/12">
           <div class="product__row">
             {product.selected_or_first_available_variant.available ? (
               <Button
