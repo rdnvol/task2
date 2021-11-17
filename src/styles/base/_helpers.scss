@@ -61,12 +61,6 @@
   }
 }
 
-.text-md-right {
-  @include media ("≥tablet") {
-    text-align: right;
-  }
-}
-
 .text-right-sm {
   @include media("≥tablet", "<desktop") {
     text-align: right;

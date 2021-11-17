@@ -13,8 +13,8 @@
       </video>
       <div class="video-overlay {{ section.settings.alignment }}" style="background-image: url('{{ image }}');"></div>
       <div class="video-text-block">
-        <div class="row h-100 text-center justify-content-center align-items-center">
-          <div class="col-sm-10 col-md-6 col-lg-4">
+        <div class="flex h-100 text-center justify-center items-center">
+          <div class="sm:w-10/12 md:w-6/12 lg:w-4/12">
             {% if section.settings.title %}
               {% if section.settings.text_size == 'medium' %}
                 <h2>{{ section.settings.title }}</h2>
