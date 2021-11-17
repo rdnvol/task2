@@ -40,10 +40,87 @@
       "default": true
     }
   ],
+  "blocks": [
+  {
+    "type": "vendor",
+    "name": "Vendor",
+    "limit": 1
+  },
+  {
+    "type": "title",
+    "name": "Title",
+    "limit": 1
+  },
+  {
+    "type": "price",
+    "name": "Price",
+    "limit": 1
+  },
+  {
+    "type": "variant_picker",
+    "name": "Variant picker",
+    "limit": 1
+  },
+  {
+    "type": "quantity_selector",
+    "name": "Quantity selector",
+    "limit": 1
+  },
+  {
+    "type": "buy_buttons",
+    "name": "Buy buttons",
+    "limit": 1,
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "show_dynamic_checkout",
+        "default": true,
+        "label": "Show dynamic checkout",
+        "info": "Using the payment methods available on your store, customers see their preferred option, like PayPal or Apple Pay. [Learn more](https://help.shopify.com/manual/using-themes/change-the-layout/dynamic-checkout)"
+      }
+    ]
+  },
+  {
+    "type": "description",
+    "name": "Description",
+    "limit": 1
+  },
+  {
+    "type": "share",
+    "name": "Share",
+    "limit": 1
+  }
+],
   "presets": [
     {
       "name": "Product",
-      "category": "Product"
+      "category": "Product",
+      "blocks": [
+        {
+          "type": "vendor"
+        },
+        {
+          "type": "title"
+        },
+        {
+          "type": "price"
+        },
+        {
+          "type": "variant_picker"
+        },
+        {
+          "type": "quantity_selector"
+        },
+        {
+          "type": "buy_buttons"
+        },
+        {
+          "type": "description"
+        },
+        {
+          "type": "share"
+        }
+      ]
     }
   ]
 }
