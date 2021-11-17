@@ -199,11 +199,12 @@
                   {{ 'homepage.onboarding.product_description' | t }}
                 {% endif %}
               </div>
+            {% when "share" %}
+              {% if section.settings.show_share_buttons %}
+                {% render 'social-sharing', share_title: product.title, share_permalink: product.url, share_image: product %}
+              {% endif %}
           {% endcase %}
         {% endfor %}
-        {% if section.settings.show_share_buttons %}
-          {% render 'social-sharing', share_title: product.title, share_permalink: product.url, share_image: product %}
-        {% endif %}
       </div>
     </div>
   </div>
