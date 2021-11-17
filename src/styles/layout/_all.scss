@@ -572,6 +572,20 @@ img[data-sizes="auto"] {
   transition: opacity 2s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
+.shopify-app-block {
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 0 calc(#{$grid-gutter-width} / 2);
+
+  .spr-starrating {
+
+    .spr-star {
+      display: inline-block;
+      vertical-align: inherit;
+    }
+  }
+}
+
 // Shopify Preview bar iframe styles
 #preview-bar-iframe {
   width: calc(100% + 15px) !important;
