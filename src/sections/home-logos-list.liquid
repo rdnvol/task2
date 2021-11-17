@@ -14,7 +14,8 @@
                 {% render
                   'image',
                   src: block.settings.image,
-                  d: '300x'
+                  d: '300x',
+                  alt: block.settings.image.alt
                   %}
               {% else %}
                 {{ 'image' | placeholder_svg_tag: "placeholder-svg" }}
