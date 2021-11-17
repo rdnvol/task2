@@ -21,8 +21,6 @@ ins {
 }
 
 .breadcrumbs {
-  display: flex;
-  flex-wrap: wrap;
   margin: 0;
   padding: 30px 0 0;
   list-style: none;
@@ -571,7 +569,7 @@ img[data-sizes="auto"] {
 .lazyloaded,
 .image {
   opacity: 1;
-  transition: 2s cubic-bezier(0.215, 0.61, 0.355, 1);
+  transition: opacity 2s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
 // Shopify Preview bar iframe styles
