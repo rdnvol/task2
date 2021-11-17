@@ -62,7 +62,6 @@
   flex-shrink: 0;
   list-style-type: none !important;
   margin: 0;
-  outline: none;
   position: relative
 }
 
@@ -220,10 +219,6 @@
   opacity: .9
 }
 
-.splide__pagination__page:focus {
-  outline: none
-}
-
 .splide__progress__bar {
   background: #ccc;
   height: 3px
@@ -238,11 +233,6 @@
 .splide--nav>.splide__slider>.splide__track>.splide__list>.splide__slide.is-active,
 .splide--nav>.splide__track>.splide__list>.splide__slide.is-active {
   border: 3px solid #000
-}
-
-.splide--nav>.splide__slider>.splide__track>.splide__list>.splide__slide:focus,
-.splide--nav>.splide__track>.splide__list>.splide__slide:focus {
-  outline: none
 }
 
 .splide--rtl>.splide__arrows .splide__arrow--prev,
