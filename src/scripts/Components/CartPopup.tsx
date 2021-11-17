@@ -58,6 +58,9 @@ const CartPopup: FunctionComponent = () => {
             className="cart-popup__close default"
             onClick={() => dispatch(closePopup())}
           >
+            <span className="visually-hidden">
+              Close cart popup
+            </span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="20"
