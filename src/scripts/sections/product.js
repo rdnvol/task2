@@ -1,7 +1,7 @@
 import { getUrlWithVariant, ProductForm } from '@shopify/theme-product-form';
 import { formatMoney } from '@shopify/theme-currency';
 import Splide from '@splidejs/splide';
-import "@google/model-viewer";
+import '@google/model-viewer';
 import { register } from '@shopify/theme-sections';
 import { Fancybox } from '@fancyapps/ui/src/Fancybox/Fancybox.js';
 import { addItem } from '../helpers/cartAjaxCall.js';
@@ -54,6 +54,8 @@ export class Product {
       this.product = product;
       this.initVariantSelects();
       this.getVariantData();
+      this.updateOptions(this.variantSelects)
+      this.updateMasterId();
       this.initSubmit();
       this.initSelectedVariant();
     });
@@ -101,15 +103,15 @@ export class Product {
   }
 
   updateVariantInput(variant) {
-    const productForms = document.querySelectorAll(
+    const productForm = document.querySelector(
       `#product-form-${this.variantSelects.dataset.section}`
     );
 
-    productForms.forEach((productForm) => {
-      const input = productForm.querySelector('input[name="id"]');
-      input.value = variant.id;
-      input.dispatchEvent(new Event('change', { bubbles: true }));
-    });
+    const input = productForm.querySelector('input[name="id"]');
+
+    input.disabled = false;
+    input.value = variant.id;
+    input.dispatchEvent(new Event('change', { bubbles: true }));
   }
 
   initGallery() {
@@ -210,11 +212,9 @@ export class Product {
   }
 
   initSelectedVariant() {
-    const currentIndex = this.form.variant().featured_media
-      ? this.form.variant().featured_media.position - 1
-      : 0;
+    const currentIndex = this.currentVariant?.featured_media?.position - 1 || 0;
     if (currentIndex) {
-      this.slideToVariantImage(this.form.variant());
+      this.slideToVariantImage(this.currentVariant);
     }
   }
 
