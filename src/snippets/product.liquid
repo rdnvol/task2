@@ -49,6 +49,8 @@
       <div class="md:w-6/12">
         {% for block in section.blocks %}
           {% case block.type %}
+            {% when "@app" %}
+               {% render block %}
             {% when "title" %}
               {% unless section_onboarding %}
                   <h1 class="product__title" {{ block.shopify_attributes }}>{{ product.title }}</h1>
