@@ -178,12 +178,6 @@
     }
     @include media ("≥widescreen") {
       margin: 0;
-      padding: 28px 30px 28px 0;
-    }
-    .justify-content-center & {
-      @include media ("≥widescreen") {
-        padding: 28px 15px;
-      }
     }
     &.active {
       &.has-drop {
@@ -257,6 +251,18 @@
       }
       &:hover {
         color: $color-accent;
+      }
+    }
+
+    > a {
+      @include media ("≥widescreen") {
+        padding: 28px 30px 28px 0;
+      }
+
+      .justify-center & {
+        @include media ("≥widescreen") {
+          padding: 28px 15px;
+        }
       }
     }
   }
