@@ -123,6 +123,7 @@ export class Product {
         rewind: false,
         pagination: false,
         arrows: false,
+        keyboard: 'focused',
       });
 
       const thumbnails = new Splide(
@@ -134,6 +135,7 @@ export class Product {
           pagination: false,
           arrows: false,
           isNavigation: true,
+          keyboard: 'focused',
         }
       );
       if (slidesLength > 1) {
