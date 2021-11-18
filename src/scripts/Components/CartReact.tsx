@@ -15,8 +15,8 @@ const Cart: FunctionComponent = () => {
 
   const renderEmptyState = () => {
     return (
-      <div className="row">
-        <div className="col-md-8 mx-auto">
+      <div className="md:flex">
+        <div className="md:w-8/12 md:mx-auto">
           <div className="text-center">
             <div className="page-title-block">
               <h1 className="h2">{theme.cart.title}</h1>
@@ -51,7 +51,7 @@ const Cart: FunctionComponent = () => {
 
   const renderNote = () => {
     return (
-      <div className="col-md-5 mb-4 mb-md-0">
+      <div className="md:w-5/12 mb-4 md:mb-0">
         <label htmlFor="CartSpecialInstructions" className="visually-hidden">
           <strong>{theme.cart.note}</strong>
         </label>
@@ -73,10 +73,10 @@ const Cart: FunctionComponent = () => {
           <h1 className="h2">{theme.cart.title}</h1>
         </div>
 
-        <div className="row">
-          <div className="col-md-10 mx-md-auto">
+        <div className="md:flex">
+          <div className="md:w-10/12 md:mx-auto">
             <form action="/cart" method="post" className="cart-form" noValidate>
-              <table className="cart-table body-2 mb-8 mb-md-6">
+              <table className="cart-table body-2 mb-8 md:mb-6">
                 <thead className="small--hide">
                   <tr>
                     <th>{theme.cart.product}</th>
@@ -92,11 +92,11 @@ const Cart: FunctionComponent = () => {
                 </tbody>
               </table>
 
-              <div className="row justify-content-md-between">
+              <div className="md:flex md:justify-between md:space-x-8">
                 {ref.dataset.noteEnable === 'true' && renderNote()}
-                <div className="col-md-5 ml-auto">
+                <div className="md:w-5/12 md:ml-auto">
                   <div className="cart-form__total mb-4">
-                    <div className="title-1 d-flex justify-content-between justify-content-md-end">
+                    <div className="title-1 flex justify-between md:justify-end">
                       <div className="mr-2">{theme.cart.total}</div>
                       {formatMoney(total_price, theme.moneyFormat)}
                     </div>
@@ -109,7 +109,7 @@ const Cart: FunctionComponent = () => {
                       ></p>
                     </div>
                   </div>
-                  <div className="text-md-right">
+                  <div className="md:text-right">
                     <input
                       type="submit"
                       className="mb-3 button"

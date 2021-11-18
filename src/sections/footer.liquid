@@ -21,16 +21,18 @@
             {%- case block.type -%}
             {%- when 'text' -%}
               <div class="sm:col-span-full lg:col-span-1 mb-6 lg:mb-0">
-                {% if block.settings.icon != blank %}
-                  <a href="{{ routes.root_url }}" rel="nofollow" class="footer__logo">
-                    <img data-src="{{ block.settings.icon | asset_url }}"
-                        width="114"
-                        height="24"
-                        src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" class="lazyload"
-                        data-sizes="auto" alt="footer logo">
-                  </a>
-                {% endif %}
-                {{ block.settings.text }}
+                <div class="rte">
+                  {% if block.settings.icon != blank %}
+                    <a href="{{ routes.root_url }}" rel="nofollow" class="footer__logo">
+                      <img data-src="{{ block.settings.icon | asset_url }}"
+                          width="114"
+                          height="24"
+                          src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" class="lazyload"
+                          data-sizes="auto" alt="footer logo">
+                    </a>
+                  {% endif %}
+                  {{ block.settings.text }}
+                </div>
               </div>
             {%- when 'newsletter' -%}
               <div
@@ -38,23 +40,31 @@
                 <h3 class="footer__title h5">{{ block.settings.title }}</h3>
                 <p>{{ 'general.newsletter_form.newsletter_email' | t }}</p>
                 {% form 'customer', novalidate: 'novalidate', class: "footer__form pt-2" %}
-                  <input type="hidden" name="contact[tags]" value="newsletter">
-                  {%- if form.posted_successfully? -%}
-                    <p class="form-message form-message--success" tabindex="-1" data-form-status>
-                      {{ 'general.newsletter_form.confirmation' | t }}
-                    </p>
-                  {%- endif -%}
-                  <div class="position-relative">
-                    <input type="email" name="contact[email]"
-                           placeholder="{{ 'general.newsletter_form.email_placeholder' | t }}"
-                           class="footer__form__input">
-                    <button type="submit" class="footer__form__button">
-                      <span class="accessibility">
-                        Button submit
-                      </span>
-                      {%- render 'icon-arrow-right' -%}
-                    </button>
-                  </div>
+                  <fieldset>
+                    <legend class="visually-hidden">
+                      Newsletter form
+                    </legend>
+                    <input type="hidden" name="contact[tags]" value="newsletter">
+                    {%- if form.posted_successfully? -%}
+                      <p class="form-message form-message--success" tabindex="-1" data-form-status>
+                        {{ 'general.newsletter_form.confirmation' | t }}
+                      </p>
+                    {%- endif -%}
+                    <div class="position-relative">
+                      <label for="newsletter-form-email-field" class="visually-hidden">
+                        Please enter your email
+                      </label>
+                      <input type="email" name="contact[email]" id="newsletter-form-email-field"
+                            placeholder="{{ 'general.newsletter_form.email_placeholder' | t }}"
+                            class="footer__form__input">
+                      <button type="submit" class="footer__form__button">
+                        <span class="accessibility">
+                          Button submit
+                        </span>
+                        {%- render 'icon-arrow-right' -%}
+                      </button>
+                    </div>
+                  </fieldset>
                 {% endform %}
               </div>
             {%- when 'link_list' -%}

@@ -29,7 +29,7 @@ const ProductMainBlock: FunctionComponent<Props> = ({
 
   return (
     <div class="product-main-block__details body-2">
-      <div class="product__vendor body-2">
+      <div class="product__vendor">
         by <mark>{returnProduct?.vendor}</mark>
       </div>
       <h1 class="product__title h3">{returnProduct?.title}</h1>

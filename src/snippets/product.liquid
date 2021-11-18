@@ -49,6 +49,8 @@
       <div class="md:w-6/12">
         {% for block in section.blocks %}
           {% case block.type %}
+            {% when "@app" %}
+               {% render block %}
             {% when "title" %}
               {% unless section_onboarding %}
                   <h1 class="product__title" {{ block.shopify_attributes }}>{{ product.title }}</h1>
@@ -129,7 +131,7 @@
               <div id="variant-selects" class="no-js-hidden" data-section="{{ section.id }}" data-url="{{ product.url }}" {{ block.shopify_attributes }}>
               {% for option in product.options_with_values %}
                 <div class="flex product__row">
-                  <div class="sm:w-7/12 lg:w-5/12">
+                  <div class="sm:w-7/12 lg:w-5/12 relative">
                     {% assign size_option = 'products.product.size' | t | downcase %}
                     {% assign options = product.options | downcase %}
                     {% if forloop.first and show_size_chart and size_chart_url != blank and options contains size_option %}
@@ -203,12 +205,12 @@
                   {{ 'homepage.onboarding.product_description' | t }}
                 {% endif %}
               </div>
+            {% when "share" %}
+              {% if section.settings.show_share_buttons %}
+                {% render 'social-sharing', share_title: product.title, share_permalink: product.url, share_image: product %}
+              {% endif %}
           {% endcase %}
-        {% endfor %}          
-            
-        {% if section.settings.show_share_buttons %}
-          {% render 'social-sharing', share_title: product.title, share_permalink: product.url, share_image: product %}
-        {% endif %}
+        {% endfor %}
       </div>
     </div>
   </div>

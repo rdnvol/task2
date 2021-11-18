@@ -14,28 +14,36 @@
       <div class="sm:flex">
         <div class="sm:w-8/12 md:w-6/12 sm:mx-auto">
           <form action="/search" method="get" role="search" class="page-search-form">
-            <div class="flex items-center">
-              <input type="search"
-                     name="q"
-                     id="Search"
-                     value="{{ search.terms | escape }}"
-                     placeholder="{{ 'general.search.placeholder' | t }}">
-              {% comment %}theme-check-disable{% endcomment %}
-              {% render 'button',
-                element: 'button',
-                class: 'btn page-search-form__button flex items-center',
-                text: 'Search on store',
-                snippet: true,
-                icon: 'search',
-                type: 'submit'
-              %}
-              {% comment %}theme-check-enable{% endcomment %}
-            </div>
+            <fieldset>
+              <legend class="visually-hidden">
+                Search form
+              </legend>
+              <div class="flex items-center">
+                <label for="search-field" class="visually-hidden">
+                  Search on store
+                </label>
+                <input type="search"
+                       name="q"
+                       id="search-field"
+                       value="{{ search.terms | escape }}"
+                       placeholder="{{ 'general.search.placeholder' | t }}">
+                {% comment %}theme-check-disable{% endcomment %}
+                {% render 'button',
+                  element: 'button',
+                  class: 'btn page-search-form__button flex items-center',
+                  text: 'Search on store',
+                  snippet: true,
+                  icon: 'search',
+                  type: 'submit'
+                %}
+                {% comment %}theme-check-enable{% endcomment %}
+              </div>
+            </fieldset>
           </form>
         </div>
       </div>
-      <div class="section">
-        {% if search.performed %}
+      {% if search.performed %}
+        <div class="section">
           {% if search.results_count == 0 %}
             <div class="text-center">
               <p>{{ 'general.search.no_results_html' | t: terms: search.terms }}</p>
@@ -101,8 +109,8 @@
               {% render 'pagination' %}
             {% endif %}{% endcomment %}
           {% endif %}
-        {% endif %}
-      </div>
+        </div>
+      {% endif %}
     </div>
   </div>
 

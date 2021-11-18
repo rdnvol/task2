@@ -111,16 +111,16 @@ const LineItem: FunctionComponent<PropsType> = ({ item }) => {
   return (
     <tr className="responsive-table-row">
       <td>
-        <div className="d-flex align-items-start">
+        <div className="flex items-start">
           {renderImage(item)}
           <div className="cart__product-text">
             <div className="cart__product-vendor body-3">{item.vendor}</div>
-            <div className="mb-3 mb-md-2">
+            <div className="mb-3 md:mb-2">
               <a href={item.url} className="cart__product-link">
                 {item.product_title}
               </a>
             </div>
-            <div className="d-md-none mb-3">
+            <div className="md:hidden mb-3">
               <label
                 htmlFor={`updates_mobile_${item.key}`}
                 className="visually-hidden"
@@ -174,7 +174,7 @@ const LineItem: FunctionComponent<PropsType> = ({ item }) => {
         </div>
       </td>
       <td>
-        <div className="product__price__box mb-4 mb-md-0">
+        <div className="product__price__box mb-4 md:mb-0">
           {renderPrice(item)}
         </div>
       </td>

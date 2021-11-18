@@ -287,7 +287,7 @@ class App {
 
   initProductGallery() {
     // Create the main slider.
-    const element = document.querySelector('.product-gallery-splide');
+    const element = document.querySelector('.product-gallery-splide--init');
     if (!element) return;
     const productGallerySplide = new Splide(element, {
       type: 'loop',
@@ -296,6 +296,7 @@ class App {
       pagination: true,
       arrows: true,
       speed: 800,
+      keyboard: 'focused',
       breakpoints: {
         767: {
           gap: 20,
