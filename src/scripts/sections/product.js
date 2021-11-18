@@ -50,15 +50,13 @@ export class Product {
 
     this.initGallery();
     this.sizeChartInit();
-    this.getProduct().then((product) => {
-      this.product = product;
-      this.initVariantSelects();
-      this.getVariantData();
-      this.updateOptions(this.variantSelects)
-      this.updateMasterId();
-      this.initSubmit();
-      this.initSelectedVariant();
-    });
+    this.product = this.getProduct();
+    this.initVariantSelects();
+    this.getVariantData();
+    this.updateOptions(this.variantSelects)
+    this.updateMasterId();
+    this.initSubmit();
+    this.initSelectedVariant();
     this.waitForElement('.shopify-payment-button__button--unbranded').then(
       (node) => {
         const dynamicButtonPlaceholder =
@@ -115,7 +113,6 @@ export class Product {
   }
 
   initGallery() {
-    document.addEventListener('DOMContentLoaded', () => {
       const slidesLength = this.wrapper.find('.splide__slide').length;
       this.splide = new Splide(this.wrapper.find('.product-gallery')[0], {
         type: 'slide',
@@ -142,8 +139,7 @@ export class Product {
         this.splide.sync(thumbnails);
         thumbnails.mount();
       }
-      this.splide.mount();
-    });
+    this.splide.mount();
   }
 
   updateVariantUrl(variant) {
@@ -159,9 +155,14 @@ export class Product {
     this.updateVariantUrl(variant);
   }
 
-  async getProduct() {
-    const response = await fetch(`/products/${this.handle}.js`);
-    return await response.json();
+  getProduct() {
+    let product
+    try {
+      product = JSON.parse(document.getElementById('product-json').innerHTML)
+    } catch (error) {
+      console.warn(error);
+    }
+    return product
   }
 
   updateSubmitButton(variant) {
@@ -294,7 +295,7 @@ export class Product {
     this.variantData =
       this.variantData ||
       JSON.parse(
-        variantSelects.querySelector('[type="application/json"]').textContent
+        variantSelects.querySelector('#product-variants-json').textContent
       );
   }
 
