@@ -289,7 +289,9 @@
             </div>
           {% endfor %}
           {% if paginate.pages > 1 %}
-            {% render 'pagination' %}
+            <div class="pt-6">
+              {% render 'pagination' %}
+            </div>
           {% endif %}
         {% endpaginate %}
       </div>
