@@ -585,6 +585,26 @@ img[data-sizes="auto"] {
   }
 }
 
+.model-viewer-block {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+
+  model-viewer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+  }
+}
+
 // Shopify Preview bar iframe styles
 #preview-bar-iframe {
   width: calc(100% + 15px) !important;

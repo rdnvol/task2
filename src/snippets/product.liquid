@@ -20,7 +20,7 @@
         {% unless section_onboarding %}
           <div class="splide product-gallery">
             <div class="splide__track">
-              <div class="splide__list items-center">
+              <div class="splide__list">
                 {% if product.media.size > 0 %}
                   {% for media in product.media %}
                     {% render 'product-media', media: media, main: true %}
@@ -34,7 +34,7 @@
           <div class="splide product-gallery-thumbs">
             {% if product.media.size > 1 %}
               <div class="splide__track">
-                <div class="splide__list items-center">
+                <div class="splide__list">
                   {% for media in product.media %}
                     {% render 'product-media', media: media %}
                   {% endfor %}

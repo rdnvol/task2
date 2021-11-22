@@ -50,7 +50,9 @@
     {%- endif -%}
   {% when 'model' %}
     <div class="splide__slide">
-      <model-viewer alt="{{ media.alt }}" src="{{ media.sources[0].url }}" poster="{{ media.preview_image | img_url: 'master' }}" camera-controls></model-viewer>
+      <div class="model-viewer-block">
+        <model-viewer alt="{{ media.alt }}" src="{{ media.sources[0].url }}" poster="{{ media.preview_image | img_url: 'master' }}" camera-controls></model-viewer>
+      </div>
     </div>
   {% else %}
     <div class="product-single__media" style="padding-top: 100%;" data-media-id="{{ media.id }}">

@@ -74,7 +74,7 @@ const ProductGallery: FunctionComponent<PropTypes> = ({
     <Fragment>
       <div class="product-gallery-splide">
         <div class="splide__track">
-          <div class="splide__list items-center">
+          <div class="splide__list">
             {images?.map((mediaItem, idx) => (
               <div class="splide__slide">
                 <div class="product-gallery__img">
@@ -92,7 +92,7 @@ const ProductGallery: FunctionComponent<PropTypes> = ({
       </div>
       <div class="splide product-gallery-thumbs">
         <div className="splide__track">
-          <div className="splide__list items-center">
+          <div className="splide__list">
             {images?.map((mediaItem, idx) => (
               <ProductThumbnail
                 key={mediaItem.aspect_ratio + idx}
