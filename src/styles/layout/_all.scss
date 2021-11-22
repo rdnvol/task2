@@ -390,10 +390,6 @@ ins {
 .pagination__prev,
 .pagination__next {
   position: relative;
-  display: block;
-  width: 44px;
-  height: 44px;
-  padding: 0;
   &::after {
     content: "";
     position: absolute;
