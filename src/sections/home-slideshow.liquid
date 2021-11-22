@@ -21,6 +21,7 @@
                   d: '650x',
                   src_m: block.settings.image,
                   m: '375x',
+                  alt: block.settings.image.alt,
                   data_attribute: image_position
                 %}
               {% else %}
@@ -31,7 +32,7 @@
               <div class="container position-relative h-100">
                 <div class="flex h-100 {{ block.settings.alignment }} text-center">
                   <div class="sm:w-10/12 md:w-6/12 lg:w-4/12">
-                    <div class="slideshow-gallery__text-block {{ section.settings.text_size }}">
+                    <div class="rte slideshow-gallery__text-block {{ section.settings.text_size }}">
                       {% if block.settings.title != blank %}
                         <div class="slideshow-gallery__title">{{ block.settings.title }}</div>
                       {% endif %}

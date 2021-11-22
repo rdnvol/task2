@@ -3,7 +3,7 @@
     <div class="flex flex-wrap md:justify-center -mx-4">
       {% for block in section.blocks %}
         <div class="w-1/2 md:w-4/12 lg:w-2/12 px-4" {{ block.shopify_attributes }}>
-          <div class="benefits-item text-center">
+          <div class="benefits-item text-center rte">
             <div class="benefits-item__img">
               {% if block.settings.image != blank %}
                 {% render
@@ -11,7 +11,8 @@
                   src: block.settings.image,
                   d: '50x',
                   placeholder: 'img-placeholder.png',
-                  p_d: '50x'
+                  p_d: '50x',
+                  alt: block.settings.image.alt
                 %}
               {% else %}
                 {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
@@ -31,7 +32,7 @@
   {
     "name": "Benefits",
     "settings": [
-    
+
     ],
     "blocks": [
       {

@@ -16,6 +16,7 @@
                   src_m: block.settings.image,
                   m: '345x',
                   placeholder: 'img-placeholder.png',
+                  alt: block.settings.image.alt
                 %}
               {% else %}
                 {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}

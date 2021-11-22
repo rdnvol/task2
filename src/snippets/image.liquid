@@ -312,7 +312,11 @@ Renders an image
          data-sizes="auto"
          width="{{ src.width }}"
          height="{{ src.width | divided_by: src.aspect_ratio | floor }}"
-         alt="{{ alt | default: 'image description' }}"
+        {% if template contains 'product' %}
+          alt="{{ alt | default: product.title }}"
+        {% else %}
+          alt="{{ alt | default: 'image description' }}"
+        {% endif %}
          src="{{ placeholder_d }}" {{ data_attribute }}>
   </picture>
 {% else %}
@@ -325,9 +329,13 @@ Renders an image
     {% endif %}
     <source srcset="{{ d_srcset }}">
     <img src="{{ d_src }}"{% if classes %} class="{{ classes }}"{% endif %}
-         alt="{{ alt | default: 'image description' }}"
+        {% if template contains 'product' %}
+          alt="{{ alt | default: product.title }}"
+        {% else %}
+          alt="{{ alt | default: 'image description' }}"
+        {% endif %}
          width="{{ src.width }}"
-         height="{{ src.width | divided_by : src.aspect_ratio }}" {{ data_attribute }}>
+         height="{{ src.width | divided_by : src.aspect_ratio | floor }}" {{ data_attribute }}>
   </picture>
 {% endif %}
 

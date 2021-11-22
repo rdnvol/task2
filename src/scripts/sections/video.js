@@ -1,14 +1,18 @@
 import { register } from '@shopify/theme-sections';
 import bgVideo from 'jquery-background-video';
 
+import { afterScrollEnable } from '../helpers/utils';
+
 register('video', {
   initBackgroundVideo: function () {
-    bgVideo;
-    $(`[data-section-id="${this.id}"] .jquery-background-video`).bgVideo({
-      fadeIn: 1000,
-      showPausePlay: true,
-      pausePlayXPos: 'right',
-      pausePlayYPos: 'top',
+    afterScrollEnable(this.container, () => {
+      bgVideo;
+      $(`[data-section-id="${this.id}"] .jquery-background-video`).bgVideo({
+        fadeIn: 1000,
+        showPausePlay: true,
+        pausePlayXPos: 'right',
+        pausePlayYPos: 'top',
+      });
     });
   },
 

@@ -73,6 +73,11 @@ export class Product {
 
   initVariantSelects() {
     this.variantSelects = document.getElementById('variant-selects');
+    this.productForm = document.querySelector(
+      `#product-form-${this.variantSelects.dataset.section}`
+    );
+    this.inputName = this.productForm.querySelector('input[name="id"]');
+    this.inputName.disabled = false;
     this.variantSelects.addEventListener(
       'change',
       this.onVariantChange.bind(this, this.variantSelects)
@@ -103,15 +108,8 @@ export class Product {
   }
 
   updateVariantInput(variant) {
-    const productForm = document.querySelector(
-      `#product-form-${this.variantSelects.dataset.section}`
-    );
-
-    const input = productForm.querySelector('input[name="id"]');
-
-    input.disabled = false;
-    input.value = variant.id;
-    input.dispatchEvent(new Event('change', { bubbles: true }));
+    this.inputName.value = variant.id;
+    this.inputName.dispatchEvent(new Event('change', { bubbles: true }));
   }
 
   initGallery() {
@@ -123,6 +121,7 @@ export class Product {
         rewind: false,
         pagination: false,
         arrows: false,
+        keyboard: 'focused',
       });
 
       const thumbnails = new Splide(
@@ -134,6 +133,7 @@ export class Product {
           pagination: false,
           arrows: false,
           isNavigation: true,
+          keyboard: 'focused',
         }
       );
       if (slidesLength > 1) {
@@ -288,11 +288,10 @@ export class Product {
   };
 
   getVariantData() {
-    const variantSelects = document.getElementById('variant-selects');
     this.variantData =
       this.variantData ||
       JSON.parse(
-        variantSelects.querySelector('[type="application/json"]').textContent
+        this.variantSelects.querySelector('[type="application/json"]').textContent
       );
   }
 

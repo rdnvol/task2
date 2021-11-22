@@ -25,6 +25,7 @@ textarea {
   font-size: $font-size-base;
   border: 1px solid $form-element-border-color;
   -webkit-border-radius: 0;
+  border-radius: 0;
   &:-webkit-autofill {
     -webkit-box-shadow: 0 0 0 1000px #fff inset !important;
     box-shadow: 0 0 0 1000px #fff inset !important;
@@ -51,6 +52,7 @@ select {
   background: $base-background-color;
   border: 1px solid $form-element-border-color;
   -webkit-border-radius: 0;
+  border-radius: 0;
 }
 
 .select-holder {
@@ -79,7 +81,7 @@ textarea {
   height: 88px;
   min-height: 88px;
   max-height: 300px;
-  border-radius: 10px;
+  border-radius: 0;
   resize: vertical;
 }
 
@@ -216,7 +218,6 @@ a.button {
 
 .input-holder {
   margin: 0 0 20px;
-
   @include media("≥desktop") {
     margin: 0 0 30px;
   }
@@ -232,7 +233,8 @@ a.button {
       top: 0;
       width: 26px;
       height: 26px;
-      &:checked {
+      &:checked,
+      &:focus {
 
         + .custom-label {
           &::before {
@@ -256,7 +258,8 @@ a.button {
       width: 32px;
       height: 32px;
       &:checked,
-      &:hover {
+      &:hover,
+      &:focus {
 
         + .custom-label {
           color: #fff;
@@ -402,14 +405,14 @@ a.button {
   margin: 0 0 5px;
 }
 
-.page-search-form__button {
+.page-search-form__button.page-search-form__button {
+  min-width: $height-form-elements;
   min-height: $height-form-elements;
   margin-left: 12px;
   font-size: 0;
   line-height: 0;
-
   @include media("≥desktop") {
-    margin-left: 30px;
+    margin-left: 20px;
   }
 
   svg {

@@ -327,3 +327,12 @@ export const FrameworkFeaturedVideo = (function () {
   };
   return FrameworkFeaturedVideo;
 })();
+
+export function afterScrollEnable(el, callback) {
+  const handleIntersection = (entries, observer) => {
+    if (!entries[0].isIntersecting) return;
+    observer.unobserve(el);
+    callback();
+  }
+  new IntersectionObserver(handleIntersection, {rootMargin: '0px 0px 200px 0px'}).observe(el);
+} 

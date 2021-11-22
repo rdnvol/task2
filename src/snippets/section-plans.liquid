@@ -1,7 +1,7 @@
 <div class="section plans">
   <div class="container">
     {% if title != blank or text != blank %}
-      <div class="plans__heading-box text-center">
+      <div class="plans__heading-box text-center rte">
         {% if title != blank %}
           <h2>{{ title }}</h2>
         {% endif %}
@@ -26,13 +26,16 @@
                       'image',
                       src: block.settings.image,
                       d: '50x',
-                      placeholder: 'img-placeholder.png'
+                      placeholder: 'img-placeholder.png',
+                      alt: block.settings.image.alt
                     %}
                   {% else %}
                     {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
                   {% endif %}
                 </div>
-                {{ block.settings.features }}
+                <div class="rte">
+                  {{ block.settings.features }}
+                </div>
                 {% if block.settings.period != blank or block.settings.price != blank %}
                   <ul class="plan-item__price">
                     {% if block.settings.price != blank %}

@@ -16,7 +16,7 @@
   <div class="header__panel{% if section.settings.enable_shadow %} header__panel-shadow{% endif %}">
     <div class="container">
       <div class="flex items-center -mx-4">
-        <div class="w-4/12 {% if section.settings.layout == 'center' %}lg:w-5/12{% else %}w-6/12 lg:order-2 justify-center{% endif %} px-4">
+        <div class="w-4/12 {% if section.settings.layout == 'center' %}xl:w-5/12{% else %}xl:w-6/12 xl:order-2 justify-center{% endif %} px-4">
           <div class="menu">
             <div class="flex xl:hidden items-center">
               {% if section.settings.menu != blank %}
@@ -42,10 +42,10 @@
             {% endif %}
           </div>
         </div>
-        <div class="w-4/12 {% if section.settings.layout == 'center' %}lg:w-2/12{% else %}w-3/12 lg:order-1 lg:flex lg:flex-wrap lg:items-center lg:justify-start{% endif %} px-4">
+        <div class="w-4/12 {% if section.settings.layout == 'center' %}xl:w-2/12{% else %}xl:w-3/12 xl:order-1 xl:flex xl:flex-wrap xl:items-center xl:justify-start{% endif %} px-4">
           {% render 'header-logo' %}
         </div>
-        <nav class="w-4/12 {% if section.settings.layout == 'center' %}lg:w-5/12{% else %}w-3/12 lg:order-3 lg:py-3{% endif %} flex items-center justify-end px-4">
+        <nav class="w-4/12 {% if section.settings.layout == 'center' %}xl:w-5/12{% else %}xl:w-3/12 xl:order-3 xl:py-3{% endif %} flex items-center justify-end px-4">
           {% if section.settings.button_link != blank %}
             <div class="hidden xl:inline-block">
               {% render "button",
