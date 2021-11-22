@@ -137,7 +137,7 @@ const LineItem: FunctionComponent<PropsType> = ({ item }) => {
                   onMouseUp={changeQuantity}
                 >
                   <span className="visually-hidden">
-                    Increase quantity
+                    Decrease quantity
                   </span>
                 </button>
                 <input
@@ -164,7 +164,7 @@ const LineItem: FunctionComponent<PropsType> = ({ item }) => {
                   onMouseUp={changeQuantity}
                 >
                   <span className="visually-hidden">
-                    Decrease quantity
+                    Increase quantity
                   </span>
                 </button>
               </div>
@@ -202,7 +202,7 @@ const LineItem: FunctionComponent<PropsType> = ({ item }) => {
             onMouseUp={changeQuantity}
           >
             <span className="visually-hidden">
-              Increase quantity
+              Decrease quantity
             </span>
           </button>
           <input
@@ -227,7 +227,7 @@ const LineItem: FunctionComponent<PropsType> = ({ item }) => {
             onMouseUp={changeQuantity}
           >
             <span className="visually-hidden">
-              Decrease quantity
+              Increase quantity
             </span>
           </button>
         </div>
