@@ -43,7 +43,9 @@
             <p>{{ 'customer.orders.none' | t }}</p>
           {% endif %}
           {% if paginate.pages > 1 %}
-            {% render 'pagination' %}
+            <div class="pt-6">
+              {% render 'pagination' %}
+            </div>
           {% endif %}
         {% endpaginate %}
         <h2 class="h3 account__sub-title">{{ 'customer.account.details' | t }}</h2>
