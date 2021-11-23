@@ -50,7 +50,9 @@
         {% for block in section.blocks %}
           {% case block.type %}
             {% when "@app" %}
-               {% render block %}
+            <div class="product__row product__rating">
+              {% render block %}
+            </div>
             {% when "title" %}
               {% unless section_onboarding %}
                   <h1 class="product__title" {{ block.shopify_attributes }}>{{ product.title }}</h1>
