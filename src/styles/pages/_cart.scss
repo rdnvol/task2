@@ -62,17 +62,12 @@
     font-size: 14px;
   }
 
-  button,
   .button {
     width: 100%;
     white-space: normal;
     @include media("≥tablet") {
       width: auto;
     }
-  }
-
-  .jcf-number {
-    max-width: 120px;
   }
 
   .product__price__box {
