@@ -133,8 +133,11 @@
     padding: 0;
   }
 
-  .spr-starrating .spr-stars {
-    vertical-align: middle;
+  .spr-starrating {
+
+    .spr-stars {
+      flex-shrink: 0;
+    }
   }
 }
 

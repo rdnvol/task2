@@ -50,7 +50,7 @@
         {% for block in section.blocks %}
           {% case block.type %}
             {% when "@app" %}
-            <div class="product__row product__rating">
+            <div class="product__rating mb-5">
               {% render block %}
             </div>
             {% when "title" %}
@@ -64,7 +64,7 @@
                 <div class="product__vendor mb-1 md:mb-2" {{ block.shopify_attributes }}>{{ product.vendor }}</div>
               {% endif %}
             {% when "price" %}
-              <div class="product__price mb-4" {{ block.shopify_attributes }}>
+              <div class="product__price mb-3" {{ block.shopify_attributes }}>
                 <div class="product__price__box flex flex-wrap items-center" data-price-wrapper>
                   {% if product.compare_at_price_max > product.price %}
                     <ins data-product-price>
@@ -104,7 +104,7 @@
               {% else %}
                 <form >
                   <div class="product__price">
-                    <div class="product__price__box d-flex flex-wrap align-items-center" data-price-wrapper>
+                    <div class="product__price__box flex flex-wrap items-center" data-price-wrapper>
                       <div data-product-price>
                         {{ 1999 | money }}
                       </div>
@@ -132,7 +132,7 @@
               <div id="variant-selects" class="no-js-hidden" data-section="{{ section.id }}" data-url="{{ product.url }}" {{ block.shopify_attributes }}>
               {% unless product.has_only_default_variant %}
                 {% for option in product.options_with_values %}
-                  <div class="flex product__row">
+                  <div class="sm:flex product__row">
                     <div class="sm:w-7/12 lg:w-5/12 relative">
                       {% assign size_option = 'products.product.size' | t | downcase %}
                       {% assign options = product.options | downcase %}
@@ -192,7 +192,7 @@
 
             {% when "quantity_selector" %}
               {% if show_quantity %}
-                <div class="flex product__row">
+                <div class="sm:flex product__row">
                   <div class="sm:w-7/12 lg:w-5/12">
                     <label class="product__label" for="Quantity">{{ 'products.product.quantity' | t }}</label>
                     <input type="number" id="Quantity" class="w-100" name="quantity" value="1" min="1" form="{{ product_form_id }}">
