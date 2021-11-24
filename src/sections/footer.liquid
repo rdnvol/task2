@@ -50,7 +50,7 @@
                         {{ 'general.newsletter_form.confirmation' | t }}
                       </p>
                     {%- endif -%}
-                    <div class="position-relative">
+                    <div class="relative">
                       <label for="newsletter-form-email-field" class="visually-hidden">
                         Please enter your email
                       </label>
@@ -95,7 +95,7 @@
           <select name="currency" class="w-100 mb-2" id="field-currency-01">
             {% for currency in shop.enabled_currencies %}
               {% if currency == cart.currency %}
-                <option selected="true">{{ currency.iso_code }} {{ currency.symbol }}</option>
+                <option selected>{{ currency.iso_code }} {{ currency.symbol }}</option>
               {% else %}
                 <option>{{ currency.iso_code }}</option>
               {% endif %}

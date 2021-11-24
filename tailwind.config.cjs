@@ -5,6 +5,7 @@ module.exports = {
       './**/*.liquid',
       './**/Components/*.js',
       './**/Components/*.jsx',
+      './**/Components/*.tsx',
     ],
   },
   darkMode: false, // or 'media' or 'class'

@@ -61,7 +61,7 @@ const Product: FunctionComponent<Props> = ({
 
   return (
     <div class="container">
-      <div class="product-main-block position-relative">
+      <div class="product-main-block relative">
         <div class="md:flex md:space-x-8">
           <div class="md:w-6/12 mb-4 md:mb-0">
             <ProductGallery media={product.media} />
