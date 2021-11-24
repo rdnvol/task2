@@ -1,7 +1,9 @@
 {% for link in linklists[section.settings.menu].links %}
   {% if link.links != blank and link.levels == 2 %}
     <li class="has-drop">
-      <a href="{{ link.url }}" class="menu-accordion__opener">{{ link.title }}</a>
+      <a href="{{ link.url }}" class="menu-accordion__opener">
+        {{ link.title }}
+      </a>
       <div class="menu-accordion__slide">
         <div class="container">
           <div class="row">
