@@ -125,6 +125,22 @@
   }
 }
 
+.product__rating {
+
+  .shopify-app-block {
+    max-width: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .spr-starrating {
+
+    .spr-stars {
+      flex-shrink: 0;
+    }
+  }
+}
+
 .product-main-block__rating-box {
   margin: 0 0 40px;
   @include media ("≥widescreen") {
