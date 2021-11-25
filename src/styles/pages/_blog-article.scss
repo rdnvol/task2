@@ -11,11 +11,10 @@
   border-top: 1px solid $base-border;
 
   ul {
-    @extend %listreset;
-  }
 
-  li {
-    margin: 0 0 24px;
+    li {
+      margin: 0 0 24px;
+    }
   }
 }
 

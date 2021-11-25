@@ -36,7 +36,6 @@
 }
 
 .aside__tags-list {
-  @extend %listreset;
   display: flex;
   flex-wrap: wrap;
 

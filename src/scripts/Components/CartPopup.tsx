@@ -49,8 +49,8 @@ const CartPopup: FunctionComponent = () => {
       ref={cartRef}
       className={`cart-popup text-black ${cart.popupActive ? 'active' : ''}`}
     >
-      <div className="cart-popup__header">
-        <div className="cart-popup__heading">
+      <div className="cart-popup__header flex items-center justify-between">
+        <div className="cart-popup__heading flex-grow">
           {theme.cart.just_added_to_your_cart}
         </div>
         <div>

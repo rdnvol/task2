@@ -7,7 +7,6 @@
 }
 
 .header__bar-list {
-  @extend %listreset;
 
   li {
     margin: 0 10px;
@@ -30,14 +29,6 @@
   }
   &.header__panel-shadow {
     box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.09);
-  }
-
-  .row {
-
-    > .col,
-    > [class*="col-"] {
-      position: static;
-    }
   }
 }
 
@@ -152,9 +143,7 @@
 
 .main-menu {
   @extend %transition;
-  margin: 0;
   padding: 10px 0;
-  list-style: none;
   font-size: $font-size-base;
   line-height: 1.28;
   letter-spacing: 0.05em;
@@ -282,10 +271,8 @@
   ul {
     margin: 0 0 10px;
     padding: 0;
-    list-style: none;
     @include media ("≥widescreen") {
       margin: 0 0 20px;
-      padding: 0;
       font-weight: 300;
     }
 
@@ -339,7 +326,6 @@
 }
 
 .header__action-menu {
-  @extend %listreset;
 
   li {
     @include media ("≥tablet") {

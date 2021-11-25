@@ -1,6 +1,6 @@
 <div id="payment-button-wrapper" hidden>
     {% form 'product', product %}
-    <select id="payment-button-select" name="id" id="size" class="d-none">
+    <select id="payment-button-select" name="id" id="size" class="hidden">
         {% for variant in product.variants %}
           <option
                   {% if variant == product.selected_or_first_available_variant %}selected="selected"{% endif %}
