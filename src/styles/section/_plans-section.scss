@@ -40,7 +40,6 @@
 .plan-item__list-block {
 
   ul {
-    @extend %listreset;
     margin: 0 0 40px;
     @include media ("≥tablet") {
       margin: 0 0 22px;
@@ -62,7 +61,6 @@
 }
 
 .plan-item__price {
-  @extend %listreset;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;

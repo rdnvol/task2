@@ -69,7 +69,7 @@
           "image": "",
           "image_mobile": "",
           "title": "Title",
-          "alignment": "justify-content-start align-items-center",
+          "alignment": "justify-start items-center",
           "alignment_text": "text-center",
           "text": "<p>Use overlay text to give your customers insight into your brand. Select imagery and text that relates to your style and story.</p>",
           "color": "#ffffff",
@@ -119,7 +119,7 @@
         "type": "home-image-with-text",
         "settings": {
           "image": "shopify://shop_images/woman-works-on-computer-at-home.jpg",
-          "layout": "flex-md-row-reverse",
+          "layout": "md:flex-row-reverse",
           "title": "Image with text",
           "text": "<p>Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
           "button_label": "Shop now",

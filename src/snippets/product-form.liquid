@@ -2,7 +2,7 @@
 {% form 'product', product, id: id, data-product-form: '', data-product-handle: product.handle, data-enable-history-state: 'true', data-type: 'add-to-cart-form' %}
   <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" disabled>
 
-  <div class="flex">
+  <div class="sm:flex">
     <div class="sm:w-7/12 lg:w-5/12">
       <div class="product__row">
         {% if current_variant.available %}

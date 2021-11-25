@@ -21,9 +21,7 @@ ins {
 }
 
 .breadcrumbs {
-  margin: 0;
   padding: 30px 0 0;
-  list-style: none;
   font-size: calc(#{$font-size-base} - 2px);
   letter-spacing: 0.02em;
   text-transform: capitalize;
@@ -108,7 +106,6 @@ ins {
 .social-networks {
 
   ul {
-    @extend %listreset;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -150,8 +147,6 @@ ins {
   display: flex;
   align-items: center;
   margin: 0 0 -15px;
-  padding: 0;
-  list-style: none;
   font-size: calc(#{$font-size-base} - 2px);
   text-transform: uppercase;
 
@@ -411,7 +406,6 @@ ins {
 }
 
 .accordion {
-  @extend %listreset;
 
   li {
     margin: 0 0 10px;

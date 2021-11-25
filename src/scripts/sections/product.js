@@ -166,15 +166,15 @@ export class Product {
     if (!variant) {
       this.submitButton.addClass('disabled').attr('disabled', 'disabled');
       this.submitButtonText.text(theme.strings.unavailable);
-      this.shopifyButtons.addClass('d-none');
+      this.shopifyButtons.addClass('hidden');
     } else if (variant.available) {
       this.submitButton.removeClass('disabled').removeAttr('disabled');
       this.submitButtonText.text(theme.strings.addToCart);
-      this.shopifyButtons.removeClass('d-none');
+      this.shopifyButtons.removeClass('hidden');
     } else {
       this.submitButtonText.text(theme.strings.soldOut);
       this.submitButton.addClass('disabled').attr('disabled', 'disabled');
-      this.shopifyButtons.addClass('d-none');
+      this.shopifyButtons.addClass('hidden');
     }
   }
 

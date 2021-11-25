@@ -21,8 +21,8 @@ class CartJustAdded extends Component {
 
     return (
       <div className="cart-popup__item">
-        <div className="row align-items-center">
-          <div className="col-3">
+        <div className="flex items-center space-x-8">
+          <div className="w-3/12">
             <div className="cart-popup__item__img">
               <Image
                 key={id}
@@ -33,11 +33,11 @@ class CartJustAdded extends Component {
               />
             </div>
           </div>
-          <div className="col-6">
+          <div className="w-6/12">
             <div className="cart-popup__item__title">{product_title}</div>
             {this.renderItemOptions(justAdded)}
           </div>
-          <div className="col-3 text-right">
+          <div className="w-3/12 text-right">
             {theme.cart.quantity} {quantity}
           </div>
         </div>

@@ -117,7 +117,7 @@
         </div>
       {% endif %}
     </div>
-    <div class="footer__panel text-center">
+    <div class="footer__panel text-center uppercase">
       {% capture copy %}
         &copy; {{ 'now' | date: "%Y" }} {{ shop.name | link_to: routes.root_url | lstrip }}.
       {% endcapture %}
