@@ -242,7 +242,7 @@
     }
 
     > a,
-    > details summary {
+    > details-disclosure details summary {
       @include media ("≥widescreen") {
         padding: 28px 30px 28px 0;
       }
