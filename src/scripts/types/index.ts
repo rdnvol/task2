@@ -98,6 +98,7 @@ export interface ProductType {
   url: string;
   variants: VariantType[];
   vendor: any;
+  metafields?: any
 }
 
 export interface ImageType {
