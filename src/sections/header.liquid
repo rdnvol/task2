@@ -36,7 +36,7 @@
             {% if section.settings.menu != blank %}
               <nav class="menu__drop hidden xl:block">
                 <ul id="nav" class="main-menu menu-accordion">
-                  {% render 'nav-menu' %}
+                  {% render 'nav-menu-desktop' %}
                 </ul>
               </nav>
             {% endif %}
@@ -101,7 +101,7 @@
       </form>
     {% endif %}
     <ul class="main-menu menu-accordion">
-      {% render 'nav-menu' %}
+      {% render 'nav-menu-mobile' %}
     </ul>
     <ul class="main-menu menu-accordion xl:hidden">
       {% render 'nav-account-menu' %}

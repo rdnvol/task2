@@ -7,7 +7,6 @@
 }
 
 .header__bar-list {
-  @extend %listreset;
 
   li {
     margin: 0 10px;
@@ -30,14 +29,6 @@
   }
   &.header__panel-shadow {
     box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.09);
-  }
-
-  .row {
-
-    > .col,
-    > [class*="col-"] {
-      position: static;
-    }
   }
 }
 
@@ -152,9 +143,7 @@
 
 .main-menu {
   @extend %transition;
-  margin: 0;
   padding: 10px 0;
-  list-style: none;
   font-size: $font-size-base;
   line-height: 1.28;
   letter-spacing: 0.05em;
@@ -227,10 +216,7 @@
 
       .menu-accordion__slide {
         @include media ("≥widescreen") {
-          height: auto;
           max-height: calc(100vh - var(--header-height));
-          opacity: 1;
-          pointer-events: auto;
           overflow-x: hidden;
           overflow-y: visible;
         }
@@ -241,7 +227,8 @@
       }
     }
 
-    a {
+    a,
+    summary {
       display: block;
       padding: 16px 25px;
       text-decoration: none;
@@ -254,7 +241,8 @@
       }
     }
 
-    > a {
+    > a,
+    > details summary {
       @include media ("≥widescreen") {
         padding: 28px 30px 28px 0;
       }
@@ -267,6 +255,15 @@
     }
   }
 
+  summary {
+    cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+    &::-webkit-details-marker {
+      display: none;
+    }
+  }
+
   a {
     color: $base-body-text;
   }
@@ -274,10 +271,8 @@
   ul {
     margin: 0 0 10px;
     padding: 0;
-    list-style: none;
     @include media ("≥widescreen") {
       margin: 0 0 20px;
-      padding: 0;
       font-weight: 300;
     }
 
@@ -318,12 +313,8 @@
     left: 0;
     z-index: 1000;
     width: 100%;
-    height: 0;
     padding: 0 30px 0 15px;
     background: $base-secondary-background;
-    opacity: 0;
-    cursor: default;
-    pointer-events: none;
   }
 
   .container {
@@ -335,7 +326,6 @@
 }
 
 .header__action-menu {
-  @extend %listreset;
 
   li {
     @include media ("≥tablet") {

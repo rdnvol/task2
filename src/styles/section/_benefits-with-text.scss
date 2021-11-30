@@ -10,7 +10,6 @@
 .benefits-list__items-block {
 
   ul {
-    @extend %listreset;
     @include media ("≥tablet") {
       padding-left: 34px;
     }

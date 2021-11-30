@@ -52,64 +52,61 @@
         <p>This is an example of a <a title="Apple" href="https://apple.com/">link</a>.</p>
         <strong>Emphasize Tag</strong>
         <p>The emphasize tag should <i>italicize</i> text.</p>
-        <div class="row p-5">
-          <div class="col-md-6 mb-5">
-            <div class="d-md-inline-block mb-2">
+        <div class="grid md:grid-cols-2 gap-8 py-5">
+          <div>
+            <div class="md:inline-block mb-2">
               {% render 'button',
                 class: 'button--lg' %}
             </div>
-            <div class="d-md-inline-block mb-2">
+            <div class="md:inline-block mb-2">
               {% render 'button',
                 snippet: true,
                 icon: 'search',
                 class: 'button--lg btn--with-icon' %}
-
             </div>
-            <div class="d-md-inline-block mb-2">
+            <div class="md:inline-block mb-2">
               {% render 'button',
                 snippet: true,
                 type: 'icon',
                 icon: 'search',
                 class: 'button btn button--lg' %}
-
             </div>
           </div>
-          <div class="col-md-6 mb-5">
-            <div class="d-md-inline-block mb-2">
+          <div>
+            <div class="md:inline-block mb-2">
               {% render 'button' %}
             </div>
-            <div class="d-md-inline-block mb-2">
+            <div class="md:inline-block mb-2">
               {% render 'button',
                 snippet: true,
                 icon: 'search',
                 class: 'btn--with-icon' %}
             </div>
-            <div class="d-md-inline-block mb-2">
+            <div class="md:inline-block mb-2">
               <button class="button" disabled>
                 asd
               </button>
             </div>
-            <div class="d-md-inline-block mb-2">
+            <div class="md:inline-block mb-2">
               {% render 'button',
                 snippet: true,
                 type: 'icon',
                 icon: 'account',
                 class: 'button btn' %}
-
             </div>
           </div>
-          <div class="col-md-6 mb-5">
-            <div class="d-md-inline-block mb-2">
+          <div>
+            <div class="md:inline-block mb-2">
               {% render 'button',
                 class: 'button--sm' %}
             </div>
-            <div class="d-md-inline-block mb-2">
+            <div class="md:inline-block mb-2">
               {% render 'button',
                 snippet: true,
                 icon: 'search',
                 class: 'btn--with-icon button--sm' %}
             </div>
-            <div class="d-md-inline-block mb-2">
+            <div class="md:inline-block mb-2">
               {% render 'button',
                 snippet: true,
                 type: 'icon',
@@ -117,27 +114,27 @@
                 class: 'button btn button--sm' %}
             </div>
           </div>
-          <div class="col-md-6 mb-5">
+          <div>
             <a href="#" class="button button--secondary">build your prescription</a>
           </div>
-          <div class="col-md-6 mb-5">
+          <div>
             <a href="#" class="button button--secondary disabled">build your prescription</a>
           </div>
         </div>
-        <div class="row p-5">
-          <div class="col-md-6 mb-5 ">
+        <div class="grid md:grid-cols-2 gap-8 py-5">
+          <div>
             <a href="#" class="button button--sm">customize</a>
           </div>
-          <div class="col-md-6 mb-5">
+          <div>
             <a href="#" class="button button--sm disabled">customize</a>
           </div>
-          <div class="col-md-6 mb-5">
+          <div>
             <a href="#" class="button button--secondary button--sm">view more</a>
           </div>
-          <div class="col-md-6 mb-5">
+          <div>
             <a href="#" class="button button--secondary button--sm disabled">view more</a>
           </div>
-          <div class="col-md-6 mb-5">
+          <div>
             <a href="#" class="link">add try on</a>
           </div>
         </div>
@@ -243,8 +240,8 @@
           <li>List item four</li>
         </ol>
 
-        <div class="row">
-          <div class="col-sm-4 mb-4">
+        <div class="grid sm:grid-cols-3 gap-8 mb-5">
+          <div>
             <h4>Image lazyload asset_img_url</h4>
             {% render
               'image',
@@ -254,7 +251,7 @@
               src_m: 'img-placeholder.png',
               m: '375x' %}
           </div>
-          <div class="col-sm-4 mb-4">
+          <div>
             <h4>Image lazyload asset_img_url with fixed sizes image placeholder</h4>
             {% render
               'image',
@@ -267,7 +264,7 @@
               p_d: '688x600',
               p_m: '375x300' %}
           </div>
-          <div class="col-sm-4 mb-4">
+          <div>
             <h4>Image lazyload asset_img_url</h4>
             {% render
               'image',
@@ -277,7 +274,7 @@
               src_m: 'img-placeholder.png',
               m: '375x' %}
           </div>
-          <div class="col-sm-4 mb-4">
+          <div>
             <h4>Image placeholder</h4>
             <picture>
               <img src="https://via.placeholder.com/203x115" class="lazyload" data-sizes="auto" alt="image description"

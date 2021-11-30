@@ -14,10 +14,10 @@ register('collection', {
   },
 
   _showSpinner() {
-    this.spinner.classList.remove('d-none');
+    this.spinner.classList.remove('hidden');
   },
   _hideSpinner() {
-    this.spinner.classList.add('d-none');
+    this.spinner.classList.add('hidden');
   },
 
   _handleIntersection(entries) {

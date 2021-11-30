@@ -1,7 +1,7 @@
 <div id="cart" data-note-enable="{{ settings.cart_notes_enable }}">
   <div class="container">
     
-    <div data-has-items {% if cart.item_count == 0 %}class="d-none"{% endif %}>
+    <div data-has-items {% if cart.item_count == 0 %}class="hidden"{% endif %}>
       <div class="page-title-block text-center">
         <h1 class="h2">
           {{ 'cart.general.title' | t }}
@@ -23,10 +23,10 @@
           </tbody>
         </table>
         
-        <div class="d-md-flex justify-content-between">
+        <div class="md:flex md:justify-between">
           {% if settings.cart_notes_enable %}
-            <div class="col-md-5 col-lg-4 px-0 mb-4 mb-md-0">
-              <label for="CartSpecialInstructions" class="d-inline-block mb-2">
+            <div class="md:w-5/12 lg:w-4/12 px-0 mb-4 md:mb-0">
+              <label for="CartSpecialInstructions" class="inline-block mb-2">
                 <strong>
                   {{ 'cart.general.note' | t }}
                 </strong>
@@ -35,13 +35,13 @@
             </div>
           {% endif %}
           
-          <div class="col-md-5 col-lg-4 px-0 ml-auto">
+          <div class="md:w-5/12 lg:w-4/12 px-0 ml-auto">
             <div class="cart-form__total mb-4">
-              <div class="row">
-                <div class="col-8">
+              <div class="flex">
+                <div class="w-8/12">
                   <p>{{ 'cart.general.subtotal' | t }}</p>
                 </div>
-                <div class="col-4">
+                <div class="w-4/12">
                   <p data-cart-total>{{ cart.total_price | money }}</p>
                 </div>
               </div>
@@ -58,8 +58,8 @@
       </form>
     
     </div>
-    <div class="row{% if cart.item_count != 0 %} d-none{% endif %}" data-no-items>
-      <div class="col-md-8 mx-auto">
+    <div class="md:flex{% if cart.item_count != 0 %} hidden{% endif %}" data-no-items>
+      <div class="md:w-8/12 md:mx-auto">
         <div class="text-center">
           <div class="page-title-block">
             <h1>{{ 'cart.general.title' | t }}</h1>

@@ -12,7 +12,8 @@
           d: '302x376',
           src_m: product.featured_image,
           m: '162x202',
-          placeholder: 'img-placeholder.png'
+          placeholder: 'img-placeholder.png',
+          alt: product.featured_image.alt
         %}
       {% else %}
         {{ 'image' | placeholder_svg_tag: "placeholder-svg" }}

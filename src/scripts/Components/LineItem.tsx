@@ -127,7 +127,19 @@ const LineItem: FunctionComponent<PropsType> = ({ item }) => {
               >
                 Qty
               </label>
-              <span class="jcf-number">
+              <div class="jcf-number flex items-center">
+                <button
+                  class="jcf-btn-dec"
+                  type="button"
+                  onMouseDown={() => {
+                    setInputValue(inputValue - 1);
+                  }}
+                  onMouseUp={changeQuantity}
+                >
+                  <span className="visually-hidden">
+                    Decrease quantity
+                  </span>
+                </button>
                 <input
                   type="number"
                   name="updates[]"
@@ -143,21 +155,19 @@ const LineItem: FunctionComponent<PropsType> = ({ item }) => {
                   min="0"
                   aria-label={theme.cart.quantity}
                 />
-                <span
-                  class="jcf-btn-inc"
+                <button
+                  class="jcf-btn-inc jcf-disabled"
+                  type="button"
                   onMouseDown={() => {
                     setInputValue(inputValue + 1);
                   }}
                   onMouseUp={changeQuantity}
-                />
-                <span
-                  class="jcf-btn-dec jcf-disabled"
-                  onMouseDown={() => {
-                    setInputValue(inputValue - 1);
-                  }}
-                  onMouseUp={changeQuantity}
-                />
-              </span>
+                >
+                  <span className="visually-hidden">
+                    Increase quantity
+                  </span>
+                </button>
+              </div>
             </div>
             <div>
               {renderItemOptions(item)}
@@ -179,7 +189,22 @@ const LineItem: FunctionComponent<PropsType> = ({ item }) => {
         </div>
       </td>
       <td>
-        <span class="jcf-number">
+        <label htmlFor={`updates_${item.key}`} className="visually-hidden">
+          Quantity
+        </label>
+        <div class="jcf-number flex items-center">
+          <button
+            class="jcf-btn-dec"
+            type="button"
+            onMouseDown={() => {
+              setInputValue(inputValue - 1);
+            }}
+            onMouseUp={changeQuantity}
+          >
+            <span className="visually-hidden">
+              Decrease quantity
+            </span>
+          </button>
           <input
             type="number"
             name="updates[]"
@@ -193,21 +218,19 @@ const LineItem: FunctionComponent<PropsType> = ({ item }) => {
             min="0"
             aria-label={theme.cart.quantity}
           />
-          <span
-            className="jcf-btn-inc"
+          <button
+            class="jcf-btn-inc jcf-disabled"
+            type="button"
             onMouseDown={() => {
               setInputValue(inputValue + 1);
             }}
             onMouseUp={changeQuantity}
-          />
-          <span
-            className="jcf-btn-dec"
-            onMouseDown={() => {
-              setInputValue(inputValue - 1);
-            }}
-            onMouseUp={changeQuantity}
-          />
-        </span>
+          >
+            <span className="visually-hidden">
+              Increase quantity
+            </span>
+          </button>
+        </div>
       </td>
       <td>{formatMoney(item.final_line_price, theme.moneyFormat)}</td>
     </tr>

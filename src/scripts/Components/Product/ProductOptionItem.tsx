@@ -17,7 +17,7 @@ const ProductOptionItem: FunctionComponent<Props> = ({
   setVariantOptions,
 }) => {
   return (
-    <div class="input-holder custom-input custom-input--size d-inline-flex">
+    <div class="input-holder custom-input custom-input--size inline-flex">
       <input
         id={`filter-field-size-01-${idx}-${value}`}
         type="radio"

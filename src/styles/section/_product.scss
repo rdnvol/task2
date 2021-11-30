@@ -1,5 +1,11 @@
 .product-gallery {
   margin: 0 0 20px;
+
+  .splide__slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
 .product-gallery__img {
@@ -20,6 +26,9 @@
 .product-gallery-thumbs {
 
   .splide__slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     opacity: 0.4;
     &.is-active {
       border: none !important;
@@ -112,6 +121,22 @@
   p {
     &:last-child {
       margin: 0;
+    }
+  }
+}
+
+.product__rating {
+
+  .shopify-app-block {
+    max-width: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .spr-starrating {
+
+    .spr-stars {
+      flex-shrink: 0;
     }
   }
 }

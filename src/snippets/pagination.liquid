@@ -1,21 +1,58 @@
-<nav class="pagination d-flex align-items-center justify-content-center">
-  {% unless paginate.previous.is_link %}
-    <a href="#" class="prev disabled">
-      <span class="accessibility">
-        Previous page
-      </span>
-    </a>
-  {% else %}
-    <a href="{{ paginate.previous.url }}" class="prev"></a>
-  {% endunless %}
-  <span class="page">{{ 'general.pagination.current_page' | t: current: paginate.current_page, total: paginate.pages }}</span>
-  {% unless paginate.next.is_link %}
-    <a href="#" class="next disabled"></a>
-  {% else %}
-    <a href="{{ paginate.next.url }}" class="next">
-      <span class="accessibility">
-        Next page
-      </span>
-    </a>
-  {% endunless %}
+<nav role="navigation" class="pagination">
+  <ol class="flex flex-wrap items-center justify-center">
+    {%- if paginate.previous-%}
+      <li>
+        <a href="{{ paginate.previous.url }}" class="pagination__prev">
+          <span class="visually-hidden">Previous page</span>
+        </a>
+      </li>
+    {%- else -%}
+      <li class="disabled">
+        <span class="visually-hidden">Previous page</span>
+      </li>
+    {%- endif -%}
+
+    {%- for part in paginate.parts -%}
+      {%- if part.is_link -%}
+        <li>
+          <a href="{{ part.url }}">
+            {{ part.title }} <span class="visually-hidden">page</span> 
+          </a>
+        </li>
+
+      {%- else -%}
+        {%- if part.title == paginate.current_page -%}
+          <li class="active" aria-current="page">
+            <div>
+              <span>
+                {{ part.title }}
+              </span>
+              <span class="visually-hidden">page</span>
+            </div>
+          </li>
+        {%- else -%}
+          <li>
+            <div>
+              <span>
+                {{ part.title }}
+              </span>
+              <span class="visually-hidden">page</span>
+            </div>
+          </li>
+        {%- endif -%}
+      {%- endif -%}
+    {%- endfor -%}
+
+    {%- if paginate.next -%}
+      <li>
+        <a href="{{ paginate.next.url }}" class="pagination__next">
+          <span class="visually-hidden">Next page</span>
+        </a>
+      </li>
+    {%- else -%}
+      <li class="disabled">
+        <span class="visually-hidden">Next page</span>
+      </li>
+    {%- endif -%}
+  </ol>
 </nav>

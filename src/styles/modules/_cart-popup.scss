@@ -18,14 +18,10 @@
 }
 
 .cart-popup__header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   border-bottom: 1px solid $base-border;
 }
 
 .cart-popup__heading {
-  flex-grow: 1;
   padding: 10px 14px;
 }
 

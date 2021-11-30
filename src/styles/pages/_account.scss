@@ -235,10 +235,6 @@ button.button-add-new-address {
   margin: 0 0 15px;
   color: #ff0101;
   text-align: center;
-
-  ul {
-    @extend %listreset;
-  }
 }
 
 .shopify-challenge__container {
