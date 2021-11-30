@@ -3,9 +3,19 @@
   "sections": {
     "main": {
       "type": "product-variants-swatcher"
+    },
+    "product-recommendations": {
+      "type": "product-recommendations",
+      "settings": {
+        "show_product_recommendations": true,
+        "title": "You may also like",
+        "limit": 4,
+        "button_link": "",
+        "button_label": "back to home page"
+      }
     }
   },
   "order": [
-    "main"
+    "main", "product-recommendations"
   ]
 }
