@@ -4,13 +4,12 @@ import '../../helpers/jquery.plugins';
 import { ProductType } from '../../types';
 
 interface PropsType {
-  product: ProductType;
   heading: string,
   text: string,
   active: boolean
 }
 
-const ProductAccordionItem: FunctionComponent<PropsType> = ({ product, heading, text, active}) => {
+const ProductAccordionItem: FunctionComponent<PropsType> = ({ heading, text, active}) => {
   return (
     <li className={ active ? 'accordion--active' : '' }>
       <a href="#" className="accordion__opener title-1">
