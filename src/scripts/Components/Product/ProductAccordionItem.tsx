@@ -7,12 +7,12 @@ interface PropsType {
   product: ProductType;
   heading: string,
   text: string,
-  index: number
+  active: boolean
 }
 
-const ProductAccordionItem: FunctionComponent<PropsType> = ({product, heading, text, index}) => {
+const ProductAccordionItem: FunctionComponent<PropsType> = ({product, heading, text, active}) => {
   return (
-    <li className={index === 0 ? 'accordion--active' : ''}>
+    <li className={active ? 'accordion--active' : ''}>
       <a href="#" className="accordion__opener title-1">
         {heading}
       </a>

@@ -56,7 +56,7 @@ const ProductAccordion: FunctionComponent<PropsType> = ({product}) => {
           product={product}
           heading={product.metafields.accordion.heading[index]}
           text={product.metafields.accordion.text[index]}
-          index={index}
+          active={index === 0}
           key={index}/> : false
       )}
     </ul>
