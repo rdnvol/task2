@@ -3,7 +3,7 @@ import {h, FunctionComponent, Fragment} from 'preact';
 import {useEffect} from 'preact/hooks';
 
 import {ProductType} from '../../types';
-import ProductAccordionItem from "./ProductAccordionItem";
+import ProductAccordionItem from './ProductAccordionItem';
 import '../../helpers/jquery.plugins';
 
 interface PropsType {
