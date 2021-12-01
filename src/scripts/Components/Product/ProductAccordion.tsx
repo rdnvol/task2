@@ -53,7 +53,6 @@ const ProductAccordion: FunctionComponent<PropsType> = ({ product }) => {
     <ul className="accordion mb-6 rte">
       {Array.from(Array(4)).map((item, index) => product.metafields.accordion.heading[index] ?
         <ProductAccordionItem
-          product={product}
           heading={product.metafields.accordion.heading[index]}
           text={product.metafields.accordion.text[index]}
           active={index === 0}
