@@ -1,8 +1,8 @@
 //@ts-ignore
-import {h, FunctionComponent, Fragment} from 'preact';
-import {useEffect} from 'preact/hooks';
+import { h, FunctionComponent, Fragment } from 'preact';
+import { useEffect } from 'preact/hooks';
 
-import {ProductType} from '../../types';
+import { ProductType } from '../../types';
 import ProductAccordionItem from './ProductAccordionItem';
 import '../../helpers/jquery.plugins';
 
@@ -10,7 +10,7 @@ interface PropsType {
   product: ProductType;
 }
 
-const ProductAccordion: FunctionComponent<PropsType> = ({product}) => {
+const ProductAccordion: FunctionComponent<PropsType> = ({ product }) => {
   const initAccordion = () => {
     //@ts-ignore
     ResponsiveHelper.addRange({

@@ -1,7 +1,7 @@
 //@ts-ignore
-import {h, FunctionComponent, Fragment} from 'preact';
+import { h, FunctionComponent, Fragment } from 'preact';
 import '../../helpers/jquery.plugins';
-import {ProductType} from '../../types';
+import { ProductType } from '../../types';
 
 interface PropsType {
   product: ProductType;
@@ -10,11 +10,11 @@ interface PropsType {
   active: boolean
 }
 
-const ProductAccordionItem: FunctionComponent<PropsType> = ({product, heading, text, active}) => {
+const ProductAccordionItem: FunctionComponent<PropsType> = ({ product, heading, text, active}) => {
   return (
-    <li className={active ? 'accordion--active' : ''}>
+    <li className={ active ? 'accordion--active' : '' }>
       <a href="#" className="accordion__opener title-1">
-        {heading}
+        { heading }
       </a>
       <div className="accordion__slide">
         <div
