@@ -23,6 +23,9 @@
       <main role="main" id="main">
         {{ content_for_layout }}
       </main>
+      {% if template contains 'product' %}
+        {%- render 'cart-popup' -%}
+      {% endif %}
       {% section 'footer' %}
     </div>
 

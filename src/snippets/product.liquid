@@ -127,6 +127,7 @@
                       </div>
                     </div>
                   </div>
+                </form>
               {% endunless %}
               {% when "variant_picker" %}
               <div id="variant-selects" class="no-js-hidden" data-section="{{ section.id }}" data-url="{{ product.url }}" {{ block.shopify_attributes }}>
@@ -216,5 +217,4 @@
       </div>
     </div>
   </div>
-  {%- render 'cart-popup' -%}
 </section>
