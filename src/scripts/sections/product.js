@@ -1,15 +1,18 @@
 import { getUrlWithVariant, ProductForm } from '@shopify/theme-product-form';
 import { formatMoney } from '@shopify/theme-currency';
 import Splide from '@splidejs/splide';
-import '@google/model-viewer';
+// import '@google/model-viewer';
 import { register } from '@shopify/theme-sections';
 import { Fancybox } from '@fancyapps/ui/src/Fancybox/Fancybox.js';
 import { addItem } from '../helpers/cartAjaxCall.js';
+import { afterScrollEnable } from '../helpers/utils.js';
+
 import {
   getCart,
   openPopup,
   addJustAdded,
 } from '../redux/features/cart/cartSlice.ts';
+import { isMetaProperty } from 'typescript';
 
 register('product', {
   _initProduct(handle) {
@@ -19,10 +22,25 @@ register('product', {
     } else {
     }
   },
+  _initObserveProduct: function () {
+    afterScrollEnable(this.container, async () => {
+      const product = await $.getJSON(
+        `/products/${this.container.dataset.handle}.js`
+      );
 
+      const modelMedia = product.media.find(
+        (item) => item.media_type === 'model'
+      );
+
+      if (modelMedia) {
+        require('@google/model-viewer');
+      }
+    });
+  },
   // Shortcut function called when a section is loaded via 'sections.load()' or by the Theme Editor 'shopify:section:load' event.
   onLoad: function (e) {
     this._initProduct(this.container.dataset.handle);
+    this._initObserveProduct();
     // Do something when a section instance is loaded
   },
 
@@ -53,7 +71,7 @@ export class Product {
     this.product = this.getProduct();
     this.initVariantSelects();
     this.getVariantData();
-    this.updateOptions(this.variantSelects)
+    this.updateOptions(this.variantSelects);
     this.updateMasterId();
     this.initSubmit();
     this.initSelectedVariant();
@@ -111,32 +129,32 @@ export class Product {
   }
 
   initGallery() {
-      const slidesLength = this.wrapper.find('.splide__slide').length;
-      this.splide = new Splide(this.wrapper.find('.product-gallery')[0], {
-        type: 'slide',
-        perPage: 1,
+    const slidesLength = this.wrapper.find('.splide__slide').length;
+    this.splide = new Splide(this.wrapper.find('.product-gallery')[0], {
+      type: 'slide',
+      perPage: 1,
+      rewind: false,
+      pagination: false,
+      arrows: false,
+      keyboard: 'focused',
+    });
+
+    const thumbnails = new Splide(
+      this.wrapper.find('.product-gallery-thumbs')[0],
+      {
+        perPage: 3,
+        gap: 10,
         rewind: false,
         pagination: false,
         arrows: false,
+        isNavigation: true,
         keyboard: 'focused',
-      });
-
-      const thumbnails = new Splide(
-        this.wrapper.find('.product-gallery-thumbs')[0],
-        {
-          perPage: 3,
-          gap: 10,
-          rewind: false,
-          pagination: false,
-          arrows: false,
-          isNavigation: true,
-          keyboard: 'focused',
-        }
-      );
-      if (slidesLength > 1) {
-        this.splide.sync(thumbnails);
-        thumbnails.mount();
       }
+    );
+    if (slidesLength > 1) {
+      this.splide.sync(thumbnails);
+      thumbnails.mount();
+    }
     this.splide.mount();
   }
 
@@ -154,13 +172,13 @@ export class Product {
   }
 
   getProduct() {
-    let product
+    let product;
     try {
-      product = JSON.parse(document.getElementById('product-json').innerHTML)
+      product = JSON.parse(document.getElementById('product-json').innerHTML);
     } catch (error) {
       console.warn(error);
     }
-    return product
+    return product;
   }
 
   updateSubmitButton(variant) {
@@ -292,7 +310,8 @@ export class Product {
     this.variantData =
       this.variantData ||
       JSON.parse(
-        this.variantSelects.querySelector('[type="application/json"]').textContent
+        this.variantSelects.querySelector('[type="application/json"]')
+          .textContent
       );
   }
 
