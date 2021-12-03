@@ -226,24 +226,39 @@ a.button {
 .custom-input {
   position: relative;
   &.custom-input--colors {
-    margin: 0 12px 12px 0;
+    margin: 0 8px 8px 0;
 
     input[type="checkbox"],
     input[type="radio"] {
       top: 0;
-      width: 26px;
-      height: 26px;
+      width: 100%;
+      height: 100%;
       &:checked,
       &:focus {
 
         + .custom-label {
           &::before {
             background: none;
-            border-color: $base-border;
+            border-color: $base-body-text;
           }
 
           picture {
             padding: 3px;
+          }
+        }
+      }
+      &:disabled,
+      &.disabled {
+        cursor: default;
+        pointer-events: none;
+
+        + .custom-label {
+          &::before {
+            background: none !important;
+            background: $base-border;
+          }
+          &::after {
+            opacity: 1;
           }
         }
       }
@@ -331,7 +346,7 @@ a.button {
       width: 100%;
       height: 100%;
       background: none;
-      border-color: transparent;
+      border-color: $base-border;
       border-radius: 0;
     }
 
@@ -347,11 +362,23 @@ a.button {
 
   .custom-input--colors & {
     display: block;
-    width: 26px;
-    height: 26px;
-    padding: 0;
+    width: 40px;
+    height: 40px;
+    padding: 3px;
     background: none;
     overflow: hidden;
+    &::after {
+      content: "";
+      position: absolute;
+      top: -8px;
+      left: 19px;
+      z-index: 2;
+      width: 1px;
+      height: 58px;
+      background: #c4c4c4;
+      opacity: 0;
+      transform: rotate(45deg);
+    }
 
     > span {
       display: block;
