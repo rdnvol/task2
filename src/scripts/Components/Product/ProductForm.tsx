@@ -222,6 +222,9 @@ const ProductForm: FunctionComponent<Props> = ({ product }) => {
           <div id="payment-button" class="product__row"></div>
         </div>
       </div>
+      {product.description &&
+      <div className="product__row rte" dangerouslySetInnerHTML={{__html: product.description}}>
+      </div> }
     </form>
   );
 };
