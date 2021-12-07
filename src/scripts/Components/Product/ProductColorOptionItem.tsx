@@ -63,6 +63,14 @@ const ProductColorOptionItem: FunctionComponent<Props> = ({
     return variantOptions && variantOptions[name] === color;
   }, [settings, product, chosenProduct, variantOptions]);
 
+  const isDisabled = useMemo(() => {
+    let currentVariantObj = chosenProduct.variants.find((variant) => {
+      return variant.title === color
+    })
+    if (!currentVariantObj) return
+    return !currentVariantObj?.available
+  }, [settings, product, chosenProduct, variantOptions])
+
   const handleChange = useCallback(() => {
     if (settings.swatcher_type === swatchTypes.products && !variants) {
       return () => {
@@ -88,6 +96,7 @@ const ProductColorOptionItem: FunctionComponent<Props> = ({
         name={`filter-field-colors-${idx}-${name}`}
         onChange={handleChange()}
         checked={isChecked}
+        disabled={isDisabled}
       />
       <label for={`filter-field-colors-01-${idx}-${name}`} class="custom-label">
         {settings?.swatcher_type === swatchTypes.variants ? (
