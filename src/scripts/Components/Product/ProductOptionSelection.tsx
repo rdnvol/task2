@@ -1,19 +1,21 @@
 import { h, FunctionComponent, Fragment } from 'preact';
 import { StateUpdater } from 'preact/hooks';
 
-import { OptionWithValuesType } from '../../types';
+import {OptionWithValuesType, ProductType} from '../../types';
 import ProductOptionItem from './ProductOptionItem';
 
 interface Props {
   option: OptionWithValuesType | null;
   variantOptions: object;
   setVariantOptions: StateUpdater<any>;
+  product?: ProductType;
 }
 
 const ProductOptionSelection: FunctionComponent<Props> = ({
   option,
   variantOptions,
   setVariantOptions,
+  product,
 }) => {
   return (
     option?.values?.length && (
@@ -31,6 +33,7 @@ const ProductOptionSelection: FunctionComponent<Props> = ({
                 idx={idx}
                 variantOptions={variantOptions}
                 setVariantOptions={setVariantOptions}
+                product={product}
               />
             ))}
           </div>

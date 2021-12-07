@@ -187,6 +187,7 @@ const ProductForm: FunctionComponent<Props> = ({ product }) => {
                 option={option}
                 variantOptions={variantOptions}
                 setVariantOptions={setVariantOptions}
+                product={product}
               />
             )
           )}
