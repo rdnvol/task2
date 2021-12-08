@@ -162,12 +162,6 @@ const ProductForm: FunctionComponent<Props> = ({ product }) => {
         </div>
       </div>
       <div class="product__row">
-        {settings?.swatcher_type === swatchTypes.products && (
-          <ProductColorOptionWrapper
-            setQuantity={setProductQuantity}
-            setChosenVariant={setChosenVariant}
-          />
-        )}
         {productRenderCheck &&
           product?.options_with_values?.length &&
           product?.options_with_values.map((option, idx) =>
