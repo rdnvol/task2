@@ -29,7 +29,7 @@
 .filter-main-open-close__closer {
   min-width: 44px;
   min-height: 44px;
-  padding: 12px 14px;
+  padding: 9px 14px;
 
   .btn-closer {
     min-width: 26px;
@@ -108,5 +108,46 @@
   .btn-closer {
     min-width: 24px;
     min-height: 24px;
+  }
+}
+
+.filter-collapse {
+  border-width: 1px 0;
+  border-style: solid;
+  border-color: $base-border;
+  +.filter-collapse {
+    margin-top: -1px;
+  }
+}
+
+.filter-collapse__item {
+
+  summary {
+    cursor: pointer;
+  }
+}
+
+.filter-collapse__btn {
+  position: relative;
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 64%;
+    height: 2px;
+    background: currentColor;
+    transition: transform $animation-speed ease-in-out;
+    transform: translate(-50%, -50%);
+  }
+  &::after {
+    transform: translate(-50%, -50%) rotate(90deg);
+    .filter-collapse__item[open] & {
+      transform: translate(-50%, -50%) rotate(180deg);
+    }
   }
 }

@@ -44,7 +44,7 @@
 
                   <div class="filter-main-open-close__slide-btn-holder lg:hidden">
                     <button class="filter-main-open-close__opener filter-main-open-close__closer page-wrapper__opener flex items-center body-medium">
-                      <span class="btn-closer flex-shrink-0 mr-2">
+                      <span class="btn-closer flex-shrink-0 mr-1">
                         <span class="visually-hidden">
                           Icon close
                         </span>
@@ -53,7 +53,169 @@
                     </button>
                   </div>
 
-                  12
+                  <div>
+                    <div class="px-4">
+                      <div class="md:hidden py-4">
+                        <label class="label" for="filter-sortby">Sort by</label>
+                        <div class="select-holder">
+                          <select id="filter-sortby">
+                            <option>Featured</option>
+                            <option>Price</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="filter-collapse">
+                        <details-disclosure>
+                          <details class="filter-collapse__item" open>
+                            <summary class="py-3 flex justify-between items-center">
+                              Color
+                              <span class="filter-collapse__btn flex-shrink-0 mx-4"></span>
+                            </summary>
+                            <div class="py-2 custom-input custom-input--colors-with-text">
+                              <input id="filter-collapse-color-01" type="checkbox" checked name="filter-collapse-color">
+                              <label for="filter-collapse-color-01" class="custom-label flex items-center">
+                                <span class="custom-label__img-holder">
+                                  {% render
+                                    'image',
+                                    asset_img_url: true,
+                                    src: 'img-placeholder.png',
+                                    d: '20x20',
+                                    placeholder: 'img-placeholder.png',
+                                  %}
+                                </span>
+                                Black (10)
+                              </label>
+                            </div>
+                            <div class="py-2 custom-input custom-input--colors-with-text">
+                              <input id="filter-collapse-color-02" type="checkbox" disabled name="filter-collapse-color">
+                              <label for="filter-collapse-color-02" class="custom-label flex items-center">
+                                <span class="custom-label__img-holder">
+                                  {% render
+                                    'image',
+                                    asset_img_url: true,
+                                    src: 'img-placeholder.png',
+                                    d: '20x20',
+                                    placeholder: 'img-placeholder.png',
+                                  %}
+                                </span>
+                                Red (1)
+                              </label>
+                            </div>
+                            <div class="py-2 custom-input custom-input--colors-with-text">
+                              <input id="filter-collapse-color-03" type="checkbox" name="filter-collapse-color">
+                              <label for="filter-collapse-color-03" class="custom-label flex items-center">
+                                <span class="custom-label__img-holder">
+                                  {% render
+                                    'image',
+                                    asset_img_url: true,
+                                    src: 'img-placeholder.png',
+                                    d: '20x20',
+                                    placeholder: 'img-placeholder.png',
+                                  %}
+                                </span>
+                                Fiji (6)
+                              </label>
+                            </div>
+                          </details>
+                        </details-disclosure>
+                      </div>
+                      <div class="filter-collapse">
+                        <details-disclosure>
+                          <details class="filter-collapse__item">
+                            <summary class="py-3 flex justify-between items-center">
+                              Price
+                              <span class="filter-collapse__btn flex-shrink-0 mx-4"></span>
+                            </summary>
+                              123
+                          </details>
+                        </details-disclosure>
+                      </div>
+                      <div class="filter-collapse">
+                        <details-disclosure>
+                          <details class="filter-collapse__item" open>
+                            <summary class="py-3 flex justify-between items-center">
+                              Size
+                              <span class="filter-collapse__btn flex-shrink-0 mx-4"></span>
+                            </summary>
+                            <div class="py-2 custom-input custom-input--square-with-text">
+                              <input id="filter-collapse-size-01" type="checkbox" checked name="filter-collapse-size">
+                              <label for="filter-collapse-size-01" class="custom-label flex items-center">
+                                <span class="custom-label__check"></span>
+                                XXS (20)
+                              </label>
+                            </div>
+                            <div class="py-2 custom-input custom-input--square-with-text">
+                              <input id="filter-collapse-size-02" type="checkbox" name="filter-collapse-size">
+                              <label for="filter-collapse-size-02" class="custom-label flex items-center">
+                                <span class="custom-label__check"></span>
+                                XS (25)
+                              </label>
+                            </div>
+                            <div class="py-2 custom-input custom-input--square-with-text">
+                              <input id="filter-collapse-size-03" type="checkbox" disabled name="filter-collapse-size">
+                              <label for="filter-collapse-size-03" class="custom-label flex items-center">
+                                <span class="custom-label__check"></span>
+                                L (0)
+                              </label>
+                            </div>
+                          </details>
+                        </details-disclosure>
+                      </div>
+                      <div class="filter-collapse">
+                        <details-disclosure>
+                          <details class="filter-collapse__item">
+                            <summary class="py-3 flex justify-between items-center">
+                              Brand
+                              <span class="filter-collapse__btn flex-shrink-0 mx-4"></span>
+                            </summary>
+                            <div class="py-2 custom-input custom-input--square-with-text">
+                              <input id="filter-collapse-brand-01" type="checkbox" checked name="filter-collapse-brand">
+                              <label for="filter-collapse-brand-01" class="custom-label flex items-center">
+                                <span class="custom-label__check"></span>
+                                Adidas (225)
+                              </label>
+                            </div>
+                            <div class="py-2 custom-input custom-input--square-with-text">
+                              <input id="filter-collapse-brand-02" type="checkbox" name="filter-collapse-brand">
+                              <label for="filter-collapse-brand-02" class="custom-label flex items-center">
+                                <span class="custom-label__check"></span>
+                                Adidas (225)
+                              </label>
+                            </div>
+                            <div class="py-2 custom-input custom-input--square-with-text">
+                              <input id="filter-collapse-brand-03" type="checkbox" disabled name="filter-collapse-brand">
+                              <label for="filter-collapse-brand-03" class="custom-label flex items-center">
+                                <span class="custom-label__check"></span>
+                                Adidas (225)
+                              </label>
+                            </div>
+                          </details>
+                        </details-disclosure>
+                      </div>
+                      <div class="filter-collapse">
+                        <details-disclosure>
+                          <details class="filter-collapse__item">
+                            <summary class="py-3 flex justify-between items-center">
+                              Type
+                              <span class="filter-collapse__btn flex-shrink-0 mx-4"></span>
+                            </summary>
+                            123
+                          </details>
+                        </details-disclosure>
+                      </div>
+                      <div class="filter-collapse">
+                        <details-disclosure>
+                          <details class="filter-collapse__item">
+                            <summary class="py-3 flex justify-between items-center">
+                              Category
+                              <span class="filter-collapse__btn flex-shrink-0 mx-4"></span>
+                            </summary>
+                            123
+                          </details>
+                        </details-disclosure>
+                      </div>
+                    </div>
+                  </div>
                 </div>
                 <div class="filter-main-open-close__opener filter-main-open-close__overlay page-wrapper__opener lg:hidden">
                   <span class="visually-hidden">
