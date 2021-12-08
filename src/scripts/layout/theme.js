@@ -42,6 +42,7 @@ class App {
     this.initProductGallery();
     this.fancyboxBackdrop();
     this.fancyboxModalCloseButton();
+    this.initOpenClose();
 
     // Responsive fluid iframe
     $('.rte iframe').each(function (index) {
@@ -339,6 +340,37 @@ class App {
   fancyboxModalCloseButton() {
     document.body.addEventListener('click', (e) => {
       'fancyboxClose' in e.target.dataset && window.fancybox.close(true);
+    });
+  }
+
+  initOpenClose() {
+    ResponsiveHelper.addRange({
+      '..1199': {
+        on: function () {
+          $('.filter-main-open-close').openClose({
+            activeClass: 'filter-main-open-close--active',
+            opener: '.filter-main-open-close__opener',
+            slider: '.filter-main-open-close__slide',
+            effect: 'none',
+            event: 'click',
+            animSpeed: 0,
+            hideOnClickOutside: false,
+          });
+        },
+        off: function () {
+          $('.filter-main-open-close').openClose('destroy');
+        },
+      },
+    });
+
+    $('.product-size-dropdown').openClose({
+      activeClass: 'product-size-dropdown--active',
+      opener: '.product-size-dropdown__btn-opener',
+      slider: '.product-size-dropdown__slide',
+      effect: 'slide',
+      event: 'click',
+      hideOnClickOutside: true,
+      animSpeed: 400,
     });
   }
 }

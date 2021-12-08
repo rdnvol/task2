@@ -591,6 +591,27 @@ img[data-sizes="auto"] {
   }
 }
 
+.btn-closer {
+  position: relative;
+  display: inline-block;
+  min-width: 44px;
+  min-height: 44px;
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 57%;
+    height: 2px;
+    background: currentColor;
+    transform: translate(-50%, -50%) rotate(-45deg);
+  }
+  &::after {
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+}
+
 // Shopify Preview bar iframe styles
 #preview-bar-iframe {
   width: calc(100% + 15px) !important;

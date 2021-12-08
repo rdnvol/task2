@@ -26,13 +26,69 @@
           {{ 'collections.general.no_matches' | t }}
         </div>
       {% else %}
-        <div class="grid grid-cols-2 xl:grid-cols-4 gap-x-8 py-4 js-products-wrapper">
+      <div class="py-4 lg:flex lg:space-x-8">
+        <div class="filter lg:w-3/12">
+          <div class="filter__main-btn-holder flex items-center space-x-2 mb-4">
+            <div class="w-6/12 lg:w-100">
+              <div class="filter-main-open-close">
+                <button class="default filter-main-open-close__btn-opener filter-main-open-close__opener page-wrapper__opener flex items-center lg:hidden body-large">
+                  <span class="filter-main-open-close__btn-opener-icon mr-2">
+                    {% render 'icon' with 'filter' %}
+                  </span>
+                  Filter and sort
+                </button>
+                <div class="hidden lg:block body-large">
+                  Filter by
+                </div>
+                <div class="filter-main-open-close__slide" style="display: none;">
+
+                  <div class="filter-main-open-close__slide-btn-holder lg:hidden">
+                    <button class="filter-main-open-close__opener filter-main-open-close__closer page-wrapper__opener flex items-center body-medium">
+                      <span class="btn-closer flex-shrink-0 mr-2">
+                        <span class="visually-hidden">
+                          Icon close
+                        </span>
+                      </span>
+                      Close
+                    </button>
+                  </div>
+
+                  12
+                </div>
+                <div class="filter-main-open-close__opener filter-main-open-close__overlay page-wrapper__opener lg:hidden">
+                  <span class="visually-hidden">
+                    Closer filter drawer
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="w-6/12 lg:hidden text-right">
+              1,036 products
+            </div>
+          </div>
+
+          <div class="filter-selected-element-list flex flex-wrap items-center lg:hidden space-x-3">
+            <button class="button filter__btn-reset" type="button">
+              Clear all
+            </button>
+            <div class="filter-selected-element-list__item relative flex items-center justify-center px-4">
+              Black
+              <button class="btn-closer ml-3 -mr-3">
+                <span class="visually-hidden">
+                  Clear {Black} filter results
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 xl:grid-cols-3 lg:w-9/12 gap-x-8 js-products-wrapper">
           {% liquid
             for product in collection.products
               render "product-card", product: product, grid_item_width: ''
             endfor
           %}
         </div>
+      </div>
       {% endif %}
       {% if section.settings.enable_infinite %}
         <div class="spinner-holder">

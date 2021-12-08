@@ -1,0 +1,112 @@
+.filter-main-open-close {
+  position: relative;
+}
+
+.filter__main-btn-holder {
+  padding: 0 15px 0 0;
+  border: 1px solid $base-border;
+  @include media ("≥widescreen") {
+    border: none;
+  }
+}
+
+.filter-main-open-close__btn-opener {
+  min-width: 44px;
+  min-height: 44px;
+  padding: 10px 15px;
+}
+
+.filter-main-open-close__btn-opener-icon {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+}
+
+.filter-main-open-close__slide-btn-holder {
+  border-bottom: 1px solid $base-border;
+}
+
+.filter-main-open-close__closer {
+  min-width: 44px;
+  min-height: 44px;
+  padding: 12px 14px;
+
+  .btn-closer {
+    min-width: 26px;
+    min-height: 26px;
+  }
+}
+
+.filter-main-open-close__overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 101;
+  width: 100%;
+  height: 100%;
+  background: $black;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity $animation-speed ease-in-out;
+
+  .filter-main-open-close--active & {
+    opacity: 0.6;
+    pointer-events: auto;
+  }
+}
+
+.filter-main-open-close__slide {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 45px !important;
+  z-index: 102;
+  display: block !important;
+  height: 100%;
+  background: $base-body-background;
+  transition: transform $animation-speed ease-in-out;
+  transform: translateX(100vw);
+  @include media ("≤1199px") {
+    display: flex !important;
+    flex-direction: column;
+  }
+  @include media ("≥widescreen") {
+    position: static;
+    z-index: 1;
+    display: block !important;
+    height: auto;
+    background: none;
+    transition: none;
+    transform: none;
+  }
+  &.js-slide-hidden {
+    @include media ("≤1199px") {
+      position: fixed !important;
+      top: 0 !important;
+      left: 45px !important;
+      display: block !important;
+    }
+  }
+
+  .filter-main-open-close--active & {
+    transform: translateX(0);
+  }
+}
+
+.filter__btn-reset {
+  min-width: 90px;
+  min-height: 44px;
+}
+
+.filter-selected-element-list {
+  margin: 0 -15px 0 0;
+}
+
+.filter-selected-element-list__item {
+  border: 1px solid $base-border;
+
+  .btn-closer {
+    min-width: 24px;
+    min-height: 24px;
+  }
+}
