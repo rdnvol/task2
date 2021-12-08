@@ -43,6 +43,7 @@ const ProductColorOptionWrapper: FunctionComponent<Props> = ({
     return option.values.map((color, idx) => (
       <ProductColorOptionItem
         enhanceProduct={enhanceProduct}
+        chosenProduct={chosenProduct}
         chosenVariant={chosenVariant}
         variants={variants}
         settings={settings}
