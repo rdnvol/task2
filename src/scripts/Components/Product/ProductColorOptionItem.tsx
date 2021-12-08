@@ -69,7 +69,7 @@ const ProductColorOptionItem: FunctionComponent<Props> = ({
     })
     if (!currentVariantObj) return
     return !currentVariantObj?.available
-  }, [settings, product, chosenProduct, variantOptions])
+  }, [chosenProduct])
 
   const handleChange = useCallback(() => {
     if (settings.swatcher_type === swatchTypes.products && !variants) {
