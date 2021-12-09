@@ -12,10 +12,6 @@
 
 {%- assign first_3d_model = product.media | where: "media_type", "model" | first -%}
 
-<script>
-  console.log("Current variant from product page", {{ current_variant | json }})
-</script>
-
 <section data-section-id="{{ section.id }}"
          class="section page-section"
          data-section-type="product"
@@ -72,9 +68,6 @@
             {% when "price" %}
               <div class="product__price mb-3" {{ block.shopify_attributes }}>
                 <div class="product__price__box flex flex-wrap items-center" data-price-wrapper>
-                  <script>
-                    console.log("Current variant from price block", current_variant)
-                  </script>
                   {% if product.compare_at_price_max > product.price %}
                     <ins data-product-price>
                       {{ current_variant.price | money }}
@@ -152,9 +145,6 @@
                           </div>
                           <div class="flex flex-wrap">
                             {% for value in option.values %}
-                              <script>
-                                console.log("Selected options is", {{ option.selected_value | json }})
-                              </script>
                               <div class="input-holder custom-input custom-input--{% if option.name == "Color" %}colors{% else %}size{% endif %} inline-flex">
                                 <input
                                   id="filter-field-colors-01-{{ forloop.index }}-{{option.name}}"

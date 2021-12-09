@@ -99,7 +99,6 @@ export class Product {
   }
 
   onVariantChange(el, selector) {
-    console.log('Current variant from onVariantChange', this.currentVariant);
     this.updateOptions(el, selector);
     this.updateMasterId();
     this.onOptionChange(this.currentVariant);
@@ -107,9 +106,6 @@ export class Product {
   }
 
   updateOptions(el, selector) {
-    console.log('Element from updateOptions', el);
-    console.log('Selector from updateOptions', selector);
-    console.log('All the inputs', el.querySelectorAll(selector));
     if (selector === 'input') {
       this.options = Array.from(el.querySelectorAll(selector)).reduce(
         (acc, curr) => {
@@ -126,9 +122,6 @@ export class Product {
       );
 
       titles.forEach((title, idx) => {
-        console.log('Title from each loop', title);
-        console.log('This options from each', this.options);
-        console.log('Index from each', idx);
         $(title).text(this.options[idx]);
       });
     }
@@ -140,8 +133,6 @@ export class Product {
   }
 
   updateMasterId() {
-    console.log('This variant data from updateMasterId', this.variantData);
-    console.log('This options from updateMasterId', this.options);
     this.currentVariant = this.variantData.find((variant) => {
       return !variant.options
         .map((option, index) => {
@@ -149,12 +140,9 @@ export class Product {
         })
         .includes(false);
     });
-
-    console.log('This current variant is', this.currentVariant);
   }
 
   updateVariantInput(variant) {
-    console.log('variant from updateVariantInput', variant);
     this.inputName.value = variant.id;
     this.inputName.dispatchEvent(new Event('change', { bubbles: true }));
   }
