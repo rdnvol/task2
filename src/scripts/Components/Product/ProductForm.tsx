@@ -162,12 +162,6 @@ const ProductForm: FunctionComponent<Props> = ({ product }) => {
         </div>
       </div>
       <div class="product__row">
-        {settings?.swatcher_type === swatchTypes.products && (
-          <ProductColorOptionWrapper
-            setQuantity={setProductQuantity}
-            setChosenVariant={setChosenVariant}
-          />
-        )}
         {productRenderCheck &&
           product?.options_with_values?.length &&
           product?.options_with_values.map((option, idx) =>
@@ -187,6 +181,7 @@ const ProductForm: FunctionComponent<Props> = ({ product }) => {
                 option={option}
                 variantOptions={variantOptions}
                 setVariantOptions={setVariantOptions}
+                product={product}
               />
             )
           )}
@@ -222,6 +217,9 @@ const ProductForm: FunctionComponent<Props> = ({ product }) => {
           <div id="payment-button" class="product__row"></div>
         </div>
       </div>
+      {product.description &&
+      <div className="product__row rte" dangerouslySetInnerHTML={{__html: product.description}}>
+      </div> }
     </form>
   );
 };
