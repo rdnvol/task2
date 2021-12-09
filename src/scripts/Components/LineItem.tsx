@@ -31,10 +31,7 @@ const LineItem: FunctionComponent<PropsType> = ({ item }) => {
   };
 
   const updateItem = (quantity) => {
-    console.log('OnChange triggered');
     const key = item.key;
-    // const quantity = +e.target.value;
-    console.log('Quantity from updateItem is', quantity);
 
     dispatch(updateItemAction({ id: key, options: { quantity } }));
   };
@@ -136,9 +133,7 @@ const LineItem: FunctionComponent<PropsType> = ({ item }) => {
                   }}
                   onMouseUp={changeQuantity}
                 >
-                  <span className="visually-hidden">
-                    Decrease quantity
-                  </span>
+                  <span className="visually-hidden">Decrease quantity</span>
                 </button>
                 <input
                   type="number"
@@ -163,9 +158,7 @@ const LineItem: FunctionComponent<PropsType> = ({ item }) => {
                   }}
                   onMouseUp={changeQuantity}
                 >
-                  <span className="visually-hidden">
-                    Increase quantity
-                  </span>
+                  <span className="visually-hidden">Increase quantity</span>
                 </button>
               </div>
             </div>
@@ -201,9 +194,7 @@ const LineItem: FunctionComponent<PropsType> = ({ item }) => {
             }}
             onMouseUp={changeQuantity}
           >
-            <span className="visually-hidden">
-              Decrease quantity
-            </span>
+            <span className="visually-hidden">Decrease quantity</span>
           </button>
           <input
             type="number"
@@ -226,9 +217,7 @@ const LineItem: FunctionComponent<PropsType> = ({ item }) => {
             }}
             onMouseUp={changeQuantity}
           >
-            <span className="visually-hidden">
-              Increase quantity
-            </span>
+            <span className="visually-hidden">Increase quantity</span>
           </button>
         </div>
       </td>

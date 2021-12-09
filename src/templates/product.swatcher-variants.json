@@ -1,0 +1,63 @@
+{
+  "sections": {
+    "product": {
+      "type": "product-swatcher-variants",
+      "settings": {
+        "show_quantity": true,
+        "show_variant_label": true,
+        "show_vendor": true,
+        "show_dynamic_button": true,
+        "show_share_buttons": true,
+        "show_size_chart": true,
+        "size_chart_url": "shopify://pages/size-chart"
+      },
+      "blocks": {
+        "vendor": {
+          "type": "vendor"
+        },
+        "title": {
+          "type": "title"
+        },
+        "price": {
+          "type": "price"
+        },
+        "variant_picker": {
+          "type": "variant_picker"
+        },
+        "buy_buttons": {
+          "type": "buy_buttons"
+        },
+        "quantity_selector": {
+          "type": "quantity_selector"
+        },
+        "description": {
+          "type": "description"
+        },
+        "share": {
+          "type": "share"
+        }
+      },
+      "block_order": [
+        "vendor",
+        "title",
+        "price",
+        "variant_picker",
+        "buy_buttons",
+        "quantity_selector",
+        "description",
+        "share"
+      ]
+    },
+    "product-recommendations": {
+      "type": "product-recommendations",
+      "settings": {
+        "show_product_recommendations": true,
+        "title": "You may also like",
+        "limit": 4,
+        "button_link": "",
+        "button_label": "back to home page"
+      }
+    }
+  },
+  "order": ["product", "product-recommendations"]
+}
