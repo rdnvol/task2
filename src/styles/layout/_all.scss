@@ -328,23 +328,26 @@ ins {
 }
 
 .page-title-block {
-  padding: 20px 0;
+  padding: 20px 0 10px;
   @include media("≥desktop") {
-    padding: 28px 0;
+    padding: 28px 0 18px;
   }
 
   h1,
   .h1,
+  h2,
+  .h2,
   .h {
-    &:only-child {
-      margin-bottom: 0;
-    }
+    margin-bottom: 10px;
   }
 
   p {
-    &:last-child {
-      margin-bottom: 0;
-    }
+    margin-bottom: 10px;
+  }
+
+  h2 {
+    font-family: $font-body;
+    font-weight: $font-body-weight;
   }
 }
 
