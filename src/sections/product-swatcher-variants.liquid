@@ -1,0 +1,112 @@
+{% liquid
+  render 'breadcrumbs'
+  render 'swatcher-variants' with product as product
+  render "schema"
+%}
+
+<script type="application/json" id="product-json">
+  {% render 'product-json' %}
+</script>
+
+{% schema %}
+{
+  "name": "Product Information",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_quantity",
+      "label": "Show quantity selector",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_variant_label",
+      "label": "Show variant label",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_vendor",
+      "label": "Show product vendor",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_dynamic_button",
+      "label": "Show dynamic checkout button",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_share_buttons",
+      "label": "Show social sharing buttons",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_size_chart",
+      "label": "Show size chart",
+      "default": true
+    },
+    {
+      "type": "url",
+      "id": "size_chart_url",
+      "label": "Size chart url"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "@app"
+    },
+    {
+      "type": "vendor",
+      "name": "Vendor",
+      "limit": 1
+    },
+    {
+      "type": "title",
+      "name": "Title",
+      "limit": 1
+    },
+    {
+      "type": "price",
+      "name": "Price",
+      "limit": 1
+    },
+    {
+      "type": "variant_picker",
+      "name": "Variant picker",
+      "limit": 1
+    },
+    {
+      "type": "quantity_selector",
+      "name": "Quantity selector",
+      "limit": 1
+    },
+    {
+      "type": "buy_buttons",
+      "name": "Buy buttons",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "show_dynamic_checkout",
+          "default": true,
+          "label": "Show dynamic checkout",
+          "info": "Using the payment methods available on your store, customers see their preferred option, like PayPal or Apple Pay. [Learn more](https://help.shopify.com/manual/using-themes/change-the-layout/dynamic-checkout)"
+        }
+      ]
+    },
+    {
+      "type": "description",
+      "name": "Description",
+      "limit": 1
+    },
+    {
+      "type": "share",
+      "name": "Share",
+      "limit": 1
+    }
+  ]
+}
+{% endschema %}
