@@ -93,6 +93,12 @@
   }
 }
 
+.filter-main-open-close__holder {
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
 .filter__btn-reset {
   min-width: 90px;
   min-height: 44px;
@@ -148,6 +154,24 @@
     transform: translate(-50%, -50%) rotate(90deg);
     .filter-collapse__item[open] & {
       transform: translate(-50%, -50%) rotate(180deg);
+    }
+  }
+}
+
+.filter-collapse__btn-more-content {
+
+  .filter-collapse__less {
+    display: none;
+  }
+
+  &.active {
+
+    .filter-collapse__more {
+      display: none;
+    }
+
+    .filter-collapse__less {
+      display: block;
     }
   }
 }
