@@ -345,7 +345,7 @@ class App {
 
   initOpenClose() {
     ResponsiveHelper.addRange({
-      '..1199': {
+      '..1023': {
         on: function () {
           $('.filter-main-open-close').openClose({
             activeClass: 'filter-main-open-close--active',

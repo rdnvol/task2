@@ -404,7 +404,6 @@ a.button {
           }
         }
       }
-
       &:disabled,
       &.disabled {
         cursor: default;
@@ -582,7 +581,7 @@ a.button {
   height: 24px;
   margin-right: 8px;
   border: 1px solid $base-border;
-  transition: border-color $animation-speed ease-in-out;
+  transition: border-color $animation-speed ease-in-out, background-color $animation-speed ease-in-out;
   overflow: hidden;
   &::after {
     content: "";
@@ -595,6 +594,7 @@ a.button {
     border: 2px solid $customizable-base-text;
     border-width: 0 0 2px 2px;
     opacity: 0;
+    transition: opacity $animation-speed ease-in-out;
     transform: rotate(-45deg);
   }
 }
