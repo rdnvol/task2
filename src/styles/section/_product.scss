@@ -219,3 +219,25 @@
 html.no-js .no-js-hidden {
   display: none !important;
 }
+
+.product__gallery-slider {
+  @include media ("≤767px") {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+.product__gallery-slider__item {
+  @include media ("≤767px") {
+    scroll-snap-align: start;
+    min-width: 100vw;
+    height: auto;
+  }
+  &:first-child {
+    @include media ("≥desktop") {
+      grid-column: 1 / -1;
+    }
+  }
+}

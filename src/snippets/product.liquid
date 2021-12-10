@@ -17,6 +17,60 @@
   <div class="container">
     <div class="md:flex md:space-x-8">
       <div class="md:w-6/12 mb-4 md:mb-0">
+        <ul class="product__gallery-slider md:grid md:grid-cols-1 lg:grid-cols-2 md:gap-3">
+          <li class="product__gallery-slider__item">
+            <div class="product__gallery-snap__img" data-position="{{ media.position }}">
+              {% render
+                'image',
+                asset_img_url: true,
+                src: 'img-placeholder.png',
+                d: '635x791',
+                src_m: 'img-placeholder.png',
+                m: '345x431',
+                placeholder: 'img-placeholder.png'
+              %}
+            </div>
+          </li>
+          <li class="product__gallery-slider__item">
+            <div class="product-gallery__img">
+              {% render
+                'image',
+                asset_img_url: true,
+                src: 'img-placeholder.png',
+                d: '635x791',
+                src_m: 'img-placeholder.png',
+                m: '345x431',
+                placeholder: 'img-placeholder.png'
+              %}
+            </div>
+          </li>
+          <li class="product__gallery-slider__item">
+            <div class="product-gallery__img" data-position="{{ media.position }}">
+              {% render
+                'image',
+                asset_img_url: true,
+                src: 'img-placeholder.png',
+                d: '635x791',
+                src_m: 'img-placeholder.png',
+                m: '345x431',
+                placeholder: 'img-placeholder.png'
+              %}
+            </div>
+          </li>
+          <li class="product__gallery-slider__item">
+            <div class="product-gallery__img" data-position="{{ media.position }}">
+              {% render
+                'image',
+                asset_img_url: true,
+                src: 'img-placeholder.png',
+                d: '635x791',
+                src_m: 'img-placeholder.png',
+                m: '345x431',
+                placeholder: 'img-placeholder.png'
+              %}
+            </div>
+          </li>
+        </ul>
         {% unless section_onboarding %}
           <div class="splide product-gallery">
             <div class="splide__track">
