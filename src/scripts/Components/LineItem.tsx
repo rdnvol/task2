@@ -185,7 +185,7 @@ const LineItem: FunctionComponent<PropsType> = ({ item }) => {
         <label htmlFor={`updates_${item.key}`} className="visually-hidden">
           Quantity
         </label>
-        <div class="jcf-number flex items-center">
+        <div class="jcf-number flex items-center ml-auto">
           <button
             class="jcf-btn-dec"
             type="button"
