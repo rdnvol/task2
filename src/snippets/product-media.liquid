@@ -53,7 +53,42 @@
   {% when 'model' %}
     <div class="splide__slide">
       <div class="model-viewer-block">
-        <model-viewer alt="{{ media.alt }}" src="{{ media.sources[0].url }}" poster="{{ media.preview_image | img_url: 'master' }}" camera-controls></model-viewer>
+        <product-model class="deferred-media media media--transparent" style="padding-top: min(calc(100vh - 12rem), 100%)">
+          <button id="Deferred-Poster-Modal-{{ media.id }}" class="deferred-media__poster" type="button">
+            <span class="deferred-media__poster-button motion-reduce">
+            </span>
+            <img
+              srcset="{% if media.preview_image.width >= 288 %}{{ media.preview_image | img_url: '288x' }} 288w,{% endif %}
+                      {% if media.preview_image.width >= 576 %}{{ media.preview_image | img_url: '576x' }} 576w,{% endif %}
+                      {% if media.preview_image.width >= 550 %}{{ media.preview_image | img_url: '550x' }} 550w,{% endif %}
+                      {% if media.preview_image.width >= 1100 %}{{ media.preview_image | img_url: '1100x' }} 1100w,{% endif %}
+                      {{ media.preview_image | img_url: 'master' }} {{ media.preview_image.width }}w"
+              src="{{ media | img_url: '550x550' }}"
+              sizes="(min-width: 1200px) calc((1200px - 10rem) / 2), (min-width: 750px) calc((100vw - 11.5rem) / 2), calc(100vw - 4rem)"
+              loading="lazy"
+              width="576"
+              height="{{ 576 | divided_by: media.preview_image.aspect_ratio }}"
+              alt="{{ media.preview_image.alt | escape }}"
+            >
+          </button>
+          <template>
+            {%- case media.media_type -%}
+            {%- when 'model' -%}
+              {{ media | media_tag: image_size: "2048x", toggleable: true }}
+            {%- endcase -%}
+          </template>
+        </product-model>
+        <button
+        class="button button--full-width product__xr-button"
+        type="button"
+        aria-label="{{ 'products.product.xr_button_label' | t }}"
+        data-shopify-xr
+        data-shopify-model3d-id="{{ media.id }}"
+        data-shopify-title="title"
+        data-shopify-xr-hidden
+        >
+          {{ 'products.product.xr_button' | t }}
+        </button>
       </div>
     </div>
   {% else %}
