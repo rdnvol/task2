@@ -1,57 +1,35 @@
 {% case media.media_type %}
   {% when 'image' %}
-    {%- if main -%}
-      <div class="splide__slide">
-        <div class="product-gallery__img" data-position="{{ media.position }}">
-          {% render
-            'image',
-            src: media,
-            d: '635x791',
-            src_m: media,
-            m: '345x431',
-            alt: media.alt,
-            placeholder: 'img-placeholder.png'
-          %}
-        </div>
+    <div class="product__gallery-slider__item">
+      <div class="product__gallery-slider__img" data-position="{{ media.position }}">
+        {% render
+          'image',
+          src: media,
+          d: '635x791',
+          src_m: media,
+          m: '345x431',
+          alt: media.alt,
+          placeholder: 'img-placeholder.png'
+        %}
       </div>
-    {%- else -%}
-      <div class="splide__slide">
-        <div class="product-gallery-thumbs__img">
-          {% render
-            'image',
-            src: media,
-            d: '191x237',
-            src_m: media,
-            m: '103x130',
-            alt: media.alt,
-            placeholder: 'img-placeholder.png'
-          %}
-        </div>
-      </div>
-    {%- endif -%}
+    </div>
   {% when 'external_video' %}
-    <div class="splide__slide" style="padding-top: {{ 1 | divided_by: media.aspect_ratio | times: 100 }}%;" data-media-id="{{ media.id }}">
-      {{ media | external_video_tag }}
+    <div class="product__gallery-slider__item md:col-span-2" data-media-id="{{ media.id }}">
+      <div class="fluid-iframe">
+        {{ media | external_video_tag }}
+      </div>
     </div>
   {% when 'video' %}
-    {%- if main -%}
-      <div class="splide__slide">
-        <div class="jquery-background-video-wrapper"
-             data-section-type="video"
-             data-section-id="{{ section.id }}">
-          {{ media | video_tag: controls: false | replace: '<video', '<video class="jquery-background-video" autoplay muted loop' }}
-          <div class="video-overlay" style="background-image: url({{ media.preview_image | img_url: '565x' }});"></div>
-        </div>
+    <div class="product__gallery-slider__item md:col-span-2">
+      <div class="jquery-background-video-wrapper"
+            data-section-type="video"
+            data-section-id="{{ section.id }}">
+        {{ media | video_tag: controls: false | replace: '<video', '<video class="jquery-background-video" autoplay muted loop' }}
+        <div class="video-overlay" style="background-image: url({{ media.preview_image | img_url: '565x' }});"></div>
       </div>
-    {%- else -%}
-      <div class="splide__slide">
-        <div class="product-block__gallery__switcher">
-          <img src="{{media.preview_image | img_url: '200x'}}" alt="Hayden Expanding Floss">
-        </div>
-      </div>
-    {%- endif -%}
+    </div>
   {% when 'model' %}
-    <div class="splide__slide">
+    <div class="product__gallery-slider__item">
       <div class="model-viewer-block">
         <model-viewer alt="{{ media.alt }}" src="{{ media.sources[0].url }}" poster="{{ media.preview_image | img_url: 'master' }}" camera-controls></model-viewer>
       </div>

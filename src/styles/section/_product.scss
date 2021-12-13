@@ -1,8 +1,39 @@
-.product-gallery {
-  margin: 0 0 20px;
+.product__gallery-slider {
+  @include media ("≤767px") {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
 }
 
-.product-gallery__img {
+.product__gallery-slider__item {
+  @include media ("≤767px") {
+    scroll-snap-align: start;
+    min-width: 100vw;
+    height: auto;
+  }
+  &:first-child {
+    @include media ("≥desktop") {
+      grid-column: 1 / -1;
+    }
+  }
+  &:last-child {
+    &:not(:nth-child(even)) {
+      @include media ("≥desktop") {
+        grid-column: 1 / -1;
+      }
+    }
+  }
+
+  .fluid-iframe {
+    @include media ("≤767px") {
+      padding-top: 100.25%;
+    }
+  }
+}
+
+.product__gallery-slider__img {
   display: flex;
   justify-content: center;
   width: 100%;
@@ -14,34 +45,6 @@
 
   img {
     max-width: none;
-  }
-}
-
-.product-gallery-thumbs {
-
-  .splide__slide {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0.4;
-    &.is-active {
-      border: none !important;
-      opacity: 1;
-      transition: opacity $animation-speed ease;
-    }
-  }
-}
-
-.product-gallery-thumbs__img {
-
-  img {
-    width: auto;
-  }
-
-  picture {
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
   }
 }
 
@@ -153,23 +156,6 @@
   display: block;
 }
 
-.product-gallery-mobile {
-  display: flex;
-  align-items: center;
-  margin: 0 -5px;
-  overflow-x: visible;
-  overflow-y: hidden;
-}
-
-.product-gallery-mobile__img {
-  min-width: 90%;
-  margin-right: 16px;
-
-  img {
-    min-width: 100%;
-  }
-}
-
 .product__variant-label {
   font-weight: bold;
 }
@@ -218,26 +204,4 @@
 
 html.no-js .no-js-hidden {
   display: none !important;
-}
-
-.product__gallery-slider {
-  @include media ("≤767px") {
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-  }
-}
-
-.product__gallery-slider__item {
-  @include media ("≤767px") {
-    scroll-snap-align: start;
-    min-width: 100vw;
-    height: auto;
-  }
-  &:first-child {
-    @include media ("≥desktop") {
-      grid-column: 1 / -1;
-    }
-  }
 }
