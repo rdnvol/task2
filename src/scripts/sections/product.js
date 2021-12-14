@@ -96,6 +96,11 @@ export class Product {
         this.onVariantChange.bind(this, this.variantRadios, 'input')
       );
     }
+
+    if (!this.variantRadios && !this.variantSelects) {
+      this.inputName = document.getElementById('product-id');
+      this.inputName.disabled = false;
+    }
   }
 
   onVariantChange(el, selector) {
@@ -106,6 +111,7 @@ export class Product {
   }
 
   updateOptions(el, selector) {
+    if (!el) return;
     if (selector === 'input') {
       this.options = Array.from(el.querySelectorAll(selector)).reduce(
         (acc, curr) => {
@@ -271,6 +277,10 @@ export class Product {
       );
     }
 
+    if (!this.variantSelects && !this.variantRadios) {
+      form = document.getElementById('product-id').form;
+    }
+
     form.addEventListener('submit', (e) => {
       e.preventDefault();
       this.initAddToBag(e);
@@ -336,6 +346,7 @@ export class Product {
   };
 
   getVariantData(el) {
+    if (!el) return;
     this.variantData =
       this.variantData ||
       JSON.parse(el.querySelector('[type="application/json"]').textContent);
