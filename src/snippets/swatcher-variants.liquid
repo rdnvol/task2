@@ -161,7 +161,9 @@
                                           {% assign metafield_color = variant.metafields.swatcher.color %}
                                         {% endif %}
                                       {% else %}
-                                        {% assign image_color = variant.image %}
+                                        {% if variant.title == value %}
+                                          {% assign image_color = variant.image %}
+                                        {% endif %}
                                       {% endif %}
                                     {% endfor %}
                                     {% if section.settings.swatcher_color_type == 'metafields' %}
