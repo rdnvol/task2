@@ -44,7 +44,6 @@
     "@babel/plugin-transform-react-jsx": "^7.10.4",
     "@babel/runtime": "^7.9.6",
     "@fancyapps/ui": "^4.0.5",
-    "@google/model-viewer": "^1.9.2",
     "@reduxjs/toolkit": "^1.6.2",
     "@shopify/theme-a11y": "^4.0.0",
     "@shopify/theme-addresses": "^3.0.3",
