@@ -176,16 +176,16 @@ export class Product {
     }
     this.splide.mount();
 
-    activeModelSlide(this.splide)
+    this.notifyAboutActiveModel();
+  }
 
-    function activeModelSlide(splideElem) {
-      splideElem.on('active', slide => {
-        let splideActive = new CustomEvent('activeModelSlide');
-        if (slide.slide.querySelector('product-model') != null) {
-          window.dispatchEvent(splideActive);
-        }
-      })
-    }
+  notifyAboutActiveModel() {
+    this.splide.on('active', slide => {
+      let splideActive = new CustomEvent('activeModelSlide');
+      if (slide.slide.querySelector('product-model') != null) {
+        window.dispatchEvent(splideActive);
+      }
+    })
   }
 
   updateVariantUrl(variant) {
