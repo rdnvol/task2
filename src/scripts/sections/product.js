@@ -284,7 +284,7 @@ export class Product {
 
     const variantId = serializedForm.find((item) => item.name === 'id')?.value;
 
-    const quantity = document.getElementById('Quantity').value;
+    const quantity = document.getElementById('Quantity')?.value || 1;
 
     const properties = serializedForm.reduce((acc, curr) => {
       if (curr.name.includes('properties')) {
