@@ -138,10 +138,10 @@
                       <div class="sm:flex mb-2">
                         <div class="sm:w-6/12 md:w-9/12 lg:w-6/12">
                           <div class="product__variant-label-box mb-1">
-                               <span class="product__variant-label">{{ option.name }}: </span>
-                               <span>
-                                 {{ option.selected_value }}
-                               </span>
+                            <span class="product__variant-label">{{ option.name }}: </span>
+                            <span>
+                              {{ option.selected_value }}
+                            </span>
                           </div>
                           <div class="flex flex-wrap">
                             {% for value in option.values %}
@@ -154,11 +154,24 @@
                                   {% if option.selected_value == value %}checked{% endif %}
                                 />
                                 <label for="filter-field-colors-01-{{ forloop.index }}-{{ option.name }}" class="custom-label">
-                                    {% if option.name == "Color" %}
-                                      <span style="background-color: {{ value | replace: ' ', '' }};"></span>
+                                  {% if option.name == "Color" %}
+                                    {% for variant in product.variants %}
+                                      {% if section.settings.swatcher_color_type == 'metafields' %}
+                                        {% if variant.title == value %}
+                                          {% assign metafield_color = variant.metafields.swatcher.color %}
+                                        {% endif %}
+                                      {% else %}
+                                        {% assign image_color = variant.image %}
+                                      {% endif %}
+                                    {% endfor %}
+                                    {% if section.settings.swatcher_color_type == 'metafields' %}
+                                      <span style="background-color: {{ metafield_color | replace: ' ', '' | default: '#fff' }};"></span>
                                     {% else %}
-                                      <span>{{ value }}</span>
+                                      <img src="{{ image_color | img_url: '25x25' }}" alt="image description">
                                     {% endif %}
+                                  {% else %}
+                                    <span>{{ value }}</span>
+                                  {% endif %}
                                 </label>
                               </div>
                            {% endfor %}
@@ -171,7 +184,7 @@
                     </script>
                   </div>
               {% endunless %}
-              
+
 
               <noscript class="product-form__noscript-wrapper-{{ section.id }}">
                 <div class="product-form__input{% if product.has_only_default_variant %} hidden{% endif %}">
