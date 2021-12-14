@@ -1,34 +1,16 @@
-function pauseAllMedia() {
-  document.querySelectorAll('.js-youtube').forEach((video) => {
-    video.contentWindow.postMessage('{"event":"command","func":"' + 'pauseVideo' + '","args":""}', '*');
-  });
-  document.querySelectorAll('.js-vimeo').forEach((video) => {
-    video.contentWindow.postMessage('{"method":"pause"}', '*');
-  });
-  document.querySelectorAll('video').forEach((video) => video.pause());
-  document.querySelectorAll('product-model').forEach((model) => {
-    if (model.modelViewerUI) model.modelViewerUI.pause();
-  });
-}
-
 class DeferredMedia extends HTMLElement {
   constructor() {
     super();
-    const poster = this.querySelector('[id^="Deferred-Poster-"]');
-    console.log('POSTER', poster)
-    if (!poster) return;
-    poster.addEventListener('click', this.loadContent.bind(this));
+    window.addEventListener('activeModelSlide', () => this.loadContent());
   }
 
   loadContent() {
-    window.pauseAllMedia();
     if (!this.getAttribute('loaded')) {
       const content = document.createElement('div');
-      console.log('CONTENT', content, this)
       content.appendChild(this.querySelector('template').content.firstElementChild.cloneNode(true));
-
       this.setAttribute('loaded', true);
       this.appendChild(content.querySelector('video, model-viewer, iframe')).focus();
+      this.querySelector('picture').classList.add('hidden')
     }
   }
 }
@@ -43,20 +25,6 @@ if (!customElements.get('product-model')) {
 
     loadContent() {
       super.loadContent();
-
-      Shopify.loadFeatures([
-        {
-          name: 'model-viewer-ui',
-          version: '1.0',
-          onLoad: this.setupModelViewerUI.bind(this),
-        },
-      ]);
-    }
-
-    setupModelViewerUI(errors) {
-      if (errors) return;
-
-      this.modelViewerUI = new Shopify.ModelViewerUI(this.querySelector('model-viewer'));
     }
   });
 }

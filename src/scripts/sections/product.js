@@ -175,6 +175,17 @@ export class Product {
       thumbnails.mount();
     }
     this.splide.mount();
+
+    activeModelSlide(this.splide)
+
+    function activeModelSlide(splideElem) {
+      splideElem.on('active', slide => {
+        let splideActive = new CustomEvent('activeModelSlide');
+        if (slide.slide.querySelector('product-model') != null) {
+          window.dispatchEvent(splideActive);
+        }
+      })
+    }
   }
 
   updateVariantUrl(variant) {
