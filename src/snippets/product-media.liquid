@@ -30,9 +30,46 @@
       </div>
     {%- endif -%}
   {% when 'external_video' %}
-    <div class="splide__slide" style="padding-top: {{ 1 | divided_by: media.aspect_ratio | times: 100 }}%;" data-media-id="{{ media.id }}">
+  <div class="splide__slide" data-media-id="{{ media.id }}">
+    {% if main %}
+      <deferred-media class="deferred-media media product-gallery__img" data-media-id="{{ media.id }}">
+        <button id="Deferred-Poster-Modal-{{ media.id }}" class="deferred-media__poster" type="button">
+          <span class="deferred-media__poster-button motion-reduce">
+          </span>
+            {% render
+              'image',
+              src: media,
+              d: '635x791',
+              src_m: media,
+              m: '345x431',
+              alt: media.alt,
+              placeholder: 'img-placeholder.png'
+            %}
+        </button>
+        <template>
+          {%- assign video_class = 'js-' | append: media.host -%}
+          {%- if media.host == 'youtube' -%}
+            {{ media | external_video_url: autoplay: true, loop: loop, playlist: media.external_id | external_video_tag: class: video_class, loading: "lazy" }}
+          {%- else -%}
+            {{ media | external_video_url: autoplay: true, loop: loop | external_video_tag: class: video_class, loading: "lazy" }}
+          {%- endif -%}
+        </template>
+      </deferred-media>
+    {% else %}
+      {% render
+        'image',
+        src: media,
+        d: '191x237',
+        src_m: media,
+        m: '103x130',
+        alt: media.alt,
+        placeholder: 'img-placeholder.png'
+      %}
+    {% endif %}
+  </div> 
+    <!-- <div class="splide__slide" style="padding-top: {{ 1 | divided_by: media.aspect_ratio | times: 100 }}%;" data-media-id="{{ media.id }}">
       {{ media | external_video_tag }}
-    </div>
+    </div> -->
   {% when 'video' %}
     {%- if main -%}
       <div class="splide__slide">
@@ -54,31 +91,27 @@
     <div class="splide__slide">
       <div class="model-viewer-block">
         <product-model class="deferred-media media media--transparent">
-          <button id="Deferred-Poster-Modal-{{ media.id }}" class="deferred-media__poster" type="button">
-            <span class="deferred-media__poster-button motion-reduce">
-            </span>
-            {% if main %}
-              {% render
-                'image',
-                src: media,
-                d: '635x791',
-                src_m: media,
-                m: '345x431',
-                alt: media.alt,
-                placeholder: 'img-placeholder.png'
-              %}
-            {% else %}
-              {% render
-                'image',
-                src: media,
-                d: '191x237',
-                src_m: media,
-                m: '103x130',
-                alt: media.alt,
-                placeholder: 'img-placeholder.png'
-              %}
-            {% endif %}
-          </button>
+          {% if main %}
+            {% render
+              'image',
+              src: media,
+              d: '635x791',
+              src_m: media,
+              m: '345x431',
+              alt: media.alt,
+              placeholder: 'img-placeholder.png'
+            %}
+          {% else %}
+            {% render
+              'image',
+              src: media,
+              d: '191x237',
+              src_m: media,
+              m: '103x130',
+              alt: media.alt,
+              placeholder: 'img-placeholder.png'
+            %}
+          {% endif %}
           <template>
             {%- case media.media_type -%}
             {%- when 'model' -%}

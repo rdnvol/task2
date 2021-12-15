@@ -1,5 +1,19 @@
 .product-gallery {
   margin: 0 0 20px;
+
+  deferred-media {
+
+    .deferred-media__poster {
+      width: 100%;
+    }
+
+    iframe {
+      position: absolute;
+      display: flex;
+      width: 100%;
+      height: 100%;
+    }
+  }
 }
 
 .product-gallery__img {
