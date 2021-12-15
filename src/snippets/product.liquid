@@ -18,7 +18,7 @@
     <div class="md:flex md:space-x-8">
       <div class="md:w-6/12 mb-4 md:mb-0">
         {% unless section_onboarding %}
-          <div class="product__gallery-slider md:grid md:grid-cols-1 lg:grid-cols-2 md:gap-3">
+          <div class="product__gallery-slider lg:flex lg:flex-wrap">
             {% if product.media.size > 0 %}
               {% for media in product.media %}
                 {% render 'product-media', media: media, main: true %}
