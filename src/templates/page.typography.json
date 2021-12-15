@@ -1,8 +1,8 @@
 {
-  "name": "page.typography",
   "sections": {
     "main": {
-      "type": "typography-template"
+      "type": "typography-template",
+      "settings": {}
     }
   },
   "order": [

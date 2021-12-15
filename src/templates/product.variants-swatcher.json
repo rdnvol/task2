@@ -1,8 +1,8 @@
 {
-  "name": "product-variants-swatcher",
   "sections": {
     "main": {
-      "type": "product-variants-swatcher"
+      "type": "product-variants-swatcher",
+      "settings": {}
     },
     "product-recommendations": {
       "type": "product-recommendations",
@@ -16,6 +16,7 @@
     }
   },
   "order": [
-    "main", "product-recommendations"
+    "main",
+    "product-recommendations"
   ]
 }
