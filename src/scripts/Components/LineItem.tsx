@@ -50,10 +50,10 @@ const LineItem: FunctionComponent<PropsType> = ({ item }) => {
     updateItem(inputValue);
   }, 500);
 
-  const renderImage = ({ image, url }) => {
+  const renderImage = ({ image, url, product_title }) => {
     return (
       <div className="cart__product-img">
-        <a href={url}>
+        <a href={url} aria-label={product_title}>
           <Image src={image} sizes={['71x88', '71x88']} />
         </a>
       </div>
