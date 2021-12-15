@@ -26,12 +26,12 @@
           {{ 'collections.general.no_matches' | t }}
         </div>
       {% else %}
-      <div class="hidden lg:flex lg:space-x-8">
-        <div class="lg:w-3/12 lg:px-4">
+      <div class="hidden lg:flex lg:items-center lg:space-x-8">
+        <div class="lg:w-3/12">
           Filter by
         </div>
         <div class="lg:w-9/12">
-          <div class="lg:flex lg:justify-between lg:space-x-8">
+          <div class="lg:flex lg:justify-between lg:items-center lg:space-x-8">
             <div class="lg:w-4/12">
               1,036 products
             </div>
@@ -330,15 +330,31 @@
             </div>
           </div>
 
-          <div class="filter-selected-element-list flex flex-wrap items-center lg:hidden space-x-3">
-            <button class="button filter__btn-reset" type="button">
+          <div class="filter-selected-element-list flex flex-wrap items-center lg:hidden -mx-2">
+            <button class="button filter__btn-reset mx-2 mb-3" type="button">
               Clear all
             </button>
-            <div class="filter-selected-element-list__item relative flex items-center justify-center px-4">
+            <div class="filter-selected-element-list__item relative flex items-center justify-center py-1 px-3 mb-3 mx-2">
               Black
               <button class="btn-closer ml-3 -mr-3">
                 <span class="visually-hidden">
                   Clear {Black} filter results
+                </span>
+              </button>
+            </div>
+            <div class="filter-selected-element-list__item relative flex items-center justify-center py-1 px-3 mb-3 mx-2">
+              Top
+              <button class="btn-closer ml-3">
+                <span class="visually-hidden">
+                  Clear {Top} filter results
+                </span>
+              </button>
+            </div>
+            <div class="filter-selected-element-list__item relative flex items-center justify-center py-1 px-3 mb-3 mx-2">
+              $50.00 - $90.00
+              <button class="btn-closer ml-3">
+                <span class="visually-hidden">
+                  Clear {$50.00 - $90.00} filter results
                 </span>
               </button>
             </div>
