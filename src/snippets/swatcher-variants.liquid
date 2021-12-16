@@ -174,7 +174,7 @@
                                       {% endif %}
                                     {% endfor %}
                                     {% if section.settings.swatcher_color_type == 'metafields' %}
-                                      <span style="background-color: {{ metafield_color | replace: ' ', '' | default: '#fff' }};"></span>
+                                      <span style="background-color: {{ metafield_color | replace: ' ', '' | default: value }};"></span>
                                     {% else %}
                                       <img src="{{ image_color | img_url: '25x25' }}" alt="image description">
                                     {% endif %}
