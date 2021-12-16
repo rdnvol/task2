@@ -1,5 +1,5 @@
 {% render 'css-variables' %}
-{{ 'font-face.css' | asset_url | stylesheet_tag }}
+{% render 'font-face' %}
 {% render 'style-tags', layout: 'theme' %}
 {{ 'custom-theme.css' | asset_url | stylesheet_tag }}
 {% render 'google-fonts' %}
