@@ -1,8 +1,8 @@
 {
-  "name": "page.contact",
   "sections": {
     "main": {
-      "type": "contact-template"
+      "type": "contact-template",
+      "settings": {}
     }
   },
   "order": [

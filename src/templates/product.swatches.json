@@ -2,39 +2,38 @@
   "sections": {
     "product": {
       "type": "product-swatcher-variants",
-      "settings": {
-        "show_quantity": true,
-        "show_variant_label": true,
-        "show_vendor": true,
-        "show_dynamic_button": true,
-        "show_share_buttons": true,
-        "show_size_chart": true,
-        "size_chart_url": "shopify://pages/size-chart"
-      },
       "blocks": {
         "vendor": {
-          "type": "vendor"
+          "type": "vendor",
+          "settings": {}
         },
         "title": {
-          "type": "title"
+          "type": "title",
+          "settings": {}
         },
         "price": {
-          "type": "price"
+          "type": "price",
+          "settings": {}
         },
         "variant_picker": {
-          "type": "variant_picker"
+          "type": "variant_picker",
+          "settings": {}
         },
         "buy_buttons": {
-          "type": "buy_buttons"
+          "type": "buy_buttons",
+          "settings": {}
         },
         "quantity_selector": {
-          "type": "quantity_selector"
+          "type": "quantity_selector",
+          "settings": {}
         },
         "description": {
-          "type": "description"
+          "type": "description",
+          "settings": {}
         },
         "share": {
-          "type": "share"
+          "type": "share",
+          "settings": {}
         }
       },
       "block_order": [
@@ -46,7 +45,16 @@
         "quantity_selector",
         "description",
         "share"
-      ]
+      ],
+      "settings": {
+        "show_quantity": true,
+        "show_variant_label": true,
+        "show_vendor": true,
+        "show_dynamic_button": true,
+        "show_share_buttons": true,
+        "show_size_chart": true,
+        "size_chart_url": "shopify:\/\/pages\/size-chart"
+      }
     },
     "product-recommendations": {
       "type": "product-recommendations",
@@ -59,5 +67,8 @@
       }
     }
   },
-  "order": ["product", "product-recommendations"]
+  "order": [
+    "product",
+    "product-recommendations"
+  ]
 }

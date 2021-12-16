@@ -6,29 +6,29 @@
     "color_main_bg": "#ffffff",
     "color_base_links": "#000000",
     "button_text_color": "#262c30",
-    "button_hover_color": "#fcf113",
+    "button_hover_color": "#000000",
     "button_focus_text_color": "#262c30",
     "button_border_color": "#000000",
     "button_hover_border_color": "#000",
     "button_focus_border_color": "#fcf113",
-    "button_bg_color": "#fcf113",
-    "button_hover_bg_color": "#000",
+    "button_bg_color": "#ffffff",
+    "button_hover_bg_color": "#ffffff",
     "button_focus_bg_color": "#fcf113",
-    "button_border_radius": "50px",
+    "button_border_radius": "0px",
     "button_size": "button",
-    "checkout_button_text_color": "#262c30",
-    "checkout_button_hover_color": "#fcf113",
+    "checkout_button_text_color": "#ffffff",
+    "checkout_button_hover_color": "#ffffff",
     "checkout_button_focus_text_color": "#262c30",
     "checkout_button_border_color": "#000000",
     "checkout_button_hover_border_color": "#000",
     "checkout_button_focus_border_color": "#fcf113",
-    "checkout_button_bg_color": "#fcf113",
+    "checkout_button_bg_color": "#000000",
     "checkout_button_hover_bg_color": "#000",
     "checkout_button_focus_bg_color": "#fcf113",
     "font_library": "shopify",
-    "font_heading": "georgia_pro_n7",
-    "heading_base_size": 36,
-    "font_body": "source_sans_pro_n4",
+    "font_heading": "assistant_n4",
+    "heading_base_size": 40,
+    "font_body": "assistant_n4",
     "font_base_size": 16,
     "custom_heading_weight": 400,
     "custom_body_weight": 300,
@@ -46,6 +46,7 @@
     "social_youtube_link": "",
     "social_vimeo_link": "",
     "cart_notes_enable": true,
+    "limit": 8,
     "favicon": "",
     "checkout_header_image": "",
     "checkout_logo_image": "",
@@ -69,7 +70,7 @@
           "image": "",
           "image_mobile": "",
           "title": "Title",
-          "alignment": "justify-start items-center",
+          "alignment": "justify-content-start align-items-center",
           "alignment_text": "text-center",
           "text": "<p>Use overlay text to give your customers insight into your brand. Select imagery and text that relates to your style and story.</p>",
           "color": "#ffffff",
@@ -94,7 +95,7 @@
         "settings": {
           "image": "shopify://shop_images/Untitled_design.png",
           "title": "Image with text overlay",
-          "alignment": "items-center justify-start",
+          "alignment": "justify-content-start align-items-center",
           "alignment_text": "text-center",
           "text": "<p>Use overlay text to give your customers insight into your brand. Select imagery and text that relates to your style and story.</p>",
           "color": "#000000",
@@ -119,7 +120,7 @@
         "type": "home-image-with-text",
         "settings": {
           "image": "shopify://shop_images/woman-works-on-computer-at-home.jpg",
-          "layout": "md:flex-row-reverse",
+          "layout": "flex-md-row-reverse",
           "title": "Image with text",
           "text": "<p>Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
           "button_label": "Shop now",
@@ -129,44 +130,44 @@
       "footer": {
         "type": "footer",
         "blocks": {
-          "1589993081754": {
-            "type": "text",
-            "settings": {
-              "icon": "logo-2.svg",
-              "text": "<p>Dignissim suspendisse in est ante in nibh mauris cursus mattis. Arcu odio ut sem nulla pharetra diam sit amet nisl.</p>"
-            }
-          },
           "1589988638820": {
             "type": "link_list",
             "settings": {
-              "title": "Explore",
-              "menu": "footer"
+              "title": "Quick links",
+              "menu": "footer-medu-dawn"
             }
           },
           "1589988651729": {
             "type": "link_list",
             "settings": {
-              "title": "Quick links",
-              "menu": "footer-second-menu"
+              "title": "Info",
+              "menu": "second-footer-menu-dawn"
+            }
+          },
+          "a09b92bf-a128-45db-ae5c-e2ea979b6062": {
+            "type": "text",
+            "settings": {
+              "icon": "",
+              "text": "<p><strong>Our mission<br/></strong><br/>Quality materials, good designs, craftsmanship and sustainability.</p>"
             }
           },
           "1589988667036": {
             "type": "newsletter",
             "settings": {
-              "title": "Newsletter"
+              "title": ""
             }
           }
         },
         "block_order": [
-          "1589993081754",
           "1589988638820",
           "1589988651729",
+          "a09b92bf-a128-45db-ae5c-e2ea979b6062",
           "1589988667036"
         ],
         "settings": {
           "show_payment_icons": true,
           "bg_color": "#ffffff",
-          "rights_text": "<p>All Rights Reserved. <a href=\"#\">Terms</a>, <a href=\"#\">Privacy &amp; Accessibility</a>.</p>",
+          "rights_text": "<p>All Rights Reserved. <a href=\"#\">Terms</a>, <a href=\"#\">Privacy & Accessibility</a>.</p>",
           "currency_switcher_enable": true,
           "language_switcher_enable": true
         }
@@ -187,25 +188,26 @@
         "settings": {
           "announcement_bar_enabled": true,
           "announcement_bar_home_page_only": false,
-          "announcement_bar_text": "Announce something here",
-          "announcement_bar_bg_color": "#000000",
-          "announcement_bar_text_color": "#ffffff",
+          "announcement_bar_text": "Free shipping available on all orders!",
+          "announcement_bar_link": "",
+          "announcement_bar_bg_color": "#ffffff",
+          "announcement_bar_text_color": "#000000",
           "logo_svg": "logo-2.svg",
           "logo_text": "Draft",
-          "menu": "main-menu",
+          "menu": "test-menu-dawn",
           "layout": "left",
           "search_enable": true,
           "enable_search_form": true,
           "cart_enable": true,
           "enable_account_icon": true,
+          "button_link": "",
           "button_label": "Submit",
           "enable_shadow": true
         }
       },
       "collection-template": {
         "type": "collection-template",
-        "settings": {
-        }
+        "settings": {}
       },
       "1601544214239": {
         "type": "home-logos-list",
@@ -251,10 +253,7 @@
       },
       "1601544682336": {
         "type": "newsletter",
-        "settings": {
-          "section_title": "Subscribe to our newsletter",
-          "subheading": "A short sentence describing what someone will receive by subscribing"
-        }
+        "settings": {}
       },
       "1601544716980": {
         "type": "home-benefits",
@@ -302,8 +301,7 @@
           "1601544716980-3",
           "1601544716980-4"
         ],
-        "settings": {
-        }
+        "settings": {}
       },
       "1601545071577": {
         "type": "home-plans",
@@ -397,9 +395,7 @@
   },
   "presets": {
     "Default": {
-      "content_for_index": [
-
-      ]
+      "content_for_index": []
     }
   }
 }
