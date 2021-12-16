@@ -18,7 +18,7 @@
         <div class="w-4/12 md:w-3/12">
           {% if item.image != blank %}
             <div class="cart__product-img">
-              <a href="{{ item.url | within: collections.all }}">
+              <a href="{{ item.url | within: collections.all }}" aria-label="{{ item.title }}">
                 <picture>
                   <source data-srcset="{{ item | img_url: '120x' }}, {{ item | img_url: '240x' }} 2x"
                           media="(max-width: 767px)"

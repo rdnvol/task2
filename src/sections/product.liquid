@@ -4,42 +4,27 @@
   render "schema"
 %}
 
+{%- assign first_3d_model = product.media | where: "media_type", "model" | first -%}
+
 <script type="application/json" id="product-json">
   {% render 'product-json' %}
 </script>
 
+{%- if first_3d_model -%}
+  <script type="application/json" id="ProductJSON-{{ product.id }}">
+    {{ product.media | where: 'media_type', 'model' | json }}
+  </script>
+
+  <script src="{{ 'product-model.js' | asset_url }}" defer></script>
+{%- endif -%}
 {% schema %}
 {
   "name": "Product Information",
   "settings": [
     {
       "type": "checkbox",
-      "id": "show_quantity",
-      "label": "Show quantity selector",
-      "default": true
-    },
-    {
-      "type": "checkbox",
       "id": "show_variant_label",
       "label": "Show variant label",
-      "default": true
-    },
-    {
-      "type": "checkbox",
-      "id": "show_vendor",
-      "label": "Show product vendor",
-      "default": true
-    },
-    {
-      "type": "checkbox",
-      "id": "show_dynamic_button",
-      "label": "Show dynamic checkout button",
-      "default": true
-    },
-    {
-      "type": "checkbox",
-      "id": "show_share_buttons",
-      "label": "Show social sharing buttons",
       "default": true
     },
     {
@@ -104,7 +89,7 @@
     },
     {
       "type": "share",
-      "name": "Share",
+      "name": "Social sharing buttons",
       "limit": 1
     }
   ]
