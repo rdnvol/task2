@@ -7,7 +7,6 @@
 {%- assign size_chart_url = section.settings.size_chart_url -%}
 {%- assign show_variant_label = section.settings.show_variant_label -%}
 {%- assign product_form_id = 'product-form-' | append: section.id -%}
-{%- assign show_quantity = section.settings.show_quantity -%}
 {%- assign show_dynamic_button = section.settings.show_dynamic_button -%}
 
 <section data-section-id="{{ section.id }}"
@@ -95,7 +94,6 @@
                   id: product_form_id,
                   product: product,
                   blocks: section.blocks,
-                  show_quantity: section.settings.show_quantity,
                   show_variant_label: section.settings.show_variant_label,
                   show_size_chart: section.settings.show_size_chart,
                   size_chart_url: section.settings.size_chart_url,
@@ -142,11 +140,9 @@
                           data-type="ajax"
                           href="{{ size_chart_url }}">{{ 'products.product.size_chart' | t }}</a>
                       {% endif %}
-                      <label class="product__label" for="Option{{ option.position }}">
-                        {% if show_variant_label %}
+                        <label class="product__label {% if show_variant_label %}visually-hidden{% endif %}" for="Option{{ option.position }}">
                           {{ option.name }}
-                        {% endif %}
-                      </label>
+                        </label>
                       <select
                         class="product__select w-100"
                         id="Option{{ option.position }}"
@@ -192,14 +188,12 @@
             </noscript>
 
             {% when "quantity_selector" %}
-              {% if show_quantity %}
                 <div class="sm:flex sm:space-x-8 product__row">
                   <div class="sm:w-7/12 lg:w-5/12">
                     <label class="product__label" for="Quantity">{{ 'products.product.quantity' | t }}</label>
                     <input type="number" id="Quantity" class="w-100" name="quantity" value="1" min="1" form="{{ product_form_id }}">
                   </div>
                 </div>
-              {% endif %}
             {% when "description" %}
               <div class="product__row rte">
                 {% if product.description %}
@@ -209,9 +203,7 @@
                 {% endif %}
               </div>
             {% when "share" %}
-              {% if section.settings.show_share_buttons %}
                 {% render 'social-sharing', share_title: product.title, share_permalink: product.url, share_image: product %}
-              {% endif %}
           {% endcase %}
         {% endfor %}
       </div>
