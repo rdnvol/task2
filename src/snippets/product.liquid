@@ -140,11 +140,9 @@
                           data-type="ajax"
                           href="{{ size_chart_url }}">{{ 'products.product.size_chart' | t }}</a>
                       {% endif %}
-                      {% if show_variant_label %}
-                        <label class="product__label" for="Option{{ option.position }}">
+                        <label class="product__label {% if show_variant_label %}visually-hidden{% endif %}" for="Option{{ option.position }}">
                           {{ option.name }}
                         </label>
-                      {% endif %}
                       <select
                         class="product__select w-100"
                         id="Option{{ option.position }}"

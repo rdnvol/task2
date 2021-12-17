@@ -135,6 +135,13 @@
                     {% for option in product.options_with_values %}
                       <div class="sm:flex mb-2">
                         <div class="sm:w-6/12 md:w-9/12 lg:w-6/12">
+                          {% assign size_option = 'products.product.size' | t | downcase %}
+                          {% assign options = product.options | downcase %}
+                          {% if forloop.first and show_size_chart and size_chart_url != blank and options contains size_option %}
+                            <a class="size-chart-link"
+                              data-type="ajax"
+                              href="{{ size_chart_url }}">{{ 'products.product.size_chart' | t }}</a>
+                          {% endif %}
                           {% if show_variant_label %}
                             <div class="product__variant-label-box mb-1">
                               <span class="product__variant-label">{{ option.name }}: </span>
@@ -167,7 +174,7 @@
                                       {% endif %}
                                     {% endfor %}
                                     {% if section.settings.swatcher_color_type == 'metafields' %}
-                                      <span style="background-color: {{ metafield_color | replace: ' ', '' | default: '#fff' }};"></span>
+                                      <span style="background-color: {{ metafield_color | replace: ' ', '' | default: value }};"></span>
                                     {% else %}
                                       <img src="{{ image_color | img_url: '25x25' }}" alt="image description">
                                     {% endif %}

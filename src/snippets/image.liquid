@@ -225,7 +225,7 @@ Renders an image
     assign placeholder_m = placeholder | asset_img_url: p_m, crop: 'center'
     assign placeholder_t = placeholder | asset_img_url: p_t, crop: 'center'
   else
-    assign placeholder = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=='
+    assign placeholder = placeholder | default: 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=='
     assign placeholder_d = placeholder
     assign placeholder_m = placeholder
     assign placeholder_t = placeholder
