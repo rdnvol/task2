@@ -105,7 +105,6 @@
   min-height: 44px;
 }
 
-
 .filter-selected-element-list__item {
   border: 1px solid $base-border;
 
@@ -122,6 +121,10 @@
   +.filter-collapse {
     margin-top: -1px;
   }
+}
+
+.filter-collapse__heading {
+  border-bottom: 1px solid $base-border;
 }
 
 .filter-collapse__item {
