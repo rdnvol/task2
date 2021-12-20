@@ -138,7 +138,7 @@
                           data-type="ajax"
                           href="{{ size_chart_url }}">{{ 'products.product.size_chart' | t }}</a>
                       {% endif %}
-                        <label class="product__label {% if show_variant_label %}visually-hidden{% endif %}" for="Option{{ option.position }}">
+                        <label class="product__label {% if show_variant_label == false %}visually-hidden{% endif %}" for="Option{{ option.position }}">
                           {{ option.name }}
                         </label>
                       <select
