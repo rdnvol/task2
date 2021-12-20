@@ -123,14 +123,30 @@
   }
 }
 
+.filter-collapse__horizontal {
+
+  .filter-collapse__item[open] {
+
+    summary {
+      text-decoration: underline;
+      
+    }
+  }
+}
+
 .filter-collapse__heading {
   border-bottom: 1px solid $base-border;
+
+  button {
+    text-decoration: underline;
+  }
 }
 
 .filter-collapse__item {
 
   summary {
     cursor: pointer;
+    transition: all $animation-speed ease-in-out;
     &::-webkit-details-marker {
       display: none;
     }
@@ -173,9 +189,9 @@
     top: 50%;
     left: 50%;
     z-index: 2;
-    width: 8px;
-    height: 8px;
-    margin: -6px 0 0 -4px;
+    width: 6px;
+    height: 6px;
+    margin: -6px 0 0 -3px;
     border-width: 0 0 2px 2px;
     border-style: solid;
     border-color: $base-icons;
@@ -187,7 +203,7 @@
   @include media ("≥widescreen") {
     position: absolute;
     top: 100%;
-    left: 0;
+    left: -12px;
     z-index: 1000;
     width: 330px;
     background: $base-body-background;

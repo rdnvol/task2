@@ -16,7 +16,7 @@
       <div class="page-title-block text-center pt-0">
         <h1 class="h2 mb-2">{{ collection.title }}</h1>
         {% if collection.description != blank %}
-          <div class="rte text-size-md">
+          <div class="rte body-medium">
             {{ collection.description }}
           </div>
         {% endif %}
@@ -27,28 +27,30 @@
         </div>
       {% else %}
       <div class="hidden lg:flex lg:items-center lg:space-x-8">
-        <div class="lg:w-8/12 lg:flex lg:flex-wrap">
-          <div class="py-4 mr-4">
+        <div class="lg:w-8/12 lg:flex lg:flex-wrap filter-collapse__horizontal">
+          <div class="body-small py-3 mr-5">
             Filter:
           </div>
-          <div class="mr-4">
+          <div class="mr-5">
             <details-disclosure>
-              <details class="filter-collapse__item relative py-4">
-                <summary class="flex justify-between items-center">
+              <details class="filter-collapse__item relative py-3">
+                <summary class="body-small flex justify-between items-center">
                   Color
                   <span class="filter-collapse__btn-check flex-shrink-0 ml-1"></span>
                 </summary>
                 <div class="filter-collapse__slide">
-                  <div class="filter-collapse__heading p-4">
+                  <div class="filter-collapse__heading body-small flex items-center justify-between space-x-2 p-4">
                     <div>1 selected</div>
                     <div>
-
+                      <button type="reset">
+                        Reset
+                      </button>
                     </div>
                   </div>
                   <div class="px-4">
                     <div class="py-3 custom-input custom-input--colors-with-text">
-                      <input id="filter-collapse-color-01" type="checkbox" checked name="filter-collapse-color">
-                      <label for="filter-collapse-color-01" class="custom-label flex items-center">
+                      <input id="filter-collapse-color-10" type="checkbox" checked name="filter-collapse-color">
+                      <label for="filter-collapse-color-10" class="custom-label flex items-center">
                         <span class="custom-label__img-holder">
                           {% render
                             'image',
@@ -62,8 +64,8 @@
                       </label>
                     </div>
                     <div class="py-3 custom-input custom-input--colors-with-text">
-                      <input id="filter-collapse-color-02" type="checkbox" disabled name="filter-collapse-color">
-                      <label for="filter-collapse-color-02" class="custom-label flex items-center">
+                      <input id="filter-collapse-color-11" type="checkbox" disabled name="filter-collapse-color">
+                      <label for="filter-collapse-color-11" class="custom-label flex items-center">
                         <span class="custom-label__img-holder">
                           {% render
                             'image',
@@ -77,8 +79,8 @@
                       </label>
                     </div>
                     <div class="py-3 custom-input custom-input--colors-with-text">
-                      <input id="filter-collapse-color-03" type="checkbox" name="filter-collapse-color">
-                      <label for="filter-collapse-color-03" class="custom-label flex items-center">
+                      <input id="filter-collapse-color-12" type="checkbox" name="filter-collapse-color">
+                      <label for="filter-collapse-color-12" class="custom-label flex items-center">
                         <span class="custom-label__img-holder">
                           {% render
                             'image',
@@ -92,8 +94,8 @@
                       </label>
                     </div>
                     <div class="py-3 custom-input custom-input--colors-with-text">
-                      <input id="filter-collapse-color-04" type="checkbox" name="filter-collapse-color">
-                      <label for="filter-collapse-color-04" class="custom-label flex items-center">
+                      <input id="filter-collapse-color-13" type="checkbox" name="filter-collapse-color">
+                      <label for="filter-collapse-color-13" class="custom-label flex items-center">
                         <span class="custom-label__img-holder">
                           {% render
                             'image',
@@ -107,8 +109,8 @@
                       </label>
                     </div>
                     <div class="py-3 custom-input custom-input--colors-with-text">
-                      <input id="filter-collapse-color-05" type="checkbox" name="filter-collapse-color">
-                      <label for="filter-collapse-color-05" class="custom-label flex items-center">
+                      <input id="filter-collapse-color-14" type="checkbox" name="filter-collapse-color">
+                      <label for="filter-collapse-color-14" class="custom-label flex items-center">
                         <span class="custom-label__img-holder">
                           {% render
                             'image',
@@ -126,18 +128,20 @@
               </details>
             </details-disclosure>
           </div>
-          <div class="mr-4">
+          <div class="mr-5">
             <details-disclosure>
-              <details class="filter-collapse__item relative py-4">
-                <summary class="flex justify-between items-center">
+              <details class="filter-collapse__item relative py-3">
+                <summary class="body-small flex justify-between items-center">
                   Price
                   <span class="filter-collapse__btn-check flex-shrink-0 ml-1"></span>
                 </summary>
                 <div class="filter-collapse__slide">
-                  <div class="filter-collapse__heading p-4">
-                    <div>1 selected</div>
+                  <div class="filter-collapse__heading body-small flex items-center justify-between space-x-2 p-4">
+                    <div>The highest price is $300.00</div>
                     <div>
-
+                      <button type="reset">
+                        Reset
+                      </button>
                     </div>
                   </div>
                   <div class="px-4">
@@ -146,38 +150,40 @@
               </details>
             </details-disclosure>
           </div>
-          <div class="mr-4">
+          <div class="mr-5">
             <details-disclosure>
-              <details class="filter-collapse__item relative py-4">
-                <summary class="flex justify-between items-center">
+              <details class="filter-collapse__item relative py-3">
+                <summary class="body-small flex justify-between items-center">
                   Size
                   <span class="filter-collapse__btn-check flex-shrink-0 ml-1"></span>
                 </summary>
                 <div class="filter-collapse__slide">
-                  <div class="filter-collapse__heading p-4">
+                  <div class="filter-collapse__heading body-small flex items-center justify-between space-x-2 p-4">
                     <div>1 selected</div>
                     <div>
-
+                      <button type="reset">
+                        Reset
+                      </button>
                     </div>
                   </div>
                   <div class="px-4">
                     <div class="py-3 custom-input custom-input--square-with-text">
-                      <input id="filter-collapse-size-01" type="checkbox" checked name="filter-collapse-size">
-                      <label for="filter-collapse-size-01" class="custom-label flex items-center">
+                      <input id="filter-collapse-size-10" type="checkbox" checked name="filter-collapse-size">
+                      <label for="filter-collapse-size-10" class="custom-label flex items-center">
                         <span class="custom-label__check"></span>
                         XXS (20)
                       </label>
                     </div>
                     <div class="py-3 custom-input custom-input--square-with-text">
-                      <input id="filter-collapse-size-02" type="checkbox" name="filter-collapse-size">
-                      <label for="filter-collapse-size-02" class="custom-label flex items-center">
+                      <input id="filter-collapse-size-11" type="checkbox" name="filter-collapse-size">
+                      <label for="filter-collapse-size-11" class="custom-label flex items-center">
                         <span class="custom-label__check"></span>
                         XS (25)
                       </label>
                     </div>
                     <div class="py-3 custom-input custom-input--square-with-text">
-                      <input id="filter-collapse-size-03" type="checkbox" disabled name="filter-collapse-size">
-                      <label for="filter-collapse-size-03" class="custom-label flex items-center">
+                      <input id="filter-collapse-size-12" type="checkbox" disabled name="filter-collapse-size">
+                      <label for="filter-collapse-size-12" class="custom-label flex items-center">
                         <span class="custom-label__check"></span>
                         L (0)
                       </label>
@@ -187,38 +193,40 @@
               </details>
             </details-disclosure>
           </div>
-          <div class="mr-4">
+          <div class="mr-5">
             <details-disclosure>
-              <details class="filter-collapse__item relative py-4">
-                <summary class="flex justify-between items-center">
+              <details class="filter-collapse__item relative py-3">
+                <summary class="body-small flex justify-between items-center">
                   Brand
                   <span class="filter-collapse__btn-check flex-shrink-0 ml-1"></span>
                 </summary>
                 <div class="filter-collapse__slide">
-                  <div class="filter-collapse__heading p-4">
+                  <div class="filter-collapse__heading body-small flex items-center justify-between space-x-2 p-4">
                     <div>1 selected</div>
                     <div>
-
+                      <button type="reset">
+                        Reset
+                      </button>
                     </div>
                   </div>
                   <div class="px-4">
                     <div class="py-3 custom-input custom-input--square-with-text">
-                      <input id="filter-collapse-brand-01" type="checkbox" checked name="filter-collapse-brand">
-                      <label for="filter-collapse-brand-01" class="custom-label flex items-center">
+                      <input id="filter-collapse-brand-10" type="checkbox" checked name="filter-collapse-brand">
+                      <label for="filter-collapse-brand-10" class="custom-label flex items-center">
                         <span class="custom-label__check"></span>
                         Adidas (225)
                       </label>
                     </div>
                     <div class="py-3 custom-input custom-input--square-with-text">
-                      <input id="filter-collapse-brand-02" type="checkbox" name="filter-collapse-brand">
-                      <label for="filter-collapse-brand-02" class="custom-label flex items-center">
+                      <input id="filter-collapse-brand-11" type="checkbox" name="filter-collapse-brand">
+                      <label for="filter-collapse-brand-11" class="custom-label flex items-center">
                         <span class="custom-label__check"></span>
                         Adidas (225)
                       </label>
                     </div>
                     <div class="py-3 custom-input custom-input--square-with-text">
-                      <input id="filter-collapse-brand-03" type="checkbox" disabled name="filter-collapse-brand">
-                      <label for="filter-collapse-brand-03" class="custom-label flex items-center">
+                      <input id="filter-collapse-brand-12" type="checkbox" disabled name="filter-collapse-brand">
+                      <label for="filter-collapse-brand-12" class="custom-label flex items-center">
                         <span class="custom-label__check"></span>
                         Adidas (225)
                       </label>
@@ -228,38 +236,40 @@
               </details>
             </details-disclosure>
           </div>
-          <div class="mr-4">
+          <div class="mr-5">
             <details-disclosure>
-              <details class="filter-collapse__item relative py-4">
-                <summary class="flex justify-between items-center">
+              <details class="filter-collapse__item relative py-3">
+                <summary class="body-small flex justify-between items-center">
                   Type
                   <span class="filter-collapse__btn-check flex-shrink-0 ml-1"></span>
                 </summary>
                 <div class="filter-collapse__slide">
-                  <div class="filter-collapse__heading p-4">
+                  <div class="filter-collapse__heading body-small flex items-center justify-between space-x-2 p-4">
                     <div>1 selected</div>
                     <div>
-
+                      <button type="reset">
+                        Reset
+                      </button>
                     </div>
                   </div>
                   <div class="px-4">
                     <div class="py-3 custom-input custom-input--square-with-text">
-                      <input id="filter-collapse-type-01" type="checkbox" checked name="filter-collapse-type">
-                      <label for="filter-collapse-type-01" class="custom-label flex items-center">
+                      <input id="filter-collapse-type-10" type="checkbox" checked name="filter-collapse-type">
+                      <label for="filter-collapse-type-10" class="custom-label flex items-center">
                         <span class="custom-label__check"></span>
                         Dress (55)
                       </label>
                     </div>
                     <div class="py-3 custom-input custom-input--square-with-text">
-                      <input id="filter-collapse-type-02" type="checkbox" name="filter-collapse-type">
-                      <label for="filter-collapse-type-02" class="custom-label flex items-center">
+                      <input id="filter-collapse-type-11" type="checkbox" name="filter-collapse-type">
+                      <label for="filter-collapse-type-11" class="custom-label flex items-center">
                         <span class="custom-label__check"></span>
                         Jacket (10)
                       </label>
                     </div>
                     <div class="py-3 custom-input custom-input--square-with-text">
-                      <input id="filter-collapse-type-03" type="checkbox" disabled name="filter-collapse-type">
-                      <label for="filter-collapse-type-03" class="custom-label flex items-center">
+                      <input id="filter-collapse-type-12" type="checkbox" disabled name="filter-collapse-type">
+                      <label for="filter-collapse-type-12" class="custom-label flex items-center">
                         <span class="custom-label__check"></span>
                         Shirt (72)
                       </label>
@@ -269,38 +279,40 @@
               </details>
             </details-disclosure>
           </div>
-          <div class="mr-4">
+          <div class="mr-5">
             <details-disclosure>
-              <details class="filter-collapse__item relative py-4">
-                <summary class="flex justify-between items-center">
+              <details class="filter-collapse__item relative py-3">
+                <summary class="body-small flex justify-between items-center">
                   Category
                   <span class="filter-collapse__btn-check flex-shrink-0 ml-1"></span>
                 </summary>
                 <div class="filter-collapse__slide">
-                  <div class="filter-collapse__heading p-4">
+                  <div class="filter-collapse__heading body-small flex items-center justify-between space-x-2 p-4">
                     <div>1 selected</div>
                     <div>
-
+                      <button type="reset">
+                        Reset
+                      </button>
                     </div>
                   </div>
                   <div class="px-4">
                     <div class="py-3 custom-input custom-input--square-with-text">
-                      <input id="filter-collapse-category-01" type="checkbox" checked name="filter-collapse-category">
-                      <label for="filter-collapse-category-01" class="custom-label flex items-center">
+                      <input id="filter-collapse-category-10" type="checkbox" checked name="filter-collapse-category">
+                      <label for="filter-collapse-category-10" class="custom-label flex items-center">
                         <span class="custom-label__check"></span>
                         Men’s (214)
                       </label>
                     </div>
                     <div class="py-3 custom-input custom-input--square-with-text">
-                      <input id="filter-collapse-category-02" type="checkbox" name="filter-collapse-category">
-                      <label for="filter-collapse-category-02" class="custom-label flex items-center">
+                      <input id="filter-collapse-category-11" type="checkbox" name="filter-collapse-category">
+                      <label for="filter-collapse-category-11" class="custom-label flex items-center">
                         <span class="custom-label__check"></span>
                         Jacket (10)
                       </label>
                     </div>
                     <div class="py-3 custom-input custom-input--square-with-text">
-                      <input id="filter-collapse-category-03" type="checkbox" disabled name="filter-collapse-category">
-                      <label for="filter-collapse-category-03" class="custom-label flex items-center">
+                      <input id="filter-collapse-category-12" type="checkbox" disabled name="filter-collapse-category">
+                      <label for="filter-collapse-category-12" class="custom-label flex items-center">
                         <span class="custom-label__check"></span>
                         Shirt (72)
                       </label>
@@ -313,6 +325,7 @@
         </div>
         <div class="lg:w-4/12">
           <div class="lg:flex lg:justify-end lg:items-center">
+            <label class="label visually-hidden" for="filter-sortby-2">Sort by</label>
             <div class="select-holder w-100">
               <select id="filter-sortby-2">
                 <option>Featured</option>
@@ -325,7 +338,7 @@
                 <option>Date, new to old</option>
               </select>
             </div>
-            <div class="ml-5 flex-shrink-0">
+            <div class="ml-5 flex-shrink-0 body-small">
               1,036 products
             </div>
           </div>
@@ -619,7 +632,7 @@
             </div>
           </div>
         </div>
-        <div class="filter-selected-element-list flex flex-wrap items-center pb-4 lg:pb-0 -mx-2">
+        <div class="filter-selected-element-list flex flex-wrap items-center pb-4 lg:pb-0 lg:mb-5 -mx-2">
           <button class="button filter__btn-reset mx-2 mb-3" type="button">
             Clear all
           </button>
