@@ -59,9 +59,7 @@
                   <h1 class="product__title">{{ 'homepage.onboarding.product_title' | t }}</h1>
               {% endunless %}
             {% when "vendor" %}
-              {% if section.settings.show_vendor %}
                 <div class="product__vendor mb-1 md:mb-2" {{ block.shopify_attributes }}>{{ product.vendor }}</div>
-              {% endif %}
             {% when "price" %}
               <div class="product__price mb-3" {{ block.shopify_attributes }}>
                 <div class="product__price__box flex flex-wrap items-center" data-price-wrapper>
