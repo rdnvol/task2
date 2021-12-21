@@ -132,21 +132,31 @@
                   <div id="variant-radios" class="product__row"  data-section="{{ section.id }}" data-url="{{ product.url }}" {{ block.shopify_attributes }}>
                     {% for option in product.options_with_values %}
                       <div class="sm:flex mb-2">
-                        <div class="sm:w-6/12 md:w-9/12 lg:w-6/12">
-                          {% assign size_option = 'products.product.size' | t | downcase %}
-                          {% assign options = product.options | downcase %}
-                          {% if forloop.first and show_size_chart and size_chart_url != blank and options contains size_option %}
-                            <a class="size-chart-link"
-                              data-type="ajax"
-                              href="{{ size_chart_url }}">{{ 'products.product.size_chart' | t }}</a>
-                          {% endif %}
+                        <div class="sm:w-6/12 md:w-9/12 lg:w-6/12 relative">
                           {% if show_variant_label %}
+                            {% assign size_option = 'products.product.size' | t | downcase %}
+                            {% assign options = product.options | downcase %}
+                            {% if forloop.first and show_size_chart and size_chart_url != blank and options contains size_option %}
+                              <a class="size-chart-link"
+                                data-type="ajax"
+                                href="{{ size_chart_url }}">{{ 'products.product.size_chart' | t }}</a>
+                            {% endif %}
                             <div class="product__variant-label-box mb-1">
                               <span class="product__variant-label">{{ option.name }}: </span>
                               <span>
                                 {{ option.selected_value }}
                               </span>
                             </div>
+                            {% else %}
+                              {% assign size_option = 'products.product.size' | t | downcase %}
+                              {% assign options = product.options | downcase %}
+                              {% if forloop.first and show_size_chart and size_chart_url != blank and options contains size_option %}
+                                <div class="text-right pb-2">
+                                  <a class="size-chart-link"
+                                    data-type="ajax"
+                                    href="{{ size_chart_url }}">{{ 'products.product.size_chart' | t }}</a>
+                                </div>
+                              {% endif %}
                           {% endif %}
                           <div class="flex flex-wrap">
                             {% for value in option.values %}

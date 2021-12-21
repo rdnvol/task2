@@ -193,6 +193,10 @@
   font-size: 14px;
   color: $base-body-text;
   text-decoration: none;
+
+  .text-right & {
+    position: static;
+  }
 }
 
 .fancybox__content {
