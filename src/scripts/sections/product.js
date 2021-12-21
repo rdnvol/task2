@@ -1,11 +1,9 @@
-import { getUrlWithVariant, ProductForm } from '@shopify/theme-product-form';
+import { getUrlWithVariant } from '@shopify/theme-product-form';
 import { formatMoney } from '@shopify/theme-currency';
 import Splide from '@splidejs/splide';
-// import '@google/model-viewer';
 import { register } from '@shopify/theme-sections';
 import { Fancybox } from '@fancyapps/ui/src/Fancybox/Fancybox.js';
 import { addItem } from '../helpers/cartAjaxCall.js';
-import { afterScrollEnable } from '../helpers/utils.js';
 
 import {
   getCart,
@@ -22,25 +20,9 @@ register('product', {
     } else {
     }
   },
-  _initObserveProduct: function () {
-    afterScrollEnable(this.container, async () => {
-      const product = await $.getJSON(
-        `/products/${this.container.dataset.handle}.js`
-      );
-
-      const modelMedia = product.media.find(
-        (item) => item.media_type === 'model'
-      );
-
-      if (modelMedia) {
-        require('@google/model-viewer');
-      }
-    });
-  },
   // Shortcut function called when a section is loaded via 'sections.load()' or by the Theme Editor 'shopify:section:load' event.
   onLoad: function (e) {
     this._initProduct(this.container.dataset.handle);
-    this._initObserveProduct();
     // Do something when a section instance is loaded
   },
 
@@ -70,9 +52,9 @@ export class Product {
     this.sizeChartInit();
     this.product = this.getProduct();
     this.initVariantSelects();
-    this.getVariantData();
-    this.updateOptions(this.variantSelects);
-    this.updateMasterId();
+    this.getVariantData(this.variantSelects ?? this.variantRadios);
+    this.updateOptions(this.variantSelects ?? this.variantRadios);
+    // this.updateMasterId();
     this.initSubmit();
     this.initSelectedVariant();
     this.waitForElement('.shopify-payment-button__button--unbranded').then(
@@ -89,28 +71,71 @@ export class Product {
 
   initVariantSelects() {
     this.variantSelects = document.getElementById('variant-selects');
-    this.productForm = document.querySelector(
-      `#product-form-${this.variantSelects.dataset.section}`
-    );
-    this.inputName = this.productForm.querySelector('input[name="id"]');
-    this.inputName.disabled = false;
-    this.variantSelects.addEventListener(
-      'change',
-      this.onVariantChange.bind(this, this.variantSelects)
-    );
+    this.variantRadios = document.getElementById('variant-radios');
+
+    if (this.variantSelects) {
+      this.productForm = document.querySelector(
+        `#product-form-${this.variantSelects.dataset.section}`
+      );
+      this.inputName = this.productForm.querySelector('input[name="id"]');
+      this.inputName.disabled = false;
+      this.variantSelects.addEventListener(
+        'change',
+        this.onVariantChange.bind(this, this.variantSelects, 'select')
+      );
+    }
+
+    if (this.variantRadios) {
+      this.productForm = document.querySelector(
+        `#product-form-${this.variantRadios.dataset.section}`
+      );
+      this.inputName = this.productForm.querySelector('input[name="id"]');
+      this.inputName.disabled = false;
+      this.variantRadios.addEventListener(
+        'change',
+        this.onVariantChange.bind(this, this.variantRadios, 'input')
+      );
+    }
+
+    if (!this.variantRadios && !this.variantSelects) {
+      this.inputName = document.getElementById('product-id');
+      this.inputName.disabled = false;
+    }
   }
 
-  onVariantChange(el) {
-    this.updateOptions(el);
+  onVariantChange(el, selector) {
+    this.updateOptions(el, selector);
     this.updateMasterId();
     this.onOptionChange(this.currentVariant);
     this.updateVariantInput(this.currentVariant);
   }
 
-  updateOptions(el) {
-    this.options = Array.from(el.querySelectorAll('select'), (select) => {
-      return select.value;
-    });
+  updateOptions(el, selector) {
+    if (!el) return;
+    if (selector === 'input') {
+      this.options = Array.from(el.querySelectorAll(selector)).reduce(
+        (acc, curr) => {
+          if (curr.checked) {
+            acc = [...acc, curr.value];
+          }
+          return acc;
+        },
+        []
+      );
+
+      const titles = Array.from(
+        $('.product__variant-label-box').find('span:last-child')
+      );
+
+      titles.forEach((title, idx) => {
+        $(title).text(this.options[idx]);
+      });
+    }
+    if (selector === 'select') {
+      this.options = Array.from(el.querySelectorAll(selector), (item) => {
+        return item.value;
+      });
+    }
   }
 
   updateMasterId() {
@@ -156,6 +181,17 @@ export class Product {
       thumbnails.mount();
     }
     this.splide.mount();
+
+    this.notifyAboutActiveModel();
+  }
+
+  notifyAboutActiveModel() {
+    this.splide.on('active', slide => {
+      let splideActive = new CustomEvent('activeModelSlide');
+      if (slide.slide.querySelector('product-model') != null) {
+        window.dispatchEvent(splideActive);
+      }
+    })
   }
 
   updateVariantUrl(variant) {
@@ -238,9 +274,23 @@ export class Product {
   }
 
   initSubmit() {
-    const form = document.getElementById(
-      `product-form-${this.variantSelects.dataset.section}`
-    );
+    let form;
+
+    if (this.variantSelects) {
+      form = document.getElementById(
+        `product-form-${this.variantSelects.dataset.section}`
+      );
+    }
+
+    if (this.variantRadios) {
+      form = document.getElementById(
+        `product-form-${this.variantRadios.dataset.section}`
+      );
+    }
+
+    if (!this.variantSelects && !this.variantRadios) {
+      form = document.getElementById('product-id').form;
+    }
 
     form.addEventListener('submit', (e) => {
       e.preventDefault();
@@ -255,7 +305,7 @@ export class Product {
 
     const variantId = serializedForm.find((item) => item.name === 'id')?.value;
 
-    const quantity = document.getElementById('Quantity').value;
+    const quantity = document.getElementById('Quantity')?.value || 1;
 
     const properties = serializedForm.reduce((acc, curr) => {
       if (curr.name.includes('properties')) {
@@ -306,13 +356,11 @@ export class Product {
     });
   };
 
-  getVariantData() {
+  getVariantData(el) {
+    if (!el) return;
     this.variantData =
       this.variantData ||
-      JSON.parse(
-        this.variantSelects.querySelector('[type="application/json"]')
-          .textContent
-      );
+      JSON.parse(el.querySelector('[type="application/json"]').textContent);
   }
 
   sizeChartInit() {

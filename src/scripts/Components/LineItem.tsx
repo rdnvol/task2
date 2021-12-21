@@ -31,10 +31,7 @@ const LineItem: FunctionComponent<PropsType> = ({ item }) => {
   };
 
   const updateItem = (quantity) => {
-    console.log('OnChange triggered');
     const key = item.key;
-    // const quantity = +e.target.value;
-    console.log('Quantity from updateItem is', quantity);
 
     dispatch(updateItemAction({ id: key, options: { quantity } }));
   };
@@ -53,10 +50,10 @@ const LineItem: FunctionComponent<PropsType> = ({ item }) => {
     updateItem(inputValue);
   }, 500);
 
-  const renderImage = ({ image, url }) => {
+  const renderImage = ({ image, url, product_title }) => {
     return (
       <div className="cart__product-img">
-        <a href={url}>
+        <a href={url} aria-label={product_title}>
           <Image src={image} sizes={['71x88', '71x88']} />
         </a>
       </div>
@@ -136,9 +133,7 @@ const LineItem: FunctionComponent<PropsType> = ({ item }) => {
                   }}
                   onMouseUp={changeQuantity}
                 >
-                  <span className="visually-hidden">
-                    Decrease quantity
-                  </span>
+                  <span className="visually-hidden">Decrease quantity</span>
                 </button>
                 <input
                   type="number"
@@ -163,9 +158,7 @@ const LineItem: FunctionComponent<PropsType> = ({ item }) => {
                   }}
                   onMouseUp={changeQuantity}
                 >
-                  <span className="visually-hidden">
-                    Increase quantity
-                  </span>
+                  <span className="visually-hidden">Increase quantity</span>
                 </button>
               </div>
             </div>
@@ -192,7 +185,7 @@ const LineItem: FunctionComponent<PropsType> = ({ item }) => {
         <label htmlFor={`updates_${item.key}`} className="visually-hidden">
           Quantity
         </label>
-        <div class="jcf-number flex items-center">
+        <div class="jcf-number flex items-center ml-auto">
           <button
             class="jcf-btn-dec"
             type="button"
@@ -201,9 +194,7 @@ const LineItem: FunctionComponent<PropsType> = ({ item }) => {
             }}
             onMouseUp={changeQuantity}
           >
-            <span className="visually-hidden">
-              Decrease quantity
-            </span>
+            <span className="visually-hidden">Decrease quantity</span>
           </button>
           <input
             type="number"
@@ -226,9 +217,7 @@ const LineItem: FunctionComponent<PropsType> = ({ item }) => {
             }}
             onMouseUp={changeQuantity}
           >
-            <span className="visually-hidden">
-              Increase quantity
-            </span>
+            <span className="visually-hidden">Increase quantity</span>
           </button>
         </div>
       </td>

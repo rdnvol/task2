@@ -1,8 +1,8 @@
 {
-  "name": "Cart",
   "sections": {
     "main": {
-      "type": "cart-template"
+      "type": "cart-template",
+      "settings": {}
     }
   },
   "order": [

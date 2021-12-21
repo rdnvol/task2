@@ -1,7 +1,7 @@
 {
   "sections": {
     "product": {
-      "type": "product",
+      "type": "product-swatcher-variants",
       "blocks": {
         "vendor": {
           "type": "vendor",

@@ -1,22 +1,13 @@
 {% liquid
   render 'breadcrumbs'
-  render 'product' with product as product
+  render 'swatcher-variants' with product as product
   render "schema"
 %}
-
-{%- assign first_3d_model = product.media | where: "media_type", "model" | first -%}
 
 <script type="application/json" id="product-json">
   {% render 'product-json' %}
 </script>
 
-{%- if first_3d_model -%}
-  <script type="application/json" id="ProductJSON-{{ product.id }}">
-    {{ product.media | where: 'media_type', 'model' | json }}
-  </script>
-
-  <script src="{{ 'product-model.js' | asset_url }}" defer></script>
-{%- endif -%}
 {% schema %}
 {
   "name": "Product Information",
@@ -37,6 +28,22 @@
       "type": "url",
       "id": "size_chart_url",
       "label": "Size chart url"
+    },
+    {
+      "type": "select",
+      "id": "swatcher_color_type",
+      "label": "Variants swatcher option",
+      "default": "image",
+      "options": [
+        {
+          "value": "metafields",
+          "label": "Metafields"
+        },
+        {
+          "value": "image",
+          "label": "Image"
+        }
+      ]
     }
   ],
   "blocks": [
