@@ -1,12 +1,10 @@
 import { h, FunctionComponent, Fragment } from 'preact';
 import { useEffect, useContext, useRef } from 'preact/hooks';
-import Splide from '@splidejs/splide';
 
 import { MediaType, ProductType } from '../../types';
 import { Image } from '../Image';
 import { ProductContext } from '../../contexts/productContext';
 import { SwatcherProductsContext } from '../../contexts/swatcherProductsContext';
-import ProductThumbnail from './ProductThumbnail';
 
 interface PropTypes {
   media: MediaType[];
