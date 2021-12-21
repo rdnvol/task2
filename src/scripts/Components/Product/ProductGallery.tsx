@@ -20,51 +20,6 @@ const ProductGallery: FunctionComponent<PropTypes> = ({
   const { chosenProduct, settings } = useContext(ProductContext);
   const { swatchTypes } = useContext(SwatcherProductsContext);
 
-  useEffect(() => {
-    const splide = new Splide('.product-gallery-splide', {
-      type: 'loop',
-      perPage: 1,
-      gap: 0,
-      pagination: false,
-      arrows: true,
-      speed: 800,
-      keyboard: 'focused',
-      breakpoints: {
-        767: {
-          gap: 20,
-          padding: {
-            left: 0,
-            right: '70px',
-          },
-        },
-      },
-    });
-
-    const thumbnails = new Splide('.product-gallery-thumbs', {
-      perPage: 3,
-      gap: 10,
-      rewind: false,
-      pagination: false,
-      arrows: false,
-      isNavigation: true,
-      keyboard: 'focused',
-    });
-
-    splide.sync(thumbnails);
-    splide.mount();
-    thumbnails.mount();
-
-    const splideTrack = document.querySelector(
-      '.splide__track'
-    ) as HTMLDivElement;
-
-    if (splideTrack) splideTrack.style.height = `${splideTrack.offsetHeight}px`;
-
-    return () => {
-      splide.destroy();
-    };
-  }, [chosenProduct]);
-
   const images =
     settings?.swatcher_type === swatchTypes.variants
       ? media
@@ -72,35 +27,19 @@ const ProductGallery: FunctionComponent<PropTypes> = ({
 
   return (
     <Fragment>
-      <div class="product-gallery-splide">
-        <div class="splide__track">
-          <div class="splide__list">
-            {images?.map((mediaItem, idx) => (
-              <div class="splide__slide">
-                <div class="product-gallery__img">
-                  <Image
-                    key={mediaItem.aspect_ratio + idx}
-                    src={mediaItem.src}
-                    sizes={['635x791', '290x364']}
-                    ratio={mediaItem.aspect_ratio}
-                  />
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-      <div class="splide product-gallery-thumbs">
-        <div className="splide__track">
-          <div className="splide__list">
-            {images?.map((mediaItem, idx) => (
-              <ProductThumbnail
+      <div className="product__gallery-slider lg:flex lg:flex-wrap">
+        {images?.map((mediaItem, idx) => (
+          <div className="product__gallery-slider__item lg:pr-4 md:pb-4">
+            <div className="product__gallery-slider__img" data-position={mediaItem.position}>
+              <Image
                 key={mediaItem.aspect_ratio + idx}
-                media={mediaItem}
+                src={mediaItem.src}
+                sizes={['635x791', '290x364']}
+                ratio={mediaItem.aspect_ratio}
               />
-            ))}
+            </div>
           </div>
-        </div>
+        ))}
       </div>
     </Fragment>
   );
