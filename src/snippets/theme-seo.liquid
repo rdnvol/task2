@@ -19,4 +19,6 @@
 
 {%- if page_description -%}
   <meta name="description" content="{{ page_description | escape }}">
+{%- else -%}
+  <meta name="description" content="{{ 'general.meta.seo_description' | t }}">
 {%- endif -%}

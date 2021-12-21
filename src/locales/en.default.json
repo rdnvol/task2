@@ -8,7 +8,8 @@
     },
     "meta": {
       "tags": "Tagged \"{{ tags }}\"",
-      "page": "Page {{ page }}"
+      "page": "Page {{ page }}",
+      "seo_description": "Better than Dawn."
     },
     "404": {
       "title": "404 Page Not Found",
@@ -107,7 +108,7 @@
       "checkout": "Check Out",
       "empty": "Your cart is currently empty.",
       "cookies_required": "Enable cookies to use the shopping cart",
-      "continue_browsing_html": "Continue browsing <a href=\"/collections/all\">here</a>.",
+      "continue_browsing_html": "<a href=\"/collections/all\">Continue browsing here</a>.",
       "item_quantity": "Item quantity",
       "continue_shopping_html": "<a href=\"#\">Continue shopping</a>",
       "savings": "You’re saving",

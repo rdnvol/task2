@@ -32,6 +32,12 @@
   width: 44px;
   height: 100%;
   background: none;
+  @include media ("≤374px") {
+    width: 30px;
+  }
+  @include media("≥tablet", "<desktop") {
+    width: 30px;
+  }
   &::before,
   &::after {
     content: "";
