@@ -54,7 +54,6 @@ export class Product {
     this.updateOptions(this.variantSelects ?? this.variantRadios);
     // this.updateMasterId();
     this.initSubmit();
-    this.initSelectedVariant();
     this.waitForElement('.shopify-payment-button__button--unbranded').then(
       (node) => {
         const dynamicButtonPlaceholder =
@@ -158,7 +157,6 @@ export class Product {
   }
 
   onOptionChange(variant) {
-    this.slideToVariantImage(variant);
     this.updateVariantPrice(variant);
     this.updateSubmitButton(variant);
     this.updateVariantUrl(variant);
@@ -208,25 +206,6 @@ export class Product {
           `<div>${formatMoney(variant.price, theme.moneyFormat)}</div>`
         );
       }
-    }
-  }
-
-  slideToVariantImage(variant) {
-    if (variant) {
-      const imageLabel = variant.featured_media
-        ? variant.featured_media.preview_image.src
-        : '';
-      const imagePosition = variant.featured_media
-        ? variant.featured_media.position - 1
-        : 0;
-      this.splide.go(imagePosition);
-    }
-  }
-
-  initSelectedVariant() {
-    const currentIndex = this.currentVariant?.featured_media?.position - 1 || 0;
-    if (currentIndex) {
-      this.slideToVariantImage(this.currentVariant);
     }
   }
 
