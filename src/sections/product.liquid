@@ -10,13 +10,11 @@
   {% render 'product-json' %}
 </script>
 
-{%- if first_3d_model -%}
-  <script type="application/json" id="ProductJSON-{{ product.id }}">
-    {{ product.media | where: 'media_type', 'model' | json }}
-  </script>
+<script type="application/json" id="ProductJSON-{{ product.id }}">
+  {{ product.media | where: 'media_type', 'model' | json }}
+</script>
+<script src="{{ 'product-model.js' | asset_url }}" defer></script>
 
-  <script src="{{ 'product-model.js' | asset_url }}" defer></script>
-{%- endif -%}
 {% schema %}
 {
   "name": "Product Information",

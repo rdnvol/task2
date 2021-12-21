@@ -59,8 +59,8 @@
           </button>
           <template>
             {%- case media.media_type -%}
-            {%- when 'model' -%}
-              {{ media | media_tag: image_size: "2048x", toggleable: true }}
+              {%- when 'model' -%}
+                {{ media | media_tag: image_size: "2048x", toggleable: true }}
             {%- endcase -%}
           </template>
         </product-model>

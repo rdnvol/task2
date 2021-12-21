@@ -10,7 +10,7 @@ class DeferredMedia extends HTMLElement {
       content.appendChild(this.querySelector('template').content.firstElementChild.cloneNode(true));
       this.setAttribute('loaded', true);
       this.appendChild(content.querySelector('video, model-viewer, iframe')).focus();
-      this.querySelector('picture').classList.add('hidden')
+      this.querySelector('button').style.opacity = '0';
     }
   }
 }
@@ -49,7 +49,6 @@ window.ProductModel = {
       );
       return;
     }
-
     document.querySelectorAll('[id^="ProductJSON-"]').forEach((modelJSON) => {
       window.ShopifyXR.addModels(JSON.parse(modelJSON.textContent));
       modelJSON.remove();
@@ -58,7 +57,7 @@ window.ProductModel = {
   },
 };
 
-window.addEventListener('DOMContentLoaded', () => { 
+window.addEventListener('DOMContentLoaded', () => {
   if (Shopify.designMode) {
     document.querySelectorAll("[data-shopify-xr-hidden]").forEach(element => element.classList.add('hidden'));
   }

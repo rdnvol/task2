@@ -52,6 +52,7 @@ export class Product {
     this.initVariantSelects();
     this.getVariantData(this.variantSelects ?? this.variantRadios);
     this.updateOptions(this.variantSelects ?? this.variantRadios);
+    this.initModelViewer();
     // this.updateMasterId();
     this.initSubmit();
     this.waitForElement('.shopify-payment-button__button--unbranded').then(
@@ -64,6 +65,17 @@ export class Product {
         }, 0);
       }
     );
+  }
+
+  initModelViewer() {
+    const modelViewerEvent = new CustomEvent('activeModelSlide');
+    const galleryWrapper = this.wrapper.find(".product__gallery-slider .product__gallery-slider__item");
+
+    galleryWrapper.each(( index, slide ) => {
+      if ($(slide).find('product-model') != null) {
+        window.dispatchEvent(modelViewerEvent);
+      }
+    })
   }
 
   initVariantSelects() {
