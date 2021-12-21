@@ -158,19 +158,6 @@
   font-weight: bold;
 }
 
-.product-gallery-splide {
-  position: relative;
-  margin: 0 -20px 20px 0;
-  @include media ("≥tablet") {
-    margin-right: 0;
-  }
-
-  .splide__list {
-    display: flex;
-    align-items: center;
-  }
-}
-
 .size-chart-link {
   position: absolute;
   right: 15px;
