@@ -129,7 +129,6 @@
 
     summary {
       text-decoration: underline;
-      
     }
   }
 }
@@ -227,4 +226,24 @@
       display: block;
     }
   }
+}
+
+.range-slider__input.range-slider__input {
+  width: 100%;
+  height: 47px;
+  padding-left: 22px;
+  -moz-appearance: textfield;
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+
+.range-slider__suffix {
+  position: absolute;
+  top: 50%;
+  left: 16px;
+  color: $base-secondary-text;
+  transform: translateY(-50%);
 }
