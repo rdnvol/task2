@@ -166,15 +166,6 @@ export class Product {
     this.inputName.dispatchEvent(new Event('change', { bubbles: true }));
   }
 
-  notifyAboutActiveModel() {
-    this.splide.on('active', (slide) => {
-      let splideActive = new CustomEvent('activeModelSlide');
-      if (slide.slide.querySelector('product-model') != null) {
-        window.dispatchEvent(splideActive);
-      }
-    });
-  }
-
   updateVariantUrl(variant) {
     if (!variant) return;
     const url = getUrlWithVariant(window.location.href, variant.id);
