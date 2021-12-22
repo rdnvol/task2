@@ -3,203 +3,80 @@
     "home_hero": {
       "type": "home-hero",
       "settings": {
-        "image": "shopify://shop_images/Untitled_design.png",
-        "title": "Image with text overlay",
-        "alignment": "justify-start items-center",
+        "image": "shopify://shop_images/mlouye-denim-edit_1_1100x_fcaa8e18-edb0-4059-8f06-a7605804e7f6.jpg",
+        "image_mobile": "shopify://shop_images/mlouye-denim-edit_1_1100x_fcaa8e18-edb0-4059-8f06-a7605804e7f6.jpg",
+        "title": "Industrial design meets fashion.",
+        "alignment": "items-center justify-center",
         "alignment_text": "text-center",
-        "text": "<p>Use overlay text to give your customers insight into your brand. Select imagery and text that relates to your style and story.</p>",
-        "color": "#000000",
-        "color_mobile": "#000000",
+        "text": "<p>Atypical leather goods</p>",
+        "color": "#ffffff",
+        "color_mobile": "#ffffff",
         "button_link": "shopify://collections",
-        "button_label": "Read more",
+        "button_label": "Shop now",
         "fullheight": false
+      }
+    },
+    "164000139349faafec": {
+      "type": "home-rich-text",
+      "settings": {
+        "title": "Obsessive Attention. Intelligent Effort.",
+        "copy": "<p>Functional handbags made of luxurious and honest materials to improve people's lives in small but mighty ways.</p>"
       }
     },
     "home_featured_collection": {
       "type": "home-featured-collection",
       "settings": {
-        "title": "Featured collection",
-        "collection": "test",
+        "title": "",
+        "collection": "featured-products",
         "grid": 4,
         "rows": 2,
-        "show_view_all": true
+        "show_view_all": false
       }
     },
-    "home_image_with_text": {
-      "type": "home-image-with-text",
-      "settings": {
-        "image": "shopify://shop_images/working-at-night.jpg",
-        "layout": "",
-        "title": "Image with text",
-        "text": "<p>Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p><p>Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p><p>Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
-        "button_label": "Shop now",
-        "button_link": "shopify://products/apple-macbook-pro-16-1tb-2019-silver"
-      }
-    },
-    "1634890565a5ef6742": {
-      "type": "home-image-with-text",
-      "settings": {
-        "image": "shopify://shop_images/woman-works-on-computer-at-home.jpg",
-        "layout": "md:flex-row-reverse md:space-x-reverse",
-        "title": "Image with text",
-        "text": "<p>Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
-        "button_label": "Shop now",
-        "button_link": "shopify://products/bird-scarf-product"
-      }
-    },
-    "home_logos_list": {
-      "type": "home-logos-list",
+    "1640012923c9b22af2": {
+      "type": "home-text-with-images",
       "blocks": {
-        "image1": {
-          "type": "image",
+        "1640012923101b952e-0": {
+          "type": "text",
           "settings": {
-            "image": "shopify://shop_images/kisspng-angularjs-ruby-on-rails-typescript-web-application-icon-hacker-5ad97b80444060.9437504315242023682796.png",
-            "url": "shopify://collections/all"
+            "image": "shopify://shop_images/mlouye-bo-ivy-cognac-8_1800x1800_550x_375c4113-5b27-44fb-91df-0a4f2bc367db.jpg",
+            "title": "Bags",
+            "copy": "",
+            "btn_url": "shopify://collections/bugs"
           }
         },
-        "image3": {
-          "type": "image",
+        "1640012923101b952e-1": {
+          "type": "text",
           "settings": {
-            "image": "shopify://shop_images/Untitled_design_475x478_crop_right_f25cf6b2-549a-4829-8f46-5651cbd98037.png",
-            "url": "shopify://collections/all"
+            "image": "shopify://shop_images/mlouye-mini-eddy-mocha-1_1800x1800_dfd49e16-dcc5-47e1-8072-bf7f9902a329.jpg",
+            "title": "Mini Eddy",
+            "copy": "<p> $375</p>",
+            "btn_url": "shopify://products/mini-eddy"
           }
         },
-        "image2": {
-          "type": "image",
+        "1640012923101b952e-2": {
+          "type": "text",
           "settings": {
-            "image": "shopify://shop_images/kisspng-angularjs-ruby-on-rails-typescript-web-application-icon-hacker-5ad97b80444060.9437504315242023682796.png",
-            "url": "shopify://collections/all"
-          }
-        },
-        "image4": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/kisspng-angularjs-ruby-on-rails-typescript-web-application-icon-hacker-5ad97b80444060.9437504315242023682796.png",
-            "url": "shopify://collections/all"
-          }
-        }
-      },
-      "block_order": ["image1", "image3", "image2", "image4"],
-      "settings": {
-        "title": "Logo list"
-      }
-    },
-    "newsletter": {
-      "type": "newsletter",
-      "settings": {
-        "section_title": "Subscribe to our newsletter",
-        "subheading": "A short sentence describing what someone will receive by subscribing"
-      }
-    },
-    "home_benefits": {
-      "type": "home-benefits",
-      "blocks": {
-        "image1": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/Untitled_design_475x478_crop_right_f25cf6b2-549a-4829-8f46-5651cbd98037.png",
-            "title": "Ultra-speed Connection"
-          }
-        },
-        "image2": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/Untitled_design_475x478_crop_right_f25cf6b2-549a-4829-8f46-5651cbd98037.png",
-            "title": "Ultra-speed Connection"
-          }
-        },
-        "image3": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/Untitled_design_475x478_crop_right_f25cf6b2-549a-4829-8f46-5651cbd98037.png",
-            "title": "Ultra-speed Connection"
-          }
-        },
-        "image4": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/Untitled_design_475x478_crop_right_f25cf6b2-549a-4829-8f46-5651cbd98037.png",
-            "title": "Ultra-speed Connection"
-          }
-        },
-        "image5": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/Untitled_design_475x478_crop_right_f25cf6b2-549a-4829-8f46-5651cbd98037.png",
-            "title": "Ultra-speed Connection"
-          }
-        },
-        "image6": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/Untitled_design_475x478_crop_right_f25cf6b2-549a-4829-8f46-5651cbd98037.png",
-            "title": "Ultra-speed Connection"
+            "image": "shopify://shop_images/4694feb0cf4ec02bbd6a1fc99720d062.jpg",
+            "title": "Shoes",
+            "copy": "",
+            "btn_url": "shopify://collections/shoes"
           }
         }
       },
       "block_order": [
-        "image1",
-        "image2",
-        "image3",
-        "image4",
-        "image5",
-        "image6"
+        "1640012923101b952e-0",
+        "1640012923101b952e-1",
+        "1640012923101b952e-2"
       ],
-      "settings": {}
-    },
-    "home_plans": {
-      "type": "home-plans",
-      "blocks": {
-        "image1": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/kisspng-angularjs-ruby-on-rails-typescript-web-application-icon-hacker-5ad97b80444060.9437504315242023682796.png",
-            "title": "Heading",
-            "subtitle": "Internet",
-            "features": "<ul class=\"plan-item__list list-checks text-left\">\n<li>Up to 50Mbps</li>\n<li>Night Turbo-Speed</li>\n<li>WiFi router</li>\n<li>Unlimited devices</li>\n</ul>",
-            "price": "$24.99",
-            "period": "month",
-            "button_link": "shopify://collections/all",
-            "button_label": "Get started"
-          }
-        },
-        "image2": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/kisspng-angularjs-ruby-on-rails-typescript-web-application-icon-hacker-5ad97b80444060.9437504315242023682796.png",
-            "title": "Ultra-speed Connection",
-            "subtitle": "Internet",
-            "features": "<ul class=\"plan-item__list list-checks text-left\">\n<li>Up to 50Mbps</li>\n<li>Night Turbo-Speed</li>\n<li>WiFi router</li>\n<li>Unlimited devices</li>\n</ul>",
-            "price": "$24.99",
-            "period": "month",
-            "button_link": "shopify://collections/all",
-            "button_label": "Get started"
-          }
-        },
-        "image3": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/kisspng-angularjs-ruby-on-rails-typescript-web-application-icon-hacker-5ad97b80444060.9437504315242023682796.png",
-            "title": "Ultra-speed Connection",
-            "subtitle": "Internet",
-            "features": "<ul class=\"plan-item__list list-checks text-left\">\n<li>Up to 50Mbps</li>\n<li>Night Turbo-Speed</li>\n<li>WiFi router</li>\n<li>Unlimited devices</li>\n</ul>",
-            "price": "$24.99",
-            "period": "month",
-            "button_link": "shopify://collections/all",
-            "button_label": "Get started"
-          }
-        }
-      },
-      "block_order": ["image1", "image2", "image3"],
       "settings": {
-        "title": "Choose your plan",
-        "text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>"
+        "title": "Back in stock!"
       }
     },
     "home_iframe_video": {
       "type": "home-iframe-video",
       "settings": {
-        "video": "https://vimeo.com/420059153",
+        "video": "https://www.youtube.com/watch?v=yXWXFzjVnt8",
         "enable_full_width": true,
         "title": "",
         "subheading": "",
@@ -208,17 +85,67 @@
         "enable_overlay": false,
         "text_color": ""
       }
+    },
+    "1640013600e980445e": {
+      "type": "home-plans",
+      "blocks": {
+        "164001360076ba3b7e-0": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Refinery29_275x_4779d5dc-4ca8-42b2-8384-dd1b20724b53.png",
+            "title": "",
+            "subtitle": "",
+            "features": "<ul class=\"plan-item__list list-checks text-left\">\n\"The leather is sourced from environmentally friendly tanneries in Italy, France, and Turkey, where Rure is based and everything is assembled by hand.\"\n</ul>",
+            "price": "",
+            "period": "",
+            "button_link": "",
+            "button_label": "button"
+          }
+        },
+        "164001360076ba3b7e-1": {
+          "type": "image",
+          "disabled": true,
+          "settings": {
+            "title": "Heading",
+            "subtitle": "Internet",
+            "features": "<ul class=\"plan-item__list list-checks text-left\">\n<li>Up to 50Mbps</li>\n<li>Night Turbo-Speed</li>\n<li>WiFi router</li>\n<li>Unlimited devices</li>\n</ul>",
+            "price": "$24.99",
+            "period": "month",
+            "button_link": "",
+            "button_label": "button"
+          }
+        },
+        "164001360076ba3b7e-2": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/1_zmzOs2NElSXPbU6OX0EIeg_2x_275x_0cc3745b-4821-4563-a43f-b2ff31b2e03d.png",
+            "title": "",
+            "subtitle": "",
+            "features": "<ul> \"All too often, we're forced to pick: style, or sustainability. Recently, more designers have been making environmental impact a top priority\"</ul>",
+            "price": "",
+            "period": "",
+            "button_link": "",
+            "button_label": ""
+          }
+        }
+      },
+      "block_order": [
+        "164001360076ba3b7e-0",
+        "164001360076ba3b7e-1",
+        "164001360076ba3b7e-2"
+      ],
+      "settings": {
+        "title": "",
+        "text": ""
+      }
     }
   },
   "order": [
     "home_hero",
+    "164000139349faafec",
     "home_featured_collection",
-    "home_image_with_text",
-    "1634890565a5ef6742",
-    "home_logos_list",
-    "newsletter",
-    "home_benefits",
-    "home_plans",
-    "home_iframe_video"
+    "1640012923c9b22af2",
+    "home_iframe_video",
+    "1640013600e980445e"
   ]
 }
