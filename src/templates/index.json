@@ -3,14 +3,14 @@
     "home_hero": {
       "type": "home-hero",
       "settings": {
-        "image": "shopify://shop_images/mlouye-denim-edit_1_1100x_fcaa8e18-edb0-4059-8f06-a7605804e7f6.jpg",
-        "image_mobile": "shopify://shop_images/mlouye-denim-edit_1_1100x_fcaa8e18-edb0-4059-8f06-a7605804e7f6.jpg",
+        "image": "shopify://shop_images/hero.png",
+        "image_mobile": "shopify://shop_images/hero_mob.png",
         "title": "Industrial design meets fashion.",
         "alignment": "items-center justify-center",
         "alignment_text": "text-center",
         "text": "<p>Atypical leather goods</p>",
         "color": "#ffffff",
-        "color_mobile": "#ffffff",
+        "color_mobile": "#000000",
         "button_link": "shopify://collections",
         "button_label": "Shop now",
         "fullheight": false
@@ -77,7 +77,7 @@
       "type": "home-iframe-video",
       "settings": {
         "video": "https://www.youtube.com/watch?v=yXWXFzjVnt8",
-        "enable_full_width": true,
+        "enable_full_width": false,
         "title": "",
         "subheading": "",
         "button_link": "",
