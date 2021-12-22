@@ -63,8 +63,8 @@
     },
     "newsletter_form": {
       "title": "Connect",
-      "newsletter_email": "Join our mailing list for updates",
-      "email_placeholder": "Enter your email",
+      "newsletter_email": "Subscribe to our emails",
+      "email_placeholder": "Email",
       "confirmation": "Thanks for subscribing",
       "submit": "Subscribe"
     }
@@ -139,9 +139,9 @@
   "contact": {
     "form": {
       "name": "Name",
-      "email": "Email",
-      "phone": "Phone Number",
-      "message": "Message",
+      "email": "Email *",
+      "phone": "Phone number",
+      "message": "Comment",
       "send": "Send",
       "post_success": "Thanks for contacting us. We'll get back to you as soon as possible."
     },
