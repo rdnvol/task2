@@ -28,7 +28,7 @@ const ProductMainBlock: FunctionComponent<Props> = ({
   }, [settings, product, chosenProduct]);
 
   return (
-    <div class="product-main-block__details body-2">
+    <div class="product-main-block__details product-main-block__details--sticky body-2">
       <div class="product__vendor">
         by <mark>{returnProduct?.vendor}</mark>
       </div>

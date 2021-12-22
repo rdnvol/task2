@@ -173,10 +173,6 @@ ins {
   }
 }
 
-[id="main"] {
-  overflow: hidden;
-}
-
 .section {
   padding: 64px 0;
   @include media("≥widescreen") {

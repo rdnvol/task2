@@ -69,7 +69,6 @@
     @include media ("≥tablet") {
       position: sticky;
       top: var(--header-sticky-height);
-      padding: 5px 0 0;
     }
   }
 }
