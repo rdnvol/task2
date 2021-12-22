@@ -93,7 +93,7 @@ const ProductColorOptionItem: FunctionComponent<Props> = ({
       <input
         id={`filter-field-colors-01-${idx}-${name}`}
         type="radio"
-        name={`filter-field-colors-${idx}-${name}`}
+        name={`filter-field-colors-${name}`}
         onChange={handleChange()}
         checked={isChecked}
         disabled={isDisabled}

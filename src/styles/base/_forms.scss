@@ -273,6 +273,7 @@ a.button {
           &::before {
             background: none !important;
             background: $base-border;
+            opacity: 0.6;
           }
           &::after {
             opacity: 0.6;
