@@ -4,7 +4,7 @@
 {% render "dynamic-checkout" with product %}
 
 <script type="application/json" id="product-json">
-    {% render 'product-json' %}
+  {% render 'product-json' %}
 </script>
 
 {% render "section-json", settings_id: "product-settings" %}
@@ -13,13 +13,13 @@
 
 {% schema %}
 {
-    "name": "Product pages",
-    "settings": [
+  "name": "Product pages",
+  "settings": [
     {
-    "type": "checkbox",
-    "id": "show_share_buttons",
-    "label": "Show social sharing buttons",
-    "default": true
+      "type": "checkbox",
+      "id": "show_share_buttons",
+      "label": "Show social sharing buttons",
+      "default": true
     },
     {
       "type": "select",
@@ -37,6 +37,6 @@
       ],
       "default": "products"
     }
-    ]
+  ]
 }
 {% endschema %}

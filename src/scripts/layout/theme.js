@@ -11,7 +11,6 @@ import 'lazysizes';
 import 'lazysizes/plugins/respimg/ls.respimg.js';
 import '../helpers/jquery.plugins.js';
 import { SmoothScroll } from '../helpers/jquery.plugins.js';
-import Splide from '@splidejs/splide';
 import { Fancybox } from '@fancyapps/ui';
 import '../redux/store.ts';
 
@@ -39,7 +38,6 @@ class App {
     this.initLanguageSwitcher();
     this.initAnchors();
     this.initMap();
-    this.initProductGallery();
     this.fancyboxBackdrop();
     this.fancyboxModalCloseButton();
     this.initOpenClose();
@@ -284,30 +282,6 @@ class App {
         });
       }
     });
-  }
-
-  initProductGallery() {
-    // Create the main slider.
-    const element = document.querySelector('.product-gallery-splide--init');
-    if (!element) return;
-    const productGallerySplide = new Splide(element, {
-      type: 'loop',
-      perPage: 1,
-      gap: 0,
-      pagination: true,
-      arrows: true,
-      speed: 800,
-      keyboard: 'focused',
-      breakpoints: {
-        767: {
-          gap: 20,
-          padding: {
-            left: 0,
-            right: '70px',
-          },
-        },
-      },
-    }).mount();
   }
 
   fancyboxBackdrop() {

@@ -1,6 +1,5 @@
 import { getUrlWithVariant } from '@shopify/theme-product-form';
 import { formatMoney } from '@shopify/theme-currency';
-import Splide from '@splidejs/splide';
 import { register } from '@shopify/theme-sections';
 import { Fancybox } from '@fancyapps/ui/src/Fancybox/Fancybox.js';
 import { addItem } from '../helpers/cartAjaxCall.js';
@@ -48,15 +47,14 @@ export class Product {
     this.shopifyButtons = this.wrapper.find('[data-shopify="payment-button"]');
     this.sizeChart = this.wrapper.find('.size-chart-link');
 
-    this.initGallery();
     this.sizeChartInit();
     this.product = this.getProduct();
     this.initVariantSelects();
     this.getVariantData(this.variantSelects ?? this.variantRadios);
     this.updateOptions(this.variantSelects ?? this.variantRadios);
+    this.initModelViewer();
     // this.updateMasterId();
     this.initSubmit();
-    this.initSelectedVariant();
     this.waitForElement('.shopify-payment-button__button--unbranded').then(
       (node) => {
         const dynamicButtonPlaceholder =
@@ -67,6 +65,20 @@ export class Product {
         }, 0);
       }
     );
+  }
+
+  initModelViewer() {
+    const modelViewerEvent = new CustomEvent('activeModelSlide');
+    const galleryWrapper = this.wrapper.find(".product__gallery-slider .product__gallery-slider__item");
+
+    galleryWrapper.each(( index, slide ) => {
+      if ($(slide).find('product-model').length > 0) {
+        const viewBtn = $(slide).find('.deferred-media__poster');
+        viewBtn.on('click', () => {
+          window.dispatchEvent(modelViewerEvent)
+        })
+      }
+    })
   }
 
   initVariantSelects() {
@@ -153,47 +165,6 @@ export class Product {
     this.inputName.dispatchEvent(new Event('change', { bubbles: true }));
   }
 
-  initGallery() {
-    const slidesLength = this.wrapper.find('.splide__slide').length;
-    this.splide = new Splide(this.wrapper.find('.product-gallery')[0], {
-      type: 'slide',
-      perPage: 1,
-      rewind: false,
-      pagination: false,
-      arrows: false,
-      keyboard: 'focused',
-    });
-
-    const thumbnails = new Splide(
-      this.wrapper.find('.product-gallery-thumbs')[0],
-      {
-        perPage: 3,
-        gap: 10,
-        rewind: false,
-        pagination: false,
-        arrows: false,
-        isNavigation: true,
-        keyboard: 'focused',
-      }
-    );
-    if (slidesLength > 1) {
-      this.splide.sync(thumbnails);
-      thumbnails.mount();
-    }
-    this.splide.mount();
-
-    this.notifyAboutActiveModel();
-  }
-
-  notifyAboutActiveModel() {
-    this.splide.on('active', slide => {
-      let splideActive = new CustomEvent('activeModelSlide');
-      if (slide.slide.querySelector('product-model') != null) {
-        window.dispatchEvent(splideActive);
-      }
-    })
-  }
-
   updateVariantUrl(variant) {
     if (!variant) return;
     const url = getUrlWithVariant(window.location.href, variant.id);
@@ -201,7 +172,6 @@ export class Product {
   }
 
   onOptionChange(variant) {
-    this.slideToVariantImage(variant);
     this.updateVariantPrice(variant);
     this.updateSubmitButton(variant);
     this.updateVariantUrl(variant);
@@ -251,25 +221,6 @@ export class Product {
           `<div>${formatMoney(variant.price, theme.moneyFormat)}</div>`
         );
       }
-    }
-  }
-
-  slideToVariantImage(variant) {
-    if (variant) {
-      const imageLabel = variant.featured_media
-        ? variant.featured_media.preview_image.src
-        : '';
-      const imagePosition = variant.featured_media
-        ? variant.featured_media.position - 1
-        : 0;
-      this.splide.go(imagePosition);
-    }
-  }
-
-  initSelectedVariant() {
-    const currentIndex = this.currentVariant?.featured_media?.position - 1 || 0;
-    if (currentIndex) {
-      this.slideToVariantImage(this.currentVariant);
     }
   }
 

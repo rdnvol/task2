@@ -19,28 +19,13 @@
     <div class="md:flex md:space-x-8">
       <div class="md:w-6/12 mb-4 md:mb-0">
         {% unless section_onboarding %}
-          <div class="splide product-gallery">
-            <div class="splide__track">
-              <div class="splide__list">
-                {% if product.media.size > 0 %}
-                  {% for media in product.media %}
-                    {% render 'product-media', media: media, main: true %}
-                  {% endfor %}
-                {% else %}
-                  {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
-                {% endif %}
-              </div>
-            </div>
-          </div>
-          <div class="splide product-gallery-thumbs">
-            {% if product.media.size > 1 %}
-              <div class="splide__track">
-                <div class="splide__list">
-                  {% for media in product.media %}
-                    {% render 'product-media', media: media %}
-                  {% endfor %}
-                </div>
-              </div>
+          <div class="product__gallery-slider lg:flex lg:flex-wrap">
+            {% if product.media.size > 0 %}
+              {% for media in product.media %}
+                {% render 'product-media', media: media, main: true %}
+              {% endfor %}
+            {% else %}
+              {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
             {% endif %}
           </div>
         {% else %}
