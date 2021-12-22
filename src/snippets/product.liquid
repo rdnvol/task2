@@ -131,16 +131,24 @@
                 {% for option in product.options_with_values %}
                   <div class="sm:flex sm:space-x-8 product__row">
                     <div class="sm:w-7/12 lg:w-5/12 relative">
+                      <label class="product__label {% if show_variant_label == false %}visually-hidden{% endif %}" for="Option{{ option.position }}">
+                        {{ option.name }}
+                      </label>
                       {% assign size_option = 'products.product.size' | t | downcase %}
                       {% assign options = product.options | downcase %}
                       {% if forloop.first and show_size_chart and size_chart_url != blank and options contains size_option %}
-                        <a class="size-chart-link"
-                          data-type="ajax"
-                          href="{{ size_chart_url }}">{{ 'products.product.size_chart' | t }}</a>
+                        {% if show_variant_label == false %}
+                          <div class="text-right pb-2">
+                            <a class="size-chart-link"
+                            data-type="ajax"
+                            href="{{ size_chart_url }}">{{ 'products.product.size_chart' | t }}</a>
+                          </div>
+                          {% else %}
+                          <a class="size-chart-link"
+                            data-type="ajax"
+                            href="{{ size_chart_url }}">{{ 'products.product.size_chart' | t }}</a>
+                        {% endif %}
                       {% endif %}
-                        <label class="product__label {% if show_variant_label == false %}visually-hidden{% endif %}" for="Option{{ option.position }}">
-                          {{ option.name }}
-                        </label>
                       <select
                         class="product__select w-100"
                         id="Option{{ option.position }}"

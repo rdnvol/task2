@@ -22,15 +22,21 @@
   </svg>
 
   {%- when 'quote' -%}
-  <svg class="{{ icon_class }}" role="img" aria-label="Quote"  aria-hidden="true" focusable="false" role="presentation" class="icon icon-quote" viewBox="0 0 41 35">
+  <svg class="{{ icon_class }} icon icon-quote" role="img" aria-label="Quote"  aria-hidden="true" focusable="false" width="24" height="24" viewBox="0 0 41 35">
     <desc>Quote</desc>
     <path d="M10.208 17.711h6.124v16.332H0V21.684C0 8.184 5.444.956 16.332 0v6.125c-4.083 1.14-6.124 4.414-6.124 9.82v1.766zm24.498 0h6.124v16.332H24.498V21.684C24.498 8.184 29.942.956 40.83 0v6.125c-4.083 1.14-6.124 4.414-6.124 9.82v1.766z" fill="#000" fill-rule="evenodd"/>
   </svg>
 
   {%- when 'location' -%}
-  <svg class="{{ icon_class }}" role="img" aria-label="Location" aria-hidden="true" focusable="false" role="presentation" viewBox="0 0 32 32">
+  <svg class="{{ icon_class }}" role="img" aria-label="Location" aria-hidden="true" focusable="false" width="32" height="32" viewBox="0 0 32 32">
     <desc>Location</desc>
     <path d="M4 12a12 12 0 0 1 24 0c0 8-12 20-12 20S4 20 4 12m7 0a5 5 0 0 0 10 0 5 5 0 0 0-10 0z" fill="currentColor"></path>
+  </svg>
+
+  {%- when 'filter' -%}
+  <svg class="{{ icon_class }}" role="img" aria-label="Filter icon" aria-hidden="true" focusable="false" width="24" height="24" viewBox="0 0 24 24">
+    <desc>Filter icon</desc>
+    <path d="M4 7.83333C4 7.61232 4.08429 7.40036 4.23431 7.24408C4.38434 7.0878 4.58783 7 4.8 7H19.2C19.4122 7 19.6157 7.0878 19.7657 7.24408C19.9157 7.40036 20 7.61232 20 7.83333C20 8.05435 19.9157 8.26631 19.7657 8.42259C19.6157 8.57887 19.4122 8.66667 19.2 8.66667H4.8C4.58783 8.66667 4.38434 8.57887 4.23431 8.42259C4.08429 8.26631 4 8.05435 4 7.83333ZM6.4 12C6.4 11.779 6.48429 11.567 6.63431 11.4107C6.78434 11.2545 6.98783 11.1667 7.2 11.1667H16.8C17.0122 11.1667 17.2157 11.2545 17.3657 11.4107C17.5157 11.567 17.6 11.779 17.6 12C17.6 12.221 17.5157 12.433 17.3657 12.5893C17.2157 12.7455 17.0122 12.8333 16.8 12.8333H7.2C6.98783 12.8333 6.78434 12.7455 6.63431 12.5893C6.48429 12.433 6.4 12.221 6.4 12ZM10.4 15.3333C10.1878 15.3333 9.98434 15.4211 9.83431 15.5774C9.68429 15.7337 9.6 15.9457 9.6 16.1667C9.6 16.3877 9.68429 16.5996 9.83431 16.7559C9.98434 16.9122 10.1878 17 10.4 17H13.6C13.8122 17 14.0157 16.9122 14.1657 16.7559C14.3157 16.5996 14.4 16.3877 14.4 16.1667C14.4 15.9457 14.3157 15.7337 14.1657 15.5774C14.0157 15.4211 13.8122 15.3333 13.6 15.3333H10.4Z" fill="currentColor"/>
   </svg>
 
 {%- endcase -%}

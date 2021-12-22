@@ -189,10 +189,15 @@
 
 .size-chart-link {
   position: absolute;
-  right: 15px;
+  top: 5px;
+  right: 0;
   font-size: 14px;
   color: $base-body-text;
   text-decoration: none;
+
+  .product__label.visually-hidden + .text-right & {
+    position: static;
+  }
 
   .text-right & {
     position: static;
