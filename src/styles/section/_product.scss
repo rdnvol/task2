@@ -169,6 +169,10 @@
   .product__label.visually-hidden + .text-right & {
     position: static;
   }
+
+  .text-right & {
+    position: static;
+  }
 }
 
 .fancybox__content {
