@@ -72,8 +72,11 @@ export class Product {
     const galleryWrapper = this.wrapper.find(".product__gallery-slider .product__gallery-slider__item");
 
     galleryWrapper.each(( index, slide ) => {
-      if ($(slide).find('product-model') != null) {
-        window.dispatchEvent(modelViewerEvent);
+      if ($(slide).find('product-model').length > 0) {
+        const viewBtn = $(slide).find('.deferred-media__poster');
+        viewBtn.on('click', () => {
+          window.dispatchEvent(modelViewerEvent)
+        })
       }
     })
   }
