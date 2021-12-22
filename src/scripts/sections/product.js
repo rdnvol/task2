@@ -166,38 +166,6 @@ export class Product {
     this.inputName.dispatchEvent(new Event('change', { bubbles: true }));
   }
 
-  initGallery() {
-    const slidesLength = this.wrapper.find('.splide__slide').length;
-    this.splide = new Splide(this.wrapper.find('.product-gallery')[0], {
-      type: 'slide',
-      perPage: 1,
-      rewind: false,
-      pagination: false,
-      arrows: false,
-      keyboard: 'focused',
-    });
-
-    const thumbnails = new Splide(
-      this.wrapper.find('.product-gallery-thumbs')[0],
-      {
-        perPage: 3,
-        gap: 10,
-        rewind: false,
-        pagination: false,
-        arrows: false,
-        isNavigation: true,
-        keyboard: 'focused',
-      }
-    );
-    if (slidesLength > 1) {
-      this.splide.sync(thumbnails);
-      thumbnails.mount();
-    }
-    this.splide.mount();
-
-    this.notifyAboutActiveModel();
-  }
-
   notifyAboutActiveModel() {
     this.splide.on('active', (slide) => {
       let splideActive = new CustomEvent('activeModelSlide');
