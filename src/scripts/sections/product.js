@@ -9,7 +9,6 @@ import {
   openPopup,
   addJustAdded,
 } from '../redux/features/cart/cartSlice.ts';
-import { isMetaProperty } from 'typescript';
 
 register('product', {
   _initProduct(handle) {
@@ -69,16 +68,18 @@ export class Product {
 
   initModelViewer() {
     const modelViewerEvent = new CustomEvent('activeModelSlide');
-    const galleryWrapper = this.wrapper.find(".product__gallery-slider .product__gallery-slider__item");
+    const galleryWrapper = this.wrapper.find(
+      '.product__gallery-slider .product__gallery-slider__item'
+    );
 
-    galleryWrapper.each(( index, slide ) => {
+    galleryWrapper.each((index, slide) => {
       if ($(slide).find('product-model').length > 0) {
         const viewBtn = $(slide).find('.deferred-media__poster');
         viewBtn.on('click', () => {
-          window.dispatchEvent(modelViewerEvent)
-        })
+          window.dispatchEvent(modelViewerEvent);
+        });
       }
-    })
+    });
   }
 
   initVariantSelects() {
@@ -163,6 +164,47 @@ export class Product {
   updateVariantInput(variant) {
     this.inputName.value = variant.id;
     this.inputName.dispatchEvent(new Event('change', { bubbles: true }));
+  }
+
+  initGallery() {
+    const slidesLength = this.wrapper.find('.splide__slide').length;
+    this.splide = new Splide(this.wrapper.find('.product-gallery')[0], {
+      type: 'slide',
+      perPage: 1,
+      rewind: false,
+      pagination: false,
+      arrows: false,
+      keyboard: 'focused',
+    });
+
+    const thumbnails = new Splide(
+      this.wrapper.find('.product-gallery-thumbs')[0],
+      {
+        perPage: 3,
+        gap: 10,
+        rewind: false,
+        pagination: false,
+        arrows: false,
+        isNavigation: true,
+        keyboard: 'focused',
+      }
+    );
+    if (slidesLength > 1) {
+      this.splide.sync(thumbnails);
+      thumbnails.mount();
+    }
+    this.splide.mount();
+
+    this.notifyAboutActiveModel();
+  }
+
+  notifyAboutActiveModel() {
+    this.splide.on('active', (slide) => {
+      let splideActive = new CustomEvent('activeModelSlide');
+      if (slide.slide.querySelector('product-model') != null) {
+        window.dispatchEvent(splideActive);
+      }
+    });
   }
 
   updateVariantUrl(variant) {
