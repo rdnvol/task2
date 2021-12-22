@@ -9,7 +9,6 @@ import {
   openPopup,
   addJustAdded,
 } from '../redux/features/cart/cartSlice.ts';
-import { isMetaProperty } from 'typescript';
 
 register('product', {
   _initProduct(handle) {
@@ -69,16 +68,18 @@ export class Product {
 
   initModelViewer() {
     const modelViewerEvent = new CustomEvent('activeModelSlide');
-    const galleryWrapper = this.wrapper.find(".product__gallery-slider .product__gallery-slider__item");
+    const galleryWrapper = this.wrapper.find(
+      '.product__gallery-slider .product__gallery-slider__item'
+    );
 
-    galleryWrapper.each(( index, slide ) => {
+    galleryWrapper.each((index, slide) => {
       if ($(slide).find('product-model').length > 0) {
         const viewBtn = $(slide).find('.deferred-media__poster');
         viewBtn.on('click', () => {
-          window.dispatchEvent(modelViewerEvent)
-        })
+          window.dispatchEvent(modelViewerEvent);
+        });
       }
-    })
+    });
   }
 
   initVariantSelects() {
