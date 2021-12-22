@@ -113,3 +113,11 @@ a {
     text-decoration: none;
   }
 }
+
+.body-medium {
+  font-size: $font-size-base;
+}
+
+.body-small {
+  font-size: calc(#{$font-size-base} - 2px);
+}
