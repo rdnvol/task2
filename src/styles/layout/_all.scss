@@ -668,6 +668,64 @@ img[data-sizes="auto"] {
   }
 }
 
+.deferred-media {
+  overflow: hidden;
+  &:not([loaded]) {
+
+    template {
+      z-index: -1;
+    }
+  }
+  &[loaded] {
+
+    .deferred-media__poster {
+      opacity: 0;
+    }
+  }
+
+  iframe {
+    position: absolute;
+    display: flex;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.deferred-media__poster {
+  width: 100%;
+  transition: opacity $animation-speed ease-in-out;
+}
+
+.deferred-media__poster-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 62px;
+  height: 62px;
+  color: $base-body-text;
+  background: $base-body-background;
+  border: 0.1rem solid $base-body-background;
+  border-radius: 50%;
+  transition: transform $animation-speed ease-in-out;
+  transform: translate(-50%, -50%);
+  &:hover {
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+
+  .icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .icon-play {
+    margin-left: 0.2rem;
+  }
+}
+
 // Shopify Preview bar iframe styles
 #preview-bar-iframe {
   width: calc(100% + 15px) !important;
