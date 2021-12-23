@@ -14,11 +14,48 @@
       </div>
     </div>
   {% when 'external_video' %}
-    <div class="product__gallery-slider__item lg:pr-4 md:pb-4 lg:w-100" data-media-id="{{ media.id }}">
-      <div class="fluid-iframe">
-        {{ media | external_video_tag }}
-      </div>
-    </div>
+  <div class="product__gallery-slider__item lg:pr-4 md:pb-4 lg:w-100">
+    <deferred-media class="deferred-media media product-gallery__img" data-media-id="{{ media.id }}">
+      <button id="Deferred-Poster-Modal-{{ media.id }}" class="deferred-media__poster" type="button">
+        <span class="deferred-media__poster-button motion-reduce">
+          <span class="visually-hidden">Play video</span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+            focusable="false"
+            role="presentation"
+            class="icon icon-play"
+            fill="none"
+            viewbox="0 0 10 14"
+          >
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M1.48177 0.814643C0.81532 0.448245 0 0.930414 0 1.69094V12.2081C0 12.991 0.858787 13.4702 1.52503 13.0592L10.5398 7.49813C11.1918 7.09588 11.1679 6.13985 10.4965 5.77075L1.48177 0.814643Z"
+              fill="currentColor"
+            ></path>
+          </svg>
+        </span>
+        {% render
+          'image',
+          src: media,
+          d: '635x791',
+          src_m: media,
+          m: '345x431',
+          alt: media.alt,
+          placeholder: 'img-placeholder.png'
+        %}
+      </button>
+      <template>
+        {%- assign video_class = 'js-' | append: media.host -%}
+        {%- if media.host == 'youtube' -%}
+          {{ media | external_video_url: autoplay: true, loop: loop, playlist: media.external_id | external_video_tag: class: video_class, loading: "lazy" }}
+        {%- else -%}
+          {{ media | external_video_url: autoplay: true, loop: loop | external_video_tag: class: video_class, loading: "lazy" }}
+        {%- endif -%}
+      </template>
+    </deferred-media>
+  </div>
   {% when 'video' %}
     <div class="product__gallery-slider__item lg:pr-4 md:pb-4 lg:w-100">
       <div class="jquery-background-video-wrapper"

@@ -8,6 +8,31 @@
   {% render 'product-json' %}
 </script>
 
+<script>
+  class DeferredMedia extends HTMLElement {
+  constructor() {
+    super();
+    const poster = this.querySelector('[id^="Deferred-Poster-"]');
+    if (poster != null) {
+      console.log('Button pressed')
+      poster.addEventListener('click', this.loadContent.bind(this));
+    } else {
+      window.addEventListener('activeModelSlide', () => this.loadContent());
+    }
+  }
+  loadContent() {
+    if (!this.getAttribute('loaded')) {
+      const content = document.createElement('div');
+      content.appendChild(this.querySelector('template').content.firstElementChild.cloneNode(true));
+      this.setAttribute('loaded', true);
+      this.appendChild(content.querySelector('video, model-viewer, iframe')).focus();
+      this.querySelector('picture').classList.add('hidden')
+    }
+  }
+}
+customElements.define('deferred-media', DeferredMedia);
+</script>
+
 {% render 'product-model-script', product: product %}
 
 {% schema %}
