@@ -8,6 +8,8 @@
   {% render 'product-json' %}
 </script>
 
+{% render 'product-model-script', product: product %}
+
 {% schema %}
 {
   "name": "Product Information",
@@ -16,12 +18,6 @@
       "type": "checkbox",
       "id": "show_variant_label",
       "label": "Show variant label",
-      "default": true
-    },
-    {
-      "type": "checkbox",
-      "id": "show_dynamic_button",
-      "label": "Show dynamic checkout button",
       "default": true
     },
     {
@@ -39,7 +35,7 @@
       "type": "select",
       "id": "swatcher_color_type",
       "label": "Variants swatcher option",
-      "default": "metafields",
+      "default": "image",
       "options": [
         {
           "value": "metafields",

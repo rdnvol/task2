@@ -1,8 +1,8 @@
 {
-  "name": "404",
   "sections": {
     "main": {
-      "type": "404-template"
+      "type": "404-template",
+      "settings": {}
     }
   },
   "order": [

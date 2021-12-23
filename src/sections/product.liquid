@@ -4,47 +4,12 @@
   render "schema"
 %}
 
-{%- assign first_3d_model = product.media | where: "media_type", "model" | first -%}
-
 <script type="application/json" id="product-json">
   {% render 'product-json' %}
 </script>
 
-<script>
-  class DeferredMedia extends HTMLElement {
-  constructor() {
-    super();
-    const poster = this.querySelector('[id^="Deferred-Poster-"]');
-    if (poster != null) {
-      console.log('Button pressed')
-      poster.addEventListener('click', this.loadContent.bind(this));
-    } else {
-      window.addEventListener('activeModelSlide', () => this.loadContent());
-    }
-  }
+{% render 'product-model-script', product: product %}
 
-  loadContent() {
-    if (!this.getAttribute('loaded')) {
-      const content = document.createElement('div');
-      content.appendChild(this.querySelector('template').content.firstElementChild.cloneNode(true));
-      this.setAttribute('loaded', true);
-      this.appendChild(content.querySelector('video, model-viewer, iframe')).focus();
-      this.querySelector('picture').classList.add('hidden')
-    }
-  }
-}
-
-
-customElements.define('deferred-media', DeferredMedia);
-</script>
-
-{%- if first_3d_model -%}
-  <script type="application/json" id="ProductJSON-{{ product.id }}">
-    {{ product.media | where: 'media_type', 'model' | json }}
-  </script>
-
-  <script src="{{ 'product-model.js' | asset_url }}" defer></script>
-{%- endif -%}
 {% schema %}
 {
   "name": "Product Information",
@@ -53,12 +18,6 @@ customElements.define('deferred-media', DeferredMedia);
       "type": "checkbox",
       "id": "show_variant_label",
       "label": "Show variant label",
-      "default": true
-    },
-    {
-      "type": "checkbox",
-      "id": "show_dynamic_button",
-      "label": "Show dynamic checkout button",
       "default": true
     },
     {

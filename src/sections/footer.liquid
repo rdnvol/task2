@@ -35,9 +35,12 @@
                 </div>
               </div>
             {%- when 'newsletter' -%}
-              <div
-                  class="{% unless forloop.last %}mb-6 lg:mb-0{% endunless %}" {{ block.shopify_attributes }}>
-                <h3 class="footer__title h5">{{ block.settings.title }}</h3>
+              <div class="{% unless forloop.last %}mb-6 lg:mb-0{% endunless %}" {{ block.shopify_attributes }}>
+                {%- if block.settings.title != blank -%}
+                  <div class="footer__title h5">
+                    {{ block.settings.title }}
+                  </div>
+                {%- endif -%}
                 <p>{{ 'general.newsletter_form.newsletter_email' | t }}</p>
                 {% form 'customer', novalidate: 'novalidate', class: "footer__form pt-2" %}
                   <fieldset>
@@ -72,7 +75,9 @@
               <div class="{% unless forloop.last %}mb-6 lg:mb-0{% endunless %}">
                 <nav class="footer__nav">
                   {%- if block.settings.title != blank -%}
-                    <h3 class="footer__title h5">{{ block.settings.title }}</h3>
+                    <div class="footer__title h5">
+                      {{ block.settings.title }}
+                    </div>
                   {%- endif -%}
                   <ul>
                     {%- for link in linklists[footer_linklist].links -%}

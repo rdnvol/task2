@@ -2,7 +2,6 @@
   "sections": {
     "1640013986983c0b0e": {
       "type": "home-text-with-images",
-      "disabled": true,
       "blocks": {
         "1640013986b76f05bd-0": {
           "type": "text",
@@ -47,7 +46,6 @@
     },
     "1640014220e00abc68": {
       "type": "home-rich-text",
-      "disabled": true,
       "settings": {
         "title": "Our quality promise",
         "copy": "<p>Quality is never an accident. It is always the result of intelligent effort. We spend most of our time and energy for good design and to achieve high quality. Every single detail from material to technique is thought through with obsessive attention. If our product doesn't satisfy you, we'll take it back.</p>"

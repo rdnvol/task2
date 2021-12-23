@@ -11,7 +11,6 @@ import 'lazysizes';
 import 'lazysizes/plugins/respimg/ls.respimg.js';
 import '../helpers/jquery.plugins.js';
 import { SmoothScroll } from '../helpers/jquery.plugins.js';
-import Splide from '@splidejs/splide';
 import { Fancybox } from '@fancyapps/ui';
 import '../redux/store.ts';
 
@@ -39,9 +38,9 @@ class App {
     this.initLanguageSwitcher();
     this.initAnchors();
     this.initMap();
-    this.initProductGallery();
     this.fancyboxBackdrop();
     this.fancyboxModalCloseButton();
+    this.initOpenClose();
 
     // Responsive fluid iframe
     $('.rte iframe').each(function (index) {
@@ -285,30 +284,6 @@ class App {
     });
   }
 
-  initProductGallery() {
-    // Create the main slider.
-    const element = document.querySelector('.product-gallery-splide--init');
-    if (!element) return;
-    const productGallerySplide = new Splide(element, {
-      type: 'loop',
-      perPage: 1,
-      gap: 0,
-      pagination: true,
-      arrows: true,
-      speed: 800,
-      keyboard: 'focused',
-      breakpoints: {
-        767: {
-          gap: 20,
-          padding: {
-            left: 0,
-            right: '70px',
-          },
-        },
-      },
-    }).mount();
-  }
-
   fancyboxBackdrop() {
     let target = document.querySelector('body');
     const config = {
@@ -339,6 +314,37 @@ class App {
   fancyboxModalCloseButton() {
     document.body.addEventListener('click', (e) => {
       'fancyboxClose' in e.target.dataset && window.fancybox.close(true);
+    });
+  }
+
+  initOpenClose() {
+    ResponsiveHelper.addRange({
+      '..1023': {
+        on: function () {
+          $('.filter-main-open-close').openClose({
+            activeClass: 'filter-main-open-close--active',
+            opener: '.filter-main-open-close__opener',
+            slider: '.filter-main-open-close__slide',
+            effect: 'none',
+            event: 'click',
+            animSpeed: 0,
+            hideOnClickOutside: false,
+          });
+        },
+        off: function () {
+          $('.filter-main-open-close').openClose('destroy');
+        },
+      },
+    });
+
+    $('.product-size-dropdown').openClose({
+      activeClass: 'product-size-dropdown--active',
+      opener: '.product-size-dropdown__btn-opener',
+      slider: '.product-size-dropdown__slide',
+      effect: 'slide',
+      event: 'click',
+      hideOnClickOutside: true,
+      animSpeed: 400,
     });
   }
 }

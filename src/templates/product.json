@@ -2,39 +2,40 @@
   "sections": {
     "product": {
       "type": "product",
-      "settings": {
-        "show_quantity": true,
-        "show_variant_label": true,
-        "show_vendor": true,
-        "show_dynamic_button": true,
-        "show_share_buttons": true,
-        "show_size_chart": true,
-        "size_chart_url": "shopify://pages/size-chart"
-      },
       "blocks": {
         "vendor": {
-          "type": "vendor"
+          "type": "vendor",
+          "settings": {}
         },
         "title": {
-          "type": "title"
+          "type": "title",
+          "settings": {}
         },
         "price": {
-          "type": "price"
+          "type": "price",
+          "settings": {}
         },
         "variant_picker": {
-          "type": "variant_picker"
-        },
-        "buy_buttons": {
-          "type": "buy_buttons"
+          "type": "variant_picker",
+          "settings": {}
         },
         "quantity_selector": {
-          "type": "quantity_selector"
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true
+          }
         },
         "description": {
-          "type": "description"
+          "type": "description",
+          "settings": {}
         },
         "share": {
-          "type": "share"
+          "type": "share",
+          "settings": {}
         }
       },
       "block_order": [
@@ -42,11 +43,65 @@
         "title",
         "price",
         "variant_picker",
-        "buy_buttons",
         "quantity_selector",
+        "buy_buttons",
         "description",
         "share"
-      ]
+      ],
+      "settings": {
+        "show_variant_label": true,
+        "show_size_chart": true,
+        "size_chart_url": "shopify://pages/size-chart"
+      }
+    },
+    "164008611153bb2506": {
+      "type": "home-image-with-text",
+      "disabled": true,
+      "settings": {
+        "image": "shopify://shop_images/95501230_3257933697552228_2003752394588059320_n_940x_2_750x_0d7fc750-d0a3-4998-a335-45110925f2eb.png",
+        "layout": "md:flex-row-reverse md:space-x-reverse",
+        "title": "Comfort first. Style second.",
+        "text": "<p>You're on your feet all day. Might as well treat them with something comfortable to wear. Something cute too, while we're at it.</p>",
+        "button_label": "",
+        "button_link": ""
+      }
+    },
+    "16400863161115cc70": {
+      "type": "home-plans",
+      "disabled": true,
+      "blocks": {
+        "1640086315afc71c4b-0": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/photo_2021-12-21_13-33-54.jpg",
+            "title": "Free shipping",
+            "subtitle": "",
+            "features": "<ul>\nWe offer free worldwide express shipping on all orders. You'll receive your order an estimated 1–4 days after shipment.\n\n</ul>",
+            "price": "",
+            "period": "",
+            "button_link": "",
+            "button_label": ""
+          }
+        },
+        "1640086315afc71c4b-1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/photo_2021-12-21_13-33-54.jpg",
+            "title": "Hassle-Free Exchanges",
+            "subtitle": "",
+            "features": "<ul>\nExchanges are free. Try from the comfort of your home. We will collect from your home, work or an alternative address. \n</ul>",
+            "price": "",
+            "period": "",
+            "button_link": "",
+            "button_label": ""
+          }
+        }
+      },
+      "block_order": ["1640086315afc71c4b-0", "1640086315afc71c4b-1"],
+      "settings": {
+        "title": "",
+        "text": ""
+      }
     },
     "product-recommendations": {
       "type": "product-recommendations",
@@ -59,5 +114,10 @@
       }
     }
   },
-  "order": ["product", "product-recommendations"]
+  "order": [
+    "product",
+    "164008611153bb2506",
+    "16400863161115cc70",
+    "product-recommendations"
+  ]
 }

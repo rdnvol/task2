@@ -1,8 +1,8 @@
 {
-  "name": "Tariffs",
   "sections": {
     "main": {
-      "type": "page-tariffs"
+      "type": "page-tariffs",
+      "settings": {}
     }
   },
   "order": [

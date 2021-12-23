@@ -1,5 +1,7 @@
 {% render 'css-variables' %}
-{{ 'font-face.css' | asset_url | stylesheet_tag }}
+{% if settings.font_library == 'custom' or settings.font_library == 'hardcoded' %}
+  {% render 'font-face' %}
+{% endif %}
 {% render 'style-tags', layout: 'theme' %}
 {{ 'custom-theme.css' | asset_url | stylesheet_tag }}
 {% render 'google-fonts' %}
