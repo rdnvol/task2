@@ -50,8 +50,8 @@
           <link rel="prefetch" href="<%= src %>" as="script">
       <% } %>
         {%- endif -%}
-      {% if template != '<%= template %>' %}
-        <% if(template == "product"){ %>
+      {% if template != '<%= template %>' and template contains "product." %}
+        <% if(template === "product"){ %>
           <script type="text/javascript" src="<%= src %>" defer></script>
         <% } %>
       {% endif %}
