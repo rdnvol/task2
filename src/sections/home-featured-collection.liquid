@@ -15,7 +15,9 @@
 
 <div class="section">
   <div class="container">
-    <h2 class="text-center">{{ section.settings.title }}</h2>
+    {% if section.settings.title != blank %}
+      <h2 class="text-center">{{ section.settings.title }}</h2>
+    {% endif %}
     <div class="grid {{ grid_item_width }} gap-8 gap-y-0">
       {% liquid
         for product in collection.products limit: product_limit
