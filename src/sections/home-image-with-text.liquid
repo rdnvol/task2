@@ -21,16 +21,23 @@
       </div>
       <div class="md:w-1/2">
         <div class="rte">
-          {%- if section.settings.title != blank -%}
-            <h2>{{ section.settings.title }}</h2>
-          {%- endif -%}
-          {{ section.settings.text }}
-          {%- if section.settings.button_link != blank and section.settings.button_label != blank -%}
-            {% render "button",
-              href: section.settings.button_link,
-              text: section.settings.button_label
-            %}
-          {%- endif -%}
+          {% for block in section.blocks %}
+            {% case block.type %}
+              {% when "title" %}
+                {%- if block.settings.title != blank -%}
+                  <h2>{{ block.settings.title }}</h2>
+                {%- endif -%}
+              {% when "text" %}
+                {{ block.settings.text }}
+              {% when "button" %}
+                {%- if block.settings.button_link != blank and block.settings.button_label != blank -%}
+                  {% render "button",
+                    href: block.settings.button_link,
+                    text: block.settings.button_label
+                  %}
+                {%- endif -%}
+            {% endcase %}
+          {% endfor %}
         </div>
       </div>
     </div>
@@ -61,29 +68,52 @@
           "label": "Right"
         }
       ]
+    }
+  ],
+  "blocks": [
+    {
+      "type": "button",
+      "name": "Button Info",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button link"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button label",
+          "default": "Shop now"
+        }
+      ]
+    },
+    {
+      "type": "title",
+      "name": "Title",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Image with text"
+        }
+      ]
     },
     {
       "type": "text",
-      "id": "title",
-      "label": "Heading",
-      "default": "Image with text"
-    },
-    {
-      "type": "richtext",
-      "id": "text",
-      "label": "Body text",
-      "default": "<p>Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>"
-    },
-    {
-      "type": "text",
-      "id": "button_label",
-      "label": "Button label",
-      "default": "Shop now"
-    },
-    {
-      "type": "url",
-      "id": "button_link",
-      "label": "Button link"
+      "name": "Text",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Body text",
+          "default": "<p>Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>"
+        }
+      ]
     }
   ],
   "presets": [
