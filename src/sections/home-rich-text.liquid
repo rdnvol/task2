@@ -1,41 +1,66 @@
-{% if section.settings.title != blank or section.settings.copy != blank %}
+{% if section.blocks.size > 0 %}
   <section class="section">
     <div class="container">
       <div class="md:flex md:justify-center">
         <div class="md:w-8/12">
           <div class="rich-text-section rte text-center">
-            {% if section.settings.title != blank %}
-              <h2 class="h3">{{ section.settings.title }}</h2>
-            {% endif %}
-            {{ section.settings.copy }}
+            {% for block in section.blocks %}
+              {% case block.type %}
+                {% when 'title' %}
+                  <h2 class="h3">{{ block.settings.title }}</h2>
+                {% when 'copy' %}
+                  {{ block.settings.copy }}
+              {% endcase %}
+            {% endfor %}
           </div>
         </div>
       </div>
     </div>
-  </section> 
+  </section>
 {% endif %}
 
 {% schema %}
   {
     "name": "Richtext",
-    "settings": [
+    "settings": [],
+    "blocks": [
       {
-        "type": "text",
-        "id": "title",
-        "label": "Heading",
-        "default": "Talk about your brand"
+        "type": "title",
+        "name": "Title",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Heading",
+            "default": "Talk about your brand"
+          }
+        ]
       },
       {
-        "type": "richtext",
-        "id": "copy",
-        "label": "Richtext",
-        "default": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>"
+        "type": "copy",
+        "name": "Text",
+        "settings": [
+          {
+            "type": "richtext",
+            "id": "copy",
+            "label": "Richtext",
+            "default": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>"
+          }
+        ]
       }
     ],
     "presets": [
       {
         "name": "Richtext",
-        "category": "Text"
+        "category": "Text",
+        "blocks": [
+          {
+            "type": "title"
+          },
+          {
+            "type": "copy"
+          }
+        ]
       }
     ]
   }
