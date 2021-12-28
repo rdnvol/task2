@@ -163,13 +163,14 @@
                                       {% else %}
                                         {% if variant.option1 == value %}
                                           {% assign image_color = variant.featured_image %}
+                                          {% assign image_position = variant.featured_image.position %}
                                         {% endif %}
                                       {% endif %}
                                     {% endfor %}
                                     {% if section.settings.swatcher_color_type == 'metafields' %}
                                       <span style="background-color: {{ metafield_color | replace: ' ', '' | default: value }};"></span>
                                     {% else %}
-                                      <img src="{{ image_color | img_url: "25x25" }}" alt="image description">
+                                      <img image-position="{{ image_position }}" src="{{ image_color | img_url: "25x25" }}" alt="image description">
                                     {% endif %}
                                   {% else %}
                                     <span>{{ value }}</span>

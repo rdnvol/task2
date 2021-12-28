@@ -176,6 +176,7 @@ export class Product {
     this.updateVariantPrice(variant);
     this.updateSubmitButton(variant);
     this.updateVariantUrl(variant);
+    this.updateGallery(variant);
   }
 
   getProduct() {
@@ -223,6 +224,18 @@ export class Product {
         );
       }
     }
+  }
+
+  updateGallery(variant) {
+    const newMedia = $('.product__gallery-slider')
+      .find(
+        `.product__gallery-slider__img[data-position="${variant.featured_image.position}"]`
+      )
+      .parent();
+    const mediaContainer = $('.product__gallery-slider');
+
+    if ($(newMedia).is($(mediaContainer.first()))) return;
+    $(mediaContainer).prepend(newMedia);
   }
 
   initSubmit() {
