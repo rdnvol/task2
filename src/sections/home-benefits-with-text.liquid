@@ -2,19 +2,18 @@
   <div class="container">
     <div class="lg:flex">
       <div class="lg:w-10/12 mx-auto">
+
         <div class="md:flex md:items-center md:space-x-8">
-          {% if section.settings.title != blank or section.settings.text != blank %}
-            <div class="md:w-6/12 mb-5 md:mb-0 text-center md:text-left rte">
-              {% if section.settings.title != blank %}
-                <h2>{{ section.settings.title }}</h2>
-              {% endif %}
-              {% if section.settings.text != blank %}
-                <div class="benefits-list__text-box">
-                  {{ section.settings.text }}
-                </div>
-              {% endif %}
-            </div>
-          {% endif %}
+          <div class="md:w-6/12 mb-5 md:mb-0 text-center md:text-left rte">
+            {% if block.settings.title != blank %}
+              <h2>{{ block.settings.title }}</h2>
+            {% endif %}
+            {% if block.settings.text != blank %}
+              <div class="benefits-list__text-box">
+                {{ block.settings.text }}
+              </div>
+            {% endif %}  
+          </div>
           {% if section.settings.html != blank %}
             <div class="md:w-6/12">
               <div class="rte">
@@ -31,24 +30,45 @@
 {% schema %}
 {
   "name": "Benefits with text",
-  "settings": [
+  "blocks": [
     {
-      "type": "text",
-      "id": "title",
-      "label": "Heading",
-      "default": "Unlimited Phone Data\" Is Not \"Unlimited Home Data"
+      "type": "title",
+      "name": "Title",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Unlimited Phone Data\" Is Not \"Unlimited Home Data"
+        }
+      ]
     },
     {
-      "type": "richtext",
-      "id": "text",
-      "label": "Body text",
-      "default": "<p>Purus ut faucibus pulvinar elementum integer. Lorem mollis aliquam ut porttitor leo a diam sollicitudin. Molestie ac feugiat sed lectus vestibulum mattis ullamcorper velit.</p>"
+      "type": "text",
+      "name": "Text",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Body text",
+          "default": "<p>Purus ut faucibus pulvinar elementum integer. Lorem mollis aliquam ut porttitor leo a diam sollicitudin. Molestie ac feugiat sed lectus vestibulum mattis ullamcorper velit.</p>"
+        }
+      ]
     },
     {
       "type": "html",
-      "id": "html",
-      "label": "HTML",
-      "default": "<ul class=\"benefits-list__items list-checks\">\n                <li>Unlimited Wi-Fi for EVERY connected device</li>\n                <li>14 Day, No Risk, Money-Back Guarantee</li>\n                <li>Human Support</li>\n                <li>Rich Documentation</li>\n                <li>Unlimited Phone Data</li>\n              </ul>"
+      "name": "HTML",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "html",
+          "id": "html",
+          "label": "HTML",
+          "default": "<ul class=\"benefits-list__items list-checks\">\n                <li>Unlimited Wi-Fi for EVERY connected device</li>\n                <li>14 Day, No Risk, Money-Back Guarantee</li>\n                <li>Human Support</li>\n                <li>Rich Documentation</li>\n                <li>Unlimited Phone Data</li>\n              </ul>"
+        }
+      ]
     }
   ],
   "presets": [
