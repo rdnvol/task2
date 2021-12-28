@@ -18,18 +18,23 @@
       <div class="flex h-100 {{ section.settings.alignment }} {{ section.settings.alignment_text }} custom-color">
         <div class="sm:w-10/12 md:w-6/12 lg:w-4/12">
           <div class="rte">
-            {%- if section.settings.title != blank -%}
-              <h1>
-                {{ section.settings.title }}
-              </h1>
-            {%- endif -%}
-            {{ section.settings.text }}
-            {%- if section.settings.button_link != blank and section.settings.button_label != blank -%}
-              {% render 'button',
-                href: section.settings.button_link,
-                text: section.settings.button_label
-              %}
-            {%- endif -%}
+            {% for block in section.blocks %}
+              {% case block.type %}
+                {% when 'title' %}
+                  <h1>
+                    {{ block.settings.title }}
+                  </h1>
+                {% when 'text' %}
+                  {{ block.settings.text }}
+                {% when 'button' %}
+                  {% if block.settings.button_link != blank and block.settings.button_label != blank %}
+                    {% render 'button',
+                      href: block.settings.button_link,
+                      text: block.settings.button_label
+                    %}
+                  {% endif %}
+              {% endcase %}
+            {% endfor %}
           </div>
         </div>
       </div>
@@ -40,12 +45,12 @@
 {% style %}
   {% if section.settings.color != blank %}
     .custom-color {
-    color: {{ section.settings.color }};
+      color: {{ section.settings.color }};
     }
     @media screen and (max-width: 767px) {
-    .custom-color {
-    color: {{ section.settings.color_mobile }};
-    }
+      .custom-color {
+        color: {{ section.settings.color_mobile }};
+      }
     }
   {% endif %}
 {% endstyle %}
@@ -63,12 +68,6 @@
       "type": "image_picker",
       "id": "image_mobile",
       "label": "Image mobile"
-    },
-    {
-      "type": "text",
-      "id": "title",
-      "label": "Heading",
-      "default": "Title"
     },
     {
       "type": "select",
@@ -135,12 +134,6 @@
       ]
     },
     {
-      "type": "richtext",
-      "id": "text",
-      "label": "Body text",
-      "default": "<p>Use overlay text to give your customers insight into your brand. Select imagery and text that relates to your style and story.</p>"
-    },
-    {
       "type": "color",
       "id": "color",
       "label": "Text color",
@@ -153,28 +146,71 @@
       "default": "#000000"
     },
     {
-      "type": "url",
-      "id": "button_link",
-      "label": "Button link",
-      "info": "Button is disabled if empty"
-    },
-    {
-      "type": "text",
-      "id": "button_label",
-      "label": "Button label",
-      "default": "Button label"
-    },
-    {
       "type": "checkbox",
       "id": "fullheight",
       "label": "Full height",
       "default": false
     }
   ],
+  "blocks": [
+    {
+      "name": "Title",
+      "type": "title",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Title"
+        }
+      ]
+    },
+    {
+      "name": "Text",
+      "type": "text",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Body text",
+          "default": "<p>Use overlay text to give your customers insight into your brand. Select imagery and text that relates to your style and story.</p>"
+        }
+      ]
+    },
+    {
+      "name": "Button",
+      "type": "button",
+      "settings": [
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button link",
+          "info": "Button is disabled if empty"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button label",
+          "default": "Button label"
+        }
+      ]
+    }
+  ],
   "presets": [
     {
       "name": "Image with text overlay",
-      "category": "Image"
+      "category": "Image",
+      "blocks": [
+        {
+          "type": "title"
+        },
+        {
+          "type": "text"
+        },
+        {
+          "type": "button"
+        }
+      ]
     }
   ]
 }
