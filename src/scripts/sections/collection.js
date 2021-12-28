@@ -24,9 +24,8 @@ register('collection', {
     entries.map(async (entry) => {
       const productsCount = this.container.dataset.productsQuantity;
       if (entry.isIntersecting) {
-        this.productsQuantity < +productsCount ? this._showSpinner(): false
+        if (this.fetchInProgress) return;
         await this.fetchNextPage();
-        this._hideSpinner();
       }
     });
   },
@@ -36,7 +35,10 @@ register('collection', {
     if (!isInfinite) return;
 
     this.page = 2;
-    this.productsQuantity = this.container.querySelector('.js-products-wrapper').children.length;
+    this.fetchInProgress = false;
+    this.productsQuantity = this.container.querySelector(
+      '.js-products-wrapper'
+    ).children.length;
     this.spinnerHolder = this.container.querySelector('.spinner-holder');
     this.spinner = this.spinnerHolder.querySelector('.spinner');
     this.productsWrapper = this.container.querySelector('.js-products-wrapper');
@@ -44,17 +46,31 @@ register('collection', {
   },
 
   async fetchNextPage() {
-    const url = location.href + `?view=pagination&page=${this.page}`;
-    try {
-      const nextProducts = await (await fetch(url)).text();
-      const loadedProductsLength = $(nextProducts).filter((index, item) => {
-        return index % 2 === 0
-      }).length;
-      this.productsQuantity += loadedProductsLength;
-      $(this.productsWrapper).append(nextProducts);
-      this.page++;
-    } catch (e) {
-      console.error('Error', e);
+    this.fetchInProgress = true;
+    const productsCount = this.container.dataset.productsQuantity;
+    if (this.productsQuantity < +productsCount) {
+      this._showSpinner();
+      try {
+        $.ajax({
+          url: `/collections/all?page=${this.page}`,
+          type: 'GET',
+          dataType: 'html',
+        }).done((next_page) => {
+          const nextProducts = $(next_page)
+            .find('.product-item.text-center')
+            .parent();
+          const loadedProductsLength = $(nextProducts).filter((index, item) => {
+            return index % 2 === 0;
+          }).length;
+          this.productsQuantity += loadedProductsLength;
+          $(this.productsWrapper).append(nextProducts);
+          this.page++;
+          this._hideSpinner();
+          this.fetchInProgress = false;
+        });
+      } catch (e) {
+        console.error('Error', e);
+      }
     }
   },
 
