@@ -99,7 +99,7 @@
                         </div>
                       </div>
                       <facet-filters-form>
-                        <form id="FacetFiltersForm-{{section.id}}" class="facets__form">
+                        <form id="FacetFiltersForm" class="facets__form">
                           {%- if collection.terms -%}
                             <input type="hidden" name="q" value="{{ results.terms | escape }}">
                             <input name="options[prefix]" type="hidden" value="last">
@@ -141,7 +141,7 @@
                                                       placeholder: 'img-placeholder.png',
                                                     %} -->
                                                   </span>
-                                                  {{ value.label }}
+                                                  {{ value.label }} ({{ value.count }})
                                               </label>
                                            </div>
                                           {% endfor %}
@@ -150,15 +150,22 @@
                                     <!-- </details-disclosure> -->
                                   </div>
                                 {% when "Price" %}
+                                  {% liquid
+                                    assign currencies_using_comma_decimals = 'ANG,ARS,BRL,BYN,BYR,CLF,CLP,COP,CRC,CZK,DKK,EUR,HRK,HUF,IDR,ISK,MZN,NOK,PLN,RON,RUB,SEK,TRY,UYU,VES,VND' | split: ','
+                                    assign uses_comma_decimals = false
+                                    if currencies_using_comma_decimals contains cart.currency.iso_code
+                                      assign uses_comma_decimals = true
+                                    endif
+                                  %}
                                   <div class="filter-collapse">
-                                    <details-disclosure>
-                                      <details class="filter-collapse__item">
-                                        <summary class="py-3 flex justify-between items-center">
-                                          {{ filter.label }}
-                                          <span class="filter-collapse__btn flex-shrink-0 mx-4"></span>
-                                        </summary>
-                                        <div class="mb-4">
-                                          <div class="flex items-center">
+                                    <details class="filter-collapse__item js-filter" data-index="{{ forloop.index }}">
+                                      <summary class="py-3 flex justify-between items-center">
+                                        {{ filter.label }}
+                                        <span class="filter-collapse__btn flex-shrink-0 mx-4"></span>
+                                      </summary>
+                                      <div class="mb-4">
+                                        <div class="flex items-center">
+                                          <price-range class="facets__price">
                                             <div class="relative">
                                               <span class="range-slider__suffix body-medium">{{ cart.currency.symbol }}</span>
                                               <label for="Filter-{{ filter.min_value.param_name }}" class="visually-hidden">
@@ -197,79 +204,74 @@
                                                 max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
                                               >
                                             </div>
-                                          </div>
+                                          </price-range>
                                         </div>
-                                      </details>
-                                    </details-disclosure>
+                                      </div>
+                                    </details>
                                   </div>
                                 {% when "Size" %}
                                   <div class="filter-collapse">
-                                    <details-disclosure>
-                                      <details class="filter-collapse__item">
-                                        <summary class="py-3 flex justify-between items-center">
-                                          {{ filter.label }}
-                                          <span class="filter-collapse__btn flex-shrink-0 mx-4"></span>
-                                        </summary>
-                                        {% for value in filter.values %}
-                                          <div class="py-3 custom-input custom-input--square-with-text">
-                                            <input 
-                                              id="Filter-{{ value.param_name }}-{{ forloop.index }}" 
-                                              type="checkbox" 
-                                              name="{{ value.param_name }}" 
-                                              value="{{ value.value }}"
-                                              {% if value.active -%}
-                                              checked
-                                              {%- endif %}
-                                              {% if value.count == 0 and value.active == false -%}
-                                              disabled
-                                              {%- endif %}
-                                            >
-                                            <label for="Filter-{{ value.param_name }}-{{ forloop.index }}" class="custom-label flex items-center">
-                                              <span class="custom-label__check"></span>
-                                              {{ value.value }} ({{ value.count }})
-                                            </label>
-                                          </div>
-                                        {% endfor %}
-                                      </details>
-                                    </details-disclosure>
+                                    <details class="filter-collapse__item js-filter" data-index="{{ forloop.index }}">
+                                      <summary class="py-3 flex justify-between items-center">
+                                        {{ filter.label }}
+                                        <span class="filter-collapse__btn flex-shrink-0 mx-4"></span>
+                                      </summary>
+                                      {% for value in filter.values %}
+                                        <div class="py-3 custom-input custom-input--square-with-text">
+                                          <input 
+                                            id="Filter-{{ value.param_name }}-{{ forloop.index }}" 
+                                            type="checkbox" 
+                                            name="{{ value.param_name }}" 
+                                            value="{{ value.value }}"
+                                            {% if value.active -%}
+                                            checked
+                                            {%- endif %}
+                                            {% if value.count == 0 and value.active == false -%}
+                                            disabled
+                                            {%- endif %}
+                                          >
+                                          <label for="Filter-{{ value.param_name }}-{{ forloop.index }}" class="custom-label flex items-center">
+                                            <span class="custom-label__check"></span>
+                                            {{ value.label }} ({{ value.count }})
+                                          </label>
+                                        </div>
+                                      {% endfor %}
+                                    </details>
                                   </div>
                                 {% when "Brand" %}
                                   <div class="filter-collapse">
-                                    <details-disclosure>
-                                      <details class="filter-collapse__item">
-                                        <summary class="py-3 flex justify-between items-center">
-                                          {{ filter.label }}
-                                          <span class="filter-collapse__btn flex-shrink-0 mx-4"></span>
-                                        </summary>
-                                        {% for value in filter.values %}
-                                          <div class="py-3 custom-input custom-input--square-with-text">
-                                            <input 
-                                              id="Filter-{{ value.param_name }}-{{ forloop.index }}" 
-                                              type="checkbox" 
-                                              name="{{ value.param_name }}" 
-                                              value="{{ value.value }}"
-                                              {% if value.active -%}checked{%- endif %} 
-                                              {% if value.count == 0 and value.active == false -%}
-                                              disabled
-                                              {%- endif %}
-                                            >
-                                            <label for="Filter-{{ value.param_name }}-{{ forloop.index }}" class="custom-label flex items-center">
-                                              <span class="custom-label__check"></span>
-                                              {{ value.value }} ({{ value.count }})
-                                            </label>
-                                          </div>
-                                        {% endfor %}
-                                        <button class="filter-collapse__btn-more-content mb-3">
-                                          <span class="filter-collapse__more">+ More</span>
-                                          <span class="filter-collapse__less">- Less</span>
-                                        </button>
-                                      </details>
-                                    </details-disclosure>
+                                    <details class="filter-collapse__item js-filter" data-index="{{ forloop.index }}">
+                                      <summary class="py-3 flex justify-between items-center">
+                                        {{ filter.label }}
+                                        <span class="filter-collapse__btn flex-shrink-0 mx-4"></span>
+                                      </summary>
+                                      {% for value in filter.values %}
+                                        <div class="py-3 custom-input custom-input--square-with-text">
+                                          <input 
+                                            id="Filter-{{ value.param_name }}-{{ forloop.index }}" 
+                                            type="checkbox" 
+                                            name="{{ value.param_name }}" 
+                                            value="{{ value.value }}"
+                                            {% if value.active %}checked{% endif %} 
+                                            {% if value.count == 0 and value.active == false %}
+                                            disabled
+                                            {% endif %}
+                                          >
+                                          <label for="Filter-{{ value.param_name }}-{{ forloop.index }}" class="custom-label flex items-center">
+                                            <span class="custom-label__check"></span>
+                                            {{ value.label }} ({{ value.count }})
+                                          </label>
+                                        </div>
+                                      {% endfor %}
+                                      <button class="filter-collapse__btn-more-content mb-3">
+                                        <span class="filter-collapse__more">+ More</span>
+                                        <span class="filter-collapse__less">- Less</span>
+                                      </button>
+                                    </details>
                                   </div>
-                                {% when "Product type" %}
+                                {% when "Availability" %}
                                   <div class="filter-collapse">
-                                    <details-disclosure>
-                                      <details class="filter-collapse__item">
+                                      <details class="filter-collapse__item js-filter" data-index="{{ forloop.index }}">
                                         <summary class="py-3 flex justify-between items-center">
                                           {{ filter.label }}
                                           <span class="filter-collapse__btn flex-shrink-0 mx-4"></span>
@@ -290,33 +292,66 @@
                                             >
                                             <label for="Filter-{{ value.param_name }}-{{ forloop.index }}" class="custom-label flex items-center">
                                               <span class="custom-label__check"></span>
-                                              {{ value.value }} ({{ value.count }})
+                                              {{ value.label }} ({{ value.count }})
                                             </label>
                                           </div>
                                         {% endfor %}
                                       </details>
-                                    </details-disclosure>
+                                  </div> 
+                                {% when "Product type" %}
+                                  <div class="filter-collapse">
+                                      <details class="filter-collapse__item js-filter" data-index="{{ forloop.index }}">
+                                        <summary class="py-3 flex justify-between items-center">
+                                          {{ filter.label }}
+                                          <span class="filter-collapse__btn flex-shrink-0 mx-4"></span>
+                                        </summary>
+                                        {% for value in filter.values %}
+                                          <div class="py-3 custom-input custom-input--square-with-text">
+                                            <input 
+                                              id="Filter-{{ value.param_name }}-{{ forloop.index }}" 
+                                              type="checkbox" 
+                                              value="{{ value.value }}"
+                                              name="{{ value.param_name }}"
+                                              {% if value.active -%}
+                                              checked
+                                              {%- endif %}
+                                              {% if value.count == 0 and value.active == false -%}
+                                              disabled
+                                              {%- endif %}
+                                            >
+                                            <label for="Filter-{{ value.param_name }}-{{ forloop.index }}" class="custom-label flex items-center">
+                                              <span class="custom-label__check"></span>
+                                              {{ value.label }} ({{ value.count }})
+                                            </label>
+                                          </div>
+                                        {% endfor %}
+                                      </details>
                                   </div>    
                               {% endcase %}
                             {% endfor %}
                           </div>
                           <div class="active-filters">
-                            <a href="{{ collection.url }}?sort_by={{ collection.sort_by }}" class="active-filters__clear">Clear all</a>
-                        
+                            <facet-remove>
+                              <a href="{{ collection.url }}?sort_by={{ collection.sort_by }}" class="active-filters__clear">Clear all</a>
+                            </facet-remove>
                             {%- for filter in collection.filters -%}
                               {%- if filter.type == "price_range" -%}
                                 {%- if filter.min_value.value != nil or filter.max_value.value != nil -%}
-                                  <a class="active-filters__remove-filter" href="{{ filter.url_to_remove }}">
-                                    {%- assign min_value = filter.min_value.value | default: 0 -%}
-                                    {%- assign max_value = filter.max_value.value | default: filter.range_max -%}
-                                    {{ min_value | money }} - {{ max_value | money }} X
-                                  </a>
+                                  <facet-remove>
+                                    <a class="active-filters__remove-filter" href="{{ filter.url_to_remove }}">
+                                      {%- assign min_value = filter.min_value.value | default: 0 -%}
+                                      {%- assign max_value = filter.max_value.value | default: filter.range_max -%}
+                                      {{ min_value | money }} - {{ max_value | money }} X
+                                    </a>
+                                  </facet-remove>
                                 {%- endif -%}
                               {%- else -%}
                                 {%- for filter_value in filter.active_values -%}
-                                  <a class="active-filters__remove-filter" href="{{ filter_value.url_to_remove }}">
-                                    {{ filter_value.label }} X
-                                  </a>
+                                  <facet-remove>
+                                    <a class="active-filters__remove-filter" href="{{ filter_value.url_to_remove }}">
+                                      {{ filter_value.label }} X
+                                    </a>
+                                  </facet-remove>
                                 {%- endfor -%}
                               {%- endif- %}
                             {%- endfor -%}
