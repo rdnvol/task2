@@ -67,7 +67,7 @@
         "type": "color",
         "id": "color_base_sale_price",
         "label": "Sale price",
-        "default": "#f00036"
+        "default": "#ED0000"
       },
       {
         "type": "color",
