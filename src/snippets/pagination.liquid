@@ -6,10 +6,6 @@
           <span class="visually-hidden">Previous page</span>
         </a>
       </li>
-    {%- else -%}
-      <li class="disabled">
-        <span class="visually-hidden">Previous page</span>
-      </li>
     {%- endif -%}
 
     {%- for part in paginate.parts -%}
@@ -48,10 +44,6 @@
         <a href="{{ paginate.next.url }}" class="pagination__next">
           <span class="visually-hidden">Next page</span>
         </a>
-      </li>
-    {%- else -%}
-      <li class="disabled">
-        <span class="visually-hidden">Next page</span>
       </li>
     {%- endif -%}
   </ol>
