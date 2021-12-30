@@ -1,8 +1,7 @@
 {
   "sections": {
     "main": {
-      "type": "collection-template-2",
-      "settings": {}
+      "type": "collection-template-2"
     }
   },
   "order": ["main"]
