@@ -1,0 +1,18 @@
+{
+  "sections": {
+    "collection-template": {
+      "settings": {
+        "enable_filtering": {
+          "label": "Enable filtering",
+          "info": "Customize [filters](/admin/menus)"
+        },
+        "enable_sorting": {
+          "label": "Enable sorting"
+        },
+        "header__1": {
+          "content": "Filtering and sorting"
+        }
+      }
+    }
+  }
+}

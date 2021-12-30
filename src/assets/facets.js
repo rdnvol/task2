@@ -84,6 +84,7 @@ class FacetFiltersForm extends HTMLElement {
         ];
         FacetFiltersForm.renderFilters(html, event);
         FacetFiltersForm.renderProductGridContainer(html);
+        FacetFiltersForm.renderPagination(html);
         FacetFiltersForm.renderProductCount(html);
       });
   }
@@ -93,6 +94,7 @@ class FacetFiltersForm extends HTMLElement {
 
     FacetFiltersForm.renderFilters(html, event);
     FacetFiltersForm.renderProductGridContainer(html);
+    FacetFiltersForm.renderPagination(html);
     FacetFiltersForm.renderProductCount(html);
   }
 
@@ -100,6 +102,12 @@ class FacetFiltersForm extends HTMLElement {
     document.getElementById('product-grid').innerHTML = new DOMParser()
       .parseFromString(html, 'text/html')
       .getElementById('product-grid').innerHTML;
+  }
+
+  static renderPagination(html) {
+    document.getElementById('pagination-container').innerHTML = new DOMParser()
+      .parseFromString(html, 'text/html')
+      .getElementById('pagination-container').innerHTML;
   }
 
   static renderProductCount(html) {
