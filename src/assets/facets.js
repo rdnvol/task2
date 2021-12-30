@@ -105,17 +105,9 @@ class FacetFiltersForm extends HTMLElement {
   }
 
   static renderPagination(html) {
-    console.log('html from render pagination', html);
     document.getElementById('pagination-container').innerHTML = new DOMParser()
       .parseFromString(html, 'text/html')
       .getElementById('pagination-container').innerHTML;
-
-    console.log(
-      'New pagination data',
-      new DOMParser()
-        .parseFromString(html, 'text/html')
-        .getElementById('pagination-container').innerHTML
-    );
   }
 
   static renderProductCount(html) {
