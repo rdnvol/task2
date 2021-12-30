@@ -1,45 +1,42 @@
 {% liquid
-  assign limit = settings.limit
-  assign products = collection.products
-  assign sort_by = collection.sort_by | default: collection.default_sort_by
-  if collection.url
-    assign results_url = collection.url
-  else 
-    assign terms = collection.terms | escape
-    assign results_url = '?q=' | append: terms | append: '&options%5Bprefix%5D=last&sort_by=' | append: sort_by
-  endif
-
-  render 'page-hero', image: collection.image
-  render 'breadcrumbs'
-%}
-
-{% paginate collection.products by limit %}
-  <div class="section page-section"
-       data-section-id="{{ section.id }}"
-       data-section-type="collection"
-       data-infinite="{{ section.settings.enable_infinite }}"
-       data-products-quantity="{{ collection.products_count }}">
-    <div class="container">
-      <div class="page-title-block text-center pt-0">
-        <h1 class="h2 mb-2">{{ collection.title }}</h1>
-        {% if collection.description != blank %}
-          <div class="rte body-medium">
-            {{ collection.description }}
-          </div>
-        {% endif %}
-      </div>
-      {% if products.size == 0 %}
-        <div class="text-center py-5">
-          {{ 'collections.general.no_matches' | t }}
+    assign limit = settings.limit
+    assign products = collection.products
+    assign sort_by = collection.sort_by | default: collection.default_sort_by
+    if collection.url
+      assign results_url = collection.url
+    else 
+      assign terms = collection.terms | escape
+      assign results_url = '?q=' | append: terms | append: '&options%5Bprefix%5D=last&sort_by=' | append: sort_by
+    endif
+  
+    render 'page-hero', image: collection.image
+    render 'breadcrumbs'
+  %}
+  
+  {% paginate collection.products by limit %}
+    <div class="section page-section"
+         data-section-id="{{ section.id }}"
+         data-section-type="collection"
+         data-infinite="{{ section.settings.enable_infinite }}"
+         data-products-quantity="{{ collection.products_count }}">
+      <div class="container">
+        <div class="page-title-block text-center pt-0">
+          <h1 class="h2 mb-2">{{ collection.title }}</h1>
+          {% if collection.description != blank %}
+            <div class="rte body-medium">
+              {{ collection.description }}
+            </div>
+          {% endif %}
         </div>
-      {% else %}
-      <div class="hidden lg:flex lg:items-center lg:space-x-8">
-        {% if section.settings.enable_filtering %}
+        {% if products.size == 0 %}
+          <div class="text-center py-5">
+            {{ 'collections.general.no_matches' | t }}
+          </div>
+        {% else %}
+        <div class="hidden lg:flex lg:items-center lg:space-x-8">
           <div class="lg:w-3/12">
             Filter by
           </div>
-        {% endif %}
-        {% if section.settings.enable_sorting %}
           <div class="lg:w-9/12">
             <div class="lg:flex lg:justify-between lg:items-center lg:space-x-8">
               <div id="ProductCountDesktop" class="lg:w-4/12">
@@ -64,10 +61,8 @@
               </div>
             </div>
           </div>
-        {% endif %}
-      </div>
-      <div class="py-4 lg:py-5 lg:flex lg:space-x-8">
-        {% if section.settings.enable_filtering %}
+        </div>
+        <div class="py-4 lg:py-5 lg:flex lg:space-x-8">
           <div class="filter lg:w-3/12">
             <div class="filter__main-btn-holder flex items-center mb-4">
               <div class="w-7/12 lg:w-100">
@@ -339,6 +334,27 @@
                               <facet-remove>
                                 <a href="{{ collection.url }}?sort_by={{ collection.sort_by }}" class="active-filters__clear">Clear all</a>
                               </facet-remove>
+                              {%- for filter in collection.filters -%}
+                                {%- if filter.type == "price_range" -%}
+                                  {%- if filter.min_value.value != nil or filter.max_value.value != nil -%}
+                                    <facet-remove>
+                                      <a class="active-filters__remove-filter" href="{{ filter.url_to_remove }}">
+                                        {%- assign min_value = filter.min_value.value | default: 0 -%}
+                                        {%- assign max_value = filter.max_value.value | default: filter.range_max -%}
+                                        {{ min_value | money }} - {{ max_value | money }} X
+                                      </a>
+                                    </facet-remove>
+                                  {%- endif -%}
+                                {%- else -%}
+                                  {%- for filter_value in filter.active_values -%}
+                                    <facet-remove>
+                                      <a class="active-filters__remove-filter" href="{{ filter_value.url_to_remove }}">
+                                        {{ filter_value.label }} X
+                                      </a>
+                                    </facet-remove>
+                                  {%- endfor -%}
+                                {%- endif- %}
+                              {%- endfor -%}
                             </div>
                           </form>
                         </facet-filters-form>
@@ -372,9 +388,7 @@
               </div>
             </div>
           </div>
-        {% endif %}
-        <div class="lg:w-9/12">
-          {% if section.settings.enable_filtering %}
+          <div class="lg:w-9/12">
             <div class="filter-selected-element-list flex flex-wrap items-center pb-4 lg:pb-0 -mx-2">
               <facet-remove>
                 <a id="clear-all" href="{{ results_url }}" class="button filter__btn-reset mx-2 mb-3" type="button">
@@ -439,60 +453,26 @@
                 </button>
               </div> -->
             </div>
-          {% endif %}
-          <div id="product-grid" class="grid grid-cols-2 xl:grid-cols-3 gap-x-8 js-products-wrapper" data-id="{{ section.id }}">
-            {% liquid
-              for product in collection.products
-                render "product-card", product: product, grid_item_width: ''
-              endfor
-            %}
+            <div id="product-grid" class="grid grid-cols-2 xl:grid-cols-3 gap-x-8 js-products-wrapper" data-id="{{ section.id }}">
+              {% liquid
+                for product in collection.products
+                  render "product-card", product: product, grid_item_width: ''
+                endfor
+              %}
+            </div>
           </div>
         </div>
-      </div>
-      {% endif %}
-      {% if section.settings.enable_infinite %}
-        <div class="spinner-holder">
-          <div class="spinner"></div>
-        </div>
-      {% else %}
-        <div id="pagination-container">
+        {% endif %}
+        {% if section.settings.enable_infinite %}
+          <div class="spinner-holder">
+            <div class="spinner"></div>
+          </div>
+        {% else %}
           {% if paginate.pages > 1 %}
             {% render 'pagination', paginate: paginate %}
           {% endif %}
-        </div>
-      {% endif %}
+        {% endif %}
+      </div>
     </div>
-  </div>
-
-{% endpaginate %}
-
-{% schema %}
-{
-  "name": "Collection",
-  "settings": [
-    {
-      "type": "checkbox",
-      "id": "enable_infinite",
-      "label": "Enable infinite scroll",
-      "default": false
-    },
-    {
-      "type": "header",
-      "content": "t:sections.collection-template.settings.header__1.content"
-    },
-    {
-      "type": "checkbox",
-      "id": "enable_filtering",
-      "default": true,
-      "label": "t:sections.collection-template.settings.enable_filtering.label",
-      "info": "t:sections.collection-template.settings.enable_filtering.info"
-    },
-    {
-      "type": "checkbox",
-      "id": "enable_sorting",
-      "default": true,
-      "label": "t:sections.collection-template.settings.enable_sorting.label"
-    }
-  ]
-}
-{% endschema %}
+  
+  {% endpaginate %}
