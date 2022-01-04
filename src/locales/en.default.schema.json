@@ -11,6 +11,14 @@
         },
         "header__1": {
           "content": "Filtering and sorting"
+        },
+        "filter_type": {
+          "option__1": {
+            "label": "Horizontal"
+          },
+          "option__2": {
+            "label": "Vertical"
+          }
         }
       }
     }
