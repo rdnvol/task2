@@ -747,9 +747,11 @@
             <div class="spinner"></div>
           </div>
         {% else %}
-          {% if paginate.pages > 1 %}
-            {% render 'pagination', paginate: paginate %}
-          {% endif %}
+          <div id="pagination-container">
+            {% if paginate.pages > 1 %}
+              {% render 'pagination', paginate: paginate %}
+            {% endif %}
+          </div>
         {% endif %}
       </div>
     </div>
