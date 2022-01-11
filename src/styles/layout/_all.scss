@@ -572,6 +572,16 @@ img[data-sizes="auto"] {
 
 .model-viewer-block {
   position: relative;
+  padding-top: 100%;
+
+  product-model {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
 
   model-viewer {
     position: absolute;
@@ -611,6 +621,7 @@ img[data-sizes="auto"] {
 }
 
 .deferred-media {
+  display: block;
   overflow: hidden;
   &:not([loaded]) {
 
@@ -624,12 +635,14 @@ img[data-sizes="auto"] {
       opacity: 0;
     }
   }
+  &.product-gallery__img {
 
-  iframe {
-    position: inherit;
-    display: flex;
-    width: 100%;
-    height: 100%;
+    .deferred-media__poster {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+    }
   }
 }
 

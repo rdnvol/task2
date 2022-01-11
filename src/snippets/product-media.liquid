@@ -15,8 +15,8 @@
     </div>
   {% when 'external_video' %}
   <div class="product__gallery-slider__item lg:pr-4 md:pb-4 lg:w-100">
-    <deferred-media class="deferred-media media product-gallery__img" data-media-id="{{ media.id }}">
-      <button id="Deferred-Poster-Modal-{{ media.id }}" class="deferred-media__poster" type="button">
+    <deferred-media class="deferred-media media product-gallery__img fluid-iframe" data-media-id="{{ media.id }}">
+      <button id="Deferred-Poster-Modal-{{ media.id }}" class="deferred-media__poster relative" type="button">
         <span class="deferred-media__poster-button motion-reduce">
           <span class="visually-hidden">Play video</span>
           <svg
