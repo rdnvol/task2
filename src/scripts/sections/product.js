@@ -73,7 +73,7 @@ export class Product {
     );
 
     galleryWrapper.each((index, slide) => {
-      if ($(slide).find('product-model').length > 0) {
+      if ($(slide).find('product-model').length > 0 || $(slide).find('deferred-media').length > 0) {
         const viewBtn = $(slide).find('.deferred-media__poster');
         viewBtn.on('click', () => {
           window.dispatchEvent(modelViewerEvent);
