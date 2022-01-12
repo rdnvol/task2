@@ -12,7 +12,7 @@
     "button_hover_border_color": "#000000",
     "button_focus_border_color": "#000000",
     "button_bg_color": "#ffffff",
-    "button_hover_bg_color": "#a9dae9",
+    "button_hover_bg_color": "#ffffff",
     "button_focus_bg_color": "#ffffff",
     "button_border_radius": "0px",
     "button_size": "button",
@@ -26,9 +26,9 @@
     "checkout_button_hover_bg_color": "#000",
     "checkout_button_focus_bg_color": "#ffffff",
     "font_library": "shopify",
-    "font_heading": "mono",
+    "font_heading": "assistant_n4",
     "heading_base_size": 40,
-    "font_body": "sans-serif",
+    "font_body": "assistant_n4",
     "font_base_size": 16,
     "custom_heading_weight": 400,
     "custom_body_weight": 300,
@@ -69,14 +69,10 @@
         "settings": {
           "image": "",
           "image_mobile": "",
-          "title": "Title",
           "alignment": "justify-content-start align-items-center",
           "alignment_text": "text-center",
-          "text": "<p>Use overlay text to give your customers insight into your brand. Select imagery and text that relates to your style and story.</p>",
           "color": "#ffffff",
           "color_mobile": "#000000",
-          "button_link": "shopify://collections/all",
-          "button_label": "Button label",
           "fullheight": false
         }
       },
@@ -94,14 +90,10 @@
         "type": "home-hero",
         "settings": {
           "image": "shopify://shop_images/Untitled_design.png",
-          "title": "Image with text overlay",
           "alignment": "justify-content-start align-items-center",
           "alignment_text": "text-center",
-          "text": "<p>Use overlay text to give your customers insight into your brand. Select imagery and text that relates to your style and story.</p>",
           "color": "#000000",
           "color_mobile": "#000000",
-          "button_link": "shopify://collections",
-          "button_label": "Read more",
           "fullheight": false
         }
       },
@@ -109,22 +101,14 @@
         "type": "home-image-with-text",
         "settings": {
           "image": "shopify://shop_images/working-at-night.jpg",
-          "layout": "",
-          "title": "Image with text",
-          "text": "<p>Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p><p>Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p><p>Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
-          "button_label": "Shop now",
-          "button_link": "shopify://products/apple-macbook-pro-16-1tb-2019-silver"
+          "layout": ""
         }
       },
       "1589985461361": {
         "type": "home-image-with-text",
         "settings": {
           "image": "shopify://shop_images/woman-works-on-computer-at-home.jpg",
-          "layout": "flex-md-row-reverse",
-          "title": "Image with text",
-          "text": "<p>Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
-          "button_label": "Shop now",
-          "button_link": "shopify://products/bird-scarf-product"
+          "layout": "flex-md-row-reverse"
         }
       },
       "footer": {
@@ -361,9 +345,6 @@
         "settings": {
           "video": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
           "enable_full_width": true,
-          "title": "Heading",
-          "subheading": "Subheading",
-          "button_label": "Button",
           "enable_overlay": true,
           "text_color": ""
         }
@@ -373,9 +354,6 @@
         "settings": {
           "video": "https://vimeo.com/420059153",
           "enable_full_width": true,
-          "title": "",
-          "subheading": "",
-          "button_label": "Button",
           "enable_overlay": false,
           "text_color": ""
         }
