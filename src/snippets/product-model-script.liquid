@@ -1,9 +1,8 @@
 {%- assign first_3d_model = product.media | where: "media_type", "model" | first -%}
-
+<script src="{{ 'product-model.js' | asset_url }}" defer></script>
 {% if first_3d_model %}
   <script type="application/json" id="ProductJSON-{{ product.id }}">
   {{ product.media | where: 'media_type', 'model' | json }}
 </script>
-  <script src="{{ 'product-model.js' | asset_url }}" defer></script>
 {% endif %}
 
