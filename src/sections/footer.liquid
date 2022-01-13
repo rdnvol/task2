@@ -42,7 +42,7 @@
                   </div>
                 {%- endif -%}
                 <p>{{ 'general.newsletter_form.newsletter_email' | t }}</p>
-                {% form 'customer', novalidate: 'novalidate', class: "footer__form pt-2" %}
+                {% form 'customer', novalidate: 'novalidate', class: "footer__form" %}
                   <fieldset>
                     <legend class="visually-hidden">
                       Newsletter form
@@ -53,10 +53,10 @@
                         {{ 'general.newsletter_form.confirmation' | t }}
                       </p>
                     {%- endif -%}
+                    <label for="newsletter-form-email-field" class="inline-block mb-2">
+                      Please enter your email
+                    </label>
                     <div class="relative">
-                      <label for="newsletter-form-email-field" class="visually-hidden">
-                        Please enter your email
-                      </label>
                       <input type="email" name="contact[email]" id="newsletter-form-email-field"
                             placeholder="{{ 'general.newsletter_form.email_placeholder' | t }}"
                             class="footer__form__input">
@@ -94,7 +94,7 @@
     <div class="flex justify-center pt-3">
       {% if section.settings.currency_switcher_enable %}
         {% form 'currency', class: 'pr-3' %}
-          <label for="field-currency-01" class="accessibility">
+          <label for="field-currency-01" class="inline-block mb-2">
             Select currency
           </label>
           <select name="currency" class="w-100 mb-2" id="field-currency-01">
@@ -110,7 +110,7 @@
       {% endif %}
       {% if section.settings.language_switcher_enable %}
         <div class="locales-wrapper">
-          <label for="field-locales-01" class="accessibility">
+          <label for="field-locales-01" class="inline-block mb-2">
             Select locales
           </label>
           <select name="locales" class="w-100 mb-2" id="field-locales-01">
