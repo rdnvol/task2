@@ -65,30 +65,32 @@
                                     </facet-remove>
                                   </div>
                                 </div>
-                                <div class="px-4">
-                                  {% for value in filter.values %}
-                                    <div class="py-3 custom-input custom-input--colors-with-text">
-                                      <input 
-                                        id="Filter-{{ value.param_name }}--{{ forloop.index }}" 
-                                        type="checkbox" 
-                                        name="{{ value.param_name }}"
-                                        value="{{ value.value }}"
-                                        {% if value.active %}
-                                         checked
-                                        {% endif %}
-                                        {% if value.count == 0 and value.active == false %}
-                                         disabled
-                                        {% endif %}
-                                      >
-                                      <label for="Filter-{{ value.param_name }}--{{ forloop.index }}" class="custom-label flex items-center">
-                                        <span class="custom-label__img-holder">
-                                          <div style="background-color: {{ value.value }}; width: 100%; height: 100%; border-radius: 50%;" >
-                                          </div>
-                                        </span>
-                                        {{ value.label }} ({{ value.count }})
-                                      </label>
-                                    </div>
-                                  {% endfor %}
+                                <div class="filter-collapse__holder">
+                                  <div class="px-4">
+                                    {% for value in filter.values %}
+                                      <div class="py-3 custom-input custom-input--colors-with-text">
+                                        <input 
+                                          id="Filter-{{ value.param_name }}--{{ forloop.index }}" 
+                                          type="checkbox" 
+                                          name="{{ value.param_name }}"
+                                          value="{{ value.value }}"
+                                          {% if value.active %}
+                                           checked
+                                          {% endif %}
+                                          {% if value.count == 0 and value.active == false %}
+                                           disabled
+                                          {% endif %}
+                                        >
+                                        <label for="Filter-{{ value.param_name }}--{{ forloop.index }}" class="custom-label flex items-center">
+                                          <span class="custom-label__img-holder">
+                                            <div style="background-color: {{ value.value }}; width: 100%; height: 100%; border-radius: 50%;" >
+                                            </div>
+                                          </span>
+                                          {{ value.label }} ({{ value.count }})
+                                        </label>
+                                      </div>
+                                    {% endfor %}
+                                  </div>
                                 </div>
                               </div>
                             </details>
@@ -113,9 +115,11 @@
                                   </facet-remove>
                                 </div>
                               </div>
-                              <div class="px-4">
-                                123
-                            </div>
+                              <div class="filter-collapse__holder">
+                                <div class="px-4">
+                                  123
+                              </div>
+                              </div>
                           </details>
                         </div>
                       {% when "Size" %}
@@ -138,27 +142,29 @@
                                   </facet-remove>
                                 </div>
                               </div>
-                              <div class="px-4">
-                                {% for value in filter.values %}
-                                  <div class="py-3 custom-input custom-input--square-with-text">
-                                    <input 
-                                      id="Filter-{{ value.param_name }}--{{ forloop.index }}" 
-                                      type="checkbox" 
-                                      name="{{ value.param_name }}"
-                                      value="{{ value.value }}"
-                                      {% if value.active %}
-                                       checked
-                                      {% endif %}
-                                      {% if value.count == 0 and value.active == false %}
-                                       disabled
-                                      {% endif %}
-                                    >
-                                    <label for="Filter-{{ value.param_name }}--{{ forloop.index }}" class="custom-label flex items-center">
-                                      <span class="custom-label__check"></span>
-                                      {{ value.value }} ({{ value.count }})
-                                    </label>
-                                  </div>
-                                {% endfor %}
+                              <div class="filter-collapse__holder">
+                                <div class="px-4">
+                                  {% for value in filter.values %}
+                                    <div class="py-3 custom-input custom-input--square-with-text">
+                                      <input 
+                                        id="Filter-{{ value.param_name }}--{{ forloop.index }}" 
+                                        type="checkbox" 
+                                        name="{{ value.param_name }}"
+                                        value="{{ value.value }}"
+                                        {% if value.active %}
+                                         checked
+                                        {% endif %}
+                                        {% if value.count == 0 and value.active == false %}
+                                         disabled
+                                        {% endif %}
+                                      >
+                                      <label for="Filter-{{ value.param_name }}--{{ forloop.index }}" class="custom-label flex items-center">
+                                        <span class="custom-label__check"></span>
+                                        {{ value.value }} ({{ value.count }})
+                                      </label>
+                                    </div>
+                                  {% endfor %}
+                                </div>
                               </div>
                             </div>
                           </details>
@@ -183,27 +189,29 @@
                                   </facet-remove>
                                 </div>
                               </div>
-                              <div class="px-4">
-                                {% for value in filter.values %}
-                                  <div class="py-3 custom-input custom-input--square-with-text">
-                                    <input 
-                                      id="Filter-{{ value.param_name }}-{{ forloop.index }}" 
-                                      type="checkbox" 
-                                      value="{{ value.value }}"
-                                      name="{{ value.param_name }}"
-                                      {% if value.active %}
-                                       checked
-                                      {% endif %}
-                                      {% if value.count == 0 and value.active == false -%}
-                                      disabled
-                                      {% endif %}
-                                    >
-                                    <label for="Filter-{{ value.param_name }}-{{ forloop.index }}" class="custom-label flex items-center">
-                                      <span class="custom-label__check"></span>
-                                      {{ value.label }} ({{ value.count }})
-                                    </label>
-                                  </div>
-                                {% endfor %}
+                              <div class="filter-collapse__holder">
+                                <div class="px-4">
+                                  {% for value in filter.values %}
+                                    <div class="py-3 custom-input custom-input--square-with-text">
+                                      <input 
+                                        id="Filter-{{ value.param_name }}-{{ forloop.index }}" 
+                                        type="checkbox" 
+                                        value="{{ value.value }}"
+                                        name="{{ value.param_name }}"
+                                        {% if value.active %}
+                                         checked
+                                        {% endif %}
+                                        {% if value.count == 0 and value.active == false -%}
+                                        disabled
+                                        {% endif %}
+                                      >
+                                      <label for="Filter-{{ value.param_name }}-{{ forloop.index }}" class="custom-label flex items-center">
+                                        <span class="custom-label__check"></span>
+                                        {{ value.label }} ({{ value.count }})
+                                      </label>
+                                    </div>
+                                  {% endfor %}
+                                </div>
                               </div>
                             </div>
                           </details>
@@ -228,27 +236,29 @@
                                   </facet-remove>
                                 </div>
                               </div>
-                              <div class="px-4">
-                                {% for value in filter.values %}
-                                  <div class="py-3 custom-input custom-input--square-with-text">
-                                    <input 
-                                      id="Filter-{{ value.param_name }}-{{ forloop.index }}" 
-                                      type="checkbox" 
-                                      value="{{ value.value }}"
-                                      name="{{ value.param_name }}"
-                                      {% if value.active %}
-                                       checked
-                                      {% endif %}
-                                      {% if value.count == 0 and value.active == false -%}
-                                      disabled
-                                      {% endif %}
-                                    >
-                                    <label for="Filter-{{ value.param_name }}-{{ forloop.index }}" class="custom-label flex items-center">
-                                      <span class="custom-label__check"></span>
-                                      {{ value.label }} ({{ value.count }})
-                                    </label>
-                                  </div>
-                                {% endfor %}
+                              <div class="filter-collapse__holder">
+                                <div class="px-4">
+                                  {% for value in filter.values %}
+                                    <div class="py-3 custom-input custom-input--square-with-text">
+                                      <input 
+                                        id="Filter-{{ value.param_name }}-{{ forloop.index }}" 
+                                        type="checkbox" 
+                                        value="{{ value.value }}"
+                                        name="{{ value.param_name }}"
+                                        {% if value.active %}
+                                         checked
+                                        {% endif %}
+                                        {% if value.count == 0 and value.active == false -%}
+                                        disabled
+                                        {% endif %}
+                                      >
+                                      <label for="Filter-{{ value.param_name }}-{{ forloop.index }}" class="custom-label flex items-center">
+                                        <span class="custom-label__check"></span>
+                                        {{ value.label }} ({{ value.count }})
+                                      </label>
+                                    </div>
+                                  {% endfor %}
+                                </div>
                               </div>
                             </div>
                           </details>
@@ -273,27 +283,29 @@
                                   </facet-remove>
                                 </div>
                               </div>
-                              <div class="px-4">
-                                {% for value in filter.values %}
-                                  <div class="py-3 custom-input custom-input--square-with-text">
-                                    <input 
-                                      id="Filter-{{ value.param_name }}-{{ forloop.index }}" 
-                                      type="checkbox" 
-                                      value="{{ value.value }}"
-                                      name="{{ value.param_name }}"
-                                      {% if value.active %}
-                                       checked
-                                      {% endif %}
-                                      {% if value.count == 0 and value.active == false -%}
-                                      disabled
-                                      {% endif %}
-                                    >
-                                    <label for="Filter-{{ value.param_name }}-{{ forloop.index }}" class="custom-label flex items-center">
-                                      <span class="custom-label__check"></span>
-                                      {{ value.label }} ({{ value.count }})
-                                    </label>
-                                  </div>
-                                {% endfor %}
+                              <div class="filter-collapse__holder">
+                                <div class="px-4">
+                                  {% for value in filter.values %}
+                                    <div class="py-3 custom-input custom-input--square-with-text">
+                                      <input 
+                                        id="Filter-{{ value.param_name }}-{{ forloop.index }}" 
+                                        type="checkbox" 
+                                        value="{{ value.value }}"
+                                        name="{{ value.param_name }}"
+                                        {% if value.active %}
+                                         checked
+                                        {% endif %}
+                                        {% if value.count == 0 and value.active == false -%}
+                                        disabled
+                                        {% endif %}
+                                      >
+                                      <label for="Filter-{{ value.param_name }}-{{ forloop.index }}" class="custom-label flex items-center">
+                                        <span class="custom-label__check"></span>
+                                        {{ value.label }} ({{ value.count }})
+                                      </label>
+                                    </div>
+                                  {% endfor %}
+                                </div>
                               </div>
                             </div>
                           </details>
@@ -318,27 +330,29 @@
                                   </facet-remove>
                                 </div>
                               </div>
-                              <div class="px-4">
-                                {% for value in filter.values %}
-                                  <div class="py-3 custom-input custom-input--square-with-text">
-                                    <input 
-                                      id="Filter-{{ value.param_name }}-{{ forloop.index }}" 
-                                      type="checkbox" 
-                                      value="{{ value.value }}"
-                                      name="{{ value.param_name }}"
-                                      {% if value.active -%}
-                                      checked
-                                      {%- endif %}
-                                      {% if value.count == 0 and value.active == false -%}
-                                      disabled
-                                      {%- endif %}
-                                      >
-                                    <label for="Filter-{{ value.param_name }}-{{ forloop.index }}" class="custom-label flex items-center">
-                                      <span class="custom-label__check"></span>
-                                      {{ value.label }} ({{ value.count }})
-                                    </label>
-                                  </div>
-                                {% endfor %}
+                              <div class="filter-collapse__holder">
+                                <div class="px-4">
+                                  {% for value in filter.values %}
+                                    <div class="py-3 custom-input custom-input--square-with-text">
+                                      <input 
+                                        id="Filter-{{ value.param_name }}-{{ forloop.index }}" 
+                                        type="checkbox" 
+                                        value="{{ value.value }}"
+                                        name="{{ value.param_name }}"
+                                        {% if value.active -%}
+                                        checked
+                                        {%- endif %}
+                                        {% if value.count == 0 and value.active == false -%}
+                                        disabled
+                                        {%- endif %}
+                                        >
+                                      <label for="Filter-{{ value.param_name }}-{{ forloop.index }}" class="custom-label flex items-center">
+                                        <span class="custom-label__check"></span>
+                                        {{ value.label }} ({{ value.count }})
+                                      </label>
+                                    </div>
+                                  {% endfor %}
+                                </div>
                               </div>
                             </div>
                           </details>
@@ -361,27 +375,29 @@
                               </button>
                             </div>
                           </div>
-                          <div class="px-4">
-                            <div class="py-3 custom-input custom-input--square-with-text">
-                              <input id="filter-collapse-category-10" type="checkbox" checked name="filter-collapse-category">
-                              <label for="filter-collapse-category-10" class="custom-label flex items-center">
-                                <span class="custom-label__check"></span>
-                                Men’s (214)
-                              </label>
-                            </div>
-                            <div class="py-3 custom-input custom-input--square-with-text">
-                              <input id="filter-collapse-category-11" type="checkbox" name="filter-collapse-category">
-                              <label for="filter-collapse-category-11" class="custom-label flex items-center">
-                                <span class="custom-label__check"></span>
-                                Jacket (10)
-                              </label>
-                            </div>
-                            <div class="py-3 custom-input custom-input--square-with-text">
-                              <input id="filter-collapse-category-12" type="checkbox" disabled name="filter-collapse-category">
-                              <label for="filter-collapse-category-12" class="custom-label flex items-center">
-                                <span class="custom-label__check"></span>
-                                Shirt (72)
-                              </label>
+                          <div class="filter-collapse__holder">
+                            <div class="px-4">
+                              <div class="py-3 custom-input custom-input--square-with-text">
+                                <input id="filter-collapse-category-10" type="checkbox" checked name="filter-collapse-category">
+                                <label for="filter-collapse-category-10" class="custom-label flex items-center">
+                                  <span class="custom-label__check"></span>
+                                  Men’s (214)
+                                </label>
+                              </div>
+                              <div class="py-3 custom-input custom-input--square-with-text">
+                                <input id="filter-collapse-category-11" type="checkbox" name="filter-collapse-category">
+                                <label for="filter-collapse-category-11" class="custom-label flex items-center">
+                                  <span class="custom-label__check"></span>
+                                  Jacket (10)
+                                </label>
+                              </div>
+                              <div class="py-3 custom-input custom-input--square-with-text">
+                                <input id="filter-collapse-category-12" type="checkbox" disabled name="filter-collapse-category">
+                                <label for="filter-collapse-category-12" class="custom-label flex items-center">
+                                  <span class="custom-label__check"></span>
+                                  Shirt (72)
+                                </label>
+                              </div>
                             </div>
                           </div>
                         </div>
