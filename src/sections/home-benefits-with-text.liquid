@@ -3,31 +3,29 @@
     <div class="lg:flex">
       <div class="lg:w-10/12 mx-auto">
 
-        <div class="md:flex md:items-center md:space-x-8">
-          <div class="md:w-6/12 mb-5 md:mb-0 text-center md:text-left rte">
-            {% for block in section.blocks %}
-              {% case block.type %}
-                {% when "title" %}
-                  <h2>{{ block.settings.title }}</h2>
-                {% when "text" %}
-                  <div class="benefits-list__text-box">
-                    {{ block.settings.text }}
-                  </div>
-              {% endcase %}
-            {% endfor %}
-          </div>
+        <div class="benefits-list-block">
           {% for block in section.blocks %}
             {% case block.type %}
+              {% when "title" %}
+                <div>
+                  <h2 class="mb-0">
+                    {{ block.settings.title }}
+                  </h2>
+                </div>
+              {% when "text" %}
+                <div class="benefits-list__text-box">
+                  {{ block.settings.text }}
+                </div>
               {% when "html" %}
-                <div class="md:w-6/12">
+                <div>
                   <div class="rte">
                     {{ block.settings.html }}
                   </div>
                 </div>
-              {% else %} 
             {% endcase %}
           {% endfor %}
         </div>
+
       </div>
     </div>
   </div>
