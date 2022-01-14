@@ -47,57 +47,57 @@
                     {% case filter.label %}
                       {% when "Color" %}
                         <div class="mr-5">
-                            <details class="filter-collapse__item relative py-3  js-filter" data-index="{{ forloop.index }}">
-                              <summary class="body-small flex justify-between items-center">
-                                {{ filter.label }}
-                                <span class="filter-collapse__btn-check flex-shrink-0 ml-1"></span>
-                              </summary>
-                              <div class="filter-collapse__slide">
-                                <div class="filter-collapse__heading body-small flex items-center justify-between space-x-2 p-4">
-                                  <div class="facets__selected no-js-hidden">{{ 'products.facets.filters_selected' | t: count: filter.active_values.size }}</div>
-                                  <div>
-                                    <facet-remove>
-                                      <a href="{{ filter.url_to_remove }}">
-                                        <button type="reset">
-                                          Reset
-                                        </button>
-                                      </a>
-                                    </facet-remove>
-                                  </div>
-                                </div>
-                                <div class="filter-collapse__holder">
-                                  <div class="px-4">
-                                    {% for value in filter.values %}
-                                      <div class="py-3 custom-input custom-input--colors-with-text">
-                                        <input 
-                                          id="Filter-{{ value.param_name }}--{{ forloop.index }}" 
-                                          type="checkbox" 
-                                          name="{{ value.param_name }}"
-                                          value="{{ value.value }}"
-                                          {% if value.active %}
-                                           checked
-                                          {% endif %}
-                                          {% if value.count == 0 and value.active == false %}
-                                           disabled
-                                          {% endif %}
-                                        >
-                                        <label for="Filter-{{ value.param_name }}--{{ forloop.index }}" class="custom-label flex items-center">
-                                          <span class="custom-label__img-holder">
-                                            <div style="background-color: {{ value.value }}; width: 100%; height: 100%; border-radius: 50%;" >
-                                            </div>
-                                          </span>
-                                          {{ value.label }} ({{ value.count }})
-                                        </label>
-                                      </div>
-                                    {% endfor %}
-                                  </div>
+                          <details class="filter-collapse__item relative py-3 js-filter disclosure-has-popup" data-index="{{ forloop.index }}">
+                            <summary class="body-small flex justify-between items-center">
+                              {{ filter.label }}
+                              <span class="filter-collapse__btn-check flex-shrink-0 ml-1"></span>
+                            </summary>
+                            <div class="filter-collapse__slide">
+                              <div class="filter-collapse__heading body-small flex items-center justify-between space-x-2 p-4">
+                                <div class="facets__selected no-js-hidden">{{ 'products.facets.filters_selected' | t: count: filter.active_values.size }}</div>
+                                <div>
+                                  <facet-remove>
+                                    <a href="{{ filter.url_to_remove }}">
+                                      <button type="reset">
+                                        Reset
+                                      </button>
+                                    </a>
+                                  </facet-remove>
                                 </div>
                               </div>
-                            </details>
+                              <div class="filter-collapse__holder">
+                                <div class="px-4">
+                                  {% for value in filter.values %}
+                                    <div class="py-3 custom-input custom-input--colors-with-text">
+                                      <input 
+                                        id="Filter-{{ value.param_name }}--{{ forloop.index }}" 
+                                        type="checkbox" 
+                                        name="{{ value.param_name }}"
+                                        value="{{ value.value }}"
+                                        {% if value.active %}
+                                          checked
+                                        {% endif %}
+                                        {% if value.count == 0 and value.active == false %}
+                                          disabled
+                                        {% endif %}
+                                      >
+                                      <label for="Filter-{{ value.param_name }}--{{ forloop.index }}" class="custom-label flex items-center">
+                                        <span class="custom-label__img-holder">
+                                          <div style="background-color: {{ value.value }}; width: 100%; height: 100%; border-radius: 50%;" >
+                                          </div>
+                                        </span>
+                                        {{ value.label }} ({{ value.count }})
+                                      </label>
+                                    </div>
+                                  {% endfor %}
+                                </div>
+                              </div>
+                            </div>
+                          </details>
                         </div> 
                       {% when "Price" %}
                         <div class="mr-5">
-                          <details class="filter-collapse__item relative py-3 js-filter" data-index="{{ forloop.index }}">
+                          <details class="filter-collapse__item relative py-3 js-filter disclosure-has-popup" data-index="{{ forloop.index }}">
                             <summary class="body-small flex justify-between items-center">
                               {{ filter.label }}
                               <span class="filter-collapse__btn-check flex-shrink-0 ml-1"></span>
@@ -164,7 +164,7 @@
                         </div>
                       {% when "Size" %}
                         <div class="mr-5">
-                          <details class="filter-collapse__item relative py-3 js-filter" data-index="{{ forloop.index }}">
+                          <details class="filter-collapse__item relative py-3 js-filter disclosure-has-popup" data-index="{{ forloop.index }}">
                             <summary class="body-small flex justify-between items-center">
                               {{ filter.label }}
                               <span class="filter-collapse__btn-check flex-shrink-0 ml-1"></span>
@@ -211,7 +211,7 @@
                         </div>
                       {% when "Availability" %}
                         <div class="mr-5">
-                          <details class="filter-collapse__item relative py-3 js-filter" data-index="{{ forloop.index }}">
+                          <details class="filter-collapse__item relative py-3 js-filter disclosure-has-popup" data-index="{{ forloop.index }}">
                             <summary class="body-small flex justify-between items-center">
                               {{ filter.label }}
                               <span class="filter-collapse__btn-check flex-shrink-0 ml-1"></span>
@@ -258,7 +258,7 @@
                         </div>
                       {% when "Brand" %}
                         <div class="mr-5">
-                          <details class="filter-collapse__item relative py-3 js-filter" data-index="{{ forloop.index }}">
+                          <details class="filter-collapse__item relative py-3 js-filter disclosure-has-popup" data-index="{{ forloop.index }}">
                             <summary class="body-small flex justify-between items-center">
                               {{ filter.label }}
                               <span class="filter-collapse__btn-check flex-shrink-0 ml-1"></span>
@@ -305,7 +305,7 @@
                         </div>
                       {% when "Product type" %}
                         <div class="mr-5">
-                          <details class="filter-collapse__item relative py-3 js-filter" data-index="{{ forloop.index }}">
+                          <details class="filter-collapse__item relative py-3 js-filter disclosure-has-popup" data-index="{{ forloop.index }}">
                             <summary class="body-small flex justify-between items-center">
                               {{ filter.label }}
                               <span class="filter-collapse__btn-check flex-shrink-0 ml-1"></span>
@@ -352,7 +352,7 @@
                         </div>
                       {% when "Material" %}
                         <div class="mr-5">
-                          <details class="filter-collapse__item relative py-3 js-filter" data-index="{{ forloop.index }}">
+                          <details class="filter-collapse__item relative py-3 js-filter disclosure-has-popup" data-index="{{ forloop.index }}">
                             <summary class="body-small flex justify-between items-center">
                               {{ filter.label }}
                               <span class="filter-collapse__btn-check flex-shrink-0 ml-1"></span>
@@ -401,7 +401,7 @@
                   {% endfor %}
                   <!-- <div class="mr-5">
                     <details-disclosure>
-                      <details class="filter-collapse__item relative py-3">
+                      <details class="filter-collapse__item relative py-3 disclosure-has-popup">
                         <summary class="body-small flex justify-between items-center">
                           Category
                           <span class="filter-collapse__btn-check flex-shrink-0 ml-1"></span>
