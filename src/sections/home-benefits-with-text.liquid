@@ -7,17 +7,17 @@
           {% for block in section.blocks %}
             {% case block.type %}
               {% when "title" %}
-                <div>
+                <div {{ block.shopify_attributes }}>
                   <h2 class="mb-0">
                     {{ block.settings.title }}
                   </h2>
                 </div>
               {% when "text" %}
-                <div class="benefits-list__text-box">
+                <div class="benefits-list__text-box" {{ block.shopify_attributes }}>
                   {{ block.settings.text }}
                 </div>
               {% when "html" %}
-                <div>
+                <div {{ block.shopify_attributes }}>
                   <div class="rte">
                     {{ block.settings.html }}
                   </div>
