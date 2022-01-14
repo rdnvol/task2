@@ -1,3 +1,22 @@
+.benefits-list-block {
+  display: grid;
+  grid-gap: 16px;
+  @include media ("≥tablet") {
+    grid-template-columns: repeat(2, 50%);
+    grid-auto-flow: column;
+  }
+
+  > div {
+    &:nth-child(3) {
+      @include media ("≥tablet") {
+        display: flex;
+        grid-row: span 3;
+        align-items: center;
+      }
+    }
+  }
+}
+
 .benefits-list__text-box {
 
   p {
