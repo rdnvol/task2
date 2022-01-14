@@ -34,9 +34,23 @@
 }
 
 .hero__img {
+  position: relative;
   margin: 0 0 20px;
   @include media("≥tablet") {
     margin: 0;
+  }
+  &::after {
+    @include media ("≥tablet") {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      background: $base-body-text;
+      pointer-events: none;
+    }
   }
 }
 
