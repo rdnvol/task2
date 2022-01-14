@@ -141,6 +141,13 @@
   }
 }
 
+.filter-collapse__holder {
+  height: 100%;
+  max-height: 255px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
 .filter-collapse__item {
 
   summary {
@@ -199,7 +206,7 @@
 }
 
 .filter-collapse__slide {
-  @include media ("≥widescreen") {
+  @include media ("≥desktop") {
     position: absolute;
     top: 100%;
     left: -12px;
