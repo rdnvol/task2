@@ -44,26 +44,10 @@
             <label for="Option{{ option.position }}">
               {{ option.name }}
             </label>
-            {% comment %}<select
-              id="Option{{ option.position }}"
-              name="options[{{ option.name | escape }}]">
-              {% for value in option.values %}
-                <option
-                  value="{{ value | escape }}"
-                  {% if option.selected_value == value %}selected="selected"{% endif %}>
-                  {{ value }}
-                </option>
-              {% endfor %}
-            </select>{% endcomment %}
           {% endif %}
         </div>
       {% endfor %}
     {% endunless %}
-    {%- comment -%}
-      <div class="product-main-block__rating-box">
-        No reviews
-      </div>
-    {%- endcomment -%}
     <div class="product__row">
       <div class="sm:flex mb-2">
         <div class="sm:w-7/12 lg:w-5/12">
