@@ -4,7 +4,7 @@
 
 <div class="{{ grid_item_width }}">
   <div class="product-item text-center">
-    <a href="{{ product.url | within: collection }}" class="product-item__img">
+    <a href="{{ product.url | within: collection }}" class="product-item__img relative">
       {% if product.featured_image != blank %}
         {% render
           "image",
@@ -18,7 +18,13 @@
       {% else %}
         {{ 'image' | placeholder_svg_tag: "placeholder-svg" }}
       {% endif %}
-
+      <div class="absolute top-2 left-2 bottom-2 right-2 flex items-start">
+        <div class="product-item__label base-label flex flex-wrap">
+          <div class="product-item__label-sale">Sale</div>
+          <div class="product-item__label-soldout">Sold out</div>
+          <div class="product-item__label-new">New</div>
+        </div>
+      </div>
     </a>
     <div class="product-item__box">
       <h3 class="product-item__title">
