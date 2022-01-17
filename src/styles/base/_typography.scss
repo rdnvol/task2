@@ -121,3 +121,7 @@ a {
 .body-small {
   font-size: calc(#{$font-size-base} - 2px);
 }
+
+.base-label {
+  font-size: calc(#{$font-size-base} - 4px);
+}
