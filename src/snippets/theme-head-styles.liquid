@@ -5,5 +5,7 @@
 {% render 'style-tags', layout: 'theme' %}
 {{ 'custom-theme.css' | asset_url | stylesheet_tag }}
 {% if settings.font_library == 'google' %}
-{% render 'google-fonts' %}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  {% render 'google-fonts' %}
 {% endif %}

@@ -1,3 +1,14 @@
 {% if settings.font_library == 'google' %}
   {{ settings.google_integration }}
+  {%- if settings.google_font_heading != blank -%}
+    <link href="https://fonts.googleapis.com/css2?
+    {%- if settings.google_font_heading != blank -%}
+      family={{- settings.google_font_heading | replace: ' ', '+' -}}:{%- if settings.google_heading_style == 'italic' -%}ital,{%- endif -%}wght@{%- if settings.google_heading_style == 'italic' -%}1,{%- endif -%}{{- settings.google_heading_weight -}}&
+    {%- endif -%}
+    {%- if settings.google_font_body != blank -%}
+      family={{- settings.google_font_body | replace: ' ', '+' -}}:{%- if settings.google_body_style == 'italic' -%}ital,{%- endif -%}wght@{%- if settings.google_body_style == 'italic' -%}1,{%- endif -%}{{- settings.google_body_weight -}}&
+    {%- endif -%}
+    display=swap" rel="stylesheet">
+  {%- endif -%}
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;900&display=swap" rel="stylesheet">
 {% endif %}
