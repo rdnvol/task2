@@ -157,6 +157,37 @@
       display: none;
     }
   }
+
+  &.disclosure-has-popup {
+
+    > summary {
+      &::before {
+        display: none;
+      }
+    }
+  }
+
+  &.disclosure-has-popup[open] {
+
+    > summary {
+      &::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 2;
+        display: block;
+        background: transparent;
+        cursor: default;
+      }
+
+      + * {
+        z-index: 100;
+      }
+    }
+  }
 }
 
 .filter-collapse__btn {
