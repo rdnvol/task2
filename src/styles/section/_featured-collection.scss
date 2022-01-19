@@ -25,7 +25,6 @@
 
 .product-item__label {
   margin: 0 -4px -5px;
-  color: $labels-sale-text;
   &.product-item__label--large {
     > * {
       padding: 4px 10px;
@@ -39,13 +38,16 @@
 }
 
 .product-item__label-sale {
+  color: $labels-sale-text;
   background: $labels-sale-background;
 }
 
 .product-item__label-soldout {
+  color: $labels-soldout-text;
   background: $labels-soldout-background;
 }
 
 .product-item__label-new {
+  color: $labels-new-text;
   background: $labels-new-background;
 }
