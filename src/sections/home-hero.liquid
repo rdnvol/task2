@@ -1,6 +1,5 @@
-<section  
-  class="hero hero--banner-{{ section.settings.image_height }} {% if section.settings.fullheight %} hero--full-height{% endif %}" >
-  <div class="{% unless section.settings.enable_full_width %}container{% endunless %}">
+<section class="hero hero--full-width hero--banner-{{ section.settings.image_height }} {% if section.settings.fullheight %} hero--full-height{% endif %}" >
+  <div class="container relative h-100 {% unless section.settings.enable_full_width %}container{% endunless %}">
     <div class="hero__img">
       {%- if section.settings.image != blank -%}
         {% render "image",
@@ -46,6 +45,13 @@
 </section>
 
 {% style %}
+
+  {% if section.settings.color != blank %}
+    .hero.hero--full-height .custom-color {
+      color: {{ section.settings.color }};
+    }
+  {% endif %}
+
   {% if section.settings.color != blank %}
     .custom-color {
       color: {{ section.settings.color }};
@@ -57,10 +63,8 @@
     }
   {% endif %}
 
-  @media screen and (min-width: 768px) {
-    .hero__img::after {
-      opacity: 0.4;
-    }
+  .hero__img::after {
+    opacity: 0.4;
   }
 {% endstyle %}
 
