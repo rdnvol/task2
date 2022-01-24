@@ -175,15 +175,6 @@ ins {
 
 .section {
   padding: 40px 0;
-  @include media("≥widescreen") {
-    padding: 80px 0;
-  }
-  &.page-section {
-    padding-top: 30px;
-    @include media("≥desktop") {
-      padding-top: 40px;
-    }
-  }
 }
 
 // Default page shopify styles
