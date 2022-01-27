@@ -15,6 +15,9 @@
       bottom: 0;
       left: 0;
       margin: 0;
+      &::after {
+        display: block;
+      }
 
       img {
         height: 100%;
@@ -31,17 +34,34 @@
       z-index: 4;
     }
   }
+  &.hero--full-width {
+
+    > .container {
+      max-width: 100%;
+      padding: 0;
+    }
+  }
   &.hero--banner-small,
   &.hero--banner-medium,
   &.hero--banner-large {
+
+    &.hero--full-width {
+
+      .hero__img {
+        @include media ("≥tablet") {
+          right: 0;
+          left: 0;
+        }
+      }
+    }
 
     .hero__img {
       @include media ("≥tablet") {
         position: absolute;
         top: 0;
-        right: 0;
+        right: calc(#{$grid-gutter-width} / 2);
         bottom: 0;
-        left: 0;
+        left: calc(#{$grid-gutter-width} / 2);
       }
 
       img {
@@ -52,8 +72,11 @@
     }
   }
   &.hero--banner-small {
-    @include media ("≥tablet") {
-      min-height: 420px;
+
+    > .container {
+      @include media ("≥tablet") {
+        min-height: 420px;
+      }
     }
 
     .hero__img {
@@ -64,8 +87,11 @@
     }
   }
   &.hero--banner-medium {
-    @include media ("≥tablet") {
-      min-height: 560px;
+
+    > .container {
+      @include media ("≥tablet") {
+        min-height: 560px;
+      }
     }
 
     .hero__img {
@@ -76,8 +102,11 @@
     }
   }
   &.hero--banner-large {
-    @include media ("≥tablet") {
-      min-height: 720px;
+
+    > .container {
+      @include media ("≥tablet") {
+        min-height: 720px;
+      }
     }
 
     .hero__img {
@@ -96,16 +125,17 @@
     margin: 0;
   }
   &::after {
-    @include media ("≥tablet") {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: 1;
-      width: 100%;
-      height: 100%;
-      background: $base-body-text;
-      pointer-events: none;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background: $base-body-text;
+    pointer-events: none;
+    @include media ("≤767px") {
+      display: none;
     }
   }
 }
