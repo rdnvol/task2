@@ -14,7 +14,7 @@ class DetailsDisclosure extends HTMLElement {
     });
   }
   close() {
-    // this.mainDetailsToggle.removeAttribute('open');
+    this.mainDetailsToggle.removeAttribute('open');
   }
   onKeyUpEscape(e) {
     if ('ESCAPE' !== e.code.toUpperCase()) return;

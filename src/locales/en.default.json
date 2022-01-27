@@ -305,6 +305,13 @@
       "starting_at": "From",
       "product_variants": "Product variants"
     },
+    "product_card": {
+      "labels": {
+        "sale": "Sale",
+        "sold_out": "Sold out",
+        "new": "New"
+      }
+    },
     "facets": {
       "filters_selected": {
         "one": "{{ count }} selected",

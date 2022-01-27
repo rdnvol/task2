@@ -1,4 +1,4 @@
-<section class="hero{% if section.settings.fullheight %} hero--full-height{% endif %}">
+<section class="hero hero--banner-small{% if section.settings.fullheight %} hero--full-height{% endif %}">
   <div class="hero__img">
     {%- if section.settings.image != blank -%}
       {% render "image",
@@ -56,7 +56,7 @@
 
   @media screen and (min-width: 768px) {
     .hero__img::after {
-      opacity: 0.4;
+      opacity: {{ section.settings.image_overlay_opacity | divided_by: 100.0 }};
     }
   }
 {% endstyle %}
@@ -69,6 +69,16 @@
       "type": "image_picker",
       "id": "image",
       "label": "Image"
+    },
+    {
+      "type": "range",
+      "id": "image_overlay_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 10,
+      "unit": "%",
+      "label": "Image overlay opacity",
+      "default": 0
     },
     {
       "type": "image_picker",
