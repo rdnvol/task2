@@ -37,7 +37,7 @@
                       {% render 'button',
                         href: block.settings.button_link,
                         text: block.settings.button_label,
-                        data_attribute: {{ block.shopify_attributes }}
+                        data_attribute: block.shopify_attributes 
                       %}
                     {% endif %}
                 {% endcase %}
