@@ -39,10 +39,12 @@
     --customizable-base-text: {{ settings.customizable_base_text }};
 
     /* Labels */
-    --labels-sale-background: #ed0000;
-    --labels-soldout-background: #767676;
-    --labels-new-background: #000;
-    --labels-sale-text: #fff;
+    --labels-sale-background: {{ settings.sale_background_color }};
+    --labels-soldout-background: {{ settings.soldout_background_color }};
+    --labels-new-background: {{ settings.new_background_color }};
+    --labels-sale-text: {{ settings.sale_text_color }};
+    --labels-soldout-text: {{ settings.soldout_text_color }};
+    --labels-new-text: {{ settings.new_text_color }};
 
     /* Font library */
     {%- case settings.font_library -%}

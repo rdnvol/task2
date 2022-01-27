@@ -7,7 +7,7 @@
   %}
   
   {% paginate collection.products by limit %}
-    <div class="section page-section"
+    <div class="section"
          data-section-id="{{ section.id }}"
          data-section-type="collection"
          data-infinite="{{ section.settings.enable_infinite }}"
@@ -403,51 +403,6 @@
                         </div>
                     {% endcase %}
                   {% endfor %}
-                  <!-- <div class="mr-5">
-                    <details-disclosure>
-                      <details class="filter-collapse__item relative py-3 disclosure-has-popup">
-                        <summary class="body-small flex justify-between items-center">
-                          Category
-                          <span class="filter-collapse__btn-check flex-shrink-0 ml-1"></span>
-                        </summary>
-                        <div class="filter-collapse__slide">
-                          <div class="filter-collapse__heading body-small flex items-center justify-between space-x-2 p-4">
-                            <div>1 selected</div>
-                            <div>
-                              <button type="reset">
-                                Reset
-                              </button>
-                            </div>
-                          </div>
-                          <div class="filter-collapse__holder">
-                            <div class="px-4">
-                              <div class="py-3 custom-input custom-input--square-with-text">
-                                <input id="filter-collapse-category-10" type="checkbox" checked name="filter-collapse-category">
-                                <label for="filter-collapse-category-10" class="custom-label flex items-center">
-                                  <span class="custom-label__check"></span>
-                                  Men’s (214)
-                                </label>
-                              </div>
-                              <div class="py-3 custom-input custom-input--square-with-text">
-                                <input id="filter-collapse-category-11" type="checkbox" name="filter-collapse-category">
-                                <label for="filter-collapse-category-11" class="custom-label flex items-center">
-                                  <span class="custom-label__check"></span>
-                                  Jacket (10)
-                                </label>
-                              </div>
-                              <div class="py-3 custom-input custom-input--square-with-text">
-                                <input id="filter-collapse-category-12" type="checkbox" disabled name="filter-collapse-category">
-                                <label for="filter-collapse-category-12" class="custom-label flex items-center">
-                                  <span class="custom-label__check"></span>
-                                  Shirt (72)
-                                </label>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </details>
-                    </details-disclosure>
-                  </div> -->
                 </div>
               {% endif %}
               <div class="lg:w-4/12">
@@ -541,13 +496,6 @@
                                               <span class="custom-label__img-holder">
                                                 <div style="background-color: {{ value.value }}; width: 100%; height: 100%; border-radius: 50%;" >
                                                 </div>
-                                                <!-- {% render
-                                                  'image',
-                                                  asset_img_url: true,
-                                                  src: 'img-placeholder.png',
-                                                  d: '20x20',
-                                                  placeholder: 'img-placeholder.png',
-                                                %} -->
                                               </span>
                                               {{ value.label }} ({{ value.count }})
                                             </label>
@@ -720,37 +668,6 @@
                                     </div>
                                 {% endcase %}
                               {% endfor %}
-                              <!-- <div class="filter-collapse">
-                                <details-disclosure>
-                                  <details class="filter-collapse__item" open>
-                                    <summary class="py-3 flex justify-between items-center">
-                                      Category
-                                      <span class="filter-collapse__btn flex-shrink-0 mx-4"></span>
-                                    </summary>
-                                    <div class="py-3 custom-input custom-input--square-with-text">
-                                      <input id="filter-collapse-category-01" type="checkbox" checked name="filter-collapse-category">
-                                      <label for="filter-collapse-category-01" class="custom-label flex items-center">
-                                        <span class="custom-label__check"></span>
-                                        Men’s (214)
-                                      </label>
-                                    </div>
-                                    <div class="py-3 custom-input custom-input--square-with-text">
-                                      <input id="filter-collapse-category-02" type="checkbox" name="filter-collapse-category">
-                                      <label for="filter-collapse-category-02" class="custom-label flex items-center">
-                                        <span class="custom-label__check"></span>
-                                        Jacket (10)
-                                      </label>
-                                    </div>
-                                    <div class="py-3 custom-input custom-input--square-with-text">
-                                      <input id="filter-collapse-category-03" type="checkbox" disabled name="filter-collapse-category">
-                                      <label for="filter-collapse-category-03" class="custom-label flex items-center">
-                                        <span class="custom-label__check"></span>
-                                        Shirt (72)
-                                      </label>
-                                    </div>
-                                  </details>
-                                </details-disclosure>
-                              </div> -->
                             </div>
                           </div>
                           <div class="lg:hidden flex-shrink-0 px-4 py-5">
@@ -822,30 +739,6 @@
                       {% endfor %}
                     {% endif %}
                   {% endfor %}
-                  <!-- <div class="filter-selected-element-list__item relative flex items-center justify-center py-1 px-3 mb-3 mx-2">
-                    Black
-                    <button class="btn-closer ml-3">
-                      <span class="visually-hidden">
-                        Clear {Black} filter results
-                      </span>
-                    </button>
-                  </div> -->
-                  <!-- <div class="filter-selected-element-list__item relative flex items-center justify-center py-1 px-3 mb-3 mx-2">
-                    Top
-                    <button class="btn-closer ml-3">
-                      <span class="visually-hidden">
-                        Clear {Top} filter results
-                      </span>
-                    </button>
-                  </div> -->
-                  <!-- <div class="filter-selected-element-list__item relative flex items-center justify-center py-1 px-3 mb-3 mx-2">
-                    $50.00 - $90.00
-                    <button class="btn-closer ml-3">
-                      <span class="visually-hidden">
-                        Clear {$50.00 - $90.00} filter results
-                      </span>
-                    </button>
-                  </div> -->
                 </div>
               {% endif %}
               <div id="product-grid" class="grid grid-cols-2 xl:grid-cols-3 gap-x-8 js-products-wrapper" data-id="{{ section.id }}">
