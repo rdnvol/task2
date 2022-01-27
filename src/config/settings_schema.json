@@ -113,6 +113,46 @@
       },
       {
         "type": "header",
+        "content": "Labels colors"
+      },
+      {
+        "type": "color",
+        "id": "sale_text_color",
+        "label": "Sale Text",
+        "default": "#ffffff"
+      },
+      {
+        "type": "color",
+        "id": "sale_background_color",
+        "label": "Sale Background",
+        "default": "#ED0000"
+      },
+      {
+        "type": "color",
+        "id": "soldout_text_color",
+        "label": "Sold Out Text",
+        "default": "#ffffff"
+      },
+      {
+        "type": "color",
+        "id": "soldout_background_color",
+        "label": "Sold Out Background",
+        "default": "#767676"
+      },
+      {
+        "type": "color",
+        "id": "new_text_color",
+        "label": "New Text",
+        "default": "#ffffff"
+      },
+      {
+        "type": "color",
+        "id": "new_background_color",
+        "label": "New Background",
+        "default": "#000000"
+      },
+      {
+        "type": "header",
         "content": "Buttons colors"
       },
       {
