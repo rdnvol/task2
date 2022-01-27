@@ -25,16 +25,19 @@
               {% for block in section.blocks %}
                 {% case block.type %}
                   {% when 'title' %}
-                    <h1>
+                    <h1 {{ block.shopify_attributes }} >
                       {{ block.settings.title }}
                     </h1>
                   {% when 'text' %}
-                    {{ block.settings.text }}
+                    <p {{ block.shopify_attributes }}>
+                      {{ block.settings.text }}
+                    </p>
                   {% when 'button' %}
                     {% if block.settings.button_link != blank and block.settings.button_label != blank %}
                       {% render 'button',
                         href: block.settings.button_link,
-                        text: block.settings.button_label
+                        text: block.settings.button_label,
+                        data_attribute: {{ block.shopify_attributes }}
                       %}
                     {% endif %}
                 {% endcase %}
