@@ -1,5 +1,5 @@
 {% paginate search.results by 24 %}
-  <div class="section page-section">
+  <div class="section">
     <div class="container">
       <div class="page-title-block text-center">
         <h1 class="h3">
@@ -105,9 +105,6 @@
                 </div>
               </div>
             {% endfor %}
-            {% comment %}{% if paginate.pages > 1 %}
-              {% render 'pagination' %}
-            {% endif %}{% endcomment %}
           {% endif %}
         </div>
       {% endif %}

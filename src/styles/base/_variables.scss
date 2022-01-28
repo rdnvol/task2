@@ -26,6 +26,14 @@ $base-border: var(--base-border) !default;
 $messages-error: var(--messages-error) !default;
 $messages-success: var(--messages-success) !default;
 
+// Labels
+$labels-sale-background: var(--labels-sale-background) !default;
+$labels-soldout-background: var(--labels-soldout-background) !default;
+$labels-new-background: var(--labels-new-background) !default;
+$labels-sale-text: var(--labels-sale-text) !default;
+$labels-soldout-text: var(--labels-soldout-text) !default;
+$labels-new-text: var(--labels-new-text) !default;
+
 // Customizable
 $customizable-base-text: var(--customizable-base-text) !default;
 

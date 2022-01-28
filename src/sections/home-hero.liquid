@@ -1,40 +1,48 @@
-<section class="hero{% if section.settings.fullheight %} hero--full-height{% endif %}">
-  <div class="hero__img">
-    {%- if section.settings.image != blank -%}
-      {% render "image",
-        src: section.settings.image,
-        src_m: section.settings.image_mobile,
-        placeholder: 'img-placeholder.png',
-        alt: section.settings.image.alt,
-        m: '375x',
-        d: '1438x'
-      %}
-    {%- else -%}
-      {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
-    {%- endif -%}
-  </div>
-  <div class="hero__block">
-    <div class="container relative h-100">
-      <div class="flex h-100 {{ section.settings.alignment }} {{ section.settings.alignment_text }} custom-color">
-        <div class="sm:w-10/12 md:w-6/12 lg:w-4/12">
-          <div class="rte">
-            {% for block in section.blocks %}
-              {% case block.type %}
-                {% when 'title' %}
-                  <h1>
-                    {{ block.settings.title }}
-                  </h1>
-                {% when 'text' %}
-                  {{ block.settings.text }}
-                {% when 'button' %}
-                  {% if block.settings.button_link != blank and block.settings.button_label != blank %}
-                    {% render 'button',
-                      href: block.settings.button_link,
-                      text: block.settings.button_label
-                    %}
-                  {% endif %}
-              {% endcase %}
-            {% endfor %}
+<section class="hero 
+        {% if section.settings.enable_full_width %}hero--full-width{% endif %} 
+        hero--banner-{{ section.settings.image_height }} 
+        {% if section.settings.fullheight %} hero--full-height{% endif %}">
+  <div class="container relative h-100">
+    <div class="hero__img">
+      {%- if section.settings.image != blank -%}
+        {% render "image",
+          src: section.settings.image,
+          src_m: section.settings.image_mobile,
+          placeholder: 'img-placeholder.png',
+          alt: section.settings.image.alt,
+          m: '375x',
+          d: '1438x'
+        %}
+      {%- else -%}
+        {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+      {%- endif -%}
+    </div>
+    <div class="hero__block">
+      <div class="container relative h-100">
+        <div class="flex h-100 {{ section.settings.alignment }} {{ section.settings.alignment_text }} custom-color">
+          <div class="sm:w-10/12 md:w-6/12 lg:w-4/12">
+            <div class="rte">
+              {% for block in section.blocks %}
+                {% case block.type %}
+                  {% when 'title' %}
+                    <h1 {{ block.shopify_attributes }} >
+                      {{ block.settings.title }}
+                    </h1>
+                  {% when 'text' %}
+                    <p {{ block.shopify_attributes }}>
+                      {{ block.settings.text }}
+                    </p>
+                  {% when 'button' %}
+                    {% if block.settings.button_link != blank and block.settings.button_label != blank %}
+                      {% render 'button',
+                        href: block.settings.button_link,
+                        text: block.settings.button_label,
+                        data_attribute: block.shopify_attributes 
+                      %}
+                    {% endif %}
+                {% endcase %}
+              {% endfor %}
+            </div>
           </div>
         </div>
       </div>
@@ -43,6 +51,13 @@
 </section>
 
 {% style %}
+
+  {% if section.settings.color != blank %}
+    .hero.hero--full-height .custom-color {
+      color: {{ section.settings.color }};
+    }
+  {% endif %}
+
   {% if section.settings.color != blank %}
     .custom-color {
       color: {{ section.settings.color }};
@@ -53,6 +68,13 @@
       }
     }
   {% endif %}
+
+
+  @media screen and (min-width: 768px) {
+    .hero__img::after {
+      opacity: {{ section.settings.image_overlay_opacity | divided_by: 100.0 }};
+    }
+  }
 {% endstyle %}
 
 {% schema %}
@@ -65,9 +87,45 @@
       "label": "Image"
     },
     {
+      "type": "range",
+      "id": "image_overlay_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 10,
+      "unit": "%",
+      "label": "Image overlay opacity",
+      "default": 0
+    },
+    {
       "type": "image_picker",
       "id": "image_mobile",
       "label": "Image mobile"
+    },
+    {
+      "type": "select",
+      "id": "image_height",
+      "label": "Banner height",
+      "options": [
+        {
+          "value": "small",
+          "label": "Small"
+        },
+        {
+          "value": "medium",
+          "label": "Medium"
+        },
+        {
+          "value": "large",
+          "label": "Large"
+        }
+      ],
+      "default": "medium"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_full_width",
+      "label": "Full width",
+      "default": true
     },
     {
       "type": "select",

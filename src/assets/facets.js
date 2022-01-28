@@ -1,3 +1,126 @@
+class FacetMoreLess extends HTMLElement {
+  constructor() {
+    super();
+
+    this.clickCount = 0;
+    this.style.cursor = 'pointer';
+    this.filterItems = JSON.parse(
+      this.querySelector('script#filter-items').innerHTML
+    );
+    this.itemsToFilter = null;
+
+    if (
+      !Object.values(this.filterItems)?.length === 0 ||
+      this.filterItems?.filter_values?.length <= 5
+    ) {
+      this.querySelector('#more').style.display = 'none';
+      return;
+    }
+    this.addEventListener('click', function (e) {
+      if (e.target.id === 'more') {
+        this.clickCount += 1;
+      } else {
+        this.clickCount -= 1;
+      }
+
+      if (this.filterItems?.filter_label === 'Color') {
+        this.itemsToFilter = this.filterItems.filter_values.map(
+          (item, index) => `
+         <div class="py-3 custom-input custom-input--colors-with-text">
+           <input id="Filter-${item.param_name}--${index + 1}" 
+                  type="checkbox"  
+                  name="${item.param_name}" 
+                  value="${item.value}"
+                  ${item.active && 'checked'}
+                  ${item.count === 0 && item.active === false && 'disabled'}
+                  >
+           <label for="Filter-${item.param_name}--${
+            index + 1
+          }" class="custom-label flex items-center">
+               <span class="custom-label__img-holder">
+                 <div style="background-color: ${
+                   item.value
+                 }; width: 100%; height: 100%; border-radius: 50%;" >
+                 </div>
+               </span>
+               ${item.label} (${item.count})
+           </label>
+         </div>
+       `
+        );
+      } else {
+        this.itemsToFilter = this.filterItems.filter_values.map(
+          (item, index) =>
+            `
+          <div class="py-3 custom-input custom-input--square-with-text">
+            <input 
+              id="Filter-${item.param_name}-${index + 1}" 
+              type="checkbox" 
+              value="${item.value}"
+              name="${item.param_name}"
+              ${item.active && 'checked'}
+              ${item.count === 0 && item.active === false && 'disabled'}
+            >
+            <label for="Filter-${item.param_name}-${
+              index + 1
+            }" class="custom-label flex items-center">
+              <span class="custom-label__check"></span>
+              ${item.label} (${item.count})
+            </label>
+          </div>
+          `
+        );
+      }
+
+      this.queryVar =
+        this.filterItems?.filter_label === 'Color' ? 'colors' : 'square';
+      this.insertAfterEl = this.parentElement.querySelector(
+        `.py-3.custom-input.custom-input--${this.queryVar}-with-text:last-of-type`
+      );
+      if (this.clickCount >= 1) {
+        this.querySelector('#less').style.display = 'inline';
+      }
+
+      if (e.target.id === 'less') {
+        if (this.clickCount * 5 + 5 < this.itemsToFilter.length) {
+          this.querySelector('#more').style.display = 'inline';
+        }
+        this.items = this.parentElement.querySelectorAll(
+          `.py-3.custom-input.custom-input--${this.queryVar}-with-text`
+        );
+
+        this.items.forEach((el, index) => {
+          if (index + 1 > this.clickCount * 5 + 5) {
+            el.remove();
+          }
+        });
+        if (this.clickCount === 0) {
+          this.querySelector('#less').style.display = 'none';
+          return;
+        }
+        return;
+      } else {
+        if (this.clickCount * 5 + 5 >= this.itemsToFilter.length) {
+          this.querySelector('#more').style.display = 'none';
+        }
+
+        this.insertAfterEl.insertAdjacentHTML(
+          'afterend',
+          this.itemsToFilter
+            .slice(this.clickCount * 5, this.clickCount * 5 + 5)
+            .join('')
+        );
+      }
+    });
+  }
+
+  insertAfter(referenceNode, newNode) {
+    referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
+  }
+}
+
+customElements.define('more-less', FacetMoreLess);
+
 class FacetFiltersForm extends HTMLElement {
   constructor() {
     super();
@@ -84,6 +207,7 @@ class FacetFiltersForm extends HTMLElement {
         ];
         FacetFiltersForm.renderFilters(html, event);
         FacetFiltersForm.renderProductGridContainer(html);
+        FacetFiltersForm.renderPagination(html);
         FacetFiltersForm.renderProductCount(html);
       });
   }
@@ -93,6 +217,7 @@ class FacetFiltersForm extends HTMLElement {
 
     FacetFiltersForm.renderFilters(html, event);
     FacetFiltersForm.renderProductGridContainer(html);
+    FacetFiltersForm.renderPagination(html);
     FacetFiltersForm.renderProductCount(html);
   }
 
@@ -100,6 +225,12 @@ class FacetFiltersForm extends HTMLElement {
     document.getElementById('product-grid').innerHTML = new DOMParser()
       .parseFromString(html, 'text/html')
       .getElementById('product-grid').innerHTML;
+  }
+
+  static renderPagination(html) {
+    document.getElementById('pagination-container').innerHTML = new DOMParser()
+      .parseFromString(html, 'text/html')
+      .getElementById('pagination-container').innerHTML;
   }
 
   static renderProductCount(html) {

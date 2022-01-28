@@ -1,3 +1,12 @@
+.video-section--full-width {
+
+  .container {
+    width: 100%;
+    max-width: none;
+    padding: 0;
+  }
+}
+
 .video-section__holder {
   position: relative;
   display: flex;

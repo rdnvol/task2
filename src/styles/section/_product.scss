@@ -26,7 +26,7 @@
 
   .fluid-iframe {
     @include media ("≤767px") {
-      padding-top: 100.25%;
+      padding-top: 100%;
     }
   }
 }
@@ -79,7 +79,6 @@
 
 .product__vendor {
   margin: 0 0 8px;
-  color: #999;
 
   mark {
     color: #000;
