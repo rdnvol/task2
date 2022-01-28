@@ -5,6 +5,7 @@
       "blocks": {
         "vendor": {
           "type": "vendor",
+          "disabled": true,
           "settings": {}
         },
         "title": {
@@ -51,6 +52,7 @@
       "settings": {
         "show_variant_label": true,
         "show_size_chart": true,
+        "show_breadcrumbs": false,
         "size_chart_url": "shopify://pages/size-chart"
       }
     },
@@ -59,11 +61,7 @@
       "disabled": true,
       "settings": {
         "image": "shopify://shop_images/95501230_3257933697552228_2003752394588059320_n_940x_2_750x_0d7fc750-d0a3-4998-a335-45110925f2eb.png",
-        "layout": "md:flex-row-reverse md:space-x-reverse",
-        "title": "Comfort first. Style second.",
-        "text": "<p>You're on your feet all day. Might as well treat them with something comfortable to wear. Something cute too, while we're at it.</p>",
-        "button_label": "",
-        "button_link": ""
+        "layout": "md:flex-row-reverse md:space-x-reverse"
       }
     },
     "16400863161115cc70": {
