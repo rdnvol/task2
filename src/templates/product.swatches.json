@@ -5,6 +5,7 @@
       "blocks": {
         "vendor": {
           "type": "vendor",
+          "disabled": true,
           "settings": {}
         },
         "title": {
@@ -51,8 +52,9 @@
       "settings": {
         "show_variant_label": true,
         "show_size_chart": true,
+        "show_breadcrumbs": false,
         "size_chart_url": "shopify://pages/size-chart",
-        "swatcher_color_type": "image"
+        "swatcher_color_type": "metafields"
       }
     },
     "product-recommendations": {

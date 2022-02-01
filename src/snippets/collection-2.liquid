@@ -14,7 +14,7 @@
   %}
   
   {% paginate collection.products by limit %}
-    <div class="section"
+    <div class="section page-section"
          data-section-id="{{ section.id }}"
          data-section-type="collection"
          data-infinite="{{ section.settings.enable_infinite }}"
@@ -118,7 +118,6 @@
                                   {% case filter.label %}
                                     {% when "Color" %}
                                       <div class="filter-collapse">
-                                        <!-- <details-disclosure> -->
                                           <details class="filter-collapse__item js-filter" data-index="{{ forloop.index }}">
                                             <summary class="py-3 flex justify-between items-center">
                                               {{ filter.label }}
@@ -178,7 +177,6 @@
                                               </more-less>
                                             {% endif %}
                                           </details>
-                                        <!-- </details-disclosure> -->
                                       </div>
                                     {% when "Price" %}
                                       {% liquid
