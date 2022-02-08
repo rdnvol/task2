@@ -1,7 +1,7 @@
-<div class="section video-section video-section--full-width"
+<div class="section video-section{% if section.settings.enable_full_width %} video-section--full-width{% endif %}"
      data-section-type="iframe-video"
      data-section-id="{{ section.id }}">
-  <div {% unless section.settings.enable_full_width %}class="container"{% endunless %}>
+  <div class="container">
     <div class="video-section__holder">
       <div class="video-section__container {% if section.settings.enable_overlay and section.blocks.size > 0 %}video-section__container--overlay{% endif %}">
         {% if section.blocks.size > 0 %}
