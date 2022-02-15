@@ -40,8 +40,10 @@ jobs:
           app_password: ${{ secrets.SHOP_APP_PASSWORD }}
           store: ${{ secrets.SHOP_STORE }}
           password: ${{ secrets.SHOP_PASSWORD }}
+          collection_handle: ${{ secrets.COLLECTION_HANDLE }}
+          product_handle: ${{ secrets.PRODUCT_HANDLE }}
           lhci_github_app_token: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
-          lhci_min_score_performance: 0.35
+          lhci_min_score_performance: ${{ secrets.lhci_min_score_performance }}
           theme_root: ./dist
   theme-check:
     runs-on: ubuntu-latest
