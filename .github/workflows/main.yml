@@ -43,7 +43,7 @@ jobs:
           collection_handle: ${{ secrets.COLLECTION_HANDLE }}
           product_handle: ${{ secrets.PRODUCT_HANDLE }}
           lhci_github_app_token: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
-          lhci_min_score_performance: ${{ secrets.lhci_min_score_performance }}
+          lhci_min_score_performance: ${{ secrets.LHCI_MIN_SCORE_PERFORMANCE }}
           theme_root: ./dist
   theme-check:
     runs-on: ubuntu-latest
