@@ -21,6 +21,7 @@ import getLayoutEntrypoints from './lib/utilities/get-layout-entrypoints.mjs';
 import getChunkName from './lib/utilities/get-chunk-name.mjs';
 import { settings } from './lib/config.mjs';
 import StylelintPlugin from 'stylelint-webpack-plugin'
+import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin'
 
 dotenv.config();
 
@@ -171,17 +172,23 @@ export default {
   mode: env,
   resolve: {
     alias: {
-      Scripts: path.resolve(__dirname, './src/scripts/templates'),
-      Sections: path.resolve(__dirname, './src/scripts/sections'),
-      Components: path.resolve(__dirname, './src/scripts/Components'),
-      Styles: path.resolve(__dirname, './src/styles'),
+      scripts: path.resolve(__dirname, './src/scripts'),
+      sections: path.resolve(__dirname, './src/scripts/sections'),
+      components: path.resolve(__dirname, './src/scripts/components'),
+      helpers: path.resolve(__dirname, './src/scripts/helpers'),
+      store: path.resolve(__dirname, './src/scripts/store'),
+      styles: path.resolve(__dirname, './src/styles'),
       react: 'preact/compat',
       'react-dom/test-utils': 'preact/test-utils',
       'react-dom': 'preact/compat', // Must be below test-utils
       'react/jsx-runtime': 'preact/jsx-runtime',
     },
+    plugins: [
+      new TsconfigPathsPlugin()
+    ],
     extensions: ['.js', '.jsx', '.tsx', '.ts'],
   },
+
   output: {
     // Config for JS outputs
     filename: '[name].js',
@@ -355,14 +362,15 @@ export default {
     new webpack.ProvidePlugin({
       $: 'jquery',
       jQuery: 'jquery',
+      Buffer: ['buffer', 'Buffer'],
     }),
     new BundleAnalyzerPlugin({
       analyzerMode: bundleAnalyzerEnabled ? 'server' : 'disabled',
     }),
     AfterBuildHook,
-    new StylelintPlugin(),
+    new StylelintPlugin()
   ],
   node: {
     __dirname: true,
-  },
+  }
 };

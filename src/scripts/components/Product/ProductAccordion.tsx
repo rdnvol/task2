@@ -1,10 +1,12 @@
-//@ts-ignore
-import { h, FunctionComponent, Fragment } from 'preact';
+// @ts-ignore
+import { h, FunctionComponent } from 'preact';
 import { useEffect } from 'preact/hooks';
+import { v1 as uuid } from 'uuid';
 
-import { ProductType } from '../../types';
+import { ProductType } from 'types';
+import 'helpers/jquery.plugins';
+
 import ProductAccordionItem from './ProductAccordionItem';
-import '../../helpers/jquery.plugins';
 
 interface PropsType {
   product: ProductType;
@@ -12,11 +14,9 @@ interface PropsType {
 
 const ProductAccordion: FunctionComponent<PropsType> = ({ product }) => {
   const initAccordion = () => {
-    //@ts-ignore
-    ResponsiveHelper.addRange({
+    window.ResponsiveHelper.addRange({
       '..1199': {
-        on: function () {
-          //@ts-ignore
+        on() {
           $('.menu-accordion').slideAccordion({
             allowClickWhenExpanded: true,
             activeClass: 'active',
@@ -27,13 +27,12 @@ const ProductAccordion: FunctionComponent<PropsType> = ({ product }) => {
             animSpeed: 400,
           });
         },
-        off: function () {
-          //@ts-ignore
+        off() {
           $('.menu-accordion').slideAccordion('destroy');
         },
       },
     });
-    //@ts-ignore
+
     $('.accordion').slideAccordion({
       allowClickWhenExpanded: false,
       activeClass: 'accordion--active',
@@ -51,12 +50,16 @@ const ProductAccordion: FunctionComponent<PropsType> = ({ product }) => {
 
   return (
     <ul className="accordion mb-6 rte">
-      {Array.from(Array(4)).map((item, index) => product.metafields.accordion.heading[index] ?
-        <ProductAccordionItem
-          heading={product.metafields.accordion.heading[index]}
-          text={product.metafields.accordion.text[index]}
-          active={index === 0}
-          key={index}/> : false
+      {Array.from(Array(4)).map(
+        (item, index) =>
+          product.metafields.accordion.heading[index] && (
+            <ProductAccordionItem
+              heading={product.metafields.accordion.heading[index]}
+              text={product.metafields.accordion.text[index]}
+              active={index === 0}
+              key={uuid()}
+            />
+          )
       )}
     </ul>
   );

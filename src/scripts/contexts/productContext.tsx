@@ -1,32 +1,36 @@
 import { h, FunctionComponent, createContext } from 'preact';
 import type { ComponentChildren } from 'preact';
-import { useState } from 'preact/hooks';
+import { StateUpdater, useContext, useState } from 'preact/hooks';
+import { ProductType } from 'types';
 
-import { ProductType } from '../types/index';
-
-interface PropTypes {
-  children: ComponentChildren;
-}
-
-interface EnchancedProductType extends ProductType {
+interface EnhancedProductType extends ProductType {
   swatchName: string;
   swatchColor: string;
+}
+
+interface ProductContextProps {
+  settings: any;
+  chosenProduct: ProductType | EnhancedProductType;
+  swatchName: string;
+  swatchColor: string;
+  setSettings: StateUpdater<Record<string, any>>;
+  setChosenProduct: StateUpdater<ProductType>;
+  enhanceProduct: (product: ProductType) => void;
+  getSwatchData: (product: ProductType) => { swatchName: string; swatchColor: string };
 }
 
 export const ProductContext = createContext(null);
 
 const { Provider } = ProductContext;
 
-const ProductProvider: FunctionComponent<PropTypes> = ({ children }) => {
+export const ProductProvider: FunctionComponent<ComponentChildren> = ({ children }) => {
   const [settings, setSettings] = useState(null);
-  const [chosenProduct, setChosenProduct] = useState<
-    ProductType | EnchancedProductType | null
-  >(null);
+  const [chosenProduct, setChosenProduct] = useState<ProductType | EnhancedProductType | null>(null);
 
   const getSwatchData = (product: ProductType) => {
     let swatchName = product.tags.find((tag) => tag.includes('color_name'));
 
-    if (swatchName) swatchName = swatchName.split(':')[1];
+    if (swatchName) [, swatchName] = swatchName.split(':');
 
     let swatchColor = product.tags.find((tag) => tag.includes('color'));
 
@@ -35,7 +39,7 @@ const ProductProvider: FunctionComponent<PropTypes> = ({ children }) => {
     return { swatchName, swatchColor };
   };
 
-  const enhanceProduct = (product: EnchancedProductType) => {
+  const enhanceProduct = (product: EnhancedProductType) => {
     const { swatchName, swatchColor } = getSwatchData(product);
 
     setChosenProduct({
@@ -61,4 +65,12 @@ const ProductProvider: FunctionComponent<PropTypes> = ({ children }) => {
   );
 };
 
-export default ProductProvider;
+export const useProductContext = (): ProductContextProps => {
+  const context = useContext<ProductContextProps>(ProductContext);
+
+  if (context == null) {
+    throw new Error('useProductContext should be using inside ProductProvider');
+  }
+
+  return context;
+};

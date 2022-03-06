@@ -1,9 +1,9 @@
 import { h, FunctionComponent } from 'preact';
 import { StateUpdater, useMemo, useCallback } from 'preact/hooks';
 
+import { ProductType, VariantType } from 'types';
+
 import { Image } from '../Image';
-import { ProductType, VariantType } from '../../types/index';
-import theme from '../../helpers/themeSettings';
 
 interface Props {
   chosenVariant?: VariantType;
@@ -31,7 +31,6 @@ const ProductColorOptionItem: FunctionComponent<Props> = ({
   name,
   variantOptions,
   setVariantOptions,
-  setChosenProduct,
   setQuantity,
   swatchTypes,
   settings,
@@ -42,7 +41,7 @@ const ProductColorOptionItem: FunctionComponent<Props> = ({
 }) => {
   const renderSwatchColor = () => {
     const imageReg = /(https?:\/\/.*\.(?:png|jpg))/i;
-    let isImage = imageReg.test(color);
+    const isImage = imageReg.test(color);
 
     return isImage ? (
       <Image src={color} sizes={['26x26', '26x26']} />
@@ -51,7 +50,7 @@ const ProductColorOptionItem: FunctionComponent<Props> = ({
         style={{
           backgroundColor: color.replace(' ', ''),
         }}
-      ></span>
+      />
     );
   };
 
@@ -64,12 +63,12 @@ const ProductColorOptionItem: FunctionComponent<Props> = ({
   }, [settings, product, chosenProduct, variantOptions]);
 
   const isDisabled = useMemo(() => {
-    let currentVariantObj = chosenProduct.variants.find((variant) => {
-      return variant.title === color
-    })
-    if (!currentVariantObj) return
-    return !currentVariantObj?.available
-  }, [chosenProduct])
+    const currentVariantObj = chosenProduct.variants.find((variant) => variant.title === color);
+
+    if (!currentVariantObj) return;
+
+    return !currentVariantObj?.available;
+  }, [chosenProduct]);
 
   const handleChange = useCallback(() => {
     if (settings.swatcher_type === swatchTypes.products && !variants) {
@@ -89,7 +88,7 @@ const ProductColorOptionItem: FunctionComponent<Props> = ({
   }, [swatchTypes, product?.handle, variantOptions, chosenVariant]);
 
   return (
-    <div class="input-holder custom-input custom-input--colors inline-flex">
+    <div className="input-holder custom-input custom-input--colors inline-flex">
       <input
         id={`filter-field-colors-01-${idx}-${name}`}
         type="radio"
@@ -98,13 +97,13 @@ const ProductColorOptionItem: FunctionComponent<Props> = ({
         checked={isChecked}
         disabled={isDisabled}
       />
-      <label for={`filter-field-colors-01-${idx}-${name}`} class="custom-label">
+      <label htmlFor={`filter-field-colors-01-${idx}-${name}`} className="custom-label">
         {settings?.swatcher_type === swatchTypes.variants ? (
           <span
             style={{
               backgroundColor: color.replace(' ', ''),
             }}
-          ></span>
+          />
         ) : (
           renderSwatchColor()
         )}

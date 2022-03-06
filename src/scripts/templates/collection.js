@@ -1,9 +1,9 @@
 import { load } from '@shopify/theme-sections';
-import 'Sections/collection';
-import 'Sections/product';
-import 'Sections/slideshow';
-import 'Sections/testimonials';
-import 'Sections/video';
-import 'Sections/iframe-video';
+import 'sections/collection';
+import 'sections/product';
+import 'sections/slideshow';
+import 'sections/testimonials';
+import 'sections/video';
+import 'sections/iframe-video';
 
 load('*');

@@ -2,13 +2,14 @@ import { getUrlWithVariant } from '@shopify/theme-product-form';
 import { formatMoney } from '@shopify/theme-currency';
 import { register } from '@shopify/theme-sections';
 import { Fancybox } from '@fancyapps/ui/src/Fancybox/Fancybox.js';
-import { addItem } from '../helpers/cartAjaxCall.js';
+
 
 import {
   getCart,
   openPopup,
   addJustAdded,
-} from '../redux/features/cart/cartSlice.ts';
+} from 'store/features/cart/cartSlice';
+import { addItem } from 'helpers/cartAjaxCall';
 
 register('product', {
   _initProduct(handle) {
@@ -19,18 +20,18 @@ register('product', {
     }
   },
   // Shortcut function called when a section is loaded via 'sections.load()' or by the Theme Editor 'shopify:section:load' event.
-  onLoad: function (e) {
+  onLoad (e) {
     this._initProduct(this.container.dataset.handle);
     // Do something when a section instance is loaded
   },
 
-  onBlockSelect: function (e) {
+  onBlockSelect (e) {
     this._initProduct(this.container.dataset.handle);
     // Do something when a section block is selected
   },
 
   // Shortcut function called when a section unloaded by the Theme Editor 'shopify:section:unload' event.
-  onUnload: function () {
+  onUnload () {
     // Do something when a section instance is unloaded
   },
 });
@@ -300,11 +301,11 @@ export class Product {
 
   waitForElement = (selector) => {
     return new Promise((resolve, reject) => {
-      let observer = new MutationObserver((mutations) => {
+      const observer = new MutationObserver((mutations) => {
         mutations.forEach(function (mutation) {
-          let nodes = Array.from(mutation.addedNodes);
-          for (let node of nodes) {
-            let button = node.querySelector(selector);
+          const nodes = Array.from(mutation.addedNodes);
+          for (const node of nodes) {
+            const button = node.querySelector(selector);
             if (button && !button.disabled) {
               observer.disconnect();
               resolve(button);
@@ -335,18 +336,18 @@ export class Product {
       dragToClose: false,
       on: {
         reveal: () => {
-          let tableContainer = document.querySelector(
+          const tableContainer = document.querySelector(
               '.fancybox__content main#main .container'
-            ),
-            sizeChartBtn = document.querySelector('.size-chart-link'),
-            fancyboxParent = document.querySelector('.fancybox__content');
+            );
+            const sizeChartBtn = document.querySelector('.size-chart-link');
+            const fancyboxParent = document.querySelector('.fancybox__content');
           draftSizeChartElem(fancyboxParent, tableContainer, sizeChartBtn);
         },
       },
     });
     function draftSizeChartElem(fancyboxParent, tableContainer, sizeChartBtn) {
-      let tableWrapper = document.createElement('div');
-      let parentElement = sizeChartBtn.parentNode;
+      const tableWrapper = document.createElement('div');
+      const parentElement = sizeChartBtn.parentNode;
       wrap(tableContainer.querySelector('.rte table'), tableWrapper);
       parentElement.insertBefore(tableWrapper, sizeChartBtn);
       tableWrapper.classList.add('table-holder');

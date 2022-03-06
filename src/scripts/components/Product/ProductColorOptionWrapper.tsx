@@ -1,11 +1,13 @@
 import { h, FunctionComponent, Fragment } from 'preact';
 import { StateUpdater, useContext, useMemo } from 'preact/hooks';
+import { nice as getId } from 'slugid';
 
-import { OptionWithValuesType, ProductType, VariantType } from '../../types';
+import { OptionWithValuesType, ProductType, VariantType } from 'types';
+import { SwatcherProductsContext } from 'contexts/swatcherProductsContext';
+import { ProductContext } from 'contexts/productContext';
+import theme from 'helpers/themeSettings';
+
 import ProductColorOptionItem from './ProductColorOptionItem';
-import { SwatcherProductsContext } from '../../contexts/swatcherProductsContext';
-import { ProductContext } from '../../contexts/productContext';
-import theme from '../../helpers/themeSettings';
 
 interface Props {
   variants?: boolean;
@@ -29,13 +31,7 @@ const ProductColorOptionWrapper: FunctionComponent<Props> = ({
   setQuantity,
 }) => {
   const { swatchProducts, swatchTypes } = useContext(SwatcherProductsContext);
-  const {
-    settings,
-    chosenProduct,
-    setChosenProduct,
-    enhanceProduct,
-    getSwatchData,
-  } = useContext(ProductContext);
+  const { settings, chosenProduct, setChosenProduct, enhanceProduct, getSwatchData } = useContext(ProductContext);
 
   const renderVariants = useMemo(() => {
     if (!option?.values?.length) return;
@@ -51,7 +47,7 @@ const ProductColorOptionWrapper: FunctionComponent<Props> = ({
         variantOptions={variantOptions}
         setVariantOptions={setVariantOptions}
         idx={idx}
-        key={color + idx}
+        key={`${color}-${getId()}`}
         color={color}
         name={option?.name?.toLowerCase()}
       />
@@ -86,32 +82,26 @@ const ProductColorOptionWrapper: FunctionComponent<Props> = ({
   }, [swatchProducts, chosenProduct]);
 
   return (
-    // option.values?.length && (
-    <div class="sm:flex mb-2">
-      <div class="sm:w-6/12 md:w-9/12 lg:w-6/12">
-        <div class="product__variant-label-box mb-1">
+    <div className="sm:flex mb-2">
+      <div className="sm:w-6/12 md:w-9/12 lg:w-6/12">
+        <div className="product__variant-label-box mb-1">
           {settings?.swatcher_type === swatchTypes.products && !variants ? (
             <Fragment>
-              <span class="product__variant-label">
-                {theme.product.color_title}:{' '}
-              </span>
+              <span className="product__variant-label">{theme.product.color_title}: </span>
               <span>{chosenProduct?.swatchName}</span>
             </Fragment>
           ) : (
             <Fragment>
-              <span class="product__variant-label">{option.name}: </span>
+              <span className="product__variant-label">{option.name}: </span>
               <span>{variantOptions[option?.name.toLowerCase()]}</span>
             </Fragment>
           )}
         </div>
-        <div class="flex flex-wrap">
-          {settings?.swatcher_type === swatchTypes.products && !variants
-            ? renderProducts
-            : renderVariants}
+        <div className="flex flex-wrap">
+          {settings?.swatcher_type === swatchTypes.products && !variants ? renderProducts : renderVariants}
         </div>
       </div>
     </div>
-    // )
   );
 };
 

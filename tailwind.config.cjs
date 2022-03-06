@@ -3,9 +3,9 @@ module.exports = {
   purge: {
     content: [
       './**/*.liquid',
-      './**/Components/*.js',
-      './**/Components/*.jsx',
-      './**/Components/*.tsx',
+      './**/components/*.js',
+      './**/components/*.jsx',
+      './**/components/*.tsx',
     ],
   },
   darkMode: false, // or 'media' or 'class'
