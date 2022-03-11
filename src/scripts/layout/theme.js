@@ -1,4 +1,4 @@
-import 'Styles/theme.scss';
+import 'styles/theme.scss';
 import '@fancyapps/ui/dist/fancybox.css';
 
 // plugins
@@ -9,18 +9,19 @@ import 'lazysizes/plugins/rias/ls.rias.js';
 import 'lazysizes/plugins/bgset/ls.bgset.js';
 import 'lazysizes';
 import 'lazysizes/plugins/respimg/ls.respimg.js';
-import '../helpers/jquery.plugins.js';
-import { SmoothScroll } from '../helpers/jquery.plugins.js';
 import { Fancybox } from '@fancyapps/ui';
-import '../redux/store.ts';
+
+import { SmoothScroll } from 'helpers/jquery.plugins';
+
+import 'store/store.ts';
+// Cart
+import 'components/CartReact';
+import 'components/CartCount';
+import 'components/CartPopup';
 
 // utils
-import { getLocaleAndPathname } from '../helpers/utils.js';
+import { getLocaleAndPathname } from 'helpers/utils';
 
-// Cart
-import 'Components/CartReact';
-import 'Components/CartCount';
-import 'Components/CartPopup';
 
 class App {
   constructor() {

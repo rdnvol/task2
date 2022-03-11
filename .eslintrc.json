@@ -1,28 +1,114 @@
 {
   "env": {
-    "es6": true,
     "browser": true,
-    "jquery": true
+    "es6": true
   },
-  "extends": ["airbnb", "plugin:react/recommended"],
+  "extends": [
+    "airbnb",
+    "prettier",
+    "plugin:prettier/recommended",
+    "plugin:react/recommended",
+    "plugin:import/typescript",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "globals": {
+    "document": true,
+    "window": true,
+    "Shopify": true,
+    "theme": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "jsx": true,
+    "useJSXTextNode": true,
+    "project": "./tsconfig.json",
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "plugins": [
+    "react",
+    "prettier",
+    "react-hooks",
+    "@typescript-eslint"
+  ],
   "rules": {
-    "no-console": 0,
+    "jsx-quotes": ["error", "prefer-double"],
+    "@typescript-eslint/ban-ts-comment": "off",
+    "@typescript-eslint/ban-ts-ignore": "off",
+    "import/no-unresolved": "off",
+    "no-restricted-syntax": ["error", "ForInStatement", "LabeledStatement", "WithStatement"],
+    "react/function-component-definition": [2, { "namedComponents": "arrow-function" }],
+//    "no-unused-vars": ["warn", { "ignoreRestSiblings": true, "argsIgnorePattern": "res|next|^err|_" }],
+    "prefer-const": ["error", { "destructuring": "all" }],
+    "prefer-destructuring": [
+      "error",
+      {
+        "VariableDeclarator": { "array": false, "object": true },
+        "AssignmentExpression": { "array": false, "object": false }
+      }
+    ],
+    "@typescript-eslint/no-unused-vars": "error",
+    "no-unused-vars": "off",
+    "consistent-return": 0,
+    "react/prop-types": 0,
+    "no-underscore-dangle": 0,
+    "import/prefer-default-export": 0,
+    "react-hooks/rules-of-hooks": "error",
+    "jsx-a11y/href-no-hash": "off",
+    "jsx-a11y/anchor-is-valid": ["warn", { "aspects": ["invalidHref", "preferButton"] }],
+    "no-shadow": [2, { "hoist": "all", "allow": ["resolve", "reject", "done", "next", "err", "error"] }],
+    "no-param-reassign": ["error", { "props": false }],
+    "no-unused-expressions": ["error", { "allowTaggedTemplates": true, "allowShortCircuit": true }],
+    "max-len": ["error", { "code": 120, "ignoreStrings": true, "ignoreComments": true }],
+    "react/jsx-filename-extension": [1, { "extensions": [".jsx", ".tsx"] }],
+    "import/imports-first": ["error", "absolute-first"],
+    "import/newline-after-import": "error",
+    "camelcase": "warn",
+    "react/no-unused-state": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/no-unused-prop-types": "off",
+    "react/destructuring-assignment": "off",
+    "no-prototype-builtins": "off",
+    "lines-between-class-members": ["error", "always", { "exceptAfterSingleLine": true }],
+    "react/button-has-type": "off",
+    "jsx-a11y/label-has-associated-control": [ "error", {
+      "required": {
+        "some": [ "nesting", "id"  ]
+      }
+    }],
+    "jsx-a11y/label-has-for": [ "error", {
+      "required": {
+        "some": [ "nesting", "id"  ]
+      }
+    }],
+    "padding-line-between-statements": [
+      "warn",
+      { "blankLine": "always", "prev": "*", "next": ["return", "if", "block-like"] },
+      { "blankLine": "always", "prev": ["if", "block-like", "const", "let", "var"], "next": "*" },
+      { "blankLine": "any", "prev": ["singleline-const", "singleline-let", "singleline-var"], "next": "function" },
+      {
+        "blankLine": "any",
+        "prev": ["singleline-const", "singleline-let", "singleline-var"],
+        "next": ["singleline-const", "singleline-let", "singleline-var"]
+      },
+      { "blankLine": "always", "prev": "multiline-expression", "next": "multiline-expression" }
+    ],
+    "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
     "import": 0,
-    "func-names": 0,
-    "no-param-reassign": 0,
-    "arrow-body-style": [2, "as-needed"],
-    "space-before-function-paren": 0,
-    "comma-dangle": 0,
-    "no-unused-vars": 1,
-    "semi": 1,
-    "react/jsx-filename-extension": 0,
-    "linebreak-style": 0,
-    "indent": ["warn", 2]
+    "import/extensions": 0,
+    "semi": [
+      "error",
+      "always"
+    ]
   },
-  "plugins": ["react"],
-  "parser": "babel-eslint",
   "settings": {
     "react": {
+      "pragma": "h",
       "version": "detect"
     }
   }

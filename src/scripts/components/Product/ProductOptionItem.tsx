@@ -1,6 +1,6 @@
 import { h, FunctionComponent } from 'preact';
 import { StateUpdater } from 'preact/hooks';
-import {ProductType, VariantType} from "../../types";
+import { ProductType, VariantType } from 'types';
 
 interface Props {
   name: string;
@@ -20,12 +20,15 @@ const ProductOptionItem: FunctionComponent<Props> = ({
   setVariantOptions,
   product,
 }) => {
-  const currentVariantObj = product.variants.find((variant) => {
-    return variant.options[1] === value && variant.options[0] === variantOptions['color']
-  })
+  const currentVariantObj = product.variants.find(
+    // @ts-ignore
+    (variant) => variant.options[1] === value && variant.options[0] === variantOptions.color
+  );
+
   const isDisabled = !currentVariantObj?.available;
+
   return (
-    <div class="input-holder custom-input custom-input--size inline-flex">
+    <div className="input-holder custom-input custom-input--size inline-flex">
       <input
         id={`filter-field-size-01-${idx}-${value}`}
         type="radio"
@@ -39,7 +42,7 @@ const ProductOptionItem: FunctionComponent<Props> = ({
         checked={variantOptions && variantOptions[name] === value}
         disabled={isDisabled}
       />
-      <label for={`filter-field-size-01-${idx}-${value}`} class="custom-label">
+      <label htmlFor={`filter-field-size-01-${idx}-${value}`} className="custom-label">
         <span>{value}</span>
       </label>
     </div>

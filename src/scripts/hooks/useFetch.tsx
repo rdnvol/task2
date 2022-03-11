@@ -1,23 +1,18 @@
-import { h } from 'preact';
 import { useState, useEffect } from 'preact/hooks';
 import axios from 'axios';
 
-type OptionsType = { [key: string]: string } | {};
-
-interface PropTypes {
-  url: string;
-}
+type OptionsType = Record<string, any>;
 
 const useFetch = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [response, setResponse] = useState<any>(null);
+  const [response, setResponse] = useState(null);
   const [error, setError] = useState<string | null>(null);
   const [options, setOptions] = useState<OptionsType>({});
   const [url, setUrl] = useState<string>('');
 
-  const doFetch = (url: string = '', options: OptionsType = {}) => {
-    setUrl(url);
-    setOptions(options);
+  const doFetch = (requestUrl = '', requestOptions: OptionsType = {}) => {
+    setUrl(requestUrl);
+    setOptions(requestOptions);
     setIsLoading(true);
   };
 

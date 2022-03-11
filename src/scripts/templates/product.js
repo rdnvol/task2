@@ -1,9 +1,10 @@
 import { load } from '@shopify/theme-sections';
-import 'Sections/product';
-import 'Sections/related-product';
-import 'Sections/iframe-video';
-import 'Sections/video';
-import 'Sections/testimonials';
-import 'Sections/slideshow';
+
+import 'scripts/sections/product';
+import 'scripts/sections/related-product';
+import 'scripts/sections/iframe-video';
+import 'scripts/sections/video';
+import 'scripts/sections/testimonials';
+import 'scripts/sections/slideshow';
 
 load('*');

@@ -2,7 +2,7 @@ import { load, register } from '@shopify/theme-sections';
 import { afterScrollEnable, FrameworkFeaturedVideo } from '../helpers/utils.js';
 
 register('iframe-video', {
-  
+
   initIframeVideo: function () {
     afterScrollEnable(this.container, () => {
       this.iframeVideo = new FrameworkFeaturedVideo(

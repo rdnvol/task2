@@ -1,5 +1,6 @@
+import 'preact/debug';
 import { load } from '@shopify/theme-sections';
-import 'Sections/product-variants-swatcher';
-import 'Sections/related-product';
+
+import 'sections/product-variants-swatcher';
 
 load('*');

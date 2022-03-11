@@ -1,18 +1,14 @@
 import { h, Fragment, FunctionComponent } from 'preact';
 import { useRef, useState, useEffect } from 'preact/hooks';
 import { formatMoney } from '@shopify/theme-currency/currency';
-import { useDispatch } from '../redux/hook';
-import { debounce } from 'debounce';
 
-import { CartItem } from '../types/index';
-import { resizeImage, resizeImageSrcset } from '../helpers/utils';
-import {
-  removeItem as removeItemAction,
-  updateItem as updateItemAction,
-} from '../redux/features/cart/cartSlice';
-import { Image } from '../Components/Image';
-import useDebounce from '../hooks/useDebounce';
-import theme from '../helpers/themeSettings';
+import { useDispatch } from 'store/hook';
+import useDebounce from 'hooks/useDebounce';
+import { removeItem as removeItemAction, updateItem as updateItemAction } from 'store/features/cart/cartSlice';
+import { CartItem } from 'types';
+import theme from 'helpers/themeSettings';
+
+import { Image } from './Image';
 
 interface PropsType {
   item?: CartItem;
@@ -31,13 +27,8 @@ const LineItem: FunctionComponent<PropsType> = ({ item }) => {
   };
 
   const updateItem = (quantity) => {
-    const key = item.key;
+    const { key } = item;
 
-    dispatch(updateItemAction({ id: key, options: { quantity } }));
-  };
-
-  const handleChange = (quantity) => {
-    const key = item.key;
     dispatch(
       updateItemAction({
         id: key,
@@ -50,28 +41,26 @@ const LineItem: FunctionComponent<PropsType> = ({ item }) => {
     updateItem(inputValue);
   }, 500);
 
-  const renderImage = ({ image, url, product_title }) => {
-    return (
-      <div className="cart__product-img">
-        <a href={url} aria-label={product_title}>
-          <Image src={image} sizes={['71x88', '71x88']} />
-        </a>
-      </div>
-    );
-  };
+  const renderImage = ({ image, url, product_title }) => (
+    <div className="cart__product-img">
+      <a href={url} aria-label={product_title}>
+        <Image src={image} sizes={['71x88', '71x88']} />
+      </a>
+    </div>
+  );
 
-  const renderProperties = (properties) => {
-    for (var key in properties) {
+  const renderProperties = (properties) =>
+    Object.keys(properties).forEach((key) => {
       if (properties.hasOwnProperty(key)) {
-        var obj = properties[key];
-        for (var prop in obj) {
+        const obj = properties[key];
+
+        return Object.keys(obj).forEach((prop) => {
           if (obj.hasOwnProperty(prop)) {
             return obj[prop];
           }
-        }
+        });
       }
-    }
-  };
+    });
 
   const renderPrice = ({ original_price, price, final_price }) => {
     if (original_price !== final_price) {
@@ -81,18 +70,15 @@ const LineItem: FunctionComponent<PropsType> = ({ item }) => {
           <del>{formatMoney(original_price, theme.moneyFormat)}</del>
         </Fragment>
       );
-    } else {
-      return <div>{formatMoney(price, theme.moneyFormat)}</div>;
     }
+
+    return <div>{formatMoney(price, theme.moneyFormat)}</div>;
   };
 
-  const renderItemOptions = ({
-    options_with_values,
-    product_has_only_default_variant,
-  }) => {
+  const renderItemOptions = ({ options_with_values, product_has_only_default_variant }) => {
     if (!product_has_only_default_variant) {
       return options_with_values.map((option) => (
-        <div>
+        <div key={`${option.name}-${option.value}`}>
           {option.name}: {option.value}
         </div>
       ));
@@ -118,15 +104,12 @@ const LineItem: FunctionComponent<PropsType> = ({ item }) => {
               </a>
             </div>
             <div className="md:hidden mb-3">
-              <label
-                htmlFor={`updates_mobile_${item.key}`}
-                className="visually-hidden"
-              >
+              <label htmlFor={`updates_mobile_${item.key}`} className="visually-hidden">
                 Qty
               </label>
-              <div class="jcf-number flex items-center">
+              <div className="jcf-number flex items-center">
                 <button
-                  class="jcf-btn-dec"
+                  className="jcf-btn-dec"
                   type="button"
                   onMouseDown={() => {
                     setInputValue(inputValue - 1);
@@ -141,17 +124,13 @@ const LineItem: FunctionComponent<PropsType> = ({ item }) => {
                   ref={mobileQuantityInputRef}
                   id={`updates_mobile_${item.key}`}
                   value={item.quantity}
-                  onChange={(e) =>
-                    setInputValue(
-                      parseInt((e.target as HTMLInputElement).value)
-                    )
-                  }
+                  onChange={(e) => setInputValue(parseInt((e.target as HTMLInputElement).value, 10))}
                   onBlur={() => updateItem(inputValue)}
                   min="0"
                   aria-label={theme.cart.quantity}
                 />
                 <button
-                  class="jcf-btn-inc jcf-disabled"
+                  className="jcf-btn-inc jcf-disabled"
                   type="button"
                   onMouseDown={() => {
                     setInputValue(inputValue + 1);
@@ -177,17 +156,15 @@ const LineItem: FunctionComponent<PropsType> = ({ item }) => {
         </div>
       </td>
       <td>
-        <div className="product__price__box mb-4 md:mb-0">
-          {renderPrice(item)}
-        </div>
+        <div className="product__price__box mb-4 md:mb-0">{renderPrice(item)}</div>
       </td>
       <td>
         <label htmlFor={`updates_${item.key}`} className="visually-hidden">
           Quantity
         </label>
-        <div class="jcf-number flex items-center ml-auto">
+        <div className="jcf-number flex items-center ml-auto">
           <button
-            class="jcf-btn-dec"
+            className="jcf-btn-dec"
             type="button"
             onMouseDown={() => {
               setInputValue(inputValue - 1);
@@ -202,15 +179,13 @@ const LineItem: FunctionComponent<PropsType> = ({ item }) => {
             ref={quantityInputRef}
             id={`updates_${item.key}`}
             value={inputValue}
-            onChange={(e) =>
-              setInputValue(parseInt((e.target as HTMLInputElement).value))
-            }
+            onChange={(e) => setInputValue(parseInt((e.target as HTMLInputElement).value, 10))}
             onBlur={() => updateItem(inputValue)}
             min="0"
             aria-label={theme.cart.quantity}
           />
           <button
-            class="jcf-btn-inc jcf-disabled"
+            className="jcf-btn-inc jcf-disabled"
             type="button"
             onMouseDown={() => {
               setInputValue(inputValue + 1);

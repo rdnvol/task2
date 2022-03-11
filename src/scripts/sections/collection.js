@@ -64,7 +64,7 @@ register('collection', {
           }).length;
           this.productsQuantity += loadedProductsLength;
           $(this.productsWrapper).append(nextProducts);
-          this.page++;
+          this.page += 1;
           this._hideSpinner();
           this.fetchInProgress = false;
         });
