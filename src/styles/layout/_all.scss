@@ -1,6 +1,6 @@
 .page-wrapper {
   position: relative;
-  @include media ("≥widescreen") {
+  @include media("≥widescreen") {
     top: auto !important;
   }
 }

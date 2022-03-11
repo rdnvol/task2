@@ -83,7 +83,7 @@ export interface ProductType {
   price_max: number;
   price_min: number;
   price_varies: boolean;
-  published_at: (string | boolean | string)[];
+  published_at: (string | boolean)[];
   requires_selling_plan: boolean | null;
   selected_or_first_available_selling_plan_allocation: object | null;
   selected_or_first_available_variant: VariantType;
@@ -98,7 +98,7 @@ export interface ProductType {
   url: string;
   variants: VariantType[];
   vendor: any;
-  metafields?: any
+  metafields?: any;
 }
 
 export interface ImageType {
@@ -109,7 +109,7 @@ export interface ImageType {
 }
 
 export interface ButtonType {
-  type: string;
+  type: JSX.IntrinsicElements['button']['type'];
   text: string;
   className?: string;
   name?: string;
@@ -117,22 +117,6 @@ export interface ButtonType {
   disabled?: boolean;
   other?: any;
   data_attribute?: string;
-}
-
-export interface CartType {
-  attributes?: string | null;
-  cart_level_discount_applications?: any;
-  currency?: string | null;
-  discount_applications?: any;
-  item_count: number;
-  items: CartItem[] | [];
-  items_subtotal_price: number;
-  note: string | null;
-  original_total_price: number;
-  taxes_included: boolean;
-  total_discount: number;
-  total_price: number;
-  total_weight: number;
 }
 
 export interface CartItem {
@@ -173,7 +157,20 @@ export interface CartItem {
   vendor: string;
 }
 
-export type AddItemType = (
-  id: string,
-  options: { quantity?: number; properties?: object }
-) => Promise<any>;
+export interface CartType {
+  attributes?: string | null;
+  cart_level_discount_applications?: any;
+  currency?: string | null;
+  discount_applications?: any;
+  item_count: number;
+  items: CartItem[] | [];
+  items_subtotal_price: number;
+  note: string | null;
+  original_total_price: number;
+  taxes_included: boolean;
+  total_discount: number;
+  total_price: number;
+  total_weight: number;
+}
+
+export type AddItemType = (id: string, options: { quantity?: number; properties?: object }) => Promise<any>;

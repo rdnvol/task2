@@ -20,7 +20,7 @@ function onShowHidePasswordForm(evt) {
 }
 
 function checkUrlHash() {
-  const hash = window.location.hash;
+  const { hash } = window.location;
 
   // Allow deep linking to recover password form
   if (hash === '#recover') {
@@ -32,9 +32,7 @@ function checkUrlHash() {
  *  Show/Hide recover password form
  */
 function toggleRecoverPasswordForm() {
-  document
-    .querySelector(selectors.recoverPasswordForm)
-    .classList.toggle('hidden');
+  document.querySelector(selectors.recoverPasswordForm).classList.toggle('hidden');
   document.querySelector(selectors.loginForm).classList.toggle('hidden');
 }
 
@@ -54,9 +52,7 @@ if (document.querySelector(selectors.recoverPasswordForm)) {
   checkUrlHash();
   resetPasswordSuccess();
 
-  document
-    .querySelectorAll(selectors.recoverPasswordFormTriggers)
-    .forEach((trigger) => {
-      trigger.addEventListener('click', onShowHidePasswordForm);
-    });
+  document.querySelectorAll(selectors.recoverPasswordFormTriggers).forEach((trigger) => {
+    trigger.addEventListener('click', onShowHidePasswordForm);
+  });
 }

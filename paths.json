@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "rootDir": "src",
+    "baseUrl": ".",
+    "paths": {
+      "*": ["./src/scripts/*"],
+      "scripts/*": ["./src/scripts/*"],
+      "sections/*": ["./src/scripts/sections/*"],
+      "components/*": ["./src/scripts/components/*"],
+      "helpers/*": ["./src/scripts/helpers/*"],
+      "store/*": ["./src/scripts/store/*"]
+    }
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

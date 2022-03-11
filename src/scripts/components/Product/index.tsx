@@ -1,9 +1,10 @@
 import { h, FunctionComponent } from 'preact';
 import { useEffect, useContext } from 'preact/hooks';
 
-import { ProductType } from '../../types';
-import { SwatcherProductsContext } from '../../contexts/swatcherProductsContext';
-import { ProductContext } from '../../contexts/productContext';
+import { ProductType } from 'types';
+import { SwatcherProductsContext } from 'contexts/swatcherProductsContext';
+import { useProductContext } from 'contexts/productContext';
+
 import ProductGallery from './ProductGallery';
 import ProductMainBlock from './ProductMainBlock';
 import useFetch from '../../hooks/useFetch';
@@ -18,15 +19,9 @@ interface Props {
   settings: SettingsType;
 }
 
-const Product: FunctionComponent<Props> = ({
-  product,
-  settings: { settings },
-}) => {
-  const { setSwatchProducts, swatchTypes } = useContext(
-    SwatcherProductsContext
-  );
-  const { setSettings, setChosenProduct, chosenProduct, enhanceProduct } =
-    useContext(ProductContext);
+const Product: FunctionComponent<Props> = ({ product, settings: { settings } }) => {
+  const { setSwatchProducts, swatchTypes } = useContext(SwatcherProductsContext);
+  const { setSettings, enhanceProduct } = useProductContext();
   const [{ response }, doFetch] = useFetch();
 
   useEffect(() => {
@@ -60,13 +55,13 @@ const Product: FunctionComponent<Props> = ({
   }, [product]);
 
   return (
-    <div class="container">
-      <div class="product-main-block relative">
-        <div class="md:flex md:space-x-8">
-          <div class="md:w-6/12 mb-4 md:mb-0">
+    <div className="container">
+      <div className="product-main-block relative">
+        <div className="md:flex md:space-x-8">
+          <div className="md:w-6/12 mb-4 md:mb-0">
             <ProductGallery media={product.media} />
           </div>
-          <div class="md:w-6/12">
+          <div className="md:w-6/12">
             <ProductMainBlock product={product} />
           </div>
         </div>
