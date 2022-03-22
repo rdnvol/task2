@@ -43,7 +43,6 @@
     "import/no-unresolved": "off",
     "no-restricted-syntax": ["error", "ForInStatement", "LabeledStatement", "WithStatement"],
     "react/function-component-definition": [2, { "namedComponents": "arrow-function" }],
-//    "no-unused-vars": ["warn", { "ignoreRestSiblings": true, "argsIgnorePattern": "res|next|^err|_" }],
     "prefer-const": ["error", { "destructuring": "all" }],
     "prefer-destructuring": [
       "error",
