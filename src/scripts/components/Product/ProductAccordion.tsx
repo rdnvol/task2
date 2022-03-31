@@ -1,4 +1,3 @@
-// @ts-ignore
 import { h, FunctionComponent } from 'preact';
 import { useEffect } from 'preact/hooks';
 import { v1 as uuid } from 'uuid';
