@@ -14,25 +14,10 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '12.x'
-      - name: Cache node modules
-        uses: actions/cache@v2
-        env:
-          cache-name: cache-node-modules
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
       - name: NPM install
         run: npm install
       - name: Build
         run: npm run build
-      - name: test
-        run: ls
-      - name: Checkout
-        uses: actions/checkout@v2
       - name: Lighthouse
         uses: shopify/lighthouse-ci-action@1.0
         with:
