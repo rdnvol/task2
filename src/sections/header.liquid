@@ -110,12 +110,16 @@
   </div>
 </nav>
 
-<style media="screen">
+{% style %}
   .header__bar {
-    background: {{ section.settings.announcement_bar_bg_color }} !important;
-    color: {{ section.settings.announcement_bar_text_color }} !important;
+    {% if section.settings.announcement_bar_bg_color != blank and section.settings.announcement_bar_bg_color.alpha != 0 %}
+      background: {{ section.settings.announcement_bar_bg_color }} !important;
+    {% endif %}
+    {% if section.settings.announcement_bar_text_color != blank and section.settings.announcement_bar_text_color.alpha != 0 %}
+      color: {{ section.settings.announcement_bar_text_color }} !important;
+    {% endif %}
   }
-</style>
+{% endstyle %}
 
 {% schema %}
 {

@@ -49,18 +49,18 @@
 </section>
 
 {% style %}
-
-  {% if section.settings.color != blank %}
+  {% if section.settings.color != blank and section.settings.color.alpha != 0 %}
     .custom-color {
       color: {{ section.settings.color }};
     }
+  {% endif %}
+  {% if section.settings.color_mobile != blank and section.settings.color_mobile.alpha != 0 %}
     @media screen and (max-width: 767px) {
       .custom-color {
         color: {{ section.settings.color_mobile }};
       }
     }
   {% endif %}
-
 
   @media screen and (min-width: 768px) {
     .hero__img::after {
