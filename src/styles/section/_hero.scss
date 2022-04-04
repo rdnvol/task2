@@ -14,9 +14,13 @@
       right: 0;
       bottom: 0;
       left: 0;
+      height: 100%;
       margin: 0;
       &::after {
         display: block;
+        @include media ("≤767px") {
+          display: none;
+        }
       }
 
       img {
@@ -80,7 +84,7 @@
     }
 
     .hero__img {
-      height: 280px;
+      height: 420px;
       @include media ("≥tablet") {
         height: 100%;
       }
@@ -95,7 +99,7 @@
     }
 
     .hero__img {
-      height: 340px;
+      height: 470px;
       @include media ("≥tablet") {
         height: 100%;
       }
@@ -110,7 +114,7 @@
     }
 
     .hero__img {
-      height: 390px;
+      height: 520px;
       @include media ("≥tablet") {
         height: 100%;
       }
