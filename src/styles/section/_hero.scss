@@ -6,7 +6,7 @@
     margin: 0;
   }
   &.hero--full-height {
-    height: calc(100vh - var(--header-height));
+    height: calc(100vh - var(--header-height, 100vh));
 
     .hero__img {
       position: absolute;
@@ -48,7 +48,12 @@
   &.hero--banner-small,
   &.hero--banner-medium,
   &.hero--banner-large {
+    &.hero--full-height {
 
+      .hero__img {
+        height: 100%;
+      }
+    }
     &.hero--full-width {
 
       .hero__img {
