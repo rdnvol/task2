@@ -49,12 +49,12 @@
 </section>
 
 {% style %}
-  {% if section.settings.color != blank and section.settings.color.alpha != 0 %}
+  {% if section.settings.color.alpha != 0 and section.settings.color != blank %}
     .custom-color {
       color: {{ section.settings.color }};
     }
   {% endif %}
-  {% if section.settings.color_mobile != blank and section.settings.color_mobile.alpha != 0 %}
+  {% if section.settings.color_mobile.alpha != 0 and section.settings.color_mobile != blank %}
     @media screen and (max-width: 767px) {
       .custom-color {
         color: {{ section.settings.color_mobile }};
@@ -198,7 +198,7 @@
     {
       "type": "checkbox",
       "id": "fullheight",
-      "label": "Full height",
+      "label": "Show text below images",
       "default": false
     }
   ],
