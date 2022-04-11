@@ -265,34 +265,42 @@ export default {
         {
           from: settings.theme.src.assets,
           to: settings.theme.dist.assets,
+          info: { minimized: true },
         },
         {
           from: settings.theme.src.layout,
           to: settings.theme.dist.layout,
+          info: { minimized: true },
         },
         {
           from: settings.theme.src.locales,
           to: settings.theme.dist.locales,
+          info: { minimized: true },
         },
         {
           from: settings.theme.src.snippets,
           to: settings.theme.dist.snippets,
+          info: { minimized: true },
         },
         {
           from: settings.theme.src.sections,
           to: settings.theme.dist.sections,
+          info: { minimized: true },
         },
         {
           from: settings.theme.src.templates,
           to: settings.theme.dist.templates,
+          info: { minimized: true },
         },
         {
           from: settings.theme.src.config,
           to: settings.theme.dist.config,
+          info: { minimized: true },
         },
         {
           from: settings.theme.src.yml,
           to: settings.theme.dist.yml,
+          info: { minimized: true },
         },
       ],
     }),
