@@ -144,6 +144,7 @@ export class Product {
     this.inputName.dispatchEvent(new Event('change', { bubbles: true }));
   }
 
+  // eslint-disable-next-line class-methods-use-this
   updateVariantUrl(variant) {
     if (!variant) return;
 
@@ -183,7 +184,7 @@ export class Product {
       this.submitButton.classList.remove('disabled');
       this.submitButton.removeAttribute('disabled');
       this.submitButtonText.innerText = theme.strings.addToCart;
-      this.shopifyButtons.removeClass('hidden');
+      this.shopifyButtons.classList.remove('hidden');
     } else {
       this.submitButtonText.innerText = theme.strings.soldOut;
       this.submitButton.classList.add('disabled');
@@ -193,30 +194,36 @@ export class Product {
   }
 
   updateVariantPrice(variant) {
-    this.priceContainer.empty();
     while (this.priceContainer.firstChild) this.priceContainer.removeChild(this.priceContainer.firstChild);
 
     if (variant) {
       if (variant.compare_at_price > variant.price) {
-        this.priceContainer.appendChild(`<ins>${formatMoney(variant.price, theme.moneyFormat)}</ins>`);
+        this.priceContainer.innerHTML = `<ins>${formatMoney(variant.price, theme.moneyFormat)}</ins>`;
 
-        this.priceContainer.appendChild(`<del>${formatMoney(variant.compare_at_price, theme.moneyFormat)}</del>`);
+        this.priceContainer.innerHTML = `<del>${formatMoney(variant.compare_at_price, theme.moneyFormat)}</del>`;
       } else {
-        this.priceContainer.appendChild(`<div>${formatMoney(variant.price, theme.moneyFormat)}</div>`);
+        this.priceContainer.innerHTML = `<div>${formatMoney(variant.price, theme.moneyFormat)}</div>`;
       }
     }
   }
 
+  // eslint-disable-next-line class-methods-use-this
   updateGallery(variant) {
-    const newMedia = $('.product__gallery-slider')
-      .find(`.product__gallery-slider__img[data-position="${variant.featured_image.position}"]`)
-      .parent();
+    const sliderWrapper = this.wrapper.querySelector('.product__gallery-slider');
 
-    const mediaContainer = $('.product__gallery-slider');
+    const currentVariantSliderItem = sliderWrapper.querySelector(
+      `.product__gallery-slider__img[data-position="${variant.featured_image?.position}"]`
+    );
 
-    if ($(newMedia).is($(mediaContainer.first()))) return;
+    if (!currentVariantSliderItem) return false;
 
-    $(mediaContainer).prepend(newMedia);
+    if (
+      sliderWrapper.firstElementChild.querySelector('.product__gallery-slider__img').getAttribute('data-position') ===
+      currentVariantSliderItem.getAttribute('data-position')
+    )
+      return false;
+
+    sliderWrapper.prepend(currentVariantSliderItem.parentElement);
   }
 
   initSubmit() {
