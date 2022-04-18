@@ -66,6 +66,7 @@ export class Product {
     gallerySlides.forEach((slide) => {
       if (slide.querySelector('product-model') || slide.querySelector('deferred-media')) {
         const viewBtn = slide.querySelector('.deferred-media__poster');
+
         viewBtn.addEventListener('click', () => {
           window.dispatchEvent(modelViewerEvent);
         });
@@ -289,7 +290,7 @@ export class Product {
   }
 
   waitForElement = (selector) =>
-    new Promise((resolve, reject) => {
+    new Promise((resolve) => {
       const observer = new MutationObserver((mutations) => {
         mutations.forEach((mutation) => {
           const nodes = Array.from(mutation.addedNodes);
@@ -307,7 +308,7 @@ export class Product {
         });
       });
 
-      observer.observe(this.wrapper.find('.shopify-payment-button')[0], {
+      observer.observe(this.wrapper.querySelectorAll('.shopify-payment-button')[0], {
         subtree: true,
         attributes: true,
         childList: true,
@@ -342,6 +343,7 @@ export class Product {
       const tableWrapper = document.createElement('div');
       const parentElement = sizeChartBtn.parentNode;
 
+      // eslint-disable-next-line no-use-before-define
       wrap(tableContainer.querySelector('.rte table'), tableWrapper);
       parentElement.insertBefore(tableWrapper, sizeChartBtn);
       tableWrapper.classList.add('table-holder');
