@@ -59,13 +59,13 @@ export class Product {
   initModelViewer() {
     const modelViewerEvent = new CustomEvent('activeModelSlide');
 
-    const galleryWrapper = this.wrapper.find('.product__gallery-slider .product__gallery-slider__item');
+    const galleryWrapper = this.wrapper.querySelector('.product__gallery-slider');
+    const gallerySlides = galleryWrapper.querySelectorAll('.product__gallery-slider__item');
 
-    galleryWrapper.each((index, slide) => {
-      if ($(slide).find('product-model').length > 0 || $(slide).find('deferred-media').length > 0) {
-        const viewBtn = $(slide).find('.deferred-media__poster');
-
-        viewBtn.on('click', () => {
+    gallerySlides.forEach((slide) => {
+      if (slide.querySelector('product-model') || slide.querySelector('deferred-media')) {
+        const viewBtn = slide.querySelector('.deferred-media__poster');
+        viewBtn.addEventListener('click', () => {
           window.dispatchEvent(modelViewerEvent);
         });
       }
