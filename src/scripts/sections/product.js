@@ -142,6 +142,8 @@ export class Product {
   }
 
   updateVariantInput(variant) {
+    if (!variant) return false;
+
     this.inputName.value = variant.id;
     this.inputName.dispatchEvent(new Event('change', { bubbles: true }));
   }
@@ -211,6 +213,8 @@ export class Product {
 
   // eslint-disable-next-line class-methods-use-this
   updateGallery(variant) {
+    if (!variant) return false;
+
     const sliderWrapper = this.wrapper.querySelector('.product__gallery-slider');
 
     const currentVariantSliderItem = sliderWrapper.querySelector(
@@ -323,6 +327,8 @@ export class Product {
 
   // eslint-disable-next-line class-methods-use-this
   sizeChartInit() {
+    if (!this.sizeChart) return false;
+
     Fancybox.bind('.size-chart-link', {
       closeButton: 'outside',
       showClass: 'size-chart',
