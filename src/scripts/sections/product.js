@@ -9,7 +9,6 @@ import serializeArray from 'helpers/serializeArray';
 
 register('product', {
   _initProduct(handle) {
-    // eslint-disable-next-line no-use-before-define
     if (handle) window.Product = new Product(this.container);
   },
   // Shortcut function called when a section is loaded via 'sections.load()' or by the Theme Editor 'shopify:section:load' event.
@@ -33,7 +32,6 @@ export class Product {
   constructor(elem) {
     this.wrapper = elem;
     this.handle = this.wrapper.getAttribute('data-handle');
-    this.formElement = this.wrapper.querySelector('[data-product-form]');
     this.submitButton = this.wrapper.querySelector('[data-submit-button]');
     this.submitButtonText = this.wrapper.querySelector('[data-submit-button]');
     this.priceContainer = this.wrapper.querySelector('[data-price-wrapper]');
@@ -111,7 +109,6 @@ export class Product {
     if (selector === 'input') {
       this.options = Array.from(el.querySelectorAll(selector)).reduce((acc, curr) => {
         if (curr.checked) {
-          // eslint-disable-next-line no-param-reassign
           acc = [...acc, curr.value];
         }
 
@@ -119,7 +116,6 @@ export class Product {
       }, []);
 
       const titles = this.wrapper.querySelectorAll('.product__variant-label-box').reduce((acc, curr) => {
-        // eslint-disable-next-line no-param-reassign
         acc = [...acc, curr.querySelector('span:last-child')];
 
         return acc;
@@ -148,7 +144,6 @@ export class Product {
     this.inputName.dispatchEvent(new Event('change', { bubbles: true }));
   }
 
-  // eslint-disable-next-line class-methods-use-this
   updateVariantUrl(variant) {
     if (!variant) return;
 
@@ -164,14 +159,12 @@ export class Product {
     this.updateGallery(variant);
   }
 
-  // eslint-disable-next-line class-methods-use-this
   getProduct() {
     let product;
 
     try {
       product = JSON.parse(document.getElementById('product-json').innerHTML);
     } catch (error) {
-      // eslint-disable-next-line no-console
       console.warn(error);
     }
 
@@ -211,7 +204,6 @@ export class Product {
     }
   }
 
-  // eslint-disable-next-line class-methods-use-this
   updateGallery(variant) {
     if (!variant) return false;
 
@@ -253,7 +245,6 @@ export class Product {
     });
   }
 
-  // eslint-disable-next-line class-methods-use-this
   initAddToBag(event) {
     event.preventDefault();
 
@@ -267,7 +258,6 @@ export class Product {
       if (curr.name.includes('properties')) {
         const prop = curr.name.split('[')[1].split(']')[0];
 
-        // eslint-disable-next-line no-param-reassign
         acc = { ...acc, [prop]: curr.value };
       }
 
@@ -325,7 +315,6 @@ export class Product {
     this.variantData = this.variantData || JSON.parse(el.querySelector('[type="application/json"]').textContent);
   }
 
-  // eslint-disable-next-line class-methods-use-this
   sizeChartInit() {
     if (!this.sizeChart) return false;
 
@@ -339,7 +328,6 @@ export class Product {
           const sizeChartBtn = document.querySelector('.size-chart-link');
           const fancyboxParent = document.querySelector('.fancybox__content');
 
-          // eslint-disable-next-line no-use-before-define
           draftSizeChartElem(fancyboxParent, tableContainer, sizeChartBtn);
         },
       },
@@ -349,7 +337,6 @@ export class Product {
       const tableWrapper = document.createElement('div');
       const parentElement = sizeChartBtn.parentNode;
 
-      // eslint-disable-next-line no-use-before-define
       wrap(tableContainer.querySelector('.rte table'), tableWrapper);
       parentElement.insertBefore(tableWrapper, sizeChartBtn);
       tableWrapper.classList.add('table-holder');
