@@ -5,6 +5,7 @@ import { Fancybox } from '@fancyapps/ui/src/Fancybox/Fancybox.js';
 
 import { getCart, openPopup, addJustAdded } from 'store/features/cart/cartSlice';
 import { addItem } from 'helpers/cartAjaxCall';
+import serializeArray from 'helpers/serializeArray';
 
 register('product', {
   _initProduct(handle) {
@@ -247,10 +248,11 @@ export class Product {
     });
   }
 
+  // eslint-disable-next-line class-methods-use-this
   initAddToBag(event) {
     event.preventDefault();
 
-    const serializedForm = $(event.target).serializeArray();
+    const serializedForm = serializeArray(event.target);
 
     const variantId = serializedForm.find((item) => item.name === 'id')?.value;
 
@@ -260,6 +262,7 @@ export class Product {
       if (curr.name.includes('properties')) {
         const prop = curr.name.split('[')[1].split(']')[0];
 
+        // eslint-disable-next-line no-param-reassign
         acc = { ...acc, [prop]: curr.value };
       }
 
