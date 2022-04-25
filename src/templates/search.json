@@ -2,7 +2,8 @@
   "sections": {
     "main": {
       "type": "search-template",
-      "settings": {}
+      "settings": {
+      }
     }
   },
   "order": [

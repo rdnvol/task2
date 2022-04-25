@@ -58,7 +58,8 @@
         "fcd9bbbf-0c2a-4a00-9a9e-af31d7a4dbc7",
         "015a86d1-f36c-4b55-8590-94b38e3192b5"
       ],
-      "settings": {}
+      "settings": {
+      }
     },
     "home_featured_collection": {
       "type": "home-featured-collection",

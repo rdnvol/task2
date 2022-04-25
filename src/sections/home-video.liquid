@@ -1,5 +1,5 @@
 {% if section.settings.image != blank %}
-  {% assign image = section.settings.image | img_url: 'master' %}
+  {% assign image = section.settings.image | image_url %}
 {% else %}
   {% assign image = 'img-placeholder.png' | asset_url %}
 {% endif %}
@@ -30,112 +30,112 @@
 </div>
 
 {% schema %}
-  {
-    "name": "Video",
-    "settings": [
-      {
-        "type": "image_picker",
-        "id": "image",
-        "label": "Cover image"
-      },
-      {
-        "type": "url",
-        "id": "video",
-        "label": "Video link",
-        "info": "Only direct links to mp4 files"
-      },
-      {
-        "type": "select",
-        "id": "alignment",
-        "label": "Image alignment",
-        "default": "",
-        "options": [
-          {
-            "value": "background-top-left",
-            "label": "Top left"
-          },
-          {
-            "value": "background-top-center",
-            "label": "Top center"
-          },
-          {
-            "value": "background-top-right",
-            "label": "Top right"
-          },
-          {
-            "value": "background-center-left",
-            "label": "Middle left"
-          },
-          {
-            "value": "",
-            "label": "Middle center"
-          },
-          {
-            "value": "background-center-right",
-            "label": "Middle right"
-          },
-          {
-            "value": "background-bottom-left",
-            "label": "Bottom left"
-          },
-          {
-            "value": "background-bottom-center",
-            "label": "Bottom center"
-          },
-          {
-            "value": "background-bottom-right",
-            "label": "Bottom right"
-          }
-        ]
-      },
-      {
-        "type": "select",
-        "id": "height",
-        "label": "Video height",
-        "default": "",
-        "options": [
-          {
-            "value": "jquery-background-video-wrapper--small",
-            "label": "Small"
-          },
-          {
-            "value": "",
-            "label": "Medium"
-          },
-          {
-            "value": "jquery-background-video-wrapper--large",
-            "label": "Large"
-          }
-        ]
-      },
-      {
-        "type": "text",
-        "id": "title",
-        "label": "Heading",
-        "default": "Heading"
-      },
-      {
-        "type": "select",
-        "id": "text_size",
-        "label": "Text size",
-        "default": "medium",
-        "options": [
-          {
-            "value": "medium",
-            "label": "Medium"
-          },
-          {
-            "value": "large",
-            "label": "Large"
-          }
-        ]
-      }
-    ],
-    "presets": [
-      {
-        "name": "Video",
-        "category": "Video"
-      }
-    ]
-  }
+{
+  "name": "Video",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Cover image"
+    },
+    {
+      "type": "url",
+      "id": "video",
+      "label": "Video link",
+      "info": "Only direct links to mp4 files"
+    },
+    {
+      "type": "select",
+      "id": "alignment",
+      "label": "Image alignment",
+      "default": "",
+      "options": [
+        {
+          "value": "background-top-left",
+          "label": "Top left"
+        },
+        {
+          "value": "background-top-center",
+          "label": "Top center"
+        },
+        {
+          "value": "background-top-right",
+          "label": "Top right"
+        },
+        {
+          "value": "background-center-left",
+          "label": "Middle left"
+        },
+        {
+          "value": "",
+          "label": "Middle center"
+        },
+        {
+          "value": "background-center-right",
+          "label": "Middle right"
+        },
+        {
+          "value": "background-bottom-left",
+          "label": "Bottom left"
+        },
+        {
+          "value": "background-bottom-center",
+          "label": "Bottom center"
+        },
+        {
+          "value": "background-bottom-right",
+          "label": "Bottom right"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "height",
+      "label": "Video height",
+      "default": "",
+      "options": [
+        {
+          "value": "jquery-background-video-wrapper--small",
+          "label": "Small"
+        },
+        {
+          "value": "",
+          "label": "Medium"
+        },
+        {
+          "value": "jquery-background-video-wrapper--large",
+          "label": "Large"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Heading"
+    },
+    {
+      "type": "select",
+      "id": "text_size",
+      "label": "Text size",
+      "default": "medium",
+      "options": [
+        {
+          "value": "medium",
+          "label": "Medium"
+        },
+        {
+          "value": "large",
+          "label": "Large"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Video",
+      "category": "Video"
+    }
+  ]
+}
 {% endschema %}

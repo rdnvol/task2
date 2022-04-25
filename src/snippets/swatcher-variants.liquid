@@ -7,9 +7,9 @@
 {%- assign size_chart_url = section.settings.size_chart_url -%}
 {%- assign show_variant_label = section.settings.show_variant_label -%}
 {%- assign product_form_id = 'product-form-' | append: section.id -%}
-{%- assign show_dynamic_button = section.settings.show_dynamic_button -%}
 
-{%- assign first_3d_model = product.media | where: "media_type", "model" | first -%}
+
+
 
 <section data-section-id="{{ section.id }}"
          class="section"
@@ -149,9 +149,9 @@
                           {% for value in option.values %}
                             <div class="input-holder custom-input custom-input--{% if option.name == "Color" %}colors{% else %}size{% endif %} inline-flex">
                               <input
-                                id="filter-field-colors-01-{{ forloop.index }}-{{option.name}}"
+                                  id="filter-field-colors-01-{{ forloop.index }}-{{ option.name }}"
                                 type="radio"
-                                name="filter-field-{{option.name}}"
+                                  name="filter-field-{{ option.name }}"
                                 value="{{ value }}"
                                 {% if option.selected_value == value %}checked{% endif %}
                               />
@@ -172,7 +172,7 @@
                                   {% if section.settings.swatcher_color_type == 'metafields' %}
                                     <span style="background-color: {{ metafield_color | replace: ' ', '' | default: value }};"></span>
                                   {% else %}
-                                    <img image-position="{{ image_position }}" src="{{ image_color | img_url: "25x25" }}" alt="image description">
+                                      <img image-position="{{ image_position }}" src="{{ image_color | image_url: width: 25, height: 25 }}" alt="image description">
                                   {% endif %}
                                 {% else %}
                                   <span>{{ value }}</span>

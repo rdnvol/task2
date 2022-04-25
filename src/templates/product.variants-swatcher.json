@@ -2,7 +2,8 @@
   "sections": {
     "main": {
       "type": "product-variants-swatcher",
-      "settings": {}
+      "settings": {
+      }
     },
     "product-recommendations": {
       "type": "product-recommendations",

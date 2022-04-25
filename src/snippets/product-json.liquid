@@ -63,13 +63,13 @@
     "metafields" : {
       "accordion" : {
         "heading" : [
-          {% for i in (1..4)  %}
+          {% for i in (1..4) %}
             {% assign heading = 'heading_' | append: i %}
             {{ product.metafields.accordion[heading] | json }}{%- unless forloop.last -%},{%- endunless -%}
           {% endfor %}
         ],
         "text" : [
-          {% for i in (1..4)  %}
+          {% for i in (1..4) %}
             {% assign accordion_text = 'text_' | append: i %}
             {{ product.metafields.accordion[accordion_text] | join: '' | json }}{%- unless forloop.last -%},{%- endunless -%}
           {% endfor %}

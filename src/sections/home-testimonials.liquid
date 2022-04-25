@@ -36,51 +36,51 @@
 </div>
 
 {% schema %}
-  {
-    "name": "Testimonials",
-    "settings": [
-       {
-         "type": "text",
-         "id": "title",
-         "label": "Heading",
-         "default": "Heading"
-       }
-    ],
-    "blocks": [
-      {
-        "type": "quote",
-        "name": "Testimonial",
-        "settings": [
-          {
-            "type": "richtext",
-            "id": "quote",
-            "label": "Text"
-          },
-          {
-            "type": "text",
-            "id": "author",
-            "label": "Author",
-            "default": "Author's name"
-          }
-        ]
-      }
-    ],
-    "presets": [
-      {
-        "name": "Testimonials",
-        "category": "Text",
-        "blocks": [
-          {
-            "type": "quote"
-          },
-          {
-            "type": "quote"
-          },
-          {
-            "type": "quote"
-          }
-        ]
-      }
-    ]
-  }
+{
+  "name": "Testimonials",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Heading"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "quote",
+      "name": "Testimonial",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "quote",
+          "label": "Text"
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "label": "Author",
+          "default": "Author's name"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonials",
+      "category": "Text",
+      "blocks": [
+        {
+          "type": "quote"
+        },
+        {
+          "type": "quote"
+        },
+        {
+          "type": "quote"
+        }
+      ]
+    }
+  ]
+}
 {% endschema %}

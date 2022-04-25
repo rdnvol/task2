@@ -40,32 +40,32 @@
 <script async src="https://maps.googleapis.com/maps/api/js?key={{ settings.gm_key }}&callback=initMap&libraries=&v=weekly"></script>
 
 {% schema %}
-  {
-    "name": "Google map",
-    "settings": [
-      {
-        "type": "text",
-        "id": "title",
-        "label": "Heading",
-        "default": "Our store"
-      },
-      {
-        "type": "richtext",
-        "id": "address",
-        "label": "Address",
-        "default": "<p>123 Fake St.<br>Toronto, Canada</p>"
-      },
-      {
-        "type": "url",
-        "id": "map_btn_url",
-        "label": "Button link"
-      }
-    ],
-    "presets": [
-      {
-        "name": "Google map",
-        "category": "Location"
-      }
-    ]
-  }
+{
+  "name": "Google map",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Our store"
+    },
+    {
+      "type": "richtext",
+      "id": "address",
+      "label": "Address",
+      "default": "<p>123 Fake St.<br>Toronto, Canada</p>"
+    },
+    {
+      "type": "url",
+      "id": "map_btn_url",
+      "label": "Button link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Google map",
+      "category": "Location"
+    }
+  ]
+}
 {% endschema %}

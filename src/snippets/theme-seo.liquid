@@ -1,5 +1,5 @@
 {%- if settings.favicon != blank -%}
-  <link rel="shortcut icon" href="{{ settings.favicon | img_url: '32x32' }}" type="image/png" crossorigin>
+  <link rel="shortcut icon" href="{{ settings.favicon | image_url: width: 32, height: 32 }}" type="image/png" crossorigin>
 {%- endif -%}
 
 {%- capture seo_title -%}

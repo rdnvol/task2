@@ -34,45 +34,45 @@
 {% endif %}
 
 {% schema %}
-  {
-    "name": "Collections list",
-    "settings": [
-      {
-        "type": "text",
-        "id": "title",
-        "label": "Heading",
-        "default": "Collections list"
-      }
-    ],
-    "blocks": [
-      {
-        "name": "Collection",
-        "type": "collection",
-        "settings": [
-          {
-            "type": "collection",
-            "id": "collection",
-            "label": "Collection"
-          }
-        ]
-      }
-    ],
-    "presets": [
-      {
-        "name": "Collections list",
-        "category": "Collection",
-        "blocks": [
-          {
-            "type": "collection"
-          },
-          {
-            "type": "collection"
-          },
-          {
-            "type": "collection"
-          }
-        ]
-      }
-    ]
-  }
+{
+  "name": "Collections list",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Collections list"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Collection",
+      "type": "collection",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collections list",
+      "category": "Collection",
+      "blocks": [
+        {
+          "type": "collection"
+        },
+        {
+          "type": "collection"
+        },
+        {
+          "type": "collection"
+        }
+      ]
+    }
+  ]
+}
 {% endschema %}

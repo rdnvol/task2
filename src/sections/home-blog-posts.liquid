@@ -74,45 +74,45 @@
 {% endif %}
 
 {% schema %}
-  {
-    "name": "Blog posts",
-    "settings": [
-      {
-        "type": "text",
-        "id": "title",
-        "label": "Heading",
-        "default": "Blog posts"
-      }
-    ],
-    "blocks": [
-      {
-        "name": "Blog post",
-        "type": "article",
-        "settings": [
-          {
-            "type": "article",
-            "id": "article",
-            "label": "Article"
-          }
-        ]
-      }
-    ],
-    "presets": [
-      {
-        "name": "Blog posts",
-        "category": "Text",
-        "blocks": [
-          {
-            "type": "article"
-          },
-          {
-            "type": "article"
-          },
-          {
-            "type": "article"
-          }
-        ]
-      }
-    ]
-  }
+{
+  "name": "Blog posts",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Blog posts"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Blog post",
+      "type": "article",
+      "settings": [
+        {
+          "type": "article",
+          "id": "article",
+          "label": "Article"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Blog posts",
+      "category": "Text",
+      "blocks": [
+        {
+          "type": "article"
+        },
+        {
+          "type": "article"
+        },
+        {
+          "type": "article"
+        }
+      ]
+    }
+  ]
+}
 {% endschema %}

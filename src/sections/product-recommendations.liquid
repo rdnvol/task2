@@ -28,42 +28,42 @@
 {% endif %}
 
 {% schema %}
-  {
-    "name": "Related products",
-    "settings": [
-      {
-        "type": "checkbox",
-        "id": "show_product_recommendations",
-        "label": "Turn on product recommendations",
-        "default": true
-      },
-      {
-        "type": "text",
-        "id": "title",
-        "label": "Heading",
-        "default": "You may also like"
-      },
-      {
-        "type": "range",
-        "id":  "limit",
-        "min":  1,
-        "max":  8,
-        "step":  1,
-        "label":  "Limit",
-        "default": 4
-      },
-      {
-        "type": "url",
-        "id": "button_link",
-        "label": "Button link",
-        "info": "Button is disabled if empty"
-      },
-      {
-        "type": "text",
-        "id": "button_label",
-        "label": "Button label",
-        "default": "back to home page"
-      }
-    ]
-  }
+{
+  "name": "Related products",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_product_recommendations",
+      "label": "Turn on product recommendations",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "You may also like"
+    },
+    {
+      "type": "range",
+      "id": "limit",
+      "min": 1,
+      "max": 8,
+      "step": 1,
+      "label": "Limit",
+      "default": 4
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link",
+      "info": "Button is disabled if empty"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "back to home page"
+    }
+  ]
+}
 {% endschema %}

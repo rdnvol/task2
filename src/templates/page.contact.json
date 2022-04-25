@@ -2,7 +2,8 @@
   "sections": {
     "main": {
       "type": "contact-template",
-      "settings": {}
+      "settings": {
+      }
     }
   },
   "order": [
