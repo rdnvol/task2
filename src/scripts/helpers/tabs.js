@@ -133,6 +133,10 @@ tabs.prototype = {
     return link.getAttribute(this.options.attrib);
   },
 
+  haveTabHolder() {
+    return this.tabHolder && this.tabHolder.length;
+  },
+
 };
 
 export default tabs;
