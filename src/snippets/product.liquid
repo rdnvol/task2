@@ -127,11 +127,13 @@
                             <div class="text-right pb-2">
                               <a class="size-chart-link"
                               data-type="ajax"
+                              data-filter=".section .container"
                               href="{{ size_chart_url }}">{{ 'products.product.size_chart' | t }}</a>
                             </div>
                             {% else %}
                             <a class="size-chart-link"
                               data-type="ajax"
+                              data-filter=".section .container"
                               href="{{ size_chart_url }}">{{ 'products.product.size_chart' | t }}</a>
                           {% endif %}
                         {% endif %}
@@ -157,7 +159,7 @@
                   {{ product.variants | json }}
                 </script>
               </div>
-  
+
               <noscript class="product-form__noscript-wrapper-{{ section.id }}">
                 <div class="product-form__input{% if product.has_only_default_variant %} hidden{% endif %}">
                   <label class="form__label" for="Variants-{{ section.id }}">{{ 'products.product.product_variants' | t }}</label>
@@ -178,7 +180,7 @@
                   </div>
                 </div>
               </noscript>
-  
+
               {% when "quantity_selector" %}
                   <div class="sm:flex sm:space-x-8 product__row">
                     <div class="sm:w-7/12 lg:w-5/12">
