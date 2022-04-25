@@ -125,6 +125,10 @@ tabs.prototype = {
     return this.options.addToParent ? link.parentElement : link;
   },
 
+  getActiveTab() {
+    return this.getTab(this.tabLinks[this.activeTabIndex]);
+  },
+
 };
 
 export default tabs;
