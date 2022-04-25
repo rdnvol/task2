@@ -33,7 +33,27 @@ tabs.prototype = {
     activeIndex = classTargets.indexOf(activeLink);
 
     this.activeTabIndex = this.prevTabIndex = (activeIndex === -1 ? (this.options.defaultTab ? 0 : null) : activeIndex);
-  }
+  },
+
+  setActiveTab() {
+
+    this.tabLinks.forEach((link, i) => {
+      const classTarget = this.getClassTarget(link);
+      const tab = link.getAttribute(this.options.attrib);
+
+      if (i !== this.activeTabIndex) {
+        classTarget.classList.remove(this.options.activeClass);
+        tab.classList.add(this.options.tabHiddenClass);
+        tab.classList.remove(this.options.activeClass);
+      } else {
+        classTarget.classList.add(this.options.activeClass);
+        tab.classList.remove(this.options.tabHiddenClass);
+        tab.classList.add(this.options.activeClass);
+      }
+
+      this.attachTabLink(link, i);
+    });
+  },
 };
 
 export default tabs;
