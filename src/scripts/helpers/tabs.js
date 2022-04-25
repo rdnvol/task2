@@ -82,6 +82,44 @@ tabs.prototype = {
       self.tabHolder.style.height = '';
     }
   },
+
+  switchTabs() {
+    const self = this;
+
+    const prevLink = this.tabLinks[this.prevTabIndex];
+    const nextLink = this.tabLinks[this.activeTabIndex];
+
+    const prevTab = this.getTab(prevLink);
+    const nextTab = this.getTab(nextLink);
+
+    prevTab.classList.remove(this.options.activeClass);
+
+    if (self.haveTabHolder()) {
+      this.resizeHolder(prevTab.getBoundingClientRect().height);
+    }
+
+    setTimeout(function() {
+      self.getClassTarget(prevLink).classList.remove(self.options.activeClass);
+
+      prevTab.classList.add(self.options.tabHiddenClass);
+      nextTab.classList.remove(self.options.tabHiddenClass);
+      nextTab.classList.add(self.options.activeClass);
+
+      self.getClassTarget(nextLink).classList.add(self.options.activeClass);
+
+      if (self.haveTabHolder()) {
+        self.resizeHolder(nextTab.getBoundingClientRect().height);
+
+        setTimeout(function() {
+          self.resizeHolder();
+          self.prevTabIndex = self.activeTabIndex;
+          self.makeCallback('onChange', self);
+        }, self.options.animSpeed);
+      } else {
+        self.prevTabIndex = self.activeTabIndex;
+      }
+    }, this.options.autoHeight ? this.options.animSpeed : 1);
+  },
 };
 
 export default tabs;
