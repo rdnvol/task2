@@ -1,11 +1,11 @@
-function tabs(holder, options) {
+function Tabs(holder, options) {
   this.holder = holder;
   this.options = options;
 
   this.init();
 }
 
-tabs.prototype = {
+Tabs.prototype = {
   init() {
     console.log('data', this.holder, this.options);
     this.tabLinks = this.holder.querySelectorAll(this.options.tabLinks);
@@ -14,7 +14,7 @@ tabs.prototype = {
     this.setActiveTab();
 
     if (this.options.autoHeight) {
-      this.tabHolder = (this.tabLinks[0].getAttribute(this.options.attrib)).parentElement;
+      this.tabHolder = this.holder.querySelector(this.tabLinks[0].getAttribute(this.options.attrib)).parentElement;
     }
 
     this.makeCallback('onInit', this);
@@ -143,15 +143,15 @@ tabs.prototype = {
     const self = this;
 
     this.tabLinks.forEach((link) => {
-      link.removeEventListener('.tabset', this.eventHandler)
-    })
+      link.removeEventListener('.tabset', this.eventHandler);
+    });
 
     this.tabLinks.forEach(function() {
       const link = this;
 
       self.getClassTarget(link).classList.remove(self.options.activeClass);
       (link.querySelector(link.getAttribute(self.options.attrib))).classList.remove(self.options.activeClass + ' ' + self.options.tabHiddenClass);
-    })
+    });
 
     this.holder.removeAttribute('data-Tabset');
   },
@@ -166,4 +166,4 @@ tabs.prototype = {
 
 };
 
-export default tabs;
+export default Tabs;
