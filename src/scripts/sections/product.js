@@ -322,6 +322,13 @@ export class Product {
       closeButton: 'outside',
       showClass: 'size-chart',
       dragToClose: false,
+      on: {
+        reveal: () => {
+          const tableWrapper = document.querySelector('table');
+
+          tableWrapper.parentElement.classList.add('table-holder');
+        },
+      },
     });
   }
 }
