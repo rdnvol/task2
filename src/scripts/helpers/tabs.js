@@ -19,6 +19,21 @@ tabs.prototype = {
 
     this.makeCallback('onInit', this);
   },
+
+  setStartActiveIndex() {
+    const classTargets = this.getClassTarget(this.tabLinks);
+    const activeLink = classTargets.filter('.' + this.options.activeClass);
+    const hashLink = this.tabLinks.filter('[' + this.options.attrib + '="' + location.hash + '"]');
+    let activeIndex;
+
+    if (this.options.checkHash && hashLink.length) {
+      activeLink = hashLink;
+    }
+
+    activeIndex = classTargets.indexOf(activeLink);
+
+    this.activeTabIndex = this.prevTabIndex = (activeIndex === -1 ? (this.options.defaultTab ? 0 : null) : activeIndex);
+  }
 };
 
 export default tabs;
