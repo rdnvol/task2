@@ -12,9 +12,9 @@ jobs:
         uses: actions/checkout@v3
       - name: Use Node.js 14
         uses: actions/setup-node@v3
-      with:
-        node-version: '14'
-        cache: 'yarn'
+        with:
+          node-version: '14'
+          cache: 'yarn'
       - name: YARN install
         run: yarn
       - name: Build
