@@ -129,6 +129,10 @@ tabs.prototype = {
     return this.getTab(this.tabLinks[this.activeTabIndex]);
   },
 
+  getTab(link) {
+    return link.getAttribute(this.options.attrib);
+  },
+
 };
 
 export default tabs;
