@@ -1,6 +1,20 @@
 function Tabs(holder, options) {
+  this.defaultOptions = {
+    activeClass: 'active',
+    addToParent: false,
+    autoHeight: false,
+    checkHash: false,
+    defaultTab: false,
+    animSpeed: 500,
+    tabLinks: 'a',
+    attrib: 'href',
+    event: 'click',
+    tabHiddenClass: 'js-tab-hidden'
+  }
+
   this.holder = holder;
-  this.options = options;
+  this.options = Object.assign({...options}, this.defaultOptions);
+  this.options.autoHeight ?? false;
 
   this.init();
 }
