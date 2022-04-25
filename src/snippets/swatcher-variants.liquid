@@ -114,78 +114,80 @@
               {% endunless %}
             {% when "variant_picker" %}
               {% unless product.has_only_default_variant %}
-                  <div id="variant-radios" class="product__row"  data-section="{{ section.id }}" data-url="{{ product.url }}" {{ block.shopify_attributes }}>
-                    {% for option in product.options_with_values %}
-                      <div class="sm:flex mb-2">
-                        <div class="sm:w-6/12 md:w-9/12 lg:w-6/12 relative">
-                          {% if show_variant_label %}
+                <div id="variant-radios" class="product__row"  data-section="{{ section.id }}" data-url="{{ product.url }}" {{ block.shopify_attributes }}>
+                  {% for option in product.options_with_values %}
+                    <div class="sm:flex mb-2">
+                      <div class="sm:w-6/12 md:w-9/12 lg:w-6/12 relative">
+                        {% if show_variant_label %}
+                          {% assign size_option = 'products.product.size' | t | downcase %}
+                          {% assign options = product.options | downcase %}
+                          {% if forloop.first and show_size_chart and size_chart_url != blank and options contains size_option %}
+                            <a class="size-chart-link"
+                               data-type="ajax"
+                               data-filter=".section .container"
+                               href="{{ size_chart_url }}">{{ 'products.product.size_chart' | t }}</a>
+                          {% endif %}
+                          <div class="product__variant-label-box mb-1">
+                            <span class="product__variant-label">{{ option.name }}: </span>
+                            <span>
+                              {{ option.selected_value }}
+                            </span>
+                          </div>
+                          {% else %}
                             {% assign size_option = 'products.product.size' | t | downcase %}
                             {% assign options = product.options | downcase %}
                             {% if forloop.first and show_size_chart and size_chart_url != blank and options contains size_option %}
-                              <a class="size-chart-link"
-                                data-type="ajax"
-                                href="{{ size_chart_url }}">{{ 'products.product.size_chart' | t }}</a>
-                            {% endif %}
-                            <div class="product__variant-label-box mb-1">
-                              <span class="product__variant-label">{{ option.name }}: </span>
-                              <span>
-                                {{ option.selected_value }}
-                              </span>
-                            </div>
-                            {% else %}
-                              {% assign size_option = 'products.product.size' | t | downcase %}
-                              {% assign options = product.options | downcase %}
-                              {% if forloop.first and show_size_chart and size_chart_url != blank and options contains size_option %}
-                                <div class="text-right pb-2">
-                                  <a class="size-chart-link"
-                                    data-type="ajax"
-                                    href="{{ size_chart_url }}">{{ 'products.product.size_chart' | t }}</a>
-                                </div>
-                              {% endif %}
-                          {% endif %}
-                          <div class="flex flex-wrap">
-                            {% for value in option.values %}
-                              <div class="input-holder custom-input custom-input--{% if option.name == "Color" %}colors{% else %}size{% endif %} inline-flex">
-                                <input
-                                  id="filter-field-colors-01-{{ forloop.index }}-{{option.name}}"
-                                  type="radio"
-                                  name="filter-field-{{option.name}}"
-                                  value="{{ value }}"
-                                  {% if option.selected_value == value %}checked{% endif %}
-                                />
-                                <label for="filter-field-colors-01-{{ forloop.index }}-{{ option.name }}" class="custom-label">
-                                  {% if option.name == "Color" %}
-                                    {% for variant in product.variants %}
-                                      {% if section.settings.swatcher_color_type == 'metafields' %}
-                                        {% if variant.title == value %}
-                                          {% assign metafield_color = variant.metafields.swatcher.color %}
-                                        {% endif %}
-                                      {% else %}
-                                        {% if variant.option1 == value %}
-                                          {% assign image_color = variant.featured_image %}
-                                          {% assign image_position = variant.featured_image.position %}
-                                        {% endif %}
-                                      {% endif %}
-                                    {% endfor %}
-                                    {% if section.settings.swatcher_color_type == 'metafields' %}
-                                      <span style="background-color: {{ metafield_color | replace: ' ', '' | default: value }};"></span>
-                                    {% else %}
-                                      <img image-position="{{ image_position }}" src="{{ image_color | img_url: "25x25" }}" alt="image description">
-                                    {% endif %}
-                                  {% else %}
-                                    <span>{{ value }}</span>
-                                  {% endif %}
-                                </label>
+                              <div class="text-right pb-2">
+                                <a class="size-chart-link"
+                                   data-type="ajax"
+                                   data-filter=".section .container"
+                                   href="{{ size_chart_url }}">{{ 'products.product.size_chart' | t }}</a>
                               </div>
-                           {% endfor %}
-                          </div>
+                            {% endif %}
+                        {% endif %}
+                        <div class="flex flex-wrap">
+                          {% for value in option.values %}
+                            <div class="input-holder custom-input custom-input--{% if option.name == "Color" %}colors{% else %}size{% endif %} inline-flex">
+                              <input
+                                id="filter-field-colors-01-{{ forloop.index }}-{{option.name}}"
+                                type="radio"
+                                name="filter-field-{{option.name}}"
+                                value="{{ value }}"
+                                {% if option.selected_value == value %}checked{% endif %}
+                              />
+                              <label for="filter-field-colors-01-{{ forloop.index }}-{{ option.name }}" class="custom-label">
+                                {% if option.name == "Color" %}
+                                  {% for variant in product.variants %}
+                                    {% if section.settings.swatcher_color_type == 'metafields' %}
+                                      {% if variant.title == value %}
+                                        {% assign metafield_color = variant.metafields.swatcher.color %}
+                                      {% endif %}
+                                    {% else %}
+                                      {% if variant.option1 == value %}
+                                        {% assign image_color = variant.featured_image %}
+                                        {% assign image_position = variant.featured_image.position %}
+                                      {% endif %}
+                                    {% endif %}
+                                  {% endfor %}
+                                  {% if section.settings.swatcher_color_type == 'metafields' %}
+                                    <span style="background-color: {{ metafield_color | replace: ' ', '' | default: value }};"></span>
+                                  {% else %}
+                                    <img image-position="{{ image_position }}" src="{{ image_color | img_url: "25x25" }}" alt="image description">
+                                  {% endif %}
+                                {% else %}
+                                  <span>{{ value }}</span>
+                                {% endif %}
+                              </label>
+                            </div>
+                         {% endfor %}
                         </div>
                       </div>
-                    {% endfor %}
-                    <script type="application/json">
-                      {{ product.variants | json }}
-                    </script>
-                  </div>
+                    </div>
+                  {% endfor %}
+                  <script type="application/json">
+                    {{ product.variants | json }}
+                  </script>
+                </div>
               {% endunless %}
 
 
