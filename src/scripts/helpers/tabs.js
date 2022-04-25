@@ -156,6 +156,14 @@ tabs.prototype = {
     this.holder.removeAttribute('data-Tabset');
   },
 
+  makeCallback(name) {
+    if (typeof this.options[name] === 'function') {
+      const args = Array.prototype.slice.call(arguments);
+      args.shift();
+      this.options[name].apply(this, args);
+    }
+  },
+
 };
 
 export default tabs;
