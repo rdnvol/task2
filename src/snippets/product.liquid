@@ -125,16 +125,13 @@
                         {% if forloop.first and show_size_chart and size_chart_url != blank and options contains size_option %}
                           {% if show_variant_label == false %}
                             <div class="text-right pb-2">
-                              <a class="size-chart-link"
-                              data-type="ajax"
-                              data-filter=".section .container"
-                              href="{{ size_chart_url }}">{{ 'products.product.size_chart' | t }}</a>
+                          {% endif %}
+                          <a class="size-chart-link"
+                             data-type="ajax"
+                             data-filter=".section .container"
+                             href="{{ size_chart_url }}">{{ 'products.product.size_chart' | t }}</a>
+                          {% if show_variant_label == false %}
                             </div>
-                            {% else %}
-                            <a class="size-chart-link"
-                              data-type="ajax"
-                              data-filter=".section .container"
-                              href="{{ size_chart_url }}">{{ 'products.product.size_chart' | t }}</a>
                           {% endif %}
                         {% endif %}
                         <select
