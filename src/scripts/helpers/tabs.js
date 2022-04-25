@@ -54,6 +54,21 @@ tabs.prototype = {
       this.attachTabLink(link, i);
     });
   },
+
+  attachTabLink(link, i) {
+
+    link.addeventlistener(this.options.event + '.tabset', (e) => {
+      e.preventDefault();
+
+      if (this.activeTabIndex === this.prevTabIndex && this.activeTabIndex !== i) {
+        this.activeTabIndex = i;
+        this.switchTabs();
+      }
+      if (this.options.checkHash) {
+        location.hash = link.getAttribute('href').split('#')[1];
+      }
+    });
+  },
 };
 
 export default tabs;
