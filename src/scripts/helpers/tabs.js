@@ -55,19 +55,21 @@ tabs.prototype = {
     });
   },
 
+  eventHandler(e) {
+    e.preventDefault();
+
+    if (this.activeTabIndex === this.prevTabIndex && this.activeTabIndex !== i) {
+      this.activeTabIndex = i;
+      this.switchTabs();
+    }
+    if (this.options.checkHash) {
+      location.hash = link.getAttribute('href').split('#')[1];
+    }
+  }
+
   attachTabLink(link, i) {
 
-    link.addeventlistener(this.options.event + '.tabset', (e) => {
-      e.preventDefault();
-
-      if (this.activeTabIndex === this.prevTabIndex && this.activeTabIndex !== i) {
-        this.activeTabIndex = i;
-        this.switchTabs();
-      }
-      if (this.options.checkHash) {
-        location.hash = link.getAttribute('href').split('#')[1];
-      }
-    });
+    link.addeventlistener(this.options.event + '.tabset', this.eventHandler);
   },
 
   resizeHolder(height) {
@@ -135,6 +137,23 @@ tabs.prototype = {
 
   haveTabHolder() {
     return this.tabHolder && this.tabHolder.length;
+  },
+
+  destroy() {
+    const self = this;
+
+    this.tabLinks.forEach((link) => {
+      link.removeEventListener('.tabset', this.eventHandler)
+    })
+
+    this.tabLinks.forEach(function() {
+      const link = this;
+
+      self.getClassTarget(link).classList.remove(self.options.activeClass);
+      (link.querySelector(link.getAttribute(self.options.attrib))).classList.remove(self.options.activeClass + ' ' + self.options.tabHiddenClass);
+    })
+
+    this.holder.removeAttribute('data-Tabset');
   },
 
 };
