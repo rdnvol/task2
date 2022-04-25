@@ -120,6 +120,11 @@ tabs.prototype = {
       }
     }, this.options.autoHeight ? this.options.animSpeed : 1);
   },
+
+  getClassTarget(link) {
+    return this.options.addToParent ? link.parentElement : link;
+  },
+
 };
 
 export default tabs;
