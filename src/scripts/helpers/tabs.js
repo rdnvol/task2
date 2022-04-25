@@ -69,6 +69,19 @@ tabs.prototype = {
       }
     });
   },
+
+  resizeHolder(height) {
+    const self = this;
+    if (height) {
+      this.tabHolder.style.height = height;
+      setTimeout(function() {
+        self.tabHolder.classList.add('transition');
+      }, 10);
+    } else {
+      self.tabHolder.classList.remove('transition');
+      self.tabHolder.style.height = '';
+    }
+  },
 };
 
 export default tabs;
