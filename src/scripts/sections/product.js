@@ -324,31 +324,11 @@ export class Product {
       dragToClose: false,
       on: {
         reveal: () => {
-          const tableContainer = document.querySelector('.fancybox__content main#main .container');
-          const sizeChartBtn = document.querySelector('.size-chart-link');
-          const fancyboxParent = document.querySelector('.fancybox__content');
+          const tableWrapper = document.querySelector('table');
 
-          draftSizeChartElem(fancyboxParent, tableContainer, sizeChartBtn);
+          tableWrapper.parentElement.classList.add('table-holder');
         },
       },
     });
-
-    function draftSizeChartElem(fancyboxParent, tableContainer, sizeChartBtn) {
-      const tableWrapper = document.createElement('div');
-      const parentElement = sizeChartBtn.parentNode;
-
-      wrap(tableContainer.querySelector('.rte table'), tableWrapper);
-      parentElement.insertBefore(tableWrapper, sizeChartBtn);
-      tableWrapper.classList.add('table-holder');
-      tableContainer.removeAttribute('class');
-      tableContainer.querySelector('.rte').appendChild(tableWrapper);
-      fancyboxParent.innerHTML = '';
-      fancyboxParent.appendChild(tableContainer);
-    }
-
-    function wrap(el, wrapper) {
-      el.parentNode.insertBefore(wrapper, el);
-      wrapper.appendChild(el);
-    }
   }
 }
