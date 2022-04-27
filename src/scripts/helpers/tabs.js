@@ -53,26 +53,21 @@ Tabs.prototype = {
 
   setStartActiveIndex() {
     const classTargets = this.getClassTarget(this.tabLinks);
-    console.log("classTargets", classTargets)
     const activeLink = Array.from(classTargets).filter((elem) => {
-      console.log("elem", elem);
       return elem.classList.contains(this.options.activeClass)
     });
-    console.log("activeLink", activeLink);
-    console.log("this.tabLinks", this.tabLinks);
 
-    /*const activeLink = classTargets.filter('.' + this.options.activeClass);*/
     const hashLink = Array.from(this.tabLinks).filter((link) => {
+      console.log("link.getAttribute(this.options.attrib2)", link.getAttribute(this.options.attrib))
       return link.getAttribute(this.options.attrib) === location.hash
     });
-    console.log("hashLink", hashLink)
     let activeIndex;
 
     if (this.options.checkHash && hashLink.length) {
       activeLink = hashLink;
     }
 
-    activeIndex = classTargets.indexOf(activeLink);
+    activeIndex = Array.from(classTargets).indexOf(activeLink[0]);
 
     this.activeTabIndex = this.prevTabIndex = (activeIndex === -1 ? (this.options.defaultTab ? 0 : null) : activeIndex);
   },
