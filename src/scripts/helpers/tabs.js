@@ -76,7 +76,7 @@ Tabs.prototype = {
 
     this.tabLinks.forEach((link, i) => {
       const classTarget = this.getClassTarget(link);
-      const tab = link.getAttribute(this.options.attrib);
+      const tab = this.holder.parentElement.querySelector('.tab-content').querySelector(link.getAttribute(this.options.attrib));
 
       if (i !== this.activeTabIndex) {
         classTarget.classList.remove(this.options.activeClass);
@@ -92,7 +92,7 @@ Tabs.prototype = {
     });
   },
 
-  eventHandler(e) {
+  eventHandler({e, i, link}) {
     e.preventDefault();
 
     if (this.activeTabIndex === this.prevTabIndex && this.activeTabIndex !== i) {
@@ -105,7 +105,14 @@ Tabs.prototype = {
   },
 
   attachTabLink(link, i) {
-    link.addEventListener(this.options.event + '.tabset', this.eventHandler);
+    link.addEventListener(this.options.event, (e) => {
+      const parameters = {
+        e,
+        link,
+        i
+      }
+      this.eventHandler(parameters);
+    });
   },
 
   resizeHolder(height) {
@@ -179,7 +186,7 @@ Tabs.prototype = {
     const self = this;
 
     this.tabLinks.forEach((link) => {
-      link.removeEventListener('.tabset', this.eventHandler);
+      link.removeEventListener(this.options.event, this.eventHandler);
     });
 
     this.tabLinks.forEach(function() {
