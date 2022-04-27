@@ -30,7 +30,7 @@ function Tabs(holder, options) {
   }
 
   this.holder = holder;
-  this.options = Object.assign({...options}, this.defaultOptions);
+  this.options = Object.assign(this.defaultOptions, {...options});
   this.options.autoHeight ?? false;
 
   this.init();
