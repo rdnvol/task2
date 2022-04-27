@@ -175,7 +175,7 @@ Tabs.prototype = {
   },
 
   getTab(link) {
-    return link.getAttribute(this.options.attrib);
+    return this.holder.parentElement.querySelector('.tab-content').querySelector(link.getAttribute(this.options.attrib));
   },
 
   haveTabHolder() {
