@@ -1,20 +1,3 @@
-(function () {
-  window.onload = () => {
-    const tabs = document.querySelectorAll('.tabset');
-    console.log("tabs", tabs, document)
-    tabs.forEach((tab) => {
-      new Tabs(tab, {
-        activeClass: 'active',
-        addToParent: false,
-        autoHeight: false,
-        animSpeed: 500,
-        tabLinks: 'a',
-        event: 'mouseover'
-      })
-    })
-  }
-})()
-
 function Tabs(holder, options) {
   this.defaultOptions = {
     activeClass: 'active',
@@ -38,7 +21,6 @@ function Tabs(holder, options) {
 
 Tabs.prototype = {
   init() {
-    console.log('data', this.holder, this.options);
     this.tabLinks = this.holder.querySelectorAll(this.options.tabLinks);
 
     this.setStartActiveIndex();
@@ -58,7 +40,6 @@ Tabs.prototype = {
     });
 
     const hashLink = Array.from(this.tabLinks).filter((link) => {
-      console.log("link.getAttribute(this.options.attrib2)", link.getAttribute(this.options.attrib))
       return link.getAttribute(this.options.attrib) === location.hash
     });
     let activeIndex;
@@ -119,7 +100,7 @@ Tabs.prototype = {
     const self = this;
     if (height) {
       this.tabHolder.style.height = height;
-      setTimeout(function() {
+      setTimeout(function () {
         self.tabHolder.classList.add('transition');
       }, 10);
     } else {
@@ -143,7 +124,7 @@ Tabs.prototype = {
       this.resizeHolder(prevTab.getBoundingClientRect().height);
     }
 
-    setTimeout(function() {
+    setTimeout(function () {
       self.getClassTarget(prevLink).classList.remove(self.options.activeClass);
 
       prevTab.classList.add(self.options.tabHiddenClass);
@@ -155,7 +136,7 @@ Tabs.prototype = {
       if (self.haveTabHolder()) {
         self.resizeHolder(nextTab.getBoundingClientRect().height);
 
-        setTimeout(function() {
+        setTimeout(function () {
           self.resizeHolder();
           self.prevTabIndex = self.activeTabIndex;
           self.makeCallback('onChange', self);
@@ -189,7 +170,7 @@ Tabs.prototype = {
       link.removeEventListener(this.options.event, this.eventHandler);
     });
 
-    this.tabLinks.forEach(function() {
+    this.tabLinks.forEach(function () {
       const link = this;
 
       self.getClassTarget(link).classList.remove(self.options.activeClass);
@@ -208,3 +189,5 @@ Tabs.prototype = {
   },
 
 };
+
+export default Tabs;
