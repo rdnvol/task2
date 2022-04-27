@@ -1,3 +1,20 @@
+(function () {
+  window.onload = () => {
+    const tabs = document.querySelectorAll('.tabset');
+    console.log("tabs", tabs, document)
+    tabs.forEach((tab) => {
+      new Tabs(tab, {
+        activeClass: 'active',
+        addToParent: false,
+        autoHeight: false,
+        animSpeed: 500,
+        tabLinks: 'a',
+        event: 'mouseover'
+      })
+    })
+  }
+})()
+
 function Tabs(holder, options) {
   this.defaultOptions = {
     activeClass: 'active',
@@ -36,8 +53,19 @@ Tabs.prototype = {
 
   setStartActiveIndex() {
     const classTargets = this.getClassTarget(this.tabLinks);
-    const activeLink = classTargets.filter('.' + this.options.activeClass);
-    const hashLink = this.tabLinks.filter('[' + this.options.attrib + '="' + location.hash + '"]');
+    console.log("classTargets", classTargets)
+    const activeLink = Array.from(classTargets).filter((elem) => {
+      console.log("elem", elem);
+      return elem.classList.contains(this.options.activeClass)
+    });
+    console.log("activeLink", activeLink);
+    console.log("this.tabLinks", this.tabLinks);
+
+    /*const activeLink = classTargets.filter('.' + this.options.activeClass);*/
+    const hashLink = Array.from(this.tabLinks).filter((link) => {
+      return link.getAttribute(this.options.attrib) === location.hash
+    });
+    console.log("hashLink", hashLink)
     let activeIndex;
 
     if (this.options.checkHash && hashLink.length) {
@@ -79,11 +107,10 @@ Tabs.prototype = {
     if (this.options.checkHash) {
       location.hash = link.getAttribute('href').split('#')[1];
     }
-  }
+  },
 
   attachTabLink(link, i) {
-
-    link.addeventlistener(this.options.event + '.tabset', this.eventHandler);
+    link.addEventListener(this.options.event + '.tabset', this.eventHandler);
   },
 
   resizeHolder(height) {
@@ -179,5 +206,3 @@ Tabs.prototype = {
   },
 
 };
-
-export default Tabs;
