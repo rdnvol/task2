@@ -53,23 +53,25 @@
 </div>
 
 {% schema %}
-  {
-    "name": "Newsletter",
-    "settings": [
-      {
-        "type": "text",
-        "id": "title",
-        "label": "Heading",
-        "default": "Join our mailing list for updates"
-      },
-      {
-        "type": "paragraph",
-        "content": "Any customers who sign up will have an account created for them in Shopify. [View customers](/admin/customers?query=&accepts_marketing=1)"
-      }
-    ],
-    "presets": [{
+{
+  "name": "Newsletter",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Join our mailing list for updates"
+    },
+    {
+      "type": "paragraph",
+      "content": "Any customers who sign up will have an account created for them in Shopify. [View customers](/admin/customers?query=&accepts_marketing=1)"
+    }
+  ],
+  "presets": [
+    {
       "name": "Newsletter",
       "category": "Promotional"
-    }]
-  }
+    }
+  ]
+}
 {% endschema %}

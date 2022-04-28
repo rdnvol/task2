@@ -2,7 +2,8 @@
   "sections": {
     "main": {
       "type": "cart-template",
-      "settings": {}
+      "settings": {
+      }
     }
   },
   "order": [

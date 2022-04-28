@@ -124,11 +124,7 @@ const cartElement = document.getElementById('cart');
 if (cartElement) {
   render(
     <Provider store={window.Store}>
-      <Cart
-        ref={(element) => {
-          window.cart = element;
-        }}
-      />
+      <Cart ref={(element) => (window.cart = element)} />
     </Provider>,
     cartElement
   );

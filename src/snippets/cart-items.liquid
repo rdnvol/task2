@@ -20,12 +20,12 @@
             <div class="cart__product-img">
               <a href="{{ item.url | within: collections.all }}" aria-label="{{ item.title }}">
                 <picture>
-                  <source data-srcset="{{ item | img_url: '120x' }}, {{ item | img_url: '240x' }} 2x"
+                  <source data-srcset="{{ item | image_url: width: 120 }}, {{ item | image_url: width: 240 }} 2x"
                           media="(max-width: 767px)"
                           srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
-                  <source data-srcset="{{ item | img_url: '240x' }}, {{ item | img_url: '480x' }} 2x"
+                  <source data-srcset="{{ item | image_url: width: 240 }}, {{ item | image_url: width: 480 }} 2x"
                           srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
-                  <img data-src="{{ item | img_url: '240x' }}" class="lazyload" data-sizes="auto" alt="{{ item.title }}"
+                  <img data-src="{{ item | image_url: width: 240 }}" class="lazyload" data-sizes="auto" alt="{{ item.title }}"
                        src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
                 </picture>
               </a>

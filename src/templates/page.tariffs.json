@@ -2,7 +2,8 @@
   "sections": {
     "main": {
       "type": "page-tariffs",
-      "settings": {}
+      "settings": {
+      }
     }
   },
   "order": [

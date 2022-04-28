@@ -20,48 +20,50 @@
 {% endif %}
 
 {% schema %}
-  {
-    "name": "Richtext",
-    "settings": [],
-    "blocks": [
-      {
-        "type": "title",
-        "name": "Title",
-        "settings": [
-          {
-            "type": "text",
-            "id": "title",
-            "label": "Heading",
-            "default": "Talk about your brand"
-          }
-        ]
-      },
-      {
-        "type": "copy",
-        "name": "Text",
-        "settings": [
-          {
-            "type": "richtext",
-            "id": "copy",
-            "label": "Richtext",
-            "default": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>"
-          }
-        ]
-      }
-    ],
-    "presets": [
-      {
-        "name": "Richtext",
-        "category": "Text",
-        "blocks": [
-          {
-            "type": "title"
-          },
-          {
-            "type": "copy"
-          }
-        ]
-      }
-    ]
-  }
+{
+  "name": "Richtext",
+  "settings": [
+
+  ],
+  "blocks": [
+    {
+      "type": "title",
+      "name": "Title",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Talk about your brand"
+        }
+      ]
+    },
+    {
+      "type": "copy",
+      "name": "Text",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "copy",
+          "label": "Richtext",
+          "default": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Richtext",
+      "category": "Text",
+      "blocks": [
+        {
+          "type": "title"
+        },
+        {
+          "type": "copy"
+        }
+      ]
+    }
+  ]
+}
 {% endschema %}

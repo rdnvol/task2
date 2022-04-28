@@ -191,7 +191,8 @@
       },
       "collection-template": {
         "type": "collection-template",
-        "settings": {}
+        "settings": {
+        }
       },
       "1601544214239": {
         "type": "home-logos-list",
@@ -237,7 +238,8 @@
       },
       "1601544682336": {
         "type": "newsletter",
-        "settings": {}
+        "settings": {
+        }
       },
       "1601544716980": {
         "type": "home-benefits",
@@ -285,7 +287,8 @@
           "1601544716980-3",
           "1601544716980-4"
         ],
-        "settings": {}
+        "settings": {
+        }
       },
       "1601545071577": {
         "type": "home-plans",
@@ -373,7 +376,8 @@
   },
   "presets": {
     "Default": {
-      "content_for_index": []
+      "content_for_index": [
+      ]
     }
   }
 }

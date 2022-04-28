@@ -3,7 +3,8 @@
   "sections": {
     "main": {
       "type": "cart-ajax-template",
-      "settings": {}
+      "settings": {
+      }
     }
   },
   "order": [

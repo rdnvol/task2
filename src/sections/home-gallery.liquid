@@ -47,100 +47,100 @@
 </div>
 
 {% schema %}
-  {
-    "name": "Gallery",
-    "settings": [
-      {
-        "type": "select",
-        "id": "height",
-        "label": "Section height",
-        "default": "",
-        "options": [
-          {
-            "value": "",
-            "label": "Extra small"
-          },
-          {
-            "value": "gallery-section__img--sm",
-            "label": "Small"
-          },
-          {
-            "value": "gallery-section__img--md",
-            "label": "Medium"
-          },
-          {
-            "value": "gallery-section__img--lg",
-            "label": "Large"
-          },
-          {
-            "value": "gallery-section__img--xl",
-            "label": "Extra large"
-          }
-        ]
-      }
-    ],
-    "blocks": [
-      {
-        "type": "image",
-        "name": "Image",
-        "limit": 4,
-        "settings": [
-          {
-            "type": "image_picker",
-            "id": "image",
-            "label": "Image"
-          },
-          {
-            "type": "select",
-            "id": "alignment",
-            "label": "Image alignment",
-            "default": "object-position: 50% 50%;",
-            "options": [
-              {
-                "value": "object-position: 50% 0;",
-                "label": "Top"
-              },
-              {
-                "value": "object-position: 50% 50%;",
-                "label": "Medium"
-              },
-              {
-                "value": "object-position: 50% 100%;",
-                "label": "Bottom"
-              }
-            ]
-          },
-          {
-            "type": "url",
-            "id": "link",
-            "label": "Link",
-            "info": "Optional"
-          },
-          {
-            "type": "text",
-            "id": "title",
-            "label": "Caption",
-            "default": "Heading"
-          }
-        ]
-      }
-    ],
-    "presets": [
-      {
-        "name": "Gallery",
-        "category": "Image",
-        "blocks": [
-          {
-            "type": "image"
-          },
-          {
-            "type": "image"
-          },
-          {
-            "type": "image"
-          }
-        ]
-      }
-    ]
-  }
+{
+  "name": "Gallery",
+  "settings": [
+    {
+      "type": "select",
+      "id": "height",
+      "label": "Section height",
+      "default": "",
+      "options": [
+        {
+          "value": "",
+          "label": "Extra small"
+        },
+        {
+          "value": "gallery-section__img--sm",
+          "label": "Small"
+        },
+        {
+          "value": "gallery-section__img--md",
+          "label": "Medium"
+        },
+        {
+          "value": "gallery-section__img--lg",
+          "label": "Large"
+        },
+        {
+          "value": "gallery-section__img--xl",
+          "label": "Extra large"
+        }
+      ]
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Image",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "select",
+          "id": "alignment",
+          "label": "Image alignment",
+          "default": "object-position: 50% 50%;",
+          "options": [
+            {
+              "value": "object-position: 50% 0;",
+              "label": "Top"
+            },
+            {
+              "value": "object-position: 50% 50%;",
+              "label": "Medium"
+            },
+            {
+              "value": "object-position: 50% 100%;",
+              "label": "Bottom"
+            }
+          ]
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link",
+          "info": "Optional"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Caption",
+          "default": "Heading"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Gallery",
+      "category": "Image",
+      "blocks": [
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        }
+      ]
+    }
+  ]
+}
 {% endschema %}

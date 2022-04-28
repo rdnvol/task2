@@ -60,208 +60,208 @@
 </div>
 
 {% schema %}
-  {
-    "name": "Slideshow",
-    "settings": [
-      {
-        "type": "select",
-        "id": "slide_height",
-        "label": "Size height",
-        "default": "",
-        "options": [
-          {
-            "value": "slideshow-gallery__img--sm",
-            "label": "Small"
-          },
-          {
-            "value": "",
-            "label": "Medium"
-          },
-          {
-            "value": "slideshow-gallery__img--lg",
-            "label": "large"
-          }
-        ]
-      },
-      {
-        "type": "select",
-        "id": "text_size",
-        "label": "Text size",
-        "default": "",
-        "options": [
-          {
-            "value": "",
-            "label": "Medium"
-          },
-          {
-            "value": "slideshow-gallery__text-block--lg",
-            "label": "Large"
-          }
-        ]
-      },
-      {
-        "type": "checkbox",
-        "id": "enable_overlay",
-        "label": "Show overlay",
-        "default": true
-      },
-      {
-        "type": "checkbox",
-        "id": "enable_autorotate",
-        "label": "Auto-rotate slides",
-        "default": false
-      },
-      {
-        "type": "range",
-        "id":  "change_every",
-        "min":  3,
-        "max":  9,
-        "step":  1,
-        "label":  "Change slides every",
-        "default": 5
-      }
-    ],
-    "blocks": [
-      {
-        "type": "image",
-        "name": "Image slide",
-        "settings": [
-          {
-            "type": "image_picker",
-            "id": "image",
-            "label": "Image"
-          },
-          {
-            "type": "select",
-            "id": "image_position",
-            "label": "Image position",
-            "default": "object-position: 50% 50%;",
-            "options": [
-              {
-                "value": "object-position: 0 0;",
-                "label": "Top left"
-              },
-              {
-                "value": "object-position: 50% 0;",
-                "label": "Top center"
-              },
-              {
-                "value": "object-position: 100% 0;",
-                "label": "Top right"
-              },
-              {
-                "value": "object-position: 0% 50%;",
-                "label": "Middle left"
-              },
-              {
-                "value": "object-position: 50% 50%;",
-                "label": "Middle center"
-              },
-              {
-                "value": "object-position: 100% 50%;",
-                "label": "Middle right"
-              },
-              {
-                "value": "object-position: 0 100%;",
-                "label": "Bottom left"
-              },
-              {
-                "value": "object-position: 50% 100%;",
-                "label": "Bottom center"
-              },
-              {
-                "value": "object-position: 100% 100%;",
-                "label": "Bottom right"
-              }
-            ]
-          },
-          {
-            "type": "select",
-            "id": "alignment",
-            "label": "Text alignment",
-            "default": "justify-center items-center",
-            "options": [
-              {
-                "value": "justify-start items-start",
-                "label": "Top left"
-              },
-              {
-                "value": "justify-center items-start",
-                "label": "Top center"
-              },
-              {
-                "value": "justify-end items-start",
-                "label": "Top right"
-              },
-              {
-                "value": "justify-start items-center",
-                "label": "Middle left"
-              },
-              {
-                "value": "justify-center items-center",
-                "label": "Middle center"
-              },
-              {
-                "value": "justify-end items-center",
-                "label": "Middle right"
-              },
-              {
-                "value": "justify-start items-end",
-                "label": "Bottom left"
-              },
-              {
-                "value": "justify-center items-end",
-                "label": "Bottom center"
-              },
-              {
-                "value": "justify-end items-end",
-                "label": "Bottom right"
-              }
-            ]
-          },
-          {
-            "type": "text",
-            "id": "title",
-            "label": "Heading",
-            "default": "Heading"
-          },
-          {
-            "type": "richtext",
-            "id": "text",
-            "label": "Body text",
-            "default": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum, sit?</p>"
-          },
-          {
-            "type": "text",
-            "id": "button_label",
-            "label": "Button label",
-            "default": "Button"
-          },
-          {
-            "type": "url",
-            "id": "button_link",
-            "label": "Button link",
-            "info": "Button is disabled if empty"
-          }
-        ]
-      }
-    ],
-    "presets": [
-      {
-        "name": "Slideshow",
-        "category": "Image",
-        "blocks": [
-          {
-            "type": "image"
-          },
-          {
-            "type": "image"
-          },
-          {
-            "type": "image"
-          }
-        ]
-      }
-    ]
-  }
+{
+  "name": "Slideshow",
+  "settings": [
+    {
+      "type": "select",
+      "id": "slide_height",
+      "label": "Size height",
+      "default": "",
+      "options": [
+        {
+          "value": "slideshow-gallery__img--sm",
+          "label": "Small"
+        },
+        {
+          "value": "",
+          "label": "Medium"
+        },
+        {
+          "value": "slideshow-gallery__img--lg",
+          "label": "large"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "text_size",
+      "label": "Text size",
+      "default": "",
+      "options": [
+        {
+          "value": "",
+          "label": "Medium"
+        },
+        {
+          "value": "slideshow-gallery__text-block--lg",
+          "label": "Large"
+        }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_overlay",
+      "label": "Show overlay",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_autorotate",
+      "label": "Auto-rotate slides",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "change_every",
+      "min": 3,
+      "max": 9,
+      "step": 1,
+      "label": "Change slides every",
+      "default": 5
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Image slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "select",
+          "id": "image_position",
+          "label": "Image position",
+          "default": "object-position: 50% 50%;",
+          "options": [
+            {
+              "value": "object-position: 0 0;",
+              "label": "Top left"
+            },
+            {
+              "value": "object-position: 50% 0;",
+              "label": "Top center"
+            },
+            {
+              "value": "object-position: 100% 0;",
+              "label": "Top right"
+            },
+            {
+              "value": "object-position: 0% 50%;",
+              "label": "Middle left"
+            },
+            {
+              "value": "object-position: 50% 50%;",
+              "label": "Middle center"
+            },
+            {
+              "value": "object-position: 100% 50%;",
+              "label": "Middle right"
+            },
+            {
+              "value": "object-position: 0 100%;",
+              "label": "Bottom left"
+            },
+            {
+              "value": "object-position: 50% 100%;",
+              "label": "Bottom center"
+            },
+            {
+              "value": "object-position: 100% 100%;",
+              "label": "Bottom right"
+            }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "alignment",
+          "label": "Text alignment",
+          "default": "justify-center items-center",
+          "options": [
+            {
+              "value": "justify-start items-start",
+              "label": "Top left"
+            },
+            {
+              "value": "justify-center items-start",
+              "label": "Top center"
+            },
+            {
+              "value": "justify-end items-start",
+              "label": "Top right"
+            },
+            {
+              "value": "justify-start items-center",
+              "label": "Middle left"
+            },
+            {
+              "value": "justify-center items-center",
+              "label": "Middle center"
+            },
+            {
+              "value": "justify-end items-center",
+              "label": "Middle right"
+            },
+            {
+              "value": "justify-start items-end",
+              "label": "Bottom left"
+            },
+            {
+              "value": "justify-center items-end",
+              "label": "Bottom center"
+            },
+            {
+              "value": "justify-end items-end",
+              "label": "Bottom right"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Heading"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Body text",
+          "default": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum, sit?</p>"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button label",
+          "default": "Button"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button link",
+          "info": "Button is disabled if empty"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Slideshow",
+      "category": "Image",
+      "blocks": [
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        }
+      ]
+    }
+  ]
+}
 {% endschema %}

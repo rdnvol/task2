@@ -2,7 +2,8 @@
   "sections": {
     "main": {
       "type": "typography-template",
-      "settings": {}
+      "settings": {
+      }
     }
   },
   "order": [

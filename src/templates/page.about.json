@@ -42,12 +42,18 @@
     },
     "main": {
       "type": "page-template",
-      "settings": {}
+      "settings": {
+      }
     },
     "1640014220e00abc68": {
       "type": "home-rich-text",
-      "settings": {}
+      "settings": {
+      }
     }
   },
-  "order": ["1640013986983c0b0e", "main", "1640014220e00abc68"]
+  "order": [
+    "1640013986983c0b0e",
+    "main",
+    "1640014220e00abc68"
+  ]
 }
