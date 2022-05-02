@@ -1,13 +1,14 @@
-{% assign section_onboarding = false %}
-{% if product == empty %}
-  {%- assign section_onboarding = true -%}
-{% endif %}
-{%- assign current_variant = product.selected_or_first_available_variant -%}
-{%- assign show_size_chart = section.settings.show_size_chart -%}
-{%- assign size_chart_url = section.settings.size_chart_url -%}
-{%- assign show_variant_label = section.settings.show_variant_label -%}
-{%- assign product_form_id = 'product-form-' | append: section.id -%}
-
+{% liquid
+  assign section_onboarding = false
+  if product == empty
+    assign section_onboarding = true
+  endif
+  assign current_variant = product.selected_or_first_available_variant
+  assign show_size_chart = section.settings.show_size_chart
+  assign size_chart_url = section.settings.size_chart_url
+  assign show_variant_label = section.settings.show_variant_label
+  assign product_form_id = 'product-form-' | append: section.id
+%}
 
 <section data-section-id="{{ section.id }}"
          class="section"
@@ -120,8 +121,10 @@
                         <label class="product__label {% if show_variant_label == false %}visually-hidden{% endif %}" for="Option{{ option.position }}">
                           {{ option.name }}
                         </label>
-                        {% assign size_option = 'products.product.size' | t | downcase %}
-                        {% assign options = product.options | downcase %}
+                        {% liquid
+                          assign size_option = 'products.product.size' | t | downcase
+                          assign options = product.options | downcase
+                        %}
                         {% if forloop.first and show_size_chart and size_chart_url != blank and options contains size_option %}
                           {% if show_variant_label == false %}
                             <div class="text-right pb-2">

@@ -44,31 +44,33 @@
 
 {% endcomment %}
 
-{%- capture classes -%}
-  {{- settings.button_size | append: ' ' | append: class | rstrip -}}
-{%- endcapture -%}
-{% assign element = element | default: "a" %}
+{% liquid
+  capture classes
+    echo settings.button_size | append: ' ' | append: class | rstrip
+  endcapture
+  assign element = element | default: "a"
 
-{%- capture text_content -%}
-  {%- if locales_text -%}
-    {{- locales_text | t -}}
-   {% else %}
-    {{- text | default: 'Button' -}}
-  {%- endif -%}
-{%- endcapture -%}
+  capture text_content
+    if locales_text
+      echo locales_text | t
+    else
+      echo text | default: 'Button'
+    endif
+  endcapture
 
-{%- capture content -%}
-  {% if type == 'icon' %}
-    {%- if snippet -%}
-      {% render 'icon' with icon %}
-    {%- endif -%}
-   {% else %}
-     {{- text_content -}}
-     {%- if snippet -%}
-       {% render 'icon' with icon %}
-     {%- endif -%}
-  {% endif %}
-{%- endcapture -%}
+  capture content
+    if type == 'icon'
+      if snippet
+        render 'icon' with icon
+      endif
+    else
+      echo text_content
+      if snippet
+        render 'icon' with icon
+      endif
+    endif
+  endcapture
+%}
 
 {% capture type_attr %}
   {% if type == 'icon' %}
@@ -89,11 +91,11 @@
   </button>
 {%- when 'span' -%}
   <span class="{{ classes }}" {{ data_attribute }}>
-      {{- content -}}
-    </span>
+    {{- content -}}
+  </span>
 {%- when 'input' -%}
   <input {{ type_attr }}
-         class="{{ classes }}" {{ data_attribute }}
-         value="{{ text | default: "Button" }} {{ other }}"/>
+    class="{{ classes }}" {{ data_attribute }}
+    value="{{ text | default: "Button" }} {{ other }}" />
 {%- endcase -%}
 {% comment %}theme-check-enable{% endcomment %}
