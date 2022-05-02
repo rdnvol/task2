@@ -261,8 +261,7 @@
   "@type": "Organization",
   "name": "{{ shop.name }}",
   {% if section.settings.logo %}
-    {% assign image_size = section.settings.logo.width | append: 'x' %}
-    "logo": "https:{{ section.settings.logo | img_url: image_size }}",
+    "logo": "https:{{ section.settings.logo | image_url: width: section.settings.logo.width }}",
   {% endif %}
   "sameAs": [
     "{{ settings.social_twitter_link }}",

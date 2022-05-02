@@ -118,8 +118,10 @@
                     <div class="sm:flex mb-2">
                       <div class="sm:w-6/12 md:w-9/12 lg:w-6/12 relative">
                         {% if show_variant_label %}
-                          {% assign size_option = 'products.product.size' | t | downcase %}
-                          {% assign options = product.options | downcase %}
+                          {% liquid
+                            assign size_option = 'products.product.size' | t | downcase
+                            assign options = product.options | downcase
+                          %}
                           {% if forloop.first and show_size_chart and size_chart_url != blank and options contains size_option %}
                             <a class="size-chart-link"
                                data-type="ajax"
