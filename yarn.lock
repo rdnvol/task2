@@ -1866,6 +1866,11 @@
   resolved "https://registry.yarnpkg.com/@xtuc/long/-/long-4.2.2.tgz#d291c6a4e97989b5c61d9acf396ae4fe133a718d"
   integrity sha512-NuHqBY1PB/D8xU6s/thBgOAiAP7HOYDQ32+BFZILJ8ivkUkAHQnWfn6WhL79Owj1qmUnoN/YPhktdIoucipkAQ==
 
+"@zachleat/details-utils@^2.0.2":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@zachleat/details-utils/-/details-utils-2.0.2.tgz#258852cb8937dc1dda4ac01b4fe0ab35d1127179"
+  integrity sha512-yDkn4IpfWIEXrNRTxKk2X0Gti5UCKXqs5eD2j/cBAuokn0miRXfJHMa+SnB2MRWzATHm031hCFm2v9FV3W6f3g==
+
 abbrev@1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-1.1.1.tgz#f8f2c887ad10bf67f634f005b6987fed3179aac8"
