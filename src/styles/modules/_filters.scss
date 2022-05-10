@@ -15,6 +15,10 @@
   min-width: 44px;
   min-height: 44px;
   padding: 10px 15px;
+  cursor: pointer;
+  &::-webkit-details-marker {
+    display: none;
+  }
 }
 
 .filter-main-open-close__btn-opener-icon {
@@ -50,7 +54,7 @@
   pointer-events: none;
   transition: opacity $animation-speed ease-in-out;
 
-  .filter-main-open-close--active & {
+  .filter-main-open-close[open] & {
     opacity: 0.6;
     pointer-events: auto;
   }
@@ -65,9 +69,10 @@
   display: block !important;
   height: 100%;
   background: $base-body-background;
-  transition: transform $animation-speed ease-in-out;
-  transform: translateX(100vw);
   @include media ("≤1023px") {
+    position: fixed !important;
+    top: 0 !important;
+    left: 45px !important;
     display: flex !important;
     flex-direction: column;
   }
@@ -77,20 +82,6 @@
     display: block !important;
     height: auto;
     background: none;
-    transition: none;
-    transform: none;
-  }
-  &.js-slide-hidden {
-    @include media ("≤1023px") {
-      position: fixed !important;
-      top: 0 !important;
-      left: 45px !important;
-      display: block !important;
-    }
-  }
-
-  .filter-main-open-close--active & {
-    transform: translateX(0);
   }
 }
 
