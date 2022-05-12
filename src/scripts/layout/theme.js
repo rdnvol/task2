@@ -11,6 +11,7 @@ import 'lazysizes';
 import 'lazysizes/plugins/respimg/ls.respimg.js';
 import { Fancybox } from '@fancyapps/ui';
 import '@zachleat/details-utils';
+import Accordion from '@accede-web/accordion';
 
 import { SmoothScroll } from 'helpers/jquery.plugins';
 
@@ -181,34 +182,46 @@ class App {
 
   // accordion menu init
   initAccordion() {
-    ResponsiveHelper.addRange({
-      '..1199': {
-        on: function () {
-          $('.menu-accordion').slideAccordion({
-            allowClickWhenExpanded: true,
-            activeClass: 'active',
-            opener: '.menu-accordion__opener',
-            slider: '.menu-accordion__slide',
-            collapsible: true,
-            event: 'click',
-            animSpeed: 400,
-          });
-        },
-        off: function () {
-          $('.menu-accordion').slideAccordion('destroy');
-        },
-      },
-    });
+    // ResponsiveHelper.addRange({
+    //   '..1199': {
+    //     on: function () {
+    //       $('.menu-accordion').slideAccordion({
+    //         allowClickWhenExpanded: true,
+    //         activeClass: 'active',
+    //         opener: '.menu-accordion__opener',
+    //         slider: '.menu-accordion__slide',
+    //         collapsible: true,
+    //         event: 'click',
+    //         animSpeed: 400,
+    //       });
+    //     },
+    //     off: function () {
+    //       $('.menu-accordion').slideAccordion('destroy');
+    //     },
+    //   },
+    // });
 
-    $('.accordion').slideAccordion({
-      allowClickWhenExpanded: false,
-      activeClass: 'accordion--active',
-      opener: '.accordion__opener',
-      slider: '.accordion__slide',
-      collapsible: true,
-      event: 'click',
-      animSpeed: 400,
-    });
+    // $('.accordion').slideAccordion({
+    //   allowClickWhenExpanded: false,
+    //   activeClass: 'accordion--active',
+    //   opener: '.accordion__opener',
+    //   slider: '.accordion__slide',
+    //   collapsible: true,
+    //   event: 'click',
+    //   animSpeed: 400,
+    // });
+
+    // get the tablist element
+    var list = document.querySelector( '[data-role="accordion"]' );
+    console.log(list);
+
+    // create the tablist instance
+    var accordion = new Accordion( list );
+    window.accordion = accordion;
+
+    // start the plugin
+    accordion.mount();
+
   }
 
   setHeaderHeight() {

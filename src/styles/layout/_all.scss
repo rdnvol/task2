@@ -396,7 +396,13 @@ ins {
   }
 }
 
+// Start Accordion styles
+
 .accordion {
+
+  [aria-hidden="true"] {
+    display: none;
+  }
 
   li {
     margin: 0 0 10px;
@@ -455,6 +461,8 @@ ins {
   background: $base-body-background;
   box-shadow: 0 5px 13px rgba(0, 0, 0, 0.04);
 }
+
+// End Accordion styles
 
 .spinner-holder {
   margin: -90px 0 0;
