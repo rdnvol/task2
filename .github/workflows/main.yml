@@ -61,4 +61,4 @@ jobs:
       - name: Install Shopify/theme-check
         run: gem install shopify-cli
       - name: Run theme-check
-        run: shopify theme check --fail-level style
+        run: shopify theme check --fail-level error
