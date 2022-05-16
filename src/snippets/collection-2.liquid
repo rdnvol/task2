@@ -114,22 +114,24 @@
                                 <input name="options[prefix]" type="hidden" value="last">
                               {%- endif -%}
                               <div id="FacetsWrapperDesktop" class="facets__wrapper">
-                                {% for filter in collection.filters %}
-                                  {% case filter.label %}
-                                    {% when "Color" %}
-                                      {% render 'collection-filter-color', forloop: forloop, filter: filter %}
-                                    {% when "Price" %}
-                                      {% render 'collection-filter-price', forloop: forloop, filter: filter %}
-                                    {% when "Size" %}
-                                      {% render 'collection-filter-size', forloop: forloop, filter: filter %}
-                                    {% when "Brand" %}
-                                      {% render 'collection-filter-brand', forloop: forloop, filter: filter %}
-                                    {% when "Availability" %}
-                                      {% render 'collection-filter-availability', forloop: forloop, filter: filter %}
-                                    {% when "Product type" %}
-                                      {% render 'collection-filter-product-type', forloop: forloop, filter: filter %}
-                                  {% endcase %}
-                                {% endfor %}
+                                {% liquid
+                                  for filter in collection.filters
+                                    case filter.label
+                                      when "Color"
+                                        render 'collection-filter-color', forloop: forloop, filter: filter
+                                      when "Price"
+                                        render 'collection-filter-price', forloop: forloop, filter: filter
+                                      when "Size"
+                                        render 'collection-filter-size', forloop: forloop, filter: filter
+                                      when "Brand"
+                                        render 'collection-filter-brand', forloop: forloop, filter: filter
+                                      when "Availability"
+                                        render 'collection-filter-availability', forloop: forloop, filter: filter
+                                      when "Product type"
+                                        render 'collection-filter-product-type', forloop: forloop, filter: filter
+                                    endcase
+                                  endfor
+                                %}
                               </div>
                               <div class="active-filters pt-4">
                                 <facet-remove>
