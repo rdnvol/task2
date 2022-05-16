@@ -117,69 +117,7 @@
                                 {% for filter in collection.filters %}
                                   {% case filter.label %}
                                     {% when "Color" %}
-                                      <div class="filter-collapse">
-                                        <details-utils force-open animate force-restore>
-                                          <details class="filter-collapse__item js-filter" data-index="{{ forloop.index }}">
-                                            <summary class="py-3 flex justify-between items-center">
-                                              {{ filter.label }}
-                                              <span class="filter-collapse__btn flex-shrink-0 mx-4"></span>
-                                            </summary>
-                                            {% if filter.values.size > 0 %}
-                                              {% for value in filter.values %}
-                                                {% unless forloop.index > 5 %}
-                                                  <div class="py-3 custom-input custom-input--colors-with-text overflow-hidden">
-                                                    <input id="Filter-{{ value.param_name }}--{{ forloop.index }}"
-                                                           type="checkbox"
-                                                           name="{{ value.param_name }}"
-                                                           value="{{ value.value }}"
-                                                           {% if value.active %}
-                                                            checked
-                                                           {% endif %}
-                                                           {% if value.count == 0 and value.active == false %}
-                                                            disabled
-                                                           {% endif %}
-                                                           >
-                                                    <label for="Filter-{{ value.param_name }}--{{ forloop.index }}" class="custom-label flex items-center">
-                                                      <span class="custom-label__img-holder">
-                                                        <div style="background-color: {{ value.value }}; width: 100%; height: 100%; border-radius: 50%;" >
-                                                        </div>
-                                                      </span>
-                                                      {{ value.label }} ({{ value.count }})
-                                                    </label>
-                                                 </div>
-                                                {% endunless %}
-                                              {% endfor %}
-                                            {% endif %}
-                                            {% if filter.values.size >= 5 %}
-                                              <more-less class="filter-collapse__btn-more-content mb-3">
-                                                <span id="more" class="filter-collapse__more">+ More</span>
-                                                <span id="less" class="filter-collapse__less">- Less</span>
-
-                                                <script id="filter-items" data-template="1" type="application/json">
-                                                  {
-                                                    "filter_label": {{ filter.label | json }},
-                                                    "filter_type": {{ filter.type | json }},
-                                                    "filter_values": [
-                                                      {% for value in filter.values %}
-                                                        {
-                                                          "active": {{ value.active | json }},
-                                                          "count": {{ value.count | json }},
-                                                          "label": {{ value.label | json }},
-                                                          "param_name": {{ value.param_name | json }},
-                                                          "value": {{ value.value | json }}
-                                                        }
-                                                      {% unless forloop.last %}
-                                                        ,
-                                                      {% endunless %}
-                                                      {% endfor %}
-                                                    ]
-                                                  }
-                                                </script>
-                                              </more-less>
-                                            {% endif %}
-                                          </details>
-                                        </details-utils>
-                                      </div>
+                                      {% render 'collection-filter-color', forloop: forloop, filter: filter %}
                                     {% when "Price" %}
                                       {% liquid
                                         assign currencies_using_comma_decimals = 'ANG,ARS,BRL,BYN,BYR,CLF,CLP,COP,CRC,CZK,DKK,EUR,HRK,HUF,IDR,ISK,MZN,NOK,PLN,RON,RUB,SEK,TRY,UYU,VES,VND' | split: ','
