@@ -673,6 +673,11 @@ img[data-sizes="auto"] {
   }
 }
 
+// Important CSS for details-utils
+details-utils:not(:defined) [data-du-close-click] {
+  display: none;
+}
+
 // Shopify Preview bar iframe styles
 #preview-bar-iframe {
   width: calc(100% + 15px) !important;
