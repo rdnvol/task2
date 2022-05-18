@@ -198,12 +198,28 @@
             {% endcase %}
           {% endfor %}
 
-          <ul class="accordion mb-6 rte hidden">
-            <li class="accordion--active">
-              <a href="#" class="accordion__opener title-1">
-                Product Details
-              </a>
-              <div class="accordion__slide">
+          <div class="accordion">
+ 
+            <div>
+                <h1> Heading </h1>
+                <div> Content </div>
+            </div>
+            
+            <div>
+                <h1> Heading </h1>
+                <div> Content </div>
+            </div>
+            
+          </div>
+
+          <ul class="accordion mb-6 rte hidden" data-multiselectable="false">
+            <li>
+              <div role="heading" aria-level="3">
+                <button class="accordion__opener title-1" id="product-tab-1" aria-controls="product-accordion-slide-1" data-expand="true">
+                  Product Details
+                </button>
+              </div>
+              <div class="accordion__slide" id="product-accordion-slide-1" aria-labelledby="product-tab-1" aria-hidden="false">
                 <div class="accordion__block">
                   <div class="title-1 mb-2">
                     DJI Mavic Air 2 Key Features
@@ -231,10 +247,12 @@
               </div>
             </li>
             <li>
-              <a href="#" class="accordion__opener title-1">
-                Specifications
-              </a>
-              <div class="accordion__slide">
+              <div role="heading" aria-level="3">
+                <button class="accordion__opener title-1" id="product-tab-2" aria-controls="product-accordion-slide-2" aria-expanded="false">
+                  Specifications
+                </button>
+              </div>
+              <div class="accordion__slide" id="product-accordion-slide-2" aria-labelledby="product-tab-2">
                 <div class="accordion__block">
                   <dl>
                     <dt>Brand</dt>
@@ -262,10 +280,12 @@
               </div>
             </li>
             <li>
-              <a href="#" class="accordion__opener title-1">
-                Warranty & Services
-              </a>
-              <div class="accordion__slide">
+              <div role="heading" aria-level="3">
+                <button class="accordion__opener title-1" id="product-tab-3" aria-controls="product-accordion-slide-3" aria-expanded="false">
+                  Warranty & Services
+                </button>
+              </div>
+              <div class="accordion__slide" id="product-accordion-slide-3" aria-labelledby="product-tab-3">
                 <div class="accordion__block">
                   <div class="body-2">
                     <p>
@@ -276,10 +296,12 @@
               </div>
             </li>
             <li>
-              <a href="#" class="accordion__opener title-1">
-                Shipping & Returns
-              </a>
-              <div class="accordion__slide">
+              <div role="heading" aria-level="3">
+                <button class="accordion__opener title-1" id="product-tab-4" aria-controls="product-accordion-slide-4" aria-expanded="false">
+                  Shipping & Returns
+                </button>
+              </div>
+              <div class="accordion__slide" id="product-accordion-slide-4" aria-labelledby="product-tab-4">
                 <div class="accordion__block">
                   <ul>
                     <li>
@@ -303,7 +325,7 @@
             </li>
           </ul>
 
-          <div class="accordion" data-multiselectable="true">
+          <div class="accordion hidden" data-multiselectable="true">
             <h3>
               <button id="tab1" aria-controls="panel1">Entête n<sup>o</sup> 1</button>
             </h3>
@@ -330,7 +352,7 @@
             </div>
           </div>
 
-          <div class="accordion">
+          <div class="accordion hidden">
             <p class="tab" role="heading" aria-level="3"><span id="tab21" role="button" aria-controls="panel21" tabindex="0" aria-expanded="false">Entête n<sup>o</sup>&nbsp;1
                 <svg class="icon-tab" aria-hidden="true">
                   <use class="pipe" xlink:href="#icon-tabOpened"></use>

@@ -1888,6 +1888,11 @@ abort-controller@3.0.0:
   dependencies:
     event-target-shim "^5.0.0"
 
+accordion@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/accordion/-/accordion-3.0.2.tgz#1badb97f4eab94208165f794aaaa97198781fdfe"
+  integrity sha512-jbQfFaw+57OBwPt7qSNHuW+RA8smmRwkWRS1Ozh6K/QxUspBgBV/LpdSzlY7vee8TomS6j3D33B9rIeH1qMwsA==
+
 acorn-import-assertions@^1.7.6:
   version "1.8.0"
   resolved "https://registry.yarnpkg.com/acorn-import-assertions/-/acorn-import-assertions-1.8.0.tgz#ba2b5939ce62c238db6d93d81c9b111b29b855e9"

@@ -67,7 +67,7 @@
 .product-main-block__details {
   &.product-main-block__details--sticky {
     @include media ("≥tablet") {
-      position: sticky;
+      // position: sticky;
       top: var(--header-sticky-height);
     }
   }
