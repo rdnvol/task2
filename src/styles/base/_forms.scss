@@ -41,6 +41,11 @@ input[type="number"] {
   width: 70px;
 }
 
+/* Remove extra spacing for search inputs in Safari */
+input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
 select {
   box-sizing: border-box;
   height: $height-form-elements;
