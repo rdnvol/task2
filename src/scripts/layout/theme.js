@@ -12,7 +12,7 @@ import 'lazysizes/plugins/respimg/ls.respimg.js';
 import { Fancybox } from '@fancyapps/ui';
 import '@zachleat/details-utils';
 
-import { SmoothScroll } from 'helpers/jquery.plugins';
+import 'helpers/jquery.plugins';
 
 import 'store/store.ts';
 // Cart
@@ -38,7 +38,6 @@ class App {
     this.initAccordion();
     this.initCurrencySwitcher();
     this.initLanguageSwitcher();
-    this.initAnchors();
     this.initMap();
     this.fancyboxBackdrop();
     this.fancyboxModalCloseButton();
@@ -256,16 +255,6 @@ class App {
         })
       );
     }
-  }
-
-  initAnchors() {
-    new SmoothScroll({
-      anchorLinks: '.anchor-link',
-      activeClasses: 'active',
-      wheelBehavior: 'none',
-      extraOffset: $('.header__panel').height() || 0,
-      animDuration: 800,
-    });
   }
 
   initMap() {
