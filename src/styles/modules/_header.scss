@@ -13,6 +13,10 @@
   }
 }
 
+.sticky-wrap-header__panel {
+  position: relative;
+}
+
 .header__panel {
   z-index: 100;
   padding: 20px 0;
@@ -21,14 +25,19 @@
     position: relative;
     padding: 0;
   }
-  .fixed-position & {
-    z-index: 100;
-    @include media ("≥widescreen") {
-      z-index: 10001;
-    }
-  }
   &.header__panel-shadow {
     box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.09);
+  }
+
+  .fixed-position & {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    width: 100% !important;
+    @include media ("≥widescreen") {
+      z-index: 1001;
+    }
   }
 }
 
@@ -44,7 +53,9 @@
   padding: 0 10px;
 
   .xl\:justify-start & {
-    margin: 0;
+    @include media ("≥widescreen") {
+      margin: 0;
+    }
   }
 
   a {
@@ -142,7 +153,6 @@
 }
 
 .main-menu {
-  @extend %transition;
   padding: 10px 0;
   font-size: $font-size-base;
   line-height: 1.28;

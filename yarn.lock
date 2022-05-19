@@ -8329,6 +8329,11 @@ stdout-stream@^1.4.0:
   dependencies:
     readable-stream "^2.0.1"
 
+sticky-states@^1.0.8:
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/sticky-states/-/sticky-states-1.0.8.tgz#48248b4233ffe15b8c9a1be2a26b89b2332cb751"
+  integrity sha512-oIY7C/8j3XhkBzyNkKnwDtCUiQyBWsANcqUcZ/fuDTerXC85MkzPB9luYzOZ5W9vAPCk9nvyrNXW764ckFBo1g==
+
 string-argv@0.3.1:
   version "0.3.1"
   resolved "https://registry.yarnpkg.com/string-argv/-/string-argv-0.3.1.tgz#95e2fbec0427ae19184935f816d74aaa4c5c19da"

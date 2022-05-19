@@ -11,6 +11,7 @@ import 'lazysizes';
 import 'lazysizes/plugins/respimg/ls.respimg.js';
 import { Fancybox } from '@fancyapps/ui';
 import '@zachleat/details-utils';
+import StickyStates from 'sticky-states';
 
 import { SmoothScroll } from 'helpers/jquery.plugins';
 
@@ -23,7 +24,6 @@ import 'components/CartPopup';
 // utils
 import { getLocaleAndPathname } from 'helpers/utils';
 
-
 class App {
   constructor() {
     this.init();
@@ -32,7 +32,8 @@ class App {
   init() {
     this.setHeaderHeight();
     this.initMobileNav();
-    this.initStickyScrollBlock();
+    this.initStickyHeader();
+    this.initStickyBlock();
     // this.initHeaderOnScrollDown();
     this.initIosScroll();
     this.initAccordion();
@@ -55,16 +56,40 @@ class App {
     Fancybox.bind('[data-fancybox]', {});
   }
 
-  // initialize fixed blocks on scroll
-  initStickyScrollBlock() {
-    $('.header__panel').stickyScrollBlock({
-      setBoxHeight: true,
-      activeClass: 'fixed-position',
-      container: '.page-wrapper',
-      positionType: 'fixed',
-      animDelay: 0,
-      showAfterScrolled: false,
-    });
+  // initialize fixed header on scroll
+  initStickyHeader() {
+    const stickyHeaderOptions = {
+      elementSelector: '.sticky-wrap-header__panel',
+      innerElementSelector: '.header__panel',
+      isStickyClass: 'fixed-position',
+      positionAttribute: 'data-sticky-position',
+      thresholdAttribute: 'data-sticky-threshold',
+      // stickyRelativeToAttribute: 'data-sticky-relative-to',
+      // staticAtEndAttribute: 'data-sticky-static-at-end',
+      containerAttribute: 'data-sticky-container',
+      // position: 'top', // Accepted values: `top`, `bottom`
+      threshold: 0,
+    };
+
+    StickyStates.init(stickyHeaderOptions);
+  }
+
+  initStickyBlock() {
+    const optionsStickyBlock = {
+      elementSelector: '.also-has-sticky-states',
+      innerElementSelector: '.also-sticky-content',
+      isStickyClass: 'fixed-position',
+      positionAttribute: 'data-sticky-position',
+      thresholdAttribute: 'data-sticky-threshold',
+      // stickyRelativeToAttribute: 'data-sticky-relative-to',
+      // staticAtEndAttribute: 'data-sticky-static-at-end',
+      containerAttribute: 'data-sticky-container',
+      // position: 'top', // Accepted values: `top`, `bottom`
+      threshold: 0,
+    };
+    console.log('optionsStickyBlock');
+
+    StickyStates.init(optionsStickyBlock);
   }
 
   // Hide Header on on scroll down
@@ -117,10 +142,6 @@ class App {
             $wrap = $('.page-wrapper'),
             scrollTop;
           $('.page-wrapper__opener').on('click', function (e) {
-            window.headerPanel = $('.header__panel');
-            window.stickyWrap = $('.sticky-wrap-header__panel');
-            window.headerPanelStyle = headerPanel.attr('style');
-            window.stickyWrapStyle = stickyWrap.attr('style');
             if ($('html').hasClass('scroll-fix')) {
               $.unlockBody();
               $('html').removeClass('scroll-fix');
@@ -128,13 +149,6 @@ class App {
               $.lockBody();
               $('html').addClass('scroll-fix');
             }
-            setTimeout(() => {
-              window.headerPanel.attr('style', window.headerPanelStyle);
-              window.stickyWrap.attr('style', window.stickyWrapStyle);
-              if (window.headerPanelStyle !== '') {
-                window.stickyWrap.addClass('fixed-position');
-              }
-            }, 100);
           });
           $.unlockBody = function () {
             $docEl.css({
