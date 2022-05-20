@@ -72,6 +72,8 @@ class App {
     };
 
     StickyStates.init(stickyHeaderOptions);
+
+    console.log('stickyHeaderOptions');
   }
 
   initStickyBlock() {
@@ -87,9 +89,10 @@ class App {
       // position: 'top', // Accepted values: `top`, `bottom`
       threshold: 0,
     };
-    console.log('optionsStickyBlock');
 
     StickyStates.init(optionsStickyBlock);
+
+    console.log('optionsStickyBlock');
   }
 
   // Hide Header on on scroll down
