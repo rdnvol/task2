@@ -1,5 +1,5 @@
 {% if section.blocks.size > 0 %}
-  <section class="section" style="height: 5000px;">
+  <section class="section">
     <div class="container">
       <div class="md:flex md:justify-center">
         <div class="md:w-8/12">
@@ -12,35 +12,12 @@
                   {{ block.settings.copy }}
               {% endcase %}
             {% endfor %}
-
-            <div class="also-has-sticky-states" data-sticky-container="#shopify-section-template--14156276236355__164000139349faafec">
-              <div class="also-sticky-content">
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis natus corporis maxime, dolores delectus nesciunt molestiae commodi velit consectetur ratione autem fuga, inventore quam assumenda voluptate fugiat. Excepturi, ut assumenda.
-                </p>
-              </div>
-            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
 {% endif %}
-
-<style>
-  .fixed-position .also-sticky-content {
-    position: fixed;
-    z-index: 1;
-  }
-
-  .is-sticky--top .also-sticky-content {
-    top: 0;
-  }
-
-  .is-end-position .also-sticky-content {
-    position: absolute;
-  }
-</style>
 
 {% schema %}
 {

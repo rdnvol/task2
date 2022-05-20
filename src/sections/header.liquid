@@ -15,7 +15,7 @@
 
   {% render 'header-announcement' %}
 
-  <div class="sticky-wrap-header__panel" data-sticky-states data-sticky-container="#main">
+  <div class="sticky-wrap-header__panel" data-sticky-states data-sticky-container="body">
     <div class="header__panel{% if section.settings.enable_shadow %} header__panel-shadow{% endif %}" data-sticky-states-inner>
       <div class="container">
         <div class="flex items-center -mx-4">
@@ -65,7 +65,7 @@
   </div>
 
 </header>
-<nav class="menu__drop xl:hidden" tabindex="-1">
+<div class="menu__drop xl:hidden" tabindex="-1">
   {% render 'header-announcement' %}
   <div class="header__panel-mobile">
     <div class="container">
@@ -106,14 +106,18 @@
         %}
       </form>
     {% endif %}
-    <ul class="main-menu menu-accordion">
-      {% render 'nav-menu-mobile' %}
-    </ul>
-    <ul class="main-menu menu-accordion xl:hidden">
-      {% render 'nav-account-menu' %}
-    </ul>
+    <nav>
+      <ul class="main-menu menu-accordion">
+        {% render 'nav-menu-mobile' %}
+      </ul>
+    </nav>
+    <nav>
+      <ul class="main-menu menu-accordion xl:hidden">
+        {% render 'nav-account-menu' %}
+      </ul>
+    </nav>
   </div>
-</nav>
+</div>
 
 {% style %}
   .header__bar {

@@ -32,8 +32,7 @@ class App {
   init() {
     this.setHeaderHeight();
     this.initMobileNav();
-    this.initStickyHeader();
-    this.initStickyBlock();
+    this.initStickyBlocks();
     // this.initHeaderOnScrollDown();
     this.initIosScroll();
     this.initAccordion();
@@ -57,42 +56,21 @@ class App {
   }
 
   // initialize fixed header on scroll
-  initStickyHeader() {
+  initStickyBlocks() {
     const stickyHeaderOptions = {
-      elementSelector: '.sticky-wrap-header__panel',
-      innerElementSelector: '.header__panel',
+      elementSelector: '[data-sticky-states]',
+      innerElementSelector: '[data-sticky-states-inner]',
       isStickyClass: 'fixed-position',
       positionAttribute: 'data-sticky-position',
       thresholdAttribute: 'data-sticky-threshold',
-      // stickyRelativeToAttribute: 'data-sticky-relative-to',
-      // staticAtEndAttribute: 'data-sticky-static-at-end',
+      stickyRelativeToAttribute: 'data-sticky-relative-to',
+      staticAtEndAttribute: 'data-sticky-static-at-end',
       containerAttribute: 'data-sticky-container',
       // position: 'top', // Accepted values: `top`, `bottom`
       threshold: 0,
     };
 
     StickyStates.init(stickyHeaderOptions);
-
-    console.log('stickyHeaderOptions');
-  }
-
-  initStickyBlock() {
-    const optionsStickyBlock = {
-      elementSelector: '.also-has-sticky-states',
-      innerElementSelector: '.also-sticky-content',
-      isStickyClass: 'fixed-position',
-      positionAttribute: 'data-sticky-position',
-      thresholdAttribute: 'data-sticky-threshold',
-      // stickyRelativeToAttribute: 'data-sticky-relative-to',
-      // staticAtEndAttribute: 'data-sticky-static-at-end',
-      containerAttribute: 'data-sticky-container',
-      // position: 'top', // Accepted values: `top`, `bottom`
-      threshold: 0,
-    };
-
-    StickyStates.init(optionsStickyBlock);
-
-    console.log('optionsStickyBlock');
   }
 
   // Hide Header on on scroll down
