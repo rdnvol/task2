@@ -9,7 +9,9 @@
               {{ article.published_at | time_tag: format: 'month_day_year' }}
             </div>
             {% if blog.comments_enabled? %}
-              <a href="#comments" class="anchor-link">{{ 'blogs.comments.with_count' | t: count: article.comments_count }}</a>
+              <a href="#comments">
+                {{ 'blogs.comments.with_count' | t: count: article.comments_count }}
+              </a>
             {% endif %}
           </header>
           <div class="post__img">

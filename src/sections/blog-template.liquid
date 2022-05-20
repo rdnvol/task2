@@ -6,7 +6,7 @@
       <div class="md:flex">
         <div class="md:w-8/12 xl:w-9/12 md:mx-auto">
           {% for article in blog.articles %}
-            <article role="article" class="post">
+            <article class="post">
               <header class="post__header">
                 <h2 class="h3 post__title">
                   <a href="{{ article.url }}">{{ article.title }}</a>
@@ -15,7 +15,9 @@
                   {{ article.published_at | time_tag: format: 'month_day_year' }}
                 </div>
                 {% if blog.comments_enabled? %}
-                  <a href="{{ article.url }}#comments" class="anchor-link">{{ 'blogs.comments.with_count' | t: count: article.comments_count }}</a>
+                  <a href="{{ article.url }}#comments">
+                    {{ 'blogs.comments.with_count' | t: count: article.comments_count }}
+                  </a>
                 {% endif %}
               </header>
               {% if article.image %}
