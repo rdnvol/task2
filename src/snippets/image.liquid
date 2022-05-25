@@ -287,15 +287,15 @@ Renders an image
     assign m2x_height = m_height | times: 2
     if crop
       assign d_src = src | image_url: width: d_width, height: d_height, crop: crop
-      assign d_src_2x = src | image_url: width: d_width, height: d_height, crop: crop
+      assign d_src_2x = src | image_url: width: d2x_width, height: d2x_height, crop: crop
       assign d_srcset = d_src | append: ", " | append: d_src_2x | append: ' 2x'
 
       assign t_src = src_tablet | image_url: width: t_width, height: t_height, crop: crop
-      assign t_src_2x = src_tablet | image_url: width: t_width, height: t_height, crop: crop
+      assign t_src_2x = src_tablet | image_url: width: t2x_width, height: t2x_height, crop: crop
       assign t_srcset = t_src | append: ", " | append: t_src_2x | append: ' 2x'
 
       assign m_src = src_mobile | image_url: width: m_width, height: m_width, crop: crop
-      assign m_src_2x = src_mobile | image_url: width: m_width, height: m_width, crop: crop
+      assign m_src_2x = src_mobile | image_url: width: m2x_width, height: m2x_height, crop: crop
       assign m_srcset = m_src | append: ", " | append: m_src_2x | append: ' 2x'
     else
       assign d_src = src | image_url: width: d_width, height: d_height, crop: false
