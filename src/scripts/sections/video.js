@@ -1,5 +1,4 @@
 import { register } from '@shopify/theme-sections';
-// import bgVideo from 'jquery-background-video';
 import Plyr from 'plyr';
 import 'plyr/dist/plyr.css';
 
