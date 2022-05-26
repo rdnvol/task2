@@ -1,18 +1,24 @@
 import { register } from '@shopify/theme-sections';
-import bgVideo from 'jquery-background-video';
+// import bgVideo from 'jquery-background-video';
+import Plyr from 'plyr';
+import 'plyr/dist/plyr.css';
 
 import { afterScrollEnable } from '../helpers/utils';
 
 register('video', {
   initBackgroundVideo: function () {
     afterScrollEnable(this.container, () => {
-      bgVideo;
-      $(`[data-section-id="${this.id}"] .jquery-background-video`).bgVideo({
-        fadeIn: 1000,
-        showPausePlay: true,
-        pausePlayXPos: 'right',
-        pausePlayYPos: 'top',
-      });
+      const players = Array.from(document.querySelectorAll('.js-player')).map((p) => new Plyr(p ,{
+        autoplay: true,
+        loop: {
+          active: true
+        },
+        autopause: true,
+        muted: true,
+        controls: [
+          'play-large'
+        ]
+      }));
     });
   },
 
