@@ -43,9 +43,8 @@ $media-expressions: (
 @import "base/typography";
 @import "base/forms";
 
-@import "plugins/age-popup";
-@import "plugins/jquery-background-video";
 @import "plugins/jcf";
+@import "plugins/js-video";
 
 @import "modules/header";
 
@@ -77,6 +76,7 @@ $media-expressions: (
 @import "section/map-section";
 @import "section/page-hero";
 
+@import "modules/age-popup";
 @import "modules/filters";
 @import "modules/cart-popup";
 @import "modules/footer";
