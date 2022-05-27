@@ -13,6 +13,7 @@ import { Fancybox } from '@fancyapps/ui';
 import '@zachleat/details-utils';
 
 import 'helpers/jquery.plugins';
+import 'helpers/responsive-helper';
 
 import 'store/store.ts';
 // Cart
