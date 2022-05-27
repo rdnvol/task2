@@ -11,8 +11,8 @@ import 'lazysizes';
 import 'lazysizes/plugins/respimg/ls.respimg.js';
 import { Fancybox } from '@fancyapps/ui';
 import '@zachleat/details-utils';
-// import Accordion from '@accede-web/accordion';
-import Accordion from 'accordion/src/accordion.mjs';
+import { Accordion } from 'accordion';
+import 'accordion/src/accordion.css';
 
 import { SmoothScroll } from 'helpers/jquery.plugins';
 
@@ -189,8 +189,9 @@ class App {
   // accordion menu init
   initAccordion() {
 
-    for(const el of document.querySelectorAll(".accordion"))
-        new Accordion(el);
+    document.querySelectorAll(".accordion").forEach((item) => {
+        const accordion = new Accordion(item);
+    })
 
     // // get all tablist elements
     // const elements = document.querySelectorAll('.accordion');
