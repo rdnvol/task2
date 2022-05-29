@@ -11,8 +11,8 @@ import 'lazysizes';
 import 'lazysizes/plugins/respimg/ls.respimg.js';
 import { Fancybox } from '@fancyapps/ui';
 import '@zachleat/details-utils';
-import StickyStates from 'sticky-states';
 
+import { StickyStates } from 'helpers/stickyStates';
 import { SmoothScroll } from 'helpers/jquery.plugins';
 
 import 'store/store.ts';
