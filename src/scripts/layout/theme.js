@@ -54,7 +54,7 @@ class App {
     Fancybox.bind('[data-fancybox]', {});
   }
 
-  // initialize fixed header on scroll
+  // Initialize sticky blocks
   initStickyBlocks() {
     const stickyHeaderOptions = {
       elementSelector: '[data-sticky-states]',
