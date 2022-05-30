@@ -10,10 +10,10 @@ class Sticky {
   resetOnResize = () => {
     if (!this.pluginInstance) console.warn('cannot find sticky-states plugin');
 
-    this.pluginInstance.managers.forEach(({ stickyElement }) => {
+    this.pluginInstance.managers.forEach(({ stickyElement, innerElement }) => {
       if (!stickyElement) return;
 
-      stickyElement.style.height = '';
+      stickyElement.style.height = `${innerElement?.offsetHeight}px`;
     });
   };
 
