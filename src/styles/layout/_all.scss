@@ -396,21 +396,27 @@ ins {
   }
 }
 
+// Start Accordion styles
+
 .accordion {
 
-  li {
-    margin: 0 0 10px;
+  > li {
+    width: 100%;
   }
 }
 
 .accordion__opener {
   position: relative;
   display: block;
-  padding: 8px 14px 7px;
+  padding: 12px 14px 11px;
   color: $base-body-text;
+  text-align: left;
   text-decoration: none;
   background: $base-accordion-background;
   border: 1px solid $base-accordion-background;
+  @include media ("≥widescreen") {
+    padding: 8px 14px 7px;
+  }
   &::before,
   &::after {
     content: "";
@@ -430,7 +436,7 @@ ins {
     width: 2px;
     height: 12px;
 
-    .accordion--active & {
+    .open > & {
       opacity: 0;
     }
   }
@@ -442,19 +448,13 @@ ins {
   }
 }
 
-.accordion__slide {
-  display: none;
-
-  .accordion--active & {
-    display: block;
-  }
-}
-
 .accordion__block {
   padding: 15px;
   background: $base-body-background;
   box-shadow: 0 5px 13px rgba(0, 0, 0, 0.04);
 }
+
+// End Accordion styles
 
 .spinner-holder {
   margin: -90px 0 0;
