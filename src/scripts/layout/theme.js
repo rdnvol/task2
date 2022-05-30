@@ -258,7 +258,7 @@ class App {
   }
 
   initMap() {
-    $(window).on('load', function () {
+    document.addEventListener('load', () => {
       const mapElement = document.getElementById('google-map');
       if (mapElement && google) {
         let map = new google.maps.Map(mapElement, {
