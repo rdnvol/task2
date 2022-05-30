@@ -1,5 +1,6 @@
 html {
   box-sizing: border-box;
+  scroll-behavior: smooth;
   @include media ("≥widescreen") {
     overflow: visible !important;
   }
@@ -12,6 +13,13 @@ html {
         overflow: hidden !important;
       }
     }
+  }
+
+  /**
+  * Disable smooth scrolling when users have prefers-reduced-motion enabled
+  */
+  @media screen and (prefers-reduced-motion: reduce) {
+    scroll-behavior: auto;
   }
 }
 
@@ -62,11 +70,18 @@ button,
 a,
 span.btn-more,
 input[type="submit"],
-input[type="reset"] {
+input[type="reset"],
+summary {
   @include animates;
+  @media screen and (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
 }
 
 // transition for svg
 svg {
-  transition: stroke $animation-speed ease, fill $animation-speed ease;
+  transition: stroke $animation-speed ease-in-out, fill $animation-speed ease-in-out;
+  @media screen and (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
 }
