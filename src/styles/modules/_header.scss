@@ -168,15 +168,18 @@
     @include media ("≥widescreen") {
       margin: 0;
     }
-    &.active {
+    &.open {
       &.has-drop {
 
         > a {
           &::after {
+            margin-top: -2px;
             transform: rotate(135deg);
           }
         }
       }
+    }
+    &.active {
 
       > a {
         text-decoration: underline;
@@ -368,8 +371,6 @@
 }
 
 .header__search-form {
-  position: relative;
-  margin: 20px 0 0;
 
   input {
     padding-right: 50px;

@@ -188,20 +188,36 @@ class App {
 
   // accordion menu init
   initAccordion() {
+    document.querySelectorAll('.js-accordion').forEach((item) => {
+      const accordion = new Accordion(item, {
+        modal: true, // Limit the accordion to having only one fold open at a time.
+        closeClass: 'close',
+        enabledClass: 'enabled',
+        openClass: 'open',
+        heightOffset: 10,
+        useBorders: true,
+      });
+    });
 
-    document.querySelectorAll(".accordion").forEach((item) => {
-        const accordion = new Accordion(item);
-    })
+    ResponsiveHelper.addRange({
+      '..1199': {
+        on() {
+          document.querySelectorAll('.js-menu-accordion').forEach((item) => {
+            const accordionMenu = new Accordion(item, {
+              modal: true, // Limit the accordion to having only one fold open at a time.
+              closeClass: 'close',
+              enabledClass: 'enabled',
+              openClass: 'open',
+              heightOffset: 0,
+              useBorders: false,
+            });
+          });
+        },
+        off() {
+        },
+      },
+    });
 
-    // // get all tablist elements
-    // const elements = document.querySelectorAll('.accordion');
-
-    // // create the tablist instances
-    // elements.forEach((element) => {
-    //   const accordion = new Accordion(element);
-
-    //   accordion.mount();
-    // });
   }
 
   setHeaderHeight() {

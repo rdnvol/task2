@@ -400,23 +400,23 @@ ins {
 
 .accordion {
 
-  [aria-hidden="true"] {
-    display: none;
-  }
-
-  li {
-    margin: 0 0 10px;
+  > li {
+    width: 100%;
   }
 }
 
 .accordion__opener {
   position: relative;
   display: block;
-  padding: 8px 14px 7px;
+  padding: 12px 14px 11px;
   color: $base-body-text;
+  text-align: left;
   text-decoration: none;
   background: $base-accordion-background;
   border: 1px solid $base-accordion-background;
+  @include media ("≥widescreen") {
+    padding: 8px 14px 7px;
+  }
   &::before,
   &::after {
     content: "";
@@ -436,7 +436,7 @@ ins {
     width: 2px;
     height: 12px;
 
-    .accordion--active & {
+    .open > & {
       opacity: 0;
     }
   }
@@ -445,14 +445,6 @@ ins {
   }
   &:focus {
     border-color: $black;
-  }
-}
-
-.accordion__slide {
-  display: none;
-
-  .accordion--active & {
-    display: block;
   }
 }
 
