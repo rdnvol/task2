@@ -207,6 +207,7 @@ class App {
           document.querySelectorAll('.js-menu-accordion').forEach((item) => {
             const accordionMenu = new Accordion(item, {
               modal: true, // Limit the accordion to having only one fold open at a time.
+              noAria: true,
               closeClass: 'close',
               enabledClass: 'enabled',
               openClass: 'open',
