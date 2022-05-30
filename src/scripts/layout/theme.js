@@ -1,5 +1,4 @@
 import 'styles/theme.scss';
-import '@fancyapps/ui/dist/fancybox.css';
 
 // plugins
 import 'picturefill';
@@ -9,8 +8,12 @@ import 'lazysizes/plugins/rias/ls.rias.js';
 import 'lazysizes/plugins/bgset/ls.bgset.js';
 import 'lazysizes';
 import 'lazysizes/plugins/respimg/ls.respimg.js';
+// Fancybox
 import { Fancybox } from '@fancyapps/ui';
+import '@fancyapps/ui/dist/fancybox.css';
+// Open-close details-utils
 import '@zachleat/details-utils';
+// Accordion
 import { Accordion } from 'accordion';
 import 'accordion/src/accordion.css';
 
