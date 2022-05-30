@@ -211,19 +211,19 @@ class App {
   }
 
   setHeaderHeight() {
-    $(window).on('load resize scroll', function () {
-      document.documentElement.style.setProperty(
-        '--header-height',
-        $('#header').css('height')
-      );
-      document.documentElement.style.setProperty(
-        '--header-sticky-height',
-        $('.header__panel').css('height')
-      );
-      document.documentElement.style.setProperty(
-        '--announcements-bar-height',
-        $('.header__bar').css('height')
-      );
+    const events = ['load', 'resize', 'scroll'];
+
+    events.forEach((event) => {
+      window.addEventListener(event, () => {
+        const headerHight = document.querySelector('#header')?.getBoundingClientRect().height + 'px';
+        const headerPanelHeight = document.querySelector('.header__panel')?.getBoundingClientRect().height + 'px';
+        const headerBarHeight = document.querySelector('.header__bar')?.getBoundingClientRect().height + 'px';
+
+        document.documentElement.style.setProperty('--header-height', headerHight);
+        document.documentElement.style.setProperty('--header-sticky-height', headerPanelHeight);
+        document.documentElement.style.setProperty('--announcements-bar-height', headerBarHeight);
+      });
+
     });
   }
 
