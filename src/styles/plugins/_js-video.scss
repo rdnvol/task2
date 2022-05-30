@@ -1,0 +1,151 @@
+.background-video-wrapper {
+  position: relative;
+  aspect-ratio: 16/9;
+  &.background-video-wrapper--small {
+    aspect-ratio: 21/9;
+  }
+  &.background-video-wrapper--large {
+    aspect-ratio: 3/4;
+    @include media ("≥tablet") {
+      aspect-ratio: 4/3;
+    }
+  }
+
+  .plyr--video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+  }
+
+  .js-player {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .plyr__poster {
+    background-position: 50% 50%;
+    background-size: cover;
+
+    .background-top-left & {
+      background-position: 0 0;
+    }
+
+    .background-top-center & {
+      background-position: 50% 0;
+    }
+
+    .background-top-right & {
+      background-position: 100% 0;
+    }
+
+    .background-center-left & {
+      background-position: 0 50%;
+    }
+
+    .background-center-right & {
+      background-position: 100% 50%;
+    }
+
+    .background-bottom-left & {
+      background-position: 0 100%;
+    }
+
+    .background-bottom-center & {
+      background-position: 50% 100%;
+    }
+
+    .background-bottom-right & {
+      background-position: 100% 100%;
+    }
+  }
+
+  button.plyr__control--overlaid {
+    top: auto;
+    right: 5px;
+    bottom: 5px;
+    left: auto;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    background: none !important;
+    transform: none;
+    @include media ("≥tablet") {
+      right: 15px;
+      bottom: 15px;
+    }
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 60%;
+      transition: all $animation-speed ease-in-out;
+      transform: translate(-50%, -50%);
+    }
+    &[aria-label="Play"]::before {
+      border-top: 10px solid transparent;
+      border-bottom: 10px solid transparent;
+      border-left: 15px solid $white;
+    }
+    &[aria-label="Pause"]::before,
+    &[aria-label="Pause"]::after {
+      left: 66%;
+      border-top: 10px solid $white;
+      border-bottom: 10px solid $white;
+      border-left: 5px solid $white;
+    }
+    &[aria-label="Pause"]::after {
+      left: 12px;
+    }
+    &:focus {
+      outline: 1px dashed $white;
+      outline-offset: 3px;
+    }
+
+    svg {
+      display: none;
+    }
+  }
+
+  .plyr--playing {
+
+    button.plyr__control--overlaid {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}
+
+.video-text-block {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 5;
+  padding: 20px 40px;
+  pointer-events: none;
+  @include media ("≥tablet") {
+    padding: 40px;
+  }
+
+  * {
+    &:last-child {
+      margin: 0;
+    }
+  }
+}
+
+.video-text-block__holder {
+
+  * {
+    pointer-events: auto;
+  }
+}

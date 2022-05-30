@@ -7,14 +7,13 @@
      data-section-type="video"
      data-section-id="{{ section.id }}">
   <div class="container">
-    <div class="jquery-background-video-wrapper {{ section.settings.height }}">
-      <video class="jquery-background-video" autoplay muted loop playsinline>
+    <div class="background-video-wrapper {{ section.settings.height }} {{ section.settings.alignment }} relative">
+      <video class="js-player" playsinline autoplay loop muted data-poster="{{ image }}">
         <source src="{{ section.settings.video | default: "https://d2ezlykacdqcnj.cloudfront.net/_assets/home-video/beach-waves-loop.mp4" }}" type="video/mp4">
       </video>
-      <div class="video-overlay {{ section.settings.alignment }}" style="background-image: url('{{ image }}');"></div>
       <div class="video-text-block">
         <div class="flex h-100 text-center justify-center items-center">
-          <div class="sm:w-10/12 md:w-6/12 lg:w-4/12">
+          <div class="video-text-block__holder sm:w-10/12 md:w-6/12 lg:w-4/12">
             {% if section.settings.title %}
               {% if section.settings.text_size == 'medium' %}
                 <h2>{{ section.settings.title }}</h2>
@@ -95,7 +94,7 @@
       "default": "",
       "options": [
         {
-          "value": "jquery-background-video-wrapper--small",
+          "value": "background-video-wrapper--small",
           "label": "Small"
         },
         {
@@ -103,7 +102,7 @@
           "label": "Medium"
         },
         {
-          "value": "jquery-background-video-wrapper--large",
+          "value": "background-video-wrapper--large",
           "label": "Large"
         }
       ]
