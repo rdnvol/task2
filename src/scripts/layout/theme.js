@@ -47,8 +47,10 @@ class App {
     this.fancyboxModalCloseButton();
 
     // Responsive fluid iframe
-    $('.rte iframe').each(function (index) {
-      $(this).wrap('<div class="fluid-iframe"></div>');
+    document.querySelectorAll('.rte iframe').forEach((iframe) => {
+      const fluidHtml = document.createElement('div');
+      fluidHtml.classList.add('fluid-iframe');
+      fluidHtml.append(iframe);
     });
 
     if (!('ontouchstart' in document.documentElement)) {
