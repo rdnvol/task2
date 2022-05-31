@@ -6,6 +6,7 @@ window.ResponsiveHelper = (function () {
   let handlers = [],
     prevWinWidth,
     nativeMatchMedia = false;
+  const events = ['load', 'resize'];
 
   // detect match media support
   if (window.matchMedia) {
@@ -47,7 +48,9 @@ window.ResponsiveHelper = (function () {
     }
   }
 
-  $(window).bind('load resize orientationchange', resizeHandler);
+  events.forEach((event) => {
+    window.addEventListener(event, resizeHandler);
+  });
 
   // test range
   function matchRange(r1, r2) {
