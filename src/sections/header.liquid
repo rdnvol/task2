@@ -12,55 +12,60 @@
 {%- endcomment -%}
 
 <header id="header">
+
   {% render 'header-announcement' %}
-  <div class="header__panel{% if section.settings.enable_shadow %} header__panel-shadow{% endif %}">
-    <div class="container">
-      <div class="flex items-center -mx-4">
-        <div class="w-4/12 {% if section.settings.layout == 'center' %}xl:w-5/12{% else %}xl:w-6/12 xl:order-2 justify-center{% endif %} px-4">
-          <div class="menu">
-            <div class="flex xl:hidden items-center">
+
+  <div class="sticky-wrap-header__panel" data-sticky-states data-sticky-container="body">
+    <div class="header__panel{% if section.settings.enable_shadow %} header__panel-shadow{% endif %}" data-sticky-states-inner>
+      <div class="container">
+        <div class="flex items-center -mx-4">
+          <div class="w-4/12 {% if section.settings.layout == 'center' %}xl:w-5/12{% else %}xl:w-6/12 xl:order-2 justify-center{% endif %} px-4">
+            <div class="menu">
+              <div class="flex xl:hidden items-center">
+                {% if section.settings.menu != blank %}
+                  <a href="#" class="menu__opener menu__btn-opener page-wrapper__opener">
+                    <span>Menu</span>
+                  </a>
+                {% endif %}
+                {% if section.settings.search_enable %}
+                  <a href="{{ routes.search_url }}" class="header__btn hidden xs:inline-flex xl:hidden">
+                    <span class="visually-hidden">
+                      Search
+                    </span>
+                    {%- render 'icon' with 'search' -%}
+                  </a>
+                {% endif %}
+              </div>
               {% if section.settings.menu != blank %}
-                <a href="#" class="menu__opener menu__btn-opener page-wrapper__opener">
-                  <span>Menu</span>
-                </a>
-              {% endif %}
-              {% if section.settings.search_enable %}
-                <a href="{{ routes.search_url }}" class="header__btn hidden xs:inline-flex xl:hidden">
-                  <span class="visually-hidden">
-                    Search
-                  </span>
-                  {%- render 'icon' with 'search' -%}
-                </a>
+                <nav class="menu__drop hidden xl:block">
+                  <ul id="nav" class="main-menu menu-accordion">
+                    {% render 'nav-menu-desktop' %}
+                  </ul>
+                </nav>
               {% endif %}
             </div>
-            {% if section.settings.menu != blank %}
-              <nav class="menu__drop hidden xl:block">
-                <ul id="nav" class="main-menu menu-accordion">
-                  {% render 'nav-menu-desktop' %}
-                </ul>
-              </nav>
+          </div>
+          <div class="w-4/12 {% if section.settings.layout == 'center' %}xl:w-2/12{% else %}xl:w-3/12 xl:order-1 xl:flex xl:flex-wrap xl:items-center xl:justify-start{% endif %} px-4">
+            {% render 'header-logo' %}
+          </div>
+          <div class="w-4/12 {% if section.settings.layout == 'center' %}xl:w-5/12{% else %}xl:w-3/12 xl:order-3 xl:py-3{% endif %} flex items-center justify-end px-4">
+            {% if section.settings.button_link != blank %}
+              <div class="hidden xl:inline-block">
+                {% render "button",
+                  element: 'a',
+                  href: section.settings.button_link,
+                  text: section.settings.button_label %}
+              </div>
             {% endif %}
+            {% render 'header-icons' %}
           </div>
         </div>
-        <div class="w-4/12 {% if section.settings.layout == 'center' %}xl:w-2/12{% else %}xl:w-3/12 xl:order-1 xl:flex xl:flex-wrap xl:items-center xl:justify-start{% endif %} px-4">
-          {% render 'header-logo' %}
-        </div>
-        <nav class="w-4/12 {% if section.settings.layout == 'center' %}xl:w-5/12{% else %}xl:w-3/12 xl:order-3 xl:py-3{% endif %} flex items-center justify-end px-4">
-          {% if section.settings.button_link != blank %}
-            <div class="hidden xl:inline-block">
-              {% render "button",
-                element: 'a',
-                href: section.settings.button_link,
-                text: section.settings.button_label %}
-            </div>
-          {% endif %}
-          {% render 'header-icons' %}
-        </nav>
       </div>
     </div>
   </div>
+
 </header>
-<nav class="menu__drop xl:hidden" tabindex="-1">
+<div class="menu__drop xl:hidden" tabindex="-1">
   {% render 'header-announcement' %}
   <div class="header__panel-mobile">
     <div class="container">
@@ -85,7 +90,7 @@
   </div>
   <div class="container">
     {% if section.settings.enable_search_form %}
-      <form action="/search" method="get" role="search" class="header__search-form">
+      <form action="/search" method="get" role="search" class="header__search-form relative my-5">
         <input type="search"
                name="q"
                id="Search"
@@ -101,14 +106,18 @@
         %}
       </form>
     {% endif %}
-    <ul class="main-menu menu-accordion">
-      {% render 'nav-menu-mobile' %}
-    </ul>
-    <ul class="main-menu menu-accordion xl:hidden">
-      {% render 'nav-account-menu' %}
-    </ul>
+    <nav>
+      <ul class="main-menu menu-accordion">
+        {% render 'nav-menu-mobile' %}
+      </ul>
+    </nav>
+    <nav>
+      <ul class="main-menu menu-accordion xl:hidden">
+        {% render 'nav-account-menu' %}
+      </ul>
+    </nav>
   </div>
-</nav>
+</div>
 
 {% style %}
   .header__bar {

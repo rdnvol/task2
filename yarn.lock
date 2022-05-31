@@ -2,6 +2,11 @@
 # yarn lockfile v1
 
 
+"@accede-web/accordion@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@accede-web/accordion/-/accordion-1.1.0.tgz#47eb766b88051a8eded02450bd2e6b34060e2ab0"
+  integrity sha512-RxF1lucduqPfwuULI/FingecpjNOG7qZnhutAfvpGtzrO3XzoZxb8BH0CT1uePZ3W27o9VVprchFG6n7SqZ3iw==
+
 "@ampproject/remapping@^2.1.0":
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/@ampproject/remapping/-/remapping-2.1.2.tgz#4edca94973ded9630d20101cd8559cedb8d8bd34"
@@ -1882,6 +1887,11 @@ abort-controller@3.0.0:
   integrity sha512-h8lQ8tacZYnR3vNQTgibj+tODHI5/+l06Au2Pcriv/Gmet0eaj4TwWH41sO9wnHDiQsEj19q0drzdWdeAHtweg==
   dependencies:
     event-target-shim "^5.0.0"
+
+accordion@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/accordion/-/accordion-3.0.2.tgz#1badb97f4eab94208165f794aaaa97198781fdfe"
+  integrity sha512-jbQfFaw+57OBwPt7qSNHuW+RA8smmRwkWRS1Ozh6K/QxUspBgBV/LpdSzlY7vee8TomS6j3D33B9rIeH1qMwsA==
 
 acorn-import-assertions@^1.7.6:
   version "1.8.0"
@@ -8354,6 +8364,11 @@ stdout-stream@^1.4.0:
   integrity sha512-j4emi03KXqJWcIeF8eIXkjMFN1Cmb8gUlDYGeBALLPo5qdyTfA9bOtl8m33lRoC+vFMkP3gl0WsDr6+gzxbbTA==
   dependencies:
     readable-stream "^2.0.1"
+
+sticky-states@^1.0.8:
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/sticky-states/-/sticky-states-1.0.8.tgz#48248b4233ffe15b8c9a1be2a26b89b2332cb751"
+  integrity sha512-oIY7C/8j3XhkBzyNkKnwDtCUiQyBWsANcqUcZ/fuDTerXC85MkzPB9luYzOZ5W9vAPCk9nvyrNXW764ckFBo1g==
 
 string-argv@0.3.1:
   version "0.3.1"
