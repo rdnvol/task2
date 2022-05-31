@@ -70,13 +70,13 @@ class App {
     let didScroll;
     let lastScrollTop = 0;
     let delta = 5;
-    let navbarHeight = document.querySelector('.sticky-wrap-header__panel').offsetHeight + 'px';
+    let navbarHeight = document.querySelector('.sticky-wrap-header__panel').offsetHeight;
 
-    window.addEventListener('scroll', function (event) {
+    window.addEventListener('scroll', function(event) {
       didScroll = true;
-    })
+    });
 
-    setInterval(function () {
+    setInterval(function() {
       if (didScroll) {
         hasScrolled();
         didScroll = false;
