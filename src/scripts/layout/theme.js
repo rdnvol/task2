@@ -33,7 +33,7 @@ class App {
     this.setHeaderHeight();
     this.initMobileNav();
     this.initStickyScrollBlock();
-    // this.initHeaderOnScrollDown();
+    this.initHeaderOnScrollDown();
     this.initIosScroll();
     this.initAccordion();
     this.initCurrencySwitcher();
@@ -70,11 +70,11 @@ class App {
     let didScroll;
     let lastScrollTop = 0;
     let delta = 5;
-    let navbarHeight = $('.sticky-wrap-header__panel').outerHeight();
+    let navbarHeight = document.querySelector('.sticky-wrap-header__panel').offsetHeight + 'px';
 
-    $(window).scroll(function (event) {
+    window.addEventListener('scroll', function (event) {
       didScroll = true;
-    });
+    })
 
     setInterval(function () {
       if (didScroll) {
@@ -84,7 +84,8 @@ class App {
     }, 250);
 
     function hasScrolled() {
-      let st = $(window).scrollTop();
+      let st = window.pageYOffset;
+      const stickyWrapHeader = document.querySelector('.sticky-wrap-header__panel');
       // Make sure they scroll more than delta
 
       if (Math.abs(lastScrollTop - st) <= delta) return;
@@ -92,15 +93,16 @@ class App {
       // This is necessary so you never see what is "behind" the navbar.
       if (st > lastScrollTop && st > navbarHeight) {
         // Scroll Down
-        $('.sticky-wrap-header__panel')
-          .removeClass('nav-down')
-          .addClass('nav-up');
+        stickyWrapHeader.classList.remove('nav-down');
+        stickyWrapHeader.classList.add('nav-up');
       } else {
+        const body = document.body;
+        const html = document.documentElement;
+        const documentHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
         // Scroll Up
-        if (st + $(window).height() < $(document).height()) {
-          $('.sticky-wrap-header__panel')
-            .removeClass('nav-up')
-            .addClass('nav-down');
+        if (st + window.innerHeight < documentHeight) {
+          stickyWrapHeader.classList.remove('nav-up');
+          stickyWrapHeader.classList.add('nav-down');
         }
       }
       lastScrollTop = st;
