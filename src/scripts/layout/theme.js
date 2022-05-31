@@ -33,7 +33,7 @@ class App {
     this.setHeaderHeight();
     this.initMobileNav();
     this.initStickyScrollBlock();
-    this.initHeaderOnScrollDown();
+    /*this.initHeaderOnScrollDown();*/
     this.initIosScroll();
     this.initAccordion();
     this.initCurrencySwitcher();
