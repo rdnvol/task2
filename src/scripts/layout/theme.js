@@ -149,7 +149,7 @@ class App {
       }
     }
 
-    function _eventHandler() {
+    function eventHandler() {
       if (document.documentElement.classList.contains('scroll-fix')) {
         _unlockBody();
         html.classList.remove('scroll-fix');
@@ -163,12 +163,12 @@ class App {
       '..1199': {
         on() {
           pageWrapperOpeners.forEach((pageWrapperOpener) => {
-            pageWrapperOpener.addEventListener('click', _eventHandler);
+            pageWrapperOpener.addEventListener('click', eventHandler);
           });
         },
         off() {
           pageWrapperOpeners.forEach((pageWrapperOpener) => {
-            pageWrapperOpener.removeEventListener('click', _eventHandler);
+            pageWrapperOpener.removeEventListener('click', eventHandler);
           });
         },
       },
