@@ -123,54 +123,53 @@ class App {
   }
 
   initIosScroll() {
+    const html = document.documentElement;
+    const { body } = document;
+    const docEl = [html, body];
+    const wrap = document.querySelector('.page-wrapper');
+    const pageWrapperOpeners = document.querySelectorAll('.page-wrapper__opener');
+    let scrollTop;
+
+    function _unlockBody() {
+      docEl.forEach((el) => {
+        el.style.height = '';
+        el.style.overflow = '';
+      });
+      wrap.style.top = '';
+      window.scrollTo(0, scrollTop);
+      window.setTimeout(() => {
+        scrollTop = null;
+      }, 0);
+    }
+
+    function _lockBody() {
+      if (window.pageYOffset) {
+        scrollTop = window.pageYOffset;
+        wrap.style.top = -scrollTop;
+      }
+    }
+
+    function _eventHandler() {
+      if (document.documentElement.classList.contains('scroll-fix')) {
+        _unlockBody();
+        html.classList.remove('scroll-fix');
+      } else {
+        _lockBody();
+        html.classList.add('scroll-fix');
+      }
+    }
+
     ResponsiveHelper.addRange({
       '..1199': {
         on() {
-          const $docEl = $('html, body');
-          const $wrap = $('.page-wrapper');
-          let scrollTop;
-
-          $('.page-wrapper__opener').on('click', (e) => {
-            if ($('html').hasClass('scroll-fix')) {
-              $.unlockBody();
-              $('html').removeClass('scroll-fix');
-            } else {
-              $.lockBody();
-              $('html').addClass('scroll-fix');
-            }
+          pageWrapperOpeners.forEach((pageWrapperOpener) => {
+            pageWrapperOpener.addEventListener('click', _eventHandler);
           });
-
-          $.unlockBody = function () {
-            $docEl.css({
-              height: '',
-              overflow: '',
-            });
-
-            $wrap.css({
-              top: '',
-            });
-            window.scrollTo(0, scrollTop);
-            window.setTimeout(() => {
-              scrollTop = null;
-            }, 0);
-          };
-
-          $.lockBody = function () {
-            if (window.pageYOffset) {
-              scrollTop = window.pageYOffset;
-              $wrap.css({
-                top: -scrollTop,
-              });
-            }
-
-            $docEl.css({
-              // height: "100%",
-              // overflow: "hidden"
-            });
-          };
         },
         off() {
-          $('.page-wrapper__opener').off();
+          pageWrapperOpeners.forEach((pageWrapperOpener) => {
+            pageWrapperOpener.removeEventListener('click', _eventHandler);
+          });
         },
       },
     });
