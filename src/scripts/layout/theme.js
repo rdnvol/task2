@@ -18,6 +18,7 @@ import { Accordion } from 'accordion';
 import 'accordion/src/accordion.css';
 
 import { StickyStates } from 'helpers/stickyStates';
+import MobileNav from 'helpers/mobileNav';
 import 'helpers/jquery.plugins';
 
 import 'store/store.ts';
@@ -177,12 +178,14 @@ class App {
 
   // mobile menu init
   initMobileNav() {
-    $('body').mobileNav({
-      menuActiveClass: 'menu-active',
-      menuOpener: '.menu__opener',
-      menuDrop: '.menu',
-      hideOnClickOutside: false,
-    });
+    window.onload = () => {
+      new MobileNav('body', {
+        menuActiveClass: 'menu-active',
+        menuOpener: '.menu__opener',
+        menuDrop: '.menu',
+        hideOnClickOutside: false,
+      });
+    };
   }
 
   // accordion menu init
