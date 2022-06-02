@@ -276,30 +276,38 @@ Renders an image
     assign t_height = t | split: 'x' | last
     assign m_width = m | split: 'x' | first
     assign m_height = m | split: 'x' | last
-
+    comment
+    scale 2x image
+    endcomment
+    assign d2x_width = d_width | times: 2
+    assign d2x_height = d_height | times: 2
+    assign t2x_width = t_width | times: 2
+    assign t2x_height = t_height | times: 2
+    assign m2x_width = m_width | times: 2
+    assign m2x_height = m_height | times: 2
     if crop
       assign d_src = src | image_url: width: d_width, height: d_height, crop: crop
-      assign d_src_2x = src | image_url: width: d_width, height: d_height, scale: 2, crop: crop
+      assign d_src_2x = src | image_url: width: d2x_width, height: d2x_height, crop: crop
       assign d_srcset = d_src | append: ", " | append: d_src_2x | append: ' 2x'
 
       assign t_src = src_tablet | image_url: width: t_width, height: t_height, crop: crop
-      assign t_src_2x = src_tablet | image_url: width: t_width, height: t_height, scale: 2, crop: crop
+      assign t_src_2x = src_tablet | image_url: width: t2x_width, height: t2x_height, crop: crop
       assign t_srcset = t_src | append: ", " | append: t_src_2x | append: ' 2x'
 
-      assign m_src = src_mobile | image_url: width: m_width, height: m_height, crop: crop
-      assign m_src_2x = src_mobile | image_url: width: m_width, height: m_height, scale: 2, crop: crop
+      assign m_src = src_mobile | image_url: width: m_width, height: m_width, crop: crop
+      assign m_src_2x = src_mobile | image_url: width: m2x_width, height: m2x_height, crop: crop
       assign m_srcset = m_src | append: ", " | append: m_src_2x | append: ' 2x'
     else
-      assign d_src = src | image_url: width: m_width, height: m_height
-      assign d_src_2x = src | image_url: width: m_width, height: m_height, scale: 2
+      assign d_src = src | image_url: width: d_width, height: d_height, crop: false
+      assign d_src_2x = src | image_url: width: d2x_width, height: d2x_height, crop: false
       assign d_srcset = d_src | append: ", " | append: d_src_2x | append: ' 2x'
 
-      assign t_src = src_tablet | image_url: width: t_width, height: t_height
-      assign t_src_2x = src_tablet | image_url: width: t_width, height: t_height, scale: 2
+      assign t_src = src_tablet | image_url: width: t_width, height: t_height, crop: false
+      assign t_src_2x = src_tablet | image_url: width: t2x_width, height: t2x_height, crop: false
       assign t_srcset = t_src | append: ", " | append: t_src_2x | append: ' 2x'
 
-      assign m_src = src_mobile | image_url: width: m_width, height: m_height
-      assign m_src_2x = src_mobile | image_url: width: m_width, height: m_height, scale: 2
+      assign m_src = src_mobile | image_url: width: m_width, height: m_width, crop: false
+      assign m_src_2x = src_mobile | image_url: width: m2x_width, height: m2x_height, crop: false
       assign m_srcset = m_src | append: ", " | append: m_src_2x | append: ' 2x'
     endif
   endif
