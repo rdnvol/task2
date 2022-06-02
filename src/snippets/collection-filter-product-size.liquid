@@ -1,0 +1,46 @@
+<div class="mr-5">
+  <details class="filter-collapse__item relative py-3 js-filter disclosure-has-popup" data-index="{{ forloop.index }}">
+    <summary class="body-small flex justify-between items-center">
+      {{ filter.label }}
+      <span class="filter-collapse__btn-check flex-shrink-0 ml-1"></span>
+    </summary>
+    <div class="filter-collapse__slide">
+      <div class="filter-collapse__heading body-small flex items-center justify-between space-x-2 p-4">
+        <div class="facets__selected no-js-hidden">{{ 'products.facets.filters_selected' | t: count: filter.active_values.size }}</div>
+        <div>
+          <facet-remove>
+            <a href="{{ filter.url_to_remove }}">
+              <button type="reset">
+                Reset
+              </button>
+            </a>
+          </facet-remove>
+        </div>
+      </div>
+      <div class="filter-collapse__holder">
+        <div class="px-4">
+          {% for value in filter.values %}
+            <div class="py-3 custom-input custom-input--square-with-text">
+              <input
+                id="Filter-{{ value.param_name }}--{{ forloop.index }}"
+                type="checkbox"
+                name="{{ value.param_name }}"
+                value="{{ value.value }}"
+                {% if value.active %}
+                 checked
+                {% endif %}
+                {% if value.count == 0 and value.active == false %}
+                 disabled
+                {% endif %}
+              >
+              <label for="Filter-{{ value.param_name }}--{{ forloop.index }}" class="custom-label flex items-center">
+                <span class="custom-label__check"></span>
+                {{ value.value }} ({{ value.count }})
+              </label>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </details>
+</div>
