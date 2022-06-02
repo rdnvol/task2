@@ -1,5 +1,4 @@
 import 'styles/theme.scss';
-import '@fancyapps/ui/dist/fancybox.css';
 
 // plugins
 import 'picturefill';
@@ -9,9 +8,17 @@ import 'lazysizes/plugins/rias/ls.rias.js';
 import 'lazysizes/plugins/bgset/ls.bgset.js';
 import 'lazysizes';
 import 'lazysizes/plugins/respimg/ls.respimg.js';
+// Fancybox
 import { Fancybox } from '@fancyapps/ui';
+import '@fancyapps/ui/dist/fancybox.css';
+// Open-close details-utils
 import '@zachleat/details-utils';
+// Accordion
+import { Accordion } from 'accordion';
+import 'accordion/src/accordion.css';
 
+import { StickyStates } from 'helpers/stickyStates';
+import MobileNav from 'helpers/mobileNav';
 import 'helpers/jquery.plugins';
 import 'helpers/responsive-helper';
 
@@ -24,7 +31,6 @@ import 'components/CartPopup';
 // utils
 import { getLocaleAndPathname } from 'helpers/utils';
 
-
 class App {
   constructor() {
     this.init();
@@ -33,19 +39,20 @@ class App {
   init() {
     this.setHeaderHeight();
     this.initMobileNav();
-    this.initStickyScrollBlock();
+    this.initStickyBlocks();
     // this.initHeaderOnScrollDown();
     this.initIosScroll();
     this.initAccordion();
     this.initCurrencySwitcher();
     this.initLanguageSwitcher();
-    this.initMap();
     this.fancyboxBackdrop();
     this.fancyboxModalCloseButton();
 
     // Responsive fluid iframe
-    $('.rte iframe').each(function (index) {
-      $(this).wrap('<div class="fluid-iframe"></div>');
+    document.querySelectorAll('.rte iframe').forEach((iframe) => {
+      const fluidHtml = document.createElement('div');
+      fluidHtml.classList.add('fluid-iframe');
+      fluidHtml.append(iframe);
     });
 
     if (!('ontouchstart' in document.documentElement)) {
@@ -55,16 +62,22 @@ class App {
     Fancybox.bind('[data-fancybox]', {});
   }
 
-  // initialize fixed blocks on scroll
-  initStickyScrollBlock() {
-    $('.header__panel').stickyScrollBlock({
-      setBoxHeight: true,
-      activeClass: 'fixed-position',
-      container: '.page-wrapper',
-      positionType: 'fixed',
-      animDelay: 0,
-      showAfterScrolled: false,
-    });
+  // Initialize sticky blocks
+  initStickyBlocks() {
+    const stickyHeaderOptions = {
+      elementSelector: '[data-sticky-states]',
+      innerElementSelector: '[data-sticky-states-inner]',
+      isStickyClass: 'fixed-position',
+      positionAttribute: 'data-sticky-position',
+      thresholdAttribute: 'data-sticky-threshold',
+      stickyRelativeToAttribute: 'data-sticky-relative-to',
+      staticAtEndAttribute: 'data-sticky-static-at-end',
+      containerAttribute: 'data-sticky-container',
+      // position: 'top', // Accepted values: `top`, `bottom`
+      threshold: 0,
+    };
+
+    StickyStates.init(stickyHeaderOptions);
   }
 
   // Hide Header on on scroll down
@@ -72,13 +85,13 @@ class App {
     let didScroll;
     let lastScrollTop = 0;
     let delta = 5;
-    let navbarHeight = $('.sticky-wrap-header__panel').outerHeight();
+    let navbarHeight = document.querySelector('.sticky-wrap-header__panel').offsetHeight;
 
-    $(window).scroll(function (event) {
+    window.addEventListener('scroll', function(event) {
       didScroll = true;
     });
 
-    setInterval(function () {
+    setInterval(function() {
       if (didScroll) {
         hasScrolled();
         didScroll = false;
@@ -86,7 +99,8 @@ class App {
     }, 250);
 
     function hasScrolled() {
-      let st = $(window).scrollTop();
+      let st = window.pageYOffset;
+      const stickyWrapHeader = document.querySelector('.sticky-wrap-header__panel');
       // Make sure they scroll more than delta
 
       if (Math.abs(lastScrollTop - st) <= delta) return;
@@ -94,15 +108,16 @@ class App {
       // This is necessary so you never see what is "behind" the navbar.
       if (st > lastScrollTop && st > navbarHeight) {
         // Scroll Down
-        $('.sticky-wrap-header__panel')
-          .removeClass('nav-down')
-          .addClass('nav-up');
+        stickyWrapHeader.classList.remove('nav-down');
+        stickyWrapHeader.classList.add('nav-up');
       } else {
+        const body = document.body;
+        const html = document.documentElement;
+        const documentHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
         // Scroll Up
-        if (st + $(window).height() < $(document).height()) {
-          $('.sticky-wrap-header__panel')
-            .removeClass('nav-up')
-            .addClass('nav-down');
+        if (st + window.innerHeight < documentHeight) {
+          stickyWrapHeader.classList.remove('nav-up');
+          stickyWrapHeader.classList.add('nav-down');
         }
       }
       lastScrollTop = st;
@@ -110,60 +125,53 @@ class App {
   }
 
   initIosScroll() {
+    const html = document.documentElement;
+    const { body } = document;
+    const docEl = [html, body];
+    const wrap = document.querySelector('.page-wrapper');
+    const pageWrapperOpeners = document.querySelectorAll('.page-wrapper__opener');
+    let scrollTop;
+
+    function _unlockBody() {
+      docEl.forEach((el) => {
+        el.style.height = '';
+        el.style.overflow = '';
+      });
+      wrap.style.top = '';
+      window.scrollTo(0, scrollTop);
+      window.setTimeout(() => {
+        scrollTop = null;
+      }, 0);
+    }
+
+    function _lockBody() {
+      if (window.pageYOffset) {
+        scrollTop = window.pageYOffset;
+        wrap.style.top = -scrollTop;
+      }
+    }
+
+    function eventHandler() {
+      if (document.documentElement.classList.contains('scroll-fix')) {
+        _unlockBody();
+        html.classList.remove('scroll-fix');
+      } else {
+        _lockBody();
+        html.classList.add('scroll-fix');
+      }
+    }
+
     ResponsiveHelper.addRange({
       '..1199': {
-        on: function () {
-          let $docEl = $('html, body'),
-            $wrap = $('.page-wrapper'),
-            scrollTop;
-          $('.page-wrapper__opener').on('click', function (e) {
-            window.headerPanel = $('.header__panel');
-            window.stickyWrap = $('.sticky-wrap-header__panel');
-            window.headerPanelStyle = headerPanel.attr('style');
-            window.stickyWrapStyle = stickyWrap.attr('style');
-            if ($('html').hasClass('scroll-fix')) {
-              $.unlockBody();
-              $('html').removeClass('scroll-fix');
-            } else {
-              $.lockBody();
-              $('html').addClass('scroll-fix');
-            }
-            setTimeout(() => {
-              window.headerPanel.attr('style', window.headerPanelStyle);
-              window.stickyWrap.attr('style', window.stickyWrapStyle);
-              if (window.headerPanelStyle !== '') {
-                window.stickyWrap.addClass('fixed-position');
-              }
-            }, 100);
+        on() {
+          pageWrapperOpeners.forEach((pageWrapperOpener) => {
+            pageWrapperOpener.addEventListener('click', eventHandler);
           });
-          $.unlockBody = function () {
-            $docEl.css({
-              height: '',
-              overflow: '',
-            });
-            $wrap.css({
-              top: '',
-            });
-            window.scrollTo(0, scrollTop);
-            window.setTimeout(function () {
-              scrollTop = null;
-            }, 0);
-          };
-          $.lockBody = function () {
-            if (window.pageYOffset) {
-              scrollTop = window.pageYOffset;
-              $wrap.css({
-                top: -scrollTop,
-              });
-            }
-            $docEl.css({
-              // height: "100%",
-              // overflow: "hidden"
-            });
-          };
         },
-        off: function () {
-          $('.page-wrapper__opener').off();
+        off() {
+          pageWrapperOpeners.forEach((pageWrapperOpener) => {
+            pageWrapperOpener.removeEventListener('click', eventHandler);
+          });
         },
       },
     });
@@ -171,60 +179,65 @@ class App {
 
   // mobile menu init
   initMobileNav() {
-    $('body').mobileNav({
-      menuActiveClass: 'menu-active',
-      menuOpener: '.menu__opener',
-      menuDrop: '.menu',
-      hideOnClickOutside: false,
-    });
+    window.onload = () => {
+      new MobileNav('body', {
+        menuActiveClass: 'menu-active',
+        menuOpener: '.menu__opener',
+        menuDrop: '.menu',
+        hideOnClickOutside: false,
+      });
+    };
   }
 
   // accordion menu init
   initAccordion() {
+    document.querySelectorAll('.js-accordion').forEach((item) => {
+      const accordion = new Accordion(item, {
+        modal: true, // Limit the accordion to having only one fold open at a time.
+        closeClass: 'close',
+        enabledClass: 'enabled',
+        openClass: 'open',
+        heightOffset: 10,
+        useBorders: true,
+      });
+    });
+
     ResponsiveHelper.addRange({
       '..1199': {
-        on: function () {
-          $('.menu-accordion').slideAccordion({
-            allowClickWhenExpanded: true,
-            activeClass: 'active',
-            opener: '.menu-accordion__opener',
-            slider: '.menu-accordion__slide',
-            collapsible: true,
-            event: 'click',
-            animSpeed: 400,
+        on() {
+          document.querySelectorAll('.js-menu-accordion').forEach((item) => {
+            const accordionMenu = new Accordion(item, {
+              modal: true, // Limit the accordion to having only one fold open at a time.
+              noAria: true,
+              closeClass: 'close',
+              enabledClass: 'enabled',
+              openClass: 'open',
+              heightOffset: 0,
+              useBorders: false,
+            });
           });
         },
-        off: function () {
-          $('.menu-accordion').slideAccordion('destroy');
+        off() {
         },
       },
     });
 
-    $('.accordion').slideAccordion({
-      allowClickWhenExpanded: false,
-      activeClass: 'accordion--active',
-      opener: '.accordion__opener',
-      slider: '.accordion__slide',
-      collapsible: true,
-      event: 'click',
-      animSpeed: 400,
-    });
   }
 
   setHeaderHeight() {
-    $(window).on('load resize scroll', function () {
-      document.documentElement.style.setProperty(
-        '--header-height',
-        $('#header').css('height')
-      );
-      document.documentElement.style.setProperty(
-        '--header-sticky-height',
-        $('.header__panel').css('height')
-      );
-      document.documentElement.style.setProperty(
-        '--announcements-bar-height',
-        $('.header__bar').css('height')
-      );
+    const events = ['load', 'resize', 'scroll'];
+
+    events.forEach((event) => {
+      window.addEventListener(event, () => {
+        const headerHight = document.querySelector('#header')?.getBoundingClientRect().height + 'px';
+        const headerPanelHeight = document.querySelector('.header__panel')?.getBoundingClientRect().height + 'px';
+        const headerBarHeight = document.querySelector('.header__bar')?.getBoundingClientRect().height + 'px';
+
+        document.documentElement.style.setProperty('--header-height', headerHight);
+        document.documentElement.style.setProperty('--header-sticky-height', headerPanelHeight);
+        document.documentElement.style.setProperty('--announcements-bar-height', headerBarHeight);
+      });
+
     });
   }
 
@@ -232,65 +245,44 @@ class App {
     function currencyFormSubmit(event) {
       event.target.form.submit();
     }
-    let currencySwitchers = document.querySelectorAll(
-      '.shopify-currency-form select'
-    );
+
+    const currencySwitchers = document.querySelectorAll('.shopify-currency-form select');
+
     if (currencySwitchers.length) {
-      currencySwitchers.forEach((el) =>
-        el.addEventListener('change', currencyFormSubmit)
-      );
+      currencySwitchers.forEach((el) => el.addEventListener('change', currencyFormSubmit));
     }
   }
 
   initLanguageSwitcher() {
-    const [curLocale, pathname] = getLocaleAndPathname(theme.published_locales);
-    let languageSwitchers = document.querySelectorAll('[name="locales"]');
+    const [, pathname] = getLocaleAndPathname(theme.published_locales);
+    const languageSwitchers = document.querySelectorAll('[name="locales"]');
+
     if (languageSwitchers.length) {
       languageSwitchers.forEach((el) =>
         el.addEventListener('change', (e) => {
-          let selectedLocale = e.target.value;
+          const selectedLocale = e.target.value;
+
           console.log('selectedLocale', selectedLocale);
           console.log('pathname', pathname);
-          location.href =
-            selectedLocale === '/' ? pathname : selectedLocale + pathname;
+          location.href = selectedLocale === '/' ? pathname : selectedLocale + pathname;
         })
       );
     }
   }
 
-  initMap() {
-    $(window).on('load', function () {
-      const mapElement = document.getElementById('google-map');
-      if (mapElement && google) {
-        let map = new google.maps.Map(mapElement, {
-          center: { lat: -34.397, lng: 150.644 },
-          zoom: 10,
-          disableDefaultUI: true,
-        });
-        new google.maps.Marker({
-          position: { lat: -34.397, lng: 150.644 },
-          map,
-        });
-      }
-    });
-  }
-
   fancyboxBackdrop() {
-    let target = document.querySelector('body');
+    const target = document.querySelector('body');
+
     const config = {
       childList: true,
     };
 
     const callback = function (mutationsList, observer) {
-      for (let mutation of mutationsList) {
-        if (
-          mutation.addedNodes[0] &&
-          mutation.addedNodes[0]['Fancybox'] != undefined
-        ) {
-          const backdrop = document.querySelector(
-            '.fancybox__slide.is-selected'
-          );
-          backdrop.addEventListener('click', function (e) {
+      for (const mutation of mutationsList) {
+        if (mutation.addedNodes[0] && mutation.addedNodes[0].Fancybox != undefined) {
+          const backdrop = document.querySelector('.fancybox__slide.is-selected');
+
+          backdrop.addEventListener('click', (e) => {
             e.preventDefault();
           });
           observer.disconnect();
@@ -299,6 +291,7 @@ class App {
     };
 
     const observer = new MutationObserver(callback);
+
     observer.observe(target, config);
   }
 
@@ -307,7 +300,6 @@ class App {
       'fancyboxClose' in e.target.dataset && window.fancybox.close(true);
     });
   }
-
 }
 
 const app = new App();

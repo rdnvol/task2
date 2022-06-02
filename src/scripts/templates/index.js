@@ -7,5 +7,6 @@ import 'sections/testimonials';
 import 'sections/video';
 import 'sections/slideshow';
 import 'sections/iframe-video';
+import 'sections/map';
 
 load('*');
