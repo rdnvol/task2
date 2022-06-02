@@ -1,0 +1,56 @@
+<div class="filter-collapse">
+  <details-utils close-esc animate>
+    <details class="filter-collapse__item js-filter" data-index="mobile-{{ forloop.index }}">
+      <summary class="py-3 flex justify-between items-center">
+        {{ filter.label }}
+        <span class="filter-collapse__btn flex-shrink-0 mx-4"></span>
+      </summary>
+      <div class="py-3 overflow-hidden">
+        <price-range class="facets__price flex items-center">
+          <div class="w-100">
+            <label for="Filter-{{ filter.min_value.param_name }}" class="inline-block mb-2">
+              Minimum price
+            </label>
+            <div class="relative">
+              <span class="range-slider__suffix body-medium">{{ cart.currency.symbol }}</span>
+              <input
+                type="number"
+                class="range-slider__input text-right w-100"
+                inputmode="numeric"
+                name="{{ filter.min_value.param_name }}"
+                id="Filter-{{ filter.min_value.param_name }}"
+                min="0"
+                max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                {% if filter.min_value.value -%}
+                value="{{ filter.min_value.value | money_without_currency | replace: ',', '' }}"
+                {%- endif %}>
+            </div>
+          </div>
+          <div class="flex-shrink-0 mx-4 mb-3">
+            to
+          </div>
+          <div class="w-100">
+            <label for="Filter-{{ filter.max_value.param_name }}" class="inline-block mb-2">
+              Maximum price
+            </label>
+            <div class="relative">
+              <span class="range-slider__suffix body-medium base-secondary-text-color absolute top-2 left-3">{{ cart.currency.symbol }}</span>
+              <input
+                type="number"
+                class="range-slider__input text-right"
+                inputmode="numeric"
+                name="{{ filter.max_value.param_name }}"
+                id="Filter-{{ filter.max_value.param_name }}"
+                {% if filter.max_value.value -%}
+                value="{{ filter.max_value.value | money_without_currency | replace: ',', '' }}"
+                {%- endif %}
+                min="0"
+                max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+              >
+            </div>
+          </div>
+        </price-range>
+      </div>
+    </details>
+  </details-utils>
+</div>

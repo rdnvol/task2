@@ -1,8 +1,10 @@
-{% if section.settings.filter_type == "vertical" %}
-  {% render "collection-2", section: section %}
-{% else %}
-  {% render "collection", section: section %}
-{% endif %}
+{% liquid
+  if section.settings.filter_type == "vertical"
+    render "collection-2", section: section
+  else
+    render "collection", section: section
+  endif
+%}
 
 {% schema %}
 {

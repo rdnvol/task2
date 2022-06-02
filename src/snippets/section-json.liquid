@@ -3,10 +3,12 @@
       "settings": {{ section.settings | json }},
       "blocks": [
         {% for block in section.blocks %}
-        {% assign block_json = block.settings | json | remove_first: '{' %}
-        {% assign block_size = block_json | size | minus: 1 %}
-        {% assign block_content = block_json | slice: 0, block_size %}
-        {% assign block_image = block.settings.image %}
+          {% liquid
+            assign block_json = block.settings | json | remove_first: '{'
+            assign block_size = block_json | size | minus: 1
+            assign block_content = block_json | slice: 0, block_size
+            assign block_image = block.settings.image
+          %}
           {
             {% if block_content != blank %}
               {{ block_content }},
@@ -25,4 +27,3 @@
       ]
     }
 </script>
-  
