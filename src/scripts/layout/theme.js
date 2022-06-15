@@ -19,7 +19,6 @@ import 'accordion/src/accordion.css';
 
 import { StickyStates } from 'helpers/stickyStates';
 import MobileNav from 'helpers/mobileNav';
-import 'helpers/jquery.plugins';
 import 'helpers/responsive-helper';
 
 import 'store/store.ts';
