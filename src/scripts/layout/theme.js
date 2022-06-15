@@ -146,8 +146,13 @@ class App {
     function _lockBody() {
       if (window.pageYOffset) {
         scrollTop = window.pageYOffset;
-        wrap.style.top = -scrollTop;
+        wrap.style.top = `${-scrollTop}px`;
       }
+
+      docEl.forEach((el) => {
+        el.style.height = '100%';
+        el.style.overflow = 'hidden';
+      });
     }
 
     function eventHandler() {
