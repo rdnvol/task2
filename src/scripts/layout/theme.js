@@ -37,6 +37,7 @@ class App {
   }
 
   init() {
+    this.responsiveFluidIframe();
     this.setHeaderHeight();
     this.initMobileNav();
     this.initStickyBlocks();
@@ -48,18 +49,21 @@ class App {
     this.fancyboxBackdrop();
     this.fancyboxModalCloseButton();
 
-    // Responsive fluid iframe
-    document.querySelectorAll('.rte iframe').forEach((iframe) => {
-      const fluidHtml = document.createElement('div');
-      fluidHtml.classList.add('fluid-iframe');
-      fluidHtml.append(iframe);
-    });
-
     if (!('ontouchstart' in document.documentElement)) {
       $('html').addClass('no-touch');
     }
 
     Fancybox.bind('[data-fancybox]', {});
+  }
+
+  // Responsive fluid iframe
+  responsiveFluidIframe() {
+    document.querySelectorAll('.rte iframe').forEach((iframe) => {
+      const fluidHtml = document.createElement('div');
+      fluidHtml.classList.add('fluid-iframe');
+      iframe.parentNode.appendChild(fluidHtml);
+      fluidHtml.appendChild(iframe);
+    });
   }
 
   // Initialize sticky blocks
