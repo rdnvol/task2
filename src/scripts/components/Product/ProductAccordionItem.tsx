@@ -1,5 +1,4 @@
 import { h, FunctionComponent } from 'preact';
-import 'helpers/jquery.plugins';
 
 interface PropsType {
   heading: string;
