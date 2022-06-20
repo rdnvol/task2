@@ -19,7 +19,6 @@ import 'accordion/src/accordion.css';
 
 import { StickyStates } from 'helpers/stickyStates';
 import MobileNav from 'helpers/mobileNav';
-import 'helpers/jquery.plugins';
 import 'helpers/responsive-helper';
 
 import 'store/store.ts';
@@ -151,8 +150,13 @@ class App {
     function _lockBody() {
       if (window.pageYOffset) {
         scrollTop = window.pageYOffset;
-        wrap.style.top = -scrollTop;
+        wrap.style.top = `${-scrollTop}px`;
       }
+
+      docEl.forEach((el) => {
+        el.style.height = '100%';
+        el.style.overflow = 'hidden';
+      });
     }
 
     function eventHandler() {

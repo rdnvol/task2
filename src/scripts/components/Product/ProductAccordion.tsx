@@ -3,7 +3,6 @@ import { useEffect } from 'preact/hooks';
 import { v1 as uuid } from 'uuid';
 
 import { ProductType } from 'types';
-import 'helpers/jquery.plugins';
 
 import ProductAccordionItem from './ProductAccordionItem';
 
