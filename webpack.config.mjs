@@ -367,11 +367,6 @@ export default {
     new webpack.DefinePlugin({
       'proccess.env': { NODE_ENV: JSON.stringify(env) },
     }),
-    new webpack.ProvidePlugin({
-      $: 'jquery',
-      jQuery: 'jquery',
-      Buffer: ['buffer', 'Buffer'],
-    }),
     new BundleAnalyzerPlugin({
       analyzerMode: bundleAnalyzerEnabled ? 'server' : 'disabled',
     }),

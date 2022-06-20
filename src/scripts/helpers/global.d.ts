@@ -8,7 +8,4 @@ declare global {
     cart: CartType;
     ResponsiveHelper: any;
   }
-  interface JQuery {
-    slideAccordion(arg: any): JQuery;
-  }
 }
