@@ -135,6 +135,9 @@ class App {
       docEl.forEach((el) => {
         el.style.height = '';
         el.style.overflow = '';
+        window.setTimeout(() => {
+          el.style.scrollBehavior = 'smooth';
+        }, 500);
       });
       wrap.style.top = '';
       window.scrollTo(0, scrollTop);
@@ -152,6 +155,7 @@ class App {
       docEl.forEach((el) => {
         el.style.height = '100%';
         el.style.overflow = 'hidden';
+        el.style.scrollBehavior = 'auto';
       });
     }
 
