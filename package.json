@@ -43,7 +43,6 @@
     }
   },
   "dependencies": {
-    "@accede-web/accordion": "^1.1.0",
     "@babel/plugin-transform-react-jsx": "^7.10.4",
     "@babel/runtime": "^7.9.6",
     "@fancyapps/ui": "^4.0.5",
