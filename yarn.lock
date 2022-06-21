@@ -2,11 +2,6 @@
 # yarn lockfile v1
 
 
-"@accede-web/accordion@^1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@accede-web/accordion/-/accordion-1.1.0.tgz#47eb766b88051a8eded02450bd2e6b34060e2ab0"
-  integrity sha512-RxF1lucduqPfwuULI/FingecpjNOG7qZnhutAfvpGtzrO3XzoZxb8BH0CT1uePZ3W27o9VVprchFG6n7SqZ3iw==
-
 "@ampproject/remapping@^2.1.0":
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/@ampproject/remapping/-/remapping-2.1.2.tgz#4edca94973ded9630d20101cd8559cedb8d8bd34"
