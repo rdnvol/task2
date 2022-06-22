@@ -15,23 +15,23 @@ register('product-recommendations', {
 
 class RelatedProducts {
   constructor(elem) {
-    this.wrapper = $(elem);
-    this.limit = this.wrapper.data('limit');
+    this.wrapper = elem;
+    this.limit = this.wrapper.getAttribute('data-limit');
 
     const handleIntersection = (entries, observer) => {
       if (!entries[0].isIntersecting) return;
 
-      observer.unobserve(this.wrapper[0]);
+      observer.unobserve(this.wrapper);
       this.init();
     };
 
     new IntersectionObserver(handleIntersection.bind(this), { rootMargin: '0px 0px 200px 0px' }).observe(
-      this.wrapper[0]
+      this.wrapper
     );
   }
 
   async initRelatedProducts() {
-    const url = this.wrapper.data('url');
+    const url = this.wrapper.getAttribute('data-url');
     const response = await fetch(url);
 
     return await response.text();
@@ -40,7 +40,6 @@ class RelatedProducts {
   async init() {
     const relatedProductsData = await this.initRelatedProducts();
 
-    this.wrapper.html($(relatedProductsData).find('.container'));
-    console.log('loaded recommendations');
+    this.wrapper.appendChild(new DOMParser().parseFromString(relatedProductsData, 'text/html').querySelector('.container'));
   }
 }
