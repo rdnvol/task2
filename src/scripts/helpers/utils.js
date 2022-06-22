@@ -94,9 +94,8 @@ function createObjectFromString(str = '') {
 }
 export const FrameworkFeaturedVideo = (function () {
   window.onYouTubeIframeAPIReady = function () {
-    $(function () {
-      $(window).trigger('theme.utils.youtubeAPIReady');
-    });
+    const event = new Event("theme.utils.youtubeAPIReady");
+    window.dispatchEvent(event);
   };
   function FrameworkFeaturedVideo(root) {
     var _this;
@@ -174,7 +173,7 @@ export const FrameworkFeaturedVideo = (function () {
       if (_this.thumbnail) {
         return _this.insertVimeoPlayer();
       } else {
-        $(window).on('load', function () {
+        window.addEventListener('load', function () {
           return _this.insertVimeoPlayer();
         });
         return _this.root.on('theme:section:load', function () {
@@ -185,7 +184,7 @@ export const FrameworkFeaturedVideo = (function () {
       if (_this.thumbnail) {
         return _this.insertYoutubePlayer();
       } else {
-        $(window).on('load', function () {
+        window.addEventListener('load', function () {
           return _this.insertYoutubePlayer();
         });
         return _this.root.on('theme:section:load', function () {
@@ -208,8 +207,7 @@ export const FrameworkFeaturedVideo = (function () {
     } else {
       theme.utils.youtubeScriptAdded = true;
 
-      $(window).on('theme.utils.youtubeAPIReady', function () {
-        console.log('ready');
+      window.addEventListener('theme.utils.youtubeAPIReady', function () {
         return _this.insertYoutubePlayer();
       });
     }
@@ -221,7 +219,6 @@ export const FrameworkFeaturedVideo = (function () {
   };
 
   FrameworkFeaturedVideo.prototype.insertYoutubePlayer = function () {
-    console.log('here');
     var _this;
     _this = this;
     return (_this.player = new YT.Player('player-' + _this.section_id, {
@@ -335,4 +332,4 @@ export function afterScrollEnable(el, callback) {
     callback();
   }
   new IntersectionObserver(handleIntersection, {rootMargin: '0px 0px 200px 0px'}).observe(el);
-} 
+}
