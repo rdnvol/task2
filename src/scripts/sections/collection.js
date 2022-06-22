@@ -25,7 +25,7 @@ register('collection', {
       const productsCount = this.container.dataset.productsQuantity;
       if (entry.isIntersecting) {
         if (this.fetchInProgress) return;
-        await this.fetchNextPage();
+        await this.renderProducts();
       }
     });
   },
@@ -45,33 +45,38 @@ register('collection', {
     this.observeCollectionWrapper();
   },
 
-  async fetchNextPage() {
+  async renderProducts() {
     this.fetchInProgress = true;
     const productsCount = this.container.dataset.productsQuantity;
     if (this.productsQuantity < +productsCount) {
       this._showSpinner();
       try {
-        $.ajax({
-          url: `/collections/all?page=${this.page}`,
-          type: 'GET',
-          dataType: 'html',
-        }).done((next_page) => {
-          const nextProducts = $(next_page)
-            .find('.product-item.text-center')
-            .parent();
-          const loadedProductsLength = $(nextProducts).filter((index, item) => {
-            return index % 2 === 0;
-          }).length;
-          this.productsQuantity += loadedProductsLength;
-          $(this.productsWrapper).append(nextProducts);
-          this.page += 1;
-          this._hideSpinner();
-          this.fetchInProgress = false;
+        const nextProducts = await this.fetchNextPage();
+        const loadedProductsLength = nextProducts.filter((index, item) => {
+          return index % 2 === 0;
+        }).length;
+
+        this.productsQuantity += loadedProductsLength;
+        nextProducts.forEach((nextProduct) => {
+          this.productsWrapper.appendChild(nextProduct);
         });
+        this.page += 1;
+        this._hideSpinner();
+        this.fetchInProgress = false;
+
       } catch (e) {
         console.error('Error', e);
       }
     }
+  },
+
+  async fetchNextPage() {
+    const nextPage = await fetch(`/collections/all?page=${this.page}`);
+    const response = await nextPage.text();
+    const nextProducts = new DOMParser()
+      .parseFromString(response, 'text/html')
+      .querySelectorAll('.product-item.text-center');
+    return Array.from(nextProducts).map(el => el.parentNode);
   },
 
   // Shortcut function called when a section is loaded via 'sections.load()' or by the Theme Editor 'shopify:section:load' event.
