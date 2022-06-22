@@ -49,7 +49,7 @@ class App {
     this.fancyboxModalCloseButton();
 
     if (!('ontouchstart' in document.documentElement)) {
-      $('html').addClass('no-touch');
+      document.documentElement.classList.add('no-touch');
     }
 
     Fancybox.bind('[data-fancybox]', {});
