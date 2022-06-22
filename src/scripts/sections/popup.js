@@ -24,7 +24,7 @@ register('popup', {
   },
 
   initPopup(days = 1) {
-    $(document).ready(() => {
+    document.addEventListener('DOMContentLoaded', () => {
       const cookie_popup1_name = 'show_cookie_message_popup1';
       if (getCookie(cookie_popup1_name) !== 'no') {
         this._openFancybox(cookie_popup1_name, days);
