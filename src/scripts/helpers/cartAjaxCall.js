@@ -12,7 +12,3 @@ export function addItem(data) {
   });
   return request;
 }
-
-export function getCart() {
-  return fetch('/cart.js');
-}
