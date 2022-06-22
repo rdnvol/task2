@@ -112,10 +112,10 @@ export const FrameworkFeaturedVideo = (function () {
     this.playerInit = this.playerInit.bind(this);
     this.checkAPIScriptExists = this.checkAPIScriptExists.bind(this);
     _this = this;
-    _this.video_type = _this.root.data('videoType');
-    _this.video_id = _this.root.data('videoId');
-    _this.thumbnail = _this.root.data('thumbnail');
-    _this.section_id = _this.root.data('sectionId');
+    _this.video_type = _this.root.getAttribute('data-video-type');
+    _this.video_id = _this.root.getAttribute('data-video-id');
+    _this.thumbnail = _this.root.getAttribute('data-thumbnail');
+    _this.section_id = _this.root.getAttribute('data-section-id');
     _this.youtubeVars = {
       playsinline: 1,
       fs: 0,
@@ -130,7 +130,7 @@ export const FrameworkFeaturedVideo = (function () {
     };
     Object.assign(
       _this.youtubeVars,
-      createObjectFromString(_this.root.data('options'))
+      createObjectFromString(_this.root.getAttribute('data-options') ?? '')
     );
     _this.vimeoVars = {
       muted: 1,
@@ -177,7 +177,7 @@ export const FrameworkFeaturedVideo = (function () {
         $(window).on('load', function () {
           return _this.insertVimeoPlayer();
         });
-        return _this.root.on('theme:section:load', function () {
+        return _this.root.addEventListener('theme:section:load', function () {
           return _this.insertVimeoPlayer();
         });
       }
@@ -188,7 +188,7 @@ export const FrameworkFeaturedVideo = (function () {
         $(window).on('load', function () {
           return _this.insertYoutubePlayer();
         });
-        return _this.root.on('theme:section:load', function () {
+        return _this.root.addEventListener('theme:section:load', function () {
           return _this.insertYoutubePlayer();
         });
       }
@@ -296,14 +296,14 @@ export const FrameworkFeaturedVideo = (function () {
     });
   };
 
-  FrameworkFeaturedVideo.prototype.playButtonListener = function () {
+  FrameworkFeaturedVideo.prototype.playButtonListener = function() {
     var _this;
     _this = this;
-    return _this.root
-      .find('.feature-video--play svg, .feature-video--play-mobile svg')
-      .on('click', function () {
-        _this.checkAPIScriptExists();
-        return _this.hideThumbnail();
+    return _this.root.querySelectorAll('.feature-video--play svg, .feature-video--play-mobile svg').forEach((el) => {
+        el.addEventListener('click', function() {
+          _this.checkAPIScriptExists();
+          return _this.hideThumbnail();
+        });
       });
   };
 
@@ -312,10 +312,10 @@ export const FrameworkFeaturedVideo = (function () {
     _this = this;
     return setTimeout(function () {
       return _this.root
-        .find(
-          '.feature-video--header, .feature-video--thumbnail, .feature-video--play-mobile'
-        )
-        .hide();
+        .querySelectorAll('.feature-video--header, .feature-video--thumbnail, .feature-video--play-mobile')
+        .forEach((el) => {
+          el.style.display = 'none';
+        });
     }, 350);
   };
   FrameworkFeaturedVideo.prototype.update = function () {

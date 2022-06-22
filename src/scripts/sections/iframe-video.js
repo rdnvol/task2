@@ -5,8 +5,10 @@ register('iframe-video', {
 
   initIframeVideo: function () {
     afterScrollEnable(this.container, () => {
+      console.log("$(this.container).find('.media-block__video')", $(this.container).find('.media-block__video'));
+      console.log("this.container.querySelector('.media-block__video')", this.container.querySelector('.media-block__video'));
       this.iframeVideo = new FrameworkFeaturedVideo(
-        $(this.container).find('.media-block__video')
+        this.container.querySelector('.media-block__video')
       );
       if (Shopify.designMode) {
         setTimeout(() => {
