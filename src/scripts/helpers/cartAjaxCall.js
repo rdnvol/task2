@@ -1,16 +1,18 @@
 export function addItem(data) {
   const params = {
-    url: '/cart/add.js',
-    data,
-    dataType: 'json',
+    method: 'POST',
+    body: JSON.stringify(data),
+    headers: {
+      'Content-Type': 'application/json',
+    },
   };
-  const request = $.post(params);
-  request.fail((data) => {
+  const request = fetch('/cart/add.js', params);
+  request.catch((data) => {
     console.log(data);
   });
   return request;
 }
 
 export function getCart() {
-  return $.getJSON('/cart.js');
+  return fetch('/cart.js');
 }

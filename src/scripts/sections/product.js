@@ -274,13 +274,15 @@ export class Product {
       ],
     };
 
-    addItem(data).then((response) => {
-      const { items } = response;
+    addItem(data)
+      .then((response) => response.json())
+      .then((data) => {
+        const { items } = data;
 
-      window.Store.dispatch(addJustAdded(items[0]));
-      window.Store.dispatch(getCart());
-      window.Store.dispatch(openPopup());
-    });
+        window.Store.dispatch(addJustAdded(items[0]));
+        window.Store.dispatch(getCart());
+        window.Store.dispatch(openPopup());
+      });
   }
 
   waitForElement = (selector) =>
@@ -302,11 +304,13 @@ export class Product {
         });
       });
 
-      observer.observe(this.wrapper.querySelectorAll('.shopify-payment-button')[0], {
-        subtree: true,
-        attributes: true,
-        childList: true,
-      });
+      if (this.wrapper.querySelectorAll('.shopify-payment-button')[0]) {
+        observer.observe(this.wrapper.querySelectorAll('.shopify-payment-button')[0], {
+          subtree: true,
+          attributes: true,
+          childList: true,
+        });
+      }
     });
 
   getVariantData(el) {
