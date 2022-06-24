@@ -80,6 +80,8 @@ stats.json
 
 /cypress/cypress.env.json
 /cypress/reports
-/cypress/screenshots
-/cypress/videos
+/cypress/screenshots/*
+/cypress/videos/*
 /cypress/fixtures
+!cypress/screenshots/.gitkeep
+!cypress/videos/.gitkeep
