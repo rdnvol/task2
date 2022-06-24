@@ -274,15 +274,12 @@ export class Product {
       ],
     };
 
-    addItem(data)
-      .then((response) => response.json())
-      .then((data) => {
-        const { items } = data;
-
-        window.Store.dispatch(addJustAdded(items[0]));
-        window.Store.dispatch(getCart());
-        window.Store.dispatch(openPopup());
-      });
+    addItem(data).then((data) => {
+      const { items } = data;
+      window.Store.dispatch(addJustAdded(items[0]));
+      window.Store.dispatch(getCart());
+      window.Store.dispatch(openPopup());
+    });
   }
 
   waitForElement = (selector) =>
