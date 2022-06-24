@@ -15,4 +15,6 @@ jobs:
         with:
           build: npm run build
           start: npm start
-        env: THEME_ID=120640635012,STORE=draft-theme.myshopify.com
+        env:
+          CYPRESS_THEME_ID: 120640635012
+          CYPRESS_STORE: draft-theme.myshopify.com
