@@ -7,14 +7,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
+      - name: Use Node.js 14
+        uses: actions/setup-node@v3
+        with:
+          node-version: '14'
+          cache: 'yarn'
+      - name: YARN install
+        run: yarn
       # Install NPM dependencies, cache them correctly
       # and run all Cypress tests
       - name: Cypress run
         uses: cypress-io/github-action@v4
         with:
-          build: npm run build
-          start: npm start
+          start: yarn cypress run
         env:
           CYPRESS_THEME_ID: 120640635012
           CYPRESS_STORE: draft-theme.myshopify.com
