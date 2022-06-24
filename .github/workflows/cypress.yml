@@ -15,8 +15,10 @@ jobs:
           cache: 'yarn'
       - name: YARN install
         run: yarn
-      - name: Cypress run
+      - name: E2E on Chrome
         uses: cypress-io/github-action@v4
+        with:
+          browser: chrome
         env:
           CYPRESS_THEME_ID: 120640635012
           CYPRESS_STORE: draft-theme.myshopify.com
