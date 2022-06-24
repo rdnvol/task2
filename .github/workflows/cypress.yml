@@ -17,8 +17,6 @@ jobs:
         run: yarn
       - name: Cypress run
         uses: cypress-io/github-action@v4
-        with:
-          start: yarn e2e:run
         env:
           CYPRESS_THEME_ID: 120640635012
           CYPRESS_STORE: draft-theme.myshopify.com
