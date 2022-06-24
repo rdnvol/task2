@@ -9,7 +9,7 @@ describe('empty spec', () => {
     cy.getByTestId('add-to-cart').should('be.visible').submit()
     cy.get('.cart-popup').within(() => {
       cy.contains('Small Naomi').should('be.visible');
-      cy.getByTestId('added-quantity').should('contain.text', '2')
+      cy.getByTestId('added-quantity').should('contain.text', '1')
     })
   })
 })
