@@ -27,7 +27,8 @@
     "lint:js": "eslint \"./src/scripts/**/*.{tsx,ts}\"",
     "lint:js:fix": "eslint \"./src/scripts/**/*.{tsx,ts}\" --fix",
     "lint:css": "stylelint \"./src/styles/**/*.{css,scss}\"",
-    "e2e": "cypress open"
+    "e2e:gui": "cypress open",
+    "e2e:run": "cypress run --browser chrome"
   },
   "lint-staged": {
     "*.scss": [
