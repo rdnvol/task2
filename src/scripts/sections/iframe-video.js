@@ -7,10 +7,12 @@ register('iframe-video', {
   initIframeVideo: function () {
     // eslint-disable-next-line no-template-curly-in-string
     afterScrollEnable(this.container, () => {
-      const videoRatio = this.container.querySelector(`.media-block__video #player-${this.id}`).getAttribute('data-ratio');
-      const vimeoOptions = {
+      const videoRatio = this.container
+        .querySelector(`.media-block__video #player-${this.id}`)
+        .getAttribute('data-ratio');
+      const options = {
         // Auto play (if supported)
-        autoplay: true,
+        autoplay: false,
         // Default volume
         muted: true,
         // Set loops
@@ -42,8 +44,11 @@ register('iframe-video', {
           enablejsapi: 1,
         },
       };
-      this.iframeVideo = new Plyr(this.container.querySelector(`.media-block__video #player-${this.id}`), vimeoOptions);
-    })
+      this.iframeVideo = new Plyr(this.container.querySelector(`.media-block__video #player-${this.id}`), options);
+      document.addEventListener('ready', () => {
+        this.iframeVideo.play();
+      });
+    });
   },
 
   // Shortcut function called when a section is loaded via 'sections.load()' or by the Theme Editor 'shopify:section:load' event.
