@@ -5,30 +5,21 @@ import { afterScrollEnable } from '../helpers/utils.js';
 register('iframe-video', {
 
   initIframeVideo: function () {
-    // eslint-disable-next-line no-template-curly-in-string
     afterScrollEnable(this.container, () => {
       const videoRatio = this.container
         .querySelector(`.media-block__video #player-${this.id}`)
         .getAttribute('data-ratio');
       const options = {
-        // Auto play (if supported)
         autoplay: false,
-        // Default volume
         muted: true,
-        // Set loops
         loop: {
           active: true,
         },
-        // Fullscreen settings
         fullscreen: {
-          enabled: false, // Allow fullscreen?
-          fallback: false, // Fallback using full viewport/window
-          iosNative: false, // Use the native fullscreen in iOS (disables custom controls)
-          // Selector for the fullscreen container so contextual / non-player content can remain visible in fullscreen mode
-          // Non-ancestors of the player element will be ignored
-          // container: null, // defaults to the player element
+          enabled: false,
+          fallback: false,
+          iosNative: false,
         },
-        // Default controls
         controls: false,
         hideControls: true,
         clickToPlay: false,
