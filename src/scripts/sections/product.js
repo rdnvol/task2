@@ -274,9 +274,8 @@ export class Product {
       ],
     };
 
-    addItem(data).then((response) => {
-      const { items } = response;
-
+    addItem(data).then((data) => {
+      const { items } = data;
       window.Store.dispatch(addJustAdded(items[0]));
       window.Store.dispatch(getCart());
       window.Store.dispatch(openPopup());
@@ -302,11 +301,13 @@ export class Product {
         });
       });
 
-      observer.observe(this.wrapper.querySelectorAll('.shopify-payment-button')[0], {
-        subtree: true,
-        attributes: true,
-        childList: true,
-      });
+      if (this.wrapper.querySelectorAll('.shopify-payment-button')[0]) {
+        observer.observe(this.wrapper.querySelectorAll('.shopify-payment-button')[0], {
+          subtree: true,
+          attributes: true,
+          childList: true,
+        });
+      }
     });
 
   getVariantData(el) {
