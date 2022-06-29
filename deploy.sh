@@ -6,8 +6,6 @@
 #[[ -n "$INPUT_COLLECTION_HANDLE" ]] && export SHOP_COLLECTION_HANDLE="$INPUT_COLLECTION_HANDLE"
 #[[ -n "$INPUT_THEME_ROOT" ]]        && export THEME_ROOT="$INPUT_THEME_ROOT"
 
-# Authentication creds
-export SHOP_ACCESS_TOKEN="$INPUT_ACCESS_TOKEN"
 
 # Portable code below
 set -eou pipefail
