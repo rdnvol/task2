@@ -26,7 +26,7 @@ jobs:
           SHOP_ACCESS_TOKEN: ${{ secrets.SHOP_ACCESS_TOKEN }}
           THEME_ROOT: ./dist
       - name: install xvfb
-        run: sudo apt-get install xvfb
+        run: sudo apt-get update && sudo apt-get install xvfb
       - name: E2E on Chrome
         uses: cypress-io/github-action@v4
         with:
