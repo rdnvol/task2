@@ -46,14 +46,13 @@ YAML
 export CI=1
 export SHOPIFY_SHOP="${SHOP_STORE#*(https://|http://)}"
 
+
 echo $SHOP_ACCESS_TOKEN
 echo $SHOP_STORE
 echo $THEME_ROOT
 
 if [[ -n "$SHOP_ACCESS_TOKEN" ]]; then
   export SHOPIFY_PASSWORD="$SHOP_ACCESS_TOKEN"
-else
-  export SHOPIFY_PASSWORD="$SHOP_APP_PASSWORD"
 fi
 
 shopify login
@@ -66,8 +65,6 @@ export SHOPIFY_SHOP="${SHOP_STORE#*(https://|http://)}"
 
 if [[ -n "$SHOP_ACCESS_TOKEN" ]]; then
   export SHOPIFY_PASSWORD="$SHOP_ACCESS_TOKEN"
-else
-  export SHOPIFY_PASSWORD="$SHOP_APP_PASSWORD"
 fi
 
 shopify login
