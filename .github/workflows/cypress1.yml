@@ -10,7 +10,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: test
-        run: shopify login
+        run: ./deploy.sh
+        env:
+          SHOP_STORE: ${{ secrets.SHOP_STORE }}
+          SHOP_ACCESS_TOKEN: ${{ secrets.SHOP_ACCESS_TOKEN }}
+          THEME_ROOT: ./dist
       - name: Use Node.js 14
         uses: actions/setup-node@v3
         with:
