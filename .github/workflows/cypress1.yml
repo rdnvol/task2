@@ -15,11 +15,9 @@ jobs:
           checkout_base_path: ./.github/actions
           app_private_key: ${{ secrets.APP_PRIVATE_KEY }}
           app_id: ${{ secrets.APP_ID }}
-
       - name: Validation
         run: |
           ls -lR ./.github/actions
-
       - name: 'Using custom private action 1'
         uses: ./.github/actions/shopify-cypress-run
         with:
