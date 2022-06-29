@@ -1,3 +1,25 @@
+apt-get update \
+    && apt-get -y install sudo jq rbenv \
+    && mkdir -p "$(rbenv root)"/plugins \
+    && git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-build \
+    && git -C "$(rbenv root)"/plugins/ruby-build pull \
+    && rbenv install 2.7.1 \
+    && rbenv global 2.7.1 \
+    && gem install shopify-cli -N
+
+step() {
+  cat <<-EOF 1>&2
+	==============================
+	$1
+	EOF
+}
+
+is_installed() {
+  # This works with scripts and programs. For more info, check
+  # http://goo.gl/B9683D
+  type $1 &> /dev/null 2>&1
+}
+
 export CI=1
 export SHOPIFY_SHOP="${SHOP_STORE#*(https://|http://)}"
 
@@ -8,6 +30,7 @@ else
 fi
 
 shopify login
+
 
 host="https://${SHOP_STORE#*(https://|http://)}"
 theme_root="${THEME_ROOT:-.}"
