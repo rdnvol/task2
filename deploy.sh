@@ -6,9 +6,6 @@
 #[[ -n "$INPUT_COLLECTION_HANDLE" ]] && export SHOP_COLLECTION_HANDLE="$INPUT_COLLECTION_HANDLE"
 #[[ -n "$INPUT_THEME_ROOT" ]]        && export THEME_ROOT="$INPUT_THEME_ROOT"
 
-# Add global node bin to PATH (from the Dockerfile)
-export PATH="$PATH:$npm_config_prefix/bin"
-
 # Authentication creds
 export SHOP_ACCESS_TOKEN="$INPUT_ACCESS_TOKEN"
 
@@ -66,6 +63,8 @@ export SHOPIFY_SHOP="${SHOP_STORE#*(https://|http://)}"
 if [[ -n "$SHOP_ACCESS_TOKEN" ]]; then
   export SHOPIFY_PASSWORD="$SHOP_ACCESS_TOKEN"
 fi
+
+echo  "${SHOPIFY_PASSWORD} SHOPIFY_PASSWORD"
 
 shopify login
 

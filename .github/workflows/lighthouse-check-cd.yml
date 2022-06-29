@@ -5,12 +5,12 @@ on:
     branches:
       - cd
 
-.jobs:
+jobs:
   lhci:
     name: Lighthouse
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+    - name: Checkout
         uses: actions/checkout@v2
       - name: Lighthouse
         uses: shopify/lighthouse-ci-action@1.0
