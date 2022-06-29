@@ -1,12 +1,3 @@
-apt-get update \
-    && apt-get -y install sudo jq rbenv \
-    && mkdir -p "$(rbenv root)"/plugins \
-    && git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-build \
-    && git -C "$(rbenv root)"/plugins/ruby-build pull \
-    && rbenv install 2.7.1 \
-    && rbenv global 2.7.1 \
-    && gem install shopify-cli -N
-
 step() {
   cat <<-EOF 1>&2
 	==============================
