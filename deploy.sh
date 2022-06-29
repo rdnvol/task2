@@ -1,11 +1,4 @@
 #!/usr/bin/env bash
-#
-#[[ -n "$INPUT_STORE" ]]             && export SHOP_STORE="$INPUT_STORE"
-#[[ -n "$INPUT_PASSWORD" ]]          && export SHOP_PASSWORD="$INPUT_PASSWORD"
-#[[ -n "$INPUT_PRODUCT_HANDLE" ]]    && export SHOP_PRODUCT_HANDLE="$INPUT_PRODUCT_HANDLE"
-#[[ -n "$INPUT_COLLECTION_HANDLE" ]] && export SHOP_COLLECTION_HANDLE="$INPUT_COLLECTION_HANDLE"
-#[[ -n "$INPUT_THEME_ROOT" ]]        && export THEME_ROOT="$INPUT_THEME_ROOT"
-
 
 # Portable code below
 set -eou pipefail
@@ -41,11 +34,6 @@ YAML
 export CI=1
 export SHOPIFY_SHOP="${SHOP_STORE#*(https://|http://)}"
 
-
-echo $SHOP_ACCESS_TOKEN
-echo $SHOP_STORE
-echo $THEME_ROOT
-
 if [[ -n "$SHOP_ACCESS_TOKEN" ]]; then
   export SHOPIFY_PASSWORD="$SHOP_ACCESS_TOKEN"
 fi
@@ -62,8 +50,6 @@ if [[ -n "$SHOP_ACCESS_TOKEN" ]]; then
   export SHOPIFY_PASSWORD="$SHOP_ACCESS_TOKEN"
 fi
 
-echo  "${SHOPIFY_PASSWORD} SHOPIFY_PASSWORD"
-
 shopify login
 
 
@@ -78,8 +64,5 @@ preview_id="$(cat "$theme_push_log" | tail -n 1 | jq -r '.theme.id')"
 
 
 query_string="?preview_theme_id=${preview_id}&_fd=0"
-echo  preview_url
-echo  preview_id
-echo  query_string
 
-echo ::set-output name=theme_url::$host$query_string
+echo ::set-output name=theme_id::$preview_id

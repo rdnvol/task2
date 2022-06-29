@@ -25,7 +25,21 @@ jobs:
           SHOP_STORE: ${{ secrets.SHOP_STORE }}
           SHOP_ACCESS_TOKEN: ${{ secrets.SHOP_ACCESS_TOKEN }}
           THEME_ROOT: ./dist
-      - name: Run E2E tests
-        run: yarn e2e:run
+      - name: E2E on Chrome
+        uses: cypress-io/github-action@v4
+        with:
+          browser: chrome
         env:
-          STORE: ${{ steps.deploy.outputs.theme_url }}
+          CYPRESS_THEME_ID: ${{ steps.deploy.outputs.theme_id }}
+          CYPRESS_STORE: ${{ secrets.SHOP_STORE }}
+      - uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots
+          # Test run video was always captured, so this action uses "always()" condition
+      - uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: cypress-videos
+          path: cypress/videos
