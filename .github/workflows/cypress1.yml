@@ -8,6 +8,21 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+      - name: Private actions checkout
+        uses: daspn/private-actions-checkout@v2
+        with:
+          actions_list: '["bystrovagency/shopify-cypress-run@v1"]'
+          checkout_base_path: ./.github/actions
+          app_private_key: ${{ secrets.APP_PRIVATE_KEY }}
+          app_id: ${{ secrets.APP_ID }}
+      - name: Validation
+        run: ls -lR ./.github/actions
+      - name: 'Using custom private action 1'
+        uses: ./.github/actions/shopify-cypress-run
+        with:
+          store: ${{ secrets.SHOP_STORE }}
+          access_token: ${{ secrets.SHOP_ACCESS_TOKEN }}
+          theme_root: ./dist
       - name: Use Node.js 14
         uses: actions/setup-node@v3
         with:
