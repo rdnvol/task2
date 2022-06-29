@@ -5,7 +5,7 @@ on:
     branches:
       - cd
 
-jobs:
+.jobs:
   lhci:
     name: Lighthouse
     runs-on: ubuntu-latest
