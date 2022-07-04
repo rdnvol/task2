@@ -3,6 +3,7 @@
   "include": ["../cypress/**/*.ts", "cypress.d.ts"],
   "exclude": [],
   "compilerOptions": {
+    "rootDir": "./",
     "types": ["cypress", "@percy/cypress", "node"],
     "moduleResolution": "node",
     "module": "commonjs",
