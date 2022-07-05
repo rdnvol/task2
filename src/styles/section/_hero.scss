@@ -6,7 +6,6 @@
     margin: 0;
   }
   &.hero--full-height {
-    height: calc(100vh - var(--header-height, 100vh));
 
     .hero__img {
       position: absolute;
