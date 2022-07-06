@@ -33,7 +33,7 @@ register('iframe-video', {
           showinfo: 0,
           enablejsapi: 1,
           muted: 1,
-          autoplay: 1
+          autoplay: 1,
         },
         vimeo: {
           autoplay: true,
@@ -41,12 +41,12 @@ register('iframe-video', {
           playsinline: true,
           controls: false,
           loop: true,
-          byline: true
-        }
+          byline: true,
+        },
       };
 
       this.iframeVideo = new Plyr(this.container.querySelector(`.media-block__video #player-${this.id}`), options);
-      window.plyrPlayer = this.iframeVideo
+      window.plyrPlayer = this.iframeVideo;
       document.addEventListener('ready', () => {
         this.iframeVideo.play();
       });
