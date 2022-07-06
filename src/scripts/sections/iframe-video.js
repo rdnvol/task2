@@ -3,14 +3,14 @@ import Plyr from 'plyr';
 import { afterScrollEnable } from '../helpers/utils.js';
 
 register('iframe-video', {
-
-  initIframeVideo: function () {
+  initIframeVideo() {
     afterScrollEnable(this.container, () => {
       const videoRatio = this.container
         .querySelector(`.media-block__video #player-${this.id}`)
         .getAttribute('data-ratio');
+
       const options = {
-        autoplay: false,
+        autoplay: true,
         muted: true,
         loop: {
           active: true,
@@ -22,7 +22,6 @@ register('iframe-video', {
         },
         controls: false,
         hideControls: true,
-        clickToPlay: false,
         disableContextMenu: false,
         ratio: videoRatio,
         youtube: {
@@ -33,9 +32,21 @@ register('iframe-video', {
           autohide: 1,
           showinfo: 0,
           enablejsapi: 1,
+          muted: 1,
+          autoplay: 1
         },
+        vimeo: {
+          autoplay: true,
+          muted: true,
+          playsinline: true,
+          controls: false,
+          loop: true,
+          byline: true
+        }
       };
+
       this.iframeVideo = new Plyr(this.container.querySelector(`.media-block__video #player-${this.id}`), options);
+      window.plyrPlayer = this.iframeVideo
       document.addEventListener('ready', () => {
         this.iframeVideo.play();
       });
@@ -43,7 +54,7 @@ register('iframe-video', {
   },
 
   // Shortcut function called when a section is loaded via 'sections.load()' or by the Theme Editor 'shopify:section:load' event.
-  onLoad: function (e) {
+  onLoad(e) {
     this.initIframeVideo();
-  }
+  },
 });

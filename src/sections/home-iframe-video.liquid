@@ -28,11 +28,7 @@
         <div class="media-block__video"
              data-section-id="{{ section.id }}"
              data-video-type="{{ section.settings.video.type }}">
-          <div id="player-{{ section.id }}" data-plyr-provider="vimeo" data-plyr-embed-id="{{ section.settings.video.id }}" data-ratio="{{ section.settings.ratio }}">
-            <iframe
-              src="{{ section.settings.video }}"
-              allow="autoplay"></iframe>
-          </div>
+          <div id="player-{{ section.id }}" data-plyr-provider="{{ section.settings.video.type }}" data-plyr-embed-id="{{ section.settings.video.id }}" data-ratio="{{ section.settings.ratio }}"></div>
         </div>
       </div>
     </div>
