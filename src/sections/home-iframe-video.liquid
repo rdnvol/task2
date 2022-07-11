@@ -27,11 +27,8 @@
         {% endif %}
         <div class="media-block__video"
              data-section-id="{{ section.id }}"
-             data-video-type="{{ section.settings.video.type }}"
-             data-video-id="{{ section.settings.video.id }}">
-          <div class="fluid-iframe">
-            <div id="player-{{ section.id }}"></div>
-          </div>
+             data-video-type="{{ section.settings.video.type }}">
+          <div id="player-{{ section.id }}" data-plyr-provider="{{ section.settings.video.type }}" data-plyr-embed-id="{{ section.settings.video.id }}" data-ratio="{{ section.settings.ratio }}"></div>
         </div>
       </div>
     </div>
@@ -51,6 +48,22 @@
         "vimeo"
       ],
       "default": "https://www.youtube.com/watch?v=_9VUPq3SxOc"
+    },
+    {
+      "type": "select",
+      "id": "ratio",
+      "label": "Ratio",
+      "default": "16:9",
+      "options": [
+        {
+          "value": "16:9",
+          "label": "16:9"
+        },
+        {
+          "value": "4:3",
+          "label": "4:3"
+        }
+      ]
     },
     {
       "type": "checkbox",
