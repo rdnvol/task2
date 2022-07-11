@@ -1,11 +1,11 @@
 <div class="section"
-     id="slideshow-section"
+     id="slideshow-section-{{ section.id }}"
      data-section-type="slideshow"
      data-section-id="{{ section.id }}"
      data-autorotate="{{ section.settings.enable_autorotate }}"
      data-blocks="{{ section.blocks.size }}"
      data-slides-every="{{ section.settings.change_every }}">
-  <div class="splide slideshow-gallery">
+  <div class="splide slideshow-gallery" id="slideshow-gallery-{{ section.id }}">
     <div class="splide__track">
       <div class="splide__list">
         {% for block in section.blocks %}

@@ -1,16 +1,14 @@
-export function addItem(data) {
+export async function addItem(data) {
   const params = {
-    url: '/cart/add.js',
-    data,
-    dataType: 'json',
+    method: 'POST',
+    body: JSON.stringify(data),
+    headers: {
+      'Content-Type': 'application/json',
+    },
   };
-  const request = $.post(params);
-  request.fail((data) => {
-    console.log(data);
-  });
-  return request;
-}
+  const result = await fetch('/cart/add.js', params)
+    .then((res) => res.json())
+    .catch((error) => console.log(error));
 
-export function getCart() {
-  return $.getJSON('/cart.js');
+  return result;
 }

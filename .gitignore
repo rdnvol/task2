@@ -74,3 +74,14 @@ secrets.json
 src/assets/*.js.map
 Jenkinsfile
 stats.json
+
+# Cypress #
+#####################
+
+/cypress/cypress.env.json
+/cypress/reports
+/cypress/screenshots/*
+/cypress/videos/*
+/cypress/fixtures
+!cypress/screenshots/.gitkeep
+!cypress/videos/.gitkeep

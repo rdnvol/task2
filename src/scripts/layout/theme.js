@@ -36,6 +36,7 @@ class App {
   }
 
   init() {
+    this.responsiveFluidIframe();
     this.setHeaderHeight();
     this.initMobileNav();
     this.initStickyBlocks();
@@ -47,18 +48,21 @@ class App {
     this.fancyboxBackdrop();
     this.fancyboxModalCloseButton();
 
-    // Responsive fluid iframe
-    document.querySelectorAll('.rte iframe').forEach((iframe) => {
-      const fluidHtml = document.createElement('div');
-      fluidHtml.classList.add('fluid-iframe');
-      fluidHtml.append(iframe);
-    });
-
     if (!('ontouchstart' in document.documentElement)) {
-      $('html').addClass('no-touch');
+      document.documentElement.classList.add('no-touch');
     }
 
     Fancybox.bind('[data-fancybox]', {});
+  }
+
+  // Responsive fluid iframe
+  responsiveFluidIframe() {
+    document.querySelectorAll('.rte iframe').forEach((iframe) => {
+      const fluidHtml = document.createElement('div');
+      fluidHtml.classList.add('fluid-iframe');
+      iframe.parentNode.appendChild(fluidHtml);
+      fluidHtml.appendChild(iframe);
+    });
   }
 
   // Initialize sticky blocks
@@ -135,6 +139,9 @@ class App {
       docEl.forEach((el) => {
         el.style.height = '';
         el.style.overflow = '';
+        window.setTimeout(() => {
+          el.style.scrollBehavior = 'smooth';
+        }, 500);
       });
       wrap.style.top = '';
       window.scrollTo(0, scrollTop);
@@ -152,6 +159,7 @@ class App {
       docEl.forEach((el) => {
         el.style.height = '100%';
         el.style.overflow = 'hidden';
+        el.style.scrollBehavior = 'auto';
       });
     }
 
