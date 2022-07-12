@@ -4,6 +4,7 @@ import { v1 as uuid } from 'uuid';
 
 import { ProductType } from 'types';
 
+import { Accordion } from 'accordion';
 import ProductAccordionItem from './ProductAccordionItem';
 
 interface PropsType {
@@ -15,30 +16,31 @@ const ProductAccordion: FunctionComponent<PropsType> = ({ product }) => {
     window.ResponsiveHelper.addRange({
       '..1199': {
         on() {
-          $('.menu-accordion').slideAccordion({
-            allowClickWhenExpanded: true,
-            activeClass: 'active',
-            opener: '.menu-accordion__opener',
-            slider: '.menu-accordion__slide',
-            collapsible: true,
-            event: 'click',
-            animSpeed: 400,
+          document.querySelectorAll('.js-menu-accordion').forEach((item) => {
+            const accordionMenu = new Accordion(item, {
+              modal: true, // Limit the accordion to having only one fold open at a time.
+              noAria: true,
+              closeClass: 'close',
+              enabledClass: 'enabled',
+              openClass: 'open',
+              heightOffset: 0,
+              useBorders: false,
+            });
           });
         },
-        off() {
-          $('.menu-accordion').slideAccordion('destroy');
-        },
+        off() {},
       },
     });
 
-    $('.accordion').slideAccordion({
-      allowClickWhenExpanded: false,
-      activeClass: 'accordion--active',
-      opener: '.accordion__opener',
-      slider: '.accordion__slide',
-      collapsible: true,
-      event: 'click',
-      animSpeed: 400,
+    document.querySelectorAll('.js-accordion').forEach((item) => {
+      const accordion = new Accordion(item, {
+        modal: true, // Limit the accordion to having only one fold open at a time.
+        closeClass: 'close',
+        enabledClass: 'enabled',
+        openClass: 'open',
+        heightOffset: 10,
+        useBorders: true,
+      });
     });
   };
 

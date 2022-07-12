@@ -6,13 +6,12 @@
 # The following settings/values are unsupported by sass-lint:
 # Linter Indentation, option "character"
 # Linter SpaceBeforeBrace, option "allow_single_line_padding"
-  
+
 files:
   include: "**/*.scss"
   ignore:
     - "src/styles/vendors/**/*.scss"
     - "src/styles/base/_mixins.scss"
-    - "src/styles/plugins/_jquery.fancybox.scss"
 options:
   formatter: stylish
   merge-default-rules: false
