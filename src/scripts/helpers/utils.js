@@ -101,3 +101,13 @@ export function afterScrollEnable(el, callback) {
   }
   new IntersectionObserver(handleIntersection, {rootMargin: '0px 0px 200px 0px'}).observe(el);
 }
+
+export function callbackOnElOutOfView(el, callback) {
+  const handleIntersection = (entries) => {
+    entries.forEach((entry) => {
+      entry.isIntersecting === false && callback();
+    });
+  };
+
+  new IntersectionObserver(handleIntersection, { threshold: 0.1 }).observe(el);
+}
