@@ -1,6 +1,6 @@
 import { load, register } from '@shopify/theme-sections';
 import Plyr from 'plyr';
-import { afterScrollEnable } from '../helpers/utils.js';
+import { afterScrollEnable, callbackOnElOutOfView } from '../helpers/utils.js';
 
 register('iframe-video', {
   initIframeVideo() {
@@ -50,6 +50,8 @@ register('iframe-video', {
       document.addEventListener('ready', () => {
         this.iframeVideo.play();
       });
+
+      callbackOnElOutOfView(this.container.querySelector(`.media-block__video`), () => this.iframeVideo.pause());
     });
   },
 
