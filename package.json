@@ -34,17 +34,13 @@
   },
   "lint-staged": {
     "*.liquid": [
-      "prettier --write",
-      "yarn lint"
+      "prettier --write"
     ],
     "*.scss": [
       "stylelint"
     ],
     "src/scripts/**/*.{ts,js,tsx,jsx}": [
       "eslint --fix"
-    ],
-    "cypress/**/*.{js.ts}": [
-      "e2e:run"
     ]
   },
   "husky": {

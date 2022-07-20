@@ -1,4 +1,8 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-yarn lint-staged
+if ! [ -x "$(command -v yarn)" ]; then
+  echo 'yarn not found. Probably running within the pipeline. Skipping pre-push hook.' >&2
+else
+    yarn e2e:run
+fi
