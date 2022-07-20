@@ -44,6 +44,9 @@
     "no-restricted-syntax": ["error", "ForInStatement", "LabeledStatement", "WithStatement"],
     "react/function-component-definition": [2, { "namedComponents": "arrow-function" }],
     "prefer-const": ["error", { "destructuring": "all" }],
+    "class-methods-use-this": "off",
+    "no-restricted-globals": "off",
+    "no-new": "off",
     "prefer-destructuring": [
       "error",
       {

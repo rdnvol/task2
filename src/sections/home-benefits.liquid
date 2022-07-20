@@ -2,12 +2,12 @@
   <div class="container">
     <div class="flex flex-wrap md:justify-center -mx-4">
       {% for block in section.blocks %}
-        <div class="w-1/2 md:w-4/12 lg:w-2/12 px-4" {{ block.shopify_attributes }}>
+        <div class="w-1/2 md:w-4/12 lg:w-2/12   px-4  " {{ block.shopify_attributes }}>
           <div class="benefits-item text-center rte">
             <div class="benefits-item__img">
               {% if block.settings.image != blank %}
-                {% render
-                  'image',
+                {%
+                  render 'image',
                   src: block.settings.image,
                   d: '50x',
                   placeholder: 'img-placeholder.png',
@@ -31,9 +31,7 @@
 {% schema %}
 {
   "name": "Benefits",
-  "settings": [
-
-  ],
+  "settings": [],
   "blocks": [
     {
       "type": "image",

@@ -26,21 +26,30 @@
     "lint": "npm run build && shopify theme check",
     "lint:js": "eslint \"./src/scripts/**/*.{tsx,ts}\"",
     "lint:js:fix": "eslint \"./src/scripts/**/*.{tsx,ts}\" --fix",
+    "prettify": "prettier --write  'src/**/*.liquid'",
     "lint:css": "stylelint \"./src/styles/**/*.{css,scss}\"",
     "e2e:gui": "cypress open",
-    "e2e:run": "cypress run --browser chrome"
+    "e2e:run": "cypress run --browser chrome",
+    "prepare": "husky install"
   },
   "lint-staged": {
+    "*.liquid": [
+      "prettier --write",
+      "yarn lint"
+    ],
     "*.scss": [
-      "yarn lint:js:fix",
-      "yarn lint:css",
-      "yarn lint",
-      "git add"
+      "stylelint"
+    ],
+    "src/scripts/**/*.{ts,js,tsx,jsx}": [
+      "eslint --fix"
+    ],
+    "cypress/**/*.{js.ts}": [
+      "e2e:run"
     ]
   },
   "husky": {
     "hooks": {
-      "pre-commit": "NODE_ENV=production lint-staged",
+      "pre-push": "lint-staged",
       "post-commit": "git update-index --again"
     }
   },
@@ -68,7 +77,6 @@
     "esm": "^3.2.25",
     "final-form": "^4.18.5",
     "flatpickr": "^4.6.3",
-    "husky": "^7.0.4",
     "js-cookie": "^2.2.1",
     "lazysizes": "^5.2.2",
     "modernizr": "^3.6.0",
@@ -102,6 +110,7 @@
     "@babel/plugin-transform-runtime": "^7.9.6",
     "@babel/preset-env": "^7.15.6",
     "@shopify/eslint-plugin": "^40.4.0",
+    "@shopify/prettier-plugin-liquid": "^0.1.4",
     "@types/node": "^18.0.0",
     "@typescript-eslint/eslint-plugin": "^5.13.0",
     "@typescript-eslint/parser": "^5.13.0",
@@ -130,6 +139,7 @@
     "filemanager-webpack-plugin": "^6.1.7",
     "friendly-errors-webpack-plugin": "^1.7.0",
     "html-webpack-plugin": "^5.3.2",
+    "husky": "^8.0.1",
     "imports-loader": "^3.0.0",
     "lint-staged": "^11.2.6",
     "mini-css-extract-plugin": "^2.3.0",

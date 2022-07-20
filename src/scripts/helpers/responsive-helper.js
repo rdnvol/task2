@@ -3,9 +3,10 @@
  */
 window.ResponsiveHelper = (function () {
   // init variables
-  let handlers = [],
-    prevWinWidth,
-    nativeMatchMedia = false;
+  const handlers = [];
+  let prevWinWidth;
+  let nativeMatchMedia = false;
+
   const events = ['load', 'resize'];
 
   // detect match media support
@@ -16,18 +17,53 @@ window.ResponsiveHelper = (function () {
       nativeMatchMedia = true;
     }
   }
+
+  // media query function
+  function matchQuery(query, r1, r2) {
+    if (window.matchMedia && nativeMatchMedia) {
+      return matchMedia(query).matches;
+    }
+
+    if (window.styleMedia) {
+      return window.styleMedia.matchMedium(query);
+    }
+
+    if (window.media) {
+      return window.media.matchMedium(query);
+    }
+
+    return prevWinWidth >= r1 && prevWinWidth <= r2;
+  }
+
+  // test range
+  function matchRange(r1, r2) {
+    let mediaQueryString = '';
+
+    if (r1 > 0) {
+      mediaQueryString += `(min-width: ${r1}px)`;
+    }
+
+    if (r2 < Infinity) {
+      mediaQueryString += `${mediaQueryString ? ' and ' : ''}(max-width: ${r2}px)`;
+    }
+
+    return matchQuery(mediaQueryString, r1, r2);
+  }
+
   // prepare resize handler
   function resizeHandler() {
-    let winWidth = window.innerWidth;
+    const winWidth = window.innerWidth;
+
     if (winWidth !== prevWinWidth) {
       prevWinWidth = winWidth;
 
       // loop through range groups
-      handlers.forEach(function (rangeObject, index) {
+      handlers.forEach((rangeObject) => {
         // disable current active area if needed
-        Object.values(rangeObject.data).forEach(function (item, index) {
+        Object.values(rangeObject.data).forEach((item) => {
           if (item.currentActive && !matchRange(item.range[0], item.range[1])) {
             item.currentActive = false;
+
             if (typeof item.disableCallback === 'function') {
               item.disableCallback();
             }
@@ -35,10 +71,11 @@ window.ResponsiveHelper = (function () {
         });
 
         // enable areas that match current width
-        Object.values(rangeObject.data).forEach(function (item, index) {
+        Object.values(rangeObject.data).forEach((item) => {
           if (!item.currentActive && matchRange(item.range[0], item.range[1])) {
             // make callback
             item.currentActive = true;
+
             if (typeof item.enableCallback === 'function') {
               item.enableCallback();
             }
@@ -52,49 +89,24 @@ window.ResponsiveHelper = (function () {
     window.addEventListener(event, resizeHandler);
   });
 
-  // test range
-  function matchRange(r1, r2) {
-    let mediaQueryString = '';
-    if (r1 > 0) {
-      mediaQueryString += '(min-width: ' + r1 + 'px)';
-    }
-    if (r2 < Infinity) {
-      mediaQueryString += (mediaQueryString ? ' and ' : '') + '(max-width: ' + r2 + 'px)';
-    }
-    return matchQuery(mediaQueryString, r1, r2);
-  }
-
-  // media query function
-  function matchQuery(query, r1, r2) {
-    if (window.matchMedia && nativeMatchMedia) {
-      return matchMedia(query).matches;
-    } else if (window.styleMedia) {
-      return styleMedia.matchMedium(query);
-    } else if (window.media) {
-      return media.matchMedium(query);
-    } else {
-      return prevWinWidth >= r1 && prevWinWidth <= r2;
-    }
-  }
-
   // range parser
   function parseRange(rangeStr) {
-    let rangeData = rangeStr.split('..');
-    let x1 = parseInt(rangeData[0], 10) || -Infinity;
-    let x2 = parseInt(rangeData[1], 10) || Infinity;
-    return [x1, x2].sort(function(a, b) {
-      return a - b;
-    });
+    const rangeData = rangeStr.split('..');
+    const x1 = parseInt(rangeData[0], 10) || -Infinity;
+    const x2 = parseInt(rangeData[1], 10) || Infinity;
+
+    return [x1, x2].sort((a, b) => a - b);
   }
 
   // export public functions
   return {
-    addRange: function(ranges) {
+    addRange(ranges) {
       // parse data and add items to collection
-      let result = {
+      const result = {
         data: {},
       };
-      Object.keys(ranges).forEach(function(property, index) {
+
+      Object.keys(ranges).forEach((property) => {
         result.data[property] = {
           range: parseRange(property),
           enableCallback: ranges[property].on,
@@ -108,4 +120,4 @@ window.ResponsiveHelper = (function () {
       resizeHandler();
     },
   };
-}());
+})();
