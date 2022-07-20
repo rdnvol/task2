@@ -41,7 +41,6 @@
       snippet: 'snippet-name',
       icon: 'name'
     %}
-
 {% endcomment %}
 
 {% liquid
@@ -81,21 +80,24 @@
 {% endcapture %}
 
 {%- case element -%}
-{%- when 'a' -%}
-  <a href="{{ href | default: '#' }}" class="{{ classes }}" {{ data_attribute }}>
-    {{- content -}}
-  </a>
-{%- when 'button' -%}
-  <button {{ type_attr }} class="{{ classes }}" {{ data_attribute }} {{ other }}>
-    {{- content -}}
-  </button>
-{%- when 'span' -%}
-  <span class="{{ classes }}" {{ data_attribute }}>
-    {{- content -}}
-  </span>
-{%- when 'input' -%}
-  <input {{ type_attr }}
-    class="{{ classes }}" {{ data_attribute }}
-    value="{{ text | default: "Button" }} {{ other }}" />
+  {%- when 'a' -%}
+    <a href="{{ href | default: '#' }}" class="{{ classes }}" {{ data_attribute }}>
+      {{- content -}}
+    </a>
+  {%- when 'button' -%}
+    <button {{ type_attr }} class="{{ classes }}" {{ data_attribute }} {{ other }}>
+      {{- content -}}
+    </button>
+  {%- when 'span' -%}
+    <span class="{{ classes }}" {{ data_attribute }}>
+      {{- content -}}
+    </span>
+  {%- when 'input' -%}
+    <input
+      {{ type_attr }}
+      class="{{ classes }}"
+      {{ data_attribute }}
+      value="{{ text | default: "Button" }} {{ other }}"
+    >
 {%- endcase -%}
 {% comment %}theme-check-enable{% endcomment %}

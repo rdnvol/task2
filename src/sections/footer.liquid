@@ -19,73 +19,79 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-8">
           {%- for block in section.blocks -%}
             {%- case block.type -%}
-            {%- when 'text' -%}
-              <div class="sm:col-span-full lg:col-span-1 mb-6 lg:mb-0">
-                <div class="rte">
-                  {% if block.settings.icon != blank %}
-                    <a href="{{ routes.root_url }}" rel="nofollow" class="footer__logo">
-                      <img data-src="{{ block.settings.icon | asset_url }}"
+              {%- when 'text' -%}
+                <div class="sm:col-span-full lg:col-span-1 mb-6 lg:mb-0">
+                  <div class="rte">
+                    {% if block.settings.icon != blank %}
+                      <a href="{{ routes.root_url }}" rel="nofollow" class="footer__logo">
+                        <img
+                          data-src="{{ block.settings.icon | asset_url }}"
                           width="114"
                           height="24"
-                          src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" class="lazyload"
-                          data-sizes="auto" alt="footer logo">
-                    </a>
-                  {% endif %}
-                  {{ block.settings.text }}
-                </div>
-              </div>
-            {%- when 'newsletter' -%}
-              <div class="{% unless forloop.last %}mb-6 lg:mb-0{% endunless %}" {{ block.shopify_attributes }}>
-                {%- if block.settings.title != blank -%}
-                  <div class="footer__title h5">
-                    {{ block.settings.title }}
+                          src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                          class="lazyload"
+                          data-sizes="auto"
+                          alt="footer logo"
+                        >
+                      </a>
+                    {% endif %}
+                    {{ block.settings.text }}
                   </div>
-                {%- endif -%}
-                <p>{{ 'general.newsletter_form.newsletter_email' | t }}</p>
-                {% form 'customer', novalidate: 'novalidate', class: "footer__form" %}
-                  <fieldset>
-                    <legend class="visually-hidden">
-                      Newsletter form
-                    </legend>
-                    <input type="hidden" name="contact[tags]" value="newsletter">
-                    {%- if form.posted_successfully? -%}
-                      <p class="form-message form-message--success" tabindex="-1" data-form-status>
-                        {{ 'general.newsletter_form.confirmation' | t }}
-                      </p>
-                    {%- endif -%}
-                    <label for="newsletter-form-email-field" class="inline-block mb-2">
-                      Please enter your email
-                    </label>
-                    <div class="relative">
-                      <input type="email" name="contact[email]" id="newsletter-form-email-field"
-                            placeholder="{{ 'general.newsletter_form.email_placeholder' | t }}"
-                            class="footer__form__input">
-                      <button type="submit" class="footer__form__button">
-                        <span class="accessibility">
-                          Button submit
-                        </span>
-                        {%- render 'icon-arrow-right' -%}
-                      </button>
-                    </div>
-                  </fieldset>
-                {% endform %}
-              </div>
-            {%- when 'link_list' -%}
-            {%- assign footer_linklist = block.settings.menu -%}
-              <div class="{% unless forloop.last %}mb-6 lg:mb-0{% endunless %}">
-                <nav class="footer__nav">
+                </div>
+              {%- when 'newsletter' -%}
+                <div class="{% unless forloop.last %}mb-6 lg:mb-0{% endunless %}" {{ block.shopify_attributes }}>
                   {%- if block.settings.title != blank -%}
                     <div class="footer__title h5">
                       {{ block.settings.title }}
                     </div>
                   {%- endif -%}
-                  <ul>
-                    {%- for link in linklists[footer_linklist].links -%}
-                      <li><a href="{{ link.url }}">{{ link.title | escape }}</a></li>
-                    {%- endfor -%}
-                  </ul>
-                </nav>
-              </div>
+                  <p>{{ 'general.newsletter_form.newsletter_email' | t }}</p>
+                  {% form 'customer', novalidate: 'novalidate', class: "footer__form" %}
+                    <fieldset>
+                      <legend class="visually-hidden">Newsletter form</legend>
+                      <input type="hidden" name="contact[tags]" value="newsletter">
+                      {%- if form.posted_successfully? -%}
+                        <p class="form-message form-message--success" tabindex="-1" data-form-status>
+                          {{ 'general.newsletter_form.confirmation' | t }}
+                        </p>
+                      {%- endif -%}
+                      <label for="newsletter-form-email-field" class="inline-block mb-2">
+                        Please enter your email
+                      </label>
+                      <div class="relative">
+                        <input
+                          type="email"
+                          name="contact[email]"
+                          id="newsletter-form-email-field"
+                          placeholder="{{ 'general.newsletter_form.email_placeholder' | t }}"
+                          class="footer__form__input"
+                        >
+                        <button type="submit" class="footer__form__button">
+                          <span class="accessibility"> Button submit </span>
+                          {%- render 'icon-arrow-right' -%}
+                        </button>
+                      </div>
+                    </fieldset>
+                  {% endform %}
+                </div>
+              {%- when 'link_list' -%}
+                {%- assign footer_linklist = block.settings.menu -%}
+                <div class="{% unless forloop.last %}mb-6 lg:mb-0{% endunless %}">
+                  <nav class="footer__nav">
+                    {%- if block.settings.title != blank -%}
+                      <div class="footer__title h5">
+                        {{ block.settings.title }}
+                      </div>
+                    {%- endif -%}
+                    <ul>
+                      {%- for link in linklists[footer_linklist].links -%}
+                        <li>
+                          <a href="{{ link.url }}">{{ link.title | escape }}</a>
+                        </li>
+                      {%- endfor -%}
+                    </ul>
+                  </nav>
+                </div>
             {%- endcase -%}
           {%- endfor -%}
         </div>
@@ -94,13 +100,14 @@
     <div class="flex justify-center pt-3">
       {% if section.settings.currency_switcher_enable %}
         {% form 'currency', class: 'pr-3' %}
-          <label for="field-currency-01" class="inline-block mb-2">
-            Select currency
-          </label>
+          <label for="field-currency-01" class="inline-block mb-2"> Select currency </label>
           <select name="currency" class="w-100 mb-2" id="field-currency-01">
             {% for currency in shop.enabled_currencies %}
               {% if currency == cart.currency %}
-                <option selected>{{ currency.iso_code }} {{ currency.symbol }}</option>
+                <option selected>
+                  {{ currency.iso_code }}
+                  {{ currency.symbol }}
+                </option>
               {% else %}
                 <option>{{ currency.iso_code }}</option>
               {% endif %}
@@ -110,13 +117,18 @@
       {% endif %}
       {% if section.settings.language_switcher_enable %}
         <div class="locales-wrapper">
-          <label for="field-locales-01" class="inline-block mb-2">
-            Select locales
-          </label>
+          <label for="field-locales-01" class="inline-block mb-2"> Select locales </label>
           <select name="locales" class="w-100 mb-2" id="field-locales-01">
             {% for locale in shop.published_locales %}
-              <option {% if request.locale.name == locale.name %}selected{% endif %}
-                      data-path="{{ request.path }}" value="{{ locale.root_url }}">{{ locale.name }}</option>
+              <option
+                {% if request.locale.name == locale.name %}
+                  selected
+                {% endif %}
+                data-path="{{ request.path }}"
+                value="{{ locale.root_url }}"
+              >
+                {{ locale.name }}
+              </option>
             {% endfor %}
           </select>
         </div>
@@ -124,11 +136,16 @@
     </div>
     <div class="footer__panel text-center uppercase">
       {% capture copy %}
-        &copy; {{ 'now' | date: "%Y" }} {{ shop.name | link_to: routes.root_url | lstrip }}.
+        &copy; {{ 'now' | date: "%Y" }}
+        {{ shop.name | link_to: routes.root_url | lstrip }}.
       {% endcapture %}
       {% assign first_part = copy | prepend: '<p>' %}
       {% assign rights_text = section.settings.rights_text | replace: '<p>', first_part %}
-      <div {% if show_payment_icons %}class="mb-4 md:mb-2"{% endif %}>
+      <div
+        {% if show_payment_icons %}
+          class="mb-4 md:mb-2"
+        {% endif %}
+      >
         {% if section.settings.rights_text != blank %}{{ rights_text }}{% else %}{{ copy }}{% endif %}
       </div>
       {{ payment_icon_markup }}

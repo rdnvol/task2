@@ -31,7 +31,6 @@
       <meta property="og:image:alt" content="{{ image.alt | escape }}">
     {%- endfor -%}
   {%- endcapture -%}
-
 {%- elsif template.name == 'article' -%}
   {% liquid
     assign og_title = article.title | strip_html
@@ -47,7 +46,6 @@
       <meta property="og:image:alt" content="{{ article.image.alt | escape }}">
     {%- endcapture -%}
   {%- endif -%}
-
 {%- elsif template.name == 'collection' -%}
   {% liquid
     assign og_title = collection.title | strip_html
@@ -62,7 +60,6 @@
       <meta property="og:image:alt" content="{{ collection.image.alt | escape }}">
     {%- endcapture -%}
   {%- endif -%}
-
 {%- elsif template.name == 'password' -%}
   {% liquid
     assign og_title = shop.name

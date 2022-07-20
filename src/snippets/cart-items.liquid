@@ -1,18 +1,17 @@
 {% for item in cart.items %}
-
   {% comment %}
-
-  Cart Item Template
-  =====================
-  The data-label attributes on <td> elements are mobile-friendly
-  helpers used for responsive-table labels
+    Cart Item Template
+    =====================
+    The data-label attributes on <td> elements are mobile-friendly
+    helpers used for responsive-table labels
   {% endcomment %}
 
-  <tr class="responsive-table-row"
-      data-line-item
-      data-index="{{ forloop.index }}"
-      data-key="{{ item.key }}">
-
+  <tr
+    class="responsive-table-row"
+    data-line-item
+    data-index="{{ forloop.index }}"
+    data-key="{{ item.key }}"
+  >
     <td>
       <div class="flex space-x-8">
         <div class="w-4/12 md:w-3/12">
@@ -20,13 +19,22 @@
             <div class="cart__product-img">
               <a href="{{ item.url | within: collections.all }}" aria-label="{{ item.title }}">
                 <picture>
-                  <source data-srcset="{{ item | image_url: width: 120 }}, {{ item | image_url: width: 240 }} 2x"
-                          media="(max-width: 767px)"
-                          srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
-                  <source data-srcset="{{ item | image_url: width: 240 }}, {{ item | image_url: width: 480 }} 2x"
-                          srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
-                  <img data-src="{{ item | image_url: width: 240 }}" class="lazyload" data-sizes="auto" alt="{{ item.title }}"
-                       src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+                  <source
+                    data-srcset="{{ item | image_url: width: 120 }}, {{ item | image_url: width: 240 }} 2x"
+                    media="(max-width: 767px)"
+                    srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                  >
+                  <source
+                    data-srcset="{{ item | image_url: width: 240 }}, {{ item | image_url: width: 480 }} 2x"
+                    srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                  >
+                  <img
+                    data-src="{{ item | image_url: width: 240 }}"
+                    class="lazyload"
+                    data-sizes="auto"
+                    alt="{{ item.title }}"
+                    src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                  >
                 </picture>
               </a>
             </div>
@@ -81,26 +89,29 @@
       </div>
       <div class="flex md:hidden items-center justify-end">
         <label for="updates_mobile_{{ item.key }}" class="mr-2">Qty</label>
-        <input type="number"
-               name="updates[]"
-               data-key="{{ item.key }}"
-               id="updates_mobile_{{ item.key }}"
-               value="{{ item.quantity }}"
-               min="0"
-               aria-label="{{ 'cart.general.item_quantity' | t }}">
+        <input
+          type="number"
+          name="updates[]"
+          data-key="{{ item.key }}"
+          id="updates_mobile_{{ item.key }}"
+          value="{{ item.quantity }}"
+          min="0"
+          aria-label="{{ 'cart.general.item_quantity' | t }}"
+        >
       </div>
     </td>
     <td>
-      <input type="number"
-             name="updates[]"
-             id="updates_{{ item.key }}"
-             value="{{ item.quantity }}"
-             min="0"
-             aria-label="{{ 'cart.general.item_quantity' | t }}">
+      <input
+        type="number"
+        name="updates[]"
+        id="updates_{{ item.key }}"
+        value="{{ item.quantity }}"
+        min="0"
+        aria-label="{{ 'cart.general.item_quantity' | t }}"
+      >
     </td>
     <td data-line-total-price>
       {{ item.final_line_price | money }}
     </td>
   </tr>
-
 {% endfor %}

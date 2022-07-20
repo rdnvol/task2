@@ -6,22 +6,26 @@
     <div class="sm:w-7/12 lg:w-5/12">
       <div class="product__row">
         {% if current_variant.available %}
-          {% render 'button',
+          {%
+            render 'button',
             element: 'button',
             locales_text: 'products.product.add_to_cart',
             data_attribute: 'data-submit-button',
             class: 'w-100',
             name: 'add',
             other: 'name="add"',
-            type: 'submit' %}
+            type: 'submit'
+          %}
         {% else %}
-          {% render 'button',
+          {%
+            render 'button',
             element: 'button',
             locales_text: 'products.product.sold_out',
             data_attribute: 'data-submit-button',
             class: 'w-100 disabled',
             other: 'name="add" disabled',
-            type: 'submit' %}
+            type: 'submit'
+          %}
         {% endif %}
       </div>
       {% if show_dynamic_button %}

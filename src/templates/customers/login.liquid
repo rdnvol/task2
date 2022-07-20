@@ -13,25 +13,30 @@
           <label for="CustomerEmail" class="label label-hidden">
             {{ 'customer.login.email' | t }}
           </label>
-          <input type="email" name="customer[email]"
-                 id="CustomerEmail"
-                 class="{% if form.errors contains 'email' %}input-error{% endif %}"
-                 placeholder="{{ 'customer.login.email' | t }}"
-                 spellcheck="false"
-                 autocomplete="off"
-                 autocapitalize="off"
-                 autofocus>
+          <input
+            type="email"
+            name="customer[email]"
+            id="CustomerEmail"
+            class="{% if form.errors contains 'email' %}input-error{% endif %}"
+            placeholder="{{ 'customer.login.email' | t }}"
+            spellcheck="false"
+            autocomplete="off"
+            autocapitalize="off"
+            autofocus
+          >
         </div>
         {% if form.password_needed %}
           <div class="input-holder">
             <label for="CustomerPassword" class="label label-hidden">
               {{ 'customer.login.password' | t }}
             </label>
-            <input type="password"
-                   name="customer[password]"
-                   id="CustomerPassword"
-                   class="{% if form.errors contains 'password' %}input-error{% endif %}"
-                   placeholder="{{ 'customer.login.password' | t }}">
+            <input
+              type="password"
+              name="customer[password]"
+              id="CustomerPassword"
+              class="{% if form.errors contains 'password' %}input-error{% endif %}"
+              placeholder="{{ 'customer.login.password' | t }}"
+            >
           </div>
         {% endif %}
         {% if form.password_needed %}
@@ -49,7 +54,7 @@
         </div>
       {% endform %}
     </div>
-    
+
     <div class="account__slide-block hidden" data-recover-form>
       <div class="account__slide-block__holder">
         <div class="account-page__heading text-center">
@@ -65,13 +70,15 @@
             <label for="RecoverEmail" class="label label-hidden">
               {{ 'customer.recover_password.email' | t }}
             </label>
-            <input type="email"
-                   name="email"
-                   id="RecoverEmail"
-                   placeholder="{{ 'customer.recover_password.email' | t }}"
-                   spellcheck="false"
-                   autocomplete="off"
-                   autocapitalize="off">
+            <input
+              type="email"
+              name="email"
+              id="RecoverEmail"
+              placeholder="{{ 'customer.recover_password.email' | t }}"
+              spellcheck="false"
+              autocomplete="off"
+              autocapitalize="off"
+            >
           </div>
           <div class="account-form__actions">
             <input type="submit" class="button w-100" value="{{ 'customer.recover_password.submit' | t }}">

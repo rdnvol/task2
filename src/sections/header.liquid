@@ -12,11 +12,13 @@
 {%- endcomment -%}
 
 <header id="header">
-
   {% render 'header-announcement' %}
 
   <div class="sticky-wrap-header__panel" data-sticky-states data-sticky-container="body">
-    <div class="header__panel{% if section.settings.enable_shadow %} header__panel-shadow{% endif %}" data-sticky-states-inner>
+    <div
+      class="header__panel{% if section.settings.enable_shadow %} header__panel-shadow{% endif %}"
+      data-sticky-states-inner
+    >
       <div class="container">
         <div class="flex items-center -mx-4">
           <div class="w-4/12 {% if section.settings.layout == 'center' %}xl:w-5/12{% else %}xl:w-6/12 xl:order-2 justify-center{% endif %} px-4">
@@ -29,9 +31,7 @@
                 {% endif %}
                 {% if section.settings.search_enable %}
                   <a href="{{ routes.search_url }}" class="header__btn hidden xs:inline-flex xl:hidden">
-                    <span class="visually-hidden">
-                      Search
-                    </span>
+                    <span class="visually-hidden"> Search </span>
                     {%- render 'icon' with 'search' -%}
                   </a>
                 {% endif %}
@@ -51,10 +51,12 @@
           <div class="w-4/12 {% if section.settings.layout == 'center' %}xl:w-5/12{% else %}xl:w-3/12 xl:order-3 xl:py-3{% endif %} flex items-center justify-end px-4">
             {% if section.settings.button_link != blank %}
               <div class="hidden xl:inline-block">
-                {% render "button",
+                {%
+                  render "button",
                   element: 'a',
                   href: section.settings.button_link,
-                  text: section.settings.button_label %}
+                  text: section.settings.button_label
+                %}
               </div>
             {% endif %}
             {% render 'header-icons' %}
@@ -63,7 +65,6 @@
       </div>
     </div>
   </div>
-
 </header>
 <div class="menu__drop xl:hidden" tabindex="-1">
   {% render 'header-announcement' %}
@@ -91,13 +92,16 @@
   <div class="container">
     {% if section.settings.enable_search_form %}
       <form action="/search" method="get" role="search" class="header__search-form relative my-5">
-        <input type="search"
-               name="q"
-               id="Search"
-               value="{{ search.terms | escape }}"
-               aria-label="Search"
-               placeholder="{{ 'general.search.placeholder' | t }}">
-        {% render 'button',
+        <input
+          type="search"
+          name="q"
+          id="Search"
+          value="{{ search.terms | escape }}"
+          aria-label="Search"
+          placeholder="{{ 'general.search.placeholder' | t }}"
+        >
+        {%
+          render 'button',
           element: 'button',
           class: 'btn page-search-form__button flex items-center',
           text: 'Search on store',
@@ -265,27 +269,25 @@
 {% endschema %}
 
 <script type="application/ld+json">
-{
-  "@context": "http://schema.org",
-  "@type": "Organization",
-  "name": "{{ shop.name }}",
-  {% if section.settings.logo %}
-    "logo": "https:{{ section.settings.logo | image_url: width: section.settings.logo.width }}",
-  {% endif %}
-  "sameAs": [
-    "{{ settings.social_twitter_link }}",
-    "{{ settings.social_facebook_link }}",
-    "{{ settings.social_pinterest_link }}",
-    "{{ settings.social_instagram_link }}",
-    "{{ settings.social_tumblr_link }}",
-    "{{ settings.social_snapchat_link }}",
-    "{{ settings.social_youtube_link }}",
-    "{{ settings.social_vimeo_link }}"
-  ],
-  "url": "{{ shop.url }}{{ page.url }}"
-}
-
-
+  {
+    "@context": "http://schema.org",
+    "@type": "Organization",
+    "name": "{{ shop.name }}",
+    {% if section.settings.logo %}
+      "logo": "https:{{ section.settings.logo | image_url: width: section.settings.logo.width }}",
+    {% endif %}
+    "sameAs": [
+      "{{ settings.social_twitter_link }}",
+      "{{ settings.social_facebook_link }}",
+      "{{ settings.social_pinterest_link }}",
+      "{{ settings.social_instagram_link }}",
+      "{{ settings.social_tumblr_link }}",
+      "{{ settings.social_snapchat_link }}",
+      "{{ settings.social_youtube_link }}",
+      "{{ settings.social_vimeo_link }}"
+    ],
+    "url": "{{ shop.url }}{{ page.url }}"
+  }
 </script>
 
 {% if template.name == 'index' %}
@@ -301,7 +303,5 @@
       },
       "url": "{{ shop.url }}{{ page.url }}"
     }
-
-
   </script>
 {% endif %}

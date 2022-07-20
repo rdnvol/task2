@@ -2,13 +2,12 @@
   {% assign grid_item_width = 'col-sm-6 col-lg-3' %}
 {% endunless %}
 
-
 <div class="{{ grid_item_width }}">
   <div class="product-item text-center">
     <a href="{{ product.url | within: collection }}" class="product-item__img relative">
       {% if product.featured_image != blank %}
-        {% render
-          "image",
+        {%
+          render "image",
           src: product.featured_image,
           d: '302x376',
           src_m: product.featured_image,
@@ -28,7 +27,7 @@
             <div class="product-item__label-soldout">{{ 'products.product_card.labels.sold_out' | t }}</div>
           {% endunless %}
           {% if product.tags contains "new" %}
-             <div class="product-item__label-new">{{ 'products.product_card.labels.new' | t }}</div>
+            <div class="product-item__label-new">{{ 'products.product_card.labels.new' | t }}</div>
           {% endif %}
         </div>
       </div>

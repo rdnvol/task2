@@ -1,6 +1,8 @@
-<div class="section video-section{% if section.settings.enable_full_width %} video-section--full-width{% endif %}"
-     data-section-type="iframe-video"
-     data-section-id="{{ section.id }}">
+<div
+  class="section video-section{% if section.settings.enable_full_width %} video-section--full-width{% endif %}"
+  data-section-type="iframe-video"
+  data-section-id="{{ section.id }}"
+>
   <div class="container">
     <div class="video-section__holder">
       <div class="video-section__container {% if section.settings.enable_overlay and section.blocks.size > 0 %}video-section__container--overlay{% endif %}">
@@ -14,8 +16,8 @@
                   <div class="mb-4" {{ block.shopify_attributes }}>{{ block.settings.subheading }}</div>
                 {% when 'button' %}
                   {% if block.settings.button_link != blank and block.settings.button_label != blank %}
-                    {% render
-                      'button',
+                    {%
+                      render 'button',
                       element: 'a',
                       href: block.settings.button_link,
                       text: block.settings.button_label,
@@ -25,10 +27,17 @@
             {% endfor %}
           </div>
         {% endif %}
-        <div class="media-block__video"
-             data-section-id="{{ section.id }}"
-             data-video-type="{{ section.settings.video.type }}">
-          <div id="player-{{ section.id }}" data-plyr-provider="{{ section.settings.video.type }}" data-plyr-embed-id="{{ section.settings.video.id }}" data-ratio="{{ section.settings.ratio }}"></div>
+        <div
+          class="media-block__video"
+          data-section-id="{{ section.id }}"
+          data-video-type="{{ section.settings.video.type }}"
+        >
+          <div
+            id="player-{{ section.id }}"
+            data-plyr-provider="{{ section.settings.video.type }}"
+            data-plyr-embed-id="{{ section.settings.video.id }}"
+            data-ratio="{{ section.settings.ratio }}"
+          ></div>
         </div>
       </div>
     </div>

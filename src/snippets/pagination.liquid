@@ -12,10 +12,10 @@
       {%- if part.is_link -%}
         <li>
           <a href="{{ part.url }}">
-            {{ part.title }} <span class="visually-hidden">page</span> 
+            {{ part.title }}
+            <span class="visually-hidden">page</span>
           </a>
         </li>
-
       {%- else -%}
         {%- if part.title == paginate.current_page -%}
           <li class="active" aria-current="page">

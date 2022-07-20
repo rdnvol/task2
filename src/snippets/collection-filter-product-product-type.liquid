@@ -6,13 +6,13 @@
     </summary>
     <div class="filter-collapse__slide">
       <div class="filter-collapse__heading body-small flex items-center justify-between space-x-2 p-4">
-        <div class="facets__selected no-js-hidden">{{ 'products.facets.filters_selected' | t: count: filter.active_values.size }}</div>
+        <div class="facets__selected no-js-hidden">
+          {{ 'products.facets.filters_selected' | t: count: filter.active_values.size }}
+        </div>
         <div>
           <facet-remove>
             <a href="{{ filter.url_to_remove }}">
-              <button type="reset">
-                Reset
-              </button>
+              <button type="reset">Reset</button>
             </a>
           </facet-remove>
         </div>
@@ -27,10 +27,10 @@
                 value="{{ value.value }}"
                 name="{{ value.param_name }}"
                 {% if value.active %}
-                 checked
+                  checked
                 {% endif %}
                 {% if value.count == 0 and value.active == false -%}
-                disabled
+                  disabled
                 {% endif %}
               >
               <label for="Filter-{{ value.param_name }}-{{ forloop.index }}" class="custom-label flex items-center">

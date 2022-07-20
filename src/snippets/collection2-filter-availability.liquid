@@ -14,10 +14,10 @@
               value="{{ value.value }}"
               name="{{ value.param_name }}"
               {% if value.active -%}
-              checked
+                checked
               {%- endif %}
               {% if value.count == 0 and value.active == false -%}
-              disabled
+                disabled
               {%- endif %}
             >
             <label for="Filter-{{ value.param_name }}-{{ forloop.index }}" class="custom-label flex items-center">

@@ -7,14 +7,13 @@
 {% layout 'gift_card' %}
 
 <header role="banner">
-    <a href="{{ routes.root_url }}" rel="nofollow">
-      {{ shop.name }}
-    </a>
+  <a href="{{ routes.root_url }}" rel="nofollow">
+    {{ shop.name }}
+  </a>
   <div>{{ shop.url | escape }}</div>
 </header>
 
 <main class="giftcard {% if gift_card.expired or gift_card.enabled != true %} giftcard--disabled{% endif %}">
-
   <h1>{{ 'gift_cards.issued.subtext' | t }}</h1>
   {% unless gift_card.enabled %}
     <span class="giftcard-tag">{{ 'gift_cards.issued.disabled' | t }}</span>
@@ -27,7 +26,9 @@
   {% endif %}
 
   {% if gift_card.expired != true and gift_card.expires_on and gift_card.enabled %}
-    <span class="giftcard-tag giftcard-tag--active">{{ 'gift_cards.issued.active' | t: expiry: gift_card_expiry_date }}</span>
+    <span class="giftcard-tag giftcard-tag--active">
+      {{- 'gift_cards.issued.active' | t: expiry: gift_card_expiry_date -}}
+    </span>
   {% endif %}
 
   <img src="{{ 'gift-card/card.jpg' | shopify_asset_url }}" alt="Gift card illustration">
@@ -46,18 +47,25 @@
 
   <p>{{ 'gift_cards.issued.redeem' | t }}</p>
 
-  <a href="{{ routes.root_url }}" rel="nofollow" class="button" target="_blank">{{ 'gift_cards.issued.shop_link' | t }}</a>
+  <a href="{{ routes.root_url }}" rel="nofollow" class="button" target="_blank">
+    {{- 'gift_cards.issued.shop_link' | t -}}
+  </a>
 
   <canvas id="QrCode" class="giftcard-qr" data-identifier="{{ gift_card.qr_identifier }}" data-gift-card-qr></canvas>
 
   {% if gift_card.pass_url %}
     <a href="{{ gift_card.pass_url }}" class="apple-wallet">
-      <img class="apple-wallet-image" src="{{ 'gift-card/add-to-apple-wallet.svg' | shopify_asset_url }}" width="120" height="40" alt="{{ 'gift_cards.issued.add_to_apple_wallet' | t }}">
+      <img
+        class="apple-wallet-image"
+        src="{{ 'gift-card/add-to-apple-wallet.svg' | shopify_asset_url }}"
+        width="120"
+        height="40"
+        alt="{{ 'gift_cards.issued.add_to_apple_wallet' | t }}"
+      >
     </a>
   {% endif %}
 
   <button id="PrintGiftCard" class="print-giftcard" data-gift-card-print>
     {{ 'gift_cards.issued.print' | t }}
   </button>
-
 </main>
