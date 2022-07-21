@@ -11,8 +11,8 @@
             <div {{ block.shopify_attributes }}>
               <a href="{{ collection.url }}" class="collection-list-item block relative">
                 <div class="collection-list-item__img image-container">
-                  {% render
-                    'image',
+                  {%
+                    render 'image',
                     src: collection.image,
                     d: '413x',
                     src_m: collection.image,

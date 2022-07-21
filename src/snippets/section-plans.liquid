@@ -22,8 +22,8 @@
                 {% endif %}
                 <div class="plan-item__img">
                   {% if block.settings.image != blank %}
-                    {% render
-                      'image',
+                    {%
+                      render 'image',
                       src: block.settings.image,
                       d: '50x',
                       placeholder: 'img-placeholder.png',

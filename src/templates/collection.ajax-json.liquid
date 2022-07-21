@@ -1,8 +1,7 @@
 {% layout none %}
-{
-  "products": [
-  {% liquid
-    paginate collection.products by settings.collection_limit
+{ "products": [
+{% liquid
+  paginate collection.products by settings.collection_limit
       for product in collection.products
         render 'product-json', product: product
         unless forloop.last
@@ -10,6 +9,5 @@
         endunless
       endfor
   endpaginate
-  %}
-  ]
-}
+%}
+] }

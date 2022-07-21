@@ -13,8 +13,8 @@
             <article class="mb-6 md:mb-0" {{ block.shopify_attributes }}>
               {% if article.image != blank %}
                 <a href="{{ article.url }}" class="image-container mb-2">
-                  {% render
-                    'image',
+                  {%
+                    render 'image',
                     src: article.image,
                     d: '413x',
                     src_m: article.image,
@@ -49,8 +49,8 @@
                 </ul>
               {% endif %}
               <div class="flex flex-wrap items-center space-x-4">
-                {% render
-                  'button',
+                {%
+                  render 'button',
                   element: 'a',
                   href: article.url,
                   text: 'Read more',

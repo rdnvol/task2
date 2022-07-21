@@ -4,15 +4,16 @@
       <div class="md:w-1/2">
         <div class="feature-block__img">
           {%- if section.settings.image != blank -%}
-            {% render "image",
-            src: section.settings.image,
-            d: "635x794",
-            src_m: section.settings.image,
-            m: "345x431",
-            alt: section.settings.image.alt,
-            placeholder: 'img-placeholder.png',
-            p_d: '635x794',
-            p_m: '345x431'
+            {%
+              render "image",
+              src: section.settings.image,
+              d: "635x794",
+              src_m: section.settings.image,
+              m: "345x431",
+              alt: section.settings.image.alt,
+              placeholder: 'img-placeholder.png',
+              p_d: '635x794',
+              p_m: '345x431'
             %}
           {%- else -%}
             {{ 'image' | placeholder_svg_tag: "placeholder-svg" }}
@@ -31,7 +32,8 @@
                 {{ block.settings.text }}
               {% when "button" %}
                 {%- if block.settings.button_link != blank and block.settings.button_label != blank -%}
-                  {% render "button",
+                  {%
+                    render "button",
                     href: block.settings.button_link,
                     text: block.settings.button_label
                   %}

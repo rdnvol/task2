@@ -1,61 +1,61 @@
 {% comment %}
-  NOTE:
-Renders an image
-  Accepts:
-  - src: {string} or {object} desktop image name you want to render (example 'image.png' or section.settings.image)
-  - asset_img_url: {boolean} if true renders an image from assets folder
-  - d: {string} desktop width and height of image for img_url filter (example only width '650x', only height 'x650', both '650x650');
-  - src_m: {string} or {object} mobile image name you want to render (example 'image.png' or section.settings.image)
-  if isn't passed uses desktop image
-  - m: {string} mobile width and height of image for img_url filter
-  - src_t: {string} or {object} tablet image name you want to render (example 'image.png' or section.settings.image)
-  - t: {string} tablet width and height of image for img_url filter
-  - crop: {string} for cropping image if needed (example 'center', 'left', 'right')
-  - lazyload: {boolean} for lazyload image (true by default);
-  - placeholder: {string} image for placeholder (default is 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==')
-  - p_d: {string} (optional) desktop width and height of image for img_url filter
-  (if isn't set uses dimensions of desktop image)
-  (if only width set the snippet is double it example '650x' will be rendered as asset_img_url:'650x650', crop: 'center');
-  - p_m: {string} (optional) mobile width and height of image for img_url filter
-  (if isn't set uses dimensions of mobile image)
-  (if only width set the snippet is double it example '650x' will be rendered as asset_img_url:'650x650', crop: 'center');
-  for usage:
-  without lazyload
-{% render
-  'image',
-  asset_img_url: true,
-  src: 'image-src.png',
-  d: '650x',
-  src_m: 'image-src-m.png',
-  m: '375x',
-  src_t: 'image-src-t.png',
-  t: '375x',
-  crop: 'center',
-  lazyload: false,
-  placeholder: 'img-placeholder.png',
-%}
-  with lazyload
-{% render
-  'image',
-  asset_img_url: true,
-  src: 'image-src.png',
-  d: '650x',
-  src_m: 'image-src-m.png',
-  m: '375x',
-%}
-  with metafield (accentuate)
-{% render
-  'image',
-  metafield: true
-  src: 'test-image.png?options=',
-  d: 'w_430',
-  src_m: 'test-image.png?options=',
-  m: 'w_120,h_260',
-  placeholder: 'img-placeholder.png',
-  p_d: '541x720',
-  p_m: '282x375',
-  crop: 'center',
-%}
+    NOTE:
+  Renders an image
+    Accepts:
+    - src: {string} or {object} desktop image name you want to render (example 'image.png' or section.settings.image)
+    - asset_img_url: {boolean} if true renders an image from assets folder
+    - d: {string} desktop width and height of image for img_url filter (example only width '650x', only height 'x650', both '650x650');
+    - src_m: {string} or {object} mobile image name you want to render (example 'image.png' or section.settings.image)
+    if isn't passed uses desktop image
+    - m: {string} mobile width and height of image for img_url filter
+    - src_t: {string} or {object} tablet image name you want to render (example 'image.png' or section.settings.image)
+    - t: {string} tablet width and height of image for img_url filter
+    - crop: {string} for cropping image if needed (example 'center', 'left', 'right')
+    - lazyload: {boolean} for lazyload image (true by default);
+    - placeholder: {string} image for placeholder (default is 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==')
+    - p_d: {string} (optional) desktop width and height of image for img_url filter
+    (if isn't set uses dimensions of desktop image)
+    (if only width set the snippet is double it example '650x' will be rendered as asset_img_url:'650x650', crop: 'center');
+    - p_m: {string} (optional) mobile width and height of image for img_url filter
+    (if isn't set uses dimensions of mobile image)
+    (if only width set the snippet is double it example '650x' will be rendered as asset_img_url:'650x650', crop: 'center');
+    for usage:
+    without lazyload
+  {% render
+    'image',
+    asset_img_url: true,
+    src: 'image-src.png',
+    d: '650x',
+    src_m: 'image-src-m.png',
+    m: '375x',
+    src_t: 'image-src-t.png',
+    t: '375x',
+    crop: 'center',
+    lazyload: false,
+    placeholder: 'img-placeholder.png',
+  %}
+    with lazyload
+  {% render
+    'image',
+    asset_img_url: true,
+    src: 'image-src.png',
+    d: '650x',
+    src_m: 'image-src-m.png',
+    m: '375x',
+  %}
+    with metafield (accentuate)
+  {% render
+    'image',
+    metafield: true
+    src: 'test-image.png?options=',
+    d: 'w_430',
+    src_m: 'test-image.png?options=',
+    m: 'w_120,h_260',
+    placeholder: 'img-placeholder.png',
+    p_d: '541x720',
+    p_m: '282x375',
+    crop: 'center',
+  %}
 {% endcomment %}
 
 {% liquid
@@ -322,17 +322,22 @@ Renders an image
       <source data-srcset="{{ t_srcset }}" media="(max-width: 1199px)" srcset="{{ placeholder_t }}">
     {% endif %}
     <source data-srcset="{{ d_srcset }}" srcset="{{ placeholder_d }}">
-    <img data-src="{{ d_src }}"
-        {% if classes %} class="{{ classes }}"{% endif %}
-         data-sizes="auto"
-         width="{{ src.width }}"
-         height="{{ src.width | divided_by: src.aspect_ratio | floor }}"
-        {% if template contains 'product' %}
-          alt="{{ alt | default: product.title }}"
-        {% else %}
-          alt="{{ alt | default: 'image description' }}"
-        {% endif %}
-         src="{{ placeholder_d }}" {{ data_attribute }}>
+    <img
+      data-src="{{ d_src }}"
+      {% if classes %}
+        class="{{ classes }}"
+      {% endif %}
+      data-sizes="auto"
+      width="{{ src.width }}"
+      height="{{ src.width | divided_by: src.aspect_ratio | floor }}"
+      {% if template contains 'product' %}
+        alt="{{ alt | default: product.title }}"
+      {% else %}
+        alt="{{ alt | default: 'image description' }}"
+      {% endif %}
+      src="{{ placeholder_d }}"
+      {{ data_attribute }}
+    >
   </picture>
 {% else %}
   <picture>
@@ -343,16 +348,19 @@ Renders an image
       <source srcset="{{ t_srcset }}" media="(max-width: 1199px)">
     {% endif %}
     <source srcset="{{ d_srcset }}">
-    <img src="{{ d_src }}"{% if classes %} class="{{ classes }}"{% endif %}
-        {% if template contains 'product' %}
-          alt="{{ alt | default: product.title }}"
-        {% else %}
-          alt="{{ alt | default: 'image description' }}"
-        {% endif %}
-         width="{{ src.width }}"
-         height="{{ src.width | divided_by : src.aspect_ratio | floor }}" {{ data_attribute }}>
+    <img
+      src="{{ d_src }}"
+      {% if classes %}
+        class="{{ classes }}"
+      {% endif %}
+      {% if template contains 'product' %}
+        alt="{{ alt | default: product.title }}"
+      {% else %}
+        alt="{{ alt | default: 'image description' }}"
+      {% endif %}
+      width="{{ src.width }}"
+      height="{{ src.width | divided_by : src.aspect_ratio | floor }}"
+      {{ data_attribute }}
+    >
   </picture>
 {% endif %}
-
-
-

@@ -15,7 +15,11 @@
                     {% if child_link.links != blank %}
                       <ul>
                         {% for third_level in child_link.links %}
-                          <li {% if third_level.active %}class="active"{% endif %}>
+                          <li
+                            {% if third_level.active %}
+                              class="active"
+                            {% endif %}
+                          >
                             <a href="{{ third_level.url }}">{{ third_level.title }}</a>
                           </li>
                         {% endfor %}
@@ -30,7 +34,11 @@
       </details-disclosure>
     </li>
   {% else %}
-    <li {% if link.active %}class="active"{% endif %}>
+    <li
+      {% if link.active %}
+        class="active"
+      {% endif %}
+    >
       <a href="{{ link.url }}">{{ link.title }}</a>
     </li>
   {% endif %}

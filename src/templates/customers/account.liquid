@@ -24,14 +24,12 @@
                       {{ order.name | link_to: order.customer_url }}
                     </td>
                     <td data-label="Date">
-                      <time datetime="{{ order.created_at | date: format: 'month_day_year' }}">{{ order.created_at | date: format: 'month_day_year' }}</time>
+                      <time datetime="{{ order.created_at | date: format: 'month_day_year' }}">
+                        {{- order.created_at | date: format: 'month_day_year' -}}
+                      </time>
                     </td>
-                    <td data-label="Payment Status">
-                      Paid
-                    </td>
-                    <td data-label="Fulfillment Status">
-                      Unfulfilled
-                    </td>
+                    <td data-label="Payment Status">Paid</td>
+                    <td data-label="Fulfillment Status">Unfulfilled</td>
                     <td data-label="Total">
                       {{ order.total_price | money }}
                     </td>
@@ -50,7 +48,9 @@
         {% endpaginate %}
         <h2 class="h3 account__sub-title">{{ 'customer.account.details' | t }}</h2>
         {{ customer.default_address | format_address }}
-        <a class="button" href="/account/addresses">{{ 'customer.account.view_addresses' | t }} ({{ customer.addresses_count }})</a>
+        <a class="button" href="/account/addresses">
+          {{- 'customer.account.view_addresses' | t }} ({{ customer.addresses_count }})</a
+        >
       </div>
     </div>
   </div>

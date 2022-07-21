@@ -9,8 +9,8 @@
           <div class="mb-5 md:mb-0">
             <div class="mb-2 image-container">
               {% if block.settings.image != blank %}
-                {% render
-                  'image',
+                {%
+                  render 'image',
                   src: block.settings.image,
                   d: '413x',
                   src_m: block.settings.image,
@@ -31,7 +31,8 @@
               </div>
             {% endif %}
             {% if block.settings.btn_url != blank %}
-              {% render "button",
+              {%
+                render "button",
                 element: 'a',
                 href: block.settings.btn_url,
                 text: 'Read more',

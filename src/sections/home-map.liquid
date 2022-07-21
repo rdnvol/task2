@@ -1,6 +1,8 @@
-<section class="section map-section"
-         data-section-type="map-section"
-         data-section-id="{{ section.id }}">
+<section
+  class="section map-section"
+  data-section-type="map-section"
+  data-section-id="{{ section.id }}"
+>
   <div class="container-fluid md:px-0">
     <div class="map-section__block relative md:flex md:items-center">
       <div class="container">
@@ -17,7 +19,8 @@
                   </address>
                 {% endif %}
                 {% if section.settings.map_btn_url != blank %}
-                  {% render "button",
+                  {%
+                    render "button",
                     element: 'a',
                     href: section.settings.map_btn_url,
                     class: 'd-inline-flex flex-row-reverse align-items-center',
@@ -39,7 +42,11 @@
     </div>
   </div>
 </section>
-<script async src="https://maps.googleapis.com/maps/api/js?key={{ settings.gm_key }}&callback=initMap&libraries=&v=weekly"></script>
+<script
+  async
+  src="https://maps.googleapis.com/maps/api/js?key={{ settings.gm_key }}&callback=initMap&libraries=&v=weekly"
+>
+</script>
 
 {% schema %}
 {

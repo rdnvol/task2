@@ -19,9 +19,7 @@
         {% assign form_id = 'newsletter-form-' | append: section.id %}
         {% form 'customer', id: form_id, class: "newsletter-form" %}
           <fieldset>
-            <legend class="visually-hidden">
-              Subscribe form
-            </legend>
+            <legend class="visually-hidden">Subscribe form</legend>
             {{ form.errors | default_errors }}
             {% if form.posted_successfully? %}
               <p>{{ 'general.newsletter_form.confirmation' | t }}</p>
@@ -32,13 +30,15 @@
                   <label for="subscribe-form-field" class="visually-hidden">
                     {{ 'general.newsletter_form.email_placeholder' | t }}
                   </label>
-                  <input type="email"
+                  <input
+                    type="email"
                     name="contact[email]"
                     id="subscribe-form-field"
                     value="{% if customer.email != blank %}{{ customer.email }}{% endif %}"
                     placeholder="{{ 'general.newsletter_form.email_placeholder' | t }}"
                     autocorrect="off"
-                    autocapitalize="off">
+                    autocapitalize="off"
+                  >
                 </div>
                 <button type="submit" name="commit" class="button" id="Subscribe">
                   <span>{{ 'general.newsletter_form.submit' | t }}</span>

@@ -14,10 +14,10 @@
               value="{{ value.value }}"
               name="{{ value.param_name }}"
               {% if value.active -%}
-              checked
+                checked
               {%- endif %}
               {% if value.count == 0 and value.active == false -%}
-              disabled
+                disabled
               {%- endif %}
             >
             <label for="Filter-{{ value.param_name }}-{{ forloop.index }}" class="custom-label flex items-center">
@@ -28,32 +28,32 @@
         {% endunless %}
       {% endfor %}
       {% if filter.values.size >= 5 %}
-      <more-less class="filter-collapse__btn-more-content mb-3">
-        <span id="more" class="filter-collapse__more">+ More</span>
-        <span id="less" class="filter-collapse__less">- Less</span>
+        <more-less class="filter-collapse__btn-more-content mb-3">
+          <span id="more" class="filter-collapse__more">+ More</span>
+          <span id="less" class="filter-collapse__less">- Less</span>
 
-        <script id="filter-items" data-template="1" type="application/json">
-          {
-            "filter_label": {{ filter.label | json }},
-            "filter_type": {{ filter.type | json }},
-            "filter_values": [
-              {% for value in filter.values %}
-                {
-                  "active": {{ value.active | json }},
-                  "count": {{ value.count | json }},
-                  "label": {{ value.label | json }},
-                  "param_name": {{ value.param_name | json }},
-                  "value": {{ value.value | json }}
-                }
-              {% unless forloop.last %}
-                ,
-              {% endunless %}
-              {% endfor %}
-            ]
-          }
-        </script>
-      </more-less>
-    {% endif %}
+          <script id="filter-items" data-template="1" type="application/json">
+            {
+              "filter_label": {{ filter.label | json }},
+              "filter_type": {{ filter.type | json }},
+              "filter_values": [
+                {% for value in filter.values %}
+                  {
+                    "active": {{ value.active | json }},
+                    "count": {{ value.count | json }},
+                    "label": {{ value.label | json }},
+                    "param_name": {{ value.param_name | json }},
+                    "value": {{ value.value | json }}
+                  }
+                {% unless forloop.last %}
+                  ,
+                {% endunless %}
+                {% endfor %}
+              ]
+            }
+          </script>
+        </more-less>
+      {% endif %}
     </details>
   </details-utils>
 </div>

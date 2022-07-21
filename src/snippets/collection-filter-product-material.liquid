@@ -10,9 +10,7 @@
         <div>
           <facet-remove>
             <a href="{{ filter.url_to_remove }}">
-              <button type="reset">
-                Reset
-              </button>
+              <button type="reset">Reset</button>
             </a>
           </facet-remove>
         </div>
@@ -27,12 +25,12 @@
                 value="{{ value.value }}"
                 name="{{ value.param_name }}"
                 {% if value.active -%}
-                checked
+                  checked
                 {%- endif %}
                 {% if value.count == 0 and value.active == false -%}
-                disabled
+                  disabled
                 {%- endif %}
-                >
+              >
               <label for="Filter-{{ value.param_name }}-{{ forloop.index }}" class="custom-label flex items-center">
                 <span class="custom-label__check"></span>
                 {{ value.label }} ({{ value.count }})

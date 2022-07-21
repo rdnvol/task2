@@ -59,6 +59,7 @@ class App {
   responsiveFluidIframe() {
     document.querySelectorAll('.rte iframe').forEach((iframe) => {
       const fluidHtml = document.createElement('div');
+
       fluidHtml.classList.add('fluid-iframe');
       iframe.parentNode.appendChild(fluidHtml);
       fluidHtml.appendChild(iframe);
@@ -87,26 +88,20 @@ class App {
   initHeaderOnScrollDown() {
     let didScroll;
     let lastScrollTop = 0;
-    let delta = 5;
-    let navbarHeight = document.querySelector('.sticky-wrap-header__panel').offsetHeight;
+    const delta = 5;
+    const navbarHeight = document.querySelector('.sticky-wrap-header__panel').offsetHeight;
 
-    window.addEventListener('scroll', function(event) {
+    window.addEventListener('scroll', () => {
       didScroll = true;
     });
 
-    setInterval(function() {
-      if (didScroll) {
-        hasScrolled();
-        didScroll = false;
-      }
-    }, 250);
-
     function hasScrolled() {
-      let st = window.pageYOffset;
+      const st = window.pageYOffset;
       const stickyWrapHeader = document.querySelector('.sticky-wrap-header__panel');
       // Make sure they scroll more than delta
 
       if (Math.abs(lastScrollTop - st) <= delta) return;
+
       // If they scrolled down and are past the navbar, add class .nav-up.
       // This is necessary so you never see what is "behind" the navbar.
       if (st > lastScrollTop && st > navbarHeight) {
@@ -114,17 +109,33 @@ class App {
         stickyWrapHeader.classList.remove('nav-down');
         stickyWrapHeader.classList.add('nav-up');
       } else {
-        const body = document.body;
+        const { body } = document;
         const html = document.documentElement;
-        const documentHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
+
+        const documentHeight = Math.max(
+          body.scrollHeight,
+          body.offsetHeight,
+          html.clientHeight,
+          html.scrollHeight,
+          html.offsetHeight
+        );
+
         // Scroll Up
         if (st + window.innerHeight < documentHeight) {
           stickyWrapHeader.classList.remove('nav-up');
           stickyWrapHeader.classList.add('nav-down');
         }
       }
+
       lastScrollTop = st;
     }
+
+    setInterval(() => {
+      if (didScroll) {
+        hasScrolled();
+        didScroll = false;
+      }
+    }, 250);
   }
 
   initIosScroll() {
@@ -173,7 +184,7 @@ class App {
       }
     }
 
-    ResponsiveHelper.addRange({
+    window.ResponsiveHelper.addRange({
       '..1199': {
         on() {
           pageWrapperOpeners.forEach((pageWrapperOpener) => {
@@ -204,7 +215,7 @@ class App {
   // accordion menu init
   initAccordion() {
     document.querySelectorAll('.js-accordion').forEach((item) => {
-      const accordion = new Accordion(item, {
+      new Accordion(item, {
         modal: true, // Limit the accordion to having only one fold open at a time.
         closeClass: 'close',
         enabledClass: 'enabled',
@@ -214,11 +225,11 @@ class App {
       });
     });
 
-    ResponsiveHelper.addRange({
+    window.ResponsiveHelper.addRange({
       '..1199': {
         on() {
           document.querySelectorAll('.js-menu-accordion').forEach((item) => {
-            const accordionMenu = new Accordion(item, {
+            new Accordion(item, {
               modal: true, // Limit the accordion to having only one fold open at a time.
               noAria: true,
               closeClass: 'close',
@@ -229,11 +240,8 @@ class App {
             });
           });
         },
-        off() {
-        },
       },
     });
-
   }
 
   setHeaderHeight() {
@@ -241,15 +249,14 @@ class App {
 
     events.forEach((event) => {
       window.addEventListener(event, () => {
-        const headerHight = document.querySelector('#header')?.getBoundingClientRect().height + 'px';
-        const headerPanelHeight = document.querySelector('.header__panel')?.getBoundingClientRect().height + 'px';
-        const headerBarHeight = document.querySelector('.header__bar')?.getBoundingClientRect().height + 'px';
+        const headerHeight = `${document.querySelector('#header')?.getBoundingClientRect().height}px`;
+        const headerPanelHeight = `${document.querySelector('.header__panel')?.getBoundingClientRect().height}px`;
+        const headerBarHeight = `${document.querySelector('.header__bar')?.getBoundingClientRect().height}px`;
 
-        document.documentElement.style.setProperty('--header-height', headerHight);
+        document.documentElement.style.setProperty('--header-height', headerHeight);
         document.documentElement.style.setProperty('--header-sticky-height', headerPanelHeight);
         document.documentElement.style.setProperty('--announcements-bar-height', headerBarHeight);
       });
-
     });
   }
 
@@ -289,15 +296,15 @@ class App {
       childList: true,
     };
 
-    const callback = function (mutationsList, observer) {
+    const callback = (mutationsList, currentObserver) => {
       for (const mutation of mutationsList) {
-        if (mutation.addedNodes[0] && mutation.addedNodes[0].Fancybox != undefined) {
+        if (mutation.addedNodes[0] && mutation.addedNodes[0].Fancybox !== undefined) {
           const backdrop = document.querySelector('.fancybox__slide.is-selected');
 
           backdrop.addEventListener('click', (e) => {
             e.preventDefault();
           });
-          observer.disconnect();
+          currentObserver.disconnect();
         }
       }
     };
@@ -314,4 +321,4 @@ class App {
   }
 }
 
-const app = new App();
+new App();

@@ -2,8 +2,8 @@
   {% when 'image' %}
     <div class="product__gallery-slider__item lg:pr-4 md:pb-4">
       <div class="product__gallery-slider__img" data-position="{{ media.position }}">
-        {% render
-          'image',
+        {%
+          render 'image',
           src: media,
           d: '635x791',
           src_m: media,
@@ -14,33 +14,33 @@
       </div>
     </div>
   {% when 'external_video' %}
-  <div class="product__gallery-slider__item lg:pr-4 md:pb-4 lg:w-100">
-    <deferred-media class="deferred-media media product-gallery__img fluid-iframe" data-media-id="{{ media.id }}">
-      <button id="Deferred-Poster-Modal-{{ media.id }}" class="deferred-media__poster relative" type="button">
-        <span class="deferred-media__poster-button motion-reduce">
-          <span class="visually-hidden">Play video</span>
-          {% render 'icon' with 'play' %}
-        </span>
-        {% render
-          'image',
-          src: media,
-          d: '635x791',
-          src_m: media,
-          m: '345x431',
-          alt: media.alt,
-          placeholder: 'img-placeholder.png'
-        %}
-      </button>
-      <template>
-        {%- assign video_class = 'js-' | append: media.host -%}
-        {%- if media.host == 'youtube' -%}
-          {{ media | external_video_url: autoplay: true, loop: loop, playlist: media.external_id | external_video_tag: class: video_class, loading: "lazy" }}
-        {%- else -%}
-          {{ media | external_video_url: autoplay: true, loop: loop | external_video_tag: class: video_class, loading: "lazy" }}
-        {%- endif -%}
-      </template>
-    </deferred-media>
-  </div>
+    <div class="product__gallery-slider__item lg:pr-4 md:pb-4 lg:w-100">
+      <deferred-media class="deferred-media media product-gallery__img fluid-iframe" data-media-id="{{ media.id }}">
+        <button id="Deferred-Poster-Modal-{{ media.id }}" class="deferred-media__poster relative" type="button">
+          <span class="deferred-media__poster-button motion-reduce">
+            <span class="visually-hidden">Play video</span>
+            {% render 'icon' with 'play' %}
+          </span>
+          {%
+            render 'image',
+            src: media,
+            d: '635x791',
+            src_m: media,
+            m: '345x431',
+            alt: media.alt,
+            placeholder: 'img-placeholder.png'
+          %}
+        </button>
+        <template>
+          {%- assign video_class = 'js-' | append: media.host -%}
+          {%- if media.host == 'youtube' -%}
+            {{ media | external_video_url: autoplay: true, loop: loop, playlist: media.external_id | external_video_tag: class: video_class, loading: "lazy" }}
+          {%- else -%}
+            {{ media | external_video_url: autoplay: true, loop: loop | external_video_tag: class: video_class, loading: "lazy" }}
+          {%- endif -%}
+        </template>
+      </deferred-media>
+    </div>
   {% when 'video' %}
     <div class="product__gallery-slider__item lg:pr-4 md:pb-4 lg:w-100">
       <div class="background-video-wrapper relative" data-section-type="video" data-section-id="{{ section.id }}">
@@ -51,7 +51,7 @@
               {% if section.settings.title %}
                 {% if section.settings.text_size == 'medium' %}
                   <h2>{{ section.settings.title }}</h2>
-                 {% else %}
+                {% else %}
                   <h2 class="h1">{{ section.settings.title }}</h2>
                 {% endif %}
               {% endif %}
@@ -70,8 +70,8 @@
               {% render 'icon' with 'play' %}
             </span>
             {% if main %}
-              {% render
-                'image',
+              {%
+                render 'image',
                 src: media,
                 d: '635x791',
                 src_m: media,
@@ -80,8 +80,8 @@
                 placeholder: 'img-placeholder.png'
               %}
             {% else %}
-              {% render
-                'image',
+              {%
+                render 'image',
                 src: media,
                 d: '191x237',
                 src_m: media,

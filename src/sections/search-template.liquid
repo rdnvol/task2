@@ -15,20 +15,19 @@
         <div class="sm:w-8/12 md:w-6/12 sm:mx-auto">
           <form action="/search" method="get" role="search" class="page-search-form">
             <fieldset>
-              <legend class="visually-hidden">
-                Search form
-              </legend>
+              <legend class="visually-hidden">Search form</legend>
               <div class="flex items-center">
-                <label for="search-field" class="visually-hidden">
-                  Search on store
-                </label>
-                <input type="search"
-                       name="q"
-                       id="search-field"
-                       value="{{ search.terms | escape }}"
-                       placeholder="{{ 'general.search.placeholder' | t }}">
+                <label for="search-field" class="visually-hidden"> Search on store </label>
+                <input
+                  type="search"
+                  name="q"
+                  id="search-field"
+                  value="{{ search.terms | escape }}"
+                  placeholder="{{ 'general.search.placeholder' | t }}"
+                >
                 {% comment %}theme-check-disable{% endcomment %}
-                {% render 'button',
+                {%
+                  render 'button',
                   element: 'button',
                   class: 'btn page-search-form__button flex items-center',
                   text: 'Search on store',
@@ -55,8 +54,8 @@
                   <div class="w-3/12 md:w-2/12 xl:w-1/12">
                     <a href="{{ item.url | within: collection }}">
                       {% assign featured_image = item.image | default: item.featured_image %}
-                      {% render
-                        'image',
+                      {%
+                        render 'image',
                         src: featured_image,
                         d: '81x100',
                         src_m: featured_image,
@@ -69,7 +68,9 @@
                   <div class="w-9/12 md:w-8/12 xl:w-7/12">
                     <div class="md:flex md:justify-between md:items-center md:space-x-8">
                       <div class="md:w-6/12 mb-3 md:mb-0">
-                        <h2 class="search-item__title"><a href="{{ item.url }}">{{ item.title }}</a></h2>
+                        <h2 class="search-item__title">
+                          <a href="{{ item.url }}">{{ item.title }}</a>
+                        </h2>
                       </div>
                       <div class="md:w-6/12">
                         {% if item.object_type == 'product' %}
@@ -110,7 +111,6 @@
       {% endif %}
     </div>
   </div>
-
 {% endpaginate %}
 
 {% schema %}

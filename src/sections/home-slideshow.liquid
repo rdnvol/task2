@@ -1,10 +1,12 @@
-<div class="section"
-     id="slideshow-section-{{ section.id }}"
-     data-section-type="slideshow"
-     data-section-id="{{ section.id }}"
-     data-autorotate="{{ section.settings.enable_autorotate }}"
-     data-blocks="{{ section.blocks.size }}"
-     data-slides-every="{{ section.settings.change_every }}">
+<div
+  class="section"
+  id="slideshow-section-{{ section.id }}"
+  data-section-type="slideshow"
+  data-section-id="{{ section.id }}"
+  data-autorotate="{{ section.settings.enable_autorotate }}"
+  data-blocks="{{ section.blocks.size }}"
+  data-slides-every="{{ section.settings.change_every }}"
+>
   <div class="splide slideshow-gallery" id="slideshow-gallery-{{ section.id }}">
     <div class="splide__track">
       <div class="splide__list">
@@ -15,8 +17,8 @@
           <div class="splide__slide" {{ block.shopify_attributes }} data-index="{{ forloop.index0 }}">
             <div class="slideshow-gallery__img {{ section.settings.slide_height }}">
               {% if block.settings.image != blank %}
-                {% render
-                  'image',
+                {%
+                  render 'image',
                   src: block.settings.image,
                   d: '650x',
                   src_m: block.settings.image,
@@ -39,8 +41,8 @@
                       {{ block.settings.text }}
                     </div>
                     {% if block.settings.button_link != blank and block.settings.button_label != blank %}
-                      {% render
-                        'button',
+                      {%
+                        render 'button',
                         href: block.settings.button_link,
                         text: block.settings.button_label,
                       %}

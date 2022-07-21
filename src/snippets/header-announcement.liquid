@@ -4,7 +4,11 @@
       <div class="container">
         <ul class="header__bar-list flex flex-wrap items-center justify-center">
           {%- if section.settings.announcement_bar_link != blank -%}
-            <li><a href="{{ section.settings.announcement_bar_link }}">{{ section.settings.announcement_bar_text | escape }}</a></li>
+            <li>
+              <a href="{{ section.settings.announcement_bar_link }}">
+                {{- section.settings.announcement_bar_text | escape -}}
+              </a>
+            </li>
           {%- else -%}
             <li>{{ section.settings.announcement_bar_text | escape }}</li>
           {%- endif -%}

@@ -9,25 +9,27 @@
         {% for value in filter.values %}
           {% unless forloop.index > 5 %}
             <div class="py-3 custom-input custom-input--colors-with-text overflow-hidden">
-              <input id="Filter-{{ value.param_name }}--{{ forloop.index }}"
-                     type="checkbox"
-                     name="{{ value.param_name }}"
-                     value="{{ value.value }}"
-                     {% if value.active %}
-                      checked
-                     {% endif %}
-                     {% if value.count == 0 and value.active == false %}
-                      disabled
-                     {% endif %}
-                     >
+              <input
+                id="Filter-{{ value.param_name }}--{{ forloop.index }}"
+                type="checkbox"
+                name="{{ value.param_name }}"
+                value="{{ value.value }}"
+                {% if value.active %}
+                  checked
+                {% endif %}
+                {% if value.count == 0 and value.active == false %}
+                  disabled
+                {% endif %}
+              >
               <label for="Filter-{{ value.param_name }}--{{ forloop.index }}" class="custom-label flex items-center">
                 <span class="custom-label__img-holder">
-                  <div style="background-color: {{ value.value }}; width: 100%; height: 100%; border-radius: 50%;" >
-                  </div>
+                  <div
+                    style="background-color: {{ value.value }}; width: 100%; height: 100%; border-radius: 50%;"
+                  ></div>
                 </span>
                 {{ value.label }} ({{ value.count }})
               </label>
-           </div>
+            </div>
           {% endunless %}
         {% endfor %}
       {% endif %}

@@ -1,10 +1,12 @@
 {% if section.settings.enable %}
-  <div id="popup"
-       class="age-popup"
-       data-section-type="popup"
-       data-section-id="{{ section.id }}"
-       data-days="{{ section.settings.days }}"
-       style="display: none;">
+  <div
+    id="popup"
+    class="age-popup"
+    data-section-type="popup"
+    data-section-id="{{ section.id }}"
+    data-days="{{ section.settings.days }}"
+    style="display: none;"
+  >
     <div class="text-center age-popup__box rte">
       {% if section.settings.custom_html != blank %}
         {{ section.settings.custom_html }}

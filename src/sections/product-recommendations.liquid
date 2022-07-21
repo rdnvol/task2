@@ -1,11 +1,13 @@
 {% if section.settings.show_product_recommendations %}
-  <div class="section"
-       id="product-recommendations"
-       data-section-type="product-recommendations"
-       data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit={{ section.settings.limit }}"
-       data-section-id="{{ section.id }}"
-       data-product-id="{{ product.id }}"
-       data-limit="{{ section.settings.limit }}">
+  <div
+    class="section"
+    id="product-recommendations"
+    data-section-type="product-recommendations"
+    data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit={{ section.settings.limit }}"
+    data-section-id="{{ section.id }}"
+    data-product-id="{{ product.id }}"
+    data-limit="{{ section.settings.limit }}"
+  >
     {%- if recommendations.performed and recommendations.products_count > 0 -%}
       <div class="container">
         <h2 class="text-center">{{ section.settings.title }}</h2>
@@ -16,7 +18,8 @@
         </div>
         {% if section.settings.button_link != blank %}
           <div class="sm:pt-4 text-center">
-            {% render "button",
+            {%
+              render "button",
               href: section.settings.button_link,
               text: section.settings.button_label
             %}

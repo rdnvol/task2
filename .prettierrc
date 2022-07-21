@@ -5,5 +5,15 @@
   "singleQuote": true,
   "jsxSingleQuote": false,
   "useTabs": false,
-  "printWidth": 120
+  "printWidth": 120,
+  "overrides": [
+    {
+      "files": [
+        "**/*.liquid"
+      ],
+      "options": {
+        "singleQuote": false
+      }
+    }
+  ]
 }
