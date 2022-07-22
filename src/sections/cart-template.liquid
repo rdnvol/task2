@@ -45,7 +45,7 @@
                 <div class="w-8/12">
                   <p>{{ 'cart.general.subtotal' | t }}</p>
                 </div>
-                <div class="w-4/12">
+                <div class="w-4/12 text-right">
                   <p data-cart-total>{{ cart.total_price | money }}</p>
                 </div>
               </div>
@@ -59,7 +59,9 @@
                 <p>{{ 'cart.general.shipping_at_checkout' | t }}</p>
               </div>
             </div>
-            <input type="submit" class="mb-3 button" name="checkout" value="{{ 'cart.general.checkout' | t }}">
+            <div class="md:text-right">
+              <input type="submit" class="button" name="checkout" value="{{ 'cart.general.checkout' | t }}">
+            </div>
           </div>
         </div>
       </form>
