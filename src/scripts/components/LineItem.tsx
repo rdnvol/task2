@@ -50,6 +50,7 @@ const LineItem: FunctionComponent<PropsType> = ({ item }) => {
   );
 
   const renderProperties = (properties) =>
+    properties &&
     Object.keys(properties).forEach((key) => {
       if (properties.hasOwnProperty(key)) {
         const obj = properties[key];
