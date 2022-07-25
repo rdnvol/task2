@@ -1,3 +1,4 @@
 src/assets/static/
 dist/
 node_modules/
+src/scripts/helpers/utils.js
