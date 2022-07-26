@@ -14,7 +14,7 @@
             class="collection-item__img"
             href="{{ collection.url }}"
             title="{{ 'collections.general.link_title' | t: title: collection.title }}"
-          > 
+          >
             {% liquid
               assign image = collection.image | default: collection.products[0].featured_image
               if image != blank and forloop.first

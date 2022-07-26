@@ -1,6 +1,6 @@
 import { h, FunctionComponent, Fragment } from 'preact';
 import { StateUpdater, useContext, useMemo } from 'preact/hooks';
-import { nice as getId } from 'slugid';
+import { getId } from 'helpers/utils';
 
 import { OptionWithValuesType, ProductType, VariantType } from 'types';
 import { SwatcherProductsContext } from 'contexts/swatcherProductsContext';

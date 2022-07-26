@@ -1,8 +1,7 @@
 import { h, FunctionComponent } from 'preact';
-import { nice as getId } from 'slugid';
-
+import { getId, resizeImage, resizeImageSrcset } from 'helpers/utils';
 import { ImageType } from 'types';
-import { resizeImage, resizeImageSrcset } from 'helpers/utils';
+
 import theme from 'helpers/themeSettings';
 
 export const Image: FunctionComponent<ImageType> = ({ src, sizes, alt, ratio = 1 }) => {
