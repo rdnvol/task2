@@ -323,15 +323,7 @@ register('product', {
   },
   // Shortcut function called when a section is loaded via 'sections.load()' or by the Theme Editor 'shopify:section:load' event.
   onLoad() {
-    const sectionName = `${this.container.getAttribute('data-section-type')}-${this.id}`;
-
-    performanceMeasure(sectionName, () => {
-      performance.mark(`${sectionName}-Start`);
-
-      this._initProduct(this.container.dataset.handle);
-
-      performance.mark(`${sectionName}-End`);
-    });
+    performanceMeasure(this.id, this._initProduct.bind(this, this.container.dataset.handle));
   },
 
   onBlockSelect() {
