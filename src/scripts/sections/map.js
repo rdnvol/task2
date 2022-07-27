@@ -1,4 +1,5 @@
-import { load, register } from '@shopify/theme-sections';
+import { register } from '@shopify/theme-sections';
+import { performanceMeasure } from 'helpers/utils';
 
 register('map-section', {
   initMapSection: function () {
@@ -17,7 +18,15 @@ register('map-section', {
   },
 
   // Shortcut function called when a section is loaded via 'sections.load()' or by the Theme Editor 'shopify:section:load' event.
-  onLoad: function (e) {
-    this.initMapSection();
+  onLoad: function () {
+    const sectionName = `${this.container.getAttribute('data-section-type')}-${this.id}`;
+
+    performanceMeasure(sectionName, () => {
+      performance.mark(`${sectionName}-Start`);
+
+      this.initMapSection();
+
+      performance.mark(`${sectionName}-End`);
+    });
   }
 });
