@@ -111,3 +111,8 @@ export function callbackOnElOutOfView(el, callback) {
 
   new IntersectionObserver(handleIntersection, { threshold: 0.1 }).observe(el);
 }
+
+export function performanceMeasure(name, callback) {
+  callback();
+  performance.measure(name, `${name}-Start`, `${name}-End`)
+}
