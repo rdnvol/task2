@@ -22,14 +22,6 @@ register('video', {
   },
 
   onLoad: function () {
-    const sectionName = `${this.container.getAttribute('data-section-type')}-${this.id}`;
-
-    performanceMeasure(sectionName, () => {
-      performance.mark(`${sectionName}-Start`);
-
-      this.initBackgroundVideo();
-
-      performance.mark(`${sectionName}-End`);
-    });
+    performanceMeasure(this.id, this.initBackgroundVideo.bind(this));
   },
 });
