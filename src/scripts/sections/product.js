@@ -6,27 +6,7 @@ import { Fancybox } from '@fancyapps/ui/src/Fancybox/Fancybox.js';
 import { getCart, openPopup, addJustAdded } from 'store/features/cart/cartSlice';
 import { addItem } from 'helpers/cartAjaxCall';
 import serializeArray from 'helpers/serializeArray';
-
-register('product', {
-  _initProduct(handle) {
-    if (handle) window.Product = new Product(this.container);
-  },
-  // Shortcut function called when a section is loaded via 'sections.load()' or by the Theme Editor 'shopify:section:load' event.
-  onLoad() {
-    this._initProduct(this.container.dataset.handle);
-    // Do something when a section instance is loaded
-  },
-
-  onBlockSelect() {
-    this._initProduct(this.container.dataset.handle);
-    // Do something when a section block is selected
-  },
-
-  // Shortcut function called when a section unloaded by the Theme Editor 'shopify:section:unload' event.
-  onUnload() {
-    // Do something when a section instance is unloaded
-  },
-});
+import { performanceMeasure } from 'helpers/utils';
 
 export class Product {
   constructor(elem) {
@@ -107,19 +87,19 @@ export class Product {
     if (!el) return;
 
     if (selector === 'input') {
+      let newAcc;
+
       this.options = Array.from(el.querySelectorAll(selector)).reduce((acc, curr) => {
         if (curr.checked) {
-          acc = [...acc, curr.value];
+          newAcc = [...acc, curr.value];
         }
 
-        return acc;
+        return newAcc;
       }, []);
 
-      const titles = this.wrapper.querySelectorAll('.product__variant-label-box').reduce((acc, curr) => {
-        acc = [...acc, curr.querySelector('span:last-child')];
-
-        return acc;
-      }, []);
+      const titles = this.wrapper
+        .querySelectorAll('.product__variant-label-box')
+        .reduce((acc, curr) => [...acc, curr.querySelector('span:last-child')], []);
 
       titles.forEach((title, index) => {
         title.innerText = this.options[index];
@@ -255,13 +235,15 @@ export class Product {
     const quantity = document.getElementById('Quantity')?.value || 1;
 
     const properties = serializedForm.reduce((acc, curr) => {
+      let newAcc;
+
       if (curr.name.includes('properties')) {
         const prop = curr.name.split('[')[1].split(']')[0];
 
-        acc = { ...acc, [prop]: curr.value };
+        newAcc = { ...acc, [prop]: curr.value };
       }
 
-      return acc;
+      return newAcc;
     }, {});
 
     const data = {
@@ -274,8 +256,9 @@ export class Product {
       ],
     };
 
-    addItem(data).then((data) => {
-      const { items } = data;
+    addItem(data).then((response) => {
+      const { items } = response;
+
       window.Store.dispatch(addJustAdded(items[0]));
       window.Store.dispatch(getCart());
       window.Store.dispatch(openPopup());
@@ -333,3 +316,31 @@ export class Product {
     });
   }
 }
+
+register('product', {
+  _initProduct(handle) {
+    if (handle) window.Product = new Product(this.container);
+  },
+  // Shortcut function called when a section is loaded via 'sections.load()' or by the Theme Editor 'shopify:section:load' event.
+  onLoad() {
+    const sectionName = `${this.container.getAttribute('data-section-type')}-${this.id}`;
+
+    performanceMeasure(sectionName, () => {
+      performance.mark(`${sectionName}-Start`);
+
+      this._initProduct(this.container.dataset.handle);
+
+      performance.mark(`${sectionName}-End`);
+    });
+  },
+
+  onBlockSelect() {
+    this._initProduct(this.container.dataset.handle);
+    // Do something when a section block is selected
+  },
+
+  // Shortcut function called when a section unloaded by the Theme Editor 'shopify:section:unload' event.
+  onUnload() {
+    // Do something when a section instance is unloaded
+  },
+});
