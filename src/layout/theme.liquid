@@ -1,6 +1,15 @@
 <!doctype html>
 <html class="no-js supports-no-cookies" lang="{{ request.locale.iso_code }}">
   <head>
+    <script>
+      window.performance.mark('parse_head_start')
+    </script>
+
+    {% comment %}Performance code{% endcomment %}
+    {% render 'performance-functions' %}
+    {% render 'performance-init' %}
+    {% comment %}End performance code{% endcomment %}
+
     <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
     {%- unless settings.font_heading.system? and settings.font_body.system? -%}
       <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
@@ -16,9 +25,20 @@
     %}
 
     {{ content_for_header }}
+
+    <script>
+      window.performance.mark(window.markNames.head.end)
+    </script>
   </head>
 
   <body id="{{ page_title | handle }}" class="template-{{ template.name | handle }}">
+    <script>
+      window.performance.mark(window.markNames.body.start)
+    </script>
+    <script>
+      window.performance.mark(window.markNames.bodyLayout.start)
+    </script>
+
     {% section 'popup' %}
 
     <div id="wrapper" class="page-wrapper">
@@ -32,8 +52,17 @@
       {% endif %}
       {% section 'footer' %}
     </div>
+    <script>
+      window.performance.mark(window.markNames.bodyLayout.end)
+    </script>
+    <script>
+      window.performance.mark(window.markNames.bodyEndScripts.start)
+    </script>
 
     {% render 'theme-body-scripts' %}
     {% render 'body-third-party-scripts' %}
+
+    {% comment %}Show performance measure{% endcomment %}
+    {% render 'performance-measure' %}
   </body>
 </html>

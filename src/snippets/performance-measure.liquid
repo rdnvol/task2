@@ -1,0 +1,27 @@
+<script>
+  window.addEventListener('load', function() {
+    Object.keys(window.markNames).forEach((name) => {
+      mark = window.markNames[name];
+      performance.measure(mark.name, mark.start, mark.end);
+    });
+    window.requestIdleCallback(() => {
+      var getShopifyResourceByType = (type) => {
+        return performance.getEntriesByType('resource').filter((resource) => {
+          return resource.name.indexOf('cdn.shopify.com') != -1
+            && resource.initiatorType === type;
+        });
+      };
+
+      window.performanceData = {
+        measure: performance.getEntriesByType('measure'),
+        paint: performance.getEntriesByType('paint'),
+        navigation: performance.getEntriesByType('navigation'),
+        script: getShopifyResourceByType('script'),
+        css: getShopifyResourceByType('css'),
+        img: getShopifyResourceByType('img'),
+      }
+    });
+  });
+  window.performance.mark(window.markNames.bodyEndScripts.end);
+  window.performance.mark(window.markNames.body.end);
+</script>
