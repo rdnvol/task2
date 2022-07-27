@@ -31,9 +31,7 @@ register('testimonials', {
 
   // Shortcut function called when a section is loaded via 'sections.load()' or by the Theme Editor 'shopify:section:load' event.
   onLoad() {
-    const sectionName = `${this.container.getAttribute('data-section-type')}-${this.id}`;
-
-    performanceMeasure(sectionName, this.initTestimonialsSlider.bind(this));
+    performanceMeasure(this.id, this.initTestimonialsSlider.bind(this));
   },
 
   // Shortcut function called when a section is selected by the Theme Editor 'shopify:section:select' event.
