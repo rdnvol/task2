@@ -112,6 +112,10 @@ export function callbackOnElOutOfView(el, callback) {
   new IntersectionObserver(handleIntersection, { threshold: 0.1 }).observe(el);
 }
 
+export function getId() {
+  return Date.now().toString(36) + Math.random().toString(36).substr(2, 10).toUpperCase();
+}
+
 export async function performanceMeasure(name, callback, async) {
   performance.mark(`${name}-Start`);
   async ? await callback() : callback();

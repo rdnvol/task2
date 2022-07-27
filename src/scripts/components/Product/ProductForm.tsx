@@ -1,7 +1,7 @@
 import { h, FunctionComponent, Fragment } from 'preact';
 import { useMemo, useEffect, useState } from 'preact/hooks';
 import { formatMoney } from '@shopify/theme-currency/currency';
-import { nice as getId } from 'slugid';
+import { getId } from 'helpers/utils';
 
 import { useDispatch } from 'store/hook';
 import { addItem } from 'store/features/cart/cartSlice';
