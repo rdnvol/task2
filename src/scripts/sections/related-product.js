@@ -2,7 +2,7 @@ import { register } from '@shopify/theme-sections';
 import { performanceMeasure } from 'helpers/utils';
 
 class RelatedProducts {
-  constructor(elem) {
+  constructor(elem, sectionId) {
     this.wrapper = elem;
     this.limit = this.wrapper.getAttribute('data-limit');
 
@@ -10,7 +10,7 @@ class RelatedProducts {
       if (!entries[0].isIntersecting) return;
 
       observer.unobserve(this.wrapper);
-      this.init();
+      this.init(sectionId);
     };
 
     new IntersectionObserver(handleIntersection.bind(this), { rootMargin: '0px 0px 200px 0px' }).observe(this.wrapper);
@@ -24,25 +24,23 @@ class RelatedProducts {
     return text;
   }
 
-  async init() {
-    const relatedProductsData = await this.initRelatedProducts();
+  async init(sectionId) {
+    performanceMeasure(
+      sectionId,
+      async () => {
+        const relatedProductsData = await this.initRelatedProducts();
 
-    this.wrapper.appendChild(
-      new DOMParser().parseFromString(relatedProductsData, 'text/html').querySelector('.container')
+        this.wrapper.appendChild(
+          new DOMParser().parseFromString(relatedProductsData, 'text/html').querySelector('.container')
+        );
+      },
+      true
     );
   }
 }
 
 register('product-recommendations', {
   onLoad() {
-    const sectionName = `${this.container.getAttribute('data-section-type')}-${this.id}`;
-
-    performanceMeasure(sectionName, () => {
-      performance.mark(`${sectionName}-Start`);
-
-      new RelatedProducts(this.container);
-
-      performance.mark(`${sectionName}-End`);
-    });
+    new RelatedProducts(this.container, this.id);
   },
 });
