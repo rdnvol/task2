@@ -1,6 +1,7 @@
 import { h, Fragment, FunctionComponent } from 'preact';
 import { useRef, useState, useEffect } from 'preact/hooks';
 import { formatMoney } from '@shopify/theme-currency/currency';
+import { getId } from 'helpers/utils';
 
 import { useDispatch } from 'store/hook';
 import useDebounce from 'hooks/useDebounce';
@@ -49,19 +50,20 @@ const LineItem: FunctionComponent<PropsType> = ({ item }) => {
     </div>
   );
 
-  const renderProperties = (properties) =>
-    properties &&
-    Object.keys(properties).forEach((key) => {
-      if (properties.hasOwnProperty(key)) {
-        const obj = properties[key];
+  const renderProperties = (properties) => {
+    if (!properties) return false;
 
-        return Object.keys(obj).forEach((prop) => {
-          if (obj.hasOwnProperty(prop)) {
-            return obj[prop];
-          }
-        });
-      }
-    });
+    const keys = Object.keys(properties);
+
+    return keys.map(
+      (key) =>
+        properties.hasOwnProperty(key) && (
+          <div key={getId()}>
+            {key}: {properties[key]}
+          </div>
+        )
+    );
+  };
 
   const renderPrice = ({ original_price, price, final_price }) => {
     if (original_price !== final_price) {
