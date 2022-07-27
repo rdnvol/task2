@@ -59,7 +59,7 @@ const LineItem: FunctionComponent<PropsType> = ({ item }) => {
       (key) =>
         properties.hasOwnProperty(key) && (
           <div key={getId()}>
-            {key} : {properties[key]}
+            {key}: {properties[key]}
           </div>
         )
     );
