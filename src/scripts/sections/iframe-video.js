@@ -1,6 +1,6 @@
-import { load, register } from '@shopify/theme-sections';
+import { register } from '@shopify/theme-sections';
 import Plyr from 'plyr';
-import { afterScrollEnable, callbackOnElOutOfView } from '../helpers/utils.js';
+import { afterScrollEnable, callbackOnElOutOfView, performanceMeasure } from '../helpers/utils.js';
 
 register('iframe-video', {
   initIframeVideo() {
@@ -56,7 +56,15 @@ register('iframe-video', {
   },
 
   // Shortcut function called when a section is loaded via 'sections.load()' or by the Theme Editor 'shopify:section:load' event.
-  onLoad(e) {
-    this.initIframeVideo();
+  onLoad() {
+    const sectionName = `${this.container.getAttribute('data-section-type')}-${this.id}`;
+
+    performanceMeasure(sectionName, () => {
+      performance.mark(`${sectionName}-Start`);
+
+      this.initIframeVideo();
+
+      performance.mark(`${sectionName}-End`);
+    });
   },
 });
