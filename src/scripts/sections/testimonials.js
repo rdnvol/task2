@@ -33,13 +33,7 @@ register('testimonials', {
   onLoad() {
     const sectionName = `${this.container.getAttribute('data-section-type')}-${this.id}`;
 
-    performanceMeasure(sectionName, () => {
-      performance.mark(`${sectionName}-Start`);
-
-      this.initTestimonialsSlider();
-
-      performance.mark(`${sectionName}-End`);
-    });
+    performanceMeasure(sectionName, this.initTestimonialsSlider.bind(this));
   },
 
   // Shortcut function called when a section is selected by the Theme Editor 'shopify:section:select' event.
