@@ -1,5 +1,6 @@
 import { register } from '@shopify/theme-sections';
 import Splide from '@splidejs/splide';
+import { performanceMeasure } from 'helpers/utils';
 
 register('slideshow', {
   _slideToBlock(index) {
@@ -28,8 +29,8 @@ register('slideshow', {
   },
 
   // Shortcut function called when a section is loaded via 'sections.load()' or by the Theme Editor 'shopify:section:load' event.
-  onLoad(e) {
-    this.initSlider();
+  onLoad() {
+    performanceMeasure(this.id, this.initSlider.bind(this));
   },
 
   // Shortcut function called when a section is selected by the Theme Editor 'shopify:section:select' event.
@@ -38,7 +39,7 @@ register('slideshow', {
   },
 
   // Shortcut function called when a section unloaded by the Theme Editor 'shopify:section:unload' event.
-  onUnload(e) {
+  onUnload() {
     this.splide.destroy();
     // Do something when a section instance is unloaded
   },
@@ -55,7 +56,7 @@ register('slideshow', {
   },
 
   // Shortcut function called when a section block is deselected by the Theme Editor 'shopify:block:deselect' event.
-  onBlockDeselect(e) {
+  onBlockDeselect() {
     this.splide.go(1);
     // Do something when a section block is deselected
   },

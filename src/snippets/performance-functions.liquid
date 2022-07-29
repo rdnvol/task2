@@ -1,0 +1,13 @@
+<script>
+  function marks(name) {
+    return {
+      name,
+      get start() {
+        return `${this.name}_start`;
+      },
+      get end() {
+        return `${this.name}_end`;
+      },
+    };
+  }
+</script>

@@ -1,6 +1,6 @@
 import { register } from '@shopify/theme-sections';
 import { Fancybox } from '@fancyapps/ui/src/Fancybox/Fancybox.js';
-import { getCookie, deleteCookie, setCookie } from '../helpers/utils.js';
+import { getCookie, setCookie, performanceMeasure } from '../helpers/utils.js';
 
 register('popup', {
   _openFancybox(cooke_name, days) {
@@ -34,8 +34,8 @@ register('popup', {
   },
 
   // Shortcut function called when a section is loaded via 'sections.load()' or by the Theme Editor 'shopify:section:load' event.
-  onLoad(e) {
-    this.initPopup(this.container.dataset.days);
+  onLoad() {
+    performanceMeasure(this.id, this.initPopup.bind(this, this.container.dataset.days));
   },
 
   // Shortcut function called when a section is selected by the Theme Editor 'shopify:section:select' event.

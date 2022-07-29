@@ -115,3 +115,10 @@ export function callbackOnElOutOfView(el, callback) {
 export function getId() {
   return Date.now().toString(36) + Math.random().toString(36).substr(2, 10).toUpperCase();
 }
+
+export async function performanceMeasure(name, callback, async) {
+  performance.mark(`${name}-Start`);
+  async ? await callback() : callback();
+  performance.mark(`${name}-End`);
+  performance.measure(name, `${name}-Start`, `${name}-End`)
+}

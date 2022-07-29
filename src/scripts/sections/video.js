@@ -2,7 +2,7 @@ import { register } from '@shopify/theme-sections';
 import Plyr from 'plyr';
 import 'plyr/dist/plyr.css';
 
-import { afterScrollEnable } from '../helpers/utils';
+import { afterScrollEnable, performanceMeasure } from '../helpers/utils';
 
 register('video', {
   initBackgroundVideo: function () {
@@ -21,8 +21,7 @@ register('video', {
     });
   },
 
-  // Shortcut function called when a section is loaded via 'sections.load()' or by the Theme Editor 'shopify:section:load' event.
-  onLoad: function (e) {
-    this.initBackgroundVideo();
+  onLoad: function () {
+    performanceMeasure(this.id, this.initBackgroundVideo.bind(this));
   },
 });
