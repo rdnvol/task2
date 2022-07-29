@@ -15,17 +15,21 @@
     data-products-quantity="{{ collection.products_count }}"
   >
     <div class="container">
+
       <div class="page-title-block text-center pt-0">
         <h1 class="h2 mb-2">{{ collection.title }}</h1>
+
         {% if collection.description == blank %}
-          <h2 class="text-size-md visually-hidden">Description</h2>
+          <h2 class="text-size-md visually-hidden">Collection description</h2>
         {% endif %}
         {% if collection.description != blank %}
           <h2 class="text-size-md">
             {{ collection.description }}
           </h2>
         {% endif %}
+
       </div>
+
       {% if products.size == 0 %}
         <div class="text-center py-5">
           {{ 'collections.general.no_matches' | t }}
@@ -33,57 +37,126 @@
       {% else %}
         <facet-filters-form>
           <form id="FacetFiltersForm" class="facets__form">
-            <div class="hidden lg:flex lg:items-center lg:space-x-8">
+            <div class="filter__main-btn-holder flex items-center space-x-8">
               {%- if collection.terms -%}
                 <input type="hidden" name="q" value="{{ results.terms | escape }}">
                 <input name="options[prefix]" type="hidden" value="last">
               {%- endif -%}
               {% if section.settings.enable_filtering %}
-                <div id="FacetsWrapperDesktop" class="lg:w-8/12 lg:flex lg:flex-wrap filter-collapse__horizontal">
-                  <div class="body-small py-3 mr-5">Filter:</div>
-                  {% liquid
-                    for filter in collection.filters
-                      case filter.label
-                        when "Color"
-                          render 'collection-filter-product-color', forloop: forloop, filter: filter
-                        when "Price"
-                          render 'collection-filter-product-price', forloop: forloop, filter: filter
-                        when "Size"
-                          render 'collection-filter-product-size', forloop: forloop, filter: filter
-                        when "Availability"
-                          render 'collection-filter-product-availability', forloop: forloop, filter: filter
-                        when "Brand"
-                          render 'collection-filter-product-brand', forloop: forloop, filter: filter
-                        when "Product type"
-                          render 'collection-filter-product-product-type', forloop: forloop, filter: filter
-                        when "Material"
-                          render 'collection-filter-product-material', forloop: forloop, filter: filter
-                      endcase
-                    endfor
-                  %}
+                <div id="FacetsWrapperDesktop" class="w-7/12 lg:w-8/12 filter-collapse__horizontal horizontal-filter">
+                  <details-utils close-click-outside="(max-width: 1023px)" force-close="(max-width: 1023px)" force-open="(min-width: 1024px)" close-esc="(max-width: 1024px)" force-restore>
+                    <details class="filter-main-open-close" id="filter-main-open-close">
+                      <summary class="default filter-main-open-close__btn-opener filter-main-open-close__opener page-wrapper__opener inline-flex lg:hidden items-center body-large">
+                        <span class="filter-main-open-close__btn-opener-icon mr-2">
+                          {% render 'icon' with 'filter' %}
+                        </span>
+                        Filter and sort
+                      </summary>
+                      <div class="filter-main-open-close__slide flex justify-between flex-col lg:block">
+                        <div class="filter-main-open-close__slide-btn-holder lg:hidden flex-shrink-0 w-100">
+                          <button
+                            class="filter-main-open-close__opener filter-main-open-close__closer page-wrapper__opener flex items-center body-medium"
+                            type="button"
+                            aria-controls="filter-main-open-close"
+                            data-du-close-click
+                          >
+                            <span class="btn-closer flex-shrink-0 mr-1">
+                              <span class="visually-hidden"> Icon close </span>
+                            </span>
+                            Close
+                          </button>
+                        </div>
+                        <div class="filter-main-open-close__holder">
+                          <div id="FacetFiltersMobile" class="px-4 lg:px-0">
+                            {% if section.settings.enable_sorting %}
+                              <div class="lg:hidden py-4">
+                                <label class="label" for="filter-sortby">Sort by</label>
+                                <div class="select-holder">
+                                  <select name="sort_by" id="filter-sortby" form="FacetFiltersForm">
+                                    {%- for option in collection.sort_options -%}
+                                      <option
+                                        value="{{ option.value | escape }}"
+                                        {% if option.value == sort_by %}
+                                          selected="selected"
+                                        {% endif %}
+                                      >
+                                        {{ option.name | escape }}
+                                      </option>
+                                    {%- endfor -%}
+                                  </select>
+                                </div>
+                              </div>
+                            {% endif %}
+                            <div class="lg:flex lg:flex-wrap">
+                              <div class="hidden lg:block body-small py-3 mr-5">
+                                Filter:
+                              </div>
+                              {% liquid
+                                for filter in collection.filters
+                                  case filter.label
+                                    when "Color"
+                                      render 'collection-mobile-filter-color', forloop: forloop, filter: filter
+                                    when "Price"
+                                      render 'collection-mobile-filter-price', forloop: forloop, filter: filter
+                                    when "Size"
+                                      render 'collection-mobile-filter-size', forloop: forloop, filter: filter
+                                    when "Brand"
+                                      render 'collection-mobile-filter-brand', forloop: forloop, filter: filter
+                                    when "Product type"
+                                      render 'collection-mobile-filter-product-type', forloop: forloop, filter: filter
+                                    when "Material"
+                                      render 'collection-mobile-filter-product-material', forloop: forloop, filter: filter
+                                  endcase
+                                endfor
+                              %}
+                            </div>
+                          </div>
+                        </div>
+                        <div class="lg:hidden flex-shrink-0 px-4 py-5">
+                          {%
+                            render 'button',
+                            element: 'button',
+                            type: 'button',
+                            class: 'w-100 filter-main-open-close__opener filter-main-open-close__closer',
+                            text: 'Apply',
+                            data_attribute: 'aria-controls="filter-main-open-close" data-du-close-click'
+                          %}
+                        </div>
+                      </div>
+                      <div
+                        class="filter-main-open-close__opener filter-main-open-close__overlay page-wrapper__opener lg:hidden"
+                        aria-controls="filter-main-open-close"
+                        data-du-close-click
+                      >
+                        <span class="visually-hidden"> Closer filter drawer </span>
+                      </div>
+                    </details>
+                  </details-utils>
                 </div>
               {% endif %}
-              <div class="lg:w-4/12">
+              <div class="w-5/12 lg:w-4/12 lg:pl-3">
                 <div class="lg:flex lg:justify-end lg:items-center">
-                  <label class="label visually-hidden" for="filter-sortby-2">Sort by</label>
                   {% if section.settings.enable_sorting %}
-                    <div class="select-holder w-100">
-                      <select name="sort_by" id="filter-sortby-2" form="FacetFiltersForm">
-                        {%- for option in collection.sort_options -%}
-                          <option
-                            value="{{ option.value | escape }}"
-                            {% if option.value == sort_by %}
-                              selected="selected"
-                            {% endif %}
-                          >
-                            {{ option.name | escape }}
-                          </option>
-                        {%- endfor -%}
-                      </select>
+                    <div class="hidden lg:block w-100">
+                      <label class="label visually-hidden" for="filter-sortby-2">Sort by</label>
+                      <div class="select-holder w-100">
+                        <select name="sort_by" id="filter-sortby-2" form="FacetFiltersForm">
+                          {%- for option in collection.sort_options -%}
+                            <option
+                              value="{{ option.value | escape }}"
+                              {% if option.value == sort_by %}
+                                selected="selected"
+                              {% endif %}
+                            >
+                              {{ option.name | escape }}
+                            </option>
+                          {%- endfor -%}
+                        </select>
+                      </div>
                     </div>
                   {% endif %}
                   {% if section.settings.enable_filtering %}
-                    <div id="ProductCountDesktop" class="ml-5 flex-shrink-0 body-small">
+                    <div id="ProductCountDesktop" class="ml-5 flex-shrink-0 body-small text-right">
                       {%- if collection.results_count -%}
                         {{ 'templates.search.results_with_count' | t: terms: collection.terms, count: collection.results_count }}
                       {%- elsif collection.products_count == collection.all_products_count -%}
@@ -98,119 +171,23 @@
             </div>
             <div class="py-4 lg:py-5">
               {% if section.settings.enable_filtering %}
-                <div class="filter">
-                  <div class="filter__main-btn-holder flex items-center mb-4 lg:hidden">
-                    <div class="w-7/12">
-                      <details-utils close-click-outside close-esc="(min-width: 1024px)">
-                        <details class="filter-main-open-close" id="filter-main-open-close">
-                          <summary class="default filter-main-open-close__btn-opener filter-main-open-close__opener page-wrapper__opener inline-flex items-center lg:hidden body-large">
-                            <span class="filter-main-open-close__btn-opener-icon mr-2">
-                              {% render 'icon' with 'filter' %}
-                            </span>
-                            Filter and sort
-                          </summary>
-                          <div class="filter-main-open-close__slide flex justify-between flex-col lg:block">
-                            <div class="filter-main-open-close__slide-btn-holder lg:hidden flex-shrink-0 w-100">
-                              <button
-                                class="filter-main-open-close__opener filter-main-open-close__closer page-wrapper__opener flex items-center body-medium"
-                                aria-controls="filter-main-open-close"
-                                data-du-close-click
-                              >
-                                <span class="btn-closer flex-shrink-0 mr-1">
-                                  <span class="visually-hidden"> Icon close </span>
-                                </span>
-                                Close
-                              </button>
-                            </div>
-                            <div class="filter-main-open-close__holder">
-                              <div id="FacetFiltersMobile" class="px-4 lg:px-0">
-                                {% if section.settings.enable_sorting %}
-                                  <div class="lg:hidden py-4">
-                                    <label class="label" for="filter-sortby">Sort by</label>
-                                    <div class="select-holder">
-                                      <select name="sort_by" id="filter-sortby" form="FacetFiltersForm">
-                                        {%- for option in collection.sort_options -%}
-                                          <option
-                                            value="{{ option.value | escape }}"
-                                            {% if option.value == sort_by %}
-                                              selected="selected"
-                                            {% endif %}
-                                          >
-                                            {{ option.name | escape }}
-                                          </option>
-                                        {%- endfor -%}
-                                      </select>
-                                    </div>
-                                  </div>
-                                {% endif %}
-                                {% liquid
-                                  for filter in collection.filters
-                                    case filter.label
-                                      when "Color"
-                                        render 'collection-mobile-filter-color', forloop: forloop, filter: filter
-                                      when "Price"
-                                        render 'collection-mobile-filter-price', forloop: forloop, filter: filter
-                                      when "Size"
-                                        render 'collection-mobile-filter-size', forloop: forloop, filter: filter
-                                      when "Brand"
-                                        render 'collection-mobile-filter-brand', forloop: forloop, filter: filter
-                                      when "Product type"
-                                        render 'collection-mobile-filter-product-type', forloop: forloop, filter: filter
-                                      when "Material"
-                                        render 'collection-mobile-filter-product-material', forloop: forloop, filter: filter
-                                    endcase
-                                  endfor
-                                %}
-                              </div>
-                            </div>
-                            <div class="lg:hidden flex-shrink-0 px-4 py-5">
-                              {%
-                                render 'button',
-                                element: 'button',
-                                type: 'button',
-                                class: 'w-100 filter-main-open-close__opener filter-main-open-close__closer',
-                                text: 'Apply',
-                              %}
-                            </div>
-                          </div>
-                          <div
-                            class="filter-main-open-close__opener filter-main-open-close__overlay page-wrapper__opener lg:hidden"
-                            aria-controls="filter-main-open-close"
-                            data-du-close-click
-                          >
-                            <span class="visually-hidden"> Closer filter drawer </span>
-                          </div>
-                        </details>
-                      </details-utils>
-                    </div>
-                    <div id="ProductCount" class="w-5/12 text-right">
-                      {%- if collection.results_count -%}
-                        {{ 'templates.search.results_with_count' | t: terms: collection.terms, count: collection.results_count }}
-                      {%- elsif collection.products_count == collection.all_products_count -%}
-                        {{ 'products.facets.product_count_simple' | t: count: collection.products_count }}
-                      {%- else -%}
-                        {{ 'products.facets.product_count' | t: product_count: collection.products_count, count: collection.all_products_count }}
-                      {%- endif -%}
-                    </div>
-                  </div>
-                </div>
-              {% endif %}
-              {% if section.settings.enable_filtering %}
                 <div class="filter-selected-element-list flex flex-wrap items-center pb-4 lg:pb-0 lg:mb-5 -mx-2">
-                  <facet-remove>
+
+                  <facet-remove class="inline-flex">
                     <a
                       href="{{ collection.url }}?sort_by={{ collection.sort_by }}"
-                      class="button filter__btn-reset mx-2 mb-3"
-                      type="button"
+                      class="button button--sm filter__btn-reset mx-2 mb-3"
+                      role="button"
                     >
                       Clear all
                     </a>
                   </facet-remove>
+
                   {% for filter in collection.filters %}
                     {% if filter.type == "price_range" %}
                       {%- if filter.min_value.value != nil or filter.max_value.value != nil -%}
-                        <facet-remove>
-                          <a class="active-filters__remove-filter" href="{{ filter.url_to_remove }}">
+                        <facet-remove class="inline-flex">
+                          <a class="active-filters__remove-filter" href="{{ filter.url_to_remove }}" role="button">
                             <div class="filter-selected-element-list__item relative flex items-center justify-center py-1 px-3 mb-3 mx-2">
                               {%- assign min_value = filter.min_value.value | default: 0 -%}
                               {%- assign max_value = filter.max_value.value | default: filter.range_max -%}
@@ -226,8 +203,8 @@
                       {% for filter_value in filter.active_values %}
                         <div class="filter-selected-element-list__item relative flex items-center justify-center py-1 px-3 mb-3 mx-2">
                           {{ filter_value.label }}
-                          <facet-remove>
-                            <a class="btn-closer ml-3" href="{{ filter_value.url_to_remove }}">
+                          <facet-remove class="inline-flex">
+                            <a class="btn-closer ml-3" href="{{ filter_value.url_to_remove }}" role="button">
                               <span class="visually-hidden"> Clear {Black} filter results </span>
                             </a>
                           </facet-remove>
@@ -235,6 +212,7 @@
                       {% endfor %}
                     {% endif %}
                   {% endfor %}
+
                 </div>
               {% endif %}
               <div

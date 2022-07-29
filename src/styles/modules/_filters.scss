@@ -78,7 +78,6 @@
   }
   @include media ("≥desktop") {
     position: static;
-    z-index: 1;
     display: block !important;
     height: auto;
     background: none;
@@ -89,11 +88,20 @@
   height: 100%;
   overflow-x: hidden;
   overflow-y: auto;
+  @include media ("≥desktop") {
+    height: auto;
+    overflow: visible;
+  }
 }
 
-.filter__btn-reset {
+.filter__btn-reset.filter__btn-reset {
   min-width: 90px;
-  min-height: 44px;
+  min-height: 34px !important;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  @include media ("≥desktop") {
+    min-height: 37px !important;
+  }
 }
 
 .filter-selected-element-list__item {
@@ -109,17 +117,20 @@
   border-width: 1px 0;
   border-style: solid;
   border-color: $base-border;
-  +.filter-collapse {
+
+  + .filter-collapse {
     margin-top: -1px;
+
+    .horizontal-filter & {
+      @include media ("≥desktop") {
+        margin-top: 0;
+      }
+    }
   }
-}
 
-.filter-collapse__horizontal {
-
-  .filter-collapse__item[open] {
-
-    summary {
-      text-decoration: underline;
+  .horizontal-filter & {
+    @include media ("≥desktop") {
+      border-width: 0;
     }
   }
 }
@@ -146,6 +157,12 @@
     transition: all $animation-speed ease-in-out;
     &::-webkit-details-marker {
       display: none;
+    }
+
+    .horizontal-filter & {
+      @include media ("≥desktop") {
+        font-size: calc(#{$font-size-base} - 2px);
+      }
     }
   }
 
@@ -195,13 +212,41 @@
     width: 64%;
     height: 2px;
     background: currentColor;
-    transition: transform $animation-speed ease-in-out;
     transform: translate(-50%, -50%);
+  }
+  &::before {
+
+    .horizontal-filter & {
+      @include media ("≥desktop") {
+        display: none;
+      }
+    }
   }
   &::after {
     transform: translate(-50%, -50%) rotate(90deg);
+
     .filter-collapse__item[open] & {
       transform: translate(-50%, -50%) rotate(180deg);
+    }
+
+    .horizontal-filter .filter-collapse__item[open] & {
+      @include media ("≥desktop") {
+        margin-top: -2px;
+        transform: rotate(135deg);
+      }
+    }
+
+    .horizontal-filter & {
+      @include media ("≥desktop") {
+        width: 6px;
+        height: 6px;
+        margin: -6px 0 0 -3px;
+        background: none;
+        border-width: 0 0 2px 2px;
+        border-style: solid;
+        border-color: $base-icons;
+        transform: rotate(-45deg);
+      }
     }
   }
 }
@@ -240,11 +285,6 @@
 }
 
 .filter-collapse__btn-more-content {
-
-  .filter-collapse__less {
-    display: none;
-  }
-
   &.active {
 
     .filter-collapse__more {
@@ -254,6 +294,10 @@
     .filter-collapse__less {
       display: block;
     }
+  }
+
+  .filter-collapse__less {
+    display: none;
   }
 }
 
