@@ -81,12 +81,16 @@ h6,
   }
 }
 
-.title-1 {
+%title-1 {
   font-size: $font-size-base;
   font-weight: 500;
   @include media ("≥widescreen") {
     font-size: calc(#{$font-size-base} + 2px);
   }
+}
+
+.title-1 {
+  @extend %title-1;
 }
 
 p {
@@ -114,14 +118,26 @@ a {
   }
 }
 
-.body-medium {
+%body-medium {
   font-size: $font-size-base;
 }
 
-.body-small {
+.body-medium {
+  @extend %body-medium;
+}
+
+%body-small {
   font-size: calc(#{$font-size-base} - 2px);
 }
 
-.base-label {
+.body-small {
+  @extend %body-small;
+}
+
+%base-label {
   font-size: calc(#{$font-size-base} - 4px);
+}
+
+.base-label {
+  @extend %base-label;
 }

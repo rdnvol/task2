@@ -22,14 +22,26 @@
     data-products-quantity="{{ collection.products_count }}"
   >
     <div class="container">
+
       <div class="page-title-block text-center pt-0">
         <h1 class="h2 mb-2">{{ collection.title }}</h1>
+
+        {% if collection.description == blank %}
+          <h2 class="text-size-md visually-hidden">Collection description</h2>
+        {% endif %}
+        {% if collection.description != blank %}
+          <h2 class="text-size-md">
+            {{ collection.description }}
+          </h2>
+        {% endif %}
+
         {% if collection.description != blank %}
           <div class="rte body-medium">
             {{ collection.description }}
           </div>
         {% endif %}
       </div>
+
       {% if products.size == 0 %}
         <div class="text-center py-5">
           {{ 'collections.general.no_matches' | t }}
@@ -96,6 +108,7 @@
                         <div class="filter-main-open-close__slide-btn-holder lg:hidden flex-shrink-0 w-100">
                           <button
                             class="filter-main-open-close__opener filter-main-open-close__closer page-wrapper__opener flex items-center body-medium"
+                            type="button"
                             aria-controls="filter-main-open-close"
                             data-du-close-click
                           >
@@ -153,39 +166,6 @@
                                     endfor
                                   %}
                                 </div>
-                                <div class="active-filters pt-4">
-                                  <facet-remove>
-                                    <a
-                                      href="{{ collection.url }}?sort_by={{ collection.sort_by }}"
-                                      class="active-filters__clear"
-                                      >Clear all</a
-                                    >
-                                  </facet-remove>
-                                  {%- for filter in collection.filters -%}
-                                    {%- if filter.type == "price_range" -%}
-                                      {%- if filter.min_value.value != nil or filter.max_value.value != nil -%}
-                                        <facet-remove>
-                                          <a class="active-filters__remove-filter" href="{{ filter.url_to_remove }}">
-                                            {%- assign min_value = filter.min_value.value | default: 0 -%}
-                                            {%- assign max_value = filter.max_value.value | default: filter.range_max -%}
-                                            {{ min_value | money }} - {{ max_value | money }} X
-                                          </a>
-                                        </facet-remove>
-                                      {%- endif -%}
-                                    {%- else -%}
-                                      {%- for filter_value in filter.active_values -%}
-                                        <facet-remove>
-                                          <a
-                                            class="active-filters__remove-filter"
-                                            href="{{ filter_value.url_to_remove }}"
-                                          >
-                                            {{ filter_value.label }} X
-                                          </a>
-                                        </facet-remove>
-                                      {%- endfor -%}
-                                    {%- endif %}
-                                  {%- endfor -%}
-                                </div>
                               </form>
                             </facet-filters-form>
                           </div>
@@ -195,8 +175,9 @@
                             render 'button',
                             element: 'button',
                             type: 'button',
-                            class: 'w-100',
+                            class: 'w-100 filter-main-open-close__opener filter-main-open-close__closer',
                             text: 'Apply',
+                            data_attribute: 'aria-controls="filter-main-open-close" data-du-close-click'
                           %}
                         </div>
                       </div>
@@ -210,7 +191,7 @@
                     </details>
                   </details-utils>
                 </div>
-                <div id="ProductCount" class="w-5/12 lg:hidden text-right">
+                <div id="ProductCount" class="w-5/12 lg:hidden body-small text-right">
                   {%- if collection.results_count -%}
                     {{ 'templates.search.results_with_count' | t: terms: collection.terms, count: collection.results_count }}
                   {%- elsif collection.products_count == collection.all_products_count -%}
@@ -225,15 +206,15 @@
           <div class="lg:w-9/12">
             {% if section.settings.enable_filtering %}
               <div class="filter-selected-element-list flex flex-wrap items-center pb-4 lg:pb-0 -mx-2">
-                <facet-remove>
-                  <a id="clear-all" href="{{ results_url }}" class="button filter__btn-reset mx-2 mb-3" type="button">
+                <facet-remove class="inline-flex">
+                  <a id="clear-all" href="{{ results_url }}" class="button filter__btn-reset mx-2 mb-3 no-underline" type="button">
                     Clear all
                   </a>
                 </facet-remove>
                 {% for filter in collection.filters %}
                   {% for value in filter.active_values %}
-                    <facet-remove>
-                      <a href="{{ value.url_to_remove }}">
+                    <facet-remove class="inline-flex">
+                      <a href="{{ value.url_to_remove }}" class="no-underline">
                         <div class="filter-selected-element-list__item relative flex items-center justify-center py-1 px-3 mb-3 mx-2">
                           {{ value.label | escape }}
                           <button class="btn-closer ml-3">
@@ -245,7 +226,7 @@
                   {% endfor %}
                   {% if filter.type == "price_range" %}
                     {%- if filter.min_value.value != nil or filter.max_value.value != nil -%}
-                      <facet-remove>
+                      <facet-remove class="inline-flex no-underline">
                         <a href="{{ filter.url_to_remove }}" id="price-range">
                           <div class="filter-selected-element-list__item relative flex items-center justify-center py-1 px-3 mb-3 mx-2">
                             {%- if filter.min_value.value -%}
