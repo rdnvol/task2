@@ -14,10 +14,10 @@
             class="collection-item__img"
             href="{{ collection.url }}"
             title="{{ 'collections.general.link_title' | t: title: collection.title }}"
-          > 
+          >
             {% liquid
               assign image = collection.image | default: collection.products[0].featured_image
-              if image != blank and forloop.first
+              if image != blank
                 render 'image', src: image, d: '303x303', src_m: image, m: '375x375', alt: image.alt, crop: 'center'
               else
                 echo 'image' | placeholder_svg_tag: 'placeholder-svg'
