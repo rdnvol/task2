@@ -311,6 +311,14 @@
       assign m_srcset = m_src | append: ", " | append: m_src_2x | append: ' 2x'
     endif
   endif
+
+  if asset_img_url
+    assign width = m | split: 'x' | first
+    assign height = m | split: 'x' | last | default: width
+  else
+    assign width = src.width
+    assign height = src.width | divided_by: src.aspect_ratio | floor
+  endif
 %}
 
 {% if lazyload %}
@@ -328,8 +336,8 @@
         class="{{ classes }}"
       {% endif %}
       data-sizes="auto"
-      width="{{ src.width }}"
-      height="{{ src.width | divided_by: src.aspect_ratio | floor }}"
+      width="{{ width }}"
+      height="{{ height }}"
       {% if template contains 'product' %}
         alt="{{ alt | default: product.title }}"
       {% else %}
@@ -358,8 +366,8 @@
       {% else %}
         alt="{{ alt | default: 'image description' }}"
       {% endif %}
-      width="{{ src.width }}"
-      height="{{ src.width | divided_by : src.aspect_ratio | floor }}"
+      width="{{ width }}"
+      height="{{ height }}"
       {{ data_attribute }}
     >
   </picture>
