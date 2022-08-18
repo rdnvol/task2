@@ -21,9 +21,17 @@
           <div class="flex h-100 text-center justify-center items-center">
             <div class="video-text-block__holder sm:w-10/12 md:w-6/12 lg:w-4/12">
               {% if section.settings.text_size == 'medium' %}
-                <h2 class="custom-title-color">{{ section.settings.title }}</h2>
+                <h2
+                  {% if section.settings.title_color.alpha != 0 and section.settings.title_color != blank %}
+                    class="custom-title-color"
+                  {% endif %}
+                >
+                  {{ section.settings.title }}
+                </h2>
               {% else %}
-                <h2 class="h1 custom-title-color">{{ section.settings.title }}</h2>
+                <h2 class="h1{% if section.settings.title_color.alpha != 0 and section.settings.title_color != blank %} custom-title-color{% endif %}">
+                  {{ section.settings.title }}
+                </h2>
               {% endif %}
             </div>
           </div>
