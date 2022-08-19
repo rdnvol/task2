@@ -92,7 +92,9 @@
                               </div>
                             {% endif %}
                             <div class="lg:flex lg:flex-wrap">
-                              <div class="hidden lg:block body-small py-3 mr-5">Filter:</div>
+                              <div class="hidden lg:block body-small py-3 mr-5">
+                                {{ 'collections.general.filter' | t }}
+                              </div>
                               {% liquid
                                 for filter in collection.filters
                                   case filter.label

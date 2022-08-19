@@ -138,7 +138,8 @@
       "sort_by": "Sort by",
       "clear_all": "Clear all",
       "close": "Close",
-      "filter_and_sort": "Filter and sort"
+      "filter_and_sort": "Filter and sort",
+      "filter": "Filter:"
     }
   },
   "contact": {
