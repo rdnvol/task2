@@ -27,9 +27,9 @@ class FacetMoreLess extends HTMLElement {
         this.itemsToFilter = this.filterItems.filter_values.map(
           (item, index) => `
          <div class="py-3 custom-input custom-input--colors-with-text">
-           <input id="Filter-${item.param_name}--${index + 1}" 
-                  type="checkbox"  
-                  name="${item.param_name}" 
+           <input id="Filter-${item.param_name}--${index + 1}"
+                  type="checkbox"
+                  name="${item.param_name}"
                   value="${item.value}"
                   ${item.active && 'checked'}
                   ${item.count === 0 && item.active === false && 'disabled'}
@@ -53,9 +53,9 @@ class FacetMoreLess extends HTMLElement {
           (item, index) =>
             `
           <div class="py-3 custom-input custom-input--square-with-text">
-            <input 
-              id="Filter-${item.param_name}-${index + 1}" 
-              type="checkbox" 
+            <input
+              id="Filter-${item.param_name}-${index + 1}"
+              type="checkbox"
               value="${item.value}"
               name="${item.param_name}"
               ${item.active && 'checked'}
@@ -161,6 +161,7 @@ class FacetFiltersForm extends HTMLElement {
 
     const facetWrapper = this.querySelector('#FacetsWrapperDesktop');
     if (facetWrapper) facetWrapper.addEventListener('keyup', onKeyUpEscape);
+    FacetFiltersForm.checkActiveFilters();
   }
 
   static setListeners() {
@@ -292,6 +293,7 @@ class FacetFiltersForm extends HTMLElement {
     });
 
     FacetFiltersForm.toggleActiveFacets(false);
+    FacetFiltersForm.checkActiveFilters();
   }
 
   static renderAdditionalElements(html) {
@@ -332,6 +334,27 @@ class FacetFiltersForm extends HTMLElement {
         section: document.getElementById('product-grid').dataset.id,
       },
     ];
+  }
+
+  static checkActiveFilters() {
+    const clearAllBtn = document.querySelector('facet-remove[data-facet-clear-all]');
+    const activeFilter = Array.from(document.querySelectorAll('#FacetsWrapperDesktop input')).find((input) => {
+      if (input.type === 'number') {
+        return input.value.trim().length;
+      } else {
+        return input.checked;
+      }
+    });
+
+    activeFilter ? FacetFiltersForm.renderClearAll(clearAllBtn) : FacetFiltersForm.hideClearAll(clearAllBtn);
+  }
+
+  static renderClearAll(clearAll) {
+    clearAll.removeAttribute('hidden');
+  }
+
+  static hideClearAll(clearAll) {
+    clearAll.setAttribute('hidden', true);
   }
 
   onSubmitHandler(event) {
