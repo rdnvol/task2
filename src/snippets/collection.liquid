@@ -15,7 +15,6 @@
     data-products-quantity="{{ collection.products_count }}"
   >
     <div class="container">
-
       <div class="page-title-block text-center pt-0">
         <h1 class="h2 mb-2">{{ collection.title }}</h1>
 
@@ -27,7 +26,6 @@
             {{ collection.description }}
           </h2>
         {% endif %}
-
       </div>
 
       {% if products.size == 0 %}
@@ -44,13 +42,19 @@
               {%- endif -%}
               {% if section.settings.enable_filtering %}
                 <div id="FacetsWrapperDesktop" class="w-7/12 lg:w-8/12 filter-collapse__horizontal horizontal-filter">
-                  <details-utils close-click-outside="(max-width: 1023px)" force-close="(max-width: 1023px)" force-open="(min-width: 1024px)" close-esc="(max-width: 1024px)" force-restore>
+                  <details-utils
+                    close-click-outside="(max-width: 1023px)"
+                    force-close="(max-width: 1023px)"
+                    force-open="(min-width: 1024px)"
+                    close-esc="(max-width: 1024px)"
+                    force-restore
+                  >
                     <details class="filter-main-open-close" id="filter-main-open-close">
                       <summary class="default filter-main-open-close__btn-opener filter-main-open-close__opener page-wrapper__opener inline-flex lg:hidden items-center body-large">
                         <span class="filter-main-open-close__btn-opener-icon mr-2">
                           {% render 'icon' with 'filter' %}
                         </span>
-                        Filter and sort
+                        {{ 'collections.general.filter_and_sort' | t }}
                       </summary>
                       <div class="filter-main-open-close__slide flex justify-between flex-col lg:block">
                         <div class="filter-main-open-close__slide-btn-holder lg:hidden flex-shrink-0 w-100">
@@ -63,14 +67,14 @@
                             <span class="btn-closer flex-shrink-0 mr-1">
                               <span class="visually-hidden"> Icon close </span>
                             </span>
-                            Close
+                            {{ 'collections.general.close' | t }}
                           </button>
                         </div>
                         <div class="filter-main-open-close__holder">
                           <div id="FacetFiltersMobile" class="px-4 lg:px-0">
                             {% if section.settings.enable_sorting %}
                               <div class="lg:hidden py-4">
-                                <label class="label" for="filter-sortby">Sort by</label>
+                                <label class="label" for="filter-sortby">{{ 'collections.general.sort_by' | t }}</label>
                                 <div class="select-holder">
                                   <select name="sort_by" id="filter-sortby" form="FacetFiltersForm">
                                     {%- for option in collection.sort_options -%}
@@ -88,9 +92,7 @@
                               </div>
                             {% endif %}
                             <div class="lg:flex lg:flex-wrap">
-                              <div class="hidden lg:block body-small py-3 mr-5">
-                                Filter:
-                              </div>
+                              <div class="hidden lg:block body-small py-3 mr-5">Filter:</div>
                               {% liquid
                                 for filter in collection.filters
                                   case filter.label
@@ -138,7 +140,9 @@
                 <div class="lg:flex lg:justify-end lg:items-center">
                   {% if section.settings.enable_sorting %}
                     <div class="hidden lg:block w-100">
-                      <label class="label visually-hidden" for="filter-sortby-2">Sort by</label>
+                      <label class="label visually-hidden" for="filter-sortby-2">
+                        {{- 'collections.general.sort_by' | t -}}
+                      </label>
                       <div class="select-holder w-100">
                         <select name="sort_by" id="filter-sortby-2" form="FacetFiltersForm">
                           {%- for option in collection.sort_options -%}
@@ -172,14 +176,13 @@
             <div class="py-4 lg:py-5">
               {% if section.settings.enable_filtering %}
                 <div class="filter-selected-element-list flex flex-wrap items-center pb-4 lg:pb-0 lg:mb-5 -mx-2">
-
                   <facet-remove class="inline-flex">
                     <a
                       href="{{ collection.url }}?sort_by={{ collection.sort_by }}"
                       class="button button--sm filter__btn-reset mx-2 mb-3"
                       role="button"
                     >
-                      Clear all
+                      {{ 'collections.general.clear_all' | t }}
                     </a>
                   </facet-remove>
 
@@ -212,7 +215,6 @@
                       {% endfor %}
                     {% endif %}
                   {% endfor %}
-
                 </div>
               {% endif %}
               <div
