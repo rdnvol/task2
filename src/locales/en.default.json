@@ -134,7 +134,13 @@
       "link_title": "Browse our {{ title }} collection",
       "products_amount": "{{ amount }} products",
       "product": "product",
-      "products": "products"
+      "products": "products",
+      "filter_by": "Filter by",
+      "sort_by": "Sort by",
+      "clear_all": "Clear all",
+      "close": "Close",
+      "filter_and_sort": "Filter and sort",
+      "filter": "Filter:"
     }
   },
   "contact": {

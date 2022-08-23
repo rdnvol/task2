@@ -48,7 +48,7 @@
       {% else %}
         <div class="hidden lg:flex lg:items-center lg:space-x-8">
           {% if section.settings.enable_filtering %}
-            <div class="lg:w-3/12">Filter by</div>
+            <div class="lg:w-3/12">{{ 'collections.general.filter_by' | t }}</div>
           {% endif %}
           <div class="lg:w-9/12">
             <div class="lg:flex lg:justify-between lg:items-center lg:space-x-8">
@@ -65,7 +65,7 @@
               {% endif %}
               {% if section.settings.enable_sorting %}
                 <div class="lg:w-4/12 pl-5">
-                  <label class="label" for="filter-sortby-2">Sort by</label>
+                  <label class="label" for="filter-sortby-2">{{ 'collections.general.sort_by' | t }}</label>
                   <div class="select-holder">
                     {% assign sort_by = collection.sort_by | default: collection.default_sort_by %}
                     <select name="sort_by" id="filter-sortby-2" form="FacetFiltersForm">
@@ -114,14 +114,14 @@
                             <span class="btn-closer flex-shrink-0 mr-1">
                               <span class="visually-hidden"> Icon close </span>
                             </span>
-                            Close
+                            {{ 'collections.general.close' | t }}
                           </button>
                         </div>
                         <div class="filter-main-open-close__holder">
                           <div class="px-4 lg:px-0">
                             {% if section.settings.enable_sorting %}
                               <div class="lg:hidden py-4">
-                                <label class="label" for="filter-sortby">Sort by</label>
+                                <label class="label" for="filter-sortby">{{ 'collections.general.sort_by' | t }}</label>
                                 <div class="select-holder">
                                   {% assign sort_by = collection.sort_by | default: collection.default_sort_by %}
                                   <select name="sort_by" id="filter-sortby" form="FacetFiltersForm">
@@ -212,7 +212,7 @@
                     class="button filter__btn-reset mx-2 mb-3 no-underline"
                     type="button"
                   >
-                    Clear all
+                    {{ 'collections.general.clear_all' | t }}
                   </a>
                 </facet-remove>
                 {% for filter in collection.filters %}
