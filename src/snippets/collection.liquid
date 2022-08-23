@@ -178,9 +178,10 @@
             <div class="py-4 lg:py-5">
               {% if section.settings.enable_filtering %}
                 <div class="filter-selected-element-list flex flex-wrap items-center pb-4 lg:pb-0 lg:mb-5 -mx-2">
-                  <facet-remove class="inline-flex">
+                  <facet-remove class="inline-flex" data-facet-clear-all>
                     <a
                       href="{{ collection.url }}?sort_by={{ collection.sort_by }}"
+                      id="clear-all"
                       class="button button--sm filter__btn-reset mx-2 mb-3"
                       role="button"
                     >
