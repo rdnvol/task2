@@ -30,11 +30,15 @@
 
     .hero__block {
       position: absolute;
-      top: 30px;
+      top: 40px;
       right: 0;
-      bottom: 30px;
+      bottom: 40px;
       left: 0;
       z-index: 4;
+      @include media("≥tablet") {
+        top: 30px;
+        bottom: 30px;
+      }
     }
   }
   &.hero--full-width {
@@ -128,10 +132,6 @@
 
 .hero__img {
   position: relative;
-  margin: 0 0 20px;
-  @include media("≥tablet") {
-    margin: 0;
-  }
   &::after {
     content: "";
     position: absolute;
@@ -149,12 +149,14 @@
 }
 
 .hero__block {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  bottom: 40px;
+  left: 0;
+  z-index: 4;
   @include media("≥tablet") {
-    position: absolute;
     top: 30px;
-    right: 0;
     bottom: 30px;
-    left: 0;
-    z-index: 4;
   }
 }
