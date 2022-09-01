@@ -83,7 +83,7 @@ h6,
 
 %title-1 {
   font-size: $font-size-base;
-  font-weight: 500;
+  font-weight: 600;
   @include media ("≥widescreen") {
     font-size: calc(#{$font-size-base} + 2px);
   }
@@ -91,6 +91,17 @@ h6,
 
 .title-1 {
   @extend %title-1;
+}
+
+%product-price-large {
+  font-size: calc(#{$font-size-base} - 2px);
+  @include media ("≥widescreen") {
+    font-size: $font-size-base;
+  }
+}
+
+.product-price-large {
+  @extend %product-price-large;
 }
 
 p {
