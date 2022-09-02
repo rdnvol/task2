@@ -129,6 +129,14 @@ a {
   }
 }
 
+%body-large {
+  font-size: calc(#{$font-size-base} + 2px);
+}
+
+.body-large {
+  @extend %body-large;
+}
+
 %body-medium {
   font-size: $font-size-base;
 }
