@@ -32,7 +32,7 @@
       %}
     </div>
 
-    {%- if section.settings.show_view_all -%}
+    {%- if section.settings.show_view_all and collection != blank -%}
       {% assign button_label = 'collections.general.view_all' | t %}
       <div class="sm:pt-4 text-center">
         {%
