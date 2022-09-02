@@ -1,48 +1,94 @@
+<div class="blog-hero relative overflow-hidden">
+  <div class="container relative z-3">
+    <div class="blog-hero__block flex items-center text-center py-18 md:py-22 lg:py-29">
+      <div class="w-100">
+        <h1 class="h2">
+          {{ blog.title }}
+        </h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore.</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="blog-hero relative overflow-hidden">
+  <div class="container relative z-3">
+    <div class="blog-hero__block customizable-base-text flex items-center text-center py-18 md:py-22 lg:py-29">
+      <div class="w-100">
+        <h1 class="h2 mb-3">
+          {{ blog.title }}
+        </h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore.</p>
+      </div>
+    </div>
+  </div>
+  <div class="blog-hero__bg-img absolute top-0 left-0 w-100 h-100 z-1">
+    {%
+      render 'image',
+      asset_img_url: true,
+      src: 'img-placeholder.png',
+      d: '1440x326',
+      p_d: '1440x326',
+      src_m: 'img-placeholder.png',
+      m: '375x250',
+      p_m: '375x250',
+      crop: 'center',
+      placeholder: 'img-placeholder.png',
+    %}
+  </div>
+</div>
 <div class="section">
   <div class="container">
-    <div class="page-title-block text-center">
-      <h1 class="h2">{{ blog.title }}</h1>
-    </div>
-    <div class="md:flex">
-      <div class="md:w-8/12 xl:w-9/12 md:mx-auto">
-        {% for article in blog.articles %}
-          <article class="post">
-            <header class="post__header">
-              <h2 class="h3 post__title">
-                <a href="{{ article.url }}">{{ article.title }}</a>
-              </h2>
-              <div class="post__date">
-                {{ article.published_at | time_tag: format: 'month_day_year' }}
-              </div>
-              {% if blog.comments_enabled? %}
+    <div class="grid grid-cols-1 md:grid-cols-2 md:gap-x-8 md:gap-y-10">
+      {% for article in blog.articles %}
+        <article class="post">
+          {% if article.image %}
+            <a href="{{ article.url }}" class="block">
+              {%
+                render 'image',
+                src: article.image.src,
+                d: '690x460',
+                p_d: '690x460',
+                src_m: article.image.src,
+                m: '375x250',
+                p_m: '375x250',
+                alt: article.image.alt,
+                placeholder: 'img-placeholder.png',
+                crop: 'center',
+              %}
+            </a>
+          {% endif %}
+
+          <div class="py-4 md:py-5">
+            <h2 class="h5">
+              <a href="{{ article.url }}">{{ article.title }}</a>
+            </h2>
+            <div class="mb-4 base-secondary-text">
+              {{ article.published_at | time_tag: format: 'month_day_year' }}
+            </div>
+            {% if blog.comments_enabled? %}
+              <div class="mb-4">
                 <a href="{{ article.url }}#comments">
                   {{ 'blogs.comments.with_count' | t: count: article.comments_count }}
                 </a>
-              {% endif %}
-            </header>
-            {% if article.image %}
-              <a href="{{ article.url }}" class="post__img">
-                {%
-                  render 'image',
-                  src: article.image.src,
-                  d: '857x',
-                  src_m: article.image.src,
-                  m: '375x',
-                  alt: article.image.alt,
-                  placeholder: 'img-placeholder.png'
-                %}
-              </a>
+              </div>
             {% endif %}
-            <div>
+            <div class="rte mb-4">
               {% if article.excerpt.size > 0 %}
                 {{ article.excerpt }}
               {% else %}
                 {{ article.content | strip_html | truncate: 150 }}
               {% endif %}
             </div>
-          </article>
-        {% endfor %}
-      </div>
+            <a href="{{ article.url }}" class="link">Read more</a>
+          </div>
+        </article>
+      {% endfor %}
     </div>
   </div>
 </div>
+
+<style>
+  .blog-hero::after {
+    background: rgba(0, 0, 0, 0.6);
+  }
+</style>

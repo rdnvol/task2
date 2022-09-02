@@ -104,6 +104,20 @@ h6,
   @extend %product-price-large;
 }
 
+%link {
+  font-size: calc(#{$font-size-base} - 2px);
+  font-weight: 400;
+  text-decoration: none;
+  &:hover,
+  &:focus {
+    color: $base-secondary-text;
+  }
+}
+
+.link {
+  @extend %link;
+}
+
 p {
   margin: 0 0 15px;
   @include media("≥tablet") {
