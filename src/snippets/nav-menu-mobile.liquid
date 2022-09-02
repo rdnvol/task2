@@ -30,11 +30,7 @@
       </div>
     </li>
   {% else %}
-    <li
-      {% if link.active %}
-        class="active"
-      {% endif %}
-    >
+    <li class="fold-disabled{% if link.active %} active{% endif %}">
       <a href="{{ link.url }}">{{ link.title }}</a>
     </li>
   {% endif %}
