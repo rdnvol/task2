@@ -1,5 +1,5 @@
 {% for link in linklists[section.settings.menu].links %}
-  {% if link.links != blank and link.levels == 2 %}
+  {% if link.links != blank %}
     <li class="has-drop">
       <a href="{{ link.url }}" class="menu-accordion__opener">
         {{ link.title }}
@@ -30,11 +30,7 @@
       </div>
     </li>
   {% else %}
-    <li
-      {% if link.active %}
-        class="active"
-      {% endif %}
-    >
+    <li class="fold-disabled{% if link.active %} active{% endif %}">
       <a href="{{ link.url }}">{{ link.title }}</a>
     </li>
   {% endif %}
