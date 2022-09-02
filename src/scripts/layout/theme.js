@@ -237,6 +237,17 @@ class App {
               openClass: 'open',
               heightOffset: 0,
               useBorders: false,
+              onToggle(fold) {
+                const element = fold.el;
+
+                if (element.classList.contains('fold-disabled')) {
+                  const url = element.querySelector('a').getAttribute('href');
+
+                  window.location.href = url;
+
+                  return false;
+                }
+              },
             });
           });
         },
