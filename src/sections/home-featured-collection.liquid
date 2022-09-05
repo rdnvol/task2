@@ -17,7 +17,7 @@
     {% if section.settings.title != blank %}
       <h3 class="text-center">{{ section.settings.title }}</h3>
     {% endif %}
-    <div class="grid {{ grid_item_width }} gap-x-8">
+    <div class="{% if section.settings.layout_slider_on_mobile == 'slider' %}featured-collection__gallery flex flex-nowrap mb-5 sm:mb-0 space-x-6 sm:grid sm:gap-x-8{% else %}grid gap-x-8{% endif %} {{ grid_item_width }}">
       {% liquid
         for product in collection.products limit: product_limit
           render "product-card", product: product, grid_item_width: ''
@@ -31,23 +31,8 @@
         endfor
       %}
     </div>
-    {%- comment -%}Start Gallery on mobile{%- endcomment -%}
-    <div class="featured-collection__gallery flex flex-nowrap mb-5 sm:mb-0 space-x-6 sm:grid {{ grid_item_width }} sm:gap-x-8">
-      {% liquid
-        for product in collection.products limit: product_limit
-          render "product-card", product: product, grid_item_width: ''
-        else
-          for i in (1..product_limit)
-            capture current
-              cycle 1, 2, 3, 4, 5, 6
-            endcapture
-            render "product-card--empty", index: current, grid_item_width: ''
-          endfor
-        endfor
-      %}
-    </div>
-    {%- comment -%}End Gallery on mobile{%- endcomment -%}
-    {%- if section.settings.show_view_all -%}
+
+    {%- if section.settings.show_view_all and collection != blank -%}
       {% assign button_label = 'collections.general.view_all' | t %}
       <div class="sm:pt-4 text-center">
         {%
@@ -74,6 +59,22 @@
       "id": "collection",
       "type": "collection",
       "label": "Collection"
+    },
+    {
+      "type": "select",
+      "id": "layout_slider_on_mobile",
+      "label": "Layout slider on mobile",
+      "default": "column",
+      "options": [
+        {
+          "value": "slider",
+          "label": "Slider"
+        },
+        {
+          "value": "column",
+          "label": "Column"
+        }
+      ]
     },
     {
       "type": "range",
