@@ -1,41 +1,9 @@
-<div class="blog-hero relative overflow-hidden">
-  <div class="container relative z-3">
-    <div class="blog-hero__block flex items-center text-center py-18 md:py-22 lg:py-29">
-      <div class="w-100">
-        <h1 class="h2">
-          {{ blog.title }}
-        </h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore.</p>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="blog-hero relative overflow-hidden">
-  <div class="container relative z-3">
-    <div class="blog-hero__block customizable-base-text flex items-center text-center py-18 md:py-22 lg:py-29">
-      <div class="w-100">
-        <h1 class="h2 mb-3">
-          {{ blog.title }}
-        </h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore.</p>
-      </div>
-    </div>
-  </div>
-  <div class="blog-hero__bg-img absolute top-0 left-0 w-100 h-100 z-1">
-    {%
-      render 'image',
-      asset_img_url: true,
-      src: 'img-placeholder.png',
-      d: '1440x326',
-      p_d: '1440x326',
-      src_m: 'img-placeholder.png',
-      m: '375x250',
-      p_m: '375x250',
-      crop: 'center',
-      placeholder: 'img-placeholder.png',
-    %}
-  </div>
-</div>
+{% liquid
+  if section.settings.blog_hero_display
+    render 'blog-hero', section: section
+  endif
+%}
+
 <div class="section">
   <div class="container">
     <div class="grid grid-cols-1 md:grid-cols-2 md:gap-x-8 md:gap-y-10">
@@ -92,3 +60,54 @@
     background: rgba(0, 0, 0, 0.6);
   }
 </style>
+
+{% schema %}
+{
+  "name": "Blog",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Blog hero"
+    },
+    {
+      "type": "checkbox",
+      "id": "blog_hero_display",
+      "label": "Display Blog Hero",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "blog_hero_layout",
+      "label": "Blog Hero layout",
+      "default": "text",
+      "options": [
+        {
+          "value": "text",
+          "label": "Without image"
+        },
+        {
+          "value": "image",
+          "label": "With image"
+        }
+      ]
+    },
+    {
+      "type": "image_picker",
+      "id": "blog_hero_image",
+      "label": "Blog Hero image"
+    },
+    {
+      "type": "checkbox",
+      "id": "blog_hero_display_description",
+      "label": "Display Blog Hero description",
+      "default": false
+    },
+    {
+      "type": "richtext",
+      "id": "blog_hero_description",
+      "label": "Blog Hero description",
+      "default": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore.</p>"
+    }
+  ]
+}
+{% endschema %}
