@@ -17,7 +17,7 @@
     {% if section.settings.title != blank %}
       <h3 class="text-center">{{ section.settings.title }}</h3>
     {% endif %}
-    <div class="{% if section.settings.layout_slider_on_mobile == 'slider' %}featured-collection__gallery flex flex-nowrap mb-5 sm:mb-0 space-x-6 sm:grid sm:gap-x-8{% else %}grid gap-x-8{% endif %} {{ grid_item_width }}">
+    <div class="{% if section.settings.layout_slider_on_mobile == 'slider' %}featured-collection__gallery flex flex-nowrap mb-5 sm:mb-0 space-x-6 sm:space-x-0 sm:grid sm:gap-x-8{% else %}grid gap-x-8{% endif %} {{ grid_item_width }}">
       {% liquid
         for product in collection.products limit: product_limit
           render "product-card", product: product, grid_item_width: ''
