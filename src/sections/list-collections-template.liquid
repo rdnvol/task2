@@ -1,73 +1,134 @@
 {% liquid
   assign product_placeholder = 'collections.general.product' | t
   assign products_placeholder = 'collections.general.products' | t
+  assign slider_classes = 'collection-scroll flex space-x-8 xl:grid xl:grid-cols-4 xl:gap-8 xl:space-x-0'
+  assign grid_classes = 'collection-grid grid grid-cols-2 xl:grid-cols-4 md:gap-8 -mx-4 md:mx-0'
 %}
 <div class="section">
   <div class="container overflow-hidden">
-    <div class="page-title-block text-center">
-      <h1 class="h2">{{ page_title }}</h1>
-    </div>
+    {% if section.settings.title != blank %}
+      <div class="page-title-block text-center">
+        <h1 class="h2">{{ section.settings.title }}</h1>
+      </div>
+    {% endif %}
     {%- comment -%}if collection grid {%- endcomment -%}
-    <div class="collection-grid grid grid-cols-2 xl:grid-cols-4 md:gap-8 -mx-4 md:mx-0">
-      {% for collection in collections %}
-        <div class="collection-item text-center">
-          <a
-            class="image-container"
-            href="{{ collection.url }}"
-            title="{{ 'collections.general.link_title' | t: title: collection.title }}"
-          >
-            {%- comment -%}if collection grid image {%- endcomment -%}
-            {% liquid
-              assign image = collection.image | default: collection.products[0].featured_image
-              if image != blank
-                render 'image', src: image, d: '330x412', src_m: image, m: '187x320', alt: image.alt, crop: 'center'
-              else
-                echo 'image' | placeholder_svg_tag: 'placeholder-svg'
-              endif
-            %}
-          </a>
-          <div class="collection-item__box body-large">
+    <div class="{% if section.settings.layout_mobile == 'grid' %}{{ grid_classes }}{% else %}{{ slider_classes }}{% endif %}">
+      {% for block in section.blocks %}
+        {% liquid
+          assign collection = block.settings.collection
+          assign collection_title = block.settings.title | default: collection.title
+        %}
+        {% if collection != blank %}
+          <div class="collection-item text-center" {{ block.shopify_attributes }}>
             <a
+              class="image-container"
               href="{{ collection.url }}"
-              title="{{ 'collections.general.link_title' | t: title: collection.title }}"
-              class="no-underline"
+              title="{{ 'collections.general.link_title' | t: title: collection_title }}"
             >
-              {{- collection.title -}}
+              {%- comment -%}if collection grid image {%- endcomment -%}
+              {% liquid
+                assign image = collection.image | default: collection.products[0].featured_image
+                if image != blank
+                  if section.settings.layout_mobile == 'grid'
+                    render 'image', src: image, d: '330x412', src_m: image, m: '187x320', alt: image.alt, crop: 'center'
+                  else
+                    render 'image', src: image, d: '330x412', src_m: image, m: '251x377', alt: image.alt, crop: 'center'
+                  endif
+                else
+                  echo 'image' | placeholder_svg_tag: 'placeholder-svg'
+                endif
+              %}
             </a>
+            <div class="collection-item__box body-large">
+              <a
+                href="{{ collection.url }}"
+                title="{{ 'collections.general.link_title' | t: title: collection_title }}"
+                class="no-underline"
+              >
+                {{- collection_title -}}
+              </a>
+            </div>
           </div>
-        </div>
+        {% endif %}
       {% endfor %}
     </div>
-    {%- comment -%}if collection scroll {%- endcomment -%}
-    <div class="collection-scroll flex space-x-8 xl:grid xl:grid-cols-4 xl:gap-8 xl:space-x-0" style="display:none;">
-      {% for collection in collections %}
-        <div class="collection-item text-center">
-          <a
-            class="image-container"
-            href="{{ collection.url }}"
-            title="{{ 'collections.general.link_title' | t: title: collection.title }}"
-          >
-            {%- comment -%}if collection grid image {%- endcomment -%}
-            {% liquid
-              assign image = collection.image | default: collection.products[0].featured_image
-              if image != blank
-                render 'image', src: image, d: '330x412', src_m: image, m: '251x377', alt: image.alt, crop: 'center'
-              else
-                echo 'image' | placeholder_svg_tag: 'placeholder-svg'
-              endif
-            %}
-          </a>
-          <div class="collection-item__box body-large">
-            <a
-              href="{{ collection.url }}"
-              title="{{ 'collections.general.link_title' | t: title: collection.title }}"
-              class="no-underline"
-            >
-              {{- collection.title -}}
-            </a>
-          </div>
-        </div>
-      {% endfor %}
-    </div>
+    {% if section.settings.btn_url != blank and section.settings.btn_text != blank %}
+      <div class="sm:pt-4 text-center">
+        {%
+          render 'button',
+          href: section.settings.btn_url,
+          text: section.settings.btn_text
+        %}
+      </div>
+    {% endif %}
   </div>
 </div>
+
+{% schema %}
+{
+  "name": "Collection list",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "layout_mobile",
+      "label": "Mobile layout",
+      "default": "grid",
+      "info": "Only applies to mobile",
+      "options": [
+        {
+          "value": "slider",
+          "label": "Slider"
+        },
+        {
+          "value": "grid",
+          "label": "Columns"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Collections"
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "text",
+      "id": "btn_text",
+      "label": "Button text",
+      "default": "View all"
+    },
+    {
+      "type": "url",
+      "id": "btn_url",
+      "label": "Button link"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Collection",
+      "type": "collection",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Collection name"
+        },
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
