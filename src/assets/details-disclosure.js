@@ -3,19 +3,25 @@ class DetailsDisclosure extends HTMLElement {
     super(),
       (this.mainDetailsToggle = this.querySelector('details')),
       this.addEventListener('keyup', this.onKeyUpEscape),
-      this.mainDetailsToggle.addEventListener(
-        'focusout',
-        this.onFocusOut.bind(this)
-      );
+      this.mainDetailsToggle.addEventListener('focusout', this.onFocusOut.bind(this));
+    this.onClickOutOfMenuBound = this.onClickOutOfMenu.bind(this);
   }
+
   onFocusOut() {
-    setTimeout(() => {
-      this.contains(document.activeElement) || this.close();
-    });
+    document.addEventListener('click', this.onClickOutOfMenuBound);
   }
+
   close() {
     this.mainDetailsToggle.removeAttribute('open');
+    document.removeEventListener('click', this.onClickOutOfMenuBound);
   }
+
+  onClickOutOfMenu(e) {
+    setTimeout(() => {
+      this.contains(e.target) || this.close();
+    });
+  }
+
   onKeyUpEscape(e) {
     if ('ESCAPE' !== e.code.toUpperCase()) return;
     const t = e.target.closest('details[open]');
