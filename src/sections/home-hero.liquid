@@ -26,7 +26,7 @@
     </div>
     <div class="hero__block">
       <div class="container relative h-100">
-        <div class="flex h-100 {{ section.settings.alignment }} {{ section.settings.alignment_text }} custom-color">
+        <div class="flex h-100 {{ section.settings.alignment_mobile }} {{ section.settings.alignment }} {{ section.settings.alignment_text }} custom-color">
           <div class="sm:w-10/12 md:w-6/12 lg:w-4/12">
             <div class="rte">
               {% for block in section.blocks %}
@@ -133,43 +133,63 @@
       "type": "select",
       "id": "alignment",
       "label": "Text alignment",
-      "default": "items-center justify-center",
+      "default": "sm:items-center justify-center",
       "options": [
         {
-          "value": "items-start justify-start",
+          "value": "sm:items-start justify-start",
           "label": "Top left"
         },
         {
-          "value": "items-start justify-center",
+          "value": "sm:items-start justify-center",
           "label": "Top center"
         },
         {
-          "value": "items-start justify-end",
+          "value": "sm:items-start justify-end",
           "label": "Top right"
         },
         {
-          "value": "items-center justify-start",
+          "value": "sm:items-center justify-start",
           "label": "Middle left"
         },
         {
-          "value": "items-center justify-center",
+          "value": "sm:items-center justify-center",
           "label": "Middle center"
         },
         {
-          "value": "items-center justify-end",
+          "value": "sm:items-center justify-end",
           "label": "Middle right"
         },
         {
-          "value": "items-end justify-start",
+          "value": "sm:items-end justify-start",
           "label": "Bottom left"
         },
         {
-          "value": "items-end justify-center",
+          "value": "sm:items-end justify-center",
           "label": "Bottom center"
         },
         {
-          "value": "items-end justify-end",
+          "value": "sm:items-end justify-end",
           "label": "Bottom right"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "alignment_mobile",
+      "label": "Text alignment (mobile)",
+      "default": "xs:items-center",
+      "options": [
+        {
+          "value": "xs:items-start",
+          "label": "Top"
+        },
+        {
+          "value": "xs:items-center",
+          "label": "Middle"
+        },
+        {
+          "value": "xs:items-end",
+          "label": "Bottom"
         }
       ]
     },
