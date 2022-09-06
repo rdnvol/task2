@@ -1,30 +1,63 @@
 {% if section.blocks.size > 0 %}
   <section class="section">
-    <div class="container">
+    <div class="container overflow-hidden">
       {% if section.settings.title != blank %}
         <h2 class="text-center">{{ section.settings.title }}</h2>
       {% endif %}
-      <div class="grid md:grid-cols-3 gap-4">
+      {%- comment -%}if collection grid {%- endcomment -%}
+      <div class="collection-grid grid grid-cols-2 xl:grid-cols-4 md:gap-8 -mx-4 md:mx-0">
         {% for block in section.blocks %}
           {% assign collection = collections[block.settings.collection] %}
           {% if collection != blank %}
-            <div {{ block.shopify_attributes }}>
-              <a href="{{ collection.url }}" class="collection-list-item block relative">
-                <div class="collection-list-item__img image-container">
-                  {%
-                    render 'image',
-                    src: collection.image,
-                    d: '413x',
-                    src_m: collection.image,
-                    m: '345x',
-                    placeholder: 'img-placeholder.png',
-                    alt: collection.image.alt
-                  %}
-                </div>
-                <div class="collection-list-item__text-box flex items-center justify-center text-center customizable-base-text">
-                  <h3 class="collection-list-item__title mb-0">{{ collection.title }}</h3>
-                </div>
+            <div class="collection-item text-center" {{ block.shopify_attributes }}>
+              <a href="{{ collection.url }}" class="image-container">
+                {%- comment -%}if collection grid image {%- endcomment -%}
+                {%
+                  render 'image',
+                  src: collection.image,
+                  d: '330x412',
+                  src_m: collection.image,
+                  m: '187x320',
+                  placeholder: 'img-placeholder.png',
+                  alt: collection.image.alt
+                %}
               </a>
+              <div class="collection-item__text-box body-large">
+                <h3 class="body-large mb-0">
+                  <a href="#">
+                    {{ collection.title }}
+                  </a>
+                </h3>
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+      {%- comment -%}if collection scroll {%- endcomment -%}
+      <div class="collection-scroll flex space-x-8 xl:grid xl:grid-cols-4 xl:gap-8 xl:space-x-0" style="display:none;">
+        {% for block in section.blocks %}
+          {% assign collection = collections[block.settings.collection] %}
+          {% if collection != blank %}
+            <div class="collection-item text-center" {{ block.shopify_attributes }}>
+              <a href="{{ collection.url }}" class="image-container">
+                {%- comment -%}if collection grid image {%- endcomment -%}
+                {%
+                  render 'image',
+                  src: collection.image,
+                  d: '330x412',
+                  src_m: collection.image,
+                  m: '251x377',
+                  placeholder: 'img-placeholder.png',
+                  alt: collection.image.alt
+                %}
+              </a>
+              <div class="collection-item__text-box">
+                <h3 class="body-large mb-0">
+                  <a href="#">
+                    {{ collection.title }}
+                  </a>
+                </h3>
+              </div>
             </div>
           {% endif %}
         {% endfor %}
