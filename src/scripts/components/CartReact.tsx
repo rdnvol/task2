@@ -122,10 +122,12 @@ export default Cart;
 const cartElement = document.getElementById('cart');
 
 if (cartElement) {
+  /* eslint-disable */
   render(
     <Provider store={window.Store}>
       <Cart ref={(element) => (window.cart = element)} />
     </Provider>,
     cartElement
   );
+  /* eslint-enable */
 }
