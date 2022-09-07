@@ -5,62 +5,44 @@
   assign grid_classes = 'collection-grid grid grid-cols-2 xl:grid-cols-4 md:gap-8 -mx-4 md:mx-0'
 %}
 <div class="section">
-  <div class="container overflow-hidden">
-    {% if section.settings.title != blank %}
-      <div class="page-title-block text-center">
-        <h1 class="h2">{{ section.settings.title }}</h1>
-      </div>
-    {% endif %}
-    {%- comment -%}if collection grid {%- endcomment -%}
-    <div class="{% if section.settings.layout_mobile == 'grid' %}{{ grid_classes }}{% else %}{{ slider_classes }}{% endif %}">
-      {% for block in section.blocks %}
-        {% liquid
-          assign collection = block.settings.collection
-          assign collection_title = block.settings.title | default: collection.title
-        %}
-        {% if collection != blank %}
-          <div class="collection-item text-center" {{ block.shopify_attributes }}>
-            <a
-              class="image-container"
-              href="{{ collection.url }}"
-              title="{{ 'collections.general.link_title' | t: title: collection_title }}"
-            >
-              {%- comment -%}if collection grid image {%- endcomment -%}
-              {% liquid
-                assign image = collection.image | default: collection.products[0].featured_image
-                if image != blank
-                  if section.settings.layout_mobile == 'grid'
-                    render 'image', src: image, d: '330x412', src_m: image, m: '187x320', alt: image.alt, crop: 'center'
-                  else
-                    render 'image', src: image, d: '330x412', src_m: image, m: '251x377', alt: image.alt, crop: 'center'
-                  endif
-                else
-                  echo 'image' | placeholder_svg_tag: 'placeholder-svg'
-                endif
-              %}
-            </a>
-            <div class="collection-item__box body-large">
+  <div class="container">
+    <div class="page-title-block text-center">
+      <h1 class="h2">{{ page_title }}</h1>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-8">
+      {% for collection in collections %}
+        <div class="collection-item text-center">
+          <a
+            class="collection-item__img"
+            href="{{ collection.url }}"
+            title="{{ 'collections.general.link_title' | t: title: collection.title }}"
+          >
+            {% liquid
+              assign image = collection.image | default: collection.products[0].featured_image
+              if image != blank
+                render 'image', src: image, d: '303x303', src_m: image, m: '375x375', alt: image.alt, crop: 'center'
+              else
+                echo 'image' | placeholder_svg_tag: 'placeholder-svg'
+              endif
+            %}
+          </a>
+          <div class="collection-item__box">
+            <h2 class="h4 collection-item__title">
               <a
                 href="{{ collection.url }}"
-                title="{{ 'collections.general.link_title' | t: title: collection_title }}"
-                class="no-underline"
+                title="{{ 'collections.general.link_title' | t: title: collection.title }}"
               >
-                {{- collection_title -}}
+                {{- collection.title -}}
               </a>
-            </div>
+            </h2>
+            <p>
+              {{ collection.all_products_count }}
+              {{ collection.all_products_count | pluralize: product_placeholder, products_placeholder }}
+            </p>
           </div>
-        {% endif %}
+        </div>
       {% endfor %}
     </div>
-    {% if section.settings.btn_url != blank and section.settings.btn_text != blank %}
-      <div class="sm:pt-4 text-center">
-        {%
-          render 'button',
-          href: section.settings.btn_url,
-          text: section.settings.btn_text
-        %}
-      </div>
-    {% endif %}
   </div>
 </div>
 
@@ -116,12 +98,6 @@
       "name": "Collection",
       "type": "collection",
       "settings": [
-        {
-          "type": "text",
-          "id": "title",
-          "label": "Heading",
-          "default": "Collection name"
-        },
         {
           "type": "collection",
           "id": "collection",
