@@ -6,7 +6,7 @@
       {% endif %}
       <div class="text-columns-with-images__block grid grid-cols-1 md:grid-cols-2 gap-y-2 md:gap-x-2 xl:gap-x-8">
         {% for block in section.blocks %}
-          <div class="relative">
+          <div class="block-{{ block.id }} relative">
             <div class="image-container">
               {% if block.settings.image != blank %}
                 {%
@@ -31,12 +31,12 @@
                   {{ block.settings.copy }}
                 </div>
               {% endif %}
-              {% if block.settings.btn_url != blank %}
+              {% if block.settings.btn_url != blank and block.settings.btn_text != blank %}
                 {%
                   render "button",
                   element: 'a',
                   href: block.settings.btn_url,
-                  text: 'Shop now',
+                  text: block.settings.btn_text,
                 %}
               {% endif %}
             </div>
@@ -51,10 +51,11 @@
   .custom-color {
     color: #fff;
   }
-
-  .text-columns-with-images .image-container::after {
-    opacity: 0.6;
-  }
+  {% for block in section.blocks %}
+    .text-columns-with-images .block-{{ block.id }} .image-container::after {
+      opacity: {{ block.settings.image_overlay_opacity | times: 0.1 }};
+    }
+  {% endfor %}
 </style>
 
 {% schema %}
@@ -79,6 +80,15 @@
           "label": "Image"
         },
         {
+          "type": "range",
+          "id": "image_overlay_opacity",
+          "label": "Image overlay opacity",
+          "min": 1,
+          "max": 10,
+          "step": 1,
+          "default": 6
+        },
+        {
           "type": "text",
           "id": "title",
           "label": "Heading",
@@ -89,6 +99,12 @@
           "id": "copy",
           "label": "Copy",
           "default": "<p>Share blog posts, products, or promotions with your customers. Use this text to describe products, share details on availability and style, or as a space to display recent reviews or FAQs.</p>"
+        },
+        {
+          "type": "text",
+          "id": "btn_text",
+          "label": "Button text",
+          "default": "Shop now"
         },
         {
           "type": "url",
