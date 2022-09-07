@@ -1,6 +1,8 @@
 {% liquid
   assign product_placeholder = 'collections.general.product' | t
   assign products_placeholder = 'collections.general.products' | t
+  assign slider_classes = 'collection-scroll flex space-x-8 xl:grid xl:grid-cols-4 xl:gap-8 xl:space-x-0'
+  assign grid_classes = 'collection-grid grid grid-cols-2 xl:grid-cols-4 md:gap-8 -mx-4 md:mx-0'
 %}
 <div class="section">
   <div class="container">
@@ -43,3 +45,66 @@
     </div>
   </div>
 </div>
+
+{% schema %}
+{
+  "name": "Collection list",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "layout_mobile",
+      "label": "Mobile layout",
+      "default": "grid",
+      "info": "Only applies to mobile",
+      "options": [
+        {
+          "value": "slider",
+          "label": "Slider"
+        },
+        {
+          "value": "grid",
+          "label": "Columns"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Collections"
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "text",
+      "id": "btn_text",
+      "label": "Button text",
+      "default": "View all"
+    },
+    {
+      "type": "url",
+      "id": "btn_url",
+      "label": "Button link"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Collection",
+      "type": "collection",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

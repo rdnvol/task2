@@ -1,31 +1,51 @@
 {% if section.blocks.size > 0 %}
+  {% liquid
+    assign slider_classes = 'collection-scroll flex space-x-8 xl:grid xl:grid-cols-4 xl:gap-8 xl:space-x-0'
+    assign grid_classes = 'collection-grid grid grid-cols-2 xl:grid-cols-4 md:gap-8 -mx-4 md:mx-0'
+  %}
+
   <section class="section">
     <div class="container overflow-hidden">
       {% if section.settings.title != blank %}
         <h2 class="text-center">{{ section.settings.title }}</h2>
       {% endif %}
       {%- comment -%}if collection grid {%- endcomment -%}
-      <div class="collection-grid grid grid-cols-2 xl:grid-cols-4 md:gap-8 -mx-4 md:mx-0">
+      <div class="{% if section.settings.layout_mobile == 'grid' %}{{ grid_classes }}{% else %}{{ slider_classes }}{% endif %}">
         {% for block in section.blocks %}
-          {% assign collection = collections[block.settings.collection] %}
+          {% liquid
+            assign collection = block.settings.collection
+            assign collection_title = block.settings.title | default: collection.title
+          %}
           {% if collection != blank %}
             <div class="collection-item text-center" {{ block.shopify_attributes }}>
               <a href="{{ collection.url }}" class="image-container">
                 {%- comment -%}if collection grid image {%- endcomment -%}
-                {%
-                  render 'image',
-                  src: collection.image,
-                  d: '330x412',
-                  src_m: collection.image,
-                  m: '187x320',
-                  placeholder: 'img-placeholder.png',
-                  alt: collection.image.alt
-                %}
+                {% if section.settings.layout_mobile == 'grid' %}
+                  {%
+                    render 'image',
+                    src: collection.image,
+                    d: '330x412',
+                    src_m: collection.image,
+                    m: '187x320',
+                    placeholder: 'img-placeholder.png',
+                    alt: collection.image.alt
+                  %}
+                {% else %}
+                  {%
+                    render 'image',
+                    src: collection.image,
+                    d: '330x412',
+                    src_m: collection.image,
+                    m: '251x377',
+                    placeholder: 'img-placeholder.png',
+                    alt: collection.image.alt
+                  %}
+                {% endif %}
               </a>
-              <div class="collection-item__text-box body-large">
+              <div class="collection-item__text-box{% if section.settings.layout_mobile == 'grid' %} body-large{% endif %}">
                 <h3 class="body-large mb-0">
-                  <a href="#">
-                    {{ collection.title }}
+                  <a href="{{ collection.url }}">
+                    {{ collection_title }}
                   </a>
                 </h3>
               </div>
@@ -33,35 +53,15 @@
           {% endif %}
         {% endfor %}
       </div>
-      {%- comment -%}if collection scroll {%- endcomment -%}
-      <div class="collection-scroll flex space-x-8 xl:grid xl:grid-cols-4 xl:gap-8 xl:space-x-0" style="display:none;">
-        {% for block in section.blocks %}
-          {% assign collection = collections[block.settings.collection] %}
-          {% if collection != blank %}
-            <div class="collection-item text-center" {{ block.shopify_attributes }}>
-              <a href="{{ collection.url }}" class="image-container">
-                {%- comment -%}if collection grid image {%- endcomment -%}
-                {%
-                  render 'image',
-                  src: collection.image,
-                  d: '330x412',
-                  src_m: collection.image,
-                  m: '251x377',
-                  placeholder: 'img-placeholder.png',
-                  alt: collection.image.alt
-                %}
-              </a>
-              <div class="collection-item__text-box">
-                <h3 class="body-large mb-0">
-                  <a href="#">
-                    {{ collection.title }}
-                  </a>
-                </h3>
-              </div>
-            </div>
-          {% endif %}
-        {% endfor %}
-      </div>
+      {% if section.settings.btn_url != blank and section.settings.btn_text != blank %}
+        <div class="xs:pt-4 text-center">
+          {%
+            render 'button',
+            href: section.settings.btn_url,
+            text: section.settings.btn_text
+          %}
+        </div>
+      {% endif %}
     </div>
   </section>
 {% endif %}
@@ -71,10 +71,46 @@
   "name": "Collections list",
   "settings": [
     {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "layout_mobile",
+      "label": "Mobile layout",
+      "default": "grid",
+      "info": "Only applies to mobile",
+      "options": [
+        {
+          "value": "slider",
+          "label": "Slider"
+        },
+        {
+          "value": "grid",
+          "label": "Columns"
+        }
+      ]
+    },
+    {
       "type": "text",
       "id": "title",
       "label": "Heading",
       "default": "Collections list"
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "text",
+      "id": "btn_text",
+      "label": "Button text",
+      "default": "View all"
+    },
+    {
+      "type": "url",
+      "id": "btn_url",
+      "label": "Button link"
     }
   ],
   "blocks": [
@@ -82,6 +118,12 @@
       "name": "Collection",
       "type": "collection",
       "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Collection name"
+        },
         {
           "type": "collection",
           "id": "collection",
