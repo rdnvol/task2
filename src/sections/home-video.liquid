@@ -4,12 +4,12 @@
   {% assign image = 'img-placeholder.png' | asset_url %}
 {% endif %}
 <div
-  class="section"
+  class="pt-0 pb-10"
   data-section-type="video"
   data-section-id="{{ section.id }}"
 >
   <div class="container">
-    <div class="background-video-wrapper {{ section.settings.height }} {{ section.settings.alignment }} relative">
+    <div class="background-video-wrapper {{ section.settings.height }} relative">
       <video class="js-player" playsinline autoplay loop muted data-poster="{{ image }}">
         <source
           src="{{ section.settings.video | default: "https://d2ezlykacdqcnj.cloudfront.net/_assets/home-video/beach-waves-loop.mp4" }}"
@@ -61,50 +61,6 @@
       "id": "video",
       "label": "Video link",
       "info": "Only direct links to mp4 files"
-    },
-    {
-      "type": "select",
-      "id": "alignment",
-      "label": "Image alignment",
-      "default": "",
-      "options": [
-        {
-          "value": "background-top-left",
-          "label": "Top left"
-        },
-        {
-          "value": "background-top-center",
-          "label": "Top center"
-        },
-        {
-          "value": "background-top-right",
-          "label": "Top right"
-        },
-        {
-          "value": "background-center-left",
-          "label": "Middle left"
-        },
-        {
-          "value": "",
-          "label": "Middle center"
-        },
-        {
-          "value": "background-center-right",
-          "label": "Middle right"
-        },
-        {
-          "value": "background-bottom-left",
-          "label": "Bottom left"
-        },
-        {
-          "value": "background-bottom-center",
-          "label": "Bottom center"
-        },
-        {
-          "value": "background-bottom-right",
-          "label": "Bottom right"
-        }
-      ]
     },
     {
       "type": "select",
