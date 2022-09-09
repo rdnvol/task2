@@ -60,20 +60,20 @@
 
 {% style %}
   {% if section.settings.color.alpha != 0 and section.settings.color != blank %}
-    .custom-color {
+    section[data-section-id="{{ section.id }}"] .custom-color {
       color: {{ section.settings.color }};
     }
   {% endif %}
   {% if section.settings.color_mobile.alpha != 0 and section.settings.color_mobile != blank %}
     @media screen and (max-width: 767px) {
-      .custom-color {
+      section[data-section-id="{{ section.id }}"] .custom-color {
         color: {{ section.settings.color_mobile }};
       }
     }
   {% endif %}
 
   @media screen and (min-width: 768px) {
-    .hero__img::after {
+    section[data-section-id="{{ section.id }}"] .hero__img::after {
       opacity: {{ section.settings.image_overlay_opacity | divided_by: 100.0 }};
     }
   }

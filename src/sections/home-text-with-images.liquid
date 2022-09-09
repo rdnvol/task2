@@ -1,5 +1,8 @@
 {% if section.blocks.size > 0 %}
-  <section class="section text-columns-with-images">
+  <section
+    class="section text-columns-with-images"
+    data-section-id="{{ section.id }}"
+  >
     <div class="container overflow-hidden">
       {% if section.settings.title != blank %}
         <h2 class="text-center">{{ section.settings.title }}</h2>
@@ -48,7 +51,7 @@
 {% endif %}
 
 <style>
-  .custom-color {
+  section[data-section-id="{{ section.id }}"] .custom-color {
     color: #fff;
   }
   {% for block in section.blocks %}
