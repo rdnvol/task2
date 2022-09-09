@@ -72,10 +72,8 @@
     }
   {% endif %}
 
-  @media screen and (min-width: 768px) {
-    section[data-section-id="{{ section.id }}"] .hero__img::after {
-      opacity: {{ section.settings.image_overlay_opacity | divided_by: 100.0 }};
-    }
+  section[data-section-id="{{ section.id }}"] .hero__img::after {
+    opacity: {{ section.settings.image_overlay_opacity | divided_by: 100.0 }};
   }
 {% endstyle %}
 

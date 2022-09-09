@@ -17,9 +17,6 @@
       margin: 0;
       &::after {
         display: block;
-        @include media ("≤767px") {
-          display: none;
-        }
       }
 
       img {
@@ -142,9 +139,6 @@
     height: 100%;
     background: $base-body-text;
     pointer-events: none;
-    @include media ("≤767px") {
-      display: none;
-    }
   }
 }
 
