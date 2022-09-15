@@ -2,4 +2,4 @@
 **/.svn
 **/.hg
 **/node_modules
-**/src/templates/product.json
+**/src/snippets/product-json.liquid
