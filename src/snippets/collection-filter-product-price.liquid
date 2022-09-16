@@ -6,11 +6,11 @@
     </summary>
     <div class="filter-collapse__slide">
       <div class="filter-collapse__heading body-small flex items-center justify-between space-x-2 p-4">
-        <div>The highest price is $300.00</div>
+        <div>{{ 'collections.filters.filter_product_price' | t }}</div>
         <div>
           <facet-remove>
             <a href="{{ filter.url_to_remove }}">
-              <button type="reset">Reset</button>
+              <button type="reset">{{ 'collections.filters.reset' | t }}</button>
             </a>
           </facet-remove>
         </div>
@@ -19,7 +19,9 @@
         <div class="p-4">
           <price-range class="facets__price flex items-center">
             <div class="w-100">
-              <label for="Filter-{{ filter.min_value.param_name }}" class="inline-block mb-2"> Minimum price </label>
+              <label for="Filter-{{ filter.min_value.param_name }}" class="inline-block mb-2">
+                {{- 'collections.filters.minimum_price' | t -}}
+              </label>
               <div class="relative">
                 <span class="range-slider__suffix body-medium">{{ cart.currency.symbol }}</span>
                 <input
@@ -36,9 +38,11 @@
                 >
               </div>
             </div>
-            <div class="flex-shrink-0 mx-4 mb-3">to</div>
+            <div class="flex-shrink-0 mx-4 mb-3">{{ 'collections.filters.to' | t }}</div>
             <div class=" w-100">
-              <label for="Filter-{{ filter.max_value.param_name }}" class="inline-block mb-2"> Maximum price </label>
+              <label for="Filter-{{ filter.max_value.param_name }}" class="inline-block mb-2">
+                {{- 'collections.filters.maximum_price' | t -}}
+              </label>
               <div class="relative">
                 <span class="range-slider__suffix body-medium base-secondary-text-color absolute top-2 left-3">
                   {{- cart.currency.symbol -}}
