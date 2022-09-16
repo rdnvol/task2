@@ -156,17 +156,17 @@ export class Product {
       this.submitButton.classList.add('disabled');
       this.submitButton.setAttribute('disabled', 'disabled');
       this.submitButtonText.innerText = theme.strings.unavailable;
-      this.shopifyButtons.classList.add('hidden');
+      this.shopifyButtons?.classList.add('hidden');
     } else if (variant.available) {
       this.submitButton.classList.remove('disabled');
       this.submitButton.removeAttribute('disabled');
       this.submitButtonText.innerText = theme.strings.addToCart;
-      this.shopifyButtons.classList.remove('hidden');
+      this.shopifyButtons?.classList.remove('hidden');
     } else {
       this.submitButtonText.innerText = theme.strings.soldOut;
       this.submitButton.classList.add('disabled');
       this.submitButton.setAttribute('disabled', 'disabled');
-      this.shopifyButtons.classList.add('hidden');
+      this.shopifyButtons?.classList.add('hidden');
     }
   }
 
