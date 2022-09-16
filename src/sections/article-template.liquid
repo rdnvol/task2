@@ -14,20 +14,24 @@
               </a>
             {% endif %}
           </header>
-          <div class="post__img">
-            {%
-              render 'image',
-              src: article.image.src,
-              d: '857x',
-              src_m: article.image.src,
-              m: '375x',
-              alt: article.image.alt,
-              placeholder: 'img-placeholder.png'
-            %}
-          </div>
-          <div class="post__text-block rte">
-            {{ article.content }}
-          </div>
+          {% if article.image.src != blank %}
+            <div class="post__img">
+              {%
+                render 'image',
+                src: article.image.src,
+                d: '857x',
+                src_m: article.image.src,
+                m: '375x',
+                alt: article.image.alt,
+                placeholder: 'img-placeholder.png'
+              %}
+            </div>
+          {% endif %}
+          {% if article.content != blank %}
+            <div class="post__text-block rte">
+              {{ article.content }}
+            </div>
+          {% endif %}
           {% if settings.social_sharing_blog %}
             {% render 'social-sharing', share_title: article.title, share_permalink: article.url, share_image: article.image %}
           {% endif %}
