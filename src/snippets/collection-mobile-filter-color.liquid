@@ -7,7 +7,6 @@
       </summary>
 
       <div class="filter-collapse__slide overflow-hidden">
-
         <div class="filter-collapse__heading body-small hidden lg:flex lg:items-center lg:justify-between lg:space-x-2 lg:p-4">
           <div class="facets__selected no-js-hidden">
             {{ 'products.facets.filters_selected' | t: count: filter.active_values.size }}
@@ -15,7 +14,7 @@
           <div>
             <facet-remove>
               <a href="{{ filter.url_to_remove }}">
-                <button type="reset">Reset</button>
+                <button type="reset">{{ 'collections.filters.reset' | t }}</button>
               </a>
             </facet-remove>
           </div>
@@ -38,16 +37,16 @@
               >
               <label for="Filter-{{ value.param_name }}-{{ forloop.index }}" class="custom-label flex items-center">
                 <span class="custom-label__img-holder">
-                  <span style="background-color: {{ value.value }}; display: block; width: 100%; height: 100%; border-radius: 50%;"></span>
+                  <span
+                    style="background-color: {{ value.value }}; display: block; width: 100%; height: 100%; border-radius: 50%;"
+                  ></span>
                 </span>
                 {{ value.label }} ({{ value.count }})
               </label>
             </div>
           {% endfor %}
         </div>
-
       </div>
-
     </details>
   </details-utils>
 </div>

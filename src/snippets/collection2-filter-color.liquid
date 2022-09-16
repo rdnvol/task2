@@ -1,7 +1,6 @@
 <div class="filter-collapse">
   <details-utils force-open animate force-restore>
     <details class="filter-collapse__item js-filter" data-index="{{ forloop.index }}">
-
       <summary class="py-3 flex justify-between items-center">
         {{ filter.label }}
         <span class="filter-collapse__btn flex-shrink-0 mx-4"></span>
@@ -40,7 +39,7 @@
           <more-less class="filter-collapse__btn-more-content inline-block mb-3">
             <span id="more" class="filter-collapse__more">+ More</span>
             <span id="less" class="filter-collapse__less">- Less</span>
-  
+
             <script id="filter-items" data-template="1" type="application/json">
               {
                 "filter_label": {{ filter.label | json }},
@@ -64,7 +63,6 @@
           </more-less>
         {% endif %}
       </div>
-
     </details>
   </details-utils>
 </div>

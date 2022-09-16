@@ -26,7 +26,7 @@
     "lint": "npm run build && shopify theme check",
     "lint:js": "eslint \"./src/scripts/**/*.{tsx,ts}\"",
     "lint:js:fix": "eslint \"./src/scripts/**/*.{tsx,ts}\" --fix",
-    "prettify": "prettier --write  'src/**/*.liquid'",
+    "prettify": "prettier --write  \"src/**/*.liquid\"",
     "lint:css": "stylelint \"./src/styles/**/*.{css,scss}\"",
     "e2e:gui": "cypress open",
     "e2e:run": "cypress run --browser chrome",

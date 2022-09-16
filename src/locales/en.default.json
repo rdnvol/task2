@@ -141,6 +141,13 @@
       "close": "Close",
       "filter_and_sort": "Filter and sort",
       "filter": "Filter:"
+    },
+    "filters": {
+      "filter_product_price": "The highest price is $300.00",
+      "reset": "Reset",
+      "to": "to",
+      "minimum_price": "Minimum price",
+      "maximum_price": "Maximum price"
     }
   },
   "contact": {
