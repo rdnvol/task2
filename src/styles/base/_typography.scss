@@ -81,6 +81,21 @@ h6,
   }
 }
 
+%title {
+  font-family: $font-body;
+  font-size: $font-size-base; // 16px
+  line-height: $base-line-height;
+  font-weight: 600;
+  font-style: $font-body-style;
+  @include media ("≥widescreen") {
+    font-size: calc(#{$font-size-base} + 2px); // 18px
+  }
+}
+
+.title {
+  @extend %title;
+}
+
 %title-1 {
   font-size: $font-size-base;
   font-weight: 600;
