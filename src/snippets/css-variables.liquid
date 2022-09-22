@@ -1,8 +1,8 @@
 <style>
   {% liquid
     if settings.font_library == "shopify"
-      echo settings.font_heading | font_face
-      echo settings.font_body | font_face
+      echo settings.font_heading | font_face: font_display: 'swap'
+      echo settings.font_body | font_face: font_display: 'swap'
 
       assign font_body_bold = settings.font_body | font_modify: 'weight', 'bolder'
       assign font_body_italic = settings.font_body | font_modify: 'style', 'italic'
@@ -10,9 +10,9 @@
     endif
   %}
   {% if font_body_bold or font_heading_bold or font_body_italic %}
-    {{ font_body_bold | font_face }}
-    {{ font_heading_bold | font_face }}
-    {{ font_body_italic | font_face }}
+    {{ font_body_bold | font_face: font_display: 'swap' }}
+    {{ font_heading_bold | font_face: font_display: 'swap' }}
+    {{ font_body_italic | font_face: font_display: 'swap' }}
   {% endif %}
 
   :root {
@@ -74,7 +74,7 @@
         --font-body-weight: {{ settings.hardcoded_body_weight }};
         --font-heading-weight: {{ settings.hardcoded_heading_weight }};
         --font-body-style: normal;
-        --font-heading-style: italic;
+        --font-heading-style: normal;
     {%- endcase -%}
 
     /* Base text settings */
