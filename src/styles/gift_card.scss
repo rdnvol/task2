@@ -33,7 +33,6 @@ $media-expressions: (
 
 @import "vendors/include-media";
 @import "vendors/normalize";
-@import "vendors/splide/splide-default";
 
 @import "base/variables";
 @import "base/functions";
@@ -43,41 +42,4 @@ $media-expressions: (
 @import "base/typography";
 @import "base/forms";
 
-@import "plugins/jcf";
-@import "plugins/js-video";
-
-@import "modules/header";
-
-@import "layout/password";
-@import "layout/all";
-
-@import "pages/account";
-@import "pages/blog";
-@import "pages/blog-article";
-@import "pages/cart";
-@import "pages/collections-list";
-
-@import "section/hero";
-@import "section/featured-collection";
-@import "section/feature-block";
-@import "section/search-page";
-@import "section/product";
-@import "section/testimonials-block";
-@import "section/logos-block";
-@import "section/gallery-section";
-@import "section/slideshow";
-@import "section/benefits";
-@import "section/benefits-with-text";
-@import "section/plans-section";
-@import "section/newsletter";
-@import "section/video-section";
-@import "section/collections-list-section";
-@import "section/rich-text-section";
-@import "section/map-section";
-@import "section/page-hero";
-@import "section/text-columns-with-images";
-
-@import "modules/age-popup";
-@import "modules/filters";
-@import "modules/cart-popup";
-@import "modules/footer";
+@import "section/gift-card";

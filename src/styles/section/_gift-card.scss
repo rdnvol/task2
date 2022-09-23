@@ -1,0 +1,26 @@
+.gift-card__image-wrapper {
+  width: 345px;
+  margin-right: auto;
+  margin-left: auto;
+  @include media ("≥tablet") {
+    width: 520px;
+  }
+}
+
+.gift-card__qr-code {
+  width: 160px;
+  margin: 0 auto;
+}
+
+input.gift-card__number {
+  border: none;
+  @extend %body-large;
+}
+
+.gift-card__copy-link {
+  text-decoration: underline;
+  &:hover,
+  &:focus {
+    text-decoration: none;
+  }
+}
