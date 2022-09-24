@@ -87,7 +87,7 @@ export class Product {
     if (!el) return;
 
     if (selector === 'input') {
-      let newAcc;
+      let newAcc = [];
 
       this.options = Array.from(el.querySelectorAll(selector)).reduce((acc, curr) => {
         if (curr.checked) {
@@ -97,9 +97,10 @@ export class Product {
         return newAcc;
       }, []);
 
-      const titles = this.wrapper
-        .querySelectorAll('.product__variant-label-box')
-        .reduce((acc, curr) => [...acc, curr.querySelector('span:last-child')], []);
+      const titles = Array.from(this.wrapper.querySelectorAll('.product__variant-label-box')).reduce(
+        (acc, curr) => [...acc, curr.querySelector('span:last-child')],
+        []
+      );
 
       titles.forEach((title, index) => {
         title.innerText = this.options[index];
