@@ -1,3 +1,21 @@
+.giftcard {
+
+  .button:not(.gift-card__copy-link) {
+    min-width: 100%;
+    @include media ("≥phone-l") {
+      min-width: 240px;
+    }
+  }
+
+  .gift-card__copy-link {
+    text-decoration: underline;
+    &:hover,
+    &:focus {
+      text-decoration: none;
+    }
+  }
+}
+
 .gift-card__image-wrapper {
   width: 345px;
   margin-right: auto;
@@ -9,18 +27,22 @@
 
 .gift-card__qr-code {
   width: 160px;
-  margin: 0 auto;
+  margin: 32px auto 0;
+
+  .gift-card__image-wrapper--alt & {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 155px;
+    height: 155px;
+    margin: 0;
+    padding: 12px;
+    background: #fff;
+    transform: translate(-50%, -50%);
+  }
 }
 
 input.gift-card__number {
   border: none;
   @extend %body-large;
-}
-
-.gift-card__copy-link {
-  text-decoration: underline;
-  &:hover,
-  &:focus {
-    text-decoration: none;
-  }
 }
