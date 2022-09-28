@@ -563,6 +563,12 @@
         "info": "If the font face is not loaded, any element attempting to use it must render a fallback font face. If the font face successfully loads during this period, it is used normally."
       },
       {
+        "type": "checkbox",
+        "id": "enable_custom_theme_css",
+        "label": "Enable custom css",
+        "default": false
+      },
+      {
         "type": "text",
         "id": "custom_font_heading",
         "default": "NeutrafaceText-Light",
