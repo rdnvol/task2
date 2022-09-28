@@ -1,0 +1,54 @@
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 calc(#{$grid-gutter-width} / 2);
+}
+
+.giftcard {
+
+  .button {
+    &:not(.gift-card__copy-link) {
+      min-width: 100%;
+      @include media ("≥phone-l") {
+        min-width: 240px;
+      }
+    }
+  }
+
+  .gift-card__copy-link {
+    text-decoration: underline;
+    &:hover,
+    &:focus {
+      text-decoration: none;
+    }
+  }
+}
+
+.gift-card__image-wrapper {
+  width: 345px;
+  @include media ("≥tablet") {
+    width: 520px;
+  }
+}
+
+.gift-card__qr-code {
+  width: 160px;
+  margin: 32px auto 0;
+
+  .gift-card__image-wrapper--alt & {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 155px;
+    height: 155px;
+    margin: 0;
+    padding: 12px;
+    background: $white;
+    transform: translate(-50%, -50%);
+  }
+}
+
+input.gift-card__number {
+  @extend %body-large;
+  border: none;
+}
