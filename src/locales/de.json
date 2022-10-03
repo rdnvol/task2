@@ -3,13 +3,22 @@
     "accessibility": {
       "skip_to_content": "Direkt zum Inhalt"
     },
+    "breadcrumbs": {
+      "home": "Home"
+    },
     "meta": {
       "tags": "Getaggt \"{{ tags }}\"",
-      "page": "Seite {{ page }}"
+      "page": "Seite {{ page }}",
+      "seo_description": "Better than Dawn."
     },
     "404": {
       "title": "404 Seite nicht gefunden",
       "subtext_html": "Die von Ihnen angeforderte Seite existiert nicht. Klicken Sie <a href=\"/collections/all\">hier</a>, um den Einkauf fortzusetzen."
+    },
+    "pagination": {
+      "previous": "Previous page",
+      "next": "Next page",
+      "current_page": "Page {{ current }} of {{ total }}"
     },
     "password_page": {
       "opening_soon": "Eröffnet demnächst",
@@ -28,6 +37,7 @@
       "powered_by_shopify_html": "Dieser Shop wird mit Hilfe von {{ shopify }} betrieben werden"
     },
     "social": {
+      "share": "Share",
       "share_on_facebook": "Teilen",
       "share_on_twitter": "Twittern",
       "share_on_pinterest": "Pinnen",
@@ -52,10 +62,12 @@
       "no_results_html": "Bitte versuchen Sie einen anderen Suchbegriff oder gehen Sie zurück zur <a href=\"/\">Startseite</a>."
     },
     "newsletter_form": {
+      "title": "Connect",
       "newsletter_email": "Im Bilde sein",
       "email_placeholder": " E-Mail-Adresse ",
       "confirmation": " Danke für Ihre Anmeldung ",
-      "submit": "Abonnieren"
+      "submit": "Abonnieren",
+      "please_enter_your_email": "Please enter your email"
     }
   },
   "blogs": {
@@ -69,6 +81,7 @@
     },
     "comments": {
       "title": "Hinterlassen Sie einen Kommentar",
+      "block_title": "Comments",
       "name": "Name",
       "email": "E-Mail",
       "message": "Nachricht",
@@ -98,7 +111,12 @@
       "cookies_required": "Aktivieren Sie Cookies, um den Einkaufswagen benutzen zu können",
       "continue_browsing_html": "Mit der Suche <a href=\"/collections/all\">hier</a> fortfahren.",
       "item_quantity": "Produktmenge",
-      "savings": "Sie sparen"
+      "continue_shopping_html": "<a href=\"#\">Continue shopping</a>",
+      "savings": "Sie sparen",
+      "just_added_to_your_cart": "Just added to your cart",
+      "view_cart": "View cart",
+      "special_instructions_placeholder": "View Special instructions for seller",
+      "add_to_cart": "Add to cart"
     },
     "label": {
       "product": "Artikel",
@@ -111,8 +129,25 @@
   },
   "collections": {
     "general": {
+      "view_all": "view all",
       "no_matches": "Es tut uns leid, aber Ihre Suche nach Produkten hat keine Treffer ergeben.",
-      "link_title": "Durchsuchen Sie unsere {{ title }}-Zusammenstellung"
+      "link_title": "Durchsuchen Sie unsere {{ title }}-Zusammenstellung",
+      "products_amount": "{{ amount }} products",
+      "product": "product",
+      "products": "products",
+      "filter_by": "Filter by",
+      "sort_by": "Sort by",
+      "clear_all": "Clear all",
+      "close": "Close",
+      "filter_and_sort": "Filter and sort",
+      "filter": "Filter:"
+    },
+    "filters": {
+      "filter_product_price": "The highest price is $300.00",
+      "reset": "Reset",
+      "to": "to",
+      "minimum_price": "Minimum price",
+      "maximum_price": "Maximum price"
     }
   },
   "contact": {
@@ -123,7 +158,8 @@
       "message": "Nachricht",
       "send": "Absenden",
       "post_success": "Danke, dass Sie uns kontaktiert haben. Wir werden uns so schnell wie möglich bei Ihnen melden."
-    }
+    },
+    "location": "Get directions"
   },
   "customer": {
     "account": {
@@ -165,6 +201,9 @@
     },
     "login": {
       "title": "Login",
+      "log_out": "Log out",
+      "log_in": "Log in",
+      "create_account": "Create account",
       "email": "E-Mail",
       "password": "Passwort",
       "forgot_password": "Haben Sie Ihr Passwort vergessen?",
@@ -237,6 +276,7 @@
       "blog_excerpt": "Ihr Laden hat noch keine Blogposts veröffentlicht. Ein Blog kann genutzt werden, um über die Einführung neuer Produkte, Tipps oder andere Neuigkeiten, die Sie mit Ihren Kunden teilen möchten, zu berichten. Für Inspiration und Ratschläge für Ihren eigenen Laden und Blog können Sie den E-Commerce-Blog von Shopify besuchen.",
       "blog_author": "Name des Autors",
       "product_title": "Beispielhafter Produkttitel",
+      "product_description": "This area is used to describe your product’s details. Tell customers about the look, feel, and style of your product. Add details on color, materials used, sizing, and where it was made.",
       "collection_title": "Beispielhafter Zusammenstellungstitel",
       "no_content": "Dieser Bereich hat zur Zeit keinen Inhalt. Füge diesem Bereich über die Seitenleiste Inhalte hinzu."
     }
@@ -271,7 +311,34 @@
       "on_sale_from_html": "Im Angebot ab {{ price }}",
       "from_text_html": "Von {{ price }}",
       "quantity": "Menge",
-      "add_to_cart": "In den Einkaufswagen legen"
+      "add_to_cart": "In den Einkaufswagen legen",
+      "dynamic_button_placeholder": "Buy it now",
+      "size_chart": "Size Chart",
+      "size": "size",
+      "color_title": "Color",
+      "starting_at": "From",
+      "product_variants": "Product variants"
+    },
+    "product_card": {
+      "labels": {
+        "sale": "Sale",
+        "sold_out": "Sold out",
+        "new": "New"
+      }
+    },
+    "facets": {
+      "filters_selected": {
+        "one": "{{ count }} selected",
+        "other": "{{ count }} selected"
+      },
+      "product_count": {
+        "one": "{{ product_count }} of {{ count }} product",
+        "other": "{{ product_count }} of {{ count }} products"
+      },
+      "product_count_simple": {
+        "one": "{{ count }} product",
+        "other": "{{ count }} products"
+      }
     }
   },
   "gift_cards": {
@@ -290,6 +357,7 @@
     }
   },
   "date_formats": {
-    "month_day_year": "%B %d, %Y"
+    "month_day_year": "%B %d, %Y",
+    "month_day_year_time": "on %B %d, %Y at %l:%M%p"
   }
 }
