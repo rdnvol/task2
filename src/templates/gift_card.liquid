@@ -67,21 +67,10 @@
         </div>
 
         <div class="gift-card__qr-code">
-          <canvas
+          <div
             id="QrCode"
-            class="giftcard-qr hidden"
-            data-identifier="{{ gift_card.qr_identifier }}"
-            data-gift-card-qr
-          ></canvas>
-          <div>
-            {%
-              render 'image',
-              asset_img_url: true,
-              src: 'img-placeholder.png',
-              d: '160x160',
-              placeholder: 'img-placeholder.png',
-            %}
-          </div>
+            class="giftcard-qr"
+          ></div>
         </div>
       </div>
 
@@ -125,3 +114,13 @@
     </div>
   </div>
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    new QRCode(document.getElementById('QrCode'), {
+      text: '{{ gift_card.qr_identifier }}',
+      width: 120,
+      height: 120,
+    });
+  });
+</script>
