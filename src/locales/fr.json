@@ -284,6 +284,7 @@
       "redeem": "Entrez ce code lors du paiement pour utiliser votre carte-cadeau",
       "shop_link": "Boutique",
       "print": "Imprimer",
+      "copy_code_success": "Code copié avec succès",
       "remaining_html": "{{ balance }} restant",
       "add_to_apple_wallet": "Ajouter à Apple Wallet",
       "initial_value": "Valeur de la carte-cadeau : {{ value }}"

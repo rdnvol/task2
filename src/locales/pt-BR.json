@@ -284,6 +284,7 @@
       "redeem": "Para resgatar o seu cartão-presente, utilize este código no fechamento do pedido",
       "shop_link": "Comece a comprar",
       "print": "Imprimir",
+      "copy_code_success": "Código copiado com sucesso",
       "remaining_html": "{{ balance }} restante(s)",
       "add_to_apple_wallet": "Adicionar ao Apple Wallet",
       "initial_value": "Valor do cartão-presente: {{value}}"

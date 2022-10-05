@@ -104,8 +104,9 @@
 
       <div class="gift-card__copy-code mb-3">
         <button class="button default gift-card__copy-link link">Copy code</button>
-        <span class="gift-card__copy-success body-small" role="status"></span>
+        <span class="gift-card__copy-success form__message body-small" role="status"></span>
         <template>
+          {%- render 'icon-success' -%}
           {{ 'gift_cards.issued.copy_code_success' | t }}
         </template>
       </div>
@@ -191,6 +192,7 @@
         }
       });
     });
+
   document.addEventListener('DOMContentLoaded', function() {
     new QRCode(document.getElementById('QrCode'), {
       text: '{{ gift_card.qr_identifier }}',

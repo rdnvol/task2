@@ -284,6 +284,7 @@
       "redeem": "Brug denne kode ved betaling for at bruge dit gavekort",
       "shop_link": "Start med at handle",
       "print": "Print",
+      "copy_code_success": "Koden blev kopieret",
       "remaining_html": "{{ balance }} tilbage",
       "add_to_apple_wallet": "Tilføj til Apple Wallet",
       "initial_value": "Gavekortets værdi: {{ value }}"
