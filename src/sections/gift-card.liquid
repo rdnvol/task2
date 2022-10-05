@@ -11,7 +11,7 @@
     {% if section.settings.logo_svg != blank %}
       <div class="logo">
         <a href="{{ routes.root_url }}" rel="nofollow">
-          <img src="{{ section.settings.logo_svg | asset_url }}" width="86" height="18" alt="Draft logotype">
+          <img src="{{ section.settings.logo_svg | asset_url }}" width="86" height="18" alt="Draft logo">
         </a>
       </div>
     {% elsif section.settings.logo != blank %}
@@ -21,7 +21,7 @@
             src="{{ section.settings.logo | image_url: width: 172 }}"
             width="{{ section.settings.logo.width }}"
             height="{{ section.settings.logo.width | divided_by: section.settings.logo.aspect_ratio | floor }}"
-            alt="header logo"
+            alt="{{ section.settings.logo.alt | default: "Header logo" }}"
           >
         </a>
       </div>
@@ -72,7 +72,7 @@
               src="{{ section.settings.image_card | image_url: width: 520 }}"
               width="{{ section.settings.image_card.width }}"
               height="{{ section.settings.image_card.width | divided_by: section.settings.image_card.aspect_ratio | floor }}"
-              alt="header logo"
+              alt="{{ section.settings.image_card.alt | default: "Header logo" }}"
             >
           {%- else -%}
             <img
@@ -177,6 +177,10 @@
 {% endschema %}
 
 <script>
+  let template = document.getElementsByTagName("template")[0];
+  let clonedTemplate = template.content.cloneNode(true);
+  let isMessageDisplayed = false
+
   document
     .querySelector('.gift-card__copy-link')
     .addEventListener('click', () => {
