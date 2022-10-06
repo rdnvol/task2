@@ -33,7 +33,7 @@
   </div>
 </header>
 
-<div class="pb-10 giftcard {% if gift_card.expired or gift_card.enabled != true %} giftcard--disabled{% endif %}">
+<div class="pb-10 giftcard">
   <div class="container">
     <div class="md:w-9/12 md:mx-auto text-center">
       <h1 class="h5 mb-5">{{ 'gift_cards.issued.subtext' | t }}</h1>
@@ -106,7 +106,7 @@
         <button class="button default gift-card__copy-link link">{{ 'gift_cards.issued.copy_code_text' | t }}</button>
         <span class="gift-card__copy-success form__message body-small" role="status"></span>
         <template>
-          {%- render 'icon-success' -%}
+          {%- render 'icon' with 'icon-success' -%}
           {{ 'gift_cards.issued.copy_code_success' | t }}
         </template>
       </div>
