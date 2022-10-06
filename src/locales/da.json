@@ -285,6 +285,7 @@
       "shop_link": "Start med at handle",
       "print": "Print",
       "copy_code_success": "Koden blev kopieret",
+      "copy_code_text": "Kopier koden",
       "remaining_html": "{{ balance }} tilbage",
       "add_to_apple_wallet": "Tilføj til Apple Wallet",
       "initial_value": "Gavekortets værdi: {{ value }}"

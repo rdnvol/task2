@@ -290,6 +290,7 @@
       "shop_link": "Розпочати покупки",
       "print": "Друк",
       "copy_code_success": "Код успішно скопійовано",
+      "copy_code_text": "Скопіюйте код",
       "remaining_html": "{{ balance }}  залишилося",
       "add_to_apple_wallet": "Додати до Apple Гаманець",
       "initial_value": "Вартість подарункової картки: {{ value }}"

@@ -285,6 +285,7 @@
       "shop_link": "Begin te shoppen",
       "print": "Printen",
       "copy_code_success": "Code succesvol gekopieerd",
+      "copy_code_text": "Kopieer code",
       "remaining_html": "{{ balance }} over",
       "add_to_apple_wallet": "Voeg toe aan Apple Wallet",
       "initial_value": "Waarde cadeaukaart: {{ value }}"

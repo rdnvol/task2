@@ -285,6 +285,7 @@
       "shop_link": "Boutique",
       "print": "Imprimer",
       "copy_code_success": "Code copié avec succès",
+      "copy_code_text": "Copier le code",
       "remaining_html": "{{ balance }} restant",
       "add_to_apple_wallet": "Ajouter à Apple Wallet",
       "initial_value": "Valeur de la carte-cadeau : {{ value }}"
