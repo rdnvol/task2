@@ -65,14 +65,14 @@
         {% endif %}
       </div>
 
-      <div class="gift-card__image-wrapper {{ section.settings.qrcode }} mx-auto mb-5 relative">
+      <div class="gift-card__image-wrapper {{ section.settings.qrcode_position }} mx-auto mb-5 relative">
         <div class="gift-card__image-card mb-5">
           {%- if section.settings.image_card != blank -%}
             <img
               src="{{ section.settings.image_card | image_url: width: 520 }}"
               width="{{ section.settings.image_card.width }}"
               height="{{ section.settings.image_card.width | divided_by: section.settings.image_card.aspect_ratio | floor }}"
-              alt="{{ section.settings.image_card.alt | default: "Header logo" }}"
+              alt="{{ section.settings.image_card.alt | default: "Gift card illustration" }}"
             >
           {%- else -%}
             <img
@@ -160,8 +160,8 @@
     },
     {
       "type": "select",
-      "id": "qrcode",
-      "label": "Qr Code",
+      "id": "qrcode_position",
+      "label": "Qr Code position",
       "options": [
         {
           "value": "gift-card__image-wrapper--alt",
