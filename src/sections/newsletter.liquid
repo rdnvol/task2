@@ -22,7 +22,9 @@
             <legend class="visually-hidden">Subscribe form</legend>
             {{ form.errors | default_errors }}
             {% if form.posted_successfully? %}
-              <p>{{ 'general.newsletter_form.confirmation' | t }}</p>
+              <div class="text-center messages-success">
+                {{ 'general.newsletter_form.confirmation' | t }}
+              </div>
             {% else %}
               <input type="hidden" name="contact[tags]" value="newsletter">
               <div class="sm:flex sm:items-center">

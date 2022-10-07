@@ -134,7 +134,7 @@ ins {
     &:hover {
 
       svg {
-        fill: $color-accent;
+        fill: $base-accent;
       }
     }
   }
@@ -166,7 +166,7 @@ ins {
     height: 44px;
     color: $base-icons;
     text-decoration: none;
-    background: $base-secondary-background;
+    background: $base-background;
     border-radius: 100%;
     &:hover {
       background: $base-footer-background;
@@ -412,8 +412,8 @@ ins {
   color: $base-body-text;
   text-align: left;
   text-decoration: none;
-  background: $base-accordion-background;
-  border: 1px solid $base-accordion-background;
+  background: $base-background;
+  border: 1px solid $base-background;
   @include media ("≥widescreen") {
     padding: 8px 14px 7px;
   }
@@ -498,7 +498,7 @@ ins {
     right: 0;
     bottom: 0;
     left: 0;
-    background: $button-background;
+    background: $primary-button-background;
   }
   &::after {
     top: 50%;

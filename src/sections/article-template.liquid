@@ -59,13 +59,13 @@
             <h2 class="h3">{{ 'blogs.comments.title' | t }}</h2>
             {{ form.errors | default_errors }}
             {% if comment and comment.status and comment.id != blank %}
-              <p class="form-success">
+              <div class="form-success messages-success">
                 {% if blog.moderated? and comment.status != 'published' %}
                   {{ 'blogs.comments.success_moderated' | t }}
                 {% else %}
                   {{ 'blogs.comments.success' | t }}
                 {% endif %}
-              </p>
+              </div>
             {% endif %}
             <div class="sm:grid sm:grid-cols-2 sm:gap-x-8">
               <div class="input-holder">
