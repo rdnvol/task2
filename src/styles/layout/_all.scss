@@ -671,6 +671,10 @@ img[data-sizes="auto"] {
   .icon-play {
     margin-left: 0.2rem;
   }
+
+  .icon-success {
+    color: $messages-success;
+  }
 }
 
 // Important CSS for details-utils

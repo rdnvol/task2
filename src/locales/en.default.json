@@ -351,6 +351,8 @@
       "redeem": "Use this code at checkout to redeem your gift card",
       "shop_link": "Start shopping",
       "print": "Print",
+      "copy_code_success": "Code copied successfully",
+      "copy_code_text": "Copy code",
       "remaining_html": "{{ balance }} left",
       "add_to_apple_wallet": "Add to Apple Wallet",
       "initial_value": "Gift card value: {{ value }}"

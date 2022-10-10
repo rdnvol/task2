@@ -350,6 +350,8 @@
       "active": "Läuft ab am {{ expiry }}",
       "redeem": "Nutzen Sie an der Kasse diesen Code, um Ihre Geschenkkarte einzulösen",
       "shop_link": "Einkauf beginnen",
+      "copy_code_success": "Code erfolgreich kopiert",
+      "copy_code_text": "Code kopieren",
       "print": "Drucken",
       "remaining_html": "{{ balance }} übrig",
       "add_to_apple_wallet": "Hinzufügen zu Apple Wallet",
