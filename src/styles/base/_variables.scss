@@ -96,18 +96,18 @@ $button-font-size: inherit !default;
 $button-border-radius: var(--button-border-radius) !default;
 
 // Dynamic buttons
-$dynamic-button-text: var(--dynamic-button-text-color) !default;
-$dynamic-button-text-on-hover: var(--dynamic-button-hover-text-color) !default;
-$dynamic-button-text-on-focus: var(--dynamic-button-focus-text-color) !default;
-$dynamic-button-border: var(--dynamic-button-border-color) !default;
-$dynamic-button-border-on-hover: var(--dynamic-button-hover-border-color) !default;
-$dynamic-button-border-on-focus: var(--dynamic-button-focus-border-color) !default;
-$dynamic-button-background: var(--dynamic-button-background-color) !default;
-$dynamic-button-background-on-hover: var(--dynamic-button-hover-background-color) !default;
-$dynamic-button-background-on-focus: var(--dynamic-button-focus-background-color) !default;
-$dynamic-button-text-on-disabled: var(--dynamic-button-text-on-disabled) !default;
-$dynamic-button-border-on-disabled: var(--dynamic-button-border-on-disabled) !default;
-$dynamic-button-background-on-disabled: var(--dynamic-button-background-on-disabled) !default;
+$dynamic-checkout-button-text: var(--checkout-button-text-color) !default;
+$dynamic-checkout-button-text-on-hover: var(--checkout-button-hover-text-color) !default;
+$dynamic-checkout-button-text-on-focus: var(--checkout-button-focus-text-color) !default;
+$dynamic-checkout-button-border: var(--checkout-button-border-color) !default;
+$dynamic-checkout-button-border-on-hover: var(--checkout-button-hover-border-color) !default;
+$dynamic-checkout-button-border-on-focus: var(--checkout-button-focus-border-color) !default;
+$dynamic-checkout-button-background: var(--checkout-button-background-color) !default;
+$dynamic-checkout-button-background-on-hover: var(--checkout-button-hover-background-color) !default;
+$dynamic-checkout-button-background-on-focus: var(--checkout-button-focus-background-color) !default;
+$dynamic-checkout-button-text-on-disabled: var(--checkout-button-text-on-disabled) !default;
+$dynamic-checkout-button-border-on-disabled: var(--checkout-button-border-on-disabled) !default;
+$dynamic-checkout-button-background-on-disabled: var(--checkout-button-background-on-disabled) !default;
 
 // Forms
 $form-element-padding: $button-padding !default;

@@ -705,29 +705,29 @@ a.button {
   padding: 12px 30px;
   font-family: $font-heading;
   line-height: 1;
-  color: $dynamic-button-text;
+  color: $dynamic-checkout-button-text;
   text-align: center;
-  background: $dynamic-button-background;
-  border: 1px solid $dynamic-button-border;
+  background: $dynamic-checkout-button-background;
+  border: 1px solid $dynamic-checkout-button-border;
   -webkit-border-radius: 0;
   border-radius: $button-border-radius;
   cursor: pointer;
   &:hover {
-    color: $dynamic-button-text-on-hover !important;
-    background: $dynamic-button-background-on-hover !important;
-    border-color: $dynamic-button-border-on-hover !important;
+    color: $dynamic-checkout-button-text-on-hover !important;
+    background: $dynamic-checkout-button-background-on-hover !important;
+    border-color: $dynamic-checkout-button-border-on-hover !important;
   }
   &:focus {
-    color: $dynamic-button-text-on-focus;
-    background: $dynamic-button-background-on-focus;
-    border-color: $dynamic-button-border-on-focus;
-    outline: 1px dashed $dynamic-button-border-on-focus;
+    color: $dynamic-checkout-button-text-on-focus;
+    background: $dynamic-checkout-button-background-on-focus;
+    border-color: $dynamic-checkout-button-border-on-focus;
+    outline: 1px dashed $dynamic-checkout-button-border-on-focus;
     outline-offset: 3px;
   }
   &.disabled {
-    color: $dynamic-button-text-on-disabled;
-    background: $dynamic-button-background-on-disabled;
-    border-color: $dynamic-button-border-on-disabled;
+    color: $dynamic-checkout-button-text-on-disabled;
+    background: $dynamic-checkout-button-background-on-disabled;
+    border-color: $dynamic-checkout-button-border-on-disabled;
     cursor: default;
     pointer-events: none;
   }
