@@ -52,22 +52,6 @@
   }
 }
 
-.form__message {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 1rem;
-  font-size: 1.2rem;
-  line-height: 1;
-}
-
-.form__message .icon {
-  flex-shrink: 0;
-  width: 1.3rem;
-  height: 1.3rem;
-  margin-right: 0.5rem;
-}
-
 input.gift-card__number {
   @extend %body-large;
   border: none;
