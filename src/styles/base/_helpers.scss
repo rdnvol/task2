@@ -55,14 +55,98 @@
   white-space: nowrap;
 }
 
-.customizable-base-text {
-  color: $customizable-base-text;
+.base-body-text {
+  color: $base-body-text;
 }
 
 .base-secondary-text {
   color: $base-secondary-text;
 }
 
-.text-white {
-  color: #fff;
+.base-accent {
+  color: $base-accent;
+}
+
+.base-links {
+  color: $base-links;
+}
+
+.base-sale-price {
+  color: $base-sale-price;
+}
+
+.base-icons {
+  color: $base-icons;
+}
+
+.base-icons-on-hover {
+  color: $base-icons-on-hover;
+}
+
+.base-border {
+  color: $base-border;
+}
+
+.base-body-background {
+  background: $base-body-background;
+}
+
+.base-footer-background {
+  background: $base-footer-background;
+}
+
+.base-background {
+  background: $base-background;
+}
+
+.base-overlay-dark {
+  background: $base-overlay-dark;
+}
+
+.base-overlay-white {
+  background: $base-overlay-white;
+}
+
+.messages-error {
+  color: $messages-error;
+}
+
+.messages-error-light {
+  color: $messages-error-light;
+}
+
+.messages-success {
+  color: $messages-success;
+}
+
+.messages-information {
+  color: $messages-information;
+}
+
+.customizable-base-text {
+  color: $customizable-base-text;
+}
+
+.labels-sale-text {
+  color: $base-secondary-text;
+}
+
+.labels-sale-background {
+  background: $base-sale-price;
+}
+
+.labels-soldout-text {
+  color: $labels-soldout-text;
+}
+
+.labels-soldout-background {
+  background: $labels-soldout-background;
+}
+
+.labels-new-text {
+  color: $labels-new-text;
+}
+
+.labels-new-background {
+  background: $labels-new-background;
 }

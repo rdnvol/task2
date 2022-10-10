@@ -51,9 +51,9 @@
                       <legend class="visually-hidden">Newsletter form</legend>
                       <input type="hidden" name="contact[tags]" value="newsletter">
                       {%- if form.posted_successfully? -%}
-                        <p class="form-message form-message--success" tabindex="-1" data-form-status>
+                        <div class="form-message messages-success" tabindex="-1" data-form-status>
                           {{ 'general.newsletter_form.confirmation' | t }}
-                        </p>
+                        </div>
                       {%- endif -%}
                       <label for="newsletter-form-email-field" class="inline-block mb-2">
                         {{ 'general.newsletter_form.please_enter_your_email' | t }}

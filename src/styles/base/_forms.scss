@@ -119,10 +119,10 @@ input[type="submit"] {
   padding: 10px 15px;
   font-family: $font-heading;
   line-height: 1;
-  color: $button-text;
+  color: $primary-button-text;
   text-align: center;
-  background: $button-background;
-  border: 1px solid $button-border;
+  background: $primary-button-background;
+  border: 1px solid $primary-button-border;
   -webkit-border-radius: $button-border-radius;
   border-radius: $button-border-radius;
   cursor: pointer;
@@ -147,22 +147,22 @@ input[type="submit"] {
     }
   }
   &:hover {
-    color: $button-text-on-hover;
-    background: $button-background-on-hover;
-    border-color: $button-border-on-hover;
+    color: $primary-button-text-on-hover;
+    background: $primary-button-background-on-hover;
+    border-color: $primary-button-border-on-hover;
   }
   &:focus {
-    color: $button-text-on-focus;
-    background: $button-background-on-focus;
-    border-color: $button-border-on-focus;
-    outline: 1px dashed $button-border-on-focus;
+    color: $primary-button-text-on-focus;
+    background: $primary-button-background-on-focus;
+    border-color: $primary-button-border-on-focus;
+    outline: 1px dashed $primary-button-border-on-focus;
     outline-offset: 3px;
   }
   &.disabled,
   &:disabled {
-    color: $button-text-on-disabled;
-    background: $button-background-on-disabled;
-    border-color: $button-border-on-disabled;
+    color: $primary-button-text-on-disabled;
+    background: $primary-button-background-on-disabled;
+    border-color: $primary-button-border-on-disabled;
     outline: none !important;
     cursor: default;
     pointer-events: none;
@@ -725,9 +725,9 @@ a.button {
     outline-offset: 3px;
   }
   &.disabled {
-    color: $button-text-on-disabled;
-    background: $button-background-on-disabled;
-    border-color: $button-border-on-disabled;
+    color: $dynamic-checkout-button-text-on-disabled;
+    background: $dynamic-checkout-button-background-on-disabled;
+    border-color: $dynamic-checkout-button-border-on-disabled;
     cursor: default;
     pointer-events: none;
   }

@@ -19,7 +19,7 @@ h6,
   font-weight: $headings-font-weight;
   font-style: $font-heading-style;
   color: $headings-color;
-  @include media("≥desktop") {
+  @include media("≥widescreen") {
     margin: 0 0 30px;
   }
 
@@ -35,7 +35,7 @@ h6,
 h1,
 .h1 {
   font-size: $h1-font-size;
-  @include media ("≥desktop") {
+  @include media ("≥widescreen") {
     font-size: $h1-font-size-desktop;
   }
 }
@@ -43,7 +43,7 @@ h1,
 h2,
 .h2 {
   font-size: $h2-font-size;
-  @include media ("≥desktop") {
+  @include media ("≥widescreen") {
     font-size: $h2-font-size-desktop;
   }
 }
@@ -51,7 +51,7 @@ h2,
 h3,
 .h3 {
   font-size: $h3-font-size;
-  @include media ("≥desktop") {
+  @include media ("≥widescreen") {
     font-size: $h3-font-size-desktop;
   }
 }
@@ -59,7 +59,7 @@ h3,
 h4,
 .h4 {
   font-size: $h4-font-size;
-  @include media ("≥desktop") {
+  @include media ("≥widescreen") {
     font-size: $h4-font-size-desktop;
   }
 }
@@ -68,7 +68,7 @@ h5,
 %h5,
 .h5 {
   font-size: $h5-font-size;
-  @include media ("≥desktop") {
+  @include media ("≥widescreen") {
     font-size: $h5-font-size-desktop;
   }
 }
@@ -76,7 +76,7 @@ h5,
 h6,
 .h6 {
   font-size: $h6-font-size;
-  @include media ("≥desktop") {
+  @include media ("≥widescreen") {
     font-size: $h6-font-size-desktop;
   }
 }
@@ -96,22 +96,74 @@ h6,
   @extend %title;
 }
 
-%title-1 {
-  font-size: $font-size-base;
-  font-weight: 600;
-  @include media ("≥widescreen") {
-    font-size: calc(#{$font-size-base} + 2px);
-  }
+%body-large {
+  font-family: $font-body;
+  font-size: calc(#{$font-size-base} + 2px); // 18px
+  line-height: $base-line-height;
+  font-weight: $font-body-weight;
+  font-style: $font-body-style;
 }
 
-.title-1 {
-  @extend %title-1;
+.body-large {
+  @extend %body-large;
+}
+
+%body-medium {
+  font-family: $font-body;
+  font-size: $font-size-base; // 16px
+  line-height: $base-line-height;
+  font-weight: $font-body-weight;
+  font-style: $font-body-style;
+}
+
+.body-medium {
+  @extend %body-medium;
+}
+
+%body-small {
+  font-family: $font-body;
+  font-size: calc(#{$font-size-base} - 2px); // 14px
+  line-height: $base-line-height;
+  font-weight: $font-body-weight;
+  font-style: $font-body-style;
+}
+
+.body-small {
+  @extend %body-small;
+}
+
+%button-large {
+  font-family: $font-body;
+  font-size: $font-size-base; // 16px
+  line-height: $base-line-height;
+  font-weight: 600;
+  font-style: $font-body-style;
+}
+
+.button-large {
+  @extend %button-large;
+}
+
+%button-small {
+  font-family: $font-body;
+  font-size: calc(#{$font-size-base} - 2px); // 14px
+  line-height: $base-line-height;
+  font-weight: 600;
+  font-style: $font-body-style;
+}
+
+.button-small {
+  @extend %button-small;
 }
 
 %product-price-large {
-  font-size: calc(#{$font-size-base} - 2px);
+  font-family: $font-body;
+  font-size: calc(#{$font-size-base} - 2px); // 14px
+  line-height: $base-line-height;
+  font-weight: 600;
+  font-style: $font-body-style;
   @include media ("≥widescreen") {
-    font-size: $font-size-base;
+    font-size: $font-size-base; // 16px
   }
 }
 
@@ -119,10 +171,45 @@ h6,
   @extend %product-price-large;
 }
 
+%product-price-small {
+  font-family: $font-body;
+  font-size: calc(#{$font-size-base} - 2px); // 14px
+  line-height: $base-line-height;
+  font-weight: $font-body-weight;
+  font-style: $font-body-style;
+  @include media ("≥widescreen") {
+    font-size: $font-size-base; // 16px
+  }
+}
+
+.product-price-small {
+  @extend %product-price-small;
+}
+
+%base-label {
+  font-family: $font-body;
+  font-size: calc(#{$font-size-base} - 4px); // 12px
+  line-height: $base-line-height;
+  font-weight: 600;
+  font-style: $font-body-style;
+  @include media ("≥widescreen") {
+    font-size: calc(#{$font-size-base} - 2px); // 14px
+  }
+}
+
+.base-label {
+  @extend %base-label;
+}
+
 %link {
-  font-size: calc(#{$font-size-base} - 2px);
-  font-weight: 400;
-  text-decoration: none;
+  font-family: $font-body;
+  font-size: calc(#{$font-size-base} - 2px); // 14px
+  line-height: $base-line-height;
+  font-weight: $font-body-weight;
+  font-style: $font-body-style;
+  @include media ("≥widescreen") {
+    font-size: $font-size-base; // 16px
+  }
   &:hover,
   &:focus {
     color: $base-secondary-text;
@@ -134,13 +221,7 @@ h6,
 }
 
 p {
-  margin: 0 0 15px;
-  @include media("≥tablet") {
-    margin: 0 0 25px;
-  }
-  @include media("≥desktop") {
-    margin: 0 0 30px;
-  }
+  margin: 0 0 16px;
 }
 
 b,
@@ -156,36 +237,4 @@ a {
   &:focus {
     text-decoration: none;
   }
-}
-
-%body-large {
-  font-size: calc(#{$font-size-base} + 2px);
-}
-
-.body-large {
-  @extend %body-large;
-}
-
-%body-medium {
-  font-size: $font-size-base;
-}
-
-.body-medium {
-  @extend %body-medium;
-}
-
-%body-small {
-  font-size: calc(#{$font-size-base} - 2px);
-}
-
-.body-small {
-  @extend %body-small;
-}
-
-%base-label {
-  font-size: calc(#{$font-size-base} - 4px);
-}
-
-.base-label {
-  @extend %base-label;
 }
