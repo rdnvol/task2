@@ -55,8 +55,11 @@
     color: #fff;
   }
   {% for block in section.blocks %}
-    .text-columns-with-images .block-{{ block.id }} .image-container::after {
-      opacity: {{ block.settings.image_overlay_opacity | times: 0.1 }};
+    .block-{{ block.id }} .image-container::after {
+      opacity: {{ section.settings.image_overlay_opacity | times: 0.1 }};
+    }
+    .block-{{ block.id }} .button {
+      background-color: {{ block.settings.background_color }};
     }
   {% endfor %}
 </style>
@@ -70,6 +73,15 @@
       "id": "title",
       "label": "Heading",
       "default": "Text columns with images"
+    },
+    {
+      "type": "range",
+      "id": "image_overlay_opacity",
+      "label": "Image overlay opacity",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "default": 7
     }
   ],
   "blocks": [
@@ -81,15 +93,6 @@
           "type": "image_picker",
           "id": "image",
           "label": "Image"
-        },
-        {
-          "type": "range",
-          "id": "image_overlay_opacity",
-          "label": "Image overlay opacity",
-          "min": 1,
-          "max": 10,
-          "step": 1,
-          "default": 6
         },
         {
           "type": "text",
@@ -113,6 +116,12 @@
           "type": "url",
           "id": "btn_url",
           "label": "Button link"
+        },
+        {
+          "type": "color",
+          "id": "background_color",
+          "label": "Button Background Color",
+          "default": "#ffffff"
         }
       ]
     }
