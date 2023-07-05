@@ -54,13 +54,20 @@
   section[data-section-id="{{ section.id }}"] .custom-color {
     color: #fff;
   }
+
+  {% if section.settings.image_overlay_opacity != blank %}
+  .image-container::after {
+    opacity: {{ section.settings.image_overlay_opacity | times: 0.1 }};
+  }
+  {% endif %}
+
   {% for block in section.blocks %}
-    .block-{{ block.id }} .image-container::after {
-      opacity: {{ section.settings.image_overlay_opacity | times: 0.1 }};
-    }
-    .block-{{ block.id }} .button {
-      background-color: {{ block.settings.background_color }};
-    }
+    {% if block.settings.background_color != blank and block.settings.background_color.alpha != 0%}
+      .block-{{ block.id }} .button {
+        background-color: {{ block.settings.background_color }};
+        border-color: {{ block.settings.background_color }};
+      }
+    {% endif %}
   {% endfor %}
 </style>
 
