@@ -56,9 +56,9 @@
   }
 
   {% if section.settings.image_overlay_opacity != blank %}
-  .image-container::after {
-    opacity: {{ section.settings.image_overlay_opacity | times: 0.1 }};
-  }
+    section[data-section-id="{{ section.id }}"] .image-container::after {
+      opacity: {{ section.settings.image_overlay_opacity | times: 0.1 }};
+    }
   {% endif %}
 
   {% for block in section.blocks %}
