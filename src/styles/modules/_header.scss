@@ -43,7 +43,7 @@
 
 .header__panel-mobile {
   padding: 20px 0;
-  background: $base-background;
+  background: $base-secondary-background;
 }
 
 .logo {
@@ -200,7 +200,7 @@
 
         > a {
           @include media ("≥widescreen") {
-            color: $base-accent;
+            color: $color-accent;
           }
         }
       }
@@ -250,7 +250,7 @@
         padding: 0;
       }
       &:hover {
-        color: $base-accent;
+        color: $color-accent;
       }
     }
 
@@ -296,7 +296,7 @@
       &.active {
 
         > a {
-          color: $base-accent;
+          color: $color-accent;
         }
       }
     }
@@ -304,7 +304,7 @@
     a {
       &:hover {
         @include media ("≥widescreen") {
-          color: $base-accent;
+          color: $color-accent;
           text-decoration: none;
         }
       }
@@ -327,7 +327,7 @@
     z-index: 1000;
     width: 100%;
     padding: 0 30px 0 15px;
-    background: $base-background;
+    background: $base-secondary-background;
   }
 
   .container {
@@ -358,7 +358,7 @@
   width: 44px;
   height: 44px;
   &:hover {
-    color: $base-accent;
+    color: $color-accent;
   }
 
   svg {
@@ -393,6 +393,6 @@
     bottom: 0;
     min-width: 44px;
     padding: 6px;
-    border: 1px solid $primary-button-border;
+    border: 1px solid $button-border;
   }
 }

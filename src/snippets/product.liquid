@@ -10,12 +10,10 @@
   assign product_form_id = 'product-form-' | append: section.id
 %}
 
-<section
-  data-section-id="{{ section.id }}"
-  class="section"
-  data-section-type="product"
-  data-handle="{{ product.handle }}"
->
+<section data-section-id="{{ section.id }}"
+         class="section"
+         data-section-type="product"
+         data-handle="{{ product.handle }}">
   <div class="container">
     <div class="md:flex md:space-x-8">
       <div class="md:w-6/12 mb-4 md:mb-0">
@@ -38,17 +36,17 @@
           {% for block in section.blocks %}
             {% case block.type %}
               {% when "@app" %}
-                <div class="product__rating mb-5">
-                  {% render block %}
-                </div>
+              <div class="product__rating mb-5">
+                {% render block %}
+              </div>
               {% when "title" %}
                 {% unless section_onboarding %}
-                  <h1 class="product__title" {{ block.shopify_attributes }}>{{ product.title }}</h1>
+                    <h1 class="product__title" {{ block.shopify_attributes }}>{{ product.title }}</h1>
                 {% else %}
-                  <h1 class="product__title">{{ 'homepage.onboarding.product_title' | t }}</h1>
+                    <h1 class="product__title">{{ 'homepage.onboarding.product_title' | t }}</h1>
                 {% endunless %}
               {% when "vendor" %}
-                <div class="product__vendor mb-1 md:mb-2" {{ block.shopify_attributes }}>{{ product.vendor }}</div>
+                  <div class="product__vendor mb-1 md:mb-2" {{ block.shopify_attributes }}>{{ product.vendor }}</div>
               {% when "price" %}
                 <div class="product__price mb-3" {{ block.shopify_attributes }}>
                   <div class="product__price__box flex flex-wrap items-center" data-price-wrapper>
@@ -77,8 +75,7 @@
                 </div>
               {% when "buy_buttons" %}
                 {% unless section_onboarding %}
-                  {%
-                    render 'product-form',
+                  {% render 'product-form',
                     id: product_form_id,
                     product: product,
                     blocks: section.blocks,
@@ -88,151 +85,109 @@
                     show_dynamic_button: block.settings.show_dynamic_checkout
                   %}
                 {% else %}
-                  <form>
+                  <form >
                     <div class="product__price">
                       <div class="product__price__box flex flex-wrap items-center" data-price-wrapper>
                         <div data-product-price>
                           {{ 1999 | money }}
                         </div>
-                        <span class="accessibility" data-compare-text>{{ 'products.product.regular_price' | t }}</span>
-                        <del data-compare-price>
-                          {{ 29999 | money }}
-                        </del>
+                          <span class="accessibility" data-compare-text>{{ 'products.product.regular_price' | t }}</span>
+                          <del data-compare-price>
+                            {{ 29999 | money }}
+                          </del>
                       </div>
                     </div>
                     <div class="sm:flex sm:space-x-8">
                       <div class="sm:w-4/12">
                         <div class="product__row">
-                          {%
-                            render 'button',
+                          {% render 'button',
                             element: 'button',
                             locales_text: 'products.product.sold_out',
                             data_attribute: 'data-submit-button',
                             class: 'w-100 disabled',
                             other: 'name="add" disabled',
-                            type: 'submit'
-                          %}
+                            type: 'submit' %}
                         </div>
                       </div>
                     </div>
                   </form>
                 {% endunless %}
-              {% when "variant_picker" %}
-                <div
-                  id="variant-selects"
-                  class="no-js-hidden"
-                  data-section="{{ section.id }}"
-                  data-url="{{ product.url }}"
-                  {{ block.shopify_attributes }}
-                >
-                  {% unless product.has_only_default_variant %}
-                    {% for option in product.options_with_values %}
-                      <div class="sm:flex sm:space-x-8 product__row">
-                        <div class="sm:w-7/12 lg:w-5/12 relative">
-                          <label
-                            class="product__label {% if show_variant_label == false %}visually-hidden{% endif %}"
-                            for="Option{{ option.position }}"
-                          >
-                            {{ option.name }}
-                          </label>
-                          {% liquid
-                            assign size_option = 'products.product.size' | t | downcase
-                            assign options = product.options | downcase
-                          %}
-                          {% if forloop.first and show_size_chart and size_chart_url != blank and options contains size_option %}
-                            {% capture size_chart_link %}
-                              <a
-                                class="size-chart-link"
-                                data-type="ajax"
-                                data-filter=".section .container"
-                                href="{{ size_chart_url }}"
-                              >
-                                {{- 'products.product.size_chart' | t -}}
-                              </a>
-                            {% endcapture %}
-                            {% if show_variant_label == false %}
-                              <div class="text-right pb-2">
-                                {{ size_chart_link }}
-                              </div>
-                            {% else %}
-                              {{ size_chart_link }}
-                            {% endif %}
+                {% when "variant_picker" %}
+                <div id="variant-selects" class="no-js-hidden" data-section="{{ section.id }}" data-url="{{ product.url }}" {{ block.shopify_attributes }}>
+                {% unless product.has_only_default_variant %}
+                  {% for option in product.options_with_values %}
+                    <div class="sm:flex sm:space-x-8 product__row">
+                      <div class="sm:w-7/12 lg:w-5/12 relative">
+                        <label class="product__label {% if show_variant_label == false %}visually-hidden{% endif %}" for="Option{{ option.position }}">
+                          {{ option.name }}
+                        </label>
+                        {% liquid
+                          assign size_option = 'products.product.size' | t | downcase
+                          assign options = product.options | downcase
+                        %}
+                        {% if forloop.first and show_size_chart and size_chart_url != blank and options contains size_option %}
+                          {% if show_variant_label == false %}
+                            <div class="text-right pb-2">
                           {% endif %}
-                          <select
-                            class="product__select w-100"
-                            id="Option{{ option.position }}"
-                            name="options[{{ option.name | escape }}]"
-                            form="{{ product_form_id }}"
+                          <a class="size-chart-link"
+                             data-type="ajax"
+                             data-filter=".section .container"
+                             href="{{ size_chart_url }}">{{ 'products.product.size_chart' | t }}</a>
+                          {% if show_variant_label == false %}
+                            </div>
+                          {% endif %}
+                        {% endif %}
+                        <select
+                          class="product__select w-100"
+                          id="Option{{ option.position }}"
+                          name="options[{{ option.name | escape }}]"
+                          form="{{ product_form_id }}"
                           >
-                            {% for value in option.values %}
-                              <option
-                                value="{{ value | escape }}"
-                                {% if option.selected_value == value %}
-                                  selected="selected"
-                                {% endif %}
-                              >
-                                {{ value }}
-                              </option>
-                            {% endfor %}
-                          </select>
-                        </div>
+                          {% for value in option.values %}
+                            <option
+                                    value="{{ value | escape }}"
+                                    {% if option.selected_value == value %}selected="selected"{% endif %}>
+                              {{ value }}
+                            </option>
+                          {% endfor %}
+                        </select>
                       </div>
-                    {% endfor %}
-                  {% endunless %}
-                  <script type="application/json">
-                    {{ product.variants | json }}
-                  </script>
-                </div>
+                    </div>
+                  {% endfor %}
+                {% endunless %}
+                <script type="application/json">
+                  {{ product.variants | json }}
+                </script>
+              </div>
 
-                <noscript class="product-form__noscript-wrapper-{{ section.id }}">
-                  <div class="product-form__input{% if product.has_only_default_variant %} hidden{% endif %}">
-                    <label
-                      class="form__label"
-                      for="Variants-{{ section.id }}"
-                    >
-                      {{- 'products.product.product_variants' | t -}}
-                    </label>
-                    <div class="select">
-                      <select
-                        name="id"
-                        id="Variants-{{ section.id }}"
-                        class="select__select"
-                        form="{{ product_form_id }}"
-                      >
-                        {%- for variant in product.variants -%}
-                          <option
-                            {% if variant == product.selected_or_first_available_variant %}
-                              selected="selected"
-                            {% endif %}
-                            {% if variant.available == false %}
-                              disabled
-                            {% endif %}
-                            value="{{ variant.id }}"
-                          >
-                            {{ variant.title }}
-                            {%- if variant.available == false %} - {{ 'products.product.sold_out' | t }}{% endif %}
-                            - {{ variant.price | money | strip_html }}
-                          </option>
-                        {%- endfor -%}
-                      </select>
+              <noscript class="product-form__noscript-wrapper-{{ section.id }}">
+                <div class="product-form__input{% if product.has_only_default_variant %} hidden{% endif %}">
+                  <label class="form__label" for="Variants-{{ section.id }}">{{ 'products.product.product_variants' | t }}</label>
+                  <div class="select">
+                    <select name="id" id="Variants-{{ section.id }}" class="select__select" form="{{ product_form_id }}">
+                      {%- for variant in product.variants -%}
+                        <option
+                          {% if variant == product.selected_or_first_available_variant %}selected="selected"{% endif %}
+                          {% if variant.available == false %}disabled{% endif %}
+                          value="{{ variant.id }}"
+                        >
+                          {{ variant.title }}
+                          {%- if variant.available == false %} - {{ 'products.product.sold_out' | t }}{% endif %}
+                          - {{ variant.price | money | strip_html }}
+                        </option>
+                      {%- endfor -%}
+                    </select>
+                  </div>
+                </div>
+              </noscript>
+
+              {% when "quantity_selector" %}
+                  <div class="sm:flex sm:space-x-8 product__row">
+                    <div class="sm:w-7/12 lg:w-5/12">
+                      <label class="product__label" for="Quantity">{{ 'products.product.quantity' | t }}</label>
+                      <input type="number" id="Quantity" class="w-100" name="quantity" value="1" min="1" form="{{ product_form_id }}">
                     </div>
                   </div>
-                </noscript>
-              {% when "quantity_selector" %}
-                <div class="sm:flex sm:space-x-8 product__row">
-                  <div class="sm:w-7/12 lg:w-5/12">
-                    <label class="product__label" for="Quantity">{{ 'products.product.quantity' | t }}</label>
-                    <input
-                      type="number"
-                      id="Quantity"
-                      class="w-100"
-                      name="quantity"
-                      value="1"
-                      min="1"
-                      form="{{ product_form_id }}"
-                    >
-                  </div>
-                </div>
               {% when "description" %}
                 <div class="product__row rte">
                   {% if product.description %}

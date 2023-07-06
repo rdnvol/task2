@@ -15,12 +15,12 @@
 <div class="section">
   <div class="container">
     {% if section.settings.title != blank %}
-      <h3 class="text-center">{{ section.settings.title }}</h3>
+      <h2 class="text-center">{{ section.settings.title }}</h2>
     {% endif %}
-    <div class="{% if section.settings.layout_slider_on_mobile == 'slider' %}featured-collection__gallery flex flex-nowrap mb-5 sm:mb-0 space-x-6 sm:space-x-0 sm:grid sm:gap-x-8{% else %}grid gap-x-8{% endif %} {{ grid_item_width }}">
+    <div class="grid {{ grid_item_width }} gap-8 gap-y-0">
       {% liquid
         for product in collection.products limit: product_limit
-          render "product-card", product: product, grid_item_width: '', show_vendor: section.settings.show_vendor
+          render "product-card", product: product, grid_item_width: ''
         else
           for i in (1..product_limit)
             capture current
@@ -31,8 +31,7 @@
         endfor
       %}
     </div>
-
-    {%- if section.settings.show_view_all and collection != blank -%}
+    {%- if section.settings.show_view_all -%}
       {% assign button_label = 'collections.general.view_all' | t %}
       <div class="sm:pt-4 text-center">
         {%
@@ -61,22 +60,6 @@
       "label": "Collection"
     },
     {
-      "type": "select",
-      "id": "layout_slider_on_mobile",
-      "label": "Layout slider on mobile",
-      "default": "column",
-      "options": [
-        {
-          "value": "slider",
-          "label": "Slider"
-        },
-        {
-          "value": "column",
-          "label": "Column"
-        }
-      ]
-    },
-    {
       "type": "range",
       "id": "grid",
       "label": "Products per row",
@@ -93,12 +76,6 @@
       "max": 5,
       "step": 1,
       "default": 2
-    },
-    {
-      "type": "checkbox",
-      "id": "show_vendor",
-      "label": "Show product vendor",
-      "default": true
     },
     {
       "type": "checkbox",
