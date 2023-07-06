@@ -1,6 +1,5 @@
 {% unless grid_item_width %}
   {% assign grid_item_width = 'col-sm-6 col-lg-3' %}
-  {% assign vendor = vendor %}
 {% endunless %}
 
 <div class="{{ grid_item_width }}">
@@ -33,7 +32,7 @@
       </div>
     </a>
     <div class="product-item__box">
-      {% if vendor %}
+      {% if display_vendor %}
         <h4 class="product-item__subtitle">
           <div>{{ product.vendor }}</div>
         </h4>
