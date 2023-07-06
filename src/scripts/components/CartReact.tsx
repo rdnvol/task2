@@ -90,7 +90,7 @@ const Cart: FunctionComponent = () => {
               {ref.dataset.noteEnable === 'true' && renderNote()}
               <div className="md:w-5/12 md:ml-auto">
                 <div className="cart-form__total mb-4">
-                  <div className="title flex justify-between md:justify-end">
+                  <div className="title-1 flex justify-between md:justify-end">
                     <div className="mr-2">{theme.cart.total}</div>
                     {formatMoney(total_price, theme.moneyFormat)}
                   </div>
@@ -122,12 +122,10 @@ export default Cart;
 const cartElement = document.getElementById('cart');
 
 if (cartElement) {
-  /* eslint-disable */
   render(
     <Provider store={window.Store}>
       <Cart ref={(element) => (window.cart = element)} />
     </Provider>,
     cartElement
   );
-  /* eslint-enable */
 }

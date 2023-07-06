@@ -3,22 +3,13 @@
     "accessibility": {
       "skip_to_content": "Passer au contenu"
     },
-    "breadcrumbs": {
-      "home": "Home"
-    },
     "meta": {
       "tags": "Mots clés \"{{ tags }}\"",
-      "page": "Page {{ page }}",
-      "seo_description": "Better than Dawn."
+      "page": "Page {{ page }}"
     },
     "404": {
       "title": "404 - Page non trouvée",
       "subtext_html": "Cette page n'est pas disponible. <a href=\"/collections/all\">Retourner au magasinage</a>"
-    },
-    "pagination": {
-      "previous": "Previous page",
-      "next": "Next page",
-      "current_page": "Page {{ current }} of {{ total }}"
     },
     "password_page": {
       "opening_soon": "Bientôt ouvert",
@@ -37,7 +28,6 @@
       "powered_by_shopify_html": "Cette boutique sera propulsée par {{ shopify }}"
     },
     "social": {
-      "share": "Share",
       "share_on_facebook": "Partager",
       "share_on_twitter": "Tweeter",
       "share_on_pinterest": "Épingler",
@@ -62,12 +52,10 @@
       "no_results_html": "Veuillez essayer un terme de recherche différent ou revenir à la <a href=\"/\">page d'accueil</a>."
     },
     "newsletter_form": {
-      "title": "Connect",
       "newsletter_email": "Soyez au courant",
       "email_placeholder": "Adresse courriel",
       "confirmation": "Merci pour votre abonnement",
-      "submit": "S'inscrire",
-      "please_enter_your_email": "Please enter your email"
+      "submit": "S'inscrire"
     }
   },
   "blogs": {
@@ -81,7 +69,6 @@
     },
     "comments": {
       "title": "Laissez un commentaire",
-      "block_title": "Comments",
       "name": "Nom",
       "email": "Courriel",
       "message": "Message",
@@ -111,12 +98,7 @@
       "cookies_required": "Activer les cookies pour utiliser le panier",
       "continue_browsing_html": "<a href=\"/collections/all\">Retourner au magasinage</a>.",
       "item_quantity": "Quantité de l'article",
-      "continue_shopping_html": "<a href=\"#\">Continue shopping</a>",
-      "savings": "Vous économisez",
-      "just_added_to_your_cart": "Just added to your cart",
-      "view_cart": "View cart",
-      "special_instructions_placeholder": "View Special instructions for seller",
-      "add_to_cart": "Add to cart"
+      "savings": "Vous économisez"
     },
     "label": {
       "product": "Produit",
@@ -129,25 +111,8 @@
   },
   "collections": {
     "general": {
-      "view_all": "view all",
       "no_matches": "Aucun produit ne correspond à votre recherche.",
-      "link_title": "Consultez la collection {{ title }}",
-      "products_amount": "{{ amount }} products",
-      "product": "product",
-      "products": "products",
-      "filter_by": "Filter by",
-      "sort_by": "Sort by",
-      "clear_all": "Clear all",
-      "close": "Close",
-      "filter_and_sort": "Filter and sort",
-      "filter": "Filter:"
-    },
-    "filters": {
-      "filter_product_price": "The highest price is $300.00",
-      "reset": "Reset",
-      "to": "to",
-      "minimum_price": "Minimum price",
-      "maximum_price": "Maximum price"
+      "link_title": "Consultez la collection {{ title }}"
     }
   },
   "contact": {
@@ -158,8 +123,7 @@
       "message": "Message",
       "send": "Envoyer",
       "post_success": "Merci de nous avoir avoir contacté. Nous vous reviendrons le plus rapidement possible."
-    },
-    "location": "Get directions"
+    }
   },
   "customer": {
     "account": {
@@ -201,9 +165,6 @@
     },
     "login": {
       "title": "Connexion",
-      "log_out": "Log out",
-      "log_in": "Log in",
-      "create_account": "Create account",
       "email": "Courriel",
       "password": "Mot de passe",
       "forgot_password": "Mot de passe oublié?",
@@ -276,7 +237,6 @@
       "blog_excerpt": "Votre magasin n'a encore rien bloggué. Un blog peut être utilisé pour parler des lancements de nouveaux produits, d'astuces, ou d'autres nouvelles que vous voulez partager avec vos clients. Vous pouvez regarder le blog d'e-commerce de Shopify pour trouver de l'inspiration et des conseils pour votre propre magasin et blog.",
       "blog_author": "Nom de l'auteur",
       "product_title": "Titre du produit",
-      "product_description": "This area is used to describe your product’s details. Tell customers about the look, feel, and style of your product. Add details on color, materials used, sizing, and where it was made.",
       "collection_title": "Titre de la collection",
       "no_content": "Cette section ne contient actuellement aucun contenu. Ajoutez-en en utilisant la barre latérale."
     }
@@ -311,34 +271,7 @@
       "on_sale_from_html": "En solde {{ price }}",
       "from_text_html": "À partir de {{ price }}",
       "quantity": "Quantité",
-      "add_to_cart": "Ajouter au panier",
-      "dynamic_button_placeholder": "Buy it now",
-      "size_chart": "Size Chart",
-      "size": "size",
-      "color_title": "Color",
-      "starting_at": "From",
-      "product_variants": "Product variants"
-    },
-    "product_card": {
-      "labels": {
-        "sale": "Sale",
-        "sold_out": "Sold out",
-        "new": "New"
-      }
-    },
-    "facets": {
-      "filters_selected": {
-        "one": "{{ count }} selected",
-        "other": "{{ count }} selected"
-      },
-      "product_count": {
-        "one": "{{ product_count }} of {{ count }} product",
-        "other": "{{ product_count }} of {{ count }} products"
-      },
-      "product_count_simple": {
-        "one": "{{ count }} product",
-        "other": "{{ count }} products"
-      }
+      "add_to_cart": "Ajouter au panier"
     }
   },
   "gift_cards": {
@@ -351,15 +284,12 @@
       "redeem": "Entrez ce code lors du paiement pour utiliser votre carte-cadeau",
       "shop_link": "Boutique",
       "print": "Imprimer",
-      "copy_code_success": "Code copié avec succès",
-      "copy_code_text": "Copier le code",
       "remaining_html": "{{ balance }} restant",
       "add_to_apple_wallet": "Ajouter à Apple Wallet",
       "initial_value": "Valeur de la carte-cadeau : {{ value }}"
     }
   },
   "date_formats": {
-    "month_day_year": "%d %B, %Y",
-    "month_day_year_time": "on %B %d, %Y at %l:%M%p"
+    "month_day_year": "%d %B, %Y"
   }
 }

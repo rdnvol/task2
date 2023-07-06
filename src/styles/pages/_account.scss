@@ -158,10 +158,6 @@ button.button-add-new-address {
     border-bottom: 1px solid #d0d2d3;
   }
 
-  th {
-    font-weight: 600;
-  }
-
   th,
   td {
     text-align: left;
@@ -189,11 +185,8 @@ button.button-add-new-address {
         flex-shrink: 0;
         width: 130px;
         padding: 0 10px 0 0;
-        font-family: $font-body;
-        font-size: $font-size-base;
-        line-height: $base-line-height;
-        font-weight: 600;
-        font-style: $font-body-style;
+        font-size: 12px;
+        font-weight: bold;
       }
     }
   }
@@ -240,7 +233,7 @@ button.button-add-new-address {
 
 .errors {
   margin: 0 0 15px;
-  color: $messages-error;
+  color: #ff0101;
   text-align: center;
 }
 

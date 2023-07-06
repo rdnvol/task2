@@ -13,8 +13,6 @@
     <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
     {%- unless settings.font_heading.system? and settings.font_body.system? -%}
       <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
-      <link rel="preload" as="font" href="{{ settings.font_heading | font_url }}" type="font/woff2" crossorigin>
-      <link rel="preload" as="font" href="{{ settings.font_body | font_url }}" type="font/woff2" crossorigin>
     {%- endunless -%}
     {% liquid
       render 'theme-meta'

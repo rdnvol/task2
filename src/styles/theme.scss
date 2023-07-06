@@ -71,11 +71,10 @@ $media-expressions: (
 @import "section/plans-section";
 @import "section/newsletter";
 @import "section/video-section";
-@import "section/collections-list-section";
+@import "section/collection-list";
 @import "section/rich-text-section";
 @import "section/map-section";
 @import "section/page-hero";
-@import "section/text-columns-with-images";
 
 @import "modules/age-popup";
 @import "modules/filters";
