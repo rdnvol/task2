@@ -33,6 +33,15 @@
     "prepare": "husky install"
   },
   "lint-staged": {
+    "*.liquid": [
+      "prettier --write"
+    ],
+    "*.scss": [
+      "stylelint"
+    ],
+    "src/scripts/**/*.{ts,js,tsx,jsx}": [
+      "eslint --fix"
+    ]
   },
   "husky": {
     "hooks": {
