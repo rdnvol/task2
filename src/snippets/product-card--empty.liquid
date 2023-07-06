@@ -4,12 +4,14 @@
 
 <div class="{{ grid_item_width }}">
   <div class="product-item text-center">
-    <div class="mb-3">
+    <div class="product-item__img">
       {{ 'product-' | append: index | placeholder_svg_tag: 'placeholder-svg' }}
     </div>
     <div class="product-item__box">
-      <h3 class="title mb-2">Your product's name</h3>
-      <div class="product-price-large">
+      <h3 class="product-item__title">
+        <div>Your product's name</div>
+      </h3>
+      <div class="product-item__price">
         {% render "product-price", product: product %}
       </div>
     </div>

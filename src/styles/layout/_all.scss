@@ -134,7 +134,7 @@ ins {
     &:hover {
 
       svg {
-        fill: $base-accent;
+        fill: $color-accent;
       }
     }
   }
@@ -166,7 +166,7 @@ ins {
     height: 44px;
     color: $base-icons;
     text-decoration: none;
-    background: $base-background;
+    background: $base-secondary-background;
     border-radius: 100%;
     &:hover {
       background: $base-footer-background;
@@ -412,8 +412,8 @@ ins {
   color: $base-body-text;
   text-align: left;
   text-decoration: none;
-  background: $base-background;
-  border: 1px solid $base-background;
+  background: $base-accordion-background;
+  border: 1px solid $base-accordion-background;
   @include media ("≥widescreen") {
     padding: 8px 14px 7px;
   }
@@ -498,7 +498,7 @@ ins {
     right: 0;
     bottom: 0;
     left: 0;
-    background: $primary-button-background;
+    background: $button-background;
   }
   &::after {
     top: 50%;
@@ -670,10 +670,6 @@ img[data-sizes="auto"] {
 
   .icon-play {
     margin-left: 0.2rem;
-  }
-
-  .icon-success {
-    color: $messages-success;
   }
 }
 

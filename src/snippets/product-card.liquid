@@ -4,7 +4,7 @@
 
 <div class="{{ grid_item_width }}">
   <div class="product-item text-center">
-    <a href="{{ product.url | within: collection }}" class="relative block mb-3">
+    <a href="{{ product.url | within: collection }}" class="product-item__img relative">
       {% if product.featured_image != blank %}
         {%
           render "image",
@@ -13,8 +13,7 @@
           src_m: product.featured_image,
           m: '162x202',
           placeholder: 'img-placeholder.png',
-          alt: product.featured_image.alt,
-          crop: 'center',
+          alt: product.featured_image.alt
         %}
       {% else %}
         {{ 'image' | placeholder_svg_tag: "placeholder-svg" }}
@@ -34,15 +33,10 @@
       </div>
     </a>
     <div class="product-item__box">
-      {% if show_vendor %}
-        <div class="body-small">{{ product.vendor }}</div>
-      {% endif %}
-      <h3 class="title mb-2">
+      <h3 class="product-item__title">
         <a href="{{ product.url | within: collection }}">{{ product.title }}</a>
       </h3>
-      <div class="mb-2 product-price-large">
-        {% render "product-price", product: product %}
-      </div>
+      {% render "product-price", product: product %}
     </div>
   </div>
 </div>

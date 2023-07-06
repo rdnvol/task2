@@ -4,48 +4,50 @@
   {% assign image = 'img-placeholder.png' | asset_url %}
 {% endif %}
 <div
-  class="pt-0 pb-10"
+  class="section"
   data-section-type="video"
   data-section-id="{{ section.id }}"
 >
   <div class="container">
-    <div class="background-video-wrapper {{ section.settings.height }} relative">
+    <div class="background-video-wrapper {{ section.settings.height }} {{ section.settings.alignment }} relative">
       <video class="js-player" playsinline autoplay loop muted data-poster="{{ image }}">
         <source
           src="{{ section.settings.video | default: "https://d2ezlykacdqcnj.cloudfront.net/_assets/home-video/beach-waves-loop.mp4" }}"
           type="video/mp4"
         >
       </video>
-      <div class="video-text-block">
-        <div class="flex h-100 text-center justify-center items-center">
-          <div class="video-text-block__holder sm:w-10/12 md:w-6/12 lg:w-4/12 {{ section.settings.text_color }}">
-            {% for block in section.blocks %}
-              {% case block.type %}
-                {% when 'title' %}
-                  {% if block.settings.text_size == 'medium' %}
-                    <h2 {{ block.shopify_attributes }}>{{ block.settings.title }}</h2>
-                  {% else %}
-                    <h2 class="h1" {{ block.shopify_attributes }}>{{ block.settings.title }}</h2>
+      {% if section.settings.title != blank %}
+        <div class="video-text-block">
+          <div class="flex h-100 text-center justify-center items-center">
+            <div class="video-text-block__holder sm:w-10/12 md:w-6/12 lg:w-4/12">
+              {% if section.settings.text_size == 'medium' %}
+                <h2
+                  {% if section.settings.title_color.alpha != 0 and section.settings.title_color != blank %}
+                    class="custom-title-color"
                   {% endif %}
-                {% when 'subheading' %}
-                  <div class="mb-4" {{ block.shopify_attributes }}>{{ block.settings.subheading }}</div>
-                {% when 'button' %}
-                  {% if block.settings.button_link != blank and block.settings.button_label != blank %}
-                    {%
-                      render 'button',
-                      element: 'a',
-                      href: block.settings.button_link,
-                      text: block.settings.button_label,
-                    %}
-                  {% endif %}
-              {% endcase %}
-            {% endfor %}
+                >
+                  {{ section.settings.title }}
+                </h2>
+              {% else %}
+                <h2 class="h1{% if section.settings.title_color.alpha != 0 and section.settings.title_color != blank %} custom-title-color{% endif %}">
+                  {{ section.settings.title }}
+                </h2>
+              {% endif %}
+            </div>
           </div>
         </div>
-      </div>
+      {% endif %}
     </div>
   </div>
 </div>
+
+<style>
+  {% if section.settings.title_color.alpha != 0 and section.settings.title_color != blank %}
+    div[data-section-id="{{ section.id }}"] .custom-title-color {
+      color: {{ section.settings.title_color }}
+    }
+  {% endif %}
+</style>
 
 {% schema %}
 {
@@ -54,13 +56,57 @@
     {
       "type": "image_picker",
       "id": "image",
-      "label": "Poster image"
+      "label": "Cover image"
     },
     {
       "type": "url",
       "id": "video",
       "label": "Video link",
       "info": "Only direct links to mp4 files"
+    },
+    {
+      "type": "select",
+      "id": "alignment",
+      "label": "Image alignment",
+      "default": "",
+      "options": [
+        {
+          "value": "background-top-left",
+          "label": "Top left"
+        },
+        {
+          "value": "background-top-center",
+          "label": "Top center"
+        },
+        {
+          "value": "background-top-right",
+          "label": "Top right"
+        },
+        {
+          "value": "background-center-left",
+          "label": "Middle left"
+        },
+        {
+          "value": "",
+          "label": "Middle center"
+        },
+        {
+          "value": "background-center-right",
+          "label": "Middle right"
+        },
+        {
+          "value": "background-bottom-left",
+          "label": "Bottom left"
+        },
+        {
+          "value": "background-bottom-center",
+          "label": "Bottom center"
+        },
+        {
+          "value": "background-bottom-right",
+          "label": "Bottom right"
+        }
+      ]
     },
     {
       "type": "select",
@@ -83,78 +129,30 @@
       ]
     },
     {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Heading"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title color",
+      "default": "#000"
+    },
+    {
       "type": "select",
-      "id": "text_color",
-      "label": "Text color",
-      "default": "",
+      "id": "text_size",
+      "label": "Text size",
+      "default": "medium",
       "options": [
         {
-          "value": "customizable-base-text",
-          "label": "White"
+          "value": "medium",
+          "label": "Medium"
         },
         {
-          "value": "",
-          "label": "Black"
-        }
-      ]
-    }
-  ],
-  "blocks": [
-    {
-      "type": "title",
-      "name": "Title",
-      "settings": [
-        {
-          "type": "text",
-          "id": "title",
-          "label": "Heading",
-          "default": "Heading"
-        },
-        {
-          "type": "select",
-          "id": "text_size",
-          "label": "Text size",
-          "default": "medium",
-          "options": [
-            {
-              "value": "medium",
-              "label": "Medium"
-            },
-            {
-              "value": "large",
-              "label": "Large"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "type": "subheading",
-      "name": "Subheading",
-      "settings": [
-        {
-          "type": "text",
-          "id": "subheading",
-          "label": "Subheading",
-          "default": "Subheading"
-        }
-      ]
-    },
-    {
-      "type": "button",
-      "name": "Button",
-      "settings": [
-        {
-          "type": "url",
-          "id": "button_link",
-          "label": "Button link",
-          "info": "Button is disabled if empty"
-        },
-        {
-          "type": "text",
-          "id": "button_label",
-          "label": "Button label",
-          "default": "Button"
+          "value": "large",
+          "label": "Large"
         }
       ]
     }
@@ -162,18 +160,7 @@
   "presets": [
     {
       "name": "Video",
-      "category": "Video",
-      "blocks": [
-        {
-          "type": "subheading"
-        },
-        {
-          "type": "title"
-        },
-        {
-          "type": "button"
-        }
-      ]
+      "category": "Video"
     }
   ]
 }

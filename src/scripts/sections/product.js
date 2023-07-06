@@ -87,7 +87,7 @@ export class Product {
     if (!el) return;
 
     if (selector === 'input') {
-      let newAcc = [];
+      let newAcc;
 
       this.options = Array.from(el.querySelectorAll(selector)).reduce((acc, curr) => {
         if (curr.checked) {
@@ -97,10 +97,9 @@ export class Product {
         return newAcc;
       }, []);
 
-      const titles = Array.from(this.wrapper.querySelectorAll('.product__variant-label-box')).reduce(
-        (acc, curr) => [...acc, curr.querySelector('span:last-child')],
-        []
-      );
+      const titles = this.wrapper
+        .querySelectorAll('.product__variant-label-box')
+        .reduce((acc, curr) => [...acc, curr.querySelector('span:last-child')], []);
 
       titles.forEach((title, index) => {
         title.innerText = this.options[index];
@@ -157,17 +156,17 @@ export class Product {
       this.submitButton.classList.add('disabled');
       this.submitButton.setAttribute('disabled', 'disabled');
       this.submitButtonText.innerText = theme.strings.unavailable;
-      this.shopifyButtons?.classList.add('hidden');
+      this.shopifyButtons.classList.add('hidden');
     } else if (variant.available) {
       this.submitButton.classList.remove('disabled');
       this.submitButton.removeAttribute('disabled');
       this.submitButtonText.innerText = theme.strings.addToCart;
-      this.shopifyButtons?.classList.remove('hidden');
+      this.shopifyButtons.classList.remove('hidden');
     } else {
       this.submitButtonText.innerText = theme.strings.soldOut;
       this.submitButton.classList.add('disabled');
       this.submitButton.setAttribute('disabled', 'disabled');
-      this.shopifyButtons?.classList.add('hidden');
+      this.shopifyButtons.classList.add('hidden');
     }
   }
 

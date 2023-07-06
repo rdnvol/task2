@@ -18,8 +18,8 @@ class Sticky {
   };
 
   initResizer() {
-    this.resizeObserver = new ResizeObserver(debounce(this.resetOnResize, 100));
-    this.resizeObserver.observe(document.querySelector('[data-sticky-states-inner]'));
+    this.resizeObserver = new ResizeObserver(debounce(this.resetOnResize, 400));
+    this.resizeObserver.observe(document.body);
   }
 
   init(settings) {

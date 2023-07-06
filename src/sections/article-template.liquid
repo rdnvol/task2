@@ -14,24 +14,20 @@
               </a>
             {% endif %}
           </header>
-          {% if article.image.src != blank %}
-            <div class="post__img">
-              {%
-                render 'image',
-                src: article.image.src,
-                d: '857x',
-                src_m: article.image.src,
-                m: '375x',
-                alt: article.image.alt,
-                placeholder: 'img-placeholder.png'
-              %}
-            </div>
-          {% endif %}
-          {% if article.content != blank %}
-            <div class="post__text-block rte">
-              {{ article.content }}
-            </div>
-          {% endif %}
+          <div class="post__img">
+            {%
+              render 'image',
+              src: article.image.src,
+              d: '857x',
+              src_m: article.image.src,
+              m: '375x',
+              alt: article.image.alt,
+              placeholder: 'img-placeholder.png'
+            %}
+          </div>
+          <div class="post__text-block rte">
+            {{ article.content }}
+          </div>
           {% if settings.social_sharing_blog %}
             {% render 'social-sharing', share_title: article.title, share_permalink: article.url, share_image: article.image %}
           {% endif %}
@@ -59,13 +55,13 @@
             <h2 class="h3">{{ 'blogs.comments.title' | t }}</h2>
             {{ form.errors | default_errors }}
             {% if comment and comment.status and comment.id != blank %}
-              <div class="form-success messages-success">
+              <p class="form-success">
                 {% if blog.moderated? and comment.status != 'published' %}
                   {{ 'blogs.comments.success_moderated' | t }}
                 {% else %}
                   {{ 'blogs.comments.success' | t }}
                 {% endif %}
-              </div>
+              </p>
             {% endif %}
             <div class="sm:grid sm:grid-cols-2 sm:gap-x-8">
               <div class="input-holder">

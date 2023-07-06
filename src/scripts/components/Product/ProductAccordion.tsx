@@ -28,6 +28,7 @@ const ProductAccordion: FunctionComponent<PropsType> = ({ product }) => {
             });
           });
         },
+        off() {},
       },
     });
 
