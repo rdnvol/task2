@@ -23,6 +23,13 @@
   }
 }
 
+.product-item__subtitle {
+  margin: 0 0 5px;
+  font-size: $font-size-base;
+  line-height: 1.25;
+  font-weight: 400;
+}
+
 .product-item__label {
   margin: 0 -4px -5px;
   &.product-item__label--large {

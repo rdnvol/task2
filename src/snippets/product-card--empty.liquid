@@ -8,11 +8,16 @@
       {{ 'product-' | append: index | placeholder_svg_tag: 'placeholder-svg' }}
     </div>
     <div class="product-item__box">
+      {% if display_vendor %}
+        <h4 class="product-item__subtitle">
+          <div>{{ product.vendor }}</div>
+        </h4>
+      {% endif %}
       <h3 class="product-item__title">
         <div>Your product's name</div>
       </h3>
       <div class="product-item__price">
-        {% render "product-price", product: product %}
+        {% render 'product-price', product: product %}
       </div>
     </div>
   </div>

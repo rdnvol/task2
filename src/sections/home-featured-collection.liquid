@@ -20,13 +20,13 @@
     <div class="grid {{ grid_item_width }} gap-8 gap-y-0">
       {% liquid
         for product in collection.products limit: product_limit
-          render "product-card", product: product, grid_item_width: ''
+          render 'product-card', product: product, grid_item_width: '', vendor: section.settings.section_enable_vendor_name
         else
           for i in (1..product_limit)
             capture current
               cycle 1, 2, 3, 4, 5, 6
             endcapture
-            render "product-card--empty", index: current, grid_item_width: ''
+            render 'product-card--empty', index: current, grid_item_width: '', vendor: section.settings.section_enable_vendor_name
           endfor
         endfor
       %}
@@ -34,11 +34,7 @@
     {%- if section.settings.show_view_all -%}
       {% assign button_label = 'collections.general.view_all' | t %}
       <div class="sm:pt-4 text-center">
-        {%
-          render 'button',
-          href: collection.url,
-          text: button_label
-        %}
+        {% render 'button', href: collection.url, text: button_label %}
       </div>
     {%- endif -%}
   </div>
@@ -81,6 +77,12 @@
       "type": "checkbox",
       "id": "show_view_all",
       "label": "Show 'View all' button",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "section_enable_vendor_name",
+      "label": "Enable vendor name",
       "default": true
     }
   ],
