@@ -9,7 +9,7 @@
     assign results_url = '?q=' | append: terms | append: '&options%5Bprefix%5D=last&sort_by=' | append: sort_by
   endif
 
-  render 'page-hero', image: collection.image
+  render 'page-hero', image: collection.image, enable_lazyload: enable_lazyload
   render 'breadcrumbs'
 %}
 
@@ -26,18 +26,12 @@
         <h1 class="h2 mb-2">{{ collection.title }}</h1>
 
         {% if collection.description == blank %}
-          <h2 class="text-size-md visually-hidden">Collection description</h2>
+          <h2 class="body-medium visually-hidden">Collection description</h2>
         {% endif %}
         {% if collection.description != blank %}
-          <h2 class="text-size-md">
+          <h2 class="body-medium">
             {{ collection.description }}
           </h2>
-        {% endif %}
-
-        {% if collection.description != blank %}
-          <div class="rte body-medium">
-            {{ collection.description }}
-          </div>
         {% endif %}
       </div>
 
@@ -205,7 +199,7 @@
           <div class="lg:w-9/12">
             {% if section.settings.enable_filtering %}
               <div class="filter-selected-element-list flex flex-wrap items-center pb-4 lg:pb-0 -mx-2">
-                <facet-remove class="inline-flex" data-facet-clear-all>
+                <facet-remove class="inline-flex" data-facet-clear-all hidden>
                   <a
                     id="clear-all"
                     href="{{ results_url }}"

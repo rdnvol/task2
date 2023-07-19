@@ -1,8 +1,8 @@
 {% if section.blocks.size > 0 %}
-  <section class="section blog-post-section">
+  <section class="section blog-post-section overflow-hidden">
     <div class="container">
       {% if section.settings.title != blank %}
-        <h2 class="text-center">
+        <h2 class="text-center mb-4">
           {{ section.settings.title }}
         </h2>
       {% endif %}
@@ -10,21 +10,28 @@
         {% for block in section.blocks %}
           {% assign article = articles[block.settings.article] %}
           {% if article != blank %}
+            {% liquid
+              if block.settings.enable_lazyload
+                assign enable_lazyload = true
+              else
+                assign enable_lazyload = false
+              endif
+            %}
             <article class="mb-6 md:mb-0" {{ block.shopify_attributes }}>
               {% if article.image != blank %}
                 <a href="{{ article.url }}" class="image-container mb-2">
                   {%
                     render 'image',
                     src: article.image,
-                    d: '413x',
-                    src_m: article.image,
-                    m: '345x',
-                    placeholder: 'img-placeholder.png',
-                    alt: article.image.alt
+                    m: '330x',
+                    src_d: article.image,
+                    d: '448x',
+                    alt: article.image.alt,
+                    lazyload: enable_lazyload
                   %}
                 </a>
               {% endif %}
-              <h3 class="mb-0">
+              <h3>
                 <a href="{{ article.url }}" class="inline-block align-top">
                   {{ article.title }}
                 </a>
@@ -93,6 +100,12 @@
           "type": "article",
           "id": "article",
           "label": "Article"
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_lazyload",
+          "label": "Enable lazyload",
+          "default": true
         }
       ]
     }

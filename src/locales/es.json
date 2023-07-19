@@ -266,6 +266,7 @@
       "last_name": "Apellido",
       "email": "Correo electrónico",
       "password": "Contraseña",
+      "accepts-marketing": "Subscribe to email marketing",
       "submit": "Crear",
       "cancel": "Volver a la tienda"
     }
@@ -299,7 +300,9 @@
     "footer": {
       "social_platform": "{{ name }} en {{ platform }}",
       "copyright": "Derechos de autor",
-      "payment_methods": "Medios de pago aceptados"
+      "payment_methods": "Medios de pago aceptados",
+      "select_currency": "Select currency",
+      "select_locales": "Select locales"
     }
   },
   "products": {
@@ -311,13 +314,16 @@
       "on_sale_from_html": "En oferta desde {{ price }}",
       "from_text_html": "De {{ price }}",
       "quantity": "Cantidad",
+      "quantity_decrease": "Decrease quantity",
+      "quantity_increase": "Increase quantity",
       "add_to_cart": "Agregar al carrito",
       "dynamic_button_placeholder": "Buy it now",
       "size_chart": "Size Chart",
       "size": "size",
       "color_title": "Color",
       "starting_at": "From",
-      "product_variants": "Product variants"
+      "product_variants": "Product variants",
+      "tax_included": "Tax included."
     },
     "product_card": {
       "labels": {

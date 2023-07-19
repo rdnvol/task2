@@ -1,27 +1,16 @@
 import 'styles/theme.scss';
 
 // plugins
-import 'picturefill';
-import 'lazysizes/plugins/object-fit/ls.object-fit.js';
-import 'lazysizes/plugins/parent-fit/ls.parent-fit.js';
-import 'lazysizes/plugins/rias/ls.rias.js';
-import 'lazysizes/plugins/bgset/ls.bgset.js';
-import 'lazysizes';
-import 'lazysizes/plugins/respimg/ls.respimg.js';
-// Fancybox
-import { Fancybox } from '@fancyapps/ui';
-import '@fancyapps/ui/dist/fancybox.css';
+
 // Open-close details-utils
 import '@zachleat/details-utils';
-// Accordion
-import { Accordion } from 'accordion';
-import 'accordion/src/accordion.css';
 
 import { StickyStates } from 'helpers/stickyStates';
 import MobileNav from 'helpers/mobileNav';
 import 'helpers/responsive-helper';
 
 import 'store/store.ts';
+
 // Cart
 import 'components/CartReact';
 import 'components/CartCount';
@@ -51,8 +40,6 @@ class App {
     if (!('ontouchstart' in document.documentElement)) {
       document.documentElement.classList.add('no-touch');
     }
-
-    Fancybox.bind('[data-fancybox]', {});
   }
 
   // Responsive fluid iframe
@@ -214,45 +201,56 @@ class App {
 
   // accordion menu init
   initAccordion() {
-    document.querySelectorAll('.js-accordion').forEach((item) => {
-      new Accordion(item, {
-        modal: true, // Limit the accordion to having only one fold open at a time.
-        closeClass: 'close',
-        enabledClass: 'enabled',
-        openClass: 'open',
-        heightOffset: 10,
-        useBorders: true,
-      });
-    });
+    const accordions = document.querySelectorAll('.js-accordion');
+    const menuAccordions = document.querySelectorAll('.js-menu-accordion');
 
-    window.ResponsiveHelper.addRange({
-      '..1199': {
-        on() {
-          document.querySelectorAll('.js-menu-accordion').forEach((item) => {
+    if (accordions.length > 0 || menuAccordions.length > 0) {
+      import('accordion/src/accordion.css');
+      import('accordion').then(({ Accordion }) => {
+        accordions.length > 0 &&
+          accordions.forEach((item) => {
             new Accordion(item, {
               modal: true, // Limit the accordion to having only one fold open at a time.
               noAria: true,
               closeClass: 'close',
               enabledClass: 'enabled',
               openClass: 'open',
-              heightOffset: 0,
-              useBorders: false,
-              onToggle(fold) {
-                const element = fold.el;
-
-                if (element.classList.contains('fold-disabled')) {
-                  const url = element.querySelector('a').getAttribute('href');
-
-                  window.location.href = url;
-
-                  return false;
-                }
-              },
+              heightOffset: 10,
+              useBorders: true,
             });
           });
-        },
-      },
-    });
+
+        menuAccordions.length > 0 &&
+          window.ResponsiveHelper.addRange({
+            '..1199': {
+              on() {
+                document.querySelectorAll('.js-menu-accordion').forEach((item) => {
+                  new Accordion(item, {
+                    modal: true, // Limit the accordion to having only one fold open at a time.
+                    noAria: true,
+                    closeClass: 'close',
+                    enabledClass: 'enabled',
+                    openClass: 'open',
+                    heightOffset: 0,
+                    useBorders: false,
+                    onToggle(fold) {
+                      const element = fold.el;
+
+                      if (element.classList.contains('fold-disabled')) {
+                        const url = element.querySelector('a').getAttribute('href');
+
+                        window.location.href = url;
+
+                        return false;
+                      }
+                    },
+                  });
+                });
+              },
+            },
+          });
+      });
+    }
   }
 
   setHeaderHeight() {
@@ -292,8 +290,6 @@ class App {
         el.addEventListener('change', (e) => {
           const selectedLocale = e.target.value;
 
-          console.log('selectedLocale', selectedLocale);
-          console.log('pathname', pathname);
           location.href = selectedLocale === '/' ? pathname : selectedLocale + pathname;
         })
       );

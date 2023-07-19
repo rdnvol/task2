@@ -59,7 +59,7 @@
       "settings": {
         "show_variant_label": true,
         "show_size_chart": true,
-        "show_breadcrumbs": false,
+        "show_breadcrumbs": true,
         "size_chart_url": "shopify://pages/size-chart"
       }
     },

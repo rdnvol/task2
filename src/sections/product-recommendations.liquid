@@ -10,10 +10,10 @@
   >
     {%- if recommendations.performed and recommendations.products_count > 0 -%}
       <div class="container">
-        <h2 class="text-center">{{ section.settings.title }}</h2>
+        <h2 class="mb-4 text-center">{{ section.settings.title }}</h2>
         <div class="sm:grid sm:grid-cols-2 lg:grid-cols-4 sm:gap-x-8 js-products">
           {%- for product in recommendations.products -%}
-            {% render "product-card", product: product , grid_item_width: '' %}
+            {% render "product-card", product: product, grid_item_width: '', image_sizes_mobile: '345x', image_sizes_desktop: '328x' %}
           {%- endfor -%}
         </div>
         {% if section.settings.button_link != blank %}
@@ -32,8 +32,12 @@
 
 {% schema %}
 {
-  "name": "Related products",
+  "name": "Product recommendations",
   "settings": [
+    {
+      "type": "paragraph",
+      "content": "Dynamic recommendations change and improve with time. Create manual product recommendations using the Shopify Search & Discovery app. [Learn more](https://help.shopify.com/en/manual/online-store/search-and-discovery/product-recommendations)"
+    },
     {
       "type": "checkbox",
       "id": "show_product_recommendations",
@@ -50,9 +54,9 @@
       "type": "range",
       "id": "limit",
       "min": 1,
-      "max": 8,
+      "max": 10,
       "step": 1,
-      "label": "Limit",
+      "label": "Maximum products to show",
       "default": 4
     },
     {

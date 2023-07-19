@@ -28,6 +28,7 @@ const ProductGallery: FunctionComponent<PropTypes> = ({ media }) => {
               src={mediaItem.src}
               sizes={['635x791', '290x364']}
               ratio={mediaItem.aspect_ratio}
+              alt={mediaItem.alt}
             />
           </div>
         </div>

@@ -3,8 +3,8 @@
   <input id="product-id" type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" disabled>
 
   <div class="sm:flex">
-    <div class="sm:w-7/12 lg:w-5/12">
-      <div class="product__row">
+    <div class="w-100 md:w-10/12 xl:w-6/12">
+      <div class="mb-4">
         {% if current_variant.available %}
           {%
             render 'button',
@@ -29,7 +29,7 @@
         {% endif %}
       </div>
       {% if show_dynamic_button %}
-        <div class="product__row">
+        <div class="mb-4">
           {{ form | payment_button }}
         </div>
       {% endif %}

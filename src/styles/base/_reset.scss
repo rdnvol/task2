@@ -40,7 +40,6 @@ body {
   background: $base-background-color;
   -moz-osx-font-smoothing: grayscale;
   @include media ("≥widescreen") {
-    font-size: calc(#{$font-size-base} + 2px);
     overflow: visible !important;
   }
 }
@@ -56,6 +55,7 @@ select {
 
 // adaptive images
 img {
+  width: 100%;
   max-width: 100%;
   height: auto;
 }

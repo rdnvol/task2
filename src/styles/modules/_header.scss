@@ -61,6 +61,7 @@
   a {
     display: block;
     height: 100%;
+    color: inherit;
   }
 
   img {
@@ -162,10 +163,9 @@
     flex-wrap: wrap;
     align-items: center;
     padding: 0;
-    font-size: calc(#{$font-size-base} + 2px);
   }
 
-  .justify-content-center & {
+  .justify-center & {
     @include media ("≥widescreen") {
       justify-content: center;
     }
@@ -187,12 +187,6 @@
             transform: rotate(135deg);
           }
         }
-      }
-    }
-    &.active {
-
-      > a {
-        text-decoration: underline;
       }
     }
     &.has-drop {
@@ -256,6 +250,7 @@
 
     > a,
     > details-disclosure details summary {
+      color: inherit;
       @include media ("≥widescreen") {
         padding: 28px 30px 28px 0;
       }
@@ -344,9 +339,6 @@
     @include media ("≥tablet") {
       margin-left: 15px;
     }
-    @include media ("≥desktop") {
-      margin-left: 25px;
-    }
   }
 }
 
@@ -357,11 +349,14 @@
   justify-content: center;
   width: 44px;
   height: 44px;
+  color: inherit;
   &:hover {
     color: $base-accent;
   }
 
   svg {
+    width: 19px;
+    height: auto;
     color: currentColor;
   }
 }

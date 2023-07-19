@@ -2,7 +2,7 @@
   assign limit = settings.limit
   assign products = collection.products
 
-  render 'page-hero', image: collection.image
+  render 'page-hero', image: collection.image, enable_lazyload: enable_lazyload
   render 'breadcrumbs'
 %}
 
@@ -92,7 +92,7 @@
                               </div>
                             {% endif %}
                             <div class="lg:flex lg:flex-wrap">
-                              <div class="hidden lg:block body-small py-3 mr-5">
+                              <div class="hidden lg:flex lg:items-center body-small py-3 mr-5">
                                 {{ 'collections.general.filter' | t }}
                               </div>
                               {% liquid
@@ -178,7 +178,7 @@
             <div class="py-4 lg:py-5">
               {% if section.settings.enable_filtering %}
                 <div class="filter-selected-element-list flex flex-wrap items-center pb-4 lg:pb-0 lg:mb-5 -mx-2">
-                  <facet-remove class="inline-flex" data-facet-clear-all>
+                  <facet-remove class="inline-flex" data-facet-clear-all hidden>
                     <a
                       href="{{ collection.url }}?sort_by={{ collection.sort_by }}"
                       id="clear-all"
@@ -227,7 +227,7 @@
               >
                 {% liquid
                   for product in collection.products
-                    render "product-card", product: product, grid_item_width: ''
+                    render "product-card", product: product, grid_item_width: '', image_sizes_mobile: '156x', image_sizes_desktop: '448x'
                   endfor
                 %}
               </div>

@@ -518,9 +518,10 @@
         "step": 100
       },
       {
-        "type": "html",
+        "type": "text",
         "id": "google_integration",
-        "label": "Integration"
+        "label": "Integration",
+        "info": "Copy href from google font link and insert here(example: https://fonts.googleapis.com/css2?family=Nerko+One&family=Roboto&display=swap)"
       },
       {
         "type": "header",
@@ -716,6 +717,17 @@
         "type": "text",
         "id": "social_vimeo_link",
         "label": "Vimeo link"
+      }
+    ]
+  },
+  {
+    "name": "Customer settings",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "enable_accept_marketing",
+        "label": "Enable accept marketing",
+        "default": true
       }
     ]
   },

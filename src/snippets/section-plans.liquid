@@ -3,15 +3,22 @@
     {% if title != blank or text != blank %}
       <div class="plans__heading-box text-center rte">
         {% if title != blank %}
-          <h2>{{ title }}</h2>
+          <h2 class="mb-4">{{ title }}</h2>
         {% endif %}
         {{ text }}
       </div>
     {% endif %}
     {% if section.blocks.size > 0 %}
-      <div class="plans__items-row flow-root">
+      <div class="plans__items-row md:overflow-hidden">
         <div class="md:flex md:flex-wrap md:justify-center md:-mx-4">
           {% for block in section.blocks %}
+            {% liquid
+              if block.settings.enable_lazyload
+                assign enable_lazyload = true
+              else
+                assign enable_lazyload = false
+              endif
+            %}
             <div class="md:w-4/12 md:px-4" {{ block.shopify_attributes }}>
               <div class="plan-item text-center">
                 {% if block.settings.subtitle != blank %}
@@ -25,9 +32,9 @@
                     {%
                       render 'image',
                       src: block.settings.image,
-                      d: '50x',
-                      placeholder: 'img-placeholder.png',
-                      alt: block.settings.image.alt
+                      m: '50x',
+                      alt: block.settings.image.alt,
+                      lazyload: enable_lazyload
                     %}
                   {% else %}
                     {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}

@@ -15,12 +15,17 @@
 <div class="section">
   <div class="container">
     {% if section.settings.title != blank %}
-      <h3 class="text-center">{{ section.settings.title }}</h3>
+      <h3 class="text-center mb-4">{{ section.settings.title }}</h3>
     {% endif %}
     <div class="{% if section.settings.layout_slider_on_mobile == 'slider' %}featured-collection__gallery flex flex-nowrap mb-5 sm:mb-0 space-x-6 sm:space-x-0 sm:grid sm:gap-x-8{% else %}grid gap-x-8{% endif %} {{ grid_item_width }}">
       {% liquid
+        if section.settings.enable_lazyload
+          assign enable_lazyload = true
+        else
+          assign enable_lazyload = false
+        endif
         for product in collection.products limit: product_limit
-          render "product-card", product: product, grid_item_width: '', show_vendor: section.settings.show_vendor
+          render "product-card", product: product, grid_item_width: '', image_sizes_mobile: '345x', image_sizes_desktop: '328x', show_vendor: section.settings.show_vendor, enable_lazyload: enable_lazyload
         else
           for i in (1..product_limit)
             capture current
@@ -93,6 +98,12 @@
       "max": 5,
       "step": 1,
       "default": 2
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_lazyload",
+      "label": "Enable lazyload",
+      "default": true
     },
     {
       "type": "checkbox",

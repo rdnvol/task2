@@ -23,10 +23,11 @@
         {%
           render 'image',
           src: section.settings.blog_hero_image,
-          d: '1440x326',
-          src_m: section.settings.blog_hero_image,
-          m: '375x250',
-          placeholder: 'img-placeholder.png',
+          m: '375x',
+          src_d: section.settings.blog_hero_image,
+          d: '1440x',
+          alt: section.settings.blog_hero_image.alt,
+          lazyload: enable_lazyload
         %}
       {% else %}
         {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}

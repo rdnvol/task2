@@ -104,7 +104,10 @@
 
       <div class="gift-card__copy-code mb-3">
         <button class="button default gift-card__copy-link link">{{ 'gift_cards.issued.copy_code_text' | t }}</button>
-        <span class="gift-card__copy-success form__message body-small" role="status"></span>
+        <div
+          class="gift-card__copy-success form__message body-small flex items-center justify-center mt-3"
+          role="status"
+        ></div>
         <template>
           {%- render 'icon', icon: 'icon-success' -%}
           {{ 'gift_cards.issued.copy_code_success' | t }}

@@ -1,12 +1,17 @@
 <div class="section">
-  <div class="container flow-root">
-    <h2 class="text-center">{{ section.settings.title }}</h2>
+  <div class="container overflow-hidden">
+    <h2 class="text-center mb-4">{{ section.settings.title }}</h2>
     <div class="flex flex-wrap justify-center -mx-4 -mb-7">
       {% for block in section.blocks %}
         {% liquid
           capture logo_image
             if block.settings.image != blank
-              render 'image', src: block.settings.image, d: '300x', alt: block.settings.image.alt
+              if block.settings.enable_lazyload
+                assign enable_lazyload = true
+              else
+                assign enable_lazyload = false
+              endif
+              render 'image', src: block.settings.image, m: '150x', d: '300x', alt: block.settings.image.alt, lazyload: enable_lazyload
             else
               echo 'image' | placeholder_svg_tag: "placeholder-svg"
             endif
@@ -50,6 +55,12 @@
           "type": "image_picker",
           "id": "image",
           "label": "Image"
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_lazyload",
+          "label": "Enable lazyload",
+          "default": true
         },
         {
           "type": "url",

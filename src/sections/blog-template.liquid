@@ -1,6 +1,11 @@
 {% liquid
+  if section.settings.enable_blog_hero_lazyload
+    assign enable_lazyload = true
+  else
+    assign enable_lazyload = false
+  endif
   if section.settings.blog_hero_display
-    render 'blog-hero', section: section
+    render 'blog-hero', section: section, enable_lazyload: enable_lazyload
   endif
 %}
 
@@ -10,37 +15,33 @@
       {% for article in blog.articles %}
         <article class="post">
           {% if article.image %}
-            <a href="{{ article.url }}" class="block">
+            <a href="{{ article.url }}" class="post__block-img block">
               {%
                 render 'image',
                 src: article.image.src,
-                d: '690x460',
-                p_d: '690x460',
-                src_m: article.image.src,
-                m: '375x250',
-                p_m: '375x250',
-                alt: article.image.alt,
-                placeholder: 'img-placeholder.png',
-                crop: 'center',
+                m: '375x',
+                src_d: article.image.src,
+                d: '690x',
+                alt: article.image.alt
               %}
             </a>
           {% endif %}
 
           <div class="py-4 md:py-5">
-            <h2 class="h5">
+            <h2 class="h5 mb-4 md:mb-3">
               <a href="{{ article.url }}">{{ article.title }}</a>
             </h2>
-            <div class="mb-4 base-secondary-text">
+            <div class="mb-3 md:mb-4 base-secondary-text">
               {{ article.published_at | time_tag: format: 'month_day_year' }}
             </div>
             {% if blog.comments_enabled? %}
-              <div class="mb-4">
+              <div class="mb-3 md:mb-4">
                 <a href="{{ article.url }}#comments">
                   {{ 'blogs.comments.with_count' | t: count: article.comments_count }}
                 </a>
               </div>
             {% endif %}
-            <div class="rte mb-4">
+            <div class="rte mb-3">
               {% if article.excerpt.size > 0 %}
                 {{ article.excerpt }}
               {% else %}
@@ -95,6 +96,12 @@
       "type": "image_picker",
       "id": "blog_hero_image",
       "label": "Blog Hero image"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_blog_hero_lazyload",
+      "label": "Enable blog hero lazyload",
+      "default": true
     },
     {
       "type": "checkbox",

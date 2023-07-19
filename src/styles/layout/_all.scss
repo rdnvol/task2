@@ -21,30 +21,22 @@ ins {
 }
 
 .breadcrumbs {
-  padding: 30px 0 0;
-  font-size: calc(#{$font-size-base} - 2px);
-  letter-spacing: 0.02em;
-  text-transform: capitalize;
-  @include media ("≥widescreen") {
-    padding: 40px 0 0;
-  }
 
   li:not(:last-child) {
-    margin: 0 5px 0 0;
+    margin: 0 8px 0 0;
     &::after {
       content: "/";
       display: inline-block;
       vertical-align: middle;
-      margin: -1px 0 0;
-      color: $base-secondary-text;
+      margin: -2px 0 0 6px;
+      color: $base-body-text;
     }
   }
 
   a {
-    color: $base-secondary-text;
     text-decoration: none;
     &:hover {
-      color: $base-body-text;
+      color: $base-secondary-text;
     }
   }
 }
@@ -147,35 +139,36 @@ ins {
 .social-sharing {
   display: flex;
   align-items: center;
-  margin: 0 0 -15px;
-  font-size: calc(#{$font-size-base} - 2px);
-  text-transform: uppercase;
+  margin: 0 0 -16px;
 
   li {
-    margin: 0 15px 15px 0;
-    &:first-child {
-      margin-right: 28px;
-    }
+    margin: 0 16px 16px 0;
   }
 
   a {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 44px;
-    height: 44px;
-    color: $base-icons;
+    color: $base-body-text;
     text-decoration: none;
-    background: $base-background;
-    border-radius: 100%;
-    &:hover {
-      background: $base-footer-background;
-    }
+  }
+
+  .icon {
+    margin-right: 12px;
   }
 }
 
 .section {
   padding: 40px 0;
+  &.section--without-padding {
+    padding: 0;
+  }
+  &.section--without-padding-top {
+    padding-top: 0;
+  }
+  &.section--without-padding-bottom {
+    padding-bottom: 0;
+  }
 }
 
 // Default page shopify styles
@@ -312,6 +305,25 @@ ins {
     &:last-child {
       margin-bottom: 0;
     }
+
+    + h2,
+    + h3,
+    + h4,
+    + h5,
+    + h6 {
+      padding-top: 16px;
+      @include media("≥widescreen") {
+        padding-top: 24px;
+      }
+    }
+  }
+
+  img {
+    margin-bottom: 16px;
+    @include media("≥widescreen") {
+      margin-bottom: 32px;
+      padding-top: 16px;
+    }
   }
 }
 
@@ -402,6 +414,14 @@ ins {
 
   > li {
     width: 100%;
+  }
+}
+
+.accordion__slide {
+  display: none;
+
+  .open & {
+    display: block;
   }
 }
 
@@ -532,20 +552,6 @@ ins {
 img[data-sizes="auto"] {
   display: block;
   width: 100%;
-}
-
-// Lazy-load styles
-.lazyload,
-.lazyloading {
-  opacity: 0;
-}
-
-.loading,
-.lazyload,
-.lazyloaded,
-.image {
-  opacity: 1;
-  transition: opacity 2s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
 .shopify-app-block {

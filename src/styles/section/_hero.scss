@@ -154,3 +154,12 @@
     bottom: 30px;
   }
 }
+
+.hero__block-content {
+
+  > * {
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}

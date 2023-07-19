@@ -19,13 +19,16 @@
       "on_sale_from_html": "У розпродажу від {{price}}",
       "from_text_html": "Починаючи з  {{price}}",
       "quantity": "Кількість",
+      "quantity_decrease": "Decrease quantity",
+      "quantity_increase": "Increase quantity",
       "add_to_cart": "Додати в кошик",
       "dynamic_button_placeholder": "Купити зараз",
       "size_chart": "Таблиця розмірів",
       "size": "Розмір",
       "color_title": "Color",
       "starting_at": "From",
-      "product_variants": "Product variants"
+      "product_variants": "Product variants",
+      "tax_included": "Tax included."
     },
     "product_card": {
       "labels": {
@@ -263,6 +266,7 @@
       "title": "Створити обліковий запис",
       "email": "Електронна пошта",
       "password": "Пароль",
+      "accepts-marketing": "Subscribe to email marketing",
       "cancel": "Повернутися до магазину"
     },
     "account": {
@@ -355,7 +359,9 @@
     "footer": {
       "social_platform": "{{ name }} на {{ platform }}",
       "copyright": "Авторське право",
-      "payment_methods": "Способи оплати приймаються"
+      "payment_methods": "Способи оплати приймаються",
+      "select_currency": "Select currency",
+      "select_locales": "Select locales"
     }
   },
   "shopify": {

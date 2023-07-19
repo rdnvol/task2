@@ -23,6 +23,7 @@ textarea {
   height: $height-form-elements;
   padding: $form-element-padding;
   font-size: $font-size-base;
+  background: $base-body-background;
   border: 1px solid $form-element-border-color;
   -webkit-border-radius: 0;
   border-radius: 0;
@@ -110,15 +111,14 @@ textarea {
 .button,
 input[type="reset"],
 input[type="submit"] {
+  @extend %button-large;
   -webkit-appearance: none;
   display: inline-block;
   vertical-align: top;
   box-sizing: border-box;
-  min-width: 182px;
+  min-width: 65px;
   min-height: $height-form-elements;
-  padding: 10px 15px;
-  font-family: $font-heading;
-  line-height: 1;
+  padding: $button-padding;
   color: $primary-button-text;
   text-align: center;
   background: $primary-button-background;
@@ -128,13 +128,14 @@ input[type="submit"] {
   cursor: pointer;
   &.button--lg {
     min-height: $height-button-large;
-    padding-top: 14px;
-    padding-bottom: 14px;
+    padding-top: 15px;
+    padding-bottom: 15px;
   }
   &.button--sm {
+    @extend %button-small;
     min-height: $height-button-small;
-    padding-top: 7px;
-    padding-bottom: 7px;
+    padding-top: 9px;
+    padding-bottom: 9px;
     font-size: $font-size-base;
   }
   &.btn--with-icon {
@@ -143,7 +144,7 @@ input[type="submit"] {
     justify-content: space-between;
 
     .icon {
-      margin-left: 7px;
+      margin-left: 12px;
     }
   }
   &:hover {
@@ -174,6 +175,7 @@ input[type="submit"] {
     min-height: 0;
     margin: 0;
     padding: 0;
+    font-weight: $font-body-weight;
     color: $base-body-text;
     background: none;
     border: none;
@@ -226,29 +228,30 @@ a.button {
   vertical-align: top;
   padding-top: 10px;
   padding-bottom: 10px;
-  line-height: 1.2;
+  line-height: 1.375;
   text-decoration: none;
   &.button--lg {
-    padding-top: 14px;
-    padding-bottom: 14px;
+    padding-top: 12px;
+    padding-bottom: 12px;
   }
   &.button--sm {
-    padding-top: 7px;
-    padding-bottom: 7px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    line-height: 1.375;
   }
 }
 
 .input-holder {
+  position: relative;
   margin: 0 0 20px;
-  @include media("≥desktop") {
-    margin: 0 0 30px;
+  &[data-aria-hidden=" true"] {
+    display: none;
   }
 }
 
 .custom-input {
   position: relative;
   &.custom-input--colors {
-    margin: 0 8px 8px 0;
 
     input[type="checkbox"],
     input[type="radio"] {
@@ -333,13 +336,12 @@ a.button {
     }
   }
   &.custom-input--size {
-    margin: 0 12px 12px 0;
 
     input[type="checkbox"],
     input[type="radio"] {
       top: 0;
-      width: 32px;
-      height: 32px;
+      width: 100%;
+      height: 100%;
       &:checked,
       &:hover,
       &:focus {
@@ -347,8 +349,8 @@ a.button {
         + .custom-label {
           color: #fff;
           &::before {
-            background: $base-border;
-            border-color: $base-border;
+            background: $base-body-text;
+            border-color: $base-body-text;
           }
         }
       }
@@ -409,6 +411,7 @@ a.button {
 
           .custom-label__check {
             background: $base-body-text;
+            border-color: $base-body-text;
             &::after {
               opacity: 1;
             }
@@ -425,9 +428,17 @@ a.button {
 
           .custom-label__check {
             background: #f7f7f7;
+            border-color: $base-border;
           }
         }
       }
+    }
+  }
+  &.custom-input--circle {
+
+    input[type="checkbox"],
+    input[type="radio"] {
+      border-radius: 100%;
     }
   }
 
@@ -507,24 +518,36 @@ a.button {
       border-color: $base-border;
       border-radius: 0;
     }
+
+    .custom-input--circle & {
+      border-radius: 100%;
+    }
+  }
+
+  .custom-input--circle & {
+    border-radius: 100%;
+
+    > span:not(.custom-label__img-holder) {
+      border-radius: 100%;
+    }
   }
 
   .custom-input--colors & {
     display: block;
     box-sizing: border-box;
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
     padding: 3px;
     background: none;
     overflow: hidden;
     &::after {
       content: "";
       position: absolute;
-      top: -8px;
-      left: 19px;
+      top: -6px;
+      left: 20px;
       z-index: 2;
       width: 1px;
-      height: 58px;
+      height: 59px;
       background: $customizable-base-text;
       opacity: 0;
       transform: rotate(45deg);
@@ -550,20 +573,25 @@ a.button {
     }
   }
 
+  .custom-input--circle.custom-input--colors & {
+    &::after {
+      border-radius: 100%;
+    }
+  }
+
   .custom-input--colors-with-text & {
     padding: 0;
   }
 
   .custom-input--size & {
+    @extend %body-medium;
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
-    min-width: 32px;
-    height: 32px;
-    padding: 0;
-    font-size: calc(#{$font-size-base} - 6px);
-    font-weight: 700;
+    min-width: 44px;
+    height: 44px;
+    padding: 3px;
     background: none;
     border-color: $base-border;
     transition: color $animation-speed ease-in-out;
@@ -587,6 +615,7 @@ a.button {
 .custom-label__check {
   position: relative;
   display: block;
+  flex-shrink: 0;
   box-sizing: border-box;
   width: 24px;
   height: 24px;

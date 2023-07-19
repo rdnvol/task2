@@ -42,10 +42,15 @@ const LineItem: FunctionComponent<PropsType> = ({ item }) => {
     updateItem(inputValue);
   }, 500);
 
-  const renderImage = ({ image, url, product_title }) => (
-    <div className="cart__product-img">
+  const renderImage = ({ featured_image, url, product_title }) => (
+    <div className="cart__product-img mr-5">
       <a href={url} aria-label={product_title}>
-        <Image src={image} sizes={['71x88', '71x88']} />
+        <Image
+          src={featured_image.url}
+          sizes={['64x82', '90x112', '90x112']}
+          ratio={featured_image.aspect_ratio}
+          alt={featured_image.alt}
+        />
       </a>
     </div>
   );
@@ -81,8 +86,9 @@ const LineItem: FunctionComponent<PropsType> = ({ item }) => {
   const renderItemOptions = ({ options_with_values, product_has_only_default_variant }) => {
     if (!product_has_only_default_variant) {
       return options_with_values.map((option) => (
-        <div key={`${option.name}-${option.value}`}>
-          {option.name}: {option.value}
+        <div className="mb-1" key={`${option.name}-${option.value}`}>
+          <span className="base-secondary-text inline-block mr-1">{option.name}:</span>
+          {option.value}
         </div>
       ));
     }
@@ -97,12 +103,12 @@ const LineItem: FunctionComponent<PropsType> = ({ item }) => {
   return (
     <tr className="responsive-table-row">
       <td>
-        <div className="flex items-start">
+        <div className="flex md:items-center">
           {renderImage(item)}
           <div className="cart__product-text">
-            <div className="cart__product-vendor body-3">{item.vendor}</div>
-            <div className="mb-3 md:mb-2">
-              <a href={item.url} className="cart__product-link">
+            <div className="base-secondary-text body-small mb-1">{item.vendor}</div>
+            <div className="title mb-2">
+              <a href={item.url} className="no-underline hover:underline">
                 {item.product_title}
               </a>
             </div>
@@ -144,12 +150,12 @@ const LineItem: FunctionComponent<PropsType> = ({ item }) => {
                 </button>
               </div>
             </div>
-            <div>
+            <div className="body-small">
               {renderItemOptions(item)}
               {renderProperties(item.properties)}
             </div>
             <a
-              className="cart__button-remove body-3"
+              className="body-small no-underline hover:underline"
               href="/cart/change?line={{ forloop.index }}&amp;quantity=0"
               onClick={removeItem}
             >
@@ -159,7 +165,7 @@ const LineItem: FunctionComponent<PropsType> = ({ item }) => {
         </div>
       </td>
       <td>
-        <div className="product__price__box mb-4 md:mb-0">{renderPrice(item)}</div>
+        <div className="product__price__box product-price-large">{renderPrice(item)}</div>
       </td>
       <td>
         <label htmlFor={`updates_${item.key}`} className="visually-hidden">
@@ -199,7 +205,9 @@ const LineItem: FunctionComponent<PropsType> = ({ item }) => {
           </button>
         </div>
       </td>
-      <td>{formatMoney(item.final_line_price, theme.moneyFormat)}</td>
+      <td>
+        <div className="product-price-large">{formatMoney(item.final_line_price, theme.moneyFormat)}</div>
+      </td>
     </tr>
   );
 };

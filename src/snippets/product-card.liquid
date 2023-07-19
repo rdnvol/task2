@@ -1,20 +1,27 @@
-{% unless grid_item_width %}
-  {% assign grid_item_width = 'col-sm-6 col-lg-3' %}
-{% endunless %}
+{% liquid
+  unless grid_item_width
+    assign grid_item_width = 'sm:w-6/12 lg:w-3/12'
+  endunless
+  unless image_sizes_desktop
+    assign image_sizes_desktop = '323x'
+  endunless
+  unless image_sizes_mobile
+    assign image_sizes_mobile = '156x'
+  endunless
+%}
 
 <div class="{{ grid_item_width }}">
   <div class="product-item text-center">
     <a href="{{ product.url | within: collection }}" class="relative block mb-3">
       {% if product.featured_image != blank %}
         {%
-          render "image",
+          render 'image',
           src: product.featured_image,
-          d: '302x376',
-          src_m: product.featured_image,
-          m: '162x202',
-          placeholder: 'img-placeholder.png',
+          m: image_sizes_mobile,
+          src_d: section.settings.image,
+          d: image_sizes_desktop,
           alt: product.featured_image.alt,
-          crop: 'center',
+          lazyload: enable_lazyload
         %}
       {% else %}
         {{ 'image' | placeholder_svg_tag: "placeholder-svg" }}

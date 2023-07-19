@@ -104,8 +104,10 @@ export interface ProductType {
 export interface ImageType {
   src?: string;
   sizes: string[];
+  mediaWidth?: number[];
   alt?: string;
   ratio?: number;
+  lazyload?: boolean;
 }
 
 export interface ButtonType {

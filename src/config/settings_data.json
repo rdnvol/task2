@@ -26,10 +26,13 @@
     "checkout_button_hover_bg_color": "#000",
     "checkout_button_focus_bg_color": "#ffffff",
     "font_library": "shopify",
-    "font_heading": "assistant_n4",
+    "font_heading": "inter_n6",
     "heading_base_size": 40,
-    "font_body": "assistant_n4",
+    "font_body": "inter_n4",
     "font_base_size": 16,
+    "google_font_heading": "Assistant",
+    "google_font_body": "Assistant",
+    "google_integration": "<link href=\"https://fonts.googleapis.com/css2?family=Assistant:wght@400;700&amp;display=swap\" rel=\"stylesheet\">",
     "custom_heading_weight": 400,
     "custom_body_weight": 300,
     "share_image": "",
@@ -69,7 +72,7 @@
         "settings": {
           "image": "",
           "image_mobile": "",
-          "alignment": "justify-content-start align-items-center",
+          "alignment": "justify-start items-center",
           "alignment_text": "text-center",
           "color": "#ffffff",
           "color_mobile": "#000000",
@@ -90,7 +93,7 @@
         "type": "home-hero",
         "settings": {
           "image": "shopify://shop_images/Untitled_design.png",
-          "alignment": "justify-content-start align-items-center",
+          "alignment": "justify-start items-center",
           "alignment_text": "text-center",
           "color": "#000000",
           "color_mobile": "#000000",
@@ -131,7 +134,10 @@
           "a09b92bf-a128-45db-ae5c-e2ea979b6062": {
             "type": "text",
             "settings": {
-              "icon": "",
+              "logo_svg": "logo-2.svg",
+              "logo_svg_width": 114,
+              "logo_svg_height": 24,
+              "logo_text": "Draft",
               "text": "<p><strong>Our mission<br/></strong><br/>Quality materials, good designs, craftsmanship and sustainability.</p>"
             }
           },
@@ -150,7 +156,6 @@
         ],
         "settings": {
           "show_payment_icons": true,
-          "bg_color": "#ffffff",
           "rights_text": "<p>All Rights Reserved. <a href=\"#\">Terms</a>, <a href=\"#\">Privacy & Accessibility</a>.</p>",
           "currency_switcher_enable": true,
           "language_switcher_enable": true
@@ -177,7 +182,11 @@
           "announcement_bar_bg_color": "#ffffff",
           "announcement_bar_text_color": "#000000",
           "logo_svg": "logo-2.svg",
+          "logo_svg_width": 56,
+          "logo_svg_height": 33,
+          "enable_lazyload": true,
           "logo_text": "Draft",
+          "enable_lazyload": false,
           "menu": "test-menu-dawn",
           "layout": "left",
           "search_enable": true,
@@ -191,8 +200,7 @@
       },
       "collection-template": {
         "type": "collection-template",
-        "settings": {
-        }
+        "settings": {}
       },
       "1601544214239": {
         "type": "home-logos-list",
@@ -238,8 +246,7 @@
       },
       "1601544682336": {
         "type": "newsletter",
-        "settings": {
-        }
+        "settings": {}
       },
       "1601544716980": {
         "type": "home-benefits",
@@ -287,8 +294,7 @@
           "1601544716980-3",
           "1601544716980-4"
         ],
-        "settings": {
-        }
+        "settings": {}
       },
       "1601545071577": {
         "type": "home-plans",
@@ -376,8 +382,7 @@
   },
   "presets": {
     "Default": {
-      "content_for_index": [
-      ]
+      "content_for_index": []
     }
   }
 }

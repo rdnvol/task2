@@ -1,8 +1,8 @@
 {% liquid
   if section.settings.filter_type == "vertical"
-    render "collection-2", section: section
+    render "collection-2", section: section, enable_lazyload: section.settings.enable_lazyload
   else
-    render "collection", section: section
+    render "collection", section: section, enable_lazyload: section.settings.enable_lazyload
   endif
 %}
 
@@ -32,6 +32,12 @@
       "id": "enable_sorting",
       "default": true,
       "label": "t:sections.collection-template.settings.enable_sorting.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_lazyload",
+      "label": "Enable lazyload",
+      "default": true
     },
     {
       "type": "select",

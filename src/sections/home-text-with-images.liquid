@@ -5,21 +5,28 @@
   >
     <div class="container overflow-hidden">
       {% if section.settings.title != blank %}
-        <h2 class="text-center">{{ section.settings.title }}</h2>
+        <h2 class="text-center mb-4">{{ section.settings.title }}</h2>
       {% endif %}
       <div class="text-columns-with-images__block grid grid-cols-1 md:grid-cols-2 gap-y-2 md:gap-x-2 xl:gap-x-8">
         {% for block in section.blocks %}
           <div class="block-{{ block.id }} relative">
             <div class="image-container">
               {% if block.settings.image != blank %}
+                {% liquid
+                  if block.settings.enable_lazyload
+                    assign enable_lazyload = true
+                  else
+                    assign enable_lazyload = false
+                  endif
+                %}
                 {%
                   render 'image',
                   src: block.settings.image,
-                  d: '413x',
-                  src_m: block.settings.image,
-                  m: '345x',
-                  placeholder: 'img-placeholder.png',
-                  alt: block.settings.image.alt
+                  m: '360x',
+                  src_d: block.settings.image,
+                  d: '689x',
+                  alt: block.settings.image.alt,
+                  lazyload: enable_lazyload
                 %}
               {% else %}
                 {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
@@ -27,7 +34,7 @@
             </div>
             <div class="absolute top-0 left-0 right-0 bottom-0 z-10 flex items-center justify-center flex-col p-5 md:p-10 custom-color">
               {% if block.settings.title != blank %}
-                <h2 class="mb-2">{{ block.settings.title }}</h2>
+                <h3 class="mb-2">{{ block.settings.title }}</h3>
               {% endif %}
               {% if block.settings.copy != blank %}
                 <div class="rte mb-3">
@@ -81,6 +88,12 @@
           "type": "image_picker",
           "id": "image",
           "label": "Image"
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_lazyload",
+          "label": "Enable lazyload",
+          "default": true
         },
         {
           "type": "range",
