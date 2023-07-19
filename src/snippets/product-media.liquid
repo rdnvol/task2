@@ -5,11 +5,11 @@
         {%
           render 'image',
           src: media,
-          d: '635x791',
-          src_m: media,
-          m: '345x431',
+          m: '345x',
+          src_d: media,
+          d: '673x',
           alt: media.alt,
-          placeholder: 'img-placeholder.png'
+          lazyload: enable_lazyload
         %}
       </div>
     </div>
@@ -24,11 +24,11 @@
           {%
             render 'image',
             src: media,
-            d: '635x791',
-            src_m: media,
             m: '345x431',
+            src_d: media,
+            d: '635x791',
             alt: media.alt,
-            placeholder: 'img-placeholder.png'
+            lazyload: enable_lazyload
           %}
         </button>
         <template>
@@ -73,21 +73,21 @@
               {%
                 render 'image',
                 src: media,
-                d: '635x791',
-                src_m: media,
                 m: '345x431',
+                src_d: media,
+                d: '635x791',
                 alt: media.alt,
-                placeholder: 'img-placeholder.png'
+                lazyload: enable_lazyload
               %}
             {% else %}
               {%
                 render 'image',
                 src: media,
-                d: '191x237',
-                src_m: media,
                 m: '103x130',
+                src_d: media,
+                d: '191x237',
                 alt: media.alt,
-                placeholder: 'img-placeholder.png'
+                lazyload: enable_lazyload
               %}
             {% endif %}
           </button>

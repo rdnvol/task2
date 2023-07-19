@@ -10,10 +10,16 @@
     {% render 'performance-init' %}
     {% comment %}End performance code{% endcomment %}
 
-    <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
-    {%- unless settings.font_heading.system? and settings.font_body.system? -%}
+    {%- if settings.font_library == 'shopify' and settings.font_heading.system? == false or settings.font_body.system? == false -%}
+      <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
       <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
-    {%- endunless -%}
+      {% unless settings.font_heading.system? %}
+        <link rel="preload" as="font" href="{{ settings.font_heading | font_url }}" type="font/woff2" crossorigin>
+      {% endunless %}
+      {% unless settings.font_body.system? %}
+        <link rel="preload" as="font" href="{{ settings.font_body | font_url }}" type="font/woff2" crossorigin>
+      {% endunless %}
+    {%- endif -%}
     {% liquid
       render 'theme-meta'
       render 'theme-seo'
@@ -47,7 +53,7 @@
       <main role="main" id="main">
         {{ content_for_layout }}
       </main>
-      {% if template contains 'product' %}
+      {% if template.name == 'product' or template.name == 'index' or template.name == 'collection' %}
         {%- render 'cart-popup' -%}
       {% endif %}
       {% section 'footer' %}

@@ -8,7 +8,7 @@ interface PropsType {
 
 const ProductAccordionItem: FunctionComponent<PropsType> = ({ heading, text, active }) => (
   <li className={active ? 'accordion--active' : ''}>
-    <a href="#" className="accordion__opener title-1">
+    <a href="#" className="accordion__opener title">
       {heading}
     </a>
     <div className="accordion__slide">

@@ -52,7 +52,7 @@ const CartPopup: FunctionComponent = () => {
         </div>
       </div>
       <div className="cart-popup__holder">
-        <div className="cart-popup__item">{cart.justAdded.id && <CartJustAdded justAdded={cart.justAdded} />}</div>
+        <div className="cart-popup__item py-3">{cart.justAdded.id && <CartJustAdded justAdded={cart.justAdded} />}</div>
         <div className="text-center">
           <a href="/cart" className="button w-100">
             {theme.cart.view_cart} <span>({cart.item_count})</span>
@@ -60,7 +60,7 @@ const CartPopup: FunctionComponent = () => {
           <div
             className="pt-2"
             dangerouslySetInnerHTML={{
-              __html: theme.cart.continue_shipping_html,
+              __html: theme.cart.continue_shopping_html.replace('<a', '<a class="link"'),
             }}
           />
         </div>

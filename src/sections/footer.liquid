@@ -1,47 +1,33 @@
 {% assign show_payment_icons = section.settings.show_payment_icons %}
 {%- capture payment_icon_markup -%}
   {%- if show_payment_icons -%}
-    <div>
-      <div class="flex flex-wrap items-center justify-center pt-3">
-        {%- for type in shop.enabled_payment_types -%}
-          <div class="mx-3 mb-3">
-            {{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}
-          </div>
-        {%- endfor -%}
-      </div>
+    <div class="flex flex-wrap items-center justify-center -mb-3 -mx-3 pt-5 lg:pt-3">
+      {%- for type in shop.enabled_payment_types -%}
+        <div class="mx-3 mb-3">
+          {{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}
+        </div>
+      {%- endfor -%}
     </div>
   {%- endif -%}
 {%- endcapture -%}
-<footer id="footer">
+<footer id="footer" class="relative py-10">
   <div class="container">
     {%- if section.blocks.size != 0 -%}
-      <div class="footer__holder">
+      <div class="mb-10 lg:mb-11">
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-8">
           {%- for block in section.blocks -%}
             {%- case block.type -%}
               {%- when 'text' -%}
-                <div class="sm:col-span-full lg:col-span-1 mb-6 lg:mb-0">
+                <div class="sm:col-span-full lg:col-span-1 mb-10 lg:mb-0">
+                  {% render 'footer-logo', block: block %}
                   <div class="rte">
-                    {% if block.settings.icon != blank %}
-                      <a href="{{ routes.root_url }}" rel="nofollow" class="footer__logo">
-                        <img
-                          data-src="{{ block.settings.icon | asset_url }}"
-                          width="114"
-                          height="24"
-                          src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                          class="lazyload"
-                          data-sizes="auto"
-                          alt="footer logo"
-                        >
-                      </a>
-                    {% endif %}
                     {{ block.settings.text }}
                   </div>
                 </div>
               {%- when 'newsletter' -%}
-                <div class="{% unless forloop.last %}mb-6 lg:mb-0{% endunless %}" {{ block.shopify_attributes }}>
+                <div class="{% unless forloop.last %}mb-10 lg:mb-0{% endunless %}" {{ block.shopify_attributes }}>
                   {%- if block.settings.title != blank -%}
-                    <div class="footer__title h5">
+                    <div class="title mb-5">
                       {{ block.settings.title }}
                     </div>
                   {%- endif -%}
@@ -51,11 +37,11 @@
                       <legend class="visually-hidden">Newsletter form</legend>
                       <input type="hidden" name="contact[tags]" value="newsletter">
                       {%- if form.posted_successfully? -%}
-                        <p class="form-message form-message--success" tabindex="-1" data-form-status>
+                        <div class="form-message messages-success" tabindex="-1" data-form-status>
                           {{ 'general.newsletter_form.confirmation' | t }}
-                        </p>
+                        </div>
                       {%- endif -%}
-                      <label for="newsletter-form-email-field" class="inline-block mb-2">
+                      <label for="newsletter-form-email-field" class="inline-block mb-1 lg:mb-2">
                         {{ 'general.newsletter_form.please_enter_your_email' | t }}
                       </label>
                       <div class="relative">
@@ -76,16 +62,16 @@
                 </div>
               {%- when 'link_list' -%}
                 {%- assign footer_linklist = block.settings.menu -%}
-                <div class="{% unless forloop.last %}mb-6 lg:mb-0{% endunless %}">
-                  <nav class="footer__nav">
+                <div class="{% unless forloop.last %}mb-10 lg:mb-0{% endunless %}">
+                  <nav>
                     {%- if block.settings.title != blank -%}
-                      <div class="footer__title h5">
+                      <div class="title mb-5">
                         {{ block.settings.title }}
                       </div>
                     {%- endif -%}
-                    <ul>
+                    <ul class="-mb-2">
                       {%- for link in linklists[footer_linklist].links -%}
-                        <li>
+                        <li class="mb-2">
                           <a href="{{ link.url }}">{{ link.title | escape }}</a>
                         </li>
                       {%- endfor -%}
@@ -97,19 +83,21 @@
         </div>
       </div>
     {%- endif -%}
-    <div class="flex justify-center pt-3">
+    <div class="flex justify-center space-x-8 pb-5">
       {% if section.settings.currency_switcher_enable %}
-        {% form 'currency', class: 'pr-3' %}
-          <label for="field-currency-01" class="inline-block mb-2"> Select currency </label>
-          <select name="currency" class="w-100 mb-2" id="field-currency-01">
+        {% form 'currency' %}
+          <label for="field-currency-01" class="inline-block mb-1">
+            {{ 'layout.footer.select_currency' | t }}
+          </label>
+          <select name="currency" class="base-secondary-text w-100" id="field-currency-01">
             {% for currency in shop.enabled_currencies %}
+              {% assign currencyFormat = currency.name | append: ' (' | append: currency.iso_code | append: ' ' | append: currency.symbol | append: ')' %}
               {% if currency == cart.currency %}
                 <option selected>
-                  {{ currency.iso_code }}
-                  {{ currency.symbol }}
+                  {{ currencyFormat }}
                 </option>
               {% else %}
-                <option>{{ currency.iso_code }}</option>
+                <option>{{ currencyFormat }}</option>
               {% endif %}
             {% endfor %}
           </select>
@@ -117,8 +105,10 @@
       {% endif %}
       {% if section.settings.language_switcher_enable %}
         <div class="locales-wrapper">
-          <label for="field-locales-01" class="inline-block mb-2"> Select locales </label>
-          <select name="locales" class="w-100 mb-2" id="field-locales-01">
+          <label for="field-locales-01" class="inline-block mb-1">
+            {{ 'layout.footer.select_locales' | t }}
+          </label>
+          <select name="locales" class="base-secondary-text w-100" id="field-locales-01">
             {% for locale in shop.published_locales %}
               <option
                 {% if request.locale.name == locale.name %}
@@ -134,18 +124,14 @@
         </div>
       {% endif %}
     </div>
-    <div class="footer__panel text-center uppercase">
+    <div class="footer__panel text-center pt-5 lg:pt-3">
       {% capture copy %}
         &copy; {{ 'now' | date: "%Y" }}
         {{ shop.name | link_to: routes.root_url | lstrip }}.
       {% endcapture %}
       {% assign first_part = copy | prepend: '<p>' %}
       {% assign rights_text = section.settings.rights_text | replace: '<p>', first_part %}
-      <div
-        {% if show_payment_icons %}
-          class="mb-4 md:mb-2"
-        {% endif %}
-      >
+      <div class="body-small">
         {% if section.settings.rights_text != blank %}{{ rights_text }}{% else %}{{ copy }}{% endif %}
       </div>
       {{ payment_icon_markup }}
@@ -232,9 +218,39 @@
       "settings": [
         {
           "type": "text",
-          "id": "icon",
-          "label": "Icon",
-          "default": "logo-2.svg"
+          "id": "logo_svg",
+          "label": "SVG logo",
+          "default": "logo-2.svg",
+          "info": "Grabs image from assets example (logo.svg including file extension)"
+        },
+        {
+          "type": "range",
+          "id": "logo_svg_width",
+          "label": "Logo svg width",
+          "min": 100,
+          "max": 150,
+          "step": 1,
+          "default": 114
+        },
+        {
+          "type": "range",
+          "id": "logo_svg_height",
+          "label": "Logo svg height",
+          "min": 20,
+          "max": 50,
+          "step": 1,
+          "default": 24
+        },
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Logo"
+        },
+        {
+          "type": "text",
+          "id": "logo_text",
+          "label": "Logo text",
+          "default": "Draft"
         },
         {
           "type": "richtext",

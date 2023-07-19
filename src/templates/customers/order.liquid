@@ -5,16 +5,14 @@
 
 <div class="section">
   <div class="container">
-    <div class="text-center">
-      <h1 class="account-page__title account-page__title--alt">Order History</h1>
-      <div class="mb-3">
-        <a href="/account" class="link-sm">{{ 'customer.account.return' | t }}</a>
-      </div>
+    <div class="account-page__title text-center">
+      <h1 class="h4 mb-3">Order History</h1>
+      <a href="/account" class="link">{{ 'customer.account.return' | t }}</a>
     </div>
     <div class="xl:flex">
       <div class="xl:w-8/12 xl:mx-auto">
-        <div class="account__header md:flex md:items-center md:justify-between">
-          <h2 class="h2 account__sub-title">{{ 'customer.order.title' | t: name: order.name }}</h2>
+        <div class="account__header md:flex md:items-center md:justify-between pb-4 mb-7">
+          <h2 class="h6 mb-2 md:mb-0">{{ 'customer.order.title' | t: name: order.name }}</h2>
           <div>
             <time datetime="2019-12-18T05:47:00">
               {{- 'customer.order.date' | t: date: order.created_at | date: "%B %d, %Y %I:%M%p" -}}
@@ -28,7 +26,7 @@
           <p>{{ 'customer.order.cancelled_reason' | t: reason: order.cancel_reason }}</p>
         {% endif %}
 
-        <table class="responsive-table order-table">
+        <table class="responsive-table order-table mb-7 md:mb-12">
           <thead>
             <tr>
               <th>{{ 'customer.order.product' | t }}</th>
@@ -133,20 +131,19 @@
           </tfoot>
         </table>
 
-        <h3>{{ 'customer.order.billing_address' | t }}</h3>
+        <h3 class="h6 mb-6">{{ 'customer.order.billing_address' | t }}</h3>
+        <div class="rte mb-10">
+          <p>{{ 'customer.order.payment_status' | t }}: {{ order.financial_status_label }}</p>
+          {{ order.billing_address | format_address }}
+        </div>
 
-        <p>{{ 'customer.order.payment_status' | t }}: {{ order.financial_status_label }}</p>
+        <h3 class="h6 mb-6">{{ 'customer.order.shipping_address' | t }}</h3>
+        <div class="rte mb-10">
+          <p>{{ 'customer.order.fulfillment_status' | t }}: {{ order.fulfillment_status_label }}</p>
+          {{ order.shipping_address | format_address }}
+        </div>
 
-        {{ order.billing_address | format_address }}
-
-        <h3>{{ 'customer.order.shipping_address' | t }}</h3>
-
-        <p>{{ 'customer.order.fulfillment_status' | t }}: {{ order.fulfillment_status_label }}</p>
-
-        {{ order.shipping_address | format_address }}
-        <p>
-          <a href="/account">{{ 'customer.account.return' | t }}</a>
-        </p>
+        <a class="button button--sm" href="/account">{{ 'customer.account.return' | t }}</a>
       </div>
     </div>
   </div>

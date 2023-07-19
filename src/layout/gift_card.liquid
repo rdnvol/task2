@@ -24,6 +24,7 @@
     {% render 'script-tags', layout: 'gift_card' %}
 
     {{ content_for_header }}
+    <script src="{{ 'vendor/qrcode.js' | shopify_asset_url }}" defer></script>
   </head>
 
   <body class="template-giftcard">

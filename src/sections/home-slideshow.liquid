@@ -1,5 +1,5 @@
 <div
-  class="section"
+  class="section section--without-padding"
   id="slideshow-section-{{ section.id }}"
   data-section-type="slideshow"
   data-section-id="{{ section.id }}"
@@ -17,14 +17,22 @@
           <div class="splide__slide" {{ block.shopify_attributes }} data-index="{{ forloop.index0 }}">
             <div class="slideshow-gallery__img {{ section.settings.slide_height }}">
               {% if block.settings.image != blank %}
+                {% liquid
+                  if block.settings.enable_lazyload
+                    assign enable_lazyload = true
+                  else
+                    assign enable_lazyload = false
+                  endif
+                %}
                 {%
                   render 'image',
                   src: block.settings.image,
-                  d: '650x',
-                  src_m: block.settings.image,
-                  m: '375x',
+                  m: '360x',
+                  src_d: block.settings.image,
+                  d: '1440x',
                   alt: block.settings.image.alt,
-                  data_attribute: image_position
+                  data_attribute: image_position,
+                  lazyload: enable_lazyload
                 %}
               {% else %}
                 {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}
@@ -132,6 +140,12 @@
           "type": "image_picker",
           "id": "image",
           "label": "Image"
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_lazyload",
+          "label": "Enable lazyload",
+          "default": true
         },
         {
           "type": "select",

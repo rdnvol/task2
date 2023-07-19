@@ -18,23 +18,21 @@ const Cart: FunctionComponent = () => {
   const renderEmptyState = () => (
     <div className="md:flex">
       <div className="md:w-8/12 md:mx-auto">
-        <div className="text-center">
-          <div className="page-title-block">
-            <h1 className="h2">{theme.cart.title}</h1>
+        <div className="text-center py-24">
+          <div className="mb-4">
+            <h1 className="h5">{theme.cart.title}</h1>
           </div>
 
-          <div className="supports-cookies">
+          <div className="supports-cookies rte mb-5">
             <p>{theme.cart.empty}</p>
-            <p
-              dangerouslySetInnerHTML={{
-                __html: theme.cart.continue_browsing_html,
-              }}
-            />
           </div>
 
-          <div className="supports-no-cookies">
-            <p>{theme.cart.cookies}</p>
-          </div>
+          <div
+            className="mb-5"
+            dangerouslySetInnerHTML={{
+              __html: theme.cart.continue_shopping_html.replace('<a', '<a class="button"'),
+            }}
+          />
         </div>
       </div>
     </div>
@@ -51,9 +49,9 @@ const Cart: FunctionComponent = () => {
   };
 
   const renderNote = () => (
-    <div className="md:w-5/12 mb-4 md:mb-0">
-      <label htmlFor="CartSpecialInstructions" className="visually-hidden">
-        <strong>{theme.cart.note}</strong>
+    <div className="md:w-5/12 mb-10 md:mb-0 md:px-5">
+      <label className="inline-block mb-1" htmlFor="CartSpecialInstructions">
+        {theme.cart.note}
       </label>
       <textarea name="note" placeholder={theme.cart.special_instructions_placeholder} id="CartSpecialInstructions">
         {note}
@@ -63,16 +61,16 @@ const Cart: FunctionComponent = () => {
 
   const renderCart = () => (
     <div>
-      <div className="page-title-block text-center">
-        <h1 className="h2">{theme.cart.title}</h1>
+      <div className="text-center mb-10">
+        <h1 className="h5 mb-4 md:mb-2">{theme.cart.title}</h1>
       </div>
 
-      <div className="md:flex">
-        <div className="md:w-10/12 md:mx-auto">
+      <div className="lg:flex">
+        <div className="lg:w-10/12 lg:mx-auto">
           <form action="/cart" method="post" className="cart-form" noValidate>
-            <table className="cart-table body-2 mb-8 md:mb-6">
+            <table className="cart-table mb-5 md:mb-10">
               <thead className="small--hide">
-                <tr>
+                <tr className="base-secondary-text">
                   <th>{theme.cart.product}</th>
                   <th>{theme.cart.price}</th>
                   <th>{theme.cart.quantity}</th>
@@ -86,15 +84,15 @@ const Cart: FunctionComponent = () => {
               </tbody>
             </table>
 
-            <div className="md:flex md:justify-between md:space-x-8">
+            <div className="md:flex md:justify-between md:space-x-8 md:py-5">
               {ref.dataset.noteEnable === 'true' && renderNote()}
               <div className="md:w-5/12 md:ml-auto">
-                <div className="cart-form__total mb-4">
-                  <div className="title-1 flex justify-between md:justify-end">
-                    <div className="mr-2">{theme.cart.total}</div>
+                <div className="md:text-right mb-3">
+                  <div className="flex justify-between md:justify-end mb-3">
+                    <div className="mr-8">{theme.cart.total}:</div>
                     {formatMoney(total_price, theme.moneyFormat)}
                   </div>
-                  <div className="cart-form__total__text-box body-3">
+                  <div className="base-secondary-text body-small text-center md:text-right">
                     {renderDiscount()}
                     <p
                       dangerouslySetInnerHTML={{
@@ -104,7 +102,7 @@ const Cart: FunctionComponent = () => {
                   </div>
                 </div>
                 <div className="md:text-right">
-                  <input type="submit" className="mb-3 button" name="checkout" value={theme.cart.checkout} />
+                  <input type="submit" className="button w-100 md:w-auto" name="checkout" value={theme.cart.checkout} />
                 </div>
               </div>
             </div>
@@ -122,10 +120,12 @@ export default Cart;
 const cartElement = document.getElementById('cart');
 
 if (cartElement) {
+  /* eslint-disable */
   render(
     <Provider store={window.Store}>
       <Cart ref={(element) => (window.cart = element)} />
     </Provider>,
     cartElement
   );
+  /* eslint-enable */
 }

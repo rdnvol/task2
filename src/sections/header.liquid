@@ -25,7 +25,7 @@
             <div class="menu">
               <div class="flex xl:hidden items-center">
                 {% if section.settings.menu != blank %}
-                  <a href="#" class="menu__opener menu__btn-opener page-wrapper__opener">
+                  <a href="#" class="menu__opener menu__btn-opener page-wrapper__opener flex-shrink-0">
                     <span>Menu</span>
                   </a>
                 {% endif %}
@@ -46,7 +46,14 @@
             </div>
           </div>
           <div class="w-4/12 {% if section.settings.layout == 'center' %}xl:w-2/12{% else %}xl:w-3/12 xl:order-1 xl:flex xl:flex-wrap xl:items-center xl:justify-start{% endif %} px-4">
-            {% render 'header-logo' %}
+            {% liquid
+              if section.settings.enable_lazyload
+                assign enable_lazyload = true
+              else
+                assign enable_lazyload = false
+              endif
+            %}
+            {% render 'header-logo', enable_lazyload: enable_lazyload %}
           </div>
           <div class="w-4/12 {% if section.settings.layout == 'center' %}xl:w-5/12{% else %}xl:w-3/12 xl:order-3 xl:py-3{% endif %} flex items-center justify-end px-4">
             {% if section.settings.button_link != blank %}
@@ -105,6 +112,7 @@
           element: 'button',
           class: 'btn page-search-form__button flex items-center',
           text: 'Search on store',
+          type: 'submit',
           snippet: true,
           icon: 'search'
         %}
@@ -133,6 +141,19 @@
     {% endif %}
   }
 {% endstyle %}
+
+<style>
+  .header__panel--dark {
+    background: #000;
+    color: #fff
+  }
+
+  .header__panel--dark .menu__btn-opener span,
+  .header__panel--dark .menu__btn-opener::before,
+  .header__panel--dark .menu__btn-opener::after {
+      background: #fff;
+  }
+</style>
 
 {% schema %}
 {
@@ -190,9 +211,33 @@
       "info": "Grabs image from assets example (logo.svg including file extension)"
     },
     {
+      "type": "range",
+      "id": "logo_svg_width",
+      "label": "Logo svg width",
+      "min": 56,
+      "max": 100,
+      "step": 1,
+      "default": 56
+    },
+    {
+      "type": "range",
+      "id": "logo_svg_height",
+      "label": "Logo svg height",
+      "min": 33,
+      "max": 100,
+      "step": 1,
+      "default": 33
+    },
+    {
       "type": "image_picker",
       "id": "logo",
       "label": "Logo image"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_lazyload",
+      "label": "Enable lazyload",
+      "default": true
     },
     {
       "type": "text",

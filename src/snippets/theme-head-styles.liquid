@@ -4,7 +4,9 @@
     render 'font-face'
   endif
   render 'style-tags', layout: 'theme'
+  if settings.enable_custom_theme_css
     echo 'custom-theme.css' | asset_url | stylesheet_tag
+  endif
   if settings.font_library == 'google'
     render 'google-fonts'
   endif

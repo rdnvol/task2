@@ -12,33 +12,37 @@ $font-heading-weight: var(--font-heading-weight);
 // Base
 $base-body-text: var(--color-body-text) !default;
 $base-secondary-text: var(--base-secondary-text) !default;
-$base-body-background: var(--color-main-background) !default;
-$base-footer-background: var(--base-footer-background) !default;
-$base-accordion-background: var(--base-accordion-background) !default;
+$base-accent: var(--color-accent) !default;
 $base-links: var(--base-links) !default;
 $base-sale-price: var(--base-sale-price) !default;
 $base-icons: var(--base-icons) !default;
 $base-icons-on-hover: var(--base-icons-on-hover) !default;
-$base-secondary-background: var(--base-secondary-background) !default;
 $base-border: var(--base-border) !default;
+$base-body-background: var(--color-main-background) !default;
+$base-footer-background: var(--base-footer-background) !default;
+$base-background: var(--base-background) !default;
+$base-overlay-dark: var(--base-overlay-dark) !default;
+$base-overlay-white: var(--base-overlay-white) !default;
 
 // Messages
 $messages-error: var(--messages-error) !default;
+$messages-error-light: var(--messages-error-light) !default;
 $messages-success: var(--messages-success) !default;
-
-// Labels
-$labels-sale-background: var(--labels-sale-background) !default;
-$labels-soldout-background: var(--labels-soldout-background) !default;
-$labels-new-background: var(--labels-new-background) !default;
-$labels-sale-text: var(--labels-sale-text) !default;
-$labels-soldout-text: var(--labels-soldout-text) !default;
-$labels-new-text: var(--labels-new-text) !default;
+$messages-information: var(--messages-information) !default;
 
 // Customizable
 $customizable-base-text: var(--customizable-base-text) !default;
 
+// Labels
+$labels-sale-text: var(--labels-sale-text) !default;
+$labels-sale-background: var(--labels-sale-background) !default;
+$labels-soldout-text: var(--labels-soldout-text) !default;
+$labels-soldout-background: var(--labels-soldout-background) !default;
+$labels-new-text: var(--labels-new-text) !default;
+$labels-new-background: var(--labels-new-background) !default;
+
+
 // Other colors
-$color-accent: var(--color-accent);
 $color-border: var(--color-border);
 $black: #000;
 $white: #fff;
@@ -59,19 +63,19 @@ $base-min-width: 320px;
 // Links
 $base-link-color: $base-links !default;
 
-// Buttons
-$button-text: var(--button-text-color) !default;
-$button-text-on-hover: var(--button-hover-text-color) !default;
-$button-text-on-focus: var(--button-focus-text-color) !default;
-$button-border: var(--button-border-color) !default;
-$button-border-on-hover: var(--button-hover-border-color) !default;
-$button-border-on-focus: var(--button-focus-border-color) !default;
-$button-background: var(--button-background-color) !default;
-$button-background-on-hover: var(--button-hover-background-color) !default;
-$button-background-on-focus: var(--button-focus-background-color) !default;
-$button-text-on-disabled: var(--button-text-on-disabled) !default;
-$button-border-on-disabled: var(--button-border-on-disabled) !default;
-$button-background-on-disabled: var(--button-background-on-disabled) !default;
+// Primary Buttons
+$primary-button-text: var(--primary-button-text-color) !default;
+$primary-button-text-on-hover: var(--primary-button-hover-text-color) !default;
+$primary-button-text-on-focus: var(--primary-button-focus-text-color) !default;
+$primary-button-border: var(--primary-button-border-color) !default;
+$primary-button-border-on-hover: var(--primary-button-hover-border-color) !default;
+$primary-button-border-on-focus: var(--primary-button-focus-border-color) !default;
+$primary-button-background: var(--primary-button-background-color) !default;
+$primary-button-background-on-hover: var(--primary-button-hover-background-color) !default;
+$primary-button-background-on-focus: var(--primary-button-focus-background-color) !default;
+$primary-button-text-on-disabled: var(--primary-button-text-on-disabled) !default;
+$primary-button-border-on-disabled: var(--primary-button-border-on-disabled) !default;
+$primary-button-background-on-disabled: var(--primary-button-background-on-disabled) !default;
 
 // Secondary buttons
 $secondary-button-text: var(--secondary-button-text-color) !default;
@@ -87,11 +91,10 @@ $secondary-button-text-on-disabled: var(--secondary-button-text-on-disabled) !de
 $secondary-button-border-on-disabled: var(--secondary-button-border-on-disabled) !default;
 $secondary-button-background-on-disabled: var(--secondary-button-background-on-disabled) !default;
 
-$button-padding: 12px 15px !default;
-$button-font-size: inherit !default;
+$button-padding: 13px 20px !default;
 $button-border-radius: var(--button-border-radius) !default;
 
-// Dynamic checkout button
+// Dynamic buttons
 $dynamic-checkout-button-text: var(--checkout-button-text-color) !default;
 $dynamic-checkout-button-text-on-hover: var(--checkout-button-hover-text-color) !default;
 $dynamic-checkout-button-text-on-focus: var(--checkout-button-focus-text-color) !default;
@@ -101,16 +104,19 @@ $dynamic-checkout-button-border-on-focus: var(--checkout-button-focus-border-col
 $dynamic-checkout-button-background: var(--checkout-button-background-color) !default;
 $dynamic-checkout-button-background-on-hover: var(--checkout-button-hover-background-color) !default;
 $dynamic-checkout-button-background-on-focus: var(--checkout-button-focus-background-color) !default;
+$dynamic-checkout-button-text-on-disabled: var(--checkout-button-text-on-disabled) !default;
+$dynamic-checkout-button-border-on-disabled: var(--checkout-button-border-on-disabled) !default;
+$dynamic-checkout-button-background-on-disabled: var(--checkout-button-background-on-disabled) !default;
 
 // Forms
-$form-element-padding: $button-padding !default;
+$form-element-padding: 12px 15px !default;
 $form-element-border-color: #e5e5e5 !default;
 $form-element-focus-border-color: #000 !default;
-$placeholder-color: #999 !default;
+$placeholder-color: $base-secondary-text !default;
 $height-form-elements: 44px;
 $height-button-large: 48px;
-$height-button-medium: 40px;
-$height-button-small: 32px;
+$height-button-medium: 44px;
+$height-button-small: 36px;
 
 // Headers
 $headings-font-size: var(--heading-font-size);
@@ -118,18 +124,18 @@ $headings-font-weight: $font-heading-weight;
 $headings-font-family: $font-heading !default;
 $headings-color: inherit !default;
 
-$h1-font-size: $headings-font-size !default; // 36px
-$h2-font-size: calc(#{$headings-font-size} - 11px) !default; // 25px
-$h3-font-size: calc(#{$headings-font-size} - 15px) !default; // 21px
-$h4-font-size: calc(#{$headings-font-size} - 20px) !default; // 16px
-$h5-font-size: calc(#{$headings-font-size} - 22px) !default; // 14px
-$h6-font-size: calc(#{$headings-font-size} - 24px) !default; // 12px
-$h1-font-size-desktop: calc(#{$headings-font-size} + 18px) !default; // 55px
-$h2-font-size-desktop: calc(#{$headings-font-size} + 6px) !default; // 42px
-$h3-font-size-desktop: calc(#{$headings-font-size} - 4px) !default; // 32px
-$h4-font-size-desktop: calc(#{$headings-font-size} - 8px) !default; // 28px
-$h5-font-size-desktop: calc(#{$headings-font-size} - 16px) !default; // 20px
-$h6-font-size-desktop: calc(#{$headings-font-size} - 20px) !default; // 16px
+$h1-font-size: $headings-font-size !default;                 // 36px
+$h2-font-size: calc(#{$headings-font-size} - 4px) !default;  // 32px
+$h3-font-size: calc(#{$headings-font-size} - 10px) !default; // 26px
+$h4-font-size: calc(#{$headings-font-size} - 14px) !default; // 22px
+$h5-font-size: calc(#{$headings-font-size} - 16px) !default; // 20px
+$h6-font-size: calc(#{$headings-font-size} - 20px) !default; // 16px
+$h1-font-size-desktop: calc(#{$headings-font-size} + 10px) !default; // 46px
+$h2-font-size-desktop: calc(#{$headings-font-size} + 4px) !default;  // 40px
+$h3-font-size-desktop: $headings-font-size !default;                 // 36px
+$h4-font-size-desktop: calc(#{$headings-font-size} - 4px) !default;  // 32px
+$h5-font-size-desktop: calc(#{$headings-font-size} - 10px) !default; // 26px
+$h6-font-size-desktop: calc(#{$headings-font-size} - 14px) !default; // 22px
 
 $logo-width: var(--header-logo-width);
 
@@ -137,4 +143,4 @@ $animation-speed: 0.3s;
 $menu-animation-speed: 0.2s;
 
 // Grid variables
-$grid-gutter-width: 32px;
+$grid-gutter-width: 30px;

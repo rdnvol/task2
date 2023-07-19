@@ -10,9 +10,9 @@
             {% for child_link in link.links %}
               <div class="lg:3/12">
                 {% if child_link.links != blank %}
-                  <div class="h5 h">{{ child_link.title }}</div>
+                  <div class="h5 h mb-3">{{ child_link.title }}</div>
                 {% else %}
-                  <a href="{{ child_link.url }}" class="h5 h">{{ child_link.title }}</a>
+                  <a href="{{ child_link.url }}" class="h5 h mb-3">{{ child_link.title }}</a>
                 {% endif %}
                 {% if child_link.links != blank %}
                   <ul>

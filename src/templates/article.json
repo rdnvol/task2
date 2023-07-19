@@ -3,6 +3,7 @@
     "main": {
       "type": "article-template",
       "settings": {
+        "enable_lazyload": false
       }
     }
   },

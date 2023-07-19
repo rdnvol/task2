@@ -43,7 +43,7 @@
 
 .header__panel-mobile {
   padding: 20px 0;
-  background: $base-secondary-background;
+  background: $base-background;
 }
 
 .logo {
@@ -61,6 +61,7 @@
   a {
     display: block;
     height: 100%;
+    color: inherit;
   }
 
   img {
@@ -162,10 +163,9 @@
     flex-wrap: wrap;
     align-items: center;
     padding: 0;
-    font-size: calc(#{$font-size-base} + 2px);
   }
 
-  .justify-content-center & {
+  .justify-center & {
     @include media ("≥widescreen") {
       justify-content: center;
     }
@@ -189,18 +189,12 @@
         }
       }
     }
-    &.active {
-
-      > a {
-        text-decoration: underline;
-      }
-    }
     &.has-drop {
       &:hover {
 
         > a {
           @include media ("≥widescreen") {
-            color: $color-accent;
+            color: $base-accent;
           }
         }
       }
@@ -250,12 +244,13 @@
         padding: 0;
       }
       &:hover {
-        color: $color-accent;
+        color: $base-accent;
       }
     }
 
     > a,
     > details-disclosure details summary {
+      color: inherit;
       @include media ("≥widescreen") {
         padding: 28px 30px 28px 0;
       }
@@ -296,7 +291,7 @@
       &.active {
 
         > a {
-          color: $color-accent;
+          color: $base-accent;
         }
       }
     }
@@ -304,7 +299,7 @@
     a {
       &:hover {
         @include media ("≥widescreen") {
-          color: $color-accent;
+          color: $base-accent;
           text-decoration: none;
         }
       }
@@ -327,7 +322,7 @@
     z-index: 1000;
     width: 100%;
     padding: 0 30px 0 15px;
-    background: $base-secondary-background;
+    background: $base-background;
   }
 
   .container {
@@ -344,9 +339,6 @@
     @include media ("≥tablet") {
       margin-left: 15px;
     }
-    @include media ("≥desktop") {
-      margin-left: 25px;
-    }
   }
 }
 
@@ -357,11 +349,14 @@
   justify-content: center;
   width: 44px;
   height: 44px;
+  color: inherit;
   &:hover {
-    color: $color-accent;
+    color: $base-accent;
   }
 
   svg {
+    width: 19px;
+    height: auto;
     color: currentColor;
   }
 }
@@ -393,6 +388,6 @@
     bottom: 0;
     min-width: 44px;
     padding: 6px;
-    border: 1px solid $button-border;
+    border: 1px solid $primary-button-border;
   }
 }

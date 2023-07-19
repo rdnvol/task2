@@ -13,12 +13,22 @@
   <div class="container relative h-100">
     <div class="hero__img">
       {%- if section.settings.image != blank -%}
+        {% liquid
+          if section.settings.enable_lazyload
+            assign enable_lazyload = true
+          else
+            assign enable_lazyload = false
+          endif
+        %}
         {%
-          render "image", src: section.settings.image, src_m: section.settings.image_mobile,
-          placeholder: 'img-placeholder.png',
+          render 'image',
+          src: section.settings.image_mobile,
+          m: '375x470',
+          src_d: section.settings.image,
+          d: '1440x560',
+          crop: 'center',
           alt: section.settings.image.alt,
-          m: '375x',
-          d: '1438x'
+          lazyload: enable_lazyload
         %}
       {%- else -%}
         {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
@@ -26,25 +36,26 @@
     </div>
     <div class="hero__block">
       <div class="container relative h-100">
-        <div class="flex h-100 {{ section.settings.alignment }} {{ section.settings.alignment_text }} custom-color">
+        <div class="flex h-100 {{ section.settings.alignment_mobile }} {{ section.settings.alignment }} {{ section.settings.alignment_text }} custom-color">
           <div class="sm:w-10/12 md:w-6/12 lg:w-4/12">
-            <div class="rte">
+            <div class="hero__block-content">
               {% for block in section.blocks %}
                 {% case block.type %}
                   {% when 'title' %}
-                    <h1 {{ block.shopify_attributes }}>
+                    <h1 class="mb-4" {{ block.shopify_attributes }}>
                       {{ block.settings.title }}
                     </h1>
                   {% when 'text' %}
-                    <p {{ block.shopify_attributes }}>
+                    <div class="body-large rte mb-5" {{ block.shopify_attributes }}>
                       {{ block.settings.text }}
-                    </p>
+                    </div>
                   {% when 'button' %}
                     {% if block.settings.button_link != blank and block.settings.button_label != blank %}
                       {%
                         render 'button',
                         href: block.settings.button_link,
                         text: block.settings.button_label,
+                        class: 'mb-5',
                         data_attribute: block.shopify_attributes
                       %}
                     {% endif %}
@@ -60,22 +71,20 @@
 
 {% style %}
   {% if section.settings.color.alpha != 0 and section.settings.color != blank %}
-    .custom-color {
+    section[data-section-id="{{ section.id }}"] .custom-color {
       color: {{ section.settings.color }};
     }
   {% endif %}
   {% if section.settings.color_mobile.alpha != 0 and section.settings.color_mobile != blank %}
     @media screen and (max-width: 767px) {
-      .custom-color {
+      section[data-section-id="{{ section.id }}"] .custom-color {
         color: {{ section.settings.color_mobile }};
       }
     }
   {% endif %}
 
-  @media screen and (min-width: 768px) {
-    .hero__img::after {
-      opacity: {{ section.settings.image_overlay_opacity | divided_by: 100.0 }};
-    }
+  section[data-section-id="{{ section.id }}"] .hero__img::after {
+    opacity: {{ section.settings.image_overlay_opacity | divided_by: 100.0 }};
   }
 {% endstyle %}
 
@@ -87,6 +96,12 @@
       "type": "image_picker",
       "id": "image",
       "label": "Image"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_lazyload",
+      "label": "Enable lazyload",
+      "default": true
     },
     {
       "type": "range",
@@ -133,43 +148,63 @@
       "type": "select",
       "id": "alignment",
       "label": "Text alignment",
-      "default": "items-center justify-center",
+      "default": "md:items-center md:justify-center",
       "options": [
         {
-          "value": "items-start justify-start",
+          "value": "md:items-start md:justify-start",
           "label": "Top left"
         },
         {
-          "value": "items-start justify-center",
+          "value": "md:items-start md:justify-center",
           "label": "Top center"
         },
         {
-          "value": "items-start justify-end",
+          "value": "md:items-start md:justify-end",
           "label": "Top right"
         },
         {
-          "value": "items-center justify-start",
+          "value": "md:items-center md:justify-start",
           "label": "Middle left"
         },
         {
-          "value": "items-center justify-center",
+          "value": "md:items-center md:justify-center",
           "label": "Middle center"
         },
         {
-          "value": "items-center justify-end",
+          "value": "md:items-center md:justify-end",
           "label": "Middle right"
         },
         {
-          "value": "items-end justify-start",
+          "value": "md:items-end md:justify-start",
           "label": "Bottom left"
         },
         {
-          "value": "items-end justify-center",
+          "value": "md:items-end md:justify-center",
           "label": "Bottom center"
         },
         {
-          "value": "items-end justify-end",
+          "value": "md:items-end md:justify-end",
           "label": "Bottom right"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "alignment_mobile",
+      "label": "Text alignment (mobile)",
+      "default": "items-center justify-center",
+      "options": [
+        {
+          "value": "items-start justify-center",
+          "label": "Top"
+        },
+        {
+          "value": "items-center justify-center",
+          "label": "Middle"
+        },
+        {
+          "value": "items-end justify-center",
+          "label": "Bottom"
         }
       ]
     },

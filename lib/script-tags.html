@@ -8,8 +8,6 @@
   <% if (typeof htmlWebpackPlugin.options.liquidLayouts[templateFull] !== 'undefined') { %>
     {%- if layout == '<%= template %>' -%}
       <script type="text/javascript" src="<%= src %>"<% if (template !== 'checkout') { %> defer<% } %>></script>
-    {%- else -%}
-      <link rel="prefetch" href="<%= src %>" as="script">
     {%- endif -%}
   <% } else if (chunk.split('--').length > 1) { %>
     <% var pages = chunk.split('--') %>
@@ -30,8 +28,6 @@
 
     {%- if <%= conditions.join(' or ') %> -%}
       <script type="text/javascript" src="<%= src %>" defer></script>
-    {%- else -%}
-      <link rel="prefetch" href="<%= src %>" as="script">
     {%- endif -%}
 
   <% } else if (typeof htmlWebpackPlugin.options.liquidTemplates[templateFull] !== 'undefined') { %>
@@ -39,16 +35,10 @@
     <% if (chunkTemplate.includes('customers\\') || chunkTemplate.includes('customers/')) { %>
       {%- if template == 'customers/<%= template %>' -%}
         <script type="text/javascript" src="<%= src %>" defer></script>
-      {%- else -%}
-        <link rel="prefetch" href="<%= src %>" as="script">
       {%- endif -%}
     <% } else { %>
       {%- if template == '<%= template %>' -%}
         <script type="text/javascript" src="<%= src %>" defer></script>
-      <% if (!chunkTemplate.includes('page')) { %>
-        {%- else -%}
-          <link rel="prefetch" href="<%= src %>" as="script">
-      <% } %>
       {%- endif -%}
       {% if template != '<%= template %>' and template contains "product." %}
         <% if(template === "product"){ %>

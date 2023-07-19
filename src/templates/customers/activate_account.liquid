@@ -1,13 +1,13 @@
-<div class="account-section">
+<div class="section">
   <div class="container">
-    <div class="text-center">
-      <h1>{{ 'customer.activate_account.title' | t }}</h1>
+    <div class="account-page__title text-center">
+      <h1 class="h4 mb-3">{{ 'customer.activate_account.title' | t }}</h1>
       <p>{{ 'customer.activate_account.subtext' | t }}</p>
     </div>
     {% form 'activate_customer_password', class: 'account-form' %}
       {{ form.errors | default_errors }}
       <div class="input-holder">
-        <label for="CustomerPassword" class="label-hidden">
+        <label for="CustomerPassword" class="inline-block mb-1 label-hidden">
           {{ 'customer.activate_account.password' | t }}
         </label>
         <input
@@ -18,7 +18,7 @@
         >
       </div>
       <div class="input-holder">
-        <label for="CustomerPasswordConfirmation" class="label-hidden">
+        <label for="CustomerPasswordConfirmation" class="inline-block mb-1 label-hidden">
           {{ 'customer.activate_account.password_confirm' | t }}
         </label>
         <input
@@ -28,11 +28,17 @@
           placeholder="{{ 'customer.activate_account.password_confirm' | t }}"
         >
       </div>
-      <div class="account-form__actions">
-        <div class="input-holder">
-          <input type="submit" class="button w-100" value="{{ 'customer.activate_account.submit' | t }}">
-        </div>
-        <input type="submit" class="button w-100" name="decline" value="{{ 'customer.activate_account.cancel' | t }}">
+      <div class="input-holder">
+        <input type="submit" class="button w-100" value="{{ 'customer.activate_account.submit' | t }}">
+      </div>
+      <div class="body-small text-center py-3">
+        <button
+          type="submit"
+          class="button default hover:underline"
+          name="decline"
+        >
+          {{ 'customer.activate_account.cancel' | t }}
+        </button>
       </div>
     {% endform %}
   </div>

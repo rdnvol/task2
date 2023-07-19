@@ -18,7 +18,7 @@
             {% liquid
               assign image = collection.image | default: collection.products[0].featured_image
               if image != blank
-                render 'image', src: image, d: '303x303', src_m: image, m: '375x375', alt: image.alt, crop: 'center'
+                render 'image', src: image, m: '375x375', src_d: image, d: '303x303', crop: 'center', alt: image.alt
               else
                 echo 'image' | placeholder_svg_tag: 'placeholder-svg'
               endif
@@ -43,3 +43,66 @@
     </div>
   </div>
 </div>
+
+{% schema %}
+{
+  "name": "Collection list",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "layout_mobile",
+      "label": "Mobile layout",
+      "default": "grid",
+      "info": "Only applies to mobile",
+      "options": [
+        {
+          "value": "slider",
+          "label": "Slider"
+        },
+        {
+          "value": "grid",
+          "label": "Columns"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Collections"
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "text",
+      "id": "btn_text",
+      "label": "Button text",
+      "default": "View all"
+    },
+    {
+      "type": "url",
+      "id": "btn_url",
+      "label": "Button link"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Collection",
+      "type": "collection",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

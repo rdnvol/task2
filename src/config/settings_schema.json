@@ -518,9 +518,10 @@
         "step": 100
       },
       {
-        "type": "html",
+        "type": "text",
         "id": "google_integration",
-        "label": "Integration"
+        "label": "Integration",
+        "info": "Copy href from google font link and insert here(example: https://fonts.googleapis.com/css2?family=Nerko+One&family=Roboto&display=swap)"
       },
       {
         "type": "header",
@@ -561,6 +562,12 @@
         "label": "Enable font swap",
         "default": true,
         "info": "If the font face is not loaded, any element attempting to use it must render a fallback font face. If the font face successfully loads during this period, it is used normally."
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_custom_theme_css",
+        "label": "Enable custom css",
+        "default": false
       },
       {
         "type": "text",
@@ -710,6 +717,17 @@
         "type": "text",
         "id": "social_vimeo_link",
         "label": "Vimeo link"
+      }
+    ]
+  },
+  {
+    "name": "Customer settings",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "enable_accept_marketing",
+        "label": "Enable accept marketing",
+        "default": true
       }
     ]
   },

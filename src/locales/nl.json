@@ -3,13 +3,22 @@
     "accessibility": {
       "skip_to_content": "Verder naar inhoud"
     },
+    "breadcrumbs": {
+      "home": "Home"
+    },
     "meta": {
       "tags": "Getagd \"{{ tags }}\"",
-      "page": "Pagina {{ page }}"
+      "page": "Pagina {{ page }}",
+      "seo_description": "Better than Dawn."
     },
     "404": {
       "title": "404 Pagina niet gevonden",
       "subtext_html": "De pagina die u zocht bestaat niet. Klik <a href=\"/collections/all\">hier</a> om verder te shoppen."
+    },
+    "pagination": {
+      "previous": "Previous page",
+      "next": "Next page",
+      "current_page": "Page {{ current }} of {{ total }}"
     },
     "password_page": {
       "opening_soon": "Binnenkort open",
@@ -28,6 +37,7 @@
       "powered_by_shopify_html": "Deze shop zal worden ondersteund door {{ shopify }}"
     },
     "social": {
+      "share": "Share",
       "share_on_facebook": "Deel",
       "share_on_twitter": "Tweet",
       "share_on_pinterest": "Pin",
@@ -52,10 +62,12 @@
       "no_results_html": "Probeer een ander trefwoord of ga terug naar de <a href=\"/\">startpagina</a>."
     },
     "newsletter_form": {
+      "title": "Connect",
       "newsletter_email": "Kom bij onze maillijst",
       "email_placeholder": "E-mail",
       "confirmation": "Bedankt voor het abonneren",
-      "submit": "Abonneren"
+      "submit": "Abonneren",
+      "please_enter_your_email": "Please enter your email"
     }
   },
   "blogs": {
@@ -69,6 +81,7 @@
     },
     "comments": {
       "title": "Laat een reactie achter",
+      "block_title": "Comments",
       "name": "Naam",
       "email": "E-mail",
       "message": "Bericht",
@@ -98,7 +111,12 @@
       "cookies_required": "Gelieve cookies te activeren om het winkelmandje te gebruiken",
       "continue_browsing_html": "Bekijk <a href=\"/collections/all\">alle producten</a>.",
       "item_quantity": "Hoeveelheid",
-      "savings": "U bespaart"
+      "continue_shopping_html": "<a href=\"#\">Continue shopping</a>",
+      "savings": "U bespaart",
+      "just_added_to_your_cart": "Just added to your cart",
+      "view_cart": "View cart",
+      "special_instructions_placeholder": "View Special instructions for seller",
+      "add_to_cart": "Add to cart"
     },
     "label": {
       "product": "Product",
@@ -111,8 +129,25 @@
   },
   "collections": {
     "general": {
+      "view_all": "view all",
       "no_matches": "Sorry, er bevinden zich geen producten in deze collectie",
-      "link_title": "Bekijk onze {{ title }} collectie"
+      "link_title": "Bekijk onze {{ title }} collectie",
+      "products_amount": "{{ amount }} products",
+      "product": "product",
+      "products": "products",
+      "filter_by": "Filter by",
+      "sort_by": "Sort by",
+      "clear_all": "Clear all",
+      "close": "Close",
+      "filter_and_sort": "Filter and sort",
+      "filter": "Filter:"
+    },
+    "filters": {
+      "filter_product_price": "The highest price is $300.00",
+      "reset": "Reset",
+      "to": "to",
+      "minimum_price": "Minimum price",
+      "maximum_price": "Maximum price"
     }
   },
   "contact": {
@@ -123,7 +158,8 @@
       "message": "Waarmee kunnen wij u helpen?",
       "send": "Verstuur",
       "post_success": "Bedankt om ons te contacteren. Wij nemen zo snel mogelijk contact met u op."
-    }
+    },
+    "location": "Get directions"
   },
   "customer": {
     "account": {
@@ -165,6 +201,9 @@
     },
     "login": {
       "title": "Login",
+      "log_out": "Log out",
+      "log_in": "Log in",
+      "create_account": "Create account",
       "email": "E-mail",
       "password": "Wachtwoord",
       "forgot_password": "Wachtwoord vergeten?",
@@ -227,6 +266,7 @@
       "last_name": "Achternaam",
       "email": "E-mail",
       "password": "Wachtwoord",
+      "accepts-marketing": "Subscribe to email marketing",
       "submit": "Registreren",
       "cancel": "Terug naar de shop"
     }
@@ -237,6 +277,7 @@
       "blog_excerpt": "Je winkel heeft nog geen blog-berichten gepubliceerd. Een blog kan worden gebruikt om te praten over nieuwe productlanceringen, tips of ander nieuws dat u met uw klanten wilt delen. Je kunt het ecommerce-blog van Shopify bekijken voor inspiratie en advies voor je eigen winkel en blog.",
       "blog_author": "Auteur naam",
       "product_title": "Product Titel Voorbeeld",
+      "product_description": "This area is used to describe your product’s details. Tell customers about the look, feel, and style of your product. Add details on color, materials used, sizing, and where it was made.",
       "collection_title": "Collectie Titel Voorbeeld",
       "no_content": "Dit onderdeel heeft momenteel geen inhoud. Voeg inhoud toe aan dit onderdeel aan de hand van de zijbalk."
     }
@@ -259,7 +300,9 @@
     "footer": {
       "social_platform": "{{ name }} op {{ platform }}",
       "copyright": "Algemene voorwaarden",
-      "payment_methods": "Geaccepteerde betaalmethodes"
+      "payment_methods": "Geaccepteerde betaalmethodes",
+      "select_currency": "Select currency",
+      "select_locales": "Select locales"
     }
   },
   "products": {
@@ -271,7 +314,37 @@
       "on_sale_from_html": "In sale van {{ price }}",
       "from_text_html": "Vanaf {{ price }}",
       "quantity": "Aantal",
-      "add_to_cart": "In winkelmandje"
+      "quantity_decrease": "Decrease quantity",
+      "quantity_increase": "Increase quantity",
+      "add_to_cart": "In winkelmandje",
+      "dynamic_button_placeholder": "Buy it now",
+      "size_chart": "Size Chart",
+      "size": "size",
+      "color_title": "Color",
+      "starting_at": "From",
+      "product_variants": "Product variants",
+      "tax_included": "Tax included."
+    },
+    "product_card": {
+      "labels": {
+        "sale": "Sale",
+        "sold_out": "Sold out",
+        "new": "New"
+      }
+    },
+    "facets": {
+      "filters_selected": {
+        "one": "{{ count }} selected",
+        "other": "{{ count }} selected"
+      },
+      "product_count": {
+        "one": "{{ product_count }} of {{ count }} product",
+        "other": "{{ product_count }} of {{ count }} products"
+      },
+      "product_count_simple": {
+        "one": "{{ count }} product",
+        "other": "{{ count }} products"
+      }
     }
   },
   "gift_cards": {
@@ -284,12 +357,15 @@
       "redeem": "Gebruik deze code tijdens het uitchecken.",
       "shop_link": "Begin te shoppen",
       "print": "Printen",
+      "copy_code_success": "Code succesvol gekopieerd",
+      "copy_code_text": "Kopieer code",
       "remaining_html": "{{ balance }} over",
       "add_to_apple_wallet": "Voeg toe aan Apple Wallet",
       "initial_value": "Waarde cadeaukaart: {{ value }}"
     }
   },
   "date_formats": {
-    "month_day_year": "%d %B %Y"
+    "month_day_year": "%d %B %Y",
+    "month_day_year_time": "on %B %d, %Y at %l:%M%p"
   }
 }

@@ -2,7 +2,7 @@
   {% render "breadcrumbs" %}
 {% endif %}
 {% liquid
-  render 'swatcher-variants' with product as product
+  render 'swatches-variants', product: product, enable_lazyload: section.settings.enable_lazyload, first_image_eager: true
   render "schema"
 %}
 
@@ -16,6 +16,48 @@
 {
   "name": "Product Information",
   "settings": [
+    {
+      "type": "select",
+      "id": "product_options_layout",
+      "label": "Appearance of product options (other options except Color)",
+      "default": "select",
+      "options": [
+        {
+          "value": "select",
+          "label": "Select"
+        },
+        {
+          "value": "square_swatches",
+          "label": "Square swatches"
+        },
+        {
+          "value": "round_swatches",
+          "label": "Round swatches"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "product_option_color_layout",
+      "label": "Appearance of product options (Color)",
+      "default": "square_swatches",
+      "options": [
+        {
+          "value": "square_swatches",
+          "label": "Square swatches"
+        },
+        {
+          "value": "round_swatches",
+          "label": "Round swatches"
+        }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_lazyload",
+      "label": "Enable lazyload",
+      "default": true
+    },
     {
       "type": "checkbox",
       "id": "show_variant_label",
@@ -41,7 +83,7 @@
     },
     {
       "type": "select",
-      "id": "swatcher_color_type",
+      "id": "swatches_color_type",
       "label": "Variants swatcher option",
       "default": "image",
       "options": [

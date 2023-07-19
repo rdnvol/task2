@@ -6,6 +6,7 @@ export async function addItem(data) {
       'Content-Type': 'application/json',
     },
   };
+
   const result = await fetch('/cart/add.js', params)
     .then((res) => res.json())
     .catch((error) => console.log(error));

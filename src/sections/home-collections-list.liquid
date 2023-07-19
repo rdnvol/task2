@@ -1,34 +1,78 @@
 {% if section.blocks.size > 0 %}
+  {% liquid
+    assign slider_classes = 'collection-scroll flex space-x-8 xl:grid xl:grid-cols-4 xl:gap-8 xl:space-x-0'
+    assign grid_classes = 'collection-grid grid grid-cols-2 xl:grid-cols-4 md:gap-8 -mx-4 md:mx-0'
+  %}
+
   <section class="section">
-    <div class="container">
+    <div class="container overflow-hidden">
       {% if section.settings.title != blank %}
-        <h2 class="text-center">{{ section.settings.title }}</h2>
+        <h2 class="text-center mb-4">{{ section.settings.title }}</h2>
       {% endif %}
-      <div class="grid md:grid-cols-3 gap-4">
+      {%- comment -%}if collection grid {%- endcomment -%}
+      <div class="{% if section.settings.layout_mobile == 'grid' %}{{ grid_classes }}{% else %}{{ slider_classes }}{% endif %}">
         {% for block in section.blocks %}
-          {% assign collection = collections[block.settings.collection] %}
+          {% liquid
+            assign collection = block.settings.collection
+            assign collection_title = block.settings.title | default: collection.title
+            if block.settings.collection_image != blank
+              assign collection_image = block.settings.collection_image
+            elsif collection.image != blank
+              assign collection_image = collection.image
+            else
+              assign collection_image = collection.products[0].featured_image
+            endif
+
+            if section.settings.layout_mobile == 'grid'
+              assign mobile_size = '181x'
+            else
+              assign mobile_size = '250x'
+            endif
+
+            if block.settings.enable_lazyload
+              assign enable_lazyload = true
+            else
+              assign enable_lazyload = false
+            endif
+          %}
           {% if collection != blank %}
-            <div {{ block.shopify_attributes }}>
-              <a href="{{ collection.url }}" class="collection-list-item block relative">
-                <div class="collection-list-item__img image-container">
+            <div class="collection-item text-center" {{ block.shopify_attributes }}>
+              <a href="{{ collection.url }}" class="image-container">
+                {%- comment -%}if collection grid image {%- endcomment -%}
+                {% if collection_image != blank %}
                   {%
                     render 'image',
-                    src: collection.image,
-                    d: '413x',
-                    src_m: collection.image,
-                    m: '345x',
-                    placeholder: 'img-placeholder.png',
-                    alt: collection.image.alt
+                    src: collection_image,
+                    m: mobile_size,
+                    src_d: collection_image,
+                    d: '328x',
+                    alt: collection_image.alt,
+                    lazyload: enable_lazyload
                   %}
-                </div>
-                <div class="collection-list-item__text-box flex items-center justify-center text-center customizable-base-text">
-                  <h3 class="collection-list-item__title mb-0">{{ collection.title }}</h3>
-                </div>
+                {% else %}
+                  {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                {% endif %}
               </a>
+              <div class="collection-item__text-box{% if section.settings.layout_mobile == 'grid' %} body-large{% endif %}">
+                <h3 class="body-large">
+                  <a href="{{ collection.url }}">
+                    {{ collection_title }}
+                  </a>
+                </h3>
+              </div>
             </div>
           {% endif %}
         {% endfor %}
       </div>
+      {% if section.settings.btn_url != blank and section.settings.btn_text != blank %}
+        <div class="xs:pt-4 text-center">
+          {%
+            render 'button',
+            href: section.settings.btn_url,
+            text: section.settings.btn_text
+          %}
+        </div>
+      {% endif %}
     </div>
   </section>
 {% endif %}
@@ -38,10 +82,46 @@
   "name": "Collections list",
   "settings": [
     {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "layout_mobile",
+      "label": "Mobile layout",
+      "default": "grid",
+      "info": "Only applies to mobile",
+      "options": [
+        {
+          "value": "slider",
+          "label": "Slider"
+        },
+        {
+          "value": "grid",
+          "label": "Columns"
+        }
+      ]
+    },
+    {
       "type": "text",
       "id": "title",
       "label": "Heading",
       "default": "Collections list"
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "text",
+      "id": "btn_text",
+      "label": "Button text",
+      "default": "View all"
+    },
+    {
+      "type": "url",
+      "id": "btn_url",
+      "label": "Button link"
     }
   ],
   "blocks": [
@@ -49,6 +129,23 @@
       "name": "Collection",
       "type": "collection",
       "settings": [
+        {
+          "type": "image_picker",
+          "id": "collection_image",
+          "label": "Collection image"
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_lazyload",
+          "label": "Enable lazyload",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Collection name"
+        },
         {
           "type": "collection",
           "id": "collection",

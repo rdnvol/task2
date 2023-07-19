@@ -3,13 +3,22 @@
     "accessibility": {
       "skip_to_content": "Ir directamente al contenido"
     },
+    "breadcrumbs": {
+      "home": "Home"
+    },
     "meta": {
       "tags": "Etiquetado \"{{ tags }}\"",
-      "page": "Página {{ page }}"
+      "page": "Página {{ page }}",
+      "seo_description": "Better than Dawn."
     },
     "404": {
       "title": "404 Página no encontrada",
       "subtext_html": "La página que ha solicitado no existe. Haga clic <a href=\"/collections/all\">aquí</a> para continuar la compra."
+    },
+    "pagination": {
+      "previous": "Previous page",
+      "next": "Next page",
+      "current_page": "Page {{ current }} of {{ total }}"
     },
     "password_page": {
       "opening_soon": "Apertura Próximamente",
@@ -28,6 +37,7 @@
       "powered_by_shopify_html": "Esta tienda estará impulsada por {{ shopify }}"
     },
     "social": {
+      "share": "Share",
       "share_on_facebook": "Compartir",
       "share_on_twitter": "Tuitear",
       "share_on_pinterest": "Hacer pin",
@@ -52,10 +62,12 @@
       "no_results_html": "Intente con un término de búsqueda diferente o regrese a la <a href=\"/\">página de inicio</a>."
     },
     "newsletter_form": {
+      "title": "Connect",
       "newsletter_email": "Estar en el saber",
       "email_placeholder": "Dirección de correo electrónico",
       "confirmation": "Gracias por su suscripción",
-      "submit": "Suscribir"
+      "submit": "Suscribir",
+      "please_enter_your_email": "Please enter your email"
     }
   },
   "blogs": {
@@ -69,6 +81,7 @@
     },
     "comments": {
       "title": "Dejar un comentario",
+      "block_title": "Comments",
       "name": "Nombre",
       "email": "Correo electrónico",
       "message": "Mensaje",
@@ -98,7 +111,12 @@
       "cookies_required": "Habilite las cookies para usar el carrito de compras",
       "continue_browsing_html": "Continúe explorando <a href=\"/collections/all\">aquí</a>.",
       "item_quantity": "Cantidad de artículo",
-      "savings": "Está ahorrando"
+      "continue_shopping_html": "<a href=\"#\">Continue shopping</a>",
+      "savings": "Está ahorrando",
+      "just_added_to_your_cart": "Just added to your cart",
+      "view_cart": "View cart",
+      "special_instructions_placeholder": "View Special instructions for seller",
+      "add_to_cart": "Add to cart"
     },
     "label": {
       "product": "Producto",
@@ -111,8 +129,25 @@
   },
   "collections": {
     "general": {
+      "view_all": "view all",
       "no_matches": "Lo sentimos, no hay productos que coincidan con su búsqueda.",
-      "link_title": "Navegue por nuestra colección {{ title }}"
+      "link_title": "Navegue por nuestra colección {{ title }}",
+      "products_amount": "{{ amount }} products",
+      "product": "product",
+      "products": "products",
+      "filter_by": "Filter by",
+      "sort_by": "Sort by",
+      "clear_all": "Clear all",
+      "close": "Close",
+      "filter_and_sort": "Filter and sort",
+      "filter": "Filter:"
+    },
+    "filters": {
+      "filter_product_price": "The highest price is $300.00",
+      "reset": "Reset",
+      "to": "to",
+      "minimum_price": "Minimum price",
+      "maximum_price": "Maximum price"
     }
   },
   "contact": {
@@ -123,7 +158,8 @@
       "message": "Mensaje",
       "send": "Enviar",
       "post_success": "Gracias por contactarnos. Le responderemos lo antes posible."
-    }
+    },
+    "location": "Get directions"
   },
   "customer": {
     "account": {
@@ -165,6 +201,9 @@
     },
     "login": {
       "title": "Ingresar",
+      "log_out": "Log out",
+      "log_in": "Log in",
+      "create_account": "Create account",
       "email": "Correo electrónico",
       "password": "Contraseña",
       "forgot_password": "¿Olvidó su contraseña?",
@@ -227,6 +266,7 @@
       "last_name": "Apellido",
       "email": "Correo electrónico",
       "password": "Contraseña",
+      "accepts-marketing": "Subscribe to email marketing",
       "submit": "Crear",
       "cancel": "Volver a la tienda"
     }
@@ -237,6 +277,7 @@
       "blog_excerpt": "Tu tienda no ha publicado ninguna entrada en el blog. Un blog puede ser utilizado para hablar sobre los nuevos lanzamientos del producto, consejos u otras noticias que deseas compartir con tus clientes. Puedes verificar el blog de comercio electrónico Shopify para la inspiración y consejos para tu propia tienda y blog.",
       "blog_author": "Nombre del autor",
       "product_title": "Ejemplo título de producto",
+      "product_description": "This area is used to describe your product’s details. Tell customers about the look, feel, and style of your product. Add details on color, materials used, sizing, and where it was made.",
       "collection_title": "Ejemplo título de colección",
       "no_content": "Esta secção não inclui de momento qualquer conteúdo. Adicione conteúdo a esta secção através da barra lateral."
     }
@@ -259,7 +300,9 @@
     "footer": {
       "social_platform": "{{ name }} en {{ platform }}",
       "copyright": "Derechos de autor",
-      "payment_methods": "Medios de pago aceptados"
+      "payment_methods": "Medios de pago aceptados",
+      "select_currency": "Select currency",
+      "select_locales": "Select locales"
     }
   },
   "products": {
@@ -271,7 +314,37 @@
       "on_sale_from_html": "En oferta desde {{ price }}",
       "from_text_html": "De {{ price }}",
       "quantity": "Cantidad",
-      "add_to_cart": "Agregar al carrito"
+      "quantity_decrease": "Decrease quantity",
+      "quantity_increase": "Increase quantity",
+      "add_to_cart": "Agregar al carrito",
+      "dynamic_button_placeholder": "Buy it now",
+      "size_chart": "Size Chart",
+      "size": "size",
+      "color_title": "Color",
+      "starting_at": "From",
+      "product_variants": "Product variants",
+      "tax_included": "Tax included."
+    },
+    "product_card": {
+      "labels": {
+        "sale": "Sale",
+        "sold_out": "Sold out",
+        "new": "New"
+      }
+    },
+    "facets": {
+      "filters_selected": {
+        "one": "{{ count }} selected",
+        "other": "{{ count }} selected"
+      },
+      "product_count": {
+        "one": "{{ product_count }} of {{ count }} product",
+        "other": "{{ product_count }} of {{ count }} products"
+      },
+      "product_count_simple": {
+        "one": "{{ count }} product",
+        "other": "{{ count }} products"
+      }
     }
   },
   "gift_cards": {
@@ -284,12 +357,15 @@
       "redeem": "Use este código al terminar la comprar para canjear su tarjeta de regalo",
       "shop_link": "Empezar a comprar",
       "print": "Imprimir",
+      "copy_code_success": "Código copiado con éxito",
+      "copy_code_text": "Copiar código",
       "remaining_html": "{{ balance }} restante",
       "add_to_apple_wallet": "Añadir a Apple Wallet",
       "initial_value": "Valor de la tarjeta de regalo: {{ value }}"
     }
   },
   "date_formats": {
-    "month_day_year": "%d de %B, %Y"
+    "month_day_year": "%d de %B, %Y",
+    "month_day_year_time": "on %B %d, %Y at %l:%M%p"
   }
 }

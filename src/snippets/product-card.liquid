@@ -1,21 +1,30 @@
-{% unless grid_item_width %}
-  {% assign grid_item_width = 'col-sm-6 col-lg-3' %}
-{% endunless %}
+{% liquid
+  unless grid_item_width
+    assign grid_item_width = 'sm:w-6/12 lg:w-3/12'
+  endunless
+  unless image_sizes_desktop
+    assign image_sizes_desktop = '323x'
+  endunless
+  unless image_sizes_mobile
+    assign image_sizes_mobile = '156x'
+  endunless
+%}
 
 <div class="{{ grid_item_width }}">
   <div class="product-item text-center">
-    <a href="{{ product.url | within: collection }}" class="product-item__img relative">
+    <a href="{{ product.url | within: collection }}" class="relative block mb-3">
       {% if product.featured_image != blank %}
-        {% render 'image',
+        {%
+          render 'image',
           src: product.featured_image,
-          d: '302x376',
-          src_m: product.featured_image,
-          m: '162x202',
-          placeholder: 'img-placeholder.png',
-          alt: product.featured_image.alt
+          m: image_sizes_mobile,
+          src_d: section.settings.image,
+          d: image_sizes_desktop,
+          alt: product.featured_image.alt,
+          lazyload: enable_lazyload
         %}
       {% else %}
-        {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+        {{ 'image' | placeholder_svg_tag: "placeholder-svg" }}
       {% endif %}
       <div class="absolute top-2 left-2 bottom-2 right-2 flex items-start">
         <div class="product-item__label base-label flex flex-wrap">
@@ -25,22 +34,22 @@
           {% unless product.available %}
             <div class="product-item__label-soldout">{{ 'products.product_card.labels.sold_out' | t }}</div>
           {% endunless %}
-          {% if product.tags contains 'new' %}
+          {% if product.tags contains "new" %}
             <div class="product-item__label-new">{{ 'products.product_card.labels.new' | t }}</div>
           {% endif %}
         </div>
       </div>
     </a>
     <div class="product-item__box">
-      {% if display_vendor %}
-        <h4 class="product-item__subtitle">
-          <div>{{ product.vendor }}</div>
-        </h4>
+      {% if show_vendor %}
+        <div class="body-small">{{ product.vendor }}</div>
       {% endif %}
-      <h3 class="product-item__title">
+      <h3 class="title mb-2">
         <a href="{{ product.url | within: collection }}">{{ product.title }}</a>
       </h3>
-      {% render 'product-price', product: product %}
+      <div class="mb-2 product-price-large">
+        {% render "product-price", product: product %}
+      </div>
     </div>
   </div>
 </div>
