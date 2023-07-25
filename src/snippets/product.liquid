@@ -50,19 +50,19 @@
         <div class="product-main-block__details product-main-block__details--sticky">
           {% for block in section.blocks %}
             {% case block.type %}
-              {% when "@app" %}
+              {% when '@app' %}
                 <div class="product__rating mb-5">
                   {% render block %}
                 </div>
-              {% when "title" %}
+              {% when 'title' %}
                 {% unless section_onboarding %}
                   <h1 class="h5 mb-1 md:mb-2" {{ block.shopify_attributes }}>{{ product.title }}</h1>
                 {% else %}
                   <h1 class="h5 mb-1 md:mb-2">{{ 'homepage.onboarding.product_title' | t }}</h1>
                 {% endunless %}
-              {% when "vendor" %}
+              {% when 'vendor' %}
                 <div class="body-small" {{ block.shopify_attributes }}>{{ product.vendor }}</div>
-              {% when "price" %}
+              {% when 'price' %}
                 <div class="product__price product-price-large" {{ block.shopify_attributes }}>
                   <div class="product__price__box flex flex-wrap items-center" data-price-wrapper>
                     {% if current_variant.compare_at_price > current_variant.price %}
@@ -87,7 +87,7 @@
                     {{ form | payment_terms }}
                   {%- endform -%}
                 </div>
-              {% when "buy_buttons" %}
+              {% when 'buy_buttons' %}
                 {% unless section_onboarding %}
                   {%
                     render 'product-form',
@@ -129,7 +129,7 @@
                     </div>
                   </form>
                 {% endunless %}
-              {% when "variant_picker" %}
+              {% when 'variant_picker' %}
                 <div
                   id="variant-selects"
                   class="no-js-hidden"
@@ -149,7 +149,12 @@
                               assign size_option = 'products.product.size' | t | downcase
                               assign options = product.options | downcase
                             %}
-                            {% if forloop.first and show_size_chart and size_chart_url != blank and options contains size_option %}
+                            {%
+                              if forloop.first
+                              and show_size_chart
+                              and size_chart_url != blank
+                              and options contains size_option
+                            %}
                               {% capture size_chart_link %}
                                 <a
                                   class="size-chart-link"
@@ -231,7 +236,7 @@
                     </div>
                   </div>
                 </noscript>
-              {% when "quantity_selector" %}
+              {% when 'quantity_selector' %}
                 <div class="sm:flex mb-4">
                   <div class="w-100 md:w-10/12 xl:w-6/12">
                     <label for="quantity" class="inline-block mb-1 body-medium base-secondary-text">Quantity</label>
@@ -261,7 +266,7 @@
                     </div>
                   </div>
                 </div>
-              {% when "description" %}
+              {% when 'description' %}
                 <div class="pickup-availability-info pt-4 mb-4">
                   <div class="flex">
                     <div class="pickup-availability-info__ico flex-shrink-0 mr-2">
@@ -287,10 +292,15 @@
                     {{ 'homepage.onboarding.product_description' | t }}
                   {% endif %}
                 </div>
-
-                {% render 'product-accordion--markup' %}
-              {% when "share" %}
-                {% render 'social-sharing', share_title: product.title, share_permalink: product.url, share_image: product %}
+              {% when 'accordion' %}
+                {% render 'product-accordion', block: block %}
+              {% when 'share' %}
+                {%
+                  render 'social-sharing',
+                  share_title: product.title,
+                  share_permalink: product.url,
+                  share_image: product
+                %}
             {% endcase %}
           {% endfor %}
         </div>
