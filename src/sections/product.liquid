@@ -1,9 +1,9 @@
 {% if section.settings.show_breadcrumbs %}
-  {% render "breadcrumbs" %}
+  {% render 'breadcrumbs' %}
 {% endif %}
 {% liquid
   render 'product', product: product, enable_lazyload: section.settings.enable_lazyload, first_image_eager: true
-  render "schema"
+  render 'schema'
 %}
 
 <script type="application/json" id="product-json">
@@ -104,6 +104,35 @@
       "type": "share",
       "name": "Social sharing buttons",
       "limit": 1
+    },
+    {
+      "type": "accordion",
+      "name": "Accordion",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "pairs_heading",
+          "label": "Heading",
+          "default": "Pairs well with"
+        },
+        {
+          "type": "range",
+          "id": "pairs_max_product_count",
+          "label": "Maximum products to show",
+          "default": 1,
+          "min": 0,
+          "max": 10
+        },
+        {
+          "type": "range",
+          "id": "pairs_per_page",
+          "label": "Number of products per page",
+          "default": 1,
+          "min": 0,
+          "max": 10
+        }
+      ]
     }
   ]
 }
