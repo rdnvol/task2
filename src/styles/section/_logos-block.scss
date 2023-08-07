@@ -1,6 +1,20 @@
 .logos-item {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100%;
+  aspect-ratio: 4 / 3;
+  @include media ("≥widescreen") {
+    aspect-ratio: 4 / 2;
+  }
+
+  img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: auto;
+    max-width: 100%;
+    max-height: 100%;
+    transform: translate(-50%, -50%);
+  }
 }

@@ -1,4 +1,8 @@
-<div class="section" id="cart" data-note-enable="{{ settings.cart_notes_enable }}">
+<div
+  class="section"
+  id="cart"
+  data-note-enable="{{ settings.cart_notes_enable }}"
+>
   <div class="container">
     <div
       data-has-items
@@ -12,8 +16,13 @@
         </h1>
       </div>
 
-      <form action="/cart" method="post" class="cart-form" novalidate>
-        <table class="cart-table body-2 mb-4">
+      <form
+        action="/cart"
+        method="post"
+        class="cart-form"
+        novalidate
+      >
+        <table class="cart-table mb-4">
           <thead class="small--hide">
             <tr>
               <th>{{ 'cart.label.product' | t }}</th>
@@ -29,17 +38,23 @@
 
         <div class="md:flex md:justify-between">
           {% if settings.cart_notes_enable %}
-            <div class="md:w-5/12 lg:w-4/12 px-0 mb-4 md:mb-0">
-              <label for="CartSpecialInstructions" class="inline-block mb-2">
+            <div class="mb-4 px-0 md:mb-0 md:w-5/12 lg:w-4/12">
+              <label
+                for="CartSpecialInstructions"
+                class="mb-2 inline-block"
+              >
                 <strong>
                   {{ 'cart.general.note' | t }}
                 </strong>
               </label>
-              <textarea name="note" id="CartSpecialInstructions">{{ cart.note }}</textarea>
+              <textarea
+                name="note"
+                id="CartSpecialInstructions"
+              >{{ cart.note }}</textarea>
             </div>
           {% endif %}
 
-          <div class="md:w-5/12 lg:w-4/12 px-0 ml-auto">
+          <div class="ml-auto px-0 md:w-5/12 lg:w-4/12">
             <div class="cart-form__total mb-4">
               <div class="flex">
                 <div class="w-8/12">
@@ -60,14 +75,27 @@
               </div>
             </div>
             <div class="md:text-right">
-              <input type="submit" class="button" name="checkout" value="{{ 'cart.general.checkout' | t }}">
+              <input
+                type="submit"
+                class="button"
+                name="checkout"
+                value="{{ 'cart.general.checkout' | t }}"
+              >
             </div>
+            {%- if additional_checkout_buttons -%}
+              <div class="cart__dynamic-checkout-buttons additional-checkout-buttons">
+                {{ content_for_additional_checkout_buttons }}
+              </div>
+            {%- endif -%}
           </div>
         </div>
       </form>
     </div>
-    <div class="{% if cart.item_count != 0 %}hidden{% else %}md:flex{% endif %}" data-no-items>
-      <div class="md:w-8/12 md:mx-auto">
+    <div
+      class="{% if cart.item_count != 0 %}hidden{% else %}md:flex{% endif %}"
+      data-no-items
+    >
+      <div class="md:mx-auto md:w-8/12">
         <div class="text-center">
           <div class="page-title-block">
             <h1>{{ 'cart.general.title' | t }}</h1>

@@ -23,13 +23,18 @@ textarea {
   height: $height-form-elements;
   padding: $form-element-padding;
   font-size: $font-size-base;
+  background: $base-body-background;
   border: 1px solid $form-element-border-color;
-  -webkit-border-radius: 0;
-  border-radius: 0;
+  -webkit-border-radius: $form-element-border-radius;
+  border-radius: $form-element-border-radius;
   &:-webkit-autofill {
     -webkit-box-shadow: 0 0 0 1000px #fff inset !important;
     box-shadow: 0 0 0 1000px #fff inset !important;
     filter: none;
+  }
+  &:focus,
+  &:active {
+    border-color: $form-element-focus-border-color;
   }
 
   @include placeholder {
@@ -56,8 +61,8 @@ select {
   line-height: 1.3;
   background: $base-background-color;
   border: 1px solid $form-element-border-color;
-  -webkit-border-radius: 0;
-  border-radius: 0;
+  -webkit-border-radius: $form-element-border-radius;
+  border-radius: $form-element-border-radius;
 }
 
 .select-holder {
@@ -110,15 +115,14 @@ textarea {
 .button,
 input[type="reset"],
 input[type="submit"] {
+  @extend %button-large;
   -webkit-appearance: none;
   display: inline-block;
   vertical-align: top;
   box-sizing: border-box;
-  min-width: 182px;
+  min-width: 65px;
   min-height: $height-form-elements;
-  padding: 10px 15px;
-  font-family: $font-heading;
-  line-height: 1;
+  padding: $button-padding;
   color: $primary-button-text;
   text-align: center;
   background: $primary-button-background;
@@ -128,13 +132,14 @@ input[type="submit"] {
   cursor: pointer;
   &.button--lg {
     min-height: $height-button-large;
-    padding-top: 14px;
-    padding-bottom: 14px;
+    padding-top: 15px;
+    padding-bottom: 15px;
   }
   &.button--sm {
+    @extend %button-small;
     min-height: $height-button-small;
-    padding-top: 7px;
-    padding-bottom: 7px;
+    padding-top: 9px;
+    padding-bottom: 9px;
     font-size: $font-size-base;
   }
   &.btn--with-icon {
@@ -143,7 +148,7 @@ input[type="submit"] {
     justify-content: space-between;
 
     .icon {
-      margin-left: 7px;
+      margin-left: 12px;
     }
   }
   &:hover {
@@ -174,6 +179,7 @@ input[type="submit"] {
     min-height: 0;
     margin: 0;
     padding: 0;
+    font-weight: $font-body-weight;
     color: $base-body-text;
     background: none;
     border: none;
@@ -226,29 +232,79 @@ a.button {
   vertical-align: top;
   padding-top: 10px;
   padding-bottom: 10px;
-  line-height: 1.2;
+  line-height: 1.375;
   text-decoration: none;
   &.button--lg {
-    padding-top: 14px;
-    padding-bottom: 14px;
+    padding-top: 12px;
+    padding-bottom: 12px;
   }
   &.button--sm {
-    padding-top: 7px;
-    padding-bottom: 7px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    line-height: 1.375;
   }
 }
 
 .input-holder {
+  position: relative;
   margin: 0 0 20px;
-  @include media("≥desktop") {
-    margin: 0 0 30px;
+  &[data-aria-hidden=" true"] {
+    display: none;
   }
+}
+
+.input-field {
+
+  label {
+    position: absolute;
+    top: 14px;
+    left: 16px;
+    margin: 0;
+    color: $base-secondary-text;
+    pointer-events: none;
+    transition: top $animation-speed ease, font-size $animation-speed ease, font-weight $animation-speed ease;
+  }
+
+  input,
+  textarea {
+    height: 52px;
+    &:focus,
+    &:not(:placeholder-shown),
+    &:-webkit-autofill {
+      padding-top: 24px;
+      padding-bottom: 8px;
+
+      ~ label {
+        top: 9px;
+        left: 16px;
+        font-size: calc(#{$font-size-base} - 4px);
+        font-weight: 600;
+
+        .predictive-search & {
+          top: 7px;
+        }
+      }
+    }
+
+    @include placeholder {
+      opacity: 0;
+    }
+  }
+
+  textarea {
+    min-height: 97px;
+  }
+}
+
+.label {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 0 5px;
 }
 
 .custom-input {
   position: relative;
   &.custom-input--colors {
-    margin: 0 8px 8px 0;
 
     input[type="checkbox"],
     input[type="radio"] {
@@ -263,28 +319,19 @@ a.button {
             background: none;
             border-color: $base-body-text;
           }
-
-          picture {
-            padding: 3px;
-          }
         }
       }
       &:disabled,
       &.disabled {
-        cursor: default;
-        pointer-events: none;
 
         + .custom-label {
           &::before {
             background: none !important;
-            background: $base-border;
-            opacity: 0.6;
           }
           &::after {
-            opacity: 0.6;
+            opacity: 1;
           }
 
-          > span,
           img {
             opacity: 0.6;
           }
@@ -312,18 +359,15 @@ a.button {
 
       &:disabled,
       &.disabled {
-        cursor: default;
-        pointer-events: none;
 
         + .custom-label {
           text-decoration: none;
 
           .custom-label__img-holder {
             &::after {
-              opacity: 0.6;
+              opacity: 1;
             }
 
-            > span,
             img {
               opacity: 0.6;
             }
@@ -333,22 +377,32 @@ a.button {
     }
   }
   &.custom-input--size {
-    margin: 0 12px 12px 0;
 
     input[type="checkbox"],
     input[type="radio"] {
       top: 0;
-      width: 32px;
-      height: 32px;
+      width: 100%;
+      height: 100%;
       &:checked,
       &:hover,
       &:focus {
 
         + .custom-label {
-          color: #fff;
+          color: $customizable-base-text;
           &::before {
-            background: $base-border;
-            border-color: $base-border;
+            background: $base-body-text;
+            border-color: $base-body-text;
+          }
+        }
+      }
+
+      &:disabled,
+      &.disabled {
+
+        + .custom-label {
+          text-decoration: none;
+          &::after {
+            opacity: 1;
           }
         }
       }
@@ -374,18 +428,15 @@ a.button {
 
       &:disabled,
       &.disabled {
-        cursor: default;
-        pointer-events: none;
 
         + .custom-label {
           text-decoration: none;
 
           .custom-label__img-holder {
             &::after {
-              opacity: 0.6;
+              opacity: 1;
             }
 
-            > span,
             img {
               opacity: 0.6;
             }
@@ -409,6 +460,7 @@ a.button {
 
           .custom-label__check {
             background: $base-body-text;
+            border-color: $base-body-text;
             &::after {
               opacity: 1;
             }
@@ -417,17 +469,23 @@ a.button {
       }
       &:disabled,
       &.disabled {
-        cursor: default;
-        pointer-events: none;
 
         + .custom-label {
           text-decoration: none;
 
           .custom-label__check {
             background: #f7f7f7;
+            border-color: $base-border;
           }
         }
       }
+    }
+  }
+  &.custom-input--circle {
+
+    input[type="checkbox"],
+    input[type="radio"] {
+      border-radius: 100%;
     }
   }
 
@@ -507,28 +565,28 @@ a.button {
       border-color: $base-border;
       border-radius: 0;
     }
+
+    .custom-input--circle & {
+      border-radius: 100%;
+    }
+  }
+
+  .custom-input--circle & {
+    border-radius: 100%;
+
+    > span:not(.custom-label__img-holder) {
+      border-radius: 100%;
+    }
   }
 
   .custom-input--colors & {
     display: block;
     box-sizing: border-box;
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
     padding: 3px;
     background: none;
     overflow: hidden;
-    &::after {
-      content: "";
-      position: absolute;
-      top: -8px;
-      left: 19px;
-      z-index: 2;
-      width: 1px;
-      height: 58px;
-      background: $customizable-base-text;
-      opacity: 0;
-      transform: rotate(45deg);
-    }
 
     > span:not(.custom-label__img-holder) {
       display: block;
@@ -550,23 +608,53 @@ a.button {
     }
   }
 
+  .custom-input--colors &,
+  .custom-input--size & {
+    &::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 0;
+      z-index: 2;
+      width: 1px;
+      height: calc(100% + 16px);
+      margin-top: -8px;
+      background: $base-overlay-white;
+      opacity: 0;
+      transform: rotate(45deg) translateY(-50%);
+    }
+  }
+
+  .custom-input--colors.custom-input--circle & {
+    &::after {
+      border-radius: 100%;
+    }
+
+    img {
+      border-radius: 100%;
+    }
+  }
+
   .custom-input--colors-with-text & {
     padding: 0;
   }
 
   .custom-input--size & {
+    @extend %body-medium;
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
-    min-width: 32px;
-    height: 32px;
-    padding: 0;
-    font-size: calc(#{$font-size-base} - 6px);
-    font-weight: 700;
+    min-width: 44px;
+    height: 44px;
+    padding: 3px;
     background: none;
     border-color: $base-border;
     transition: color $animation-speed ease-in-out;
+    overflow: hidden;
+    &::after {
+      background: $base-border;
+    }
 
     > * {
       position: relative;
@@ -574,7 +662,6 @@ a.button {
     }
 
     span {
-      padding: 6px;
       text-transform: uppercase;
     }
   }
@@ -582,11 +669,25 @@ a.button {
   .custom-input--square-with-text & {
     padding: 0;
   }
+
+  .custom-input--colors.custom-input--sm &,
+  .custom-input--size.custom-input--sm & {
+    width: 24px;
+    min-width: auto;
+    height: 24px;
+    padding: 2px;
+    font-size: calc(#{$font-size-base} - 6px); // 10px
+    &::after {
+      height: calc(100% + 8px);
+      margin-top: -4px;
+    }
+  }
 }
 
 .custom-label__check {
   position: relative;
   display: block;
+  flex-shrink: 0;
   box-sizing: border-box;
   width: 24px;
   height: 24px;
@@ -620,7 +721,7 @@ a.button {
   width: 24px;
   height: 24px;
   margin-right: 8px;
-  padding: 2px;
+  padding: 1px;
   border: 1px solid $base-border;
   border-radius: 100%;
   transition: border-color $animation-speed ease-in-out;
@@ -642,18 +743,14 @@ a.button {
   }
 }
 
-.label {
-  display: inline-block;
-  vertical-align: top;
-  margin: 0 0 5px;
-}
-
 .page-search-form__button.page-search-form__button {
   min-width: $height-form-elements;
   min-height: $height-form-elements;
   margin-left: 12px;
   font-size: 0;
   line-height: 0;
+  -webkit-border-radius: $form-element-border-radius;
+  border-radius: $form-element-border-radius;
   @include media("≥desktop") {
     margin-left: 20px;
   }
@@ -709,7 +806,7 @@ a.button {
   text-align: center;
   background: $dynamic-checkout-button-background;
   border: 1px solid $dynamic-checkout-button-border;
-  -webkit-border-radius: 0;
+  -webkit-border-radius: $button-border-radius;
   border-radius: $button-border-radius;
   cursor: pointer;
   &:hover {

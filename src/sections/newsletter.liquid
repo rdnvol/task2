@@ -10,9 +10,9 @@
 <div class="section">
   <div class="container">
     <div class="md:flex">
-      <div class="md:w-9/12 lg:w-6/12 mx-auto">
+      <div class="mx-auto md:w-9/12 lg:w-6/12">
         {% if section.settings.title != blank %}
-          <h2 class="text-center">
+          <h2 class="mb-4 text-center">
             {{ section.settings.title | escape }}
           </h2>
         {% endif %}
@@ -22,14 +22,21 @@
             <legend class="visually-hidden">Subscribe form</legend>
             {{ form.errors | default_errors }}
             {% if form.posted_successfully? %}
-              <div class="text-center messages-success">
+              <div class="messages-success text-center">
                 {{ 'general.newsletter_form.confirmation' | t }}
               </div>
             {% else %}
-              <input type="hidden" name="contact[tags]" value="newsletter">
+              <input
+                type="hidden"
+                name="contact[tags]"
+                value="newsletter"
+              >
               <div class="sm:flex sm:items-center">
                 <div class="input-holder w-100 sm:mb-0">
-                  <label for="subscribe-form-field" class="visually-hidden">
+                  <label
+                    for="subscribe-form-field"
+                    class="visually-hidden"
+                  >
                     {{ 'general.newsletter_form.email_placeholder' | t }}
                   </label>
                   <input
@@ -42,7 +49,12 @@
                     autocapitalize="off"
                   >
                 </div>
-                <button type="submit" name="commit" class="button" id="Subscribe">
+                <button
+                  type="submit"
+                  name="commit"
+                  class="button"
+                  id="Subscribe"
+                >
                   <span>{{ 'general.newsletter_form.submit' | t }}</span>
                 </button>
               </div>

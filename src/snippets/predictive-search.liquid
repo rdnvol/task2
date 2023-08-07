@@ -1,0 +1,88 @@
+<details-utils
+  class="predictive-search"
+  close-click-outside
+  close-esc
+  toggle-document-class="predictive-search-open"
+>
+  <details id="predictive-search">
+    <summary
+      class="header__btn predictive-search__opener page-wrapper__opener"
+      aria-haspopup="dialog"
+    >
+      <span class="visually-hidden">Search</span>
+      {%- render 'icon' with 'search' -%}
+    </summary>
+    <div
+      class="predictive-search__wrapper"
+      role="dialog"
+    >
+      <div class="container">
+        <form
+          action="{{ routes.search_url }}"
+          method="get"
+          role="search"
+          class="predictive-search__form py-2 lg:py-3"
+        >
+          <div class="w-100 lg:relative">
+            <div class="flex">
+              <div class="input-field relative w-100">
+                <input
+                  type="search"
+                  id="predictive-search-field"
+                  class="predictive-search__input"
+                  name="q"
+                  value="{{ search.terms | escape }}"
+                  placeholder="Search"
+                  aria-label="Search"
+                  autocomplete="off"
+                  accesskey="4"
+                >
+
+                <label for="predictive-search-field">Search</label>
+                <div
+                  class="predictive-search__reset-holder flex flex-nowrap items-center"
+                  data-btn-reset
+                >
+                  <button
+                    type="reset"
+                    class="predictive-search__btn-reset button btn"
+                    aria-label="Reset form"
+                  >
+                    <span class="btn-closer">
+                      <span class="visually-hidden">Reset form</span>
+                    </span>
+                  </button>
+                  <div class="predictive-search__divider">
+                    <span class="visually-hidden">Divider</span>
+                  </div>
+                </div>
+                <button
+                  type="submit"
+                  class="predictive-search__btn-submit button btn"
+                  aria-label="Search"
+                >
+                  <span class="visually-hidden">Search</span>
+                  {%- render 'icon' with 'search' -%}
+                </button>
+              </div>
+              <button
+                type="button"
+                class="predictive-search__btn-closer page-wrapper__opener button btn btn-closer shrink-0"
+                data-du-close-click
+                aria-controls="predictive-search"
+                aria-label="Close search form"
+              >
+                <span class="visually-hidden">Close search form</span>
+              </button>
+            </div>
+
+            <div
+              id="predictive-search-container"
+              class="predictive-search__results-block"
+            ></div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </details>
+</details-utils>

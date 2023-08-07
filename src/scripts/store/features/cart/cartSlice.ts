@@ -58,15 +58,18 @@ export const addItem = createAsyncThunk('cart/addItem', async ({ id, quantity }:
   }
 });
 
-export const updateItem = createAsyncThunk('cart/updateItem', async ({ id, options }: UpdateItemType) => {
-  try {
-    const cartData = await cart.updateItem(id, options);
+export const updateItem = createAsyncThunk(
+  'cart/updateItem',
+  async ({ id, options }: UpdateItemType, { rejectWithValue }) => {
+    try {
+      const cartData = await cart.updateItem(id, options);
 
-    return cartData;
-  } catch (error) {
-    console.log(error);
+      return cartData;
+    } catch (error) {
+      return rejectWithValue(error?.response?.data);
+    }
   }
-});
+);
 
 export const removeItem = createAsyncThunk('cart/removeItem', async ({ key }: { [key: string]: string }) => {
   try {
@@ -99,6 +102,10 @@ export const cartSlice = createSlice({
     openPopup: (state) => ({
       ...state,
       popupActive: true,
+    }),
+    openDrawer: (state) => ({
+      ...state,
+      drawerActive: true,
     }),
     addJustAdded: (state, { payload }) => ({
       ...state,
@@ -143,29 +150,37 @@ export const cartSlice = createSlice({
       state.loading = true;
     });
 
-    builder.addCase(updateItem.fulfilled, (state, { payload }) => ({
-      ...state,
-      cart: payload,
-      items: payload.items,
-      item_count: payload.item_count,
-      loading: false,
-    }));
+    builder.addCase(updateItem.fulfilled, (state, { payload }) => {
+      const returnedState = {
+        ...state,
+        cart: payload || state.cart,
+        items: payload?.items || state.items,
+        item_count: payload?.item_count || state.item_count,
+        loading: false,
+        error: null,
+      };
+
+      return returnedState;
+    });
 
     builder.addCase(updateItem.rejected, (state) => {
       state.loading = false;
+      state.error = 'true';
     });
 
     builder.addCase(getCart.pending, (state) => {
       state.loading = false;
     });
 
-    builder.addCase(getCart.fulfilled, (state, { payload }) => ({
-      ...state,
-      cart: payload.cart,
-      items: payload.items,
-      loading: false,
-      item_count: payload.item_count,
-    }));
+    builder.addCase(getCart.fulfilled, (state, { payload }) => {
+      return {
+        ...state,
+        cart: payload,
+        items: payload?.items || state.items,
+        loading: false,
+        item_count: payload.item_count,
+      };
+    });
 
     builder.addCase(getCart.rejected, (state) => {
       state.loading = false;
@@ -173,5 +188,5 @@ export const cartSlice = createSlice({
   },
 });
 
-export const { closePopup, openPopup, addJustAdded } = cartSlice.actions;
+export const { closePopup, openPopup, openDrawer, addJustAdded } = cartSlice.actions;
 export const cartReducer = cartSlice.reducer;

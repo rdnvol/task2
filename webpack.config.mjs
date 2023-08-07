@@ -13,6 +13,7 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
 import FileManagerPlugin from 'filemanager-webpack-plugin';
 import TerserJSPlugin from 'terser-webpack-plugin';
 import FriendlyErrorsWebpackPlugin from 'friendly-errors-webpack-plugin';
@@ -20,8 +21,8 @@ import getTemplateEntrypoints from './lib/utilities/get-template-entrypoints.mjs
 import getLayoutEntrypoints from './lib/utilities/get-layout-entrypoints.mjs';
 import getChunkName from './lib/utilities/get-chunk-name.mjs';
 import { settings } from './lib/config.mjs';
-import StylelintPlugin from 'stylelint-webpack-plugin'
-import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin'
+import StylelintPlugin from 'stylelint-webpack-plugin';
+import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin';
 
 dotenv.config();
 
@@ -43,21 +44,21 @@ const cleanDistPluginsDisabled = !!process.env.CLEAN_DIST_DISABLED;
 const cleanDistPlugins = cleanDistPluginsDisabled
   ? []
   : [
-      new CleanWebpackPlugin({
-        cleanOnceBeforeBuildPatterns: [settings.theme.roots.dist],
-      }),
-    ];
+    new CleanWebpackPlugin({
+      cleanOnceBeforeBuildPatterns: [settings.theme.roots.dist],
+    }),
+  ];
 
 // Bundle Analyzer Plugin
 const bundleAnalyzerPlugin = !bundleAnalyzerEnabled
   ? []
   : [
-      new BundleAnalyzerPlugin({
-        analyzerMode: 'disabled',
-        generateStatsFile: env === PROD,
-        statsFilename: path.resolve(__dirname, 'stats.json'),
-      }),
-    ];
+    new BundleAnalyzerPlugin({
+      analyzerMode: 'disabled',
+      generateStatsFile: env === PROD,
+      statsFilename: path.resolve(__dirname, 'stats.json'),
+    }),
+  ];
 
 // Setup to switch between prod and dev for minimize plugins
 const minimizer = [
@@ -105,35 +106,35 @@ const AfterBuildHook = {
     if (!cli) {
       env === DEV
         ? compiler.hooks.afterEmit.tap('AfterEmitPlugin', (compilation) => {
-            if (!isRunning) {
-              console.log('----------- RELOAD --------');
-              const start = exec(
-                'npm run theme:deploy && npm run watch:theme:dev:win',
-                {
-                  shell: true,
-                  stdio: 'inherit',
-                  stdout: 'inherit',
-                }
-              );
-              start.on('close', (code) => {
-                console.log(`child process exited with code ${code}`);
-                isRunning = false;
-              });
-            }
-            isRunning = true;
-          })
-        : compiler.hooks.done.tap('AfterEmitPlugin', (compilation) => {
-            if (deploy) {
-              const start = exec('npm run theme:deploy', {
+          if (!isRunning) {
+            console.log('----------- RELOAD --------');
+            const start = exec(
+              'npm run theme:deploy && npm run watch:theme:dev:win',
+              {
                 shell: true,
                 stdio: 'inherit',
                 stdout: 'inherit',
-              });
-              start.on('close', (code) => {
-                console.log(`child process exited with code ${code}`);
-              });
-            }
-          });
+              },
+            );
+            start.on('close', (code) => {
+              console.log(`child process exited with code ${code}`);
+              isRunning = false;
+            });
+          }
+          isRunning = true;
+        })
+        : compiler.hooks.done.tap('AfterEmitPlugin', (compilation) => {
+          if (deploy) {
+            const start = exec('npm run theme:deploy', {
+              shell: true,
+              stdio: 'inherit',
+              stdout: 'inherit',
+            });
+            start.on('close', (code) => {
+              console.log(`child process exited with code ${code}`);
+            });
+          }
+        });
     } else {
       compiler.hooks.afterEmit.tap('AfterEmitPlugin', (compilation) => {
         if (!isRunning) {
@@ -184,7 +185,7 @@ export default {
       'react/jsx-runtime': 'preact/jsx-runtime',
     },
     plugins: [
-      new TsconfigPathsPlugin()
+      new TsconfigPathsPlugin(),
     ],
     extensions: ['.js', '.jsx', '.tsx', '.ts'],
   },
@@ -193,28 +194,12 @@ export default {
     // Config for JS outputs
     filename: '[name].js',
     path: settings.theme.dist.assets,
-    publicPath: '',
-    chunkFilename: '[name].chunk.[chunkhash:5].js',
+    publicPath: 'auto',
+    chunkFilename: 'chunk.[chunkhash:5].js',
   },
   watchOptions: {
     ignored: /node_modules/,
     aggregateTimeout: 1000,
-  },
-  optimization: {
-    // Defining more chunks aside from the entry JS points
-    minimize: true,
-    minimizer,
-    splitChunks: {
-      cacheGroups: {
-        defaultVendors: false,
-        vendor: {
-          test: /[\\/]node_modules[\\/]/,
-          name: getChunkName,
-          chunks: 'initial',
-          priority: 5,
-        },
-      },
-    },
   },
   module: {
     rules: [
@@ -246,7 +231,15 @@ export default {
       },
       {
         test: /\.css$/i,
-        use: ['style-loader', 'css-loader'],
+        use: [
+          {
+            loader: env === DEV ? 'style-loader' : MiniCssExtractPlugin.loader,
+            options: {
+              esModule: false,
+            },
+          },
+          'css-loader',
+        ],
       },
       {
         test: /\.(js|jsx|tsx|ts)$/,
@@ -254,6 +247,26 @@ export default {
         loader: 'ts-loader',
       },
     ],
+  },
+  optimization: { // Defining more chunks aside from the entry JS points
+    minimize: true,
+    minimizer: [
+      new CssMinimizerPlugin({
+        test: /theme.(sa|sc|c)ss$/,
+      }),
+      '...',
+    ],
+    splitChunks: {
+      automaticNameDelimiter: '--',
+      cacheGroups: {
+        criticalStyles: {
+          name: 'theme',
+          test: /theme.(sa|sc|c)ss$/,
+          chunks: 'initial',
+          enforce: true,
+        },
+      },
+    },
   },
   plugins: [
     new FriendlyErrorsWebpackPlugin(),
@@ -307,7 +320,7 @@ export default {
     new MiniCssExtractPlugin({
       // Combines all css into chunked files
       filename: '[name].css',
-      chunkFilename: '[name].css',
+      chunkFilename: 'chunk.[name].css',
     }),
     new HtmlWebpackPlugin({
       excludeChunks: ['static'],
@@ -317,20 +330,20 @@ export default {
       minify:
         env === PROD
           ? {
-              ignoreCustomFragments: [
-                /<%[\s\S]*?%>/,
-                /<\?[\s\S]*?\?>/,
-                /{{[\s\S]*?}}/, // Add liquid tags {{ ... }}
-                /{%-[\s\S]*?-%}/, // Add liquid tags {%- ... -%}
-              ],
-              minifyJS: true,
-              collapseWhitespace: true,
-              removeComments: true,
-              removeRedundantAttributes: true,
-              removeScriptTypeAttributes: true,
-              removeStyleLinkTypeAttributes: true,
-              useShortDoctype: false,
-            }
+            ignoreCustomFragments: [
+              /<%[\s\S]*?%>/,
+              /<\?[\s\S]*?\?>/,
+              /{{[\s\S]*?}}/, // Add liquid tags {{ ... }}
+              /{%-[\s\S]*?-%}/, // Add liquid tags {%- ... -%}
+            ],
+            minifyJS: true,
+            collapseWhitespace: true,
+            removeComments: true,
+            removeRedundantAttributes: true,
+            removeScriptTypeAttributes: true,
+            removeStyleLinkTypeAttributes: true,
+            useShortDoctype: false,
+          }
           : false,
       isDevServer: false,
       liquidTemplates: getTemplateEntrypoints(settings),
@@ -344,24 +357,32 @@ export default {
       minify:
         env === PROD
           ? {
-              ignoreCustomFragments: [
-                /<%[\s\S]*?%>/,
-                /<\?[\s\S]*?\?>/,
-                /{{[\s\S]*?}}/, // Add liquid tags {{ ... }}
-                /{%-[\s\S]*?-%}/, // Add liquid tags {%- ... -%}
-              ],
-              minifyJS: true,
-              collapseWhitespace: true,
-              removeComments: true,
-              removeRedundantAttributes: true,
-              removeScriptTypeAttributes: true,
-              removeStyleLinkTypeAttributes: true,
-              useShortDoctype: false,
-            }
+            ignoreCustomFragments: [
+              /<%[\s\S]*?%>/,
+              /<\?[\s\S]*?\?>/,
+              /{{[\s\S]*?}}/, // Add liquid tags {{ ... }}
+              /{%-[\s\S]*?-%}/, // Add liquid tags {%- ... -%}
+            ],
+            minifyJS: true,
+            collapseWhitespace: true,
+            removeComments: true,
+            removeRedundantAttributes: true,
+            removeScriptTypeAttributes: true,
+            removeStyleLinkTypeAttributes: true,
+            useShortDoctype: false,
+          }
           : false,
       isDevServer: false,
       liquidTemplates: getTemplateEntrypoints(settings),
       liquidLayouts: getLayoutEntrypoints(settings),
+      injectCriticalCss(htmlWebpackPluginStats, compilation) {
+        return (htmlWebpackPluginStats.files.css)
+          .filter(cssFilename => /theme\b/.test(cssFilename))
+          .map(cssFilename => `<style>${
+            compilation.assets[cssFilename.split('/')[2]].source()
+          }</style>`)
+          .join('\n');
+      },
     }),
     // env plugin
     new webpack.DefinePlugin({
@@ -371,9 +392,9 @@ export default {
       analyzerMode: bundleAnalyzerEnabled ? 'server' : 'disabled',
     }),
     AfterBuildHook,
-    new StylelintPlugin()
+    new StylelintPlugin(),
   ],
   node: {
     __dirname: true,
-  }
+  },
 };

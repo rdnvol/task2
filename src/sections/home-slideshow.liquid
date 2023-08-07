@@ -1,5 +1,5 @@
 <div
-  class="section"
+  class="section {{ section.settings.section_padding }}"
   id="slideshow-section-{{ section.id }}"
   data-section-type="slideshow"
   data-section-id="{{ section.id }}"
@@ -7,24 +7,38 @@
   data-blocks="{{ section.blocks.size }}"
   data-slides-every="{{ section.settings.change_every }}"
 >
-  <div class="splide slideshow-gallery" id="slideshow-gallery-{{ section.id }}">
+  <div
+    class="splide slideshow-gallery"
+    id="slideshow-gallery-{{ section.id }}"
+  >
     <div class="splide__track">
       <div class="splide__list">
         {% for block in section.blocks %}
-          {%- capture image_position -%}
-            style="{{ block.settings.image_position }}"
-          {%- endcapture -%}
-          <div class="splide__slide" {{ block.shopify_attributes }} data-index="{{ forloop.index0 }}">
+          <div
+            class="splide__slide"
+            {{ block.shopify_attributes }}
+            data-index="{{ forloop.index0 }}"
+          >
             <div class="slideshow-gallery__img {{ section.settings.slide_height }}">
               {% if block.settings.image != blank %}
+                {% liquid
+                  if block.settings.enable_lazyload
+                    assign enable_lazyload = true
+                    assign fetchpriority_value = 'low'
+                  else
+                    assign enable_lazyload = false
+                    assign fetchpriority_value = 'high'
+                  endif
+                %}
                 {%
                   render 'image',
                   src: block.settings.image,
-                  d: '650x',
-                  src_m: block.settings.image,
-                  m: '375x',
+                  m: '360x',
+                  src_d: block.settings.image,
+                  d: '1440x',
                   alt: block.settings.image.alt,
-                  data_attribute: image_position
+                  lazyload: enable_lazyload,
+                  fetchpriority: fetchpriority_value
                 %}
               {% else %}
                 {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}
@@ -87,6 +101,30 @@
     },
     {
       "type": "select",
+      "id": "section_padding",
+      "label": "Padding",
+      "default": "",
+      "options": [
+        {
+          "value": "",
+          "label": "All paddings"
+        },
+        {
+          "value": "section--without-padding",
+          "label": "Remove all paddings"
+        },
+        {
+          "value": "section--without-padding-top",
+          "label": "Remove top padding"
+        },
+        {
+          "value": "section--without-padding-bottom",
+          "label": "Remove bottom padding"
+        }
+      ]
+    },
+    {
+      "type": "select",
       "id": "text_size",
       "label": "Text size",
       "default": "",
@@ -134,48 +172,10 @@
           "label": "Image"
         },
         {
-          "type": "select",
-          "id": "image_position",
-          "label": "Image position",
-          "default": "object-position: 50% 50%;",
-          "options": [
-            {
-              "value": "object-position: 0 0;",
-              "label": "Top left"
-            },
-            {
-              "value": "object-position: 50% 0;",
-              "label": "Top center"
-            },
-            {
-              "value": "object-position: 100% 0;",
-              "label": "Top right"
-            },
-            {
-              "value": "object-position: 0% 50%;",
-              "label": "Middle left"
-            },
-            {
-              "value": "object-position: 50% 50%;",
-              "label": "Middle center"
-            },
-            {
-              "value": "object-position: 100% 50%;",
-              "label": "Middle right"
-            },
-            {
-              "value": "object-position: 0 100%;",
-              "label": "Bottom left"
-            },
-            {
-              "value": "object-position: 50% 100%;",
-              "label": "Bottom center"
-            },
-            {
-              "value": "object-position: 100% 100%;",
-              "label": "Bottom right"
-            }
-          ]
+          "type": "checkbox",
+          "id": "enable_lazyload",
+          "label": "Enable lazyload",
+          "default": true
         },
         {
           "type": "select",

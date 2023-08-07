@@ -1,5 +1,4 @@
 import { register } from '@shopify/theme-sections';
-import Plyr from 'plyr';
 import { afterScrollEnable, callbackOnElOutOfView, performanceMeasure } from '../helpers/utils.js';
 
 register('iframe-video', {
@@ -45,17 +44,21 @@ register('iframe-video', {
         },
       };
 
-      this.iframeVideo = new Plyr(this.container.querySelector(`.media-block__video #player-${this.id}`), options);
-      window.plyrPlayer = this.iframeVideo;
-      document.addEventListener('ready', () => {
-        this.iframeVideo.play();
-      });
+      import('plyr').then((mod) => {
+        const Plyr = mod.default;
 
-      callbackOnElOutOfView(this.container.querySelector(`.media-block__video`), () => this.iframeVideo.pause());
+        this.iframeVideo = new Plyr(this.container.querySelector(`.media-block__video #player-${this.id}`), options);
+        window.plyrPlayer = this.iframeVideo;
+
+        document.addEventListener('ready', () => {
+          this.iframeVideo.play();
+        });
+
+        callbackOnElOutOfView(this.container.querySelector(`.media-block__video`), () => this.iframeVideo.pause());
+      });
     });
   },
 
-  // Shortcut function called when a section is loaded via 'sections.load()' or by the Theme Editor 'shopify:section:load' event.
   onLoad() {
     performanceMeasure(this.id, this.initIframeVideo.bind(this));
   },

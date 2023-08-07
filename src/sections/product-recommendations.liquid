@@ -1,7 +1,30 @@
+{% liquid
+  assign desktop_grid_item_width = 'lg:grid-cols-' | append: section.settings.desktop_grid
+  case section.settings.desktop_grid
+  when 1
+    assign image_sizes_desktop = '1410'
+  when 2
+    assign image_sizes_desktop = '689'
+  when 3
+    assign image_sizes_desktop = '449'
+  when 4
+    assign image_sizes_desktop = '329'
+  when 5
+    assign image_sizes_desktop = '256'
+  endcase
+
+  assign mobile_grid_item_width = 'grid-cols-' | append: section.settings.mobile_grid
+  case section.settings.mobile_grid
+  when '1'
+    assign image_sizes_mobile = '330'
+  when '2'
+    assign image_sizes_mobile = '155'
+  endcase
+%}
 {% if section.settings.show_product_recommendations %}
   <div
-    class="section"
     id="product-recommendations"
+    data-intent="{{ recommendations.intent }}"
     data-section-type="product-recommendations"
     data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit={{ section.settings.limit }}"
     data-section-id="{{ section.id }}"
@@ -9,31 +32,37 @@
     data-limit="{{ section.settings.limit }}"
   >
     {%- if recommendations.performed and recommendations.products_count > 0 -%}
-      <div class="container">
-        <h2 class="text-center">{{ section.settings.title }}</h2>
-        <div class="sm:grid sm:grid-cols-2 lg:grid-cols-4 sm:gap-x-8 js-products">
-          {%- for product in recommendations.products -%}
-            {% render "product-card", product: product , grid_item_width: '' %}
-          {%- endfor -%}
-        </div>
-        {% if section.settings.button_link != blank %}
-          <div class="sm:pt-4 text-center">
-            {%
-              render "button",
-              href: section.settings.button_link,
-              text: section.settings.button_label
-            %}
+      <section class="section">
+        <div class="container">
+          <h2 class="mb-4 text-center">{{ section.settings.title }}</h2>
+          <div class="grid {{ mobile_grid_item_width }} {{ desktop_grid_item_width }} js-products gap-x-5 gap-y-8 xl:gap-x-8">
+            {%- for product in recommendations.products -%}
+              {% render "product-card", product: product, grid_item_width: '', image_sizes_mobile: image_sizes_mobile, image_sizes_desktop: image_sizes_desktop, image_ratio: section.settings.image_ratio %}
+            {%- endfor -%}
           </div>
-        {% endif %}
-      </div>
+          {% if section.settings.button_link != blank %}
+            <div class="text-center sm:pt-4">
+              {%
+                render "button",
+                href: section.settings.button_link,
+                text: section.settings.button_label
+              %}
+            </div>
+          {% endif %}
+        </div>
+      </section>
     {%- endif -%}
   </div>
 {% endif %}
 
 {% schema %}
 {
-  "name": "Related products",
+  "name": "Product recommendations",
   "settings": [
+    {
+      "type": "paragraph",
+      "content": "Dynamic recommendations change and improve with time. Create manual product recommendations using the Shopify Search & Discovery app. [Learn more](https://help.shopify.com/en/manual/online-store/search-and-discovery/product-recommendations)"
+    },
     {
       "type": "checkbox",
       "id": "show_product_recommendations",
@@ -50,10 +79,55 @@
       "type": "range",
       "id": "limit",
       "min": 1,
-      "max": 8,
+      "max": 10,
       "step": 1,
-      "label": "Limit",
+      "label": "Maximum products to show",
+      "default": 5
+    },
+    {
+      "type": "range",
+      "id": "desktop_grid",
+      "label": "Products per row for desktop",
+      "min": 1,
+      "max": 5,
+      "step": 1,
       "default": 4
+    },
+    {
+      "type": "select",
+      "id": "mobile_grid",
+      "label": "Products per row for mobile",
+      "default": "1",
+      "options": [
+        {
+          "value": "1",
+          "label": "One product in row"
+        },
+        {
+          "value": "2",
+          "label": "Two products in row"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "label": "Image ratio",
+      "default": "",
+      "options": [
+        {
+          "value": "",
+          "label": "Adapt to image"
+        },
+        {
+          "value": "product-item--portrait",
+          "label": "Portrait"
+        },
+        {
+          "value": "product-item--square",
+          "label": "Square"
+        }
+      ]
     },
     {
       "type": "url",

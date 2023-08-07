@@ -4,16 +4,16 @@
       <div class="md:w-1/2">
         <div class="feature-block__img">
           {%- if section.settings.image != blank -%}
-            {%
-              render "image",
-              src: section.settings.image,
-              d: "635x794",
-              src_m: section.settings.image,
-              m: "345x431",
-              alt: section.settings.image.alt,
-              placeholder: 'img-placeholder.png',
-              p_d: '635x794',
-              p_m: '345x431'
+            {% liquid
+              if section.settings.enable_lazyload
+                assign enable_lazyload = true
+                assign fetchpriority_value = 'low'
+              else
+                assign enable_lazyload = false
+                assign fetchpriority_value = 'high'
+              endif
+
+              render 'image', src: section.settings.image, m: "330x", src_d: section.settings.image, d: "689x", alt: section.settings.image.alt, lazyload: enable_lazyload, fetchpriority: fetchpriority_value
             %}
           {%- else -%}
             {{ 'image' | placeholder_svg_tag: "placeholder-svg" }}
@@ -54,6 +54,12 @@
       "type": "image_picker",
       "id": "image",
       "label": "Image"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_lazyload",
+      "label": "Enable lazyload",
+      "default": true
     },
     {
       "type": "select",

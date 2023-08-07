@@ -2,13 +2,9 @@
   {% render "breadcrumbs" %}
 {% endif %}
 {% liquid
-  render 'product' with product as product
+  render 'product', product: product, enable_lazyload: section.settings.enable_lazyload
   render "schema"
 %}
-
-<script type="application/json" id="product-json">
-  {% render 'product-json' %}
-</script>
 
 {% render 'product-model-script', product: product %}
 
@@ -24,6 +20,12 @@
     },
     {
       "type": "checkbox",
+      "id": "enable_lazyload",
+      "label": "Enable lazyload",
+      "default": true
+    },
+    {
+      "type": "checkbox",
       "id": "show_size_chart",
       "label": "Show size chart",
       "default": true
@@ -35,6 +37,12 @@
       "default": true
     },
     {
+      "type": "checkbox",
+      "id": "show_following_image",
+      "label": "Show following image on mobile",
+      "default": true
+    },
+    {
       "type": "url",
       "id": "size_chart_url",
       "label": "Size chart url"
@@ -43,6 +51,38 @@
   "blocks": [
     {
       "type": "@app"
+    },
+    {
+      "type": "text",
+      "name": "Text",
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "text",
+          "default": "Text",
+          "label": "Text"
+        },
+        {
+          "type": "select",
+          "id": "text_style",
+          "default": "caption-with-letter-spacing",
+          "label": "Text style",
+          "options": [
+            {
+              "value": "",
+              "label": "Body"
+            },
+            {
+              "value": "body-large",
+              "label": "Subtitle"
+            },
+            {
+              "value": "caption-with-letter-spacing",
+              "label": "Uppercase"
+            }
+          ]
+        }
+      ]
     },
     {
       "type": "vendor",
@@ -92,6 +132,48 @@
       "type": "share",
       "name": "Social sharing buttons",
       "limit": 1
+    },
+    {
+      "type": "complementary",
+      "name": "Complementary products",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "block_heading",
+          "default": "Pairs well with",
+          "label": "Heading"
+        },
+        {
+          "type": "range",
+          "id": "product_list_limit",
+          "min": 1,
+          "max": 10,
+          "step": 1,
+          "default": 10,
+          "label": "Maximum products to show"
+        },
+        {
+          "type": "range",
+          "id": "products_per_page",
+          "min": 1,
+          "max": 4,
+          "step": 1,
+          "default": 3,
+          "label": "Number of products per page"
+        }
+      ]
+    },
+    {
+      "type": "custom_liquid",
+      "name": "Custom Liquid",
+      "settings": [
+        {
+          "type": "liquid",
+          "id": "custom_liquid",
+          "label": "Custom Liquid"
+        }
+      ]
     }
   ]
 }

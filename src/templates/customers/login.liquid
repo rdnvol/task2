@@ -1,16 +1,22 @@
 <div class="section">
   <div class="container">
-    <div class="form-success messages-success text-center hidden" data-reset-success>
+    <div
+      class="form-success messages-success hidden text-center"
+      data-reset-success
+    >
       {{ 'customer.recover_password.success' | t }}
     </div>
     <div data-login-form>
       <div class="account-page__title text-center">
-        <h1 class="h2">{{ 'customer.login.title' | t }}</h1>
+        <h1 class="h4 mb-3">{{ 'customer.login.title' | t }}</h1>
       </div>
       {% form 'customer_login', class: 'account-form' %}
         {{ form.errors | default_errors }}
         <div class="input-holder">
-          <label for="CustomerEmail" class="label label-hidden">
+          <label
+            for="CustomerEmail"
+            class="label-hidden mb-1 inline-block"
+          >
             {{ 'customer.login.email' | t }}
           </label>
           <input
@@ -27,7 +33,10 @@
         </div>
         {% if form.password_needed %}
           <div class="input-holder">
-            <label for="CustomerPassword" class="label label-hidden">
+            <label
+              for="CustomerPassword"
+              class="label-hidden mb-1 inline-block"
+            >
               {{ 'customer.login.password' | t }}
             </label>
             <input
@@ -40,34 +49,56 @@
           </div>
         {% endif %}
         {% if form.password_needed %}
-          <div class="input-holder text-center">
-            <a href="#recover" data-recover-toggle>{{ 'customer.login.forgot_password' | t }}</a>
+          <div class="input-holder body-small py-3 text-center">
+            <a
+              href="#recover"
+              class="no-underline hover:underline"
+              data-recover-toggle
+            >
+              {{- 'customer.login.forgot_password' | t -}}
+            </a>
           </div>
         {% endif %}
-        <div class="account-form__actions">
-          <input type="submit" class="button w-100" value="{{ 'customer.login.sign_in' | t }}">
+        <div class="input-holder">
+          <input
+            type="submit"
+            class="button w-100"
+            value="{{ 'customer.login.sign_in' | t }}"
+          >
         </div>
         <div class="input-holder text-center">
-          <a href="/account/register">
+          <a
+            href="/account/register"
+            class="button button--secondary w-100"
+          >
             {{ 'layout.customer.create_account' | t }}
           </a>
         </div>
       {% endform %}
     </div>
 
-    <div class="account__slide-block hidden" data-recover-form>
+    <div
+      class="account__slide-block hidden"
+      data-recover-form
+    >
       <div class="account__slide-block__holder">
         <div class="account-page__heading text-center">
-          <h2 class="mb-3">{{ 'customer.recover_password.title' | t }}</h2>
+          <h2 class="h4 mb-3">{{ 'customer.recover_password.title' | t }}</h2>
           <p>{{ 'customer.recover_password.subtext' | t }}</p>
         </div>
         {% form 'recover_customer_password', class: 'account-form' %}
           {{ form.errors | default_errors }}
           {% if form.posted_successfully? %}
-            <span class="hidden" data-form-state></span>
+            <span
+              class="hidden"
+              data-form-state
+            ></span>
           {% endif %}
           <div class="input-holder">
-            <label for="RecoverEmail" class="label label-hidden">
+            <label
+              for="RecoverEmail"
+              class="label-hidden mb-1 inline-block"
+            >
               {{ 'customer.recover_password.email' | t }}
             </label>
             <input
@@ -80,11 +111,19 @@
               autocapitalize="off"
             >
           </div>
-          <div class="account-form__actions">
-            <input type="submit" class="button w-100" value="{{ 'customer.recover_password.submit' | t }}">
+          <div class="input-holder">
+            <input
+              type="submit"
+              class="button w-100"
+              value="{{ 'customer.recover_password.submit' | t }}"
+            >
           </div>
           <div class="input-holder text-center">
-            <a href="#" data-recover-toggle>
+            <a
+              href="#"
+              data-recover-toggle
+              class="button button--secondary w-100"
+            >
               {{ 'customer.recover_password.cancel' | t }}
             </a>
           </div>
@@ -93,10 +132,16 @@
     </div>
 
     {% if shop.checkout.guest_login %}
-      <h2>{{ 'customer.login.guest_title' | t }}</h2>
-      {% form 'guest_login' %}
-        <input type="submit" class="button w-100" value="{{ 'customer.login.guest_continue' | t }}">
-      {% endform %}
+      <div class="pt-10">
+        <h2 class="h5 mb-3 text-center">{{ 'customer.login.guest_title' | t }}</h2>
+        {% form 'guest_login', class: 'account-form' %}
+          <input
+            type="submit"
+            class="button w-100"
+            value="{{ 'customer.login.guest_continue' | t }}"
+          >
+        {% endform %}
+      </div>
     {% endif %}
   </div>
 </div>

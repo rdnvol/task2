@@ -1,25 +1,38 @@
 <div class="section">
-  <div class="container">
-    <div class="flex flex-wrap md:justify-center -mx-4">
+  <div class="container overflow-hidden">
+    <div class="-mx-4 flex flex-wrap md:justify-center">
       {% for block in section.blocks %}
-        <div class="w-1/2 md:w-4/12 lg:w-2/12   px-4  " {{ block.shopify_attributes }}>
-          <div class="benefits-item text-center rte">
+        {% liquid
+          if block.settings.enable_lazyload
+            assign enable_lazyload = true
+            assign fetchpriorityValue = 'low'
+          else
+            assign enable_lazyload = false
+            assign fetchpriorityValue = 'high'
+          endif
+        %}
+        <div
+          class="w-1/2 px-4 md:w-4/12 lg:w-2/12"
+          {{ block.shopify_attributes }}
+        >
+          <div class="benefits-item text-center">
             <div class="benefits-item__img">
               {% if block.settings.image != blank %}
                 {%
                   render 'image',
                   src: block.settings.image,
-                  d: '50x',
-                  placeholder: 'img-placeholder.png',
-                  p_d: '50x',
-                  alt: block.settings.image.alt
+                  m: '50x50',
+                  crop: 'center',
+                  alt: block.settings.image.alt,
+                  lazyload: enable_lazyload,
+                  fetchpriority: fetchpriorityValue
                 %}
               {% else %}
                 {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
               {% endif %}
             </div>
             {% if block.settings.title != blank %}
-              <h2 class="h6 mb-0">{{ block.settings.title }}</h2>
+              <h2 class="h6">{{ block.settings.title }}</h2>
             {% endif %}
           </div>
         </div>
@@ -41,6 +54,12 @@
           "type": "image_picker",
           "id": "image",
           "label": "Image"
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_lazyload",
+          "label": "Enable lazyload",
+          "default": true
         },
         {
           "type": "text",

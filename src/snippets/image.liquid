@@ -2,170 +2,104 @@
     NOTE:
   Renders an image
     Accepts:
-    - src: {string} or {object} desktop image name you want to render (example 'image.png' or section.settings.image)
     - asset_img_url: {boolean} if true renders an image from assets folder
-    - d: {string} desktop width and height of image for img_url filter (example only width '650x', only height 'x650', both '650x650');
-    - src_m: {string} or {object} mobile image name you want to render (example 'image.png' or section.settings.image)
-    if isn't passed uses desktop image
-    - m: {string} mobile width and height of image for img_url filter
+    - asset_url: {boolean} if true renders an svg from assets folder
+    - metafield: {boolean} for render image from metafield
+    - data_attribute: {string} for render additional attributes
+    - class: {string} additional classes.
+    - src: {string} or {object} mobile image name you want to render (example 'image.png' or section.settings.image)
+    - m: {string} mobile width and height of image for image_url filter
     - src_t: {string} or {object} tablet image name you want to render (example 'image.png' or section.settings.image)
-    - t: {string} tablet width and height of image for img_url filter
+    - t: {string} tablet width and height of image for image_url filter
+    - src_d: {string} or {object} desktop image name you want to render (example 'image.png' or section.settings.image)
+    - d: {string} desktop width and height of image for image_url filter (example only width '650x', only height 'x650', both '650x650');
     - crop: {string} for cropping image if needed (example 'center', 'left', 'right')
+    - alt: {string} alt attribute (example 'image' or section.settings.image.alt or section.settings.image_alt)('image description' by default)
     - lazyload: {boolean} for lazyload image (true by default);
-    - placeholder: {string} image for placeholder (default is 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==')
-    - p_d: {string} (optional) desktop width and height of image for img_url filter
-    (if isn't set uses dimensions of desktop image)
-    (if only width set the snippet is double it example '650x' will be rendered as asset_img_url:'650x650', crop: 'center');
-    - p_m: {string} (optional) mobile width and height of image for img_url filter
-    (if isn't set uses dimensions of mobile image)
-    (if only width set the snippet is double it example '650x' will be rendered as asset_img_url:'650x650', crop: 'center');
+    - fetchpriority: {string}. value = 'high', 'low', 'auto'. by default 'auto'; more details about fetchpriority https://web.dev/fetch-priority
+
     for usage:
-    without lazyload
+
   {% render
     'image',
     asset_img_url: true,
+    data_attribute: 'disabled',
+    class: 'another-class',
     src: 'image-src.png',
-    d: '650x',
-    src_m: 'image-src-m.png',
     m: '375x',
     src_t: 'image-src-t.png',
     t: '375x',
+    src_d: 'image-src.png',
+    d: '650x',
     crop: 'center',
-    lazyload: false,
-    placeholder: 'img-placeholder.png',
+    alt: 'image-description'
   %}
-    with lazyload
+
+    with svg
   {% render
     'image',
-    asset_img_url: true,
-    src: 'image-src.png',
-    d: '650x',
-    src_m: 'image-src-m.png',
+    asset_url: true,
+    class: 'another-class',
+    src: 'logo-2.svg',
     m: '375x',
+    alt: 'image-description'
   %}
+
     with metafield (accentuate)
   {% render
     'image',
     metafield: true
-    src: 'test-image.png?options=',
-    d: 'w_430',
-    src_m: 'test-image.png?options=',
+    src: 'test-image-mobile.png?options=',
     m: 'w_120,h_260',
-    placeholder: 'img-placeholder.png',
-    p_d: '541x720',
-    p_m: '282x375',
-    crop: 'center',
+    src_d: 'test-image-desktop.png?options=',
+    d: 'w_430',
   %}
 {% endcomment %}
 
 {% liquid
+  assign m = m | default: 'master'
+  assign d = d | default: m
+  assign t = t | default: d
+
   if metafield
-    assign src_mobile = src_m | default: src
     assign src_tablet = src_t | default: src
-
-    assign d = d | default: ''
-    assign m = m | default: d
-    assign t = t | default: d
-
-    assign d_size_arr = d | split: ','
-    assign d_width = d_size_arr | first | split: 'w_' | last
-    assign d_height = d_size_arr | last | split: 'h_' | last
-
-    assign t_size_arr = t | split: ','
-    assign t_width = t_size_arr | first | split: 'w_' | last
-    assign t_height = t_size_arr | last | split: 'h_' | last
+    assign src_desktop = src_d | default: src
 
     assign m_size_arr = m | split: ','
     assign m_width = m_size_arr | first | split: 'w_' | last
     assign m_height = m_size_arr | last | split: 'h_' | last
 
+    assign t_size_arr = t | split: ','
+    assign t_width = t_size_arr | first | split: 'w_' | last
+    assign t_height = t_size_arr | last | split: 'h_' | last
+
+    assign d_size_arr = d | split: ','
+    assign d_width = d_size_arr | first | split: 'w_' | last
+    assign d_height = d_size_arr | last | split: 'h_' | last
+
   else
-    assign src_mobile = src_m | default: src
     assign src_tablet = src_t | default: src
-
-    assign d = d | default: 'master'
-    assign m = m | default: d
-    assign t = t | default: d
-
-    assign d_size_arr = d | split: 'x'
-    assign d_width = d_size_arr | first
-    assign d_height = d_size_arr | last
-
-    assign t_size_arr = t | split: 'x'
-    assign t_width = t_size_arr | first
-    assign t_height = t_size_arr | last
+    assign src_desktop = src_d | default: src
 
     assign m_size_arr = m | split: 'x'
-    assign m_width = m_size_arr | first
-    assign m_height = m_size_arr | last
-  endif
-
-  comment
-  Check if height passed
-  Desktop image
-  endcomment
-
-  if metafield
-    if d_size_arr.size == 2
-      assign dw_2x = d_width | times: 2 | prepend: 'w_'
-      assign dh_2x = d_height | times: 2 | prepend: 'h_'
-      assign d2x = dw_2x | append: ',' | append: dh_2x
-    else
-      assign d2x = d_width | times: 2 | prepend: 'w_'
+    assign m_width = m_size_arr[0]
+    assign m_height = m_size_arr[1]
+    if m_height == blank
+      assign m_height = m_width | divided_by: src.aspect_ratio | floor
     endif
-  else
-    if d_size_arr.size == 2
-      assign dw_2x = d_width | times: 2
-      assign dh_2x = d_height | times: 2
-      assign d2x = dw_2x | append: 'x' | append: dh_2x
-    else
-      assign d2x = d_width | times: 2 | append: 'x'
-    endif
-  endif
 
-  comment
-    check if height passed
-    Desktop image
-  endcomment
-
-  if metafield
-    if d_size_arr.size == 2
-      assign dw_2x = d_width | times: 2 | prepend: 'w_'
-      assign dh_2x = d_height | times: 2 | prepend: 'h_'
-      assign d2x = dw_2x | append: ',' | append: dh_2x
-    else
-      assign d2x = d_width | times: 2 | prepend: 'w_'
+    assign t_size_arr = t | split: 'x'
+    assign t_width = t_size_arr[0]
+    assign t_height = t_size_arr[1]
+    if t_height == blank
+      assign t_height = t_width | divided_by: src.aspect_ratio | floor
     endif
-  else
-    if d_size_arr.size == 2
-      assign dw_2x = d_width | times: 2
-      assign dh_2x = d_height | times: 2
-      assign d2x = dw_2x | append: 'x' | append: dh_2x
-    else
-      assign d2x = d_width | times: 2 | append: 'x'
-    endif
-  endif
 
-  comment
-    check if height passed
-    Tablet image
-  endcomment
-
-  if metafield
-    if t_size_arr.size == 2
-      assign tw_2x = t_width | times: 2 | prepend: 'w_'
-      assign th_2x = t_height | times: 2 | prepend: 'h_'
-      assign t2x = tw_2x | append: ',' | append: th_2x
-    else
-      assign t2x = t_width | times: 2 | prepend: 'w_'
-    endif
-  else
-    if t_size_arr.size == 2
-      assign tw_2x = t_width | times: 2
-      assign th_2x = t_height | times: 2
-      assign t2x = tw_2x | append: 'x' | append: th_2x
-    else
-      assign t2x = t_width | times: 2 | append: 'x'
+    assign d_size_arr = d | split: 'x'
+    assign d_width = d_size_arr[0]
+    assign d_height = d_size_arr[1]
+    if d_height == blank
+      assign d_height = d_width | divided_by: src.aspect_ratio | floor
     endif
   endif
 
@@ -175,27 +109,75 @@
   endcomment
 
   if metafield
+    assign m2x_width = m_width | times: 2 | prepend: 'w_'
+    assign m2x_height = m_height | times: 2 | prepend: 'h_'
     if m_size_arr.size == 2
-      assign mw_2x = m_width | times: 2 | prepend: 'w_'
-      assign mh_2x = m_height | times: 2 | prepend: 'h_'
-      assign m2x = mw_2x | append: ',' | append: mh_2x
+      assign m2x = m2x_width | append: ',' | append: m2x_height
     else
-      assign m2x = m_width | times: 2 | prepend: 'w_'
+      assign m2x = m2x_width
     endif
   else
+    assign m2x_width = m_width | times: 2
+    assign m2x_height = m_height | times: 2
     if m_size_arr.size == 2
-      assign mw_2x = m_width | times: 2
-      assign mh_2x = m_height | times: 2
-      assign m2x = mw_2x | append: 'x' | append: mh_2
+      assign m2x = m2x_width | append: 'x' | append: m2x_height
     else
-      assign m2x = m_width | times: 2 | append: 'x'
+      assign m2x = m2x_width | append: 'x'
+    endif
+  endif
+
+  comment
+    check if height passed
+    Tablet image
+  endcomment
+
+  if metafield
+    assign t2x_width = t_width | times: 2 | prepend: 'w_'
+    assign t2x_height = t_height | times: 2 | prepend: 'h_'
+    if t_size_arr.size == 2
+      assign t2x = t2x_width | append: ',' | append: t2x_height
+    else
+      assign t2x = t2x_width
+    endif
+  else
+    assign t2x_width = t_width | times: 2
+    assign t2x_height = t_height | times: 2
+    if t_size_arr.size == 2
+      assign t2x = t2x_width | append: 'x' | append: t2x_height
+    else
+      assign t2x = t2x_width | append: 'x'
+    endif
+  endif
+
+    comment
+      check if height passed
+      Desktop image
+    endcomment
+
+  if metafield
+    assign d2x_width = d_width | times: 2 | prepend: 'w_'
+    assign d2x_height = d_height | times: 2 | prepend: 'h_'
+    if d_size_arr.size == 2
+      assign d2x = d2x_width | append: ',' | append: d2x_height
+    else
+      assign d2x = d2x_width
+    endif
+  else
+    assign d2x_width = d_width | times: 2
+    assign d2x_height = d_height | times: 2
+    if d_size_arr.size == 2
+      assign d2x = d2x_width | append: 'x' | append: d2x_height
+    else
+      assign d2x = d2x_width | append: 'x'
     endif
   endif
 
   assign classes = class | default: false
-  assign lazyload = lazyload | default: true
-  if lazyload
-    assign classes = class | append: " lazyload" | strip
+
+  if lazyload == false
+    assign lazyload = false
+  else
+    assign lazyload = true
   endif
 
   comment
@@ -208,167 +190,164 @@
     assign crop = crop | default: false
   endif
 
-  assign pd_heigth = d_width | divided_by: src.aspect_ratio | ceil
-  assign pm_heigth = m_width | divided_by: src_m.aspect_ratio | ceil
-  assign pt_heigth = t_width | divided_by: src_t.aspect_ratio | ceil
-
-  assign p_d_default = d_width | append: "x" | append: pd_heigth
-  assign p_m_default = m_width | append: "x" | append: pm_heigth
-  assign p_t_default = m_width | append: "x" | append: pt_heigth
-
-  assign p_d = p_d | default: p_d_default
-  assign p_m = p_m | default: p_m_default
-  assign p_t = p_t | default: p_t_default
-
-  if placeholder
-    assign placeholder_d = placeholder | asset_img_url: p_d, crop: 'center'
-    assign placeholder_m = placeholder | asset_img_url: p_m, crop: 'center'
-    assign placeholder_t = placeholder | asset_img_url: p_t, crop: 'center'
-  else
-    assign placeholder = placeholder | default: 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=='
-    assign placeholder_d = placeholder
-    assign placeholder_m = placeholder
-    assign placeholder_t = placeholder
-  endif
-
   if asset_img_url
     if crop
-      assign d_src = src | asset_img_url: d, crop: crop
-      assign d_src_2x = src | asset_img_url: d, scale: 2, crop: crop
-      assign d_srcset = d_src | append: ", " | append: d_src_2x | append: ' 2x'
+      assign m_src = src | asset_img_url: m, crop: crop
+      assign m_src_2x = src | asset_img_url: m2x, crop: crop
+      assign m_srcset = m_src | append: ", " | append: m_src_2x | append: ' 2x'
 
       assign t_src = src_tablet | asset_img_url: t, crop: crop
-      assign t_src_2x = src_tablet | asset_img_url: t, scale: 2, crop: crop
+      assign t_src_2x = src_tablet | asset_img_url: t2x, crop: crop
       assign t_srcset = t_src | append: ", " | append: t_src_2x | append: ' 2x'
 
-      assign m_src = src_mobile | asset_img_url: m, crop: crop
-      assign m_src_2x = src_mobile | asset_img_url: m, scale: 2, crop: crop
-      assign m_srcset = m_src | append: ", " | append: m_src_2x | append: ' 2x'
-    else
-      assign d_src = src | asset_img_url: d
-      assign d_src_2x = src | asset_img_url: d, scale: 2
+      assign d_src = src_desktop | asset_img_url: d, crop: crop
+      assign d_src_2x = src_desktop | asset_img_url: d2x, crop: crop
       assign d_srcset = d_src | append: ", " | append: d_src_2x | append: ' 2x'
 
+    else
+      assign m_src = src | asset_img_url: m
+      assign m_src_2x = src | asset_img_url: m2x
+      assign m_srcset = m_src | append: ", " | append: m_src_2x | append: ' 2x'
+
       assign t_src = src_tablet | asset_img_url: t
-      assign t_src_2x = src_tablet | asset_img_url: t, scale: 2
+      assign t_src_2x = src_tablet | asset_img_url: t2x
       assign t_srcset = t_src | append: ", " | append: t_src_2x | append: ' 2x'
 
-      assign m_src = src_mobile | asset_img_url: m
-      assign m_src_2x = src_mobile | asset_img_url: m, scale: 2
-      assign m_srcset = m_src | append: ", " | append: m_src_2x | append: ' 2x'
+      assign d_src = src_desktop | asset_img_url: d
+      assign d_src_2x = src_desktop | asset_img_url: d2x
+      assign d_srcset = d_src | append: ", " | append: d_src_2x | append: ' 2x'
+
     endif
+  elsif asset_url
+    assign m_src = src | asset_url
   elsif metafield
-    assign d_src = src | append: d
-    assign d_src_2x = src | append: d2x
-    assign d_srcset = d_src | append: ", " | append: d_src_2x | append: ' 2x'
+    assign m_src = src | append: m
+    assign m_src_2x = src | append: m2x
+    assign m_srcset = m_src | append: ", " | append: m_src_2x | append: ' 2x'
 
     assign t_src = src_tablet | append: t
     assign t_src_2x = src_tablet | append: t2x
     assign t_srcset = t_src | append: ", " | append: t_src_2x | append: ' 2x'
 
-    assign m_src = src_mobile | append: m
-    assign m_src_2x = src_mobile | append: m2x
-    assign m_srcset = m_src | append: ", " | append: m_src_2x | append: ' 2x'
+    assign d_src = src_desktop | append: d
+    assign d_src_2x = src_desktop | append: d2x
+    assign d_srcset = d_src | append: ", " | append: d_src_2x | append: ' 2x'
   else
-    assign d_width = d | split: 'x' | first
-    assign d_height = d | split: 'x' | last
-    assign t_width = t | split: 'x' | first
-    assign t_height = t | split: 'x' | last
-    assign m_width = m | split: 'x' | first
-    assign m_height = m | split: 'x' | last
     comment
     scale 2x image
     endcomment
-    assign d2x_width = d_width | times: 2
-    assign d2x_height = d_height | times: 2
-    assign t2x_width = t_width | times: 2
-    assign t2x_height = t_height | times: 2
-    assign m2x_width = m_width | times: 2
-    assign m2x_height = m_height | times: 2
     if crop
-      assign d_src = src | image_url: width: d_width, height: d_height, crop: crop
-      assign d_src_2x = src | image_url: width: d2x_width, height: d2x_height, crop: crop
-      assign d_srcset = d_src | append: ", " | append: d_src_2x | append: ' 2x'
+      assign m_src = src | image_url: width: m_width, height: m_height, crop: crop
+      assign m_src_2x = src | image_url: width: m2x_width, height: m2x_height, crop: crop
+      assign m_srcset = m_src | append: ", " | append: m_src_2x | append: ' 2x'
 
       assign t_src = src_tablet | image_url: width: t_width, height: t_height, crop: crop
       assign t_src_2x = src_tablet | image_url: width: t2x_width, height: t2x_height, crop: crop
       assign t_srcset = t_src | append: ", " | append: t_src_2x | append: ' 2x'
 
-      assign m_src = src_mobile | image_url: width: m_width, height: m_width, crop: crop
-      assign m_src_2x = src_mobile | image_url: width: m2x_width, height: m2x_height, crop: crop
-      assign m_srcset = m_src | append: ", " | append: m_src_2x | append: ' 2x'
-    else
-      assign d_src = src | image_url: width: d_width, height: d_height, crop: false
-      assign d_src_2x = src | image_url: width: d2x_width, height: d2x_height, crop: false
+      assign d_src = src_desktop | image_url: width: d_width, height: d_height, crop: crop
+      assign d_src_2x = src_desktop | image_url: width: d2x_width, height: d2x_height, crop: crop
       assign d_srcset = d_src | append: ", " | append: d_src_2x | append: ' 2x'
+
+    else
+      assign m_src = src | image_url: width: m_width, height: m_height, crop: false
+      assign m_src_2x = src | image_url: width: m2x_width, height: m2x_height, crop: false
+      assign m_srcset = m_src | append: ", " | append: m_src_2x | append: ' 2x'
 
       assign t_src = src_tablet | image_url: width: t_width, height: t_height, crop: false
       assign t_src_2x = src_tablet | image_url: width: t2x_width, height: t2x_height, crop: false
       assign t_srcset = t_src | append: ", " | append: t_src_2x | append: ' 2x'
 
-      assign m_src = src_mobile | image_url: width: m_width, height: m_width, crop: false
-      assign m_src_2x = src_mobile | image_url: width: m2x_width, height: m2x_height, crop: false
-      assign m_srcset = m_src | append: ", " | append: m_src_2x | append: ' 2x'
+      assign d_src = src_desktop | image_url: width: d_width, height: d_height, crop: false
+      assign d_src_2x = src_desktop | image_url: width: d2x_width, height: d2x_height, crop: false
+      assign d_srcset = d_src | append: ", " | append: d_src_2x | append: ' 2x'
+
     endif
   endif
 
-  if asset_img_url
-    assign width = m | split: 'x' | first
-    assign height = m | split: 'x' | last | default: width
+  assign width = m_width
+  assign height = m_height | default: width
+
+  if classes
+    assign classesValue = classes
+  endif
+
+  if lazyload
+    assign loadingValue = "lazy"
   else
-    assign width = src.width
-    assign height = src.width | divided_by: src.aspect_ratio | floor
+    assign loadingValue = "eager"
+  endif
+
+  if fetchpriority == "high"
+    assign fetchpriorityValue = "high"
+  elsif fetchpriority == "low"
+    assign fetchpriorityValue = "low"
+  else
+    assign fetchpriorityValue = "auto"
+  endif
+
+  if template contains 'product'
+    assign altValue = alt | default: product.title
+  else
+    assign altValue = alt | default: 'image description'
   endif
 %}
 
-{% if lazyload %}
-  <picture>
-    {% if src_m %}
-      <source data-srcset="{{ m_srcset }}" media="(max-width: 767px)" srcset="{{ placeholder_m }}">
-    {% endif %}
-    {% if src_t %}
-      <source data-srcset="{{ t_srcset }}" media="(max-width: 1199px)" srcset="{{ placeholder_t }}">
-    {% endif %}
-    <source data-srcset="{{ d_srcset }}" srcset="{{ placeholder_d }}">
-    <img
-      data-src="{{ d_src }}"
-      {% if classes %}
-        class="{{ classes }}"
-      {% endif %}
-      data-sizes="auto"
-      width="{{ width }}"
-      height="{{ height }}"
-      {% if template contains 'product' %}
-        alt="{{ alt | default: product.title }}"
-      {% else %}
-        alt="{{ alt | default: 'image description' }}"
-      {% endif %}
-      src="{{ placeholder_d }}"
-      {{ data_attribute }}
-    >
-  </picture>
-{% else %}
-  <picture>
-    {% if src_m %}
-      <source srcset="{{ m_srcset }}" media="(max-width: 767px)">
-    {% endif %}
-    {% if src_t %}
+<picture>
+  {% unless asset_url %}
+    <source srcset="{{ m_srcset }}" media="(max-width: 767px)">
+    {% if src_tablet and src_t %}
       <source srcset="{{ t_srcset }}" media="(max-width: 1199px)">
     {% endif %}
-    <source srcset="{{ d_srcset }}">
+    {% if src_desktop %}
+      <source srcset="{{ d_srcset }}">
+    {% endif %}
+  {% endunless %}
+  {% if asset_img_url or asset_url %}
     <img
-      src="{{ d_src }}"
+      src="{{ m_src }}"
       {% if classes %}
         class="{{ classes }}"
+      {% endif %}
+      width="{{ width }}"
+      height="{{ height }}"
+      {% if lazyload %}
+        loading="lazy"
+      {% else %}
+        loading="eager"
       {% endif %}
       {% if template contains 'product' %}
         alt="{{ alt | default: product.title }}"
       {% else %}
         alt="{{ alt | default: 'image description' }}"
       {% endif %}
+      {{ data_attribute }}
+      {% if fetchpriority == 'high' %}
+        fetchpriority="high"
+      {% elsif fetchpriority == 'low' %}
+        fetchpriority="low"
+      {% else %}
+        fetchpriority="auto"
+      {% endif %}
+    >
+  {% else %}
+    <img
+      src="{{ m_src }}"
+      {% if classesValue %}
+        class="{{ classesValue }}"
+      {% endif %}
       width="{{ width }}"
       height="{{ height }}"
+      loading="{{ loadingValue }}"
+      alt="{{ altValue | default: 'image description' }}"
       {{ data_attribute }}
+      {% if fetchpriority == 'high' %}
+        fetchpriority="high"
+      {% elsif fetchpriority == 'low' %}
+        fetchpriority="low"
+      {% else %}
+        fetchpriority="auto"
+      {% endif %}
     >
-  </picture>
-{% endif %}
+  {% endif %}
+</picture>

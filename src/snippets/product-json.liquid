@@ -55,7 +55,11 @@
       "available": {{ variant.available | json }},
       "price": {{ variant.price | json }},
       "quantity": {{ variant.inventory_quantity | json }},
-      "image": {{ variant.featured_media | default: product.featured_media | json }}
+      "image": {{ variant.featured_media | default: product.featured_media | json }},
+      "variant_metafields": {
+        "metafield_color": {{ variant.metafields.swatches.color.value | json }}
+      }
+
     }
     {%- unless forloop.last -%},{%- endunless -%}
   {% endfor %}

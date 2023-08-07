@@ -6,7 +6,7 @@
         "61c958e5-141a-4e92-a6d9-eb2bbe198547": {
           "type": "title",
           "settings": {
-            "title": "Industrial design meets fashion."
+            "title": "Industrial design meets fashion"
           }
         },
         "15da8882-1e81-4b43-95e3-e5c226200b8f": {
@@ -29,12 +29,17 @@
         "6c697d31-bf0f-4f76-8ad1-c3e88b3613c0"
       ],
       "settings": {
-        "image": "shopify://shop_images/hero.png",
-        "image_mobile": "shopify://shop_images/hero_mob.png",
+        "image": "shopify://shop_images/hero.jpg",
+        "image_overlay_opacity": 0,
+        "image_mobile": "shopify://shop_images/hero_mob.jpg",
+        "image_height": "medium",
+        "enable_full_width": true,
+        "enable_lazyload": false,
         "alignment": "items-center justify-center",
+        "alignment_mobile": "xs:items-center",
         "alignment_text": "text-center",
         "color": "#ffffff",
-        "color_mobile": "#000000",
+        "color_mobile": "#ffffff",
         "fullheight": false
       }
     },
@@ -58,16 +63,18 @@
         "fcd9bbbf-0c2a-4a00-9a9e-af31d7a4dbc7",
         "015a86d1-f36c-4b55-8590-94b38e3192b5"
       ],
-      "settings": {
-      }
+      "settings": {}
     },
     "home_featured_collection": {
       "type": "home-featured-collection",
       "settings": {
         "title": "",
         "collection": "featured-products",
+        "layout_slider_on_mobile": "column",
         "grid": 4,
         "rows": 2,
+        "enable_lazyload": true,
+        "show_vendor": true,
         "show_view_all": false
       }
     },
@@ -78,8 +85,11 @@
           "type": "text",
           "settings": {
             "image": "shopify://shop_images/mlouye-bo-ivy-cognac-8_1800x1800_550x_375c4113-5b27-44fb-91df-0a4f2bc367db.jpg",
+            "enable_lazyload": true,
+            "image_overlay_opacity": 60,
             "title": "Bags",
             "copy": "",
+            "btn_text": "Shop now",
             "btn_url": "shopify://collections/bugs"
           }
         },
@@ -87,8 +97,11 @@
           "type": "text",
           "settings": {
             "image": "shopify://shop_images/mlouye-mini-eddy-mocha-1_1800x1800_dfd49e16-dcc5-47e1-8072-bf7f9902a329.jpg",
+            "enable_lazyload": true,
+            "image_overlay_opacity": 60,
             "title": "Mini Eddy",
             "copy": "<p> $375</p>",
+            "btn_text": "Shop now",
             "btn_url": "shopify://products/mini-eddy"
           }
         },
@@ -96,16 +109,32 @@
           "type": "text",
           "settings": {
             "image": "shopify://shop_images/4694feb0cf4ec02bbd6a1fc99720d062.jpg",
+            "enable_lazyload": true,
+            "image_overlay_opacity": 60,
             "title": "Shoes",
             "copy": "",
+            "btn_text": "Shop now",
             "btn_url": "shopify://collections/shoes"
+          }
+        },
+        "0fc89a9c-0484-4d05-9f7b-cf1fd82b1826": {
+          "type": "text",
+          "settings": {
+            "image": "shopify://shop_images/mlouye-louise-slide-sandal-buttermilk-4_1100x_1afcd658-d23f-417c-afa7-161979ade1f9.jpg",
+            "enable_lazyload": true,
+            "image_overlay_opacity": 60,
+            "title": "Louise Slide Sandal",
+            "copy": "<p> $395</p>",
+            "btn_text": "Shop now",
+            "btn_url": "shopify://products/louise-slide-sandal"
           }
         }
       },
       "block_order": [
         "1640012923101b952e-0",
         "1640012923101b952e-1",
-        "1640012923101b952e-2"
+        "1640012923101b952e-2",
+        "0fc89a9c-0484-4d05-9f7b-cf1fd82b1826"
       ],
       "settings": {
         "title": "Back in stock!"
@@ -115,6 +144,7 @@
       "type": "home-iframe-video",
       "settings": {
         "video": "https://www.youtube.com/watch?v=yXWXFzjVnt8",
+        "ratio": "16:9",
         "enable_full_width": false,
         "enable_overlay": false,
         "text_color": ""
@@ -128,6 +158,7 @@
           "type": "image",
           "settings": {
             "image": "shopify://shop_images/Refinery29_275x_4779d5dc-4ca8-42b2-8384-dd1b20724b53.png",
+            "enable_lazyload": true,
             "title": "",
             "subtitle": "",
             "features": "<ul>\n\"The leather is sourced from environmentally friendly tanneries in Italy, France, and Turkey, where Rure is based and everything is assembled by hand.\"\n</ul>",
@@ -141,6 +172,7 @@
           "type": "image",
           "disabled": true,
           "settings": {
+            "enable_lazyload": true,
             "title": "Heading",
             "subtitle": "Internet",
             "features": "<ul class=\"plan-item__list list-checks text-left\">\n<li>Up to 50Mbps</li>\n<li>Night Turbo-Speed</li>\n<li>WiFi router</li>\n<li>Unlimited devices</li>\n</ul>",
@@ -154,6 +186,7 @@
           "type": "image",
           "settings": {
             "image": "shopify://shop_images/1_zmzOs2NElSXPbU6OX0EIeg_2x_275x_0cc3745b-4821-4563-a43f-b2ff31b2e03d.png",
+            "enable_lazyload": true,
             "title": "",
             "subtitle": "",
             "features": "<ul> \"All too often, we're forced to pick: style, or sustainability. Recently, more designers have been making environmental impact a top priority\"</ul>",
@@ -181,7 +214,7 @@
           "type": "image",
           "settings": {
             "image": "shopify://shop_images/photo_2022-01-04_17-49-20_c7c2fa04-0666-4a4b-9d89-eae3180f88f7.jpg",
-            "image_position": "object-position: 50% 100%;",
+            "enable_lazyload": true,
             "alignment": "justify-center items-end",
             "title": "",
             "text": "<p>\"The leather is sourced from environmentally friendly tanneries in Italy, France, and Turkey, where Rure is based and everything is assembled by hand.\"</p>",
@@ -193,7 +226,7 @@
           "type": "image",
           "settings": {
             "image": "shopify://shop_images/photo_2022-01-04_17-50-57_4c8d85b7-8c29-496e-b417-1aff8e381ac5.jpg",
-            "image_position": "object-position: 50% 50%;",
+            "enable_lazyload": true,
             "alignment": "justify-center items-end",
             "title": "",
             "text": "<p>\"All too often, we're forced to pick: style, or sustainability. Recently, more designers have been making environmental impact a top priority\"</p>",
@@ -205,7 +238,7 @@
           "type": "image",
           "disabled": true,
           "settings": {
-            "image_position": "object-position: 50% 50%;",
+            "enable_lazyload": true,
             "alignment": "justify-center items-center",
             "title": "Heading",
             "text": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum, sit?</p>",
@@ -226,6 +259,9 @@
         "enable_autorotate": false,
         "change_every": 5
       }
+    },
+    "collapsible_content":{
+      "type": "collapsible-content"
     }
   },
   "order": [
@@ -235,6 +271,7 @@
     "1640012923c9b22af2",
     "home_iframe_video",
     "1640013600e980445e",
-    "1641310897029f288b"
+    "1641310897029f288b",
+    "collapsible_content"
   ]
 }

@@ -1,5 +1,5 @@
 <div
-  class="pt-0 pb-10 video-section{% if section.settings.enable_full_width %} video-section--full-width{% endif %}"
+  class="video-section pb-10 pt-0{% if section.settings.enable_full_width %} video-section--full-width{% endif %}"
   data-section-type="iframe-video"
   data-section-id="{{ section.id }}"
 >
@@ -11,9 +11,19 @@
             {% for block in section.blocks %}
               {% case block.type %}
                 {% when 'title' %}
-                  <h2 class="mb-3" {{ block.shopify_attributes }}>{{ block.settings.title }}</h2>
+                  <h2
+                    class="mb-3"
+                    {{ block.shopify_attributes }}
+                  >
+                    {{ block.settings.title }}
+                  </h2>
                 {% when 'subheading' %}
-                  <div class="mb-4" {{ block.shopify_attributes }}>{{ block.settings.subheading }}</div>
+                  <div
+                    class="mb-4"
+                    {{ block.shopify_attributes }}
+                  >
+                    {{ block.settings.subheading }}
+                  </div>
                 {% when 'button' %}
                   {% if block.settings.button_link != blank and block.settings.button_label != blank %}
                     {%

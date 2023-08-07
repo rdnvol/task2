@@ -7,12 +7,18 @@ interface PropsType {
 }
 
 const ProductAccordionItem: FunctionComponent<PropsType> = ({ heading, text, active }) => (
-  <li className={active ? 'accordion--active' : ''}>
-    <a href="#" className="accordion__opener title">
+  <li className="ac {active ? 'accordion--active' : ''}">
+    <button
+      type="button"
+      className="accordion__opener ac-trigger title w-100"
+    >
       {heading}
-    </a>
-    <div className="accordion__slide">
-      <div className="accordion__block" dangerouslySetInnerHTML={{ __html: text }} />
+    </button>
+    <div className="accordion__slide ac-panel">
+      <div
+        className="accordion__block"
+        dangerouslySetInnerHTML={{ __html: text }}
+      />
     </div>
   </li>
 );

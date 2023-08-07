@@ -1,31 +1,25 @@
 import 'styles/theme.scss';
 
 // plugins
-import 'picturefill';
-import 'lazysizes/plugins/object-fit/ls.object-fit.js';
-import 'lazysizes/plugins/parent-fit/ls.parent-fit.js';
-import 'lazysizes/plugins/rias/ls.rias.js';
-import 'lazysizes/plugins/bgset/ls.bgset.js';
-import 'lazysizes';
-import 'lazysizes/plugins/respimg/ls.respimg.js';
-// Fancybox
-import { Fancybox } from '@fancyapps/ui';
-import '@fancyapps/ui/dist/fancybox.css';
+// Accordion
+import Accordion from 'accordion-js';
+import 'accordion-js/dist/accordion.min.css';
+
 // Open-close details-utils
 import '@zachleat/details-utils';
-// Accordion
-import { Accordion } from 'accordion';
-import 'accordion/src/accordion.css';
 
 import { StickyStates } from 'helpers/stickyStates';
 import MobileNav from 'helpers/mobileNav';
+import { predictiveSearch } from 'sections/predictive-search';
 import 'helpers/responsive-helper';
 
 import 'store/store.ts';
+
 // Cart
-import 'components/CartReact';
-import 'components/CartCount';
-import 'components/CartPopup';
+import 'components/Cart/CartReact';
+import 'components/Cart/CartCount';
+import 'components/Cart/CartPopup';
+import 'components/CartDrawer/CartDrawerReact';
 
 // utils
 import { getLocaleAndPathname } from 'helpers/utils';
@@ -36,6 +30,7 @@ class App {
   }
 
   init() {
+    predictiveSearch();
     this.responsiveFluidIframe();
     this.setHeaderHeight();
     this.initMobileNav();
@@ -45,14 +40,12 @@ class App {
     this.initAccordion();
     this.initCurrencySwitcher();
     this.initLanguageSwitcher();
-    this.fancyboxBackdrop();
     this.fancyboxModalCloseButton();
+    this.cartDrawer();
 
     if (!('ontouchstart' in document.documentElement)) {
       document.documentElement.classList.add('no-touch');
     }
-
-    Fancybox.bind('[data-fancybox]', {});
   }
 
   // Responsive fluid iframe
@@ -214,42 +207,20 @@ class App {
 
   // accordion menu init
   initAccordion() {
-    document.querySelectorAll('.js-accordion').forEach((item) => {
-      new Accordion(item, {
-        modal: true, // Limit the accordion to having only one fold open at a time.
-        closeClass: 'close',
-        enabledClass: 'enabled',
-        openClass: 'open',
-        heightOffset: 10,
-        useBorders: true,
-      });
-    });
+    const menuAccordion = document.querySelector('.js-menu-accordion');
 
     window.ResponsiveHelper.addRange({
       '..1199': {
         on() {
-          document.querySelectorAll('.js-menu-accordion').forEach((item) => {
-            new Accordion(item, {
-              modal: true, // Limit the accordion to having only one fold open at a time.
-              noAria: true,
-              closeClass: 'close',
-              enabledClass: 'enabled',
-              openClass: 'open',
-              heightOffset: 0,
-              useBorders: false,
-              onToggle(fold) {
-                const element = fold.el;
-
-                if (element.classList.contains('fold-disabled')) {
-                  const url = element.querySelector('a').getAttribute('href');
-
-                  window.location.href = url;
-
-                  return false;
-                }
-              },
-            });
+          new Accordion(menuAccordion, {
+            triggerClass: 'menu-accordion__opener',
+            duration: 400,
+            collapse: true,
+            showMultiple: false,
           });
+        },
+        off() {
+          menuAccordion.destroy();
         },
       },
     });
@@ -272,15 +243,43 @@ class App {
   }
 
   initCurrencySwitcher() {
-    function currencyFormSubmit(event) {
-      event.target.form.submit();
-    }
+    const currencySwitcher = document.querySelector('select[name="country_code"]');
 
-    const currencySwitchers = document.querySelectorAll('.shopify-currency-form select');
+    const generateSwitcherHTML = () => {
+      const shopCurrencies = theme.published_currencies;
+      let currencySwitcherHtml = '';
 
-    if (currencySwitchers.length) {
-      currencySwitchers.forEach((el) => el.addEventListener('change', currencyFormSubmit));
-    }
+      shopCurrencies.forEach((currencyObj) => {
+        const currencyOption = `<option value="${currencyObj.country_iso}" ${currencyObj.current && 'selected'}>
+            ${currencyObj.country} (${currencyObj.currency} ${currencyObj.symbol})
+          </option>`;
+
+        currencySwitcherHtml += currencyOption;
+      });
+
+      currencySwitcher.innerHTML = currencySwitcherHtml;
+    };
+
+    const observer = new IntersectionObserver((entries, curObserver) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          generateSwitcherHTML();
+
+          if (currencySwitcher) currencySwitcher.addEventListener('change', this.onItemChange);
+
+          curObserver.unobserve(currencySwitcher);
+        }
+      });
+    });
+
+    observer.observe(currencySwitcher);
+  }
+
+  onItemChange(event) {
+    event.preventDefault();
+    const form = event.target.closest('form');
+
+    if (form) form.submit();
   }
 
   initLanguageSwitcher() {
@@ -292,42 +291,69 @@ class App {
         el.addEventListener('change', (e) => {
           const selectedLocale = e.target.value;
 
-          console.log('selectedLocale', selectedLocale);
-          console.log('pathname', pathname);
           location.href = selectedLocale === '/' ? pathname : selectedLocale + pathname;
         })
       );
     }
   }
 
-  fancyboxBackdrop() {
-    const target = document.querySelector('body');
-
-    const config = {
-      childList: true,
-    };
-
-    const callback = (mutationsList, currentObserver) => {
-      for (const mutation of mutationsList) {
-        if (mutation.addedNodes[0] && mutation.addedNodes[0].Fancybox !== undefined) {
-          const backdrop = document.querySelector('.fancybox__slide.is-selected');
-
-          backdrop.addEventListener('click', (e) => {
-            e.preventDefault();
-          });
-          currentObserver.disconnect();
-        }
-      }
-    };
-
-    const observer = new MutationObserver(callback);
-
-    observer.observe(target, config);
-  }
-
   fancyboxModalCloseButton() {
     document.body.addEventListener('click', (e) => {
       'fancyboxClose' in e.target.dataset && window.fancybox.close(true);
+    });
+  }
+
+  cartDrawer() {
+    const cartDrawerOpener = document.querySelectorAll('.cart-drawer-opener');
+    const cartDrawerCloser = document.querySelectorAll('.cart-drawer-closer');
+    const cartDrawer = document.querySelector('#cart-drawer');
+    const bodyElement = document.querySelector('body');
+
+    const openCartDrawer = (event) => {
+      event?.preventDefault();
+      bodyElement.classList.add('scroll-lock');
+      cartDrawer.showModal();
+      cartDrawer.removeAttribute('inert');
+    };
+
+    window.addEventListener('openCartDrawer', openCartDrawer);
+
+    // open cartDrawer on cart button click
+    cartDrawerOpener.forEach((item) => {
+      item.addEventListener('click', openCartDrawer);
+    });
+
+    // close cartDrawer on close button click
+    cartDrawerCloser.forEach((item) => {
+      item.addEventListener('click', () => {
+        bodyElement.classList.remove('scroll-lock');
+        cartDrawer.close();
+        cartDrawer.setAttribute('inert', '');
+      });
+    });
+
+    // close cartDrawer on outside click
+    cartDrawer.addEventListener('click', (e) => {
+      const dialogDimensions = cartDrawer.getBoundingClientRect();
+
+      if (
+        e.clientX < dialogDimensions.left ||
+        e.clientX > dialogDimensions.right ||
+        e.clientY < dialogDimensions.top ||
+        e.clientY > dialogDimensions.bottom
+      ) {
+        bodyElement.classList.remove('scroll-lock');
+        cartDrawer.close();
+        cartDrawer.setAttribute('inert', '');
+      }
+    });
+
+    // remove scroll lock on escape when cartDrawer is open
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && cartDrawer.hasAttribute('open')) {
+        bodyElement.classList.remove('scroll-lock');
+        cartDrawer.setAttribute('inert', '');
+      }
     });
   }
 }

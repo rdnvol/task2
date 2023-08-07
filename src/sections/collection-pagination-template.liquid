@@ -3,13 +3,35 @@
 {% paginate collection.products by limit %}
   {% liquid
     for product in collection.products
-      render "product-card", product: product, grid_item_width: 'col-6 col-lg-3'
+      render "product-card", product: product, grid_item_width: 'sm:w-6/12 lg:w-3/12', image_ratio: section.settings.image_ratio
     endfor
   %}
 {% endpaginate %}
 
 {% schema %}
 {
-  "name": "Collection Pagination"
+  "name": "Collection Pagination",
+  "settings": [
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "label": "Image ratio",
+      "default": "",
+      "options": [
+        {
+          "value": "",
+          "label": "Adapt to image"
+        },
+        {
+          "value": "product-item--portrait",
+          "label": "Portrait"
+        },
+        {
+          "value": "product-item--square",
+          "label": "Square"
+        }
+      ]
+    }
+  ]
 }
 {% endschema %}
