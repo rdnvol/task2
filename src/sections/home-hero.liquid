@@ -6,62 +6,70 @@
     {% if section.settings.fullheight %} hero--full-height{% endif %}
   "
   data-section-id="{{ section.id }}"
-  {% if section.settings.fullheight %}
-    style="height: calc(100vh - var(--header-height, 80px))"
-  {% endif %}
 >
   <div class="container relative h-100">
     <div class="hero__img">
-      {%- if section.settings.image != blank -%}
+      {%- if section.settings.image_mobile != blank -%}
         {% liquid
           if section.settings.enable_lazyload
             assign enable_lazyload = true
+            assign fetchpriority_value = 'low'
           else
             assign enable_lazyload = false
+            assign fetchpriority_value = 'high'
           endif
         %}
         {%
           render 'image',
           src: section.settings.image_mobile,
-          m: '375x470',
+          m: '375x307',
           src_d: section.settings.image,
           d: '1440x560',
-          crop: 'center',
-          alt: section.settings.image.alt,
-          lazyload: enable_lazyload
+          alt: section.settings.image_mobile.alt,
+          lazyload: enable_lazyload,
+          fetchpriority: fetchpriority_value,
         %}
       {%- else -%}
         {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
       {%- endif -%}
     </div>
     <div class="hero__block">
-      <div class="container relative h-100">
-        <div class="flex h-100 {{ section.settings.alignment_mobile }} {{ section.settings.alignment }} {{ section.settings.alignment_text }} custom-color">
-          <div class="sm:w-10/12 md:w-6/12 lg:w-4/12">
-            <div class="hero__block-content">
-              {% for block in section.blocks %}
-                {% case block.type %}
-                  {% when 'title' %}
-                    <h1 class="mb-4" {{ block.shopify_attributes }}>
-                      {{ block.settings.title }}
-                    </h1>
-                  {% when 'text' %}
-                    <div class="body-large rte mb-5" {{ block.shopify_attributes }}>
-                      {{ block.settings.text }}
-                    </div>
-                  {% when 'button' %}
-                    {% if block.settings.button_link != blank and block.settings.button_label != blank %}
-                      {%
-                        render 'button',
-                        href: block.settings.button_link,
-                        text: block.settings.button_label,
-                        class: 'mb-5',
-                        data_attribute: block.shopify_attributes
-                      %}
-                    {% endif %}
-                {% endcase %}
-              {% endfor %}
-            </div>
+      <div class="container relative">
+        <div
+          class="hero__block-holder flex {{ section.settings.alignment_mobile }} {{ section.settings.alignment }} {{ section.settings.alignment_text }} custom-color"
+          {% if section.settings.fullheight %}
+            style="min-height: calc(100vh - var(--header-height, 80px))"
+          {% endif %}
+        >
+          <div class="hero__block-content">
+            {% for block in section.blocks %}
+              {% case block.type %}
+                {% when 'title' %}
+                  <h1
+                    class="mb-4"
+                    {{ block.shopify_attributes }}
+                  >
+                    {{ block.settings.title }}
+                  </h1>
+                {% when 'text' %}
+                  <div
+                    class="body-large rte mb-5"
+                    {{ block.shopify_attributes }}
+                  >
+                    {{ block.settings.text }}
+                  </div>
+                {% when 'button' %}
+                  {% if block.settings.button_link != blank and block.settings.button_label != blank %}
+                    {%
+                      render 'button',
+                      href: block.settings.button_link,
+                      text: block.settings.button_label,
+                      class: 'mb-5',
+                      data_attribute: block.shopify_attributes
+                    %}
+                  {% endif %}
+              {% endcase %}
+            {% endfor %}
           </div>
         </div>
       </div>
@@ -94,6 +102,12 @@
   "settings": [
     {
       "type": "image_picker",
+      "id": "image_mobile",
+      "label": "Image mobile",
+      "info": "This field is required to fullfill to display image"
+    },
+    {
+      "type": "image_picker",
       "id": "image",
       "label": "Image"
     },
@@ -112,11 +126,6 @@
       "unit": "%",
       "label": "Image overlay opacity",
       "default": 0
-    },
-    {
-      "type": "image_picker",
-      "id": "image_mobile",
-      "label": "Image mobile"
     },
     {
       "type": "select",

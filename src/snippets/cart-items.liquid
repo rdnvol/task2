@@ -17,7 +17,10 @@
         <div class="w-4/12 md:w-3/12">
           {% if item.image != blank %}
             <div class="cart__product-img">
-              <a href="{{ item.url | within: collections.all }}" aria-label="{{ item.title }}">
+              <a
+                href="{{ item.url | within: collections.all }}"
+                aria-label="{{ item.title }}"
+              >
                 {%
                   render 'image',
                   src: item.image,
@@ -32,7 +35,10 @@
         </div>
         <div class="w-8/12 md:w-9/12">
           <div class="cart__product-text">
-            <a href="{{ item.url }}" class="cart__product-link">
+            <a
+              href="{{ item.url }}"
+              class="cart__product-link"
+            >
               <strong>
                 {{ item.product.title }}
               </strong>
@@ -59,7 +65,10 @@
                 endfor
               endif
             %}
-            <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" data-remove-item>
+            <a
+              href="/cart/change?line={{ forloop.index }}&amp;quantity=0"
+              data-remove-item
+            >
               <small>{{ 'cart.general.remove' | t }}</small>
             </a>
           </div>
@@ -77,8 +86,13 @@
           {{ item.original_price | money }}
         {% endif %}
       </div>
-      <div class="flex md:hidden items-center justify-end">
-        <label for="updates_mobile_{{ item.key }}" class="mr-2">Qty</label>
+      <div class="flex items-center justify-end md:hidden">
+        <label
+          for="updates_mobile_{{ item.key }}"
+          class="mr-2"
+        >
+          Qty
+        </label>
         <input
           type="number"
           name="updates[]"

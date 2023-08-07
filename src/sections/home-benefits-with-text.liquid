@@ -1,7 +1,7 @@
 <div class="section benefits-list md:overflow-hidden">
   <div class="container">
     <div class="lg:flex">
-      <div class="lg:w-10/12 mx-auto">
+      <div class="mx-auto lg:w-10/12">
         <div class="benefits-list-block">
           {% for block in section.blocks %}
             {% case block.type %}
@@ -12,7 +12,10 @@
                   </h2>
                 </div>
               {% when "text" %}
-                <div class="benefits-list__text-box" {{ block.shopify_attributes }}>
+                <div
+                  class="benefits-list__text-box"
+                  {{ block.shopify_attributes }}
+                >
                   {{ block.settings.text }}
                 </div>
               {% when "html" %}

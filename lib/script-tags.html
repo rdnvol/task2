@@ -50,6 +50,11 @@
           <script type="text/javascript" src="<%= src %>" defer></script>
         <% } %>
       {% endif %}
+      {% if template != '<%= template %>' and template contains "page." %}
+        <% if(template === "page"){ %>
+          <script type="text/javascript" src="<%= src %>" defer></script>
+        <% } %>
+      {% endif %}
     <% } %>
   <% } else { %>
     <script type="text/javascript" src="<%= src %>" defer></script>

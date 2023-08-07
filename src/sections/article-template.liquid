@@ -4,12 +4,14 @@
   <div class="container">
     <article>
       {% if article.image.src != blank %}
-        <div class="mb-5 md:mb-4 post__img">
+        <div class="page-hero post__img mb-5 md:mb-4">
           {% liquid
             if section.settings.enable_lazyload
               assign enable_lazyload = true
+              assign fetchpriority_value = 'low'
             else
               assign enable_lazyload = false
+              assign fetchpriority_value = 'high'
             endif
           %}
           {%
@@ -19,19 +21,23 @@
             src_d: article.image.src,
             d: '1440x',
             alt: article.image.alt,
-            lazyload: enable_lazyload
+            lazyload: enable_lazyload,
+            fetchpriority: fetchpriority_value
           %}
         </div>
       {% endif %}
       <div class="md:flex">
-        <div class="md:w-8/12 md:mx-auto">
+        <div class="md:mx-auto md:w-8/12">
           <header class="post__header mb-3">
             <div class="body-small mb-4 md:mb-3">
               {{ article.published_at | time_tag: format: 'month_day_year' }}
             </div>
             <h1 class="h4 mb-3">{{ article.title }}</h1>
             {% if blog.comments_enabled? %}
-              <a href="#comments" class="body-small inline-block mb-3">
+              <a
+                href="#comments"
+                class="body-small mb-3 inline-block"
+              >
                 {{ 'blogs.comments.with_count' | t: count: article.comments_count }}
               </a>
             {% endif %}
@@ -45,7 +51,10 @@
             {% render 'social-sharing', share_title: article.title, share_permalink: article.url, share_image: article.image %}
           {% endif %}
           {% if article.comments_enabled? %}
-            <div id="comments" class="post__discussion">
+            <div
+              id="comments"
+              class="post__discussion"
+            >
               <h2 class="h4 mb-3">{{ 'blogs.comments.block_title' | t }}</h2>
               <ul>
                 {% for comment in article.comments %}
@@ -77,7 +86,10 @@
               {% endif %}
               <div class="sm:grid sm:grid-cols-2 sm:gap-x-8">
                 <div class="input-holder">
-                  <label for="CommentAuthor" class="inline-block mb-1 label-hidden">
+                  <label
+                    for="CommentAuthor"
+                    class="label-hidden mb-1 inline-block"
+                  >
                     {{ 'blogs.comments.name' | t }}
                   </label>
                   <input
@@ -91,7 +103,10 @@
                   >
                 </div>
                 <div class="input-holder">
-                  <label for="CommentEmail" class="inline-block mb-1 label-hidden">
+                  <label
+                    for="CommentEmail"
+                    class="label-hidden mb-1 inline-block"
+                  >
                     {{ 'blogs.comments.email' | t }}
                   </label>
                   <input
@@ -108,7 +123,10 @@
                 </div>
               </div>
               <div class="input-holder">
-                <label for="CommentBody" class="inline-block mb-1 label-hidden">
+                <label
+                  for="CommentBody"
+                  class="label-hidden mb-1 inline-block"
+                >
                   {{ 'blogs.comments.message' | t }}
                 </label>
                 <textarea
@@ -123,7 +141,11 @@
               {% if blog.moderated? %}
                 <p>{{ 'blogs.comments.moderated' | t }}</p>
               {% endif %}
-              <input type="submit" class="button" value="{{ 'blogs.comments.post' | t }}">
+              <input
+                type="submit"
+                class="button"
+                value="{{ 'blogs.comments.post' | t }}"
+              >
             {% endform %}
           {% endif %}
         </div>

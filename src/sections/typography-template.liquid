@@ -63,29 +63,47 @@
         <p>1 Infinite Loop Cupertino, CA 95014 United States</p>
       </address>
       <strong>Anchor Tag (aka. Link)</strong>
-      <p>This is an example of a <a title="Apple" href="https://apple.com/">link</a>.</p>
+      <p>
+        This is an example of a
+        <a
+          title="Apple"
+          href="https://apple.com/"
+        >
+          link
+        </a>
+        .
+      </p>
       <strong>Emphasize Tag</strong>
-      <p>The emphasize tag should <i>italicize</i> text.</p>
+      <p>
+        The emphasize tag should
+        <i>italicize</i>
+        text.
+      </p>
       <div>
-        <a href="#" class="link">add try on</a>
+        <a
+          href="#"
+          class="link"
+        >
+          add try on
+        </a>
       </div>
       <h3>Primary button lg md sm</h3>
-      <div class="grid md:grid-cols-2 gap-8 py-5 mb-7">
+      <div class="mb-7 grid gap-8 py-5 md:grid-cols-2">
         <div>
-          <div class="md:inline-block mb-2">
+          <div class="mb-2 md:inline-block">
             {%
               render 'button',
               class: 'button--lg'
             %}
           </div>
-          <div class="md:inline-block mb-2">
+          <div class="mb-2 md:inline-block">
             {%
               render 'button',
               element: 'button',
               class: 'button--lg'
             %}
           </div>
-          <div class="md:inline-block mb-2">
+          <div class="mb-2 md:inline-block">
             {%
               render 'button',
               snippet: true,
@@ -93,7 +111,7 @@
               class: 'button--lg btn--with-icon'
             %}
           </div>
-          <div class="md:inline-block mb-2">
+          <div class="mb-2 md:inline-block">
             {%
               render 'button',
               snippet: true,
@@ -102,7 +120,7 @@
               class: 'button btn button--lg'
             %}
           </div>
-          <div class="md:inline-block mb-2">
+          <div class="mb-2 md:inline-block">
             {%
               render 'button',
               element: 'button',
@@ -112,16 +130,16 @@
           </div>
         </div>
         <div>
-          <div class="md:inline-block mb-2">
+          <div class="mb-2 md:inline-block">
             {% render 'button' %}
           </div>
-          <div class="md:inline-block mb-2">
+          <div class="mb-2 md:inline-block">
             {%
               render 'button',
               element: 'button'
             %}
           </div>
-          <div class="md:inline-block mb-2">
+          <div class="mb-2 md:inline-block">
             {%
               render 'button',
               snippet: true,
@@ -129,7 +147,7 @@
               class: 'btn--with-icon'
             %}
           </div>
-          <div class="md:inline-block mb-2">
+          <div class="mb-2 md:inline-block">
             {%
               render 'button',
               snippet: true,
@@ -138,7 +156,7 @@
               class: 'button btn'
             %}
           </div>
-          <div class="md:inline-block mb-2">
+          <div class="mb-2 md:inline-block">
             {%
               render 'button',
               element: 'button',
@@ -147,20 +165,20 @@
           </div>
         </div>
         <div>
-          <div class="md:inline-block mb-2">
+          <div class="mb-2 md:inline-block">
             {%
               render 'button',
               class: 'button--sm'
             %}
           </div>
-          <div class="md:inline-block mb-2">
+          <div class="mb-2 md:inline-block">
             {%
               render 'button',
               element: 'button',
               class: 'button--sm'
             %}
           </div>
-          <div class="md:inline-block mb-2">
+          <div class="mb-2 md:inline-block">
             {%
               render 'button',
               snippet: true,
@@ -168,7 +186,7 @@
               class: 'btn--with-icon button--sm'
             %}
           </div>
-          <div class="md:inline-block mb-2">
+          <div class="mb-2 md:inline-block">
             {%
               render 'button',
               snippet: true,
@@ -177,7 +195,7 @@
               class: 'button btn button--sm'
             %}
           </div>
-          <div class="md:inline-block mb-2">
+          <div class="mb-2 md:inline-block">
             {%
               render 'button',
               element: 'button',
@@ -188,22 +206,22 @@
         </div>
       </div>
       <h3>Secondary button lg md sm</h3>
-      <div class="grid md:grid-cols-2 gap-8 py-5 mb-7 base-footer-background">
+      <div class="base-footer-background mb-7 grid gap-8 py-5 md:grid-cols-2">
         <div>
-          <div class="md:inline-block mb-2">
+          <div class="mb-2 md:inline-block">
             {%
               render 'button',
               class: 'button--lg button--secondary'
             %}
           </div>
-          <div class="md:inline-block mb-2">
+          <div class="mb-2 md:inline-block">
             {%
               render 'button',
               element: 'button',
               class: 'button--lg button--secondary'
             %}
           </div>
-          <div class="md:inline-block mb-2">
+          <div class="mb-2 md:inline-block">
             {%
               render 'button',
               snippet: true,
@@ -211,7 +229,7 @@
               class: 'button--lg btn--with-icon button--secondary'
             %}
           </div>
-          <div class="md:inline-block mb-2">
+          <div class="mb-2 md:inline-block">
             {%
               render 'button',
               snippet: true,
@@ -220,7 +238,7 @@
               class: 'button btn button--lg button--secondary'
             %}
           </div>
-          <div class="md:inline-block mb-2">
+          <div class="mb-2 md:inline-block">
             {%
               render 'button',
               element: 'button',
@@ -230,13 +248,13 @@
           </div>
         </div>
         <div>
-          <div class="md:inline-block mb-2">
+          <div class="mb-2 md:inline-block">
             {%
               render 'button'
               class: 'button--secondary'
             %}
           </div>
-          <div class="md:inline-block mb-2">
+          <div class="mb-2 md:inline-block">
             {%
               render 'button',
               snippet: true,
@@ -244,7 +262,7 @@
               class: 'btn--with-icon button--secondary'
             %}
           </div>
-          <div class="md:inline-block mb-2">
+          <div class="mb-2 md:inline-block">
             {%
               render 'button',
               snippet: true,
@@ -253,7 +271,7 @@
               class: 'button btn button--secondary'
             %}
           </div>
-          <div class="md:inline-block mb-2">
+          <div class="mb-2 md:inline-block">
             {%
               render 'button',
               element: 'button',
@@ -263,13 +281,13 @@
           </div>
         </div>
         <div>
-          <div class="md:inline-block mb-2">
+          <div class="mb-2 md:inline-block">
             {%
               render 'button',
               class: 'button--sm button--secondary'
             %}
           </div>
-          <div class="md:inline-block mb-2">
+          <div class="mb-2 md:inline-block">
             {%
               render 'button',
               snippet: true,
@@ -277,7 +295,7 @@
               class: 'btn--with-icon button--sm button--secondary'
             %}
           </div>
-          <div class="md:inline-block mb-2">
+          <div class="mb-2 md:inline-block">
             {%
               render 'button',
               snippet: true,
@@ -286,7 +304,7 @@
               class: 'button btn button--sm button--secondary'
             %}
           </div>
-          <div class="md:inline-block mb-2">
+          <div class="mb-2 md:inline-block">
             {%
               render 'button',
               element: 'button',
@@ -349,7 +367,12 @@
         <dt>Do It Live:</dt>
         <dd>
           I'll let Bill O'Reilly will
-          <a title="We'll Do It Live" href="https://www.youtube.com/watch?v=O_HyZ5aW76c">explain</a>
+          <a
+            title="We'll Do It Live"
+            href="https://www.youtube.com/watch?v=O_HyZ5aW76c"
+          >
+            explain
+          </a>
           this one.
         </dd>
       </dl>
@@ -406,7 +429,7 @@
         <li>List item four</li>
       </ol>
 
-      <div class="grid sm:grid-cols-3 gap-8 mb-5">
+      <div class="mb-5 grid gap-8 sm:grid-cols-3">
         <div>
           <h4>Image lazyload asset_img_url</h4>
           {%

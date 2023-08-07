@@ -1,7 +1,8 @@
 {
   "general": {
     "accessibility": {
-      "skip_to_content": "Direkt zum Inhalt"
+      "skip_to_content": "Direkt zum Inhalt",
+      "unit_price_separator": "per"
     },
     "breadcrumbs": {
       "home": "Heim"
@@ -45,8 +46,7 @@
         "share_on_facebook": "Auf Facebook teilen",
         "share_on_twitter": "Auf Twitter twittern",
         "share_on_pinterest": "Auf Pinterest pinnen"
-      },
-      "share": "Teilen"
+      }
     },
     "search": {
       "title": "Suchen Sie auf unserer Seite nach Produkten",
@@ -55,6 +55,12 @@
       "heading": {
         "one": "Suchergebnis",
         "other": "Suchergebnisse"
+      },
+      "predictive_search": {
+        "suggestions": "Suggestions",
+        "product": "Products",
+        "pages": "Pages",
+        "search_for": "Search for \"{{ terms }}\""
       },
       "results_with_count": {
         "one": "{{ count }} Ergebnis für \"{{ terms }}\"",
@@ -68,16 +74,7 @@
       "email_placeholder": " E-Mail-Adresse ",
       "confirmation": " Danke für Ihre Anmeldung ",
       "submit": "Abonnieren",
-      "title": "Verbinden",
       "please_enter_your_email": "Bitte geben Sie ihre E-Mail-Adresse ein"
-    },
-    "breadcrumbs": {
-      "home": "Heim"
-    },
-    "pagination": {
-      "previous": "Vorherige Seite",
-      "next": "Nächste Seite",
-      "current_page": "Seite {{ current }} von {{ total }}"
     }
   },
   "blogs": {
@@ -102,8 +99,7 @@
       "with_count": {
         "one": "{{ count }} Kommentar",
         "other": "{{ count }} Kommentare"
-      },
-      "block_title": "Kommentare"
+      }
     },
     "general": {
       "categories": "Kategorien"
@@ -127,7 +123,14 @@
       "just_added_to_your_cart": "Gerade in Ihren Warenkorb gelegt",
       "view_cart": "Warenkorb ansehen",
       "special_instructions_placeholder": "Besondere Anweisungen für Verkäufer anzeigen",
-      "add_to_cart": "In den Warenkorb legen"
+      "add_to_cart": "In den Warenkorb legen",
+      "cart_drawer_lable": "Your cart" ,
+      "cart_drawer_remove_btn": "Remove",
+      "cart_drawer_continue_shopping_btn": "Continue shopping",
+      "free_shipping_left": "You are {{ price }} away from free shipping.",
+      "free_shipping_riched": "You riched free shipping.",
+      "tax_include_text": "Tax included and shipping calculated at checkout",
+      "you_may_like": "You may also like"
     },
     "label": {
       "product": "Artikel",
@@ -154,11 +157,14 @@
       "filter": "Filter:"
     },
     "filters": {
-      "filter_product_price": "The highest price is $300.00",
+      "filter_product_price": "The highest price is {{ amount }}",
       "reset": "Reset",
       "to": "to",
       "minimum_price": "Minimum price",
       "maximum_price": "Maximum price"
+    },
+    "quick_view": {
+      "view_full_details": "View full details"
     }
   },
   "contact": {
@@ -221,10 +227,7 @@
       "sign_in": "Anmelden",
       "cancel": "Zurück zum Shop",
       "guest_title": "Als Gast fortsetzen",
-      "guest_continue": "Fortsetzen",
-      "log_out": "Ausloggen",
-      "log_in": "Einloggen",
-      "create_account": "Konto anlegen"
+      "guest_continue": "Fortsetzen"
     },
     "orders": {
       "title": "Bestellungen",
@@ -257,7 +260,10 @@
       "tracking_url": "Tracking link",
       "tracking_company": "Unternehmen",
       "tracking_number": "Sendungscode",
-      "subtotal": "Zwischensumme"
+      "subtotal": "Zwischensumme",
+      "order_details": "Order details",
+      "placed_on": "Placed on",
+      "order_detail_table": "Order detail table"
     },
     "recover_password": {
       "title": "Passwort zurücksetzen",
@@ -293,8 +299,7 @@
       "product_title": "Beispielhafter Produkttitel",
       "product_description": "Dieser Bereich wird verwendet, um die Details Ihres Produkts zu beschreiben. Informieren Sie Kunden über das Aussehen, die Haptik und den Stil Ihres Produkts. Fügen Sie Details zu Farbe, verwendeten Materialien, Größe und Herstellungsort hinzu.",
       "collection_title": "Beispielhafter Zusammenstellungstitel",
-      "no_content": "Dieser Bereich hat zur Zeit keinen Inhalt. Füge diesem Bereich über die Seitenleiste Inhalte hinzu.",
-      "product_description": "Dieser Bereich wird verwendet, um die Details Ihres Produkts zu beschreiben. Informieren Sie Kunden über das Aussehen, die Haptik und den Stil Ihres Produkts. Fügen Sie Details zu Farbe, verwendeten Materialien, Größe und Herstellungsort hinzu."
+      "no_content": "Dieser Bereich hat zur Zeit keinen Inhalt. Füge diesem Bereich über die Seitenleiste Inhalte hinzu."
     }
   },
   "layout": {
@@ -332,13 +337,21 @@
       "quantity_decrease": "Decrease quantity",
       "quantity_increase": "Increase quantity",
       "add_to_cart": "In den Einkaufswagen legen",
+      "choose_options": "Choose options", 
       "dynamic_button_placeholder": "Kaufe es jetzt",
       "size_chart": "Größentabelle",
       "size": "Größe",
+      "color": "color",
       "color_title": "Farbe",
       "starting_at": "Aus",
       "product_variants": "Produktvarianten",
-      "tax_included": "Tax included."
+      "tax_included": "Tax included.",
+      "pick_up_available_at_html": "Pickup available at ",
+      "pick_up_available": "Pickup available",
+      "pick_up_unavailable_at_html": "Pickup unavailable at {{ location_name }} ",
+      "pick_up_currently_unavailable": "Pickup currently unavailable",
+      "view_store_info": "View store info",
+      "check_other_stores": "Check other stores"
     },
     "product_card": {
       "labels": {

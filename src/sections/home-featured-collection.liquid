@@ -1,37 +1,61 @@
 {% liquid
   assign collection = collections[section.settings.collection]
-  assign product_limit = section.settings.grid | times: section.settings.rows
+  assign product_limit = section.settings.product_limit
 
-  case section.settings.grid
+  assign desktop_grid_item_width = 'lg:grid-cols-' | append: section.settings.desktop_grid
+  case section.settings.desktop_grid
+    when 1
+      assign image_sizes_desktop = '1410'
     when 2
-      assign grid_item_width = 'grid-cols-1 sm:grid-cols-2'
+      assign image_sizes_desktop = '689'
     when 3
-      assign grid_item_width = 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'
+      assign image_sizes_desktop = '449'
     when 4
-      assign grid_item_width = 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4'
+      assign image_sizes_desktop = '329'
+    when 5
+      assign image_sizes_desktop = '256'
+  endcase
+
+  if section.settings.layout_slider_on_mobile == "slider" and section.settings.mobile_grid == "2"
+    assign mobile_grid_item_width = 'grid--2-col-mobile'
+  else
+    assign mobile_grid_item_width = 'grid-cols-' | append: section.settings.mobile_grid
+  endif
+
+  case section.settings.mobile_grid
+    when '1'
+      assign image_sizes_mobile = '330'
+    when '2'
+      assign image_sizes_mobile = '155'
   endcase
 %}
 
 <div class="section">
   <div class="container">
     {% if section.settings.title != blank %}
-      <h3 class="text-center mb-4">{{ section.settings.title }}</h3>
+      <h3 class="mb-4 text-center">{{ section.settings.title }}</h3>
     {% endif %}
-    <div class="{% if section.settings.layout_slider_on_mobile == 'slider' %}featured-collection__gallery flex flex-nowrap mb-5 sm:mb-0 space-x-6 sm:space-x-0 sm:grid sm:gap-x-8{% else %}grid gap-x-8{% endif %} {{ grid_item_width }}">
+    <div class="{% if section.settings.layout_slider_on_mobile == "slider" %}featured-collection__gallery flex flex-nowrap space-x-5 lg:grid lg:gap-x-5 lg:gap-y-8 lg:space-x-0 xl:gap-x-8 {% else %}grid gap-5 gap-y-8 xl:gap-x-8{% endif %} {{ mobile_grid_item_width }} {{ desktop_grid_item_width }}">
       {% liquid
-        if section.settings.enable_lazyload
-          assign enable_lazyload = true
-        else
-          assign enable_lazyload = false
-        endif
         for product in collection.products limit: product_limit
-          render "product-card", product: product, grid_item_width: '', image_sizes_mobile: '345x', image_sizes_desktop: '328x', show_vendor: section.settings.show_vendor, enable_lazyload: enable_lazyload
+          if section.settings.enable_lazyload
+            assign enable_lazyload = true
+            assign fetchpriority_value = 'low'
+          elsif section.settings.enable_lazyload == false and forloop.first
+            assign enable_lazyload = false
+            assign fetchpriority_value = 'high'
+          else
+            assign enable_lazyload = true
+            assign fetchpriority_value = 'low'
+          endif
+
+          render "product-card", product: product, grid_item_width: '', image_sizes_mobile: image_sizes_mobile, image_sizes_desktop: image_sizes_desktop, show_vendor: section.settings.show_vendor, enable_lazyload: enable_lazyload, image_ratio: section.settings.image_ratio, fetchpriority_value: fetchpriority_value
         else
           for i in (1..product_limit)
             capture current
               cycle 1, 2, 3, 4, 5, 6
             endcapture
-            render "product-card--empty", index: current, grid_item_width: ''
+            render "product-card--empty", index: current, grid_item_width: '', image_sizes_mobile: image_sizes_mobile, image_sizes_desktop: image_sizes_desktop, image_ratio: section.settings.image_ratio
           endfor
         endfor
       %}
@@ -39,7 +63,7 @@
 
     {%- if section.settings.show_view_all and collection != blank -%}
       {% assign button_label = 'collections.general.view_all' | t %}
-      <div class="sm:pt-4 text-center">
+      <div class="pt-8 text-center">
         {%
           render 'button',
           href: collection.url,
@@ -82,20 +106,56 @@
       ]
     },
     {
+      "type": "select",
+      "id": "image_ratio",
+      "label": "Image ratio",
+      "default": "",
+      "options": [
+        {
+          "value": "",
+          "label": "Adapt to image"
+        },
+        {
+          "value": "product-item--portrait",
+          "label": "Portrait"
+        },
+        {
+          "value": "product-item--square",
+          "label": "Square"
+        }
+      ]
+    },
+    {
       "type": "range",
-      "id": "grid",
-      "label": "Products per row",
-      "min": 2,
-      "max": 4,
+      "id": "desktop_grid",
+      "label": "Products per row for desktop",
+      "min": 1,
+      "max": 5,
       "step": 1,
       "default": 4
     },
     {
+      "type": "select",
+      "id": "mobile_grid",
+      "label": "Products per row for mobile",
+      "default": "1",
+      "options": [
+        {
+          "value": "1",
+          "label": "One product in row"
+        },
+        {
+          "value": "2",
+          "label": "Two products in row"
+        }
+      ]
+    },
+    {
       "type": "range",
-      "id": "rows",
-      "label": "Rows",
+      "id": "product_limit",
+      "label": "Product limit",
       "min": 1,
-      "max": 5,
+      "max": 20,
       "step": 1,
       "default": 2
     },

@@ -1,40 +1,11 @@
 .hero {
   position: relative;
   z-index: 2;
-  margin: 0 0 50px;
-  @include media("≥tablet") {
-    margin: 0;
-  }
   &.hero--full-height {
 
     .hero__img {
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      height: 100%;
-      margin: 0;
       &::after {
         display: block;
-      }
-
-      img {
-        height: 100%;
-        object-fit: cover;
-      }
-    }
-
-    .hero__block {
-      position: absolute;
-      top: 40px;
-      right: 0;
-      bottom: 40px;
-      left: 0;
-      z-index: 4;
-      @include media("≥tablet") {
-        top: 30px;
-        bottom: 30px;
       }
     }
   }
@@ -48,12 +19,6 @@
   &.hero--banner-small,
   &.hero--banner-medium,
   &.hero--banner-large {
-    &.hero--full-height {
-
-      .hero__img {
-        height: 100%;
-      }
-    }
     &.hero--full-width {
 
       .hero__img {
@@ -72,63 +37,41 @@
         bottom: 0;
         left: calc(#{$grid-gutter-width} / 2);
       }
-
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
     }
   }
   &.hero--banner-small {
 
-    > .container {
+    .hero__block-holder {
       @include media ("≥tablet") {
         min-height: 420px;
-      }
-    }
-
-    .hero__img {
-      height: 420px;
-      @include media ("≥tablet") {
-        height: 100%;
       }
     }
   }
   &.hero--banner-medium {
 
-    > .container {
+    .hero__block-holder {
       @include media ("≥tablet") {
         min-height: 560px;
-      }
-    }
-
-    .hero__img {
-      height: 470px;
-      @include media ("≥tablet") {
-        height: 100%;
       }
     }
   }
   &.hero--banner-large {
 
-    > .container {
+    .hero__block-holder {
       @include media ("≥tablet") {
         min-height: 720px;
-      }
-    }
-
-    .hero__img {
-      height: 520px;
-      @include media ("≥tablet") {
-        height: 100%;
       }
     }
   }
 }
 
 .hero__img {
-  position: relative;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 100%;
   &::after {
     content: "";
     position: absolute;
@@ -140,22 +83,30 @@
     background: $base-body-text;
     pointer-events: none;
   }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 }
 
 .hero__block {
-  position: absolute;
-  top: 40px;
-  right: 0;
-  bottom: 40px;
-  left: 0;
+  position: relative;
   z-index: 4;
+}
+
+.hero__block-holder {
+  padding: 40px 0;
   @include media("≥tablet") {
-    top: 30px;
-    bottom: 30px;
+    padding: 30px;
   }
 }
 
 .hero__block-content {
+  @include media ("≥tablet") {
+    max-width: 900px;
+  }
 
   > * {
     &:last-child {

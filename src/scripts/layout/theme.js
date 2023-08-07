@@ -1,20 +1,25 @@
 import 'styles/theme.scss';
 
 // plugins
+// Accordion
+import Accordion from 'accordion-js';
+import 'accordion-js/dist/accordion.min.css';
 
 // Open-close details-utils
 import '@zachleat/details-utils';
 
 import { StickyStates } from 'helpers/stickyStates';
 import MobileNav from 'helpers/mobileNav';
+import { predictiveSearch } from 'sections/predictive-search';
 import 'helpers/responsive-helper';
 
 import 'store/store.ts';
 
 // Cart
-import 'components/CartReact';
-import 'components/CartCount';
-import 'components/CartPopup';
+import 'components/Cart/CartReact';
+import 'components/Cart/CartCount';
+import 'components/Cart/CartPopup';
+import 'components/CartDrawer/CartDrawerReact';
 
 // utils
 import { getLocaleAndPathname } from 'helpers/utils';
@@ -25,6 +30,7 @@ class App {
   }
 
   init() {
+    predictiveSearch();
     this.responsiveFluidIframe();
     this.setHeaderHeight();
     this.initMobileNav();
@@ -34,8 +40,8 @@ class App {
     this.initAccordion();
     this.initCurrencySwitcher();
     this.initLanguageSwitcher();
-    this.fancyboxBackdrop();
     this.fancyboxModalCloseButton();
+    this.cartDrawer();
 
     if (!('ontouchstart' in document.documentElement)) {
       document.documentElement.classList.add('no-touch');
@@ -201,56 +207,23 @@ class App {
 
   // accordion menu init
   initAccordion() {
-    const accordions = document.querySelectorAll('.js-accordion');
-    const menuAccordions = document.querySelectorAll('.js-menu-accordion');
+    const menuAccordion = document.querySelector('.js-menu-accordion');
 
-    if (accordions.length > 0 || menuAccordions.length > 0) {
-      import('accordion/src/accordion.css');
-      import('accordion').then(({ Accordion }) => {
-        accordions.length > 0 &&
-          accordions.forEach((item) => {
-            new Accordion(item, {
-              modal: true, // Limit the accordion to having only one fold open at a time.
-              noAria: true,
-              closeClass: 'close',
-              enabledClass: 'enabled',
-              openClass: 'open',
-              heightOffset: 10,
-              useBorders: true,
-            });
+    window.ResponsiveHelper.addRange({
+      '..1199': {
+        on() {
+          new Accordion(menuAccordion, {
+            triggerClass: 'menu-accordion__opener',
+            duration: 400,
+            collapse: true,
+            showMultiple: false,
           });
-
-        menuAccordions.length > 0 &&
-          window.ResponsiveHelper.addRange({
-            '..1199': {
-              on() {
-                document.querySelectorAll('.js-menu-accordion').forEach((item) => {
-                  new Accordion(item, {
-                    modal: true, // Limit the accordion to having only one fold open at a time.
-                    noAria: true,
-                    closeClass: 'close',
-                    enabledClass: 'enabled',
-                    openClass: 'open',
-                    heightOffset: 0,
-                    useBorders: false,
-                    onToggle(fold) {
-                      const element = fold.el;
-
-                      if (element.classList.contains('fold-disabled')) {
-                        const url = element.querySelector('a').getAttribute('href');
-
-                        window.location.href = url;
-
-                        return false;
-                      }
-                    },
-                  });
-                });
-              },
-            },
-          });
-      });
-    }
+        },
+        off() {
+          menuAccordion.destroy();
+        },
+      },
+    });
   }
 
   setHeaderHeight() {
@@ -270,15 +243,43 @@ class App {
   }
 
   initCurrencySwitcher() {
-    function currencyFormSubmit(event) {
-      event.target.form.submit();
-    }
+    const currencySwitcher = document.querySelector('select[name="country_code"]');
 
-    const currencySwitchers = document.querySelectorAll('.shopify-currency-form select');
+    const generateSwitcherHTML = () => {
+      const shopCurrencies = theme.published_currencies;
+      let currencySwitcherHtml = '';
 
-    if (currencySwitchers.length) {
-      currencySwitchers.forEach((el) => el.addEventListener('change', currencyFormSubmit));
-    }
+      shopCurrencies.forEach((currencyObj) => {
+        const currencyOption = `<option value="${currencyObj.country_iso}" ${currencyObj.current && 'selected'}>
+            ${currencyObj.country} (${currencyObj.currency} ${currencyObj.symbol})
+          </option>`;
+
+        currencySwitcherHtml += currencyOption;
+      });
+
+      currencySwitcher.innerHTML = currencySwitcherHtml;
+    };
+
+    const observer = new IntersectionObserver((entries, curObserver) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          generateSwitcherHTML();
+
+          if (currencySwitcher) currencySwitcher.addEventListener('change', this.onItemChange);
+
+          curObserver.unobserve(currencySwitcher);
+        }
+      });
+    });
+
+    observer.observe(currencySwitcher);
+  }
+
+  onItemChange(event) {
+    event.preventDefault();
+    const form = event.target.closest('form');
+
+    if (form) form.submit();
   }
 
   initLanguageSwitcher() {
@@ -296,34 +297,63 @@ class App {
     }
   }
 
-  fancyboxBackdrop() {
-    const target = document.querySelector('body');
-
-    const config = {
-      childList: true,
-    };
-
-    const callback = (mutationsList, currentObserver) => {
-      for (const mutation of mutationsList) {
-        if (mutation.addedNodes[0] && mutation.addedNodes[0].Fancybox !== undefined) {
-          const backdrop = document.querySelector('.fancybox__slide.is-selected');
-
-          backdrop.addEventListener('click', (e) => {
-            e.preventDefault();
-          });
-          currentObserver.disconnect();
-        }
-      }
-    };
-
-    const observer = new MutationObserver(callback);
-
-    observer.observe(target, config);
-  }
-
   fancyboxModalCloseButton() {
     document.body.addEventListener('click', (e) => {
       'fancyboxClose' in e.target.dataset && window.fancybox.close(true);
+    });
+  }
+
+  cartDrawer() {
+    const cartDrawerOpener = document.querySelectorAll('.cart-drawer-opener');
+    const cartDrawerCloser = document.querySelectorAll('.cart-drawer-closer');
+    const cartDrawer = document.querySelector('#cart-drawer');
+    const bodyElement = document.querySelector('body');
+
+    const openCartDrawer = (event) => {
+      event?.preventDefault();
+      bodyElement.classList.add('scroll-lock');
+      cartDrawer.showModal();
+      cartDrawer.removeAttribute('inert');
+    };
+
+    window.addEventListener('openCartDrawer', openCartDrawer);
+
+    // open cartDrawer on cart button click
+    cartDrawerOpener.forEach((item) => {
+      item.addEventListener('click', openCartDrawer);
+    });
+
+    // close cartDrawer on close button click
+    cartDrawerCloser.forEach((item) => {
+      item.addEventListener('click', () => {
+        bodyElement.classList.remove('scroll-lock');
+        cartDrawer.close();
+        cartDrawer.setAttribute('inert', '');
+      });
+    });
+
+    // close cartDrawer on outside click
+    cartDrawer.addEventListener('click', (e) => {
+      const dialogDimensions = cartDrawer.getBoundingClientRect();
+
+      if (
+        e.clientX < dialogDimensions.left ||
+        e.clientX > dialogDimensions.right ||
+        e.clientY < dialogDimensions.top ||
+        e.clientY > dialogDimensions.bottom
+      ) {
+        bodyElement.classList.remove('scroll-lock');
+        cartDrawer.close();
+        cartDrawer.setAttribute('inert', '');
+      }
+    });
+
+    // remove scroll lock on escape when cartDrawer is open
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && cartDrawer.hasAttribute('open')) {
+        bodyElement.classList.remove('scroll-lock');
+        cartDrawer.setAttribute('inert', '');
+      }
     });
   }
 }

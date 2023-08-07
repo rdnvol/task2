@@ -164,13 +164,13 @@
       {
         "type": "color",
         "id": "button_hover_color",
-        "label": "Hover",
+        "label": "Text on hover",
         "default": "#A2AEB6"
       },
       {
         "type": "color",
         "id": "button_focus_text_color",
-        "label": "Focus text",
+        "label": "Text on focus",
         "default": "#262C30"
       },
       {
@@ -739,6 +739,44 @@
         "id": "cart_notes_enable",
         "label": "Enable cart notes",
         "default": true
+      },
+      {
+        "type": "select",
+        "id": "cart_drawer",
+        "label": "Enable cart drawer",
+        "default": "drawer",
+        "options": [
+          {
+            "value": "popup",
+            "label": "Popup"
+          },
+          {
+            "value": "drawer",
+            "label": "Drawer"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "id": "target_price",
+        "label": "Target Price",
+        "info": "Cart total price for free shipping.",
+        "default": "500"
+      },
+      {
+        "type": "checkbox",
+        "id": "cart_recommendations_enable",
+        "label": "Enable cart drawer recommendations",
+        "default": true
+      },
+      {
+        "type": "range",
+        "id": "cart_recommendations_limit",
+        "label": "Recommendations limit",
+        "min": 1,
+        "max": 20,
+        "step": 1,
+        "default": 20
       }
     ]
   },

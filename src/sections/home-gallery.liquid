@@ -1,36 +1,52 @@
 {% liquid
   assign blocks_size = section.blocks.size
 
+  if section.settings.height == ''
+    assign mobile_image_height = 94
+    assign desktop_image_height = 125
+  elsif section.settings.height == 'gallery-section__img--sm'
+    assign mobile_image_height = 225
+    assign desktop_image_height = 300
+  elsif section.settings.height == 'gallery-section__img--md'
+    assign mobile_image_height = 357
+    assign desktop_image_height = 475
+  elsif section.settings.height == 'gallery-section__img--lg'
+    assign mobile_image_height = 488
+    assign desktop_image_height = 650
+  elsif section.settings.height == 'gallery-section__img--xl'
+    assign mobile_image_height = 582
+    assign desktop_image_height = 775
+  endif
+
   case blocks_size
     when 1
-      assign desktop_size = '1440x'
-      assign mobile_size = '360x'
+      assign desktop_size = '1440x' | append: desktop_image_height
+      assign mobile_size = '375x' | append: mobile_image_height
     when 2
-      assign desktop_size = '720x'
-      assign mobile_size = '360x'
+      assign desktop_size = '720x' | append: desktop_image_height
+      assign mobile_size = '375x' | append: mobile_image_height
     when 3
-      assign desktop_size = '480x'
-      assign mobile_size = '360x'
+      assign desktop_size = '480x' | append: desktop_image_height
+      assign mobile_size = '375x' | append: mobile_image_height
     when 4
-      assign desktop_size = '360x'
-      assign mobile_size = '360x'
+      assign desktop_size = '360x' | append: desktop_image_height
+      assign mobile_size = '375x' | append: mobile_image_height
   endcase
 %}
 
 {% if blocks_size > 0 %}
   <section class="section">
     <div class="gallery-section">
-      <div class="md:grid md:grid-flow-col md:auto-cols-fr">
+      <div class="md:grid md:auto-cols-fr md:grid-flow-col">
         {% for block in section.blocks %}
-          {%- capture image_position -%}
-            style="{{ block.settings.alignment }}"
-          {%- endcapture -%}
           {% capture gallery_image %}
             {% liquid
               if block.settings.enable_lazyload
                 assign enable_lazyload = true
+                assign fetchpriority_value = 'low'
               else
                 assign enable_lazyload = false
+                assign fetchpriority_value = 'high'
               endif
             %}
             <div class="gallery-section__img {{ section.settings.height }}">
@@ -42,8 +58,9 @@
                   src_d: block.settings.image,
                   d: desktop_size,
                   alt: block.settings.image.alt,
+                  crop: 'center',
                   lazyload: enable_lazyload,
-                  data_attribute: image_position
+                  fetchpriority: fetchpriority_value
                 %}
               {% else %}
                 {{ 'image' | placeholder_svg_tag: "placeholder-svg" }}
@@ -59,7 +76,10 @@
           {% endcapture %}
           <div {{ block.shopify_attributes }}>
             {% if block.settings.link != blank %}
-              <a href="{{ block.settings.link }}" class="gallery-section__link">
+              <a
+                href="{{ block.settings.link }}"
+                class="gallery-section__link"
+              >
                 {{ gallery_image }}
                 {{ gallery_title }}
               </a>
@@ -125,26 +145,6 @@
           "id": "enable_lazyload",
           "label": "Enable lazyload",
           "default": true
-        },
-        {
-          "type": "select",
-          "id": "alignment",
-          "label": "Image alignment",
-          "default": "object-position: 50% 50%;",
-          "options": [
-            {
-              "value": "object-position: 50% 0;",
-              "label": "Top"
-            },
-            {
-              "value": "object-position: 50% 50%;",
-              "label": "Medium"
-            },
-            {
-              "value": "object-position: 50% 100%;",
-              "label": "Bottom"
-            }
-          ]
         },
         {
           "type": "url",

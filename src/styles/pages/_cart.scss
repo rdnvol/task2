@@ -83,7 +83,11 @@
   }
 
   .product__price__box {
+    margin-top: 23px;
     margin-bottom: -5px !important;
+    @include media ("≥tablet") {
+      margin-top: 0;
+    }
 
     > * {
       margin: 0 0 5px 5px;
@@ -123,4 +127,8 @@
   p {
     margin: 0 0 10px;
   }
+}
+
+.cart__ico-discount {
+  width: 18px;
 }

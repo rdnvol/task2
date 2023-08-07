@@ -3,6 +3,7 @@
   Renders an image
     Accepts:
     - asset_img_url: {boolean} if true renders an image from assets folder
+    - asset_url: {boolean} if true renders an svg from assets folder
     - metafield: {boolean} for render image from metafield
     - data_attribute: {string} for render additional attributes
     - class: {string} additional classes.
@@ -15,6 +16,7 @@
     - crop: {string} for cropping image if needed (example 'center', 'left', 'right')
     - alt: {string} alt attribute (example 'image' or section.settings.image.alt or section.settings.image_alt)('image description' by default)
     - lazyload: {boolean} for lazyload image (true by default);
+    - fetchpriority: {string}. value = 'high', 'low', 'auto'. by default 'auto'; more details about fetchpriority https://web.dev/fetch-priority
 
     for usage:
 
@@ -30,6 +32,16 @@
     src_d: 'image-src.png',
     d: '650x',
     crop: 'center',
+    alt: 'image-description'
+  %}
+
+    with svg
+  {% render
+    'image',
+    asset_url: true,
+    class: 'another-class',
+    src: 'logo-2.svg',
+    m: '375x',
     alt: 'image-description'
   %}
 
@@ -107,6 +119,11 @@
   else
     assign m2x_width = m_width | times: 2
     assign m2x_height = m_height | times: 2
+    if m_size_arr.size == 2
+      assign m2x = m2x_width | append: 'x' | append: m2x_height
+    else
+      assign m2x = m2x_width | append: 'x'
+    endif
   endif
 
   comment
@@ -125,6 +142,11 @@
   else
     assign t2x_width = t_width | times: 2
     assign t2x_height = t_height | times: 2
+    if t_size_arr.size == 2
+      assign t2x = t2x_width | append: 'x' | append: t2x_height
+    else
+      assign t2x = t2x_width | append: 'x'
+    endif
   endif
 
     comment
@@ -143,9 +165,15 @@
   else
     assign d2x_width = d_width | times: 2
     assign d2x_height = d_height | times: 2
+    if d_size_arr.size == 2
+      assign d2x = d2x_width | append: 'x' | append: d2x_height
+    else
+      assign d2x = d2x_width | append: 'x'
+    endif
   endif
 
   assign classes = class | default: false
+
   if lazyload == false
     assign lazyload = false
   else
@@ -165,31 +193,33 @@
   if asset_img_url
     if crop
       assign m_src = src | asset_img_url: m, crop: crop
-      assign m_src_2x = src | asset_img_url: m, scale: 2, crop: crop
+      assign m_src_2x = src | asset_img_url: m2x, crop: crop
       assign m_srcset = m_src | append: ", " | append: m_src_2x | append: ' 2x'
 
       assign t_src = src_tablet | asset_img_url: t, crop: crop
-      assign t_src_2x = src_tablet | asset_img_url: t, scale: 2, crop: crop
+      assign t_src_2x = src_tablet | asset_img_url: t2x, crop: crop
       assign t_srcset = t_src | append: ", " | append: t_src_2x | append: ' 2x'
 
       assign d_src = src_desktop | asset_img_url: d, crop: crop
-      assign d_src_2x = src_desktop | asset_img_url: d, scale: 2, crop: crop
+      assign d_src_2x = src_desktop | asset_img_url: d2x, crop: crop
       assign d_srcset = d_src | append: ", " | append: d_src_2x | append: ' 2x'
 
     else
       assign m_src = src | asset_img_url: m
-      assign m_src_2x = src | asset_img_url: m, scale: 2
+      assign m_src_2x = src | asset_img_url: m2x
       assign m_srcset = m_src | append: ", " | append: m_src_2x | append: ' 2x'
 
       assign t_src = src_tablet | asset_img_url: t
-      assign t_src_2x = src_tablet | asset_img_url: t, scale: 2
+      assign t_src_2x = src_tablet | asset_img_url: t2x
       assign t_srcset = t_src | append: ", " | append: t_src_2x | append: ' 2x'
 
       assign d_src = src_desktop | asset_img_url: d
-      assign d_src_2x = src_desktop | asset_img_url: d, scale: 2
+      assign d_src_2x = src_desktop | asset_img_url: d2x
       assign d_srcset = d_src | append: ", " | append: d_src_2x | append: ' 2x'
 
     endif
+  elsif asset_url
+    assign m_src = src | asset_url
   elsif metafield
     assign m_src = src | append: m
     assign m_src_2x = src | append: m2x
@@ -237,33 +267,87 @@
 
   assign width = m_width
   assign height = m_height | default: width
+
+  if classes
+    assign classesValue = classes
+  endif
+
+  if lazyload
+    assign loadingValue = "lazy"
+  else
+    assign loadingValue = "eager"
+  endif
+
+  if fetchpriority == "high"
+    assign fetchpriorityValue = "high"
+  elsif fetchpriority == "low"
+    assign fetchpriorityValue = "low"
+  else
+    assign fetchpriorityValue = "auto"
+  endif
+
+  if template contains 'product'
+    assign altValue = alt | default: product.title
+  else
+    assign altValue = alt | default: 'image description'
+  endif
 %}
 
 <picture>
-  <source srcset="{{ m_srcset }}" media="(max-width: 767px)">
-  {% if src_tablet and src_t %}
-    <source srcset="{{ t_srcset }}" media="(max-width: 1199px)">
+  {% unless asset_url %}
+    <source srcset="{{ m_srcset }}" media="(max-width: 767px)">
+    {% if src_tablet and src_t %}
+      <source srcset="{{ t_srcset }}" media="(max-width: 1199px)">
+    {% endif %}
+    {% if src_desktop %}
+      <source srcset="{{ d_srcset }}">
+    {% endif %}
+  {% endunless %}
+  {% if asset_img_url or asset_url %}
+    <img
+      src="{{ m_src }}"
+      {% if classes %}
+        class="{{ classes }}"
+      {% endif %}
+      width="{{ width }}"
+      height="{{ height }}"
+      {% if lazyload %}
+        loading="lazy"
+      {% else %}
+        loading="eager"
+      {% endif %}
+      {% if template contains 'product' %}
+        alt="{{ alt | default: product.title }}"
+      {% else %}
+        alt="{{ alt | default: 'image description' }}"
+      {% endif %}
+      {{ data_attribute }}
+      {% if fetchpriority == 'high' %}
+        fetchpriority="high"
+      {% elsif fetchpriority == 'low' %}
+        fetchpriority="low"
+      {% else %}
+        fetchpriority="auto"
+      {% endif %}
+    >
+  {% else %}
+    <img
+      src="{{ m_src }}"
+      {% if classesValue %}
+        class="{{ classesValue }}"
+      {% endif %}
+      width="{{ width }}"
+      height="{{ height }}"
+      loading="{{ loadingValue }}"
+      alt="{{ altValue | default: 'image description' }}"
+      {{ data_attribute }}
+      {% if fetchpriority == 'high' %}
+        fetchpriority="high"
+      {% elsif fetchpriority == 'low' %}
+        fetchpriority="low"
+      {% else %}
+        fetchpriority="auto"
+      {% endif %}
+    >
   {% endif %}
-  {% if src_desktop %}
-    <source srcset="{{ d_srcset }}">
-  {% endif %}
-  <img
-    src="{{ m_src }}"
-    {% if classes %}
-      class="{{ classes }}"
-    {% endif %}
-    width="{{ width }}"
-    height="{{ height }}"
-    {% if lazyload %}
-      loading="lazy"
-    {% else %}
-      loading="eager"
-    {% endif %}
-    {% if template contains 'product' %}
-      alt="{{ alt | default: product.title }}"
-    {% else %}
-      alt="{{ alt | default: 'image description' }}"
-    {% endif %}
-    {{ data_attribute }}
-  >
 </picture>

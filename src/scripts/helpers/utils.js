@@ -1,3 +1,7 @@
+import { formatMoney } from '@shopify/theme-currency';
+import { addItem } from 'helpers/cartAjaxCall';
+import { addJustAdded, getCart, openPopup } from 'store/features/cart/cartSlice';
+
 export function resizeImage(value, size, ratio) {
   const width = size.split('x')[0];
   const height = size.split('x')[1] || Math.floor(width / ratio);
@@ -24,6 +28,37 @@ export function resizeImageSrcset(value, size, ratio) {
     .replace(/\.jpg|\.png|\.gif|\.jpeg/g, (match) => `_${image_2x_size}${match}`);
 
   return `${image_1x}, ${image_2x} 2x`;
+}
+
+export function renderImage(src, sizes, alt, lazyload, mediaWidth = [767, 1199], ratio = 1) {
+  const width = sizes[0]?.split('x')[0];
+  const height = sizes[0]?.split('x')[1] || Math.floor(+width / ratio);
+  const sourceMediaWidth = mediaWidth.map((w) => `(max-width: ${w}px)`);
+  const lazyloadValue = lazyload ? 'lazy' : 'eager';
+
+  const sourcesHtml = sizes
+    .map(
+      (size, index) =>
+        `<source srcset='${resizeImageSrcset(src, size)}' ${
+          sizes.length - 1 !== index ? `media='${sourceMediaWidth[index]}'` : ''
+        }></source>`
+    )
+    .join('');
+
+  const imageHtml = `
+    <picture>
+      ${sourcesHtml}
+      <img
+        loading=${lazyloadValue}
+        width=${width}
+        height=${height}
+        alt=${alt ?? 'image alt'}
+        src=${resizeImage(src, sizes[0])}
+      />
+    </picture>
+    `;
+
+  return imageHtml;
 }
 
 window.resizeImage = resizeImage;
@@ -120,9 +155,61 @@ export function getId() {
   return Date.now().toString(36) + Math.random().toString(36).substr(2, 10).toUpperCase();
 }
 
+export function initUpdateVariantUnitPrice(variant, productCard) {
+  const priceContainer = productCard.querySelector('[data-unit-price-wrapper]');
+
+  while (priceContainer.firstChild) priceContainer.removeChild(priceContainer.firstChild);
+
+  if (variant) {
+    if (variant.unit_price_measurement) {
+      const unitPrice = `${formatMoney(variant.unit_price, theme.moneyFormat)} / `;
+
+      const referenceUnit =
+        variant.unit_price_measurement.reference_value !== 1
+          ? `${variant.unit_price_measurement.reference_value} ${variant.unit_price_measurement.reference_unit}`
+          : `${variant.unit_price_measurement.reference_unit}`;
+
+      priceContainer.innerHTML = unitPrice + referenceUnit;
+    }
+  }
+}
+
 export async function performanceMeasure(name, callback, async) {
   performance.mark(`${name}-Start`);
   async ? await callback() : callback();
   performance.mark(`${name}-End`);
   performance.measure(name, `${name}-Start`, `${name}-End`);
+}
+
+export function initProductCardAddToBag(cards) {
+  cards.forEach((card) => {
+    if (!card.querySelector('[data-submit-button]')) {
+      return false;
+    }
+
+    const btn = card.querySelector('[data-submit-button]');
+    const currentVariantId = card.querySelector('[data-current-variant-id]')?.getAttribute('data-current-variant-id');
+
+    const data = {
+      items: [
+        {
+          quantity: 1,
+          id: currentVariantId,
+        },
+      ],
+    };
+
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      addItem(data).then((response) => {
+        const { items } = response;
+
+        window.Store.dispatch(addJustAdded(items[0]));
+        window.Store.dispatch(getCart());
+        theme.cart.cartDrawer === 'popup'
+          ? window.Store.dispatch(openPopup())
+          : window.dispatchEvent(new CustomEvent('openCartDrawer'));
+      });
+    });
+  });
 }

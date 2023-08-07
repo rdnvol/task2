@@ -32,7 +32,22 @@
       view_cart: {{ 'cart.general.view_cart' | t | json }},
       special_instructions_placeholder: {{ 'cart.general.special_instructions_placeholder' | t | json }},
       addToCart: {{ 'cart.general.add_to_cart' | t | json }},
-      soldOut: {{ 'products.product.sold_out' | t | json }}
+      soldOut: {{ 'products.product.sold_out' | t | json }},
+      cart_drawer_lable: {{ 'cart.general.cart_drawer_lable' | t | json }},
+      cart_drawer_remove_btn: {{ 'cart.general.cart_drawer_remove_btn' | t | json }},
+      cart_drawer_continue_shopping_btn: {{ 'cart.general.cart_drawer_continue_shopping_btn' | t | json }},
+      subtotal: {{ 'cart.general.subtotal' | t | json }},
+      free_shipping_left: {{ 'cart.general.free_shipping_left' | t | json }},
+      free_shipping_riched: {{ 'cart.general.free_shipping_riched' | t | json }},
+      tax_include_text: {{ 'cart.general.tax_include_text' | t | json }},
+      you_may_like: {{ 'cart.general.you_may_like' | t | json }},
+      CartTaxesInclude: {{ cart.taxes_included | json }},
+      cartDrawer: {{ settings.cart_drawer | json }},
+      cartTargetPrice: {{ settings.target_price | times: 100 | json }},
+      cartEnableRecommendations: {{ settings.cart_recommendations_enable | json }},
+      cartRecommendationsLimit: {{ settings.cart_recommendations_limit | default: 4 | json }},
+      additional_checkout_buttons: {{ additional_checkout_buttons | json }},
+      content_for_additional_checkout_buttons: {{ content_for_additional_checkout_buttons | json }}
     },
     icons: {
       cart: {% render "icon", icon: 'cart', json: true %}
@@ -54,6 +69,19 @@
         root_url: {{ locale.root_url | json }},
         primary: {{ locale.primary | json }}
       }{% unless forloop.last %},{% endunless %}
+      {% endfor %}
+    ],
+    published_currencies: [
+      {% for country in localization.available_countries %}
+        {
+          country: {{ country.name | json }},
+          country_iso: {{ country.iso_code | json }},
+          currency: {{ country.currency.iso_code | json }},
+          symbol: {{ country.currency.symbol | json }},
+          {% if country.iso_code == localization.country.iso_code %}
+            current: true
+          {% endif %}
+        }{% unless forloop.last %},{% endunless %}
       {% endfor %}
     ]
   };

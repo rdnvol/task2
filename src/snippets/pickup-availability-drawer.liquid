@@ -1,33 +1,60 @@
-<div class="pickup-availability-drawer" tabindex="-1" role="dialog">
+<div
+  class="pickup-availability-drawer"
+  tabindex="-1"
+  role="dialog"
+  aria-label="Pickup availability drawer"
+>
+  {%- assign pick_up_availabilities = product.selected_or_first_available_variant.store_availabilities | where: 'pick_up_enabled', true -%}
   <div class="pickup-availability-header">
-    <div class="flex items-start justify-between mb-5">
+    <div class="mb-5 flex items-start justify-between">
       <div class="h6 mt-2 md:mt-1">
         {{ product.title }}
       </div>
       <button
         type="button"
-        class="btn-closer page-wrapper__opener flex items-center flex-shrink-0 ml-1"
+        class="btn-closer page-wrapper__opener ml-1 flex shrink-0 items-center"
         aria-label="Close pickup availability"
       ></button>
     </div>
-    <div class="body-small capitalize base-secondary-text mb-5">Color : Gummy</div>
+    {% for value in product.options_with_values %}
+      <div class="body-small base-secondary-text mb-5 capitalize">{{ value.name }} : {{ value.selected_value }}</div>
+    {% endfor %}
   </div>
   <div class="pickup-availability-wrapper">
     <ul class="pickup-availability-list pr-3">
-      <li class="pickup-availability-list__item py-8">
-        <div class="title">20 River Court</div>
-        <div class="pickup-availability-preview flex">
-          <div class="flex-shrink-0 mr-2">
-            {%- render 'icon', icon: 'icon-tick' -%}
+      {%- for availability in pick_up_availabilities -%}
+        <li class="pickup-availability-list__item py-8">
+          <div class="title">{{ availability.location.name }}</div>
+          <div class="flex">
+            {%- if availability.available -%}
+              <div class="mr-2 shrink-0">
+                {%- render 'icon' with 'tick' -%}
+              </div>
+              <div>
+                {{ 'products.product.pick_up_available' | t }}
+                {{ availability.pick_up_time | downcase }}
+              </div>
+            {%- else -%}
+              <div class="mr-2 shrink-0">
+                {%- render 'icon' with 'unavailable' -%}
+              </div>
+              <div>
+                {{ 'products.product.pick_up_currently_unavailable' | t }}
+              </div>
+            {%- endif -%}
           </div>
-          <div>Pickup available at 20 River Court</div>
-        </div>
-        <address class="pickup-availability-address">
-          20 River Court <br>
-          Jersey City NJ 07310 <br>
-          United States
-        </address>
-      </li>
+          {%- assign address = availability.location.address -%}
+          <address class="pickup-availability-address">
+            {{ address | format_address }}
+          </address>
+          {%- if address.phone.size > 0 -%}
+            <p>
+              <a href="{{ address.phone | prepend: 'tel:' }}">{{ address.phone }}</a>
+              <br>
+            </p>
+          {%- endif -%}
+        </li>
+      {%- endfor -%}
     </ul>
   </div>
 </div>

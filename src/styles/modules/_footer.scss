@@ -73,3 +73,13 @@
     color: inherit;
   }
 }
+
+.footer__selectors {
+
+  .footer__selectors-item {
+    max-width: 285px;
+    @include media ("≥tablet") {
+      max-width: 210px;
+    }
+  }
+}

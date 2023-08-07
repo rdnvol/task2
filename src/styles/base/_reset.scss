@@ -42,6 +42,10 @@ body {
   @include media ("≥widescreen") {
     overflow: visible !important;
   }
+  &.scroll-lock {
+    position: relative !important;
+    overflow: hidden !important;
+  }
 }
 
 body,

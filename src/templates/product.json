@@ -5,7 +5,7 @@
       "blocks": {
         "vendor": {
           "type": "vendor",
-          "disabled": true,
+          "disabled": false,
           "settings": {
           }
         },

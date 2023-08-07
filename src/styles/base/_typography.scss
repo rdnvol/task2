@@ -171,12 +171,12 @@ h6,
 
 %product-price-large {
   font-family: $font-body;
-  font-size: calc(#{$font-size-base} - 2px); // 14px
+  font-size: calc(#{$font-size-base} + 2px); // 18px
   line-height: $base-line-height;
   font-weight: $font-body-weight;
   font-style: $font-body-style;
   @include media ("≥widescreen") {
-    font-size: $font-size-base; // 16px
+    font-size: calc(#{$font-size-base} + 4px); // 20px
   }
 }
 
@@ -224,9 +224,11 @@ h6,
   @include media ("≥widescreen") {
     font-size: $font-size-base; // 16px
   }
-  &:hover,
-  &:focus {
-    text-decoration: underline;
+  &:not(div) {
+    &:hover,
+    &:focus {
+      text-decoration: underline;
+    }
   }
 }
 

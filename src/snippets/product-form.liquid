@@ -1,6 +1,12 @@
 {%- assign current_variant = product.selected_or_first_available_variant -%}
 {% form 'product', product, id: id, data-product-form: '', data-product-handle: product.handle, data-enable-history-state: 'true', data-type: 'add-to-cart-form', data-test-id: "add-to-cart" %}
-  <input id="product-id" type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" disabled>
+  <input
+    id="product-id"
+    type="hidden"
+    name="id"
+    value="{{ product.selected_or_first_available_variant.id }}"
+    disabled
+  >
 
   <div class="sm:flex">
     <div class="w-100 md:w-10/12 xl:w-6/12">

@@ -30,7 +30,6 @@
       ],
       "settings": {
         "image": "shopify://shop_images/hero.jpg",
-        "enable_lazyload": false,
         "image_overlay_opacity": 0,
         "image_mobile": "shopify://shop_images/hero_mob.jpg",
         "image_height": "medium",
@@ -87,7 +86,7 @@
           "settings": {
             "image": "shopify://shop_images/mlouye-bo-ivy-cognac-8_1800x1800_550x_375c4113-5b27-44fb-91df-0a4f2bc367db.jpg",
             "enable_lazyload": true,
-            "image_overlay_opacity": 6,
+            "image_overlay_opacity": 60,
             "title": "Bags",
             "copy": "",
             "btn_text": "Shop now",
@@ -99,7 +98,7 @@
           "settings": {
             "image": "shopify://shop_images/mlouye-mini-eddy-mocha-1_1800x1800_dfd49e16-dcc5-47e1-8072-bf7f9902a329.jpg",
             "enable_lazyload": true,
-            "image_overlay_opacity": 6,
+            "image_overlay_opacity": 60,
             "title": "Mini Eddy",
             "copy": "<p> $375</p>",
             "btn_text": "Shop now",
@@ -111,7 +110,7 @@
           "settings": {
             "image": "shopify://shop_images/4694feb0cf4ec02bbd6a1fc99720d062.jpg",
             "enable_lazyload": true,
-            "image_overlay_opacity": 6,
+            "image_overlay_opacity": 60,
             "title": "Shoes",
             "copy": "",
             "btn_text": "Shop now",
@@ -123,7 +122,7 @@
           "settings": {
             "image": "shopify://shop_images/mlouye-louise-slide-sandal-buttermilk-4_1100x_1afcd658-d23f-417c-afa7-161979ade1f9.jpg",
             "enable_lazyload": true,
-            "image_overlay_opacity": 6,
+            "image_overlay_opacity": 60,
             "title": "Louise Slide Sandal",
             "copy": "<p> $395</p>",
             "btn_text": "Shop now",
@@ -216,7 +215,6 @@
           "settings": {
             "image": "shopify://shop_images/photo_2022-01-04_17-49-20_c7c2fa04-0666-4a4b-9d89-eae3180f88f7.jpg",
             "enable_lazyload": true,
-            "image_position": "object-position: 50% 100%;",
             "alignment": "justify-center items-end",
             "title": "",
             "text": "<p>\"The leather is sourced from environmentally friendly tanneries in Italy, France, and Turkey, where Rure is based and everything is assembled by hand.\"</p>",
@@ -229,7 +227,6 @@
           "settings": {
             "image": "shopify://shop_images/photo_2022-01-04_17-50-57_4c8d85b7-8c29-496e-b417-1aff8e381ac5.jpg",
             "enable_lazyload": true,
-            "image_position": "object-position: 50% 50%;",
             "alignment": "justify-center items-end",
             "title": "",
             "text": "<p>\"All too often, we're forced to pick: style, or sustainability. Recently, more designers have been making environmental impact a top priority\"</p>",
@@ -242,7 +239,6 @@
           "disabled": true,
           "settings": {
             "enable_lazyload": true,
-            "image_position": "object-position: 50% 50%;",
             "alignment": "justify-center items-center",
             "title": "Heading",
             "text": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum, sit?</p>",
@@ -263,6 +259,9 @@
         "enable_autorotate": false,
         "change_every": 5
       }
+    },
+    "collapsible_content":{
+      "type": "collapsible-content"
     }
   },
   "order": [
@@ -272,6 +271,7 @@
     "1640012923c9b22af2",
     "home_iframe_video",
     "1640013600e980445e",
-    "1641310897029f288b"
+    "1641310897029f288b",
+    "collapsible_content"
   ]
 }

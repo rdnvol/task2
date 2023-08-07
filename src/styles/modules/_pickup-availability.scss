@@ -19,6 +19,7 @@
   padding: 30px;
   background: $base-body-background;
   opacity: 0;
+  pointer-events: none;
   transition: opacity $animation-speed ease-in-out, transform $animation-speed ease-in-out;
   overflow: hidden auto;
   overscroll-behavior: contain;
@@ -30,6 +31,7 @@
 
   .pickup-availability-active & {
     opacity: 1;
+    pointer-events: auto;
     @include media ("≥tablet") {
       transform: translateX(0);
     }
@@ -39,10 +41,17 @@
 .pickup-availability-info,
 .pickup-availability-drawer {
 
-  .icon-tick {
+  .icon {
     width: 20px;
     margin: 2px 0 0;
+  }
+
+  .icon--tick {
     color: $messages-success;
+  }
+
+  .icon--unavailable {
+    color: $messages-error;
   }
 }
 

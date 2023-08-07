@@ -1,8 +1,17 @@
 {% liquid
+  assign mobile_grid_item_width = 'grid-cols-' | append: section.settings.mobile_grid
+  assign desktop_grid_item_width = 'lg:grid-cols-' | append: section.settings.desktop_grid
+  case section.settings.mobile_grid
+  when '1'
+    assign image_sizes_mobile = '345'
+  when '2'
+    assign image_sizes_mobile = '162'
+  endcase
+
   if section.settings.filter_type == "vertical"
-    render "collection-2", section: section, enable_lazyload: section.settings.enable_lazyload
+    render "collection-2", section: section, enable_lazyload: section.settings.enable_lazyload, enable_quick_add_button: section.settings.enable_quick_add_button, image_ratio: section.settings.image_ratio, mobile_grid_item_width: mobile_grid_item_width, desktop_grid_item_width: desktop_grid_item_width, image_sizes_mobile: image_sizes_mobile
   else
-    render "collection", section: section, enable_lazyload: section.settings.enable_lazyload
+    render "collection", section: section, enable_lazyload: section.settings.enable_lazyload, enable_quick_add_button: section.settings.enable_quick_add_button, image_ratio: section.settings.image_ratio, mobile_grid_item_width: mobile_grid_item_width, desktop_grid_item_width: desktop_grid_item_width, image_sizes_mobile: image_sizes_mobile
   endif
 %}
 
@@ -14,7 +23,7 @@
       "type": "checkbox",
       "id": "enable_infinite",
       "label": "Enable infinite scroll",
-      "default": false
+      "default": true
     },
     {
       "type": "header",
@@ -40,6 +49,18 @@
       "default": true
     },
     {
+      "type": "checkbox",
+      "id": "enable_quick_add_button",
+      "label": "Enable quick add button",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_color_swatches",
+      "label": "Enable color swatches",
+      "default": true
+    },
+    {
       "type": "select",
       "id": "filter_type",
       "label": "Filter type",
@@ -54,6 +75,51 @@
         }
       ],
       "default": "vertical"
+    },
+    {
+      "type": "range",
+      "id": "desktop_grid",
+      "label": "Products per row for desktop",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "select",
+      "id": "mobile_grid",
+      "label": "Products per row for mobile",
+      "default": "2",
+      "options": [
+        {
+          "value": "1",
+          "label": "One product in row"
+        },
+        {
+          "value": "2",
+          "label": "Two products in row"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "label": "Image ratio",
+      "default": "",
+      "options": [
+        {
+          "value": "",
+          "label": "Adapt to image"
+        },
+        {
+          "value": "product-item--portrait",
+          "label": "Portrait"
+        },
+        {
+          "value": "product-item--square",
+          "label": "Square"
+        }
+      ]
     }
   ]
 }

@@ -1,6 +1,12 @@
 .page-hero {
+  height: 266px;
+  @include media ("≥tablet") {
+    height: 326px;
+  }
 
   img {
-    max-width: none;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
   }
 }

@@ -6,7 +6,7 @@
 
 <div class="blog-hero relative overflow-hidden">
   <div class="container relative z-3">
-    <div class="blog-hero__block flex items-center text-center py-18 md:py-22 lg:py-29{% if blog_hero_image %} customizable-base-text{% endif %}">
+    <div class="blog-hero__block flex items-center py-18 text-center md:py-22 lg:py-29{% if blog_hero_image %} customizable-base-text{% endif %}">
       <div class="w-100">
         <h1 class="h2{% if blog_hero_image %} mb-3{% endif %}">
           {{ blog.title }}
@@ -18,7 +18,7 @@
     </div>
   </div>
   {% if blog_hero_image %}
-    <div class="blog-hero__bg-img absolute top-0 left-0 w-100 h-100 z-1">
+    <div class="blog-hero__bg-img absolute left-0 top-0 z-1 h-100 w-100">
       {% if section.settings.blog_hero_image != blank %}
         {%
           render 'image',
@@ -27,7 +27,8 @@
           src_d: section.settings.blog_hero_image,
           d: '1440x',
           alt: section.settings.blog_hero_image.alt,
-          lazyload: enable_lazyload
+          lazyload: enable_lazyload,
+          fetchpriority: fetchpriority_value
         %}
       {% else %}
         {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}

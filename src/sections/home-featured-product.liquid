@@ -10,7 +10,7 @@
 
 {% schema %}
 {
-  "name": "Product",
+  "name": "Featured product",
   "settings": [
     {
       "type": "product",
@@ -55,6 +55,38 @@
     }
   ],
   "blocks": [
+    {
+      "type": "text",
+      "name": "Text",
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "text",
+          "default": "Text",
+          "label": "Text"
+        },
+        {
+          "type": "select",
+          "id": "text_style",
+          "default": "caption-with-letter-spacing",
+          "label": "Text style",
+          "options": [
+            {
+              "value": "",
+              "label": "Body"
+            },
+            {
+              "value": "body-large",
+              "label": "Subtitle"
+            },
+            {
+              "value": "caption-with-letter-spacing",
+              "label": "Uppercase"
+            }
+          ]
+        }
+      ]
+    },
     {
       "type": "vendor",
       "name": "Vendor",
@@ -103,15 +135,33 @@
       "type": "share",
       "name": "Share",
       "limit": 1
+    },
+    {
+      "type": "custom_liquid",
+      "name": "Custom liquid",
+      "settings": [
+        {
+          "type": "liquid",
+          "id": "custom_liquid",
+          "label": "Custom liquid",
+          "info": "Add app snippets or other Liquid code to create advanced customizations."
+        }
+      ]
+    },
+    {
+      "type": "@app"
     }
   ],
   "presets": [
     {
-      "name": "Product",
+      "name": "Featured product",
       "category": "Product",
       "blocks": [
         {
           "type": "vendor"
+        },
+        {
+          "type": "text"
         },
         {
           "type": "title"
@@ -133,6 +183,9 @@
         },
         {
           "type": "share"
+        },
+        {
+          "type": "custom_liquid"
         }
       ]
     }

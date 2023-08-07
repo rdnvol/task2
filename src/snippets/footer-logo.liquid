@@ -1,5 +1,9 @@
 {% if block.settings.logo_svg != blank %}
-  <a href="{{ routes.root_url }}" rel="nofollow" class="footer__logo mb-5">
+  <a
+    href="{{ routes.root_url }}"
+    rel="nofollow"
+    class="footer__logo mb-5"
+  >
     <img
       src="{{ block.settings.logo_svg | asset_url }}"
       width="{{ block.settings.logo_svg_width }}"
@@ -9,7 +13,11 @@
     >
   </a>
 {% elsif block.settings.logo != blank %}
-  <a href="{{ routes.root_url }}" rel="nofollow" class="footer__logo mb-5">
+  <a
+    href="{{ routes.root_url }}"
+    rel="nofollow"
+    class="footer__logo mb-5"
+  >
     {%
       render 'image',
       src: block.settings.logo,
@@ -21,6 +29,11 @@
   </a>
 {% elsif block.settings.logo_text != blank %}
   <div class="logo-text h5 mb-5">
-    <a href="{{ routes.root_url }}" rel="nofollow">{{ block.settings.logo_text }}</a>
+    <a
+      href="{{ routes.root_url }}"
+      rel="nofollow"
+    >
+      {{ block.settings.logo_text }}
+    </a>
   </div>
 {% endif %}

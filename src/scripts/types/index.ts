@@ -153,6 +153,14 @@ export interface CartItem {
   title: string;
   total_discount: number;
   url: string | null;
+  unit_price?: number;
+  unit_price_measurement?: {
+    measured_type: string;
+    quantity_unit: string;
+    quantity_value: string;
+    reference_unit: string;
+    reference_value: number;
+  };
   variant_id: number;
   variant_options: string[];
   variant_title: string | null;

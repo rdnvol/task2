@@ -2,6 +2,20 @@
   assign limit = settings.limit
   assign products = collection.products
   assign sort_by = collection.sort_by | default: collection.default_sort_by
+
+  case section.settings.desktop_grid
+  when 1
+    assign image_sizes_desktop = '1034'
+  when 2
+    assign image_sizes_desktop = '507'
+  when 3
+    assign image_sizes_desktop = '331'
+  when 4
+    assign image_sizes_desktop = '244'
+  when 5
+    assign image_sizes_desktop = '191'
+  endcase
+
   if collection.url
     assign results_url = collection.url
   else
@@ -19,10 +33,12 @@
     data-section-id="{{ section.id }}"
     data-section-type="collection"
     data-infinite="{{ section.settings.enable_infinite }}"
-    data-products-quantity="{{ collection.products_count }}"
+    data-total-products-quantity="{{ collection.products_count }}"
+    data-collection-handle="{{ collection.handle }}"
+    data-color-swatches="{{ section.settings.enable_color_swatches }}"
   >
     <div class="container">
-      <div class="page-title-block text-center pt-0">
+      <div class="page-title-block pt-0 text-center">
         <h1 class="h2 mb-2">{{ collection.title }}</h1>
 
         {% if collection.description == blank %}
@@ -36,7 +52,7 @@
       </div>
 
       {% if products.size == 0 %}
-        <div class="text-center py-5">
+        <div class="py-5 text-center">
           {{ 'collections.general.no_matches' | t }}
         </div>
       {% else %}
@@ -44,10 +60,13 @@
           {% if section.settings.enable_filtering %}
             <div class="lg:w-3/12">{{ 'collections.general.filter_by' | t }}</div>
           {% endif %}
-          <div class="lg:w-9/12">
-            <div class="lg:flex lg:justify-between lg:items-center lg:space-x-8">
+          <div class="{% if section.settings.enable_filtering %}lg:w-9/12{%- else -%}lg:w-100{%- endif -%}">
+            <div class="lg:flex lg:items-center lg:space-x-8 {% if section.settings.enable_filtering %}lg:justify-between{%- else -%}lg:justify-end{%- endif -%}">
               {% if section.settings.enable_filtering %}
-                <div id="ProductCountDesktop" class="lg:w-4/12">
+                <div
+                  id="ProductCountDesktop"
+                  class="lg:w-4/12"
+                >
                   {%- if collection.results_count -%}
                     {{ 'templates.search.results_with_count' | t: terms: collection.terms, count: collection.results_count }}
                   {%- elsif collection.products_count == collection.all_products_count -%}
@@ -58,11 +77,20 @@
                 </div>
               {% endif %}
               {% if section.settings.enable_sorting %}
-                <div class="lg:w-4/12 pl-5">
-                  <label class="label" for="filter-sortby-2">{{ 'collections.general.sort_by' | t }}</label>
+                <div class="pl-5 lg:w-4/12">
+                  <label
+                    class="label"
+                    for="filter-sortby-2"
+                  >
+                    {{ 'collections.general.sort_by' | t }}
+                  </label>
                   <div class="select-holder">
                     {% assign sort_by = collection.sort_by | default: collection.default_sort_by %}
-                    <select name="sort_by" id="filter-sortby-2" form="FacetFiltersForm">
+                    <select
+                      name="sort_by"
+                      id="filter-sortby-2"
+                      form="FacetFiltersForm"
+                    >
                       {%- for option in collection.sort_options -%}
                         <option
                           value="{{ option.value | escape }}"
@@ -80,33 +108,36 @@
             </div>
           </div>
         </div>
-        <div class="py-4 lg:py-5 lg:flex lg:space-x-8">
+        <div class="py-4 lg:flex lg:space-x-8 lg:py-5">
           {% if section.settings.enable_filtering %}
             <div class="filter lg:w-3/12">
-              <div class="filter__main-btn-holder flex items-center mb-4">
+              <div class="filter__main-btn-holder mb-4 flex items-center">
                 <div class="w-7/12 lg:w-100">
                   <details-utils
                     close-click-outside="(max-width: 1023px)"
                     force-restore
                     force-open="(min-width: 1024px)"
                   >
-                    <details class="filter-main-open-close" id="filter-main-open-close">
-                      <summary class="default filter-main-open-close__btn-opener filter-main-open-close__opener page-wrapper__opener inline-flex items-center lg:hidden body-large">
+                    <details
+                      class="filter-main-open-close"
+                      id="filter-main-open-close"
+                    >
+                      <summary class="default filter-main-open-close__btn-opener filter-main-open-close__opener page-wrapper__opener body-large inline-flex items-center lg:hidden">
                         <span class="filter-main-open-close__btn-opener-icon mr-2">
                           {% render 'icon' with 'filter' %}
                         </span>
                         Filter and sort
                       </summary>
-                      <div class="filter-main-open-close__slide flex justify-between flex-col lg:block">
-                        <div class="filter-main-open-close__slide-btn-holder lg:hidden flex-shrink-0 w-100">
+                      <div class="filter-main-open-close__slide flex flex-col justify-between lg:block">
+                        <div class="filter-main-open-close__slide-btn-holder w-100 shrink-0 lg:hidden">
                           <button
-                            class="filter-main-open-close__opener filter-main-open-close__closer page-wrapper__opener flex items-center body-medium"
+                            class="filter-main-open-close__opener filter-main-open-close__closer page-wrapper__opener body-medium flex items-center"
                             type="button"
                             aria-controls="filter-main-open-close"
                             data-du-close-click
                           >
-                            <span class="btn-closer flex-shrink-0 mr-1">
-                              <span class="visually-hidden"> Icon close </span>
+                            <span class="btn-closer mr-1 shrink-0">
+                              <span class="visually-hidden">Icon close</span>
                             </span>
                             {{ 'collections.general.close' | t }}
                           </button>
@@ -114,11 +145,20 @@
                         <div class="filter-main-open-close__holder">
                           <div class="px-4 lg:px-0">
                             {% if section.settings.enable_sorting %}
-                              <div class="lg:hidden py-4">
-                                <label class="label" for="filter-sortby">{{ 'collections.general.sort_by' | t }}</label>
+                              <div class="py-4 lg:hidden">
+                                <label
+                                  class="label"
+                                  for="filter-sortby"
+                                >
+                                  {{ 'collections.general.sort_by' | t }}
+                                </label>
                                 <div class="select-holder">
                                   {% assign sort_by = collection.sort_by | default: collection.default_sort_by %}
-                                  <select name="sort_by" id="filter-sortby" form="FacetFiltersForm">
+                                  <select
+                                    name="sort_by"
+                                    id="filter-sortby"
+                                    form="FacetFiltersForm"
+                                  >
                                     {%- for option in collection.sort_options -%}
                                       <option
                                         value="{{ option.value | escape }}"
@@ -134,27 +174,43 @@
                               </div>
                             {% endif %}
                             <facet-filters-form>
-                              <form id="FacetFiltersForm" class="facets__form">
+                              <form
+                                id="FacetFiltersForm"
+                                class="facets__form"
+                              >
                                 {%- if collection.terms -%}
-                                  <input type="hidden" name="q" value="{{ results.terms | escape }}">
-                                  <input name="options[prefix]" type="hidden" value="last">
+                                  <input
+                                    type="hidden"
+                                    name="q"
+                                    value="{{ results.terms | escape }}"
+                                  >
+                                  <input
+                                    name="options[prefix]"
+                                    type="hidden"
+                                    value="last"
+                                  >
                                 {%- endif -%}
-                                <div id="FacetsWrapperDesktop" class="facets__wrapper">
+                                <div
+                                  id="FacetsWrapperDesktop"
+                                  class="facets__wrapper"
+                                >
                                   {% liquid
                                     for filter in collection.filters
-                                      case filter.label
-                                        when "Color"
+                                      case filter.param_name
+                                        when 'filter.v.option.color'
                                           render 'collection2-filter-color', forloop: forloop, filter: filter
-                                        when "Price"
+                                        when 'filter.v.price'
                                           render 'collection2-filter-price', forloop: forloop, filter: filter
-                                        when "Size"
+                                        when 'filter.v.option.size'
                                           render 'collection2-filter-size', forloop: forloop, filter: filter
-                                        when "Brand"
+                                        when 'filter.p.vendor'
                                           render 'collection2-filter-brand', forloop: forloop, filter: filter
-                                        when "Availability"
+                                        when 'filter.v.availability'
                                           render 'collection2-filter-availability', forloop: forloop, filter: filter
-                                        when "Product type"
+                                        when 'filter.p.product_type'
                                           render 'collection2-filter-product-type', forloop: forloop, filter: filter
+                                        else
+                                          render 'collection2-filter-common', forloop: forloop, filter: filter
                                       endcase
                                     endfor
                                   %}
@@ -163,7 +219,7 @@
                             </facet-filters-form>
                           </div>
                         </div>
-                        <div class="lg:hidden flex-shrink-0 px-4 py-5">
+                        <div class="shrink-0 px-4 py-5 lg:hidden">
                           {%
                             render 'button',
                             element: 'button',
@@ -179,12 +235,15 @@
                         aria-controls="filter-main-open-close"
                         data-du-close-click
                       >
-                        <span class="visually-hidden"> Closer filter drawer </span>
+                        <span class="visually-hidden">Closer filter drawer</span>
                       </div>
                     </details>
                   </details-utils>
                 </div>
-                <div id="ProductCount" class="w-5/12 lg:hidden body-small text-right">
+                <div
+                  id="ProductCount"
+                  class="body-small w-5/12 text-right lg:hidden"
+                >
                   {%- if collection.results_count -%}
                     {{ 'templates.search.results_with_count' | t: terms: collection.terms, count: collection.results_count }}
                   {%- elsif collection.products_count == collection.all_products_count -%}
@@ -196,10 +255,14 @@
               </div>
             </div>
           {% endif %}
-          <div class="lg:w-9/12">
+          <div class="{% if section.settings.enable_filtering %}lg:w-9/12{%- else -%}lg:w-100{%- endif -%}">
             {% if section.settings.enable_filtering %}
-              <div class="filter-selected-element-list flex flex-wrap items-center pb-4 lg:pb-0 -mx-2">
-                <facet-remove class="inline-flex" data-facet-clear-all hidden>
+              <div class="filter-selected-element-list -mx-2 flex flex-wrap items-center pb-4 lg:pb-0">
+                <facet-remove
+                  class="inline-flex"
+                  data-facet-clear-all
+                  hidden
+                >
                   <a
                     id="clear-all"
                     href="{{ results_url }}"
@@ -212,11 +275,14 @@
                 {% for filter in collection.filters %}
                   {% for value in filter.active_values %}
                     <facet-remove class="inline-flex">
-                      <a href="{{ value.url_to_remove }}" class="no-underline">
-                        <div class="filter-selected-element-list__item relative flex items-center justify-center py-1 px-3 mb-3 mx-2">
+                      <a
+                        href="{{ value.url_to_remove }}"
+                        class="no-underline"
+                      >
+                        <div class="filter-selected-element-list__item relative mx-2 mb-3 flex items-center justify-center px-3 py-1">
                           {{ value.label | escape }}
                           <button class="btn-closer ml-3">
-                            <span class="visually-hidden"> Clear {{ value.label }} filter results </span>
+                            <span class="visually-hidden">Clear {{ value.label }} filter results</span>
                           </button>
                         </div>
                       </a>
@@ -225,8 +291,11 @@
                   {% if filter.type == "price_range" %}
                     {%- if filter.min_value.value != nil or filter.max_value.value != nil -%}
                       <facet-remove class="inline-flex no-underline">
-                        <a href="{{ filter.url_to_remove }}" id="price-range">
-                          <div class="filter-selected-element-list__item relative flex items-center justify-center py-1 px-3 mb-3 mx-2">
+                        <a
+                          href="{{ filter.url_to_remove }}"
+                          id="price-range"
+                        >
+                          <div class="filter-selected-element-list__item relative mx-2 mb-3 flex items-center justify-center px-3 py-1">
                             {%- if filter.min_value.value -%}
                               {{ filter.min_value.value | money }}
                             {%- else -%}
@@ -240,7 +309,7 @@
                             {%- endif -%}
                             <!-- $50.00 - $90.00 -->
                             <button class="btn-closer ml-3">
-                              <span class="visually-hidden"> Clear {$50.00 - $90.00} filter results </span>
+                              <span class="visually-hidden">Clear {$50.00 - $90.00} filter results</span>
                             </button>
                           </div>
                         </a>
@@ -252,12 +321,21 @@
             {% endif %}
             <div
               id="product-grid"
-              class="grid grid-cols-2 xl:grid-cols-3 gap-x-8 js-products-wrapper"
+              class="grid {{ mobile_grid_item_width }} {{ desktop_grid_item_width }} js-products-wrapper gap-x-5 gap-y-8"
               data-id="{{ section.id }}"
             >
               {% liquid
                 for product in collection.products
-                  render "product-card", product: product, grid_item_width: ''
+
+                  if forloop.first and section.settings.enable_lazyload == true
+                    assign fetchpriority_value = 'high'
+                    assign enable_lazyload = false
+                  else
+                    assign fetchpriority_value = 'low'
+                    assign enable_lazyload = true
+                  endif
+
+                  render "product-card", product: product, grid_item_width: '', image_sizes_mobile: image_sizes_mobile, image_sizes_desktop: image_sizes_desktop, enable_quick_add_button: enable_quick_add_button, image_ratio: image_ratio, enable_lazyload: enable_lazyload, fetchpriority_value: fetchpriority_value
                 endfor
               %}
             </div>
@@ -266,7 +344,7 @@
       {% endif %}
       {% if section.settings.enable_infinite %}
         <div class="spinner-holder">
-          <div class="spinner"></div>
+          <div class="spinner hidden"></div>
         </div>
       {% else %}
         <div id="pagination-container">
@@ -278,3 +356,4 @@
     </div>
   </div>
 {% endpaginate %}
+{% render 'quick-view-popup' %}

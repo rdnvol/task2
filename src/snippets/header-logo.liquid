@@ -1,31 +1,44 @@
 {% if section.settings.logo_svg != blank %}
   <div class="logo">
-    <a href="{{ routes.root_url }}" rel="nofollow">
+    <a
+      href="{{ routes.root_url }}"
+      rel="nofollow"
+    >
       <img
         src="{{ section.settings.logo_svg | asset_url }}"
         width="{{ section.settings.logo_svg_width }}"
         height="{{ section.settings.logo_svg_height }}"
         alt="Draft logo"
         loading="eager"
+        fetchpriority="low"
       >
     </a>
   </div>
 {% elsif section.settings.logo != blank %}
   <div class="logo">
-    <a href="{{ routes.root_url }}" rel="nofollow">
+    <a
+      href="{{ routes.root_url }}"
+      rel="nofollow"
+    >
       {%
         render 'image',
         src: section.settings.logo,
-        m: '56x',
+        m: '96x',
         src_d: section.settings.logo,
-        d: '82x',
+        d: '106x',
         alt: 'Draft logo',
-        lazyload: enable_lazyload
+        lazyload: enable_lazyload,
+        fetchpriority: 'low'
       %}
     </a>
   </div>
 {% elsif section.settings.logo_text != blank %}
   <div class="logo-text h4 text-center">
-    <a href="{{ routes.root_url }}" rel="nofollow">{{ section.settings.logo_text }}</a>
+    <a
+      href="{{ routes.root_url }}"
+      rel="nofollow"
+    >
+      {{ section.settings.logo_text }}
+    </a>
   </div>
 {% endif %}

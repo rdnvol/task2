@@ -1,7 +1,7 @@
 {% assign show_payment_icons = section.settings.show_payment_icons %}
 {%- capture payment_icon_markup -%}
   {%- if show_payment_icons -%}
-    <div class="flex flex-wrap items-center justify-center -mb-3 -mx-3 pt-5 lg:pt-3">
+    <div class="-mx-3 -mb-3 flex flex-wrap items-center justify-center pt-5 lg:pt-3">
       {%- for type in shop.enabled_payment_types -%}
         <div class="mx-3 mb-3">
           {{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}
@@ -10,22 +10,30 @@
     </div>
   {%- endif -%}
 {%- endcapture -%}
-<footer id="footer" class="relative py-10">
+<footer
+  id="footer"
+  class="relative py-10"
+>
   <div class="container">
     {%- if section.blocks.size != 0 -%}
       <div class="mb-10 lg:mb-11">
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-8">
+        <div class="grid grid-cols-1 gap-x-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {%- for block in section.blocks -%}
             {%- case block.type -%}
               {%- when 'text' -%}
-                <div class="sm:col-span-full lg:col-span-1 mb-10 lg:mb-0">
+                <div class="{% unless forloop.last %}mb-10 lg:mb-0 {% endunless %}sm:col-span-full lg:col-span-1">
                   {% render 'footer-logo', block: block %}
                   <div class="rte">
                     {{ block.settings.text }}
                   </div>
                 </div>
               {%- when 'newsletter' -%}
-                <div class="{% unless forloop.last %}mb-10 lg:mb-0{% endunless %}" {{ block.shopify_attributes }}>
+                <div
+                  {% unless forloop.last %}
+                    class="mb-10 lg:mb-0"
+                  {% endunless %}
+                  {{ block.shopify_attributes }}
+                >
                   {%- if block.settings.title != blank -%}
                     <div class="title mb-5">
                       {{ block.settings.title }}
@@ -35,13 +43,24 @@
                   {% form 'customer', novalidate: 'novalidate', class: "footer__form" %}
                     <fieldset>
                       <legend class="visually-hidden">Newsletter form</legend>
-                      <input type="hidden" name="contact[tags]" value="newsletter">
+                      <input
+                        type="hidden"
+                        name="contact[tags]"
+                        value="newsletter"
+                      >
                       {%- if form.posted_successfully? -%}
-                        <div class="form-message messages-success" tabindex="-1" data-form-status>
+                        <div
+                          class="form-message messages-success"
+                          tabindex="-1"
+                          data-form-status
+                        >
                           {{ 'general.newsletter_form.confirmation' | t }}
                         </div>
                       {%- endif -%}
-                      <label for="newsletter-form-email-field" class="inline-block mb-1 lg:mb-2">
+                      <label
+                        for="newsletter-form-email-field"
+                        class="mb-1 inline-block lg:mb-2"
+                      >
                         {{ 'general.newsletter_form.please_enter_your_email' | t }}
                       </label>
                       <div class="relative">
@@ -52,8 +71,11 @@
                           placeholder="{{ 'general.newsletter_form.email_placeholder' | t }}"
                           class="footer__form__input"
                         >
-                        <button type="submit" class="footer__form__button">
-                          <span class="accessibility"> Button submit </span>
+                        <button
+                          type="submit"
+                          class="footer__form__button"
+                        >
+                          <span class="accessibility">Button submit</span>
                           {%- render 'icon-arrow-right' -%}
                         </button>
                       </div>
@@ -62,7 +84,11 @@
                 </div>
               {%- when 'link_list' -%}
                 {%- assign footer_linklist = block.settings.menu -%}
-                <div class="{% unless forloop.last %}mb-10 lg:mb-0{% endunless %}">
+                <div
+                  {% unless forloop.last %}
+                    class="mb-10 lg:mb-0"
+                  {% endunless %}
+                >
                   <nav>
                     {%- if block.settings.title != blank -%}
                       <div class="title mb-5">
@@ -83,48 +109,61 @@
         </div>
       </div>
     {%- endif -%}
-    <div class="flex justify-center space-x-8 pb-5">
-      {% if section.settings.currency_switcher_enable %}
-        {% form 'currency' %}
-          <label for="field-currency-01" class="inline-block mb-1">
-            {{ 'layout.footer.select_currency' | t }}
-          </label>
-          <select name="currency" class="base-secondary-text w-100" id="field-currency-01">
-            {% for currency in shop.enabled_currencies %}
-              {% assign currencyFormat = currency.name | append: ' (' | append: currency.iso_code | append: ' ' | append: currency.symbol | append: ')' %}
-              {% if currency == cart.currency %}
-                <option selected>
-                  {{ currencyFormat }}
-                </option>
-              {% else %}
-                <option>{{ currencyFormat }}</option>
-              {% endif %}
-            {% endfor %}
-          </select>
-        {% endform %}
-      {% endif %}
-      {% if section.settings.language_switcher_enable %}
-        <div class="locales-wrapper">
-          <label for="field-locales-01" class="inline-block mb-1">
-            {{ 'layout.footer.select_locales' | t }}
-          </label>
-          <select name="locales" class="base-secondary-text w-100" id="field-locales-01">
-            {% for locale in shop.published_locales %}
+    {% if section.settings.currency_switcher_enable or section.settings.language_switcher_enable %}
+      <div class="footer__selectors flex flex-col items-center justify-center space-y-4 pb-5 md:flex-row md:items-start md:space-x-8 md:space-y-0">
+        {% if section.settings.currency_switcher_enable %}
+          {% form 'localization', class: "footer__selectors-item" %}
+            <label
+              for="FooterCountryLabel"
+              class="mb-1 inline-block"
+            >
+              {{ 'layout.footer.select_currency' | t }}
+            </label>
+            <select
+              id="FooterCountryLabel"
+              name="country_code"
+              class="base-secondary-text w-100"
+            >
               <option
-                {% if request.locale.name == locale.name %}
-                  selected
-                {% endif %}
-                data-path="{{ request.path }}"
-                value="{{ locale.root_url }}"
+                value="{{ localization.country.iso_code }}"
+                selected
               >
-                {{ locale.name }}
+                {{ localization.country.name }} ({{ localization.country.currency.iso_code }}
+                {{ localization.country.currency.symbol }})
               </option>
-            {% endfor %}
-          </select>
-        </div>
-      {% endif %}
-    </div>
-    <div class="footer__panel text-center pt-5 lg:pt-3">
+            </select>
+          {% endform %}
+        {% endif %}
+        {% if section.settings.language_switcher_enable %}
+          <div class="locales-wrapper footer__selectors-item">
+            <label
+              for="field-locales-01"
+              class="mb-1 inline-block"
+            >
+              {{ 'layout.footer.select_locales' | t }}
+            </label>
+            <select
+              name="locales"
+              class="base-secondary-text w-100"
+              id="field-locales-01"
+            >
+              {% for locale in shop.published_locales %}
+                <option
+                  {% if request.locale.name == locale.name %}
+                    selected
+                  {% endif %}
+                  data-path="{{ request.path }}"
+                  value="{{ locale.root_url }}"
+                >
+                  {{ locale.name }}
+                </option>
+              {% endfor %}
+            </select>
+          </div>
+        {% endif %}
+      </div>
+    {% endif %}
+    <div class="footer__panel pt-5 text-center lg:pt-3">
       {% capture copy %}
         &copy; {{ 'now' | date: "%Y" }}
         {{ shop.name | link_to: routes.root_url | lstrip }}.
@@ -158,26 +197,25 @@
     },
     {
       "type": "header",
-      "content": "CURRENCY SELECTOR",
-      "info": "To add a currency, go to your [payment settings](/admin/settings/payments)."
+      "content": "COUNTRY/REGION SELECTOR",
+      "info": "To add a country/region, go to your [payment settings](/admin/settings/payments)."
     },
     {
       "type": "checkbox",
       "id": "currency_switcher_enable",
-      "label": "Show currency selector",
-      "default": true,
-      "info": "To offer multiple currencies on your online store, you must first [edit your store's currency formatting](https://docs.shopify.com/support/settings/general/tell-my-script-where-to-find-money-formats)."
+      "label": "Show country/region selector",
+      "default": true
     },
     {
       "type": "header",
-      "content": "LANGUAGE SELECTOR"
+      "content": "LANGUAGE SELECTOR",
+      "info": "To add a language, go to your [language settings](/admin/settings/languages)."
     },
     {
       "type": "checkbox",
       "id": "language_switcher_enable",
       "label": "Show language selector",
-      "default": true,
-      "info": "To add a language, go to your [language settings](/admin/settings/languages)."
+      "default": true
     }
   ],
   "blocks": [

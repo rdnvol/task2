@@ -110,8 +110,9 @@ $dynamic-checkout-button-background-on-disabled: var(--checkout-button-backgroun
 
 // Forms
 $form-element-padding: 12px 15px !default;
-$form-element-border-color: #e5e5e5 !default;
-$form-element-focus-border-color: #000 !default;
+$form-element-border-color: $base-border !default;
+$form-element-focus-border-color: $base-body-text !default;
+$form-element-border-radius: var(--form-element-border-radius) !default;
 $placeholder-color: $base-secondary-text !default;
 $height-form-elements: 44px;
 $height-button-large: 48px;

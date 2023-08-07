@@ -7,7 +7,7 @@
   background: $base-body-background;
   box-shadow: 0 14px 38px rgba(0, 0, 0, 0.06);
   transition: transform $animation-speed ease;
-  transform: translateY(-100%);
+  transform: translateY(-150%);
   @include media("≥tablet") {
     right: 0;
     width: 345px;

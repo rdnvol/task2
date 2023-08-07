@@ -1,25 +1,50 @@
-<div class="section" id="content" tabindex="0">
+<div
+  class="section"
+  id="content"
+  tabindex="0"
+>
   <div class="container">
     <div class="md:flex">
-      <div class="md:w-10/12 xl:w-8/12 md:mx-auto">
-        <div class="text-center mb-5">
+      <div class="md:mx-auto md:w-10/12 xl:w-8/12">
+        <div class="mb-5 text-center">
           <h1 class="h4 mb-3">{{ 'customer.account.title' | t }}</h1>
-          <a href="/account" class="link">{{ 'customer.account.return' | t }}</a>
+          <a
+            href="/account"
+            class="link"
+          >
+            {{ 'customer.account.return' | t }}
+          </a>
         </div>
         {% paginate customer.addresses by 5 %}
-          <div data-address class="pb-12">
+          <div
+            data-address
+            class="pb-12"
+          >
             <div class="text-center">
-              <button type="button" class="button" data-address-toggle>
+              <button
+                type="button"
+                class="button"
+                data-address-toggle
+              >
                 {{ 'customer.addresses.add_new' | t }}
               </button>
             </div>
-            <div data-address-form class="hidden">
+            <div
+              data-address-form
+              class="hidden"
+            >
               {% form 'customer_address', customer.new_address, class: 'account-form account-form--address pt-10 md:py-10' %}
                 <h2 class="h6 mb-6">{{ 'customer.addresses.add_new' | t }}</h2>
-                <div data-address-fields class="mb-5">
+                <div
+                  data-address-fields
+                  class="mb-5"
+                >
                   <div class="sm:grid sm:grid-cols-2 sm:space-x-8">
                     <div class="input-holder">
-                      <label for="AddressFirstNameNew" class="base-secondary-text inline-block mb-1">
+                      <label
+                        for="AddressFirstNameNew"
+                        class="base-secondary-text mb-1 inline-block"
+                      >
                         {{ 'customer.addresses.first_name' | t }}
                       </label>
                       <input
@@ -31,7 +56,10 @@
                       >
                     </div>
                     <div class="input-holder">
-                      <label for="AddressLastNameNew" class="base-secondary-text inline-block mb-1">
+                      <label
+                        for="AddressLastNameNew"
+                        class="base-secondary-text mb-1 inline-block"
+                      >
                         {{ 'customer.addresses.last_name' | t }}
                       </label>
                       <input
@@ -44,7 +72,10 @@
                     </div>
                   </div>
                   <div class="input-holder">
-                    <label for="AddressCompanyNew" class="base-secondary-text inline-block mb-1">
+                    <label
+                      for="AddressCompanyNew"
+                      class="base-secondary-text mb-1 inline-block"
+                    >
                       {{ 'customer.addresses.company' | t }}
                     </label>
                     <input
@@ -56,7 +87,10 @@
                     >
                   </div>
                   <div class="input-holder">
-                    <label for="AddressAddress1New" class="base-secondary-text inline-block mb-1">
+                    <label
+                      for="AddressAddress1New"
+                      class="base-secondary-text mb-1 inline-block"
+                    >
                       {{ 'customer.addresses.address1' | t }}
                     </label>
                     <input
@@ -68,7 +102,10 @@
                     >
                   </div>
                   <div class="input-holder">
-                    <label for="AddressAddress2New" class="base-secondary-text inline-block mb-1">
+                    <label
+                      for="AddressAddress2New"
+                      class="base-secondary-text mb-1 inline-block"
+                    >
                       {{ 'customer.addresses.address2' | t }}
                     </label>
                     <input
@@ -81,7 +118,10 @@
                   </div>
                   <div class="sm:grid sm:grid-cols-2 sm:space-x-8">
                     <div class="input-holder">
-                      <label for="AddressCityNew" class="base-secondary-text inline-block mb-1">
+                      <label
+                        for="AddressCityNew"
+                        class="base-secondary-text mb-1 inline-block"
+                      >
                         {{ 'customer.addresses.city' | t }}
                       </label>
                       <input
@@ -93,7 +133,10 @@
                       >
                     </div>
                     <div class="input-holder">
-                      <label for="AddressCountryNew" class="base-secondary-text inline-block mb-1">
+                      <label
+                        for="AddressCountryNew"
+                        class="base-secondary-text mb-1 inline-block"
+                      >
                         {{ 'customer.addresses.country' | t }}
                       </label>
                       <select
@@ -104,8 +147,14 @@
                       ></select>
                     </div>
                   </div>
-                  <div class="input-holder" data-address-province-wrapper>
-                    <label for="AddressProvinceNew" class="base-secondary-text inline-block mb-1">
+                  <div
+                    class="input-holder"
+                    data-address-province-wrapper
+                  >
+                    <label
+                      for="AddressProvinceNew"
+                      class="base-secondary-text mb-1 inline-block"
+                    >
                       {{ 'customer.addresses.province' | t }}
                     </label>
                     <select
@@ -115,7 +164,10 @@
                     ></select>
                   </div>
                   <div class="input-holder">
-                    <label for="AddressZipNew" class="base-secondary-text inline-block mb-1">
+                    <label
+                      for="AddressZipNew"
+                      class="base-secondary-text mb-1 inline-block"
+                    >
                       {{ 'customer.addresses.zip' | t }}
                     </label>
                     <input
@@ -127,7 +179,10 @@
                     >
                   </div>
                   <div class="input-holder">
-                    <label for="AddressPhoneNew" class="base-secondary-text inline-block mb-1">
+                    <label
+                      for="AddressPhoneNew"
+                      class="base-secondary-text mb-1 inline-block"
+                    >
                       {{ 'customer.addresses.phone' | t }}
                     </label>
                     <input
@@ -141,14 +196,20 @@
                 </div>
                 <div class="custom-input custom-input--square-with-text mb-8 md:mb-10">
                   {{ form.set_as_default_checkbox }}
-                  <label for="address_default_address_new" class="custom-label inline-flex items-center align-top">
+                  <label
+                    for="address_default_address_new"
+                    class="custom-label inline-flex items-center align-top"
+                  >
                     <span class="custom-label__check"></span>
                     {{ 'customer.addresses.set_default' | t }}
                   </label>
                 </div>
-                <div class="-mb-5 sm:grid sm:grid-flow-col sm:auto-cols-max sm:gap-8 sm:mb-0">
+                <div class="-mb-5 sm:mb-0 sm:grid sm:auto-cols-max sm:grid-flow-col sm:gap-8">
                   <div class="mb-5 sm:mb-0">
-                    <button class="button w-100 sm:w-auto" type="submit">
+                    <button
+                      class="button w-100 sm:w-auto"
+                      type="submit"
+                    >
                       {{ 'customer.addresses.add' | t }}
                     </button>
                   </div>
@@ -166,17 +227,26 @@
             </div>
           </div>
           {% for address in customer.addresses %}
-            <div data-address class="open-close__account account__customer-addresses">
+            <div
+              data-address
+              class="open-close__account account__customer-addresses"
+            >
               {% if address == customer.default_address %}
                 <div class="h6 mb-6">{{ 'customer.addresses.default' | t }}</div>
               {% endif %}
               <div class="account__holder-box">
                 <div class="rte mb-4 md:mb-10">
-                  {{ address | format_address }}
+                  <div class="account__address">
+                    {{ address | format_address }}
+                  </div>
                 </div>
-                <div class="grid grid-flow-col auto-cols-max gap-5 md:gap-8">
+                <div class="grid auto-cols-max grid-flow-col gap-5 md:gap-8">
                   <div>
-                    <button class="button button--sm" type="button" data-address-toggle>
+                    <button
+                      class="button button--sm"
+                      type="button"
+                      data-address-toggle
+                    >
                       {{ 'customer.addresses.edit' | t }}
                     </button>
                   </div>
@@ -187,21 +257,37 @@
                       action="/account/addresses/{{ address.id }}"
                       data-confirm-message="{{ 'customer.addresses.delete_confirm' | t }}"
                     >
-                      <input type="hidden" name="_method" value="delete">
-                      <button class="button button--sm button--secondary" type="submit">
+                      <input
+                        type="hidden"
+                        name="_method"
+                        value="delete"
+                      >
+                      <button
+                        class="button button--sm button--secondary"
+                        type="submit"
+                      >
                         {{ 'customer.addresses.delete' | t }}
                       </button>
                     </form>
                   </div>
                 </div>
               </div>
-              <div data-address-form class="hidden">
+              <div
+                data-address-form
+                class="hidden"
+              >
                 {% form 'customer_address', address, class: 'account-form account-form--address pt-10 md:py-10' %}
                   <h3 class="h6 mb-6">{{ 'customer.addresses.edit_address' | t }}</h3>
-                  <div data-address-fields class="mb-5">
+                  <div
+                    data-address-fields
+                    class="mb-5"
+                  >
                     <div class="sm:grid sm:grid-cols-2 sm:space-x-8">
                       <div class="input-holder">
-                        <label for="AddressFirstName_{{ form.id }}" class="base-secondary-text inline-block mb-1">
+                        <label
+                          for="AddressFirstName_{{ form.id }}"
+                          class="base-secondary-text mb-1 inline-block"
+                        >
                           {{ 'customer.addresses.first_name' | t }}
                         </label>
                         <input
@@ -213,7 +299,10 @@
                         >
                       </div>
                       <div class="input-holder">
-                        <label for="AddressLastName_{{ form.id }}" class="base-secondary-text inline-block mb-1">
+                        <label
+                          for="AddressLastName_{{ form.id }}"
+                          class="base-secondary-text mb-1 inline-block"
+                        >
                           {{ 'customer.addresses.last_name' | t }}
                         </label>
                         <input
@@ -226,7 +315,10 @@
                       </div>
                     </div>
                     <div class="input-holder">
-                      <label for="AddressCompany_{{ form.id }}" class="base-secondary-text inline-block mb-1">
+                      <label
+                        for="AddressCompany_{{ form.id }}"
+                        class="base-secondary-text mb-1 inline-block"
+                      >
                         {{ 'customer.addresses.company' | t }}
                       </label>
                       <input
@@ -238,7 +330,10 @@
                       >
                     </div>
                     <div class="input-holder">
-                      <label for="AddressAddress1_{{ form.id }}" class="base-secondary-text inline-block mb-1">
+                      <label
+                        for="AddressAddress1_{{ form.id }}"
+                        class="base-secondary-text mb-1 inline-block"
+                      >
                         {{ 'customer.addresses.address1' | t }}
                       </label>
                       <input
@@ -250,7 +345,10 @@
                       >
                     </div>
                     <div class="input-holder">
-                      <label for="AddressAddress2_{{ form.id }}" class="base-secondary-text inline-block mb-1">
+                      <label
+                        for="AddressAddress2_{{ form.id }}"
+                        class="base-secondary-text mb-1 inline-block"
+                      >
                         {{ 'customer.addresses.address2' | t }}
                       </label>
                       <input
@@ -263,7 +361,10 @@
                     </div>
                     <div class="sm:grid sm:grid-cols-2 sm:space-x-8">
                       <div class="input-holder">
-                        <label for="AddressCity_{{ form.id }}" class="base-secondary-text inline-block mb-1">
+                        <label
+                          for="AddressCity_{{ form.id }}"
+                          class="base-secondary-text mb-1 inline-block"
+                        >
                           {{ 'customer.addresses.city' | t }}
                         </label>
                         <input
@@ -275,7 +376,10 @@
                         >
                       </div>
                       <div class="input-holder">
-                        <label for="AddressCountry_{{ form.id }}" class="base-secondary-text inline-block mb-1">
+                        <label
+                          for="AddressCountry_{{ form.id }}"
+                          class="base-secondary-text mb-1 inline-block"
+                        >
                           {{ 'customer.addresses.country' | t }}
                         </label>
                         <select
@@ -288,8 +392,15 @@
                         ></select>
                       </div>
                     </div>
-                    <div class="input-holder" id="AddressProvinceContainer_{{ form.id }}" data-address-province-wrapper>
-                      <label for="AddressProvince_{{ form.id }}" class="base-secondary-text inline-block mb-1">
+                    <div
+                      class="input-holder"
+                      id="AddressProvinceContainer_{{ form.id }}"
+                      data-address-province-wrapper
+                    >
+                      <label
+                        for="AddressProvince_{{ form.id }}"
+                        class="base-secondary-text mb-1 inline-block"
+                      >
                         {{ 'customer.addresses.province' | t }}
                       </label>
                       <select
@@ -301,7 +412,10 @@
                       ></select>
                     </div>
                     <div class="input-holder">
-                      <label for="AddressZip_{{ form.id }}" class="base-secondary-text inline-block mb-1">
+                      <label
+                        for="AddressZip_{{ form.id }}"
+                        class="base-secondary-text mb-1 inline-block"
+                      >
                         {{ 'customer.addresses.zip' | t }}
                       </label>
                       <input
@@ -313,7 +427,10 @@
                       >
                     </div>
                     <div class="input-holder">
-                      <label for="AddressPhone_{{ form.id }}" class="base-secondary-text inline-block mb-1">
+                      <label
+                        for="AddressPhone_{{ form.id }}"
+                        class="base-secondary-text mb-1 inline-block"
+                      >
                         {{ 'customer.addresses.phone' | t }}
                       </label>
                       <input
@@ -335,7 +452,7 @@
                       {{ 'customer.addresses.set_default' | t }}
                     </label>
                   </div>
-                  <div class="-mb-5 sm:grid sm:grid-flow-col sm:auto-cols-max sm:gap-8 sm:mb-0">
+                  <div class="-mb-5 sm:mb-0 sm:grid sm:auto-cols-max sm:grid-flow-col sm:gap-8">
                     <div class="mb-5 sm:mb-0">
                       <button
                         class="button w-100 sm:w-auto"

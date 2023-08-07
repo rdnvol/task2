@@ -1,17 +1,31 @@
-<div class="section">
-  <div class="container">
-    <div class="page-title-block text-center">
-      <h1>{{ page.title }}</h1>
-    </div>
+{% if section.settings.show_title or page.content != blank %}
+  <div class="section">
+    <div class="container">
+      {% if section.settings.show_title %}
+        <div class="page-title-block text-center">
+          <h1>{{ page.title }}</h1>
+        </div>
+      {% endif %}
 
-    <div class="rte">
-      {{ page.content }}
+      {% if page.content != blank %}
+        <div class="rte">
+          {{ page.content }}
+        </div>
+      {% endif %}
     </div>
   </div>
-</div>
+{% endif %}
 
 {% schema %}
 {
-  "name": "Page"
+  "name": "Page",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_title",
+      "label": "Show page title",
+      "default": true
+    }
+  ]
 }
 {% endschema %}

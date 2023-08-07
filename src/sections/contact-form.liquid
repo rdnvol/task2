@@ -1,0 +1,102 @@
+{% liquid
+  assign contact_form_id = 'contact-' | append: section.id
+%}
+<div class="section">
+  <div class="container">
+    <div class="md:flex">
+      <div class="md:mx-auto md:w-10/12 xl:w-7/12">
+        {% if section.settings.title != blank %}
+          <h2 class="mb-10">{{ section.settings.title }}</h2>
+        {% endif %}
+        {% form 'contact', id: contact_form_id %}
+          {% if form.posted_successfully? %}
+            <div class="form-success messages-success mb-4 text-center">
+              {{ "contact.form.post_success" | t }}
+            </div>
+          {% endif %}
+          {{ form.errors | default_errors }}
+          <div class="md:grid md:grid-cols-2 md:gap-x-8">
+            <div class="input-holder input-field">
+              <input
+                type="text"
+                name="contact[name]"
+                id="ContactFormName-{{ section.id }}"
+                placeholder="{{ 'contact.form.name' | t }}"
+                required
+                value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}"
+              >
+              <label for="ContactFormName-{{ section.id }}">{{ "contact.form.name" | t }}</label>
+            </div>
+            <div class="input-holder input-field">
+              <input
+                type="email"
+                name="contact[email]"
+                id="ContactFormEmail-{{ section.id }}"
+                placeholder="{{ 'contact.form.email' | t }}"
+                required
+                value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
+                spellcheck="false"
+                autocomplete="off"
+                autocapitalize="off"
+              >
+              <label for="ContactFormEmail-{{ section.id }}">{{ "contact.form.email" | t }}</label>
+            </div>
+          </div>
+          <div class="input-holder input-field">
+            <input
+              type="tel"
+              name="contact[phone]"
+              id="ContactFormPhone-{{ section.id }}"
+              placeholder="{{ 'contact.form.phone' | t }}"
+              required
+              value="{% if form.phone %}{{ form.phone }}{% elsif customer %}{{ customer.phone }}{% endif %}"
+              pattern="[0-9\-]*"
+            >
+            <label for="ContactFormPhone-{{ section.id }}">{{ "contact.form.phone" | t }}</label>
+          </div>
+          <div class="input-holder input-field">
+            <textarea
+              rows="4"
+              name="contact[body]"
+              id="ContactFormMessage-{{ section.id }}"
+              required
+              placeholder="{{ 'contact.form.message' | t }}"
+            >
+              {%- if form.body -%}
+                {{- form.body -}}
+              {%- endif -%}
+            </textarea>
+            <label for="ContactFormMessage-{{ section.id }}">{{ "contact.form.message" | t }}</label>
+          </div>
+          <div class="pt-5">
+            <input
+              type="submit"
+              class="button"
+              value="{{ 'contact.form.send' | t }}"
+            >
+          </div>
+        {% endform %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Contact form",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "default": "Contact form",
+      "label": "Heading"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Contact form",
+      "category": "Text"
+    }
+  ]
+}
+{% endschema %}

@@ -30,9 +30,15 @@ class RelatedProducts {
       async () => {
         const relatedProductsData = await this.initRelatedProducts();
 
-        this.wrapper.appendChild(
-          new DOMParser().parseFromString(relatedProductsData, 'text/html').querySelector('.container')
-        );
+        const container = new DOMParser()
+          .parseFromString(relatedProductsData, 'text/html')
+          .querySelector('section.section');
+
+        if (container !== null) {
+          this.wrapper.appendChild(container);
+        } else {
+          this.wrapper.classList.toggle('hidden');
+        }
       },
       true
     );

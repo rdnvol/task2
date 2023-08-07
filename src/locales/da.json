@@ -1,7 +1,8 @@
 {
   "general": {
     "accessibility": {
-      "skip_to_content": "Hop til indhold"
+      "skip_to_content": "Hop til indhold",
+      "unit_price_separator": "per"
     },
     "breadcrumbs": {
       "home": "Home"
@@ -54,6 +55,12 @@
       "heading": {
         "one": "Søgeresultat",
         "other": "Søgeresultater"
+      },
+      "predictive_search": {
+        "suggestions": "Suggestions",
+        "product": "Products",
+        "pages": "Pages",
+        "search_for": "Search for \"{{ terms }}\""
       },
       "results_with_count": {
         "one": "{{ count }} resultat for \"{{ terms }}\"",
@@ -116,7 +123,14 @@
       "just_added_to_your_cart": "Just added to your cart",
       "view_cart": "View cart",
       "special_instructions_placeholder": "View Special instructions for seller",
-      "add_to_cart": "Add to cart"
+      "add_to_cart": "Add to cart",
+      "cart_drawer_lable": "Your cart" ,
+      "cart_drawer_remove_btn": "Remove",
+      "cart_drawer_continue_shopping_btn": "Continue shopping",
+      "free_shipping_left": "You are {{ price }} away from free shipping.",
+      "free_shipping_riched": "You riched free shipping.",
+      "tax_include_text": "Tax included and shipping calculated at checkout",
+      "you_may_like": "You may also like"
     },
     "label": {
       "product": "Produkt",
@@ -143,11 +157,14 @@
       "filter": "Filter:"
     },
     "filters": {
-      "filter_product_price": "The highest price is $300.00",
+      "filter_product_price": "The highest price is {{ amount }}",
       "reset": "Reset",
       "to": "to",
       "minimum_price": "Minimum price",
       "maximum_price": "Maximum price"
+    },
+    "quick_view": {
+      "view_full_details": "View full details"
     }
   },
   "contact": {
@@ -243,7 +260,10 @@
       "tracking_url": "Tracking link",
       "tracking_company": "Bedrijf",
       "tracking_number": "Sporingsnummer",
-      "subtotal": "Sub total"
+      "subtotal": "Sub total",
+      "order_details": "Order details",
+      "placed_on": "Placed on",
+      "order_detail_table": "Order detail table"
     },
     "recover_password": {
       "title": "Nulstil din adgangskode",
@@ -317,13 +337,21 @@
       "quantity_decrease": "Decrease quantity",
       "quantity_increase": "Increase quantity",
       "add_to_cart": "Tilføj til Kurv",
+      "choose_options": "Choose options", 
       "dynamic_button_placeholder": "Buy it now",
       "size_chart": "Size Chart",
       "size": "size",
+      "color": "color",
       "color_title": "Color",
       "starting_at": "From",
       "product_variants": "Product variants",
-      "tax_included": "Tax included."
+      "tax_included": "Tax included.",
+      "pick_up_available_at_html": "Pickup available at ",
+      "pick_up_available": "Pickup available",
+      "pick_up_unavailable_at_html": "Pickup unavailable at {{ location_name }} ",
+      "pick_up_currently_unavailable": "Pickup currently unavailable",
+      "view_store_info": "View store info",
+      "check_other_stores": "Check other stores"
     },
     "product_card": {
       "labels": {

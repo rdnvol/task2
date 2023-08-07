@@ -12,9 +12,7 @@ class ProductSwatchesVariant extends Product {
 
   initVariantSelects() {
     this.options = [...document.querySelectorAll('div[id^="variant-selects"], div[id^="variant-radios"]')];
-    this.productForm = document.querySelector(
-      `#${document.querySelector('div[data-form-id^="product-form-"]').getAttribute('data-form-id')}`
-    );
+    this.productForm = document.querySelector('[data-product-form]');
 
     if (this.options.length > 0) {
       this.options.forEach((variant) => {
@@ -24,7 +22,7 @@ class ProductSwatchesVariant extends Product {
       });
     }
 
-    if (!this.options) {
+    if (this.options.length === 0) {
       this.inputName = document.getElementById('product-id');
       this.inputName.disabled = false;
     }
@@ -158,6 +156,7 @@ class ProductSwatchesVariant extends Product {
   }
 
   onOptionChange(variant) {
+    this.updatePickupAvailability(variant);
     this.updateVariantPrice(variant);
     this.updateSubmitButton(variant);
     this.updateVariantUrl(variant);
@@ -181,6 +180,45 @@ class ProductSwatchesVariant extends Product {
   getVariantData() {
     this.variantData =
       this.variantData || JSON.parse(this.wrapper.querySelector('[type="application/json"]').textContent);
+  }
+
+  updateGallery(variant) {
+    if (!variant) return false;
+
+    const sliderWrapper = this.wrapper.querySelector('.product__gallery-slider');
+
+    const currentVariantSliderItem = sliderWrapper.querySelector(
+      `.product__gallery-slider__img[data-position="${variant.featured_image?.position}"]`
+    );
+
+    if (!currentVariantSliderItem) return false;
+
+    window.ResponsiveHelper.addRange({
+      '..767': {
+        on() {
+          const imageWidth = currentVariantSliderItem.getBoundingClientRect().width;
+          const variantImagePosition = variant.featured_image.position;
+
+          const scrollToIndex = Array.from(sliderWrapper.children).findIndex(
+            (elem) => +elem.querySelector('.product__gallery-slider__img').dataset.position === variantImagePosition
+          );
+
+          variantImagePosition && sliderWrapper.scrollTo(imageWidth * scrollToIndex, 0);
+        },
+      },
+      '768..': {
+        on() {
+          if (
+            sliderWrapper.firstElementChild
+              .querySelector('.product__gallery-slider__img')
+              .getAttribute('data-position') === currentVariantSliderItem.getAttribute('data-position')
+          )
+            return false;
+
+          sliderWrapper.prepend(currentVariantSliderItem.parentElement);
+        },
+      },
+    });
   }
 }
 

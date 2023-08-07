@@ -6,19 +6,20 @@ import { useSelector } from 'store/hook';
 import { cartSelector } from 'store/selectors';
 import theme from 'helpers/themeSettings';
 
+import { CartDiscountBlock } from 'components/Cart/CartDiscountBlock';
 import LineItem from './LineItem';
 
 const Cart: FunctionComponent = () => {
   const {
-    cart: { total_discount, note, items, total_price },
+    cart: { total_discount, note, items, total_price, cart_level_discount_applications },
   } = useSelector(cartSelector);
 
   const ref = document.getElementById('cart');
 
   const renderEmptyState = () => (
     <div className="md:flex">
-      <div className="md:w-8/12 md:mx-auto">
-        <div className="text-center py-24">
+      <div className="md:mx-auto md:w-8/12">
+        <div className="py-24 text-center">
           <div className="mb-4">
             <h1 className="h5">{theme.cart.title}</h1>
           </div>
@@ -41,19 +42,26 @@ const Cart: FunctionComponent = () => {
   const renderDiscount = () => {
     if (total_discount > 0) {
       return (
-        <p>
+        <div>
           {theme.cart.savings} {formatMoney(total_discount)}
-        </p>
+        </div>
       );
     }
   };
 
   const renderNote = () => (
-    <div className="md:w-5/12 mb-10 md:mb-0 md:px-5">
-      <label className="inline-block mb-1" htmlFor="CartSpecialInstructions">
+    <div className="mb-10 md:mb-0 md:w-5/12 md:px-5">
+      <label
+        className="mb-1 inline-block"
+        htmlFor="CartSpecialInstructions"
+      >
         {theme.cart.note}
       </label>
-      <textarea name="note" placeholder={theme.cart.special_instructions_placeholder} id="CartSpecialInstructions">
+      <textarea
+        name="note"
+        placeholder={theme.cart.special_instructions_placeholder}
+        id="CartSpecialInstructions"
+      >
         {note}
       </textarea>
     </div>
@@ -61,13 +69,18 @@ const Cart: FunctionComponent = () => {
 
   const renderCart = () => (
     <div>
-      <div className="text-center mb-10">
+      <div className="mb-10 text-center">
         <h1 className="h5 mb-4 md:mb-2">{theme.cart.title}</h1>
       </div>
 
       <div className="lg:flex">
-        <div className="lg:w-10/12 lg:mx-auto">
-          <form action="/cart" method="post" className="cart-form" noValidate>
+        <div className="lg:mx-auto lg:w-10/12">
+          <form
+            action="/cart"
+            method="post"
+            className="cart-form"
+            noValidate
+          >
             <table className="cart-table mb-5 md:mb-10">
               <thead className="small--hide">
                 <tr className="base-secondary-text">
@@ -79,22 +92,37 @@ const Cart: FunctionComponent = () => {
               </thead>
               <tbody>
                 {items.map((item) => (
-                  <LineItem key={item.id} item={item} />
+                  <LineItem
+                    key={item.id}
+                    item={item}
+                  />
                 ))}
               </tbody>
             </table>
 
             <div className="md:flex md:justify-between md:space-x-8 md:py-5">
               {ref.dataset.noteEnable === 'true' && renderNote()}
-              <div className="md:w-5/12 md:ml-auto">
-                <div className="md:text-right mb-3">
-                  <div className="flex justify-between md:justify-end mb-3">
+              <div className="md:ml-auto md:w-5/12">
+                <div className="mb-3 md:text-right">
+                  <div className="mb-3 flex items-center justify-between md:mb-2 md:justify-end">
                     <div className="mr-8">{theme.cart.total}:</div>
-                    {formatMoney(total_price, theme.moneyFormat)}
+                    <div className="product-price-large">{formatMoney(total_price, theme.moneyFormat)}</div>
                   </div>
-                  <div className="base-secondary-text body-small text-center md:text-right">
-                    {renderDiscount()}
-                    <p
+                  <div className="body-small base-secondary-text text-center md:text-right">
+                    {cart_level_discount_applications.length > 0 && (
+                      <div className="base-secondary-text mb-2">
+                        <ul className="inline-block">
+                          {cart_level_discount_applications.map((discount) => (
+                            <CartDiscountBlock
+                              key={discount.key}
+                              title={discount.title}
+                            />
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+
+                    <div
                       dangerouslySetInnerHTML={{
                         __html: theme.cart.shipping_at_checkout,
                       }}
@@ -102,8 +130,21 @@ const Cart: FunctionComponent = () => {
                   </div>
                 </div>
                 <div className="md:text-right">
-                  <input type="submit" className="button w-100 md:w-auto" name="checkout" value={theme.cart.checkout} />
+                  <input
+                    type="submit"
+                    className="button w-100 md:w-auto"
+                    name="checkout"
+                    value={theme.cart.checkout}
+                  />
                 </div>
+                {theme.cart.additional_checkout_buttons && (
+                  <div
+                    className="cart__dynamic-checkout-buttons additional-checkout-buttons"
+                    dangerouslySetInnerHTML={{
+                      __html: theme.cart.content_for_additional_checkout_buttons,
+                    }}
+                  />
+                )}
               </div>
             </div>
           </form>

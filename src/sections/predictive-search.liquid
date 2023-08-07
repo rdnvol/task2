@@ -1,0 +1,75 @@
+{%- if predictive_search.performed -%}
+  <div class="overflow-hidden p-4 pb-0 xl:px-2 xl:pt-3">
+    <div class="-mx-4 lg:flex lg:flex-wrap">
+      {%- if predictive_search.resources.queries.size > 0 -%}
+        <div class="mb-6 px-4 lg:w-5/12">
+          <div class="base-label base-secondary-text predictive-search__results-label mx-2">
+            {{ 'general.search.predictive_search.suggestions' | t }}
+          </div>
+          <ul class="predictive-search__results-list">
+            {%- for query in predictive_search.resources.queries -%}
+              <li>
+                <a href="{{ query.url }}">
+                  {{ query.styled_text }}
+                </a>
+              </li>
+            {%- endfor -%}
+          </ul>
+        </div>
+      {%- endif -%}
+      {%- if predictive_search.resources.products.size > 0 -%}
+        <div class="mb-9 px-4 lg:w-7/12 xl:mb-6">
+          <div class="base-label base-secondary-text predictive-search__results-label mx-2">
+            {{ 'general.search.predictive_search.product' | t }}
+          </div>
+          <ul class="predictive-search__item-list">
+            {%- for product in predictive_search.resources.products -%}
+              <li id="predictive-search-option-product-{{ forloop.index }}">
+                <a
+                  href="{{ product.url }}"
+                  class="predictive-search__item flex items-center px-2 py-1 no-underline"
+                >
+                  <div class="predictive-search__item-image mr-4 shrink-0">
+                    {% if product.featured_media != blank %}
+                      {%
+                        render 'image',
+                        src: product.featured_media,
+                        m: '48x48',
+                        alt: product.featured_media.alt,
+                        lazyload: true,
+                        fetchpriority: 'low'
+                      %}
+                    {% else %}
+                      {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                    {% endif %}
+                  </div>
+                  <div class="w-100">{{ product.title }}</div>
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      {%- endif -%}
+      {%- if predictive_search.resources.pages.size > 0 -%}
+        <div class="mb-6 px-4 lg:w-5/12">
+          <div class="base-label base-secondary-text predictive-search__results-label mx-2">
+            {{ 'general.search.predictive_search.pages' | t }}
+          </div>
+          <ul class="predictive-search__results-list">
+            {%- for page in predictive_search.resources.pages -%}
+              <li id="predictive-search-option-page-desktop-{{ forloop.index }}">
+                <a href="{{ page.url }}">{{ page.title }}</a>
+              </li>
+            {%- endfor -%}
+          </ul>
+        </div>
+      {%- endif -%}
+    </div>
+    <button class="predictive-search__button-search body-large flex w-100 items-center justify-between py-3 xl:px-2">
+      <span data-predictive-search-search-for-text>
+        {{- 'general.search.predictive_search.search_for' | t: terms: predictive_search.terms -}}
+      </span>
+      {% render "icon" with "arrow-right" %}
+    </button>
+  </div>
+{%- endif -%}

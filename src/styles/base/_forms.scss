@@ -25,12 +25,16 @@ textarea {
   font-size: $font-size-base;
   background: $base-body-background;
   border: 1px solid $form-element-border-color;
-  -webkit-border-radius: 0;
-  border-radius: 0;
+  -webkit-border-radius: $form-element-border-radius;
+  border-radius: $form-element-border-radius;
   &:-webkit-autofill {
     -webkit-box-shadow: 0 0 0 1000px #fff inset !important;
     box-shadow: 0 0 0 1000px #fff inset !important;
     filter: none;
+  }
+  &:focus,
+  &:active {
+    border-color: $form-element-focus-border-color;
   }
 
   @include placeholder {
@@ -57,8 +61,8 @@ select {
   line-height: 1.3;
   background: $base-background-color;
   border: 1px solid $form-element-border-color;
-  -webkit-border-radius: 0;
-  border-radius: 0;
+  -webkit-border-radius: $form-element-border-radius;
+  border-radius: $form-element-border-radius;
 }
 
 .select-holder {
@@ -249,6 +253,55 @@ a.button {
   }
 }
 
+.input-field {
+
+  label {
+    position: absolute;
+    top: 14px;
+    left: 16px;
+    margin: 0;
+    color: $base-secondary-text;
+    pointer-events: none;
+    transition: top $animation-speed ease, font-size $animation-speed ease, font-weight $animation-speed ease;
+  }
+
+  input,
+  textarea {
+    height: 52px;
+    &:focus,
+    &:not(:placeholder-shown),
+    &:-webkit-autofill {
+      padding-top: 24px;
+      padding-bottom: 8px;
+
+      ~ label {
+        top: 9px;
+        left: 16px;
+        font-size: calc(#{$font-size-base} - 4px);
+        font-weight: 600;
+
+        .predictive-search & {
+          top: 7px;
+        }
+      }
+    }
+
+    @include placeholder {
+      opacity: 0;
+    }
+  }
+
+  textarea {
+    min-height: 97px;
+  }
+}
+
+.label {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 0 5px;
+}
+
 .custom-input {
   position: relative;
   &.custom-input--colors {
@@ -266,28 +319,19 @@ a.button {
             background: none;
             border-color: $base-body-text;
           }
-
-          picture {
-            padding: 3px;
-          }
         }
       }
       &:disabled,
       &.disabled {
-        cursor: default;
-        pointer-events: none;
 
         + .custom-label {
           &::before {
             background: none !important;
-            background: $base-border;
-            opacity: 0.6;
           }
           &::after {
-            opacity: 0.6;
+            opacity: 1;
           }
 
-          > span,
           img {
             opacity: 0.6;
           }
@@ -315,18 +359,15 @@ a.button {
 
       &:disabled,
       &.disabled {
-        cursor: default;
-        pointer-events: none;
 
         + .custom-label {
           text-decoration: none;
 
           .custom-label__img-holder {
             &::after {
-              opacity: 0.6;
+              opacity: 1;
             }
 
-            > span,
             img {
               opacity: 0.6;
             }
@@ -347,10 +388,21 @@ a.button {
       &:focus {
 
         + .custom-label {
-          color: #fff;
+          color: $customizable-base-text;
           &::before {
             background: $base-body-text;
             border-color: $base-body-text;
+          }
+        }
+      }
+
+      &:disabled,
+      &.disabled {
+
+        + .custom-label {
+          text-decoration: none;
+          &::after {
+            opacity: 1;
           }
         }
       }
@@ -376,18 +428,15 @@ a.button {
 
       &:disabled,
       &.disabled {
-        cursor: default;
-        pointer-events: none;
 
         + .custom-label {
           text-decoration: none;
 
           .custom-label__img-holder {
             &::after {
-              opacity: 0.6;
+              opacity: 1;
             }
 
-            > span,
             img {
               opacity: 0.6;
             }
@@ -420,8 +469,6 @@ a.button {
       }
       &:disabled,
       &.disabled {
-        cursor: default;
-        pointer-events: none;
 
         + .custom-label {
           text-decoration: none;
@@ -540,18 +587,6 @@ a.button {
     padding: 3px;
     background: none;
     overflow: hidden;
-    &::after {
-      content: "";
-      position: absolute;
-      top: -6px;
-      left: 20px;
-      z-index: 2;
-      width: 1px;
-      height: 59px;
-      background: $customizable-base-text;
-      opacity: 0;
-      transform: rotate(45deg);
-    }
 
     > span:not(.custom-label__img-holder) {
       display: block;
@@ -573,8 +608,29 @@ a.button {
     }
   }
 
-  .custom-input--circle.custom-input--colors & {
+  .custom-input--colors &,
+  .custom-input--size & {
     &::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 0;
+      z-index: 2;
+      width: 1px;
+      height: calc(100% + 16px);
+      margin-top: -8px;
+      background: $base-overlay-white;
+      opacity: 0;
+      transform: rotate(45deg) translateY(-50%);
+    }
+  }
+
+  .custom-input--colors.custom-input--circle & {
+    &::after {
+      border-radius: 100%;
+    }
+
+    img {
       border-radius: 100%;
     }
   }
@@ -595,6 +651,10 @@ a.button {
     background: none;
     border-color: $base-border;
     transition: color $animation-speed ease-in-out;
+    overflow: hidden;
+    &::after {
+      background: $base-border;
+    }
 
     > * {
       position: relative;
@@ -602,13 +662,25 @@ a.button {
     }
 
     span {
-      padding: 6px;
       text-transform: uppercase;
     }
   }
 
   .custom-input--square-with-text & {
     padding: 0;
+  }
+
+  .custom-input--colors.custom-input--sm &,
+  .custom-input--size.custom-input--sm & {
+    width: 24px;
+    min-width: auto;
+    height: 24px;
+    padding: 2px;
+    font-size: calc(#{$font-size-base} - 6px); // 10px
+    &::after {
+      height: calc(100% + 8px);
+      margin-top: -4px;
+    }
   }
 }
 
@@ -649,7 +721,7 @@ a.button {
   width: 24px;
   height: 24px;
   margin-right: 8px;
-  padding: 2px;
+  padding: 1px;
   border: 1px solid $base-border;
   border-radius: 100%;
   transition: border-color $animation-speed ease-in-out;
@@ -671,18 +743,14 @@ a.button {
   }
 }
 
-.label {
-  display: inline-block;
-  vertical-align: top;
-  margin: 0 0 5px;
-}
-
 .page-search-form__button.page-search-form__button {
   min-width: $height-form-elements;
   min-height: $height-form-elements;
   margin-left: 12px;
   font-size: 0;
   line-height: 0;
+  -webkit-border-radius: $form-element-border-radius;
+  border-radius: $form-element-border-radius;
   @include media("≥desktop") {
     margin-left: 20px;
   }
@@ -738,7 +806,7 @@ a.button {
   text-align: center;
   background: $dynamic-checkout-button-background;
   border: 1px solid $dynamic-checkout-button-border;
-  -webkit-border-radius: 0;
+  -webkit-border-radius: $button-border-radius;
   border-radius: $button-border-radius;
   cursor: pointer;
   &:hover {

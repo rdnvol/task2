@@ -1,18 +1,26 @@
 {% for link in linklists[section.settings.menu].links %}
   {% if link.links != blank %}
-    <li class="has-drop">
-      <a href="{{ link.url }}" class="menu-accordion__opener">
+    <li class="ac has-drop">
+      <button
+        type="button"
+        class="menu-accordion__opener w-100 text-left"
+      >
         {{ link.title }}
-      </a>
-      <div class="menu-accordion__slide">
+      </button>
+      <div class="menu-accordion__slide ac-panel">
         <div class="container">
-          <div class="lg:flex lg:space-x-8">
+          <div class="xl:flex xl:space-x-8">
             {% for child_link in link.links %}
-              <div class="lg:3/12">
+              <div class="xl:3/12">
                 {% if child_link.links != blank %}
                   <div class="h5 h mb-3">{{ child_link.title }}</div>
                 {% else %}
-                  <a href="{{ child_link.url }}" class="h5 h mb-3">{{ child_link.title }}</a>
+                  <a
+                    href="{{ child_link.url }}"
+                    class="h5 h mb-3"
+                  >
+                    {{ child_link.title }}
+                  </a>
                 {% endif %}
                 {% if child_link.links != blank %}
                   <ul>
@@ -34,7 +42,11 @@
       </div>
     </li>
   {% else %}
-    <li class="fold-disabled{% if link.active %} active{% endif %}">
+    <li
+      {% if link.active %}
+        class="active"
+      {% endif %}
+    >
       <a href="{{ link.url }}">{{ link.title }}</a>
     </li>
   {% endif %}

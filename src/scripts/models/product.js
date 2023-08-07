@@ -2,10 +2,13 @@ import { formatMoney } from '@shopify/theme-currency';
 import serializeArray from 'helpers/serializeArray';
 import { addItem } from 'helpers/cartAjaxCall';
 import { addJustAdded, getCart, openPopup } from 'store/features/cart/cartSlice';
+import Accordion from 'accordion-js';
+import { initUpdateVariantUnitPrice } from 'helpers/utils';
 
 export class Product {
   constructor(elem) {
     this.wrapper = elem;
+    this.sectionId = this.wrapper.getAttribute('data-section-id');
     this.handle = this.wrapper.getAttribute('data-handle');
     this.submitButton = this.wrapper.querySelector('[data-submit-button]');
     this.submitButtonText = this.wrapper.querySelector('[data-submit-button]');
@@ -13,6 +16,7 @@ export class Product {
     this.shopifyButtons = this.wrapper.querySelector('[data-shopify="payment-button"]');
     this.sizeChart = this.wrapper.querySelector('.size-chart-link');
 
+    this.initPickupAvailability();
     this.sizeChartInit();
     this.product = this.getProduct();
     this.initVariantSelects();
@@ -21,6 +25,7 @@ export class Product {
     this.updateOptions(this.variantSelects ?? this.variantRadios);
     this.initModelViewer();
     this.initSubmit();
+    this.initProductRecommendations();
     this.waitForElement('.shopify-payment-button__button--unbranded').then((node) => {
       const dynamicButtonPlaceholder = window.theme.dynamic_button_placeholder;
 
@@ -31,10 +36,64 @@ export class Product {
     });
   }
 
+  updatePickupAvailability(variant) {
+    if (!variant) return false;
+
+    const pickupAvailabilityInfoWrapper = this.wrapper.querySelector('[data-store-availability-container]');
+
+    if (!pickupAvailabilityInfoWrapper) return false;
+
+    fetch(`${window.Shopify.routes.root}variants/${variant.id}`)
+      .then((response) => response.text())
+      .then((text) => {
+        const pickupAvailabilityDrawerWrapper = this.wrapper.querySelector('.pickup-availability-drawer');
+
+        const html = new DOMParser().parseFromString(text, 'text/html');
+        const pickupAvailabilityInfoHTML = html.querySelector('[data-store-availability-container]');
+        const pickupAvailabilityDrawerHTML = html.querySelector('.pickup-availability-drawer');
+
+        pickupAvailabilityInfoWrapper.innerHTML = '';
+        pickupAvailabilityInfoHTML &&
+          pickupAvailabilityInfoWrapper.insertAdjacentHTML('afterbegin', pickupAvailabilityInfoHTML?.innerHTML);
+
+        pickupAvailabilityDrawerWrapper.innerHTML = '';
+        pickupAvailabilityDrawerHTML &&
+          pickupAvailabilityDrawerWrapper.insertAdjacentHTML('afterbegin', pickupAvailabilityDrawerHTML?.innerHTML);
+        this.initPickupAvailability();
+      })
+      .catch((e) => {
+        console.error(e);
+      });
+  }
+
+  initPickupAvailability() {
+    this.buttonPickupAvailability = this.wrapper.querySelector('.pickup-availability-button');
+
+    if (!this.buttonPickupAvailability) return false;
+
+    this._openButton();
+    this._closeButton();
+  }
+
+  _openButton() {
+    this.buttonPickupAvailability.addEventListener('click', () => {
+      document.querySelector('html').classList.add('pickup-availability-active');
+    });
+  }
+
+  _closeButton() {
+    this.wrapper.querySelector('.btn-closer').addEventListener('click', () => {
+      document.querySelector('html').classList.remove('pickup-availability-active');
+    });
+  }
+
   initModelViewer() {
     const modelViewerEvent = new CustomEvent('activeModelSlide');
 
     const galleryWrapper = this.wrapper.querySelector('.product__gallery-slider');
+
+    if (!galleryWrapper) return false;
+
     const gallerySlides = galleryWrapper.querySelectorAll('.product__gallery-slider__item');
 
     gallerySlides.forEach((slide) => {
@@ -49,31 +108,37 @@ export class Product {
   }
 
   initVariantSelects() {
-    this.variantSelects = document.getElementById('variant-selects');
-    this.variantRadios = document.getElementById('variant-radios');
+    this.variantSelects = this.wrapper.querySelector('#variant-selects');
+    this.variantRadios = this.wrapper.querySelector('#variant-radios');
 
     if (this.variantSelects) {
-      this.productForm = document.querySelector(`#product-form-${this.variantSelects.dataset.section}`);
+      this.productForm = this.wrapper.querySelector(`#product-form-${this.variantSelects.dataset.section}`);
       this.inputName = this.productForm.querySelector('input[name="id"]');
       this.inputName.disabled = false;
       this.variantSelects.addEventListener('change', this.onVariantChange.bind(this, this.variantSelects, 'select'));
     }
 
     if (this.variantRadios) {
-      this.productForm = document.querySelector(`#product-form-${this.variantRadios.dataset.section}`);
+      this.productForm = this.wrapper.querySelector(`#product-form-${this.variantRadios.dataset.section}`);
       this.inputName = this.productForm.querySelector('input[name="id"]');
       this.inputName.disabled = false;
       this.variantRadios.addEventListener('change', this.onVariantChange.bind(this, this.variantRadios, 'input'));
     }
 
     if (!this.variantRadios && !this.variantSelects) {
-      this.inputName = document.getElementById('product-id');
+      this.inputName = this.wrapper.querySelector('#product-id');
       this.inputName.disabled = false;
     }
   }
 
   initQuantitySelector() {
     const quantityInput = this.wrapper.querySelector('#Quantity');
+
+    quantityInput.addEventListener('change', (e) => {
+      const value = Math.max(1, e.target.value);
+
+      quantityInput.value = value;
+    });
     const quantityDecrease = this.wrapper.querySelector('.jcf-btn-dec');
     const quantityIncrease = this.wrapper.querySelector('.jcf-btn-inc');
 
@@ -88,10 +153,27 @@ export class Product {
     });
   }
 
+  handleErrorMessage(errorMessage = false) {
+    this.errorMessage = this.errorMessage || this.wrapper.querySelector('.product-form__error-message');
+
+    this.errorMessage.classList.toggle('invisible', !errorMessage);
+
+    if (errorMessage) {
+      this.errorMessage.textContent = errorMessage;
+    }
+  }
+
+  removeErrorMessage() {
+    const removeErrMessage = this.wrapper.querySelector('.product-form__error-message');
+
+    if (removeErrMessage) this.handleErrorMessage();
+  }
+
   onVariantChange(el, selector) {
     this.updateOptions(el, selector);
     this.updateMasterId();
     this.onOptionChange(this.currentVariant);
+    this.removeErrorMessage();
     this.updateVariantInput(this.currentVariant);
   }
 
@@ -148,7 +230,9 @@ export class Product {
   }
 
   onOptionChange(variant) {
+    this.updatePickupAvailability(variant);
     this.updateVariantPrice(variant);
+    this.updateVariantUnitPrice(variant);
     this.updateSubmitButton(variant);
     this.updateVariantUrl(variant);
     this.updateGallery(variant);
@@ -158,7 +242,7 @@ export class Product {
     let product;
 
     try {
-      product = JSON.parse(document.getElementById('product-json').innerHTML);
+      product = JSON.parse(this.wrapper.querySelector('#product-json').innerHTML);
     } catch (error) {
       console.warn(error);
     }
@@ -198,57 +282,61 @@ export class Product {
     }
   }
 
+  updateVariantUnitPrice(variant) {
+    initUpdateVariantUnitPrice(variant, this.wrapper);
+  }
+
   updateGallery(variant) {
     if (!variant) return false;
 
     const sliderWrapper = this.wrapper.querySelector('.product__gallery-slider');
 
+    if (!sliderWrapper) return false;
+
     const currentVariantSliderItem = sliderWrapper.querySelector(
       `.product__gallery-slider__img[data-position="${variant.featured_image?.position}"]`
     );
 
-    if (!currentVariantSliderItem) return false;
+    currentVariantSliderItem &&
+      window.ResponsiveHelper.addRange({
+        '..767': {
+          on() {
+            const imageWidth = currentVariantSliderItem.getBoundingClientRect().width;
 
-    window.ResponsiveHelper.addRange({
-      '..767': {
-        on() {
-          const imageWidth = currentVariantSliderItem.getBoundingClientRect().width;
-          const variantImagePosition = variant.featured_image.position;
+            const sliderItemMargin = getComputedStyle(currentVariantSliderItem.parentElement).marginRight.split(
+              'px'
+            )[0];
 
-          variantImagePosition && sliderWrapper.scrollTo(imageWidth * (variantImagePosition - 1), 0);
+            const variantImagePosition = variant.featured_image.position;
+
+            const scrollToIndex = Array.from(sliderWrapper.children).findIndex(
+              (elem) => +elem.querySelector('.product__gallery-slider__img').dataset.position === variantImagePosition
+            );
+
+            variantImagePosition && sliderWrapper.scrollTo((+sliderItemMargin + imageWidth) * scrollToIndex, 0);
+          },
         },
-      },
-      '768..': {
-        on() {
-          if (
-            sliderWrapper.firstElementChild
-              .querySelector('.product__gallery-slider__img')
-              .getAttribute('data-position') === currentVariantSliderItem.getAttribute('data-position')
-          )
-            return false;
+        '768..': {
+          on() {
+            if (
+              sliderWrapper.firstElementChild
+                .querySelector('.product__gallery-slider__img')
+                .getAttribute('data-position') === currentVariantSliderItem.getAttribute('data-position')
+            )
+              return false;
 
-          sliderWrapper.prepend(currentVariantSliderItem.parentElement);
+            sliderWrapper.prepend(currentVariantSliderItem.parentElement);
+          },
         },
-      },
-    });
+      });
   }
 
   initSubmit() {
-    let form;
-
-    if (this.variantSelects) {
-      form = document.getElementById(`product-form-${this.variantSelects.dataset.section}`);
-    }
-
-    if (this.variantRadios) {
-      form = document.getElementById(`product-form-${this.variantRadios.dataset.section}`);
-    }
-
     if (!this.variantSelects && !this.variantRadios) {
-      form = document.getElementById('product-id').form;
+      this.productForm = this.wrapper.querySelector('#product-id').form;
     }
 
-    form.addEventListener('submit', (e) => {
+    this.productForm.addEventListener('submit', (e) => {
       e.preventDefault();
       this.initAddToBag(e);
     });
@@ -261,7 +349,7 @@ export class Product {
 
     const variantId = serializedForm.find((item) => item.name === 'id')?.value;
 
-    const quantity = document.getElementById('Quantity')?.value || 1;
+    const quantity = this.wrapper.querySelector('#Quantity')?.value || 1;
 
     const properties = serializedForm.reduce((acc, curr) => {
       let newAcc;
@@ -288,9 +376,15 @@ export class Product {
     addItem(data).then((response) => {
       const { items } = response;
 
+      this.handleErrorMessage(response.description);
+
+      if (!items) return;
+
       window.Store.dispatch(addJustAdded(items[0]));
       window.Store.dispatch(getCart());
-      window.Store.dispatch(openPopup());
+      theme.cart.cartDrawer === 'popup'
+        ? window.Store.dispatch(openPopup())
+        : window.dispatchEvent(new CustomEvent('openCartDrawer'));
     });
   }
 
@@ -339,12 +433,41 @@ export class Product {
         dragToClose: false,
         on: {
           reveal: () => {
-            const tableWrapper = document.querySelector('table');
+            const tableWrapper = this.wrapper.querySelector('table');
 
             tableWrapper.parentElement.classList.add('table-holder');
           },
         },
       });
     });
+  }
+
+  initProductRecommendations() {
+    const productRecommendationsContainer = this.wrapper.querySelector('#complementary-products-container');
+
+    if (!productRecommendationsContainer) return false;
+
+    fetch(productRecommendationsContainer.dataset.url)
+      .then((response) => response.text())
+      .then((text) => {
+        const html = document.createElement('div');
+
+        html.innerHTML = text;
+        const recommendations = html.querySelector('#complementary-products-container');
+
+        if (recommendations && recommendations.innerHTML.trim().length) {
+          productRecommendationsContainer.innerHTML = recommendations.innerHTML;
+          const accordionContainer = productRecommendationsContainer.querySelector('.js-complementary-accordion');
+
+          this.accordion = new Accordion(accordionContainer, {
+            duration: 400,
+            collapse: true,
+            showMultiple: false,
+          });
+        }
+      })
+      .catch((e) => {
+        console.error(e);
+      });
   }
 }

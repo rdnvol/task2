@@ -4,7 +4,12 @@
     <div class="container">
       <ul class="breadcrumbs body-small base-secondary-text flex flex-wrap py-3">
         <li>
-          <a href="{{ routes.root_url }}" rel="nofollow">{{ 'general.breadcrumbs.home' | t }}</a>
+          <a
+            href="{{ routes.root_url }}"
+            rel="nofollow"
+          >
+            {{ 'general.breadcrumbs.home' | t }}
+          </a>
         </li>
         {%- case t -%}
           {%- when 'page' -%}

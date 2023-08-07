@@ -1,39 +1,42 @@
-<div class="section">
+<section class="section">
   <div class="container overflow-hidden">
-    <h2 class="text-center mb-4">{{ section.settings.title }}</h2>
-    <div class="flex flex-wrap justify-center -mx-4 -mb-7">
+    <h2 class="mb-4 text-center">{{ section.settings.title }}</h2>
+    <div class="-mx-4 -mb-7 flex flex-wrap justify-center">
       {% for block in section.blocks %}
         {% liquid
           capture logo_image
             if block.settings.image != blank
               if block.settings.enable_lazyload
                 assign enable_lazyload = true
+                assign fetchpriority_value = 'low'
               else
                 assign enable_lazyload = false
+                assign fetchpriority_value = 'high'
               endif
-              render 'image', src: block.settings.image, m: '150x', d: '300x', alt: block.settings.image.alt, lazyload: enable_lazyload
+              render 'image', src: block.settings.image, m: '150x', d: '300x', alt: block.settings.image.alt, lazyload: enable_lazyload, fetchpriority: fetchpriority_value
             else
               echo 'image' | placeholder_svg_tag: "placeholder-svg"
             endif
           endcapture
         %}
-        <div class="w-1/2 md:w-4/12 lg:w-3/12 px-4 mb-7" {{ block.shopify_attributes }}>
+        <div
+          class="mb-7 w-1/2 px-4 md:w-4/12 lg:w-3/12"
+          {{ block.shopify_attributes }}
+        >
           <div class="logos-item">
             {% if block.settings.url %}
               <a href="{{ block.settings.url }}">
                 {{ logo_image }}
               </a>
             {% else %}
-              <div>
-                {{ logo_image }}
-              </div>
+              {{ logo_image }}
             {% endif %}
           </div>
         </div>
       {% endfor %}
     </div>
   </div>
-</div>
+</section>
 
 {% schema %}
 {

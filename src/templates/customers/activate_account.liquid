@@ -7,7 +7,10 @@
     {% form 'activate_customer_password', class: 'account-form' %}
       {{ form.errors | default_errors }}
       <div class="input-holder">
-        <label for="CustomerPassword" class="inline-block mb-1 label-hidden">
+        <label
+          for="CustomerPassword"
+          class="label-hidden mb-1 inline-block"
+        >
           {{ 'customer.activate_account.password' | t }}
         </label>
         <input
@@ -18,7 +21,10 @@
         >
       </div>
       <div class="input-holder">
-        <label for="CustomerPasswordConfirmation" class="inline-block mb-1 label-hidden">
+        <label
+          for="CustomerPasswordConfirmation"
+          class="label-hidden mb-1 inline-block"
+        >
           {{ 'customer.activate_account.password_confirm' | t }}
         </label>
         <input
@@ -29,9 +35,13 @@
         >
       </div>
       <div class="input-holder">
-        <input type="submit" class="button w-100" value="{{ 'customer.activate_account.submit' | t }}">
+        <input
+          type="submit"
+          class="button w-100"
+          value="{{ 'customer.activate_account.submit' | t }}"
+        >
       </div>
-      <div class="body-small text-center py-3">
+      <div class="body-small py-3 text-center">
         <button
           type="submit"
           class="button default hover:underline"

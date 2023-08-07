@@ -1,6 +1,6 @@
 import { h, Component } from 'preact';
 import { getId } from 'helpers/utils';
-import { Image } from './Image';
+import { Image } from '../Image';
 
 class CartJustAdded extends Component {
   constructor(props) {
@@ -11,7 +11,7 @@ class CartJustAdded extends Component {
     if (!product_has_only_default_variant) {
       return options_with_values.map((option) => (
         <div key={`${getId()}-${option}`}>
-          <span className="base-secondary-text inline-block mr-1">{option.name}:</span>
+          <span className="base-secondary-text mr-1 inline-block">{option.name}:</span>
           {option.value}
         </div>
       ));
@@ -23,7 +23,7 @@ class CartJustAdded extends Component {
 
     return (
       <div className="flex items-center">
-        <div className="cart-popup__img flex-shrink-0 mr-4">
+        <div className="cart-popup__img mr-4 shrink-0">
           <Image
             key={id}
             src={featured_image.url}
@@ -35,8 +35,11 @@ class CartJustAdded extends Component {
         <div className="-mb-2">
           <div className="title mb-2">{product_title}</div>
           <div className="body-small mb-2">{this.renderItemOptions(justAdded)}</div>
-          <div className="body-small mb-2" data-test-id="added-quantity">
-            <span className="base-secondary-text inline-block mr-1">{theme.cart.quantity}:</span>
+          <div
+            className="body-small mb-2"
+            data-test-id="added-quantity"
+          >
+            <span className="base-secondary-text mr-1 inline-block">{theme.cart.quantity}:</span>
             {quantity}
           </div>
         </div>

@@ -1,0 +1,17 @@
+{% liquid
+  if enable_quick_add_button
+    if product.variants.size > 1 and product.available
+      assign data_product_url = current_variant.url
+      assign data_product_url = 'data-product-url="' | append: data_product_url | append: '"'
+      assign data_attrs = data_product_url | append: 'data-src="#quick-view-popup"'
+
+      render 'button', element: 'button', class: 'w-100', locales_text: 'products.product.choose_options', data_attribute: 'data-fancybox = "quick-view" data-quick-choose', other: data_attrs
+    else
+      if current_variant.available
+        render 'button', element: 'button', class: 'w-100', locales_text: 'products.product.add_to_cart', data_attribute: 'data-submit-button', other: 'name = "add"', type: 'submit'
+      else
+        render 'button', element: 'button', class: 'w-100', locales_text: 'products.product.sold_out', data_attribute: 'data-submit-button', other: 'name = "add" disabled', type: 'submit'
+      endif
+    endif
+  endif
+%}

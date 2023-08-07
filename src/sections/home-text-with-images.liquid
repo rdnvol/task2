@@ -5,9 +5,9 @@
   >
     <div class="container overflow-hidden">
       {% if section.settings.title != blank %}
-        <h2 class="text-center mb-4">{{ section.settings.title }}</h2>
+        <h2 class="mb-4 text-center">{{ section.settings.title }}</h2>
       {% endif %}
-      <div class="text-columns-with-images__block grid grid-cols-1 md:grid-cols-2 gap-y-2 md:gap-x-2 xl:gap-x-8">
+      <div class="text-columns-with-images__block grid grid-cols-1 gap-y-2 md:grid-cols-2 md:gap-x-2 xl:gap-x-8">
         {% for block in section.blocks %}
           <div class="block-{{ block.id }} relative">
             <div class="image-container">
@@ -15,24 +15,28 @@
                 {% liquid
                   if block.settings.enable_lazyload
                     assign enable_lazyload = true
+                    assign fetchpriority_value = 'low'
                   else
                     assign enable_lazyload = false
+                    assign fetchpriority_value = 'high'
                   endif
                 %}
                 {%
                   render 'image',
                   src: block.settings.image,
-                  m: '360x',
+                  m: '360x202',
                   src_d: block.settings.image,
-                  d: '689x',
+                  d: '689x384',
                   alt: block.settings.image.alt,
-                  lazyload: enable_lazyload
+                  crop: 'center',
+                  lazyload: enable_lazyload,
+                  fetchpriority: fetchpriority_value
                 %}
               {% else %}
                 {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
               {% endif %}
             </div>
-            <div class="absolute top-0 left-0 right-0 bottom-0 z-10 flex items-center justify-center flex-col p-5 md:p-10 custom-color">
+            <div class="custom-color absolute bottom-0 left-0 right-0 top-0 z-10 flex flex-col items-center justify-center p-5 md:p-10">
               {% if block.settings.title != blank %}
                 <h3 class="mb-2">{{ block.settings.title }}</h3>
               {% endif %}
@@ -63,7 +67,7 @@
   }
   {% for block in section.blocks %}
     .text-columns-with-images .block-{{ block.id }} .image-container::after {
-      opacity: {{ block.settings.image_overlay_opacity | times: 0.1 }};
+      opacity: {{ block.settings.image_overlay_opacity | divided_by: 100.0 }};
     }
   {% endfor %}
 </style>
@@ -98,11 +102,12 @@
         {
           "type": "range",
           "id": "image_overlay_opacity",
+          "min": 0,
+          "max": 100,
+          "step": 10,
+          "unit": "%",
           "label": "Image overlay opacity",
-          "min": 1,
-          "max": 10,
-          "step": 1,
-          "default": 6
+          "default": 60
         },
         {
           "type": "text",

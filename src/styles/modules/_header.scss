@@ -19,7 +19,7 @@
 
 .header__panel {
   z-index: 100;
-  padding: 20px 0;
+  padding: 12px 0;
   background: $base-body-background;
   @include media ("≥widescreen") {
     position: relative;
@@ -42,7 +42,7 @@
 }
 
 .header__panel-mobile {
-  padding: 20px 0;
+  padding: 12px 0;
   background: $base-background;
 }
 
@@ -50,7 +50,6 @@
   max-width: $logo-width;
   height: auto;
   margin: 0 auto;
-  padding: 0 10px;
 
   .xl\:justify-start & {
     @include media ("≥widescreen") {
@@ -71,6 +70,7 @@
 }
 
 .logo-text {
+  padding: 0 10px;
 
   a {
     text-decoration: none;
@@ -162,6 +162,7 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    margin-bottom: -34px;
     padding: 0;
   }
 
@@ -169,19 +170,33 @@
     @include media ("≥widescreen") {
       justify-content: center;
     }
+
+    > li {
+      @include media ("≥widescreen") {
+        margin: 0 15px 34px;
+      }
+    }
   }
 
   > li {
     @include media ("≥desktop") {
-      margin: 0 25px 15px 0;
+      margin: 0 15px 15px 0;
     }
     @include media ("≥widescreen") {
-      margin: 0;
+      margin: 0 15px 34px 0;
     }
-    &.open {
+    @include media ("≥1300px") {
+      margin-right: 22px;
+    }
+    @include media ("≥laptop") {
+      margin-right: 30px;
+    }
+    &.open,
+    &.is-active {
       &.has-drop {
 
-        > a {
+        > a,
+        .menu-accordion__opener {
           &::after {
             margin-top: -2px;
             transform: rotate(135deg);
@@ -199,8 +214,12 @@
         }
       }
 
-      > a {
+      > a,
+      .menu-accordion__opener {
         position: relative;
+        &::before {
+          display: none;
+        }
         &::after {
           content: "";
           position: absolute;
@@ -235,7 +254,8 @@
     }
 
     a,
-    summary {
+    summary,
+    .menu-accordion__opener {
       display: block;
       padding: 16px 25px;
       text-decoration: none;
@@ -252,13 +272,7 @@
     > details-disclosure details summary {
       color: inherit;
       @include media ("≥widescreen") {
-        padding: 28px 30px 28px 0;
-      }
-
-      .justify-center & {
-        @include media ("≥widescreen") {
-          padding: 28px 15px;
-        }
+        padding: 0;
       }
     }
   }
@@ -314,14 +328,29 @@
   }
 }
 
+.menu-accordion {
+  &.accordion {
+    padding: 0;
+  }
+
+  .ac {
+    margin-bottom: 0 !important;
+  }
+}
+
+.menu-accordion__opener {
+  line-height: 1.28;
+  letter-spacing: 0.05em;
+}
+
 .menu-accordion__slide {
   @include media ("≥widescreen") {
     position: absolute;
     top: 100%;
     left: 0;
     z-index: 1000;
+    box-sizing: border-box;
     width: 100%;
-    padding: 0 30px 0 15px;
     background: $base-background;
   }
 
@@ -365,14 +394,20 @@
   position: absolute;
   top: 1px;
   right: 0;
-  width: 20px;
-  height: 20px;
-  padding: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 2px 5px;
   font-size: 12px;
-  line-height: 14px;
+  line-height: 1;
+  font-weight: 600;
+  color: $customizable-base-text;
   text-align: center;
-  background: $base-body-background;
-  border-radius: 100%;
+  background: $base-body-text;
+  border: 1px solid $customizable-base-text;
+  border-radius: 100px;
 }
 
 .header__search-form {

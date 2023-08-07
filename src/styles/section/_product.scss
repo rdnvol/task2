@@ -101,6 +101,16 @@
       }
     }
   }
+
+  .product__price__box {
+    margin-bottom: -8px;
+  }
+}
+
+.caption-with-letter-spacing {
+  font-size: calc(#{$font-size-base} - 6px); // 10px
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
 }
 
 .accordion__product-img {
