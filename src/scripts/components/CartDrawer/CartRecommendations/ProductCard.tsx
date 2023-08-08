@@ -49,6 +49,8 @@ const ProductCard = ({ product }) => {
             sizes={['64x82', '90x112', '90x112']}
             ratio={media.aspect_ratio}
             alt={media.alt}
+            // @ts-ignore
+            fetchprority="high"
           />
         </a>
       </div>

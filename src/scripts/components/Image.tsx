@@ -22,6 +22,7 @@ export const Image: FunctionComponent<ImageType> = ({
   ratio = 1,
   alt,
   lazyload = true,
+  fetchpriority = 'auto',
 }) => {
   const width = sizes[0]?.split('x')[0];
   const height = sizes[0]?.split('x')[1] || Math.floor(+width / ratio);
@@ -44,6 +45,8 @@ export const Image: FunctionComponent<ImageType> = ({
         height={height}
         alt={alt ?? 'image alt'}
         src={resizeImage(src, sizes[0], ratio)}
+        // @ts-ignore
+        fetchpriority={fetchpriority}
       />
     </picture>
   );
