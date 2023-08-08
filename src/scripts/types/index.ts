@@ -108,6 +108,7 @@ export interface ImageType {
   alt?: string;
   ratio?: number;
   lazyload?: boolean;
+  fetchpriority?: 'high' | 'low' | 'auto';
 }
 
 export interface ButtonType {

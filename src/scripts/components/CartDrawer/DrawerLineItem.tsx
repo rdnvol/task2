@@ -33,6 +33,8 @@ const LineItem: FunctionComponent<PropsType> = ({ item }) => {
             sizes={['64x82', '90x112', '90x112']}
             ratio={featured_image.aspect_ratio}
             alt={featured_image.alt}
+            // @ts-ignore
+            fetchpriority="high"
           />
         </a>
       </div>
