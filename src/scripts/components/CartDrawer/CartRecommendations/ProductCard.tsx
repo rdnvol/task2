@@ -50,7 +50,7 @@ const ProductCard = ({ product }) => {
             ratio={media.aspect_ratio}
             alt={media.alt}
             // @ts-ignore
-            fetchprority="high"
+            fetchpriority="high"
           />
         </a>
       </div>
