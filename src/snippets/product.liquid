@@ -110,6 +110,33 @@
                 {% if cart.taxes_included %}
                   <div class="body-medium base-secondary-text mb-4">{{ 'products.product.tax_included' | t }}</div>
                 {% endif %}
+                <div
+                  data-calculate="calculate"
+                  class="shipping_rates w-100 md:w-10/12 xl:w-6/12"
+                >
+                  <div class="product__tax caption rte">
+                    <a
+                      id="shipping-rates-button"
+                      href="#"
+                      {% unless product.available %}
+                        class="disabled"
+                      {% endunless %}
+                    >
+                      Calculate the current total cart shipping cost
+                    </a>
+                  </div>
+                  <div
+                    class="rates_loading hidden"
+                    id="rates_loading"
+                  >
+                    <div class="rates_spinner">
+                      <svg class="spinner" viewBox="0 0 50 50">
+                        <circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>
+                      </svg>
+                    </div>
+                    <div id="shipping-rates__loading">Getting available shipping rates...</div>
+                  </div>
+                </div>
               {% when "buy_buttons" %}
                 {% unless section_onboarding %}
                   {%
@@ -378,3 +405,10 @@
     {% render 'product-json' %}
   </script>
 </section>
+
+<style>
+    a.disabled {
+      pointer-events: none;
+      color: gray;
+  }
+</style>

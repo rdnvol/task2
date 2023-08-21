@@ -1,3 +1,5 @@
+/* stylelint-disable order/properties-order */
+
 /* forms */
 
 form,
@@ -828,4 +830,42 @@ a.button {
     cursor: default;
     pointer-events: none;
   }
+}
+
+.shipping_rates .rate_results {
+  margin: 10px 0;
+}
+
+.shipping_rates .result_box {
+  border: 1px solid #d9d9d9;
+}
+
+.result_box {
+  display: block;
+}
+
+.shipping_rates .result_box .row {
+  flex: 1 1 0px;
+  display: flex;
+  justify-content: space-between;
+  text-align: left;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.shipping_rates .result_box .inner {
+  display: flex;
+  padding: 15px;
+  border-bottom: 1px solid #d9d9d9;
+}
+
+.shipping_rates .result_box .inner:last-child {
+  border-bottom: none;
+}
+
+.shipping_rates .result_box .price {
+  flex: 0 1 1px;
+  /* stylelint-disable-next-line no-missing-end-of-source-newline */
+  white-space: nowrap;
 }
