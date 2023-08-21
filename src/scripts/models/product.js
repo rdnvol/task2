@@ -179,6 +179,7 @@ export class Product {
     this.onOptionChange(this.currentVariant);
     this.removeErrorMessage();
     this.updateVariantInput(this.currentVariant);
+    this.updateShippingRatesCart(this.currentVariant);
   }
 
   updateOptions(el, selector) {
@@ -221,6 +222,29 @@ export class Product {
 
     this.inputName.value = variant.id;
     this.inputName.dispatchEvent(new Event('change', { bubbles: true }));
+  }
+
+  updateShippingRatesCart(variant) {
+    const shippingRatesButton = document.getElementById('shipping-rates-button');
+    const rateResultsBlock = document.querySelector('.rate_results');
+
+    if (variant.available) {
+      if (shippingRatesButton.classList.contains('disabled')) {
+        shippingRatesButton.classList.remove('disabled');
+      }
+
+      if (rateResultsBlock && rateResultsBlock.classList.contains('hidden')) {
+        rateResultsBlock.classList.remove('hidden');
+      }
+    } else {
+      if (!shippingRatesButton.classList.contains('disabled')) {
+        shippingRatesButton.classList.add('disabled');
+      }
+
+      if (rateResultsBlock) {
+        rateResultsBlock.classList.add('hidden');
+      }
+    }
   }
 
   updateVariantUrl(variant) {
