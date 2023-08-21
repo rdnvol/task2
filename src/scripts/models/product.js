@@ -2,7 +2,7 @@
 import { formatMoney } from '@shopify/theme-currency';
 import serializeArray from 'helpers/serializeArray';
 import { addItem } from 'helpers/cartAjaxCall';
-import { addJustAdded, removeItem, getCart, openPopup } from 'store/features/cart/cartSlice';
+import { addJustAdded, updateItem, getCart, openPopup } from 'store/features/cart/cartSlice';
 import Accordion from 'accordion-js';
 import { initUpdateVariantUnitPrice } from 'helpers/utils';
 import { METHODS } from 'http';
@@ -18,7 +18,6 @@ export class Product {
     this.priceContainer = this.wrapper.querySelector('[data-price-wrapper]');
     this.shopifyButtons = this.wrapper.querySelector('[data-shopify="payment-button"]');
     this.sizeChart = this.wrapper.querySelector('.size-chart-link');
-    this.initCalc();
 
     this.initPickupAvailability();
     this.sizeChartInit();
@@ -38,6 +37,7 @@ export class Product {
         node.style.display = 'block';
       }, 0);
     });
+    this.initCalc();
   }
 
   updatePickupAvailability(variant) {
@@ -233,8 +233,8 @@ export class Product {
         shippingRatesButton.classList.remove('disabled');
       }
 
-      if (rateResultsBlock && rateResultsBlock.classList.contains('hidden')) {
-        rateResultsBlock.classList.remove('hidden');
+      if (rateResultsBlock) {
+        rateResultsBlock.remove();
       }
     } else {
       if (!shippingRatesButton.classList.contains('disabled')) {
@@ -242,7 +242,7 @@ export class Product {
       }
 
       if (rateResultsBlock) {
-        rateResultsBlock.classList.add('hidden');
+        rateResultsBlock.remove();
       }
     }
   }
@@ -502,74 +502,80 @@ export class Product {
   async initCalc() {
     const cartShippingCostBtn = document.getElementById('shipping-rates-button');
 
-    cartShippingCostBtn.addEventListener(
-      'click',
-      async (e) => {
-        e.preventDefault();
+    if (!this.product.selected_variant.available) {
+      cartShippingCostBtn.classList.add('disabled');
+    }
 
-        if (!e.target.classList.contains('clicked')) {
-          e.target.classList.add('clicked');
-        }
+    cartShippingCostBtn.addEventListener('click', async (e) => {
+      e.preventDefault();
 
-        const loader = document.getElementById('rates_loading');
+      if (!e.target.classList.contains('clicked')) {
+        e.target.classList.add('clicked');
+      }
 
-        if (loader.classList.contains('hidden')) {
-          loader.classList.remove('hidden');
-        }
+      const loader = document.getElementById('rates_loading');
 
-        const productCardKey = await this.addToShippingRatesCart();
+      if (loader.classList.contains('hidden')) {
+        loader.classList.remove('hidden');
+      }
 
-        const geoData = await fetch('https://api.ipgeolocation.io/ipgeo?apiKey=900c50e5d4a840edb7dcf6d1e97076f7').then(
-          (response) => response.json()
-        );
+      const productCardKey = await this.addToShippingRatesCart();
 
+      const geoData = await fetch('https://api.ipgeolocation.io/ipgeo?apiKey=900c50e5d4a840edb7dcf6d1e97076f7').then(
+        (response) => response.json()
+      );
+
+      // eslint-disable-next-line max-len
+      const postShippingRatesUrl = `https://deployme22.myshopify.com/cart/prepare_shipping_rates.json?shipping_address%5Bzip%5D=${geoData.zipcode}&shipping_address%5Bcountry%5D=${geoData.country_name}&shipping_address%5Bprovince%5D=${geoData.state_prov}`;
+
+      await fetch(postShippingRatesUrl, { method: 'POST' }).then((response) => console.log(response));
+
+      // eslint-disable-next-line max-len
+      const getShippingRatesUrl = `https://deployme22.myshopify.com/cart/async_shipping_rates.json?shipping_address%5Bzip%5D=${geoData.zipcode}&shipping_address%5Bcountry%5D=${geoData.country_name}&shipping_address%5Bprovince%5D=${geoData.state_prov}`;
+
+      const shippingRates = await fetch(getShippingRatesUrl, { credentials: 'same-origin' }).then((response) =>
+        response.json()
+      );
+
+      this.removeProductFromCart(productCardKey);
+
+      if (!loader.classList.contains('hidden')) {
+        loader.classList.add('hidden');
+      }
+
+      const rateResultsBlock = document.querySelector('.rate_results');
+
+      if (!rateResultsBlock) {
+        this.generateRatesResults(shippingRates);
+      }
+    });
+  }
+
+  generateRatesResults(shippingRates) {
+    const mainEl = document.querySelector('[data-calculate="calculate"]');
+    const ratesResults = document.createElement('div');
+
+    mainEl.appendChild(ratesResults);
+
+    ratesResults.classList.add('rate_results');
+
+    if (shippingRates && shippingRates.shipping_rates.length > 0) {
+      const shippingRatesInfo = document.createElement('div');
+
+      shippingRatesInfo.classList.add('result_box');
+      ratesResults.appendChild(shippingRatesInfo);
+
+      shippingRates.shipping_rates.forEach((item) => {
         // eslint-disable-next-line max-len
-        const postShippingRatesUrl = `https://deployme22.myshopify.com/cart/prepare_shipping_rates.json?shipping_address%5Bzip%5D=${geoData.zipcode}&shipping_address%5Bcountry%5D=${geoData.country_name}&shipping_address%5Bprovince%5D=${geoData.state_prov}`;
+        shippingRatesInfo.innerHTML += `<div class="inner"> <div class="row"> <div>${item.name}</div> <span class="price">${item.price}</span></div></div>`;
+      });
+    } else {
+      const noShippingRatesInfo = document.createElement('div');
 
-        await fetch(postShippingRatesUrl, { method: 'POST' }).then((response) => console.log(response));
-
-        // eslint-disable-next-line max-len
-        const getShippingRatesUrl = `https://deployme22.myshopify.com/cart/async_shipping_rates.json?shipping_address%5Bzip%5D=${geoData.zipcode}&shipping_address%5Bcountry%5D=${geoData.country_name}&shipping_address%5Bprovince%5D=${geoData.state_prov}`;
-
-        const shippingRates = await fetch(getShippingRatesUrl, { credentials: 'same-origin' }).then((response) =>
-          response.json()
-        );
-
-        console.log(shippingRates);
-
-        this.removeProductFromCart(productCardKey);
-
-        if (!loader.classList.contains('hidden')) {
-          loader.classList.add('hidden');
-        }
-
-        const mainEl = document.querySelector('[data-calculate="calculate"]');
-        const ratesResults = document.createElement('div');
-
-        mainEl.appendChild(ratesResults);
-
-        ratesResults.classList.add('rate_results');
-
-        if (shippingRates && shippingRates.shipping_rates.length > 0) {
-          const shippingRatesInfo = document.createElement('div');
-
-          shippingRatesInfo.classList.add('result_box');
-          ratesResults.appendChild(shippingRatesInfo);
-
-          shippingRates.shipping_rates.forEach((item) => {
-            // eslint-disable-next-line max-len
-            shippingRatesInfo.innerHTML += `<div class="inner"> <div class="row"> <div>${item.name}</div> <span class="price">${item.price}</span></div></div>`;
-          });
-        } else {
-          const noShippingRatesInfo = document.createElement('div');
-
-          noShippingRatesInfo.classList.add('rate_noresult');
-          noShippingRatesInfo.innerHTML = 'No rates found';
-          ratesResults.appendChild(noShippingRatesInfo);
-        }
-      },
-      { once: true }
-    );
+      noShippingRatesInfo.classList.add('rate_noresult');
+      noShippingRatesInfo.innerHTML = 'No rates found';
+      ratesResults.appendChild(noShippingRatesInfo);
+    }
   }
 
   async addToShippingRatesCart() {
@@ -592,9 +598,6 @@ export class Product {
 
       if (!items) return;
 
-      window.Store.dispatch(addJustAdded(items[0]));
-      window.Store.dispatch(getCart());
-
       // eslint-disable-next-line array-callback-return
       return items.find((item) => {
         if (item.id === +variantId) {
@@ -603,10 +606,10 @@ export class Product {
       });
     });
 
-    return productCardKey.key;
+    return productCardKey;
   }
 
   removeProductFromCart(productCardKey) {
-    window.Store.dispatch(removeItem({ key: productCardKey }));
+    window.Store.dispatch(updateItem({ id: productCardKey.key, options: { quantity: productCardKey.quantity - 1 } }));
   }
 }
