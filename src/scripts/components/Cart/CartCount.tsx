@@ -10,8 +10,13 @@ const CartCount: FunctionComponent = () => {
 
   const renderCount = () => <span className="header__cart-btn__num">{item_count}</span>;
 
+  const btnClasses = `header__btn header__cart-btn ${theme.cart.cartDrawer === 'drawer' ? 'cart-drawer-opener' : ''}`;
+
   return (
-    <a href="/cart" className="header__btn header__cart-btn">
+    <a
+      href="/cart"
+      className={btnClasses}
+    >
       <div dangerouslySetInnerHTML={{ __html: theme.icons.cart }} />
       {item_count > 0 && renderCount()}
     </a>

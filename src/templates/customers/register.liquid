@@ -1,12 +1,19 @@
-<div class="section" id="content" tabindex="0">
+<div
+  class="section"
+  id="content"
+  tabindex="0"
+>
   <div class="container">
     <div class="account-page__title text-center">
-      <h1 class="h2">{{ 'customer.register.title' | t }}</h1>
+      <h1 class="h4 mb-3">{{ 'customer.register.title' | t }}</h1>
     </div>
     {% form 'create_customer', class: 'account-form' %}
       {{ form.errors | default_errors }}
       <div class="input-holder">
-        <label for="FirstName" class="label label-hidden">
+        <label
+          for="FirstName"
+          class="label-hidden mb-1 inline-block"
+        >
           {{ 'customer.register.first_name' | t }}
         </label>
         <input
@@ -21,7 +28,10 @@
         >
       </div>
       <div class="input-holder">
-        <label for="LastName" class="label label-hidden">
+        <label
+          for="LastName"
+          class="label-hidden mb-1 inline-block"
+        >
           {{ 'customer.register.last_name' | t }}
         </label>
         <input
@@ -35,7 +45,10 @@
         >
       </div>
       <div class="input-holder">
-        <label for="Email" class="label label-hidden">
+        <label
+          for="Email"
+          class="label-hidden mb-1 inline-block"
+        >
           {{ 'customer.register.email' | t }}
         </label>
         <input
@@ -51,7 +64,10 @@
         >
       </div>
       <div class="input-holder">
-        <label for="CreatePassword" class="label label-hidden">
+        <label
+          for="CreatePassword"
+          class="label-hidden mb-1 inline-block"
+        >
           {{ 'customer.register.password' | t }}
         </label>
         <input
@@ -62,11 +78,42 @@
           placeholder="{{ 'customer.register.password' | t }}"
         >
       </div>
+      {% if settings.enable_accept_marketing %}
+        <div class="input-holder custom-input custom-input--square-with-text">
+          <input
+            type="hidden"
+            name="customer[accepts_marketing]"
+            value="false"
+          >
+          <input
+            type="checkbox"
+            name="customer[accepts_marketing]"
+            id="AcceptsMarketing"
+          >
+          <label
+            for="AcceptsMarketing"
+            class="custom-label flex items-center"
+          >
+            <span class="custom-label__check"></span>
+            {{- 'customer.register.accepts-marketing' | t -}}
+          </label>
+        </div>
+      {% endif %}
       <div class="input-holder">
-        <input type="submit" value="{{ 'customer.register.submit' | t }}" class="button w-100">
+        <input
+          type="submit"
+          value="{{ 'customer.register.submit' | t }}"
+          class="button w-100"
+        >
       </div>
-      <div class="text-center">
-        <a href="{{ routes.root_url }}" rel="nofollow">{{ 'customer.register.cancel' | t }}</a>
+      <div class="body-small py-3 text-center">
+        <a
+          href="{{ routes.root_url }}"
+          rel="nofollow"
+          class="no-underline hover:underline"
+        >
+          {{- 'customer.register.cancel' | t -}}
+        </a>
       </div>
     {% endform %}
   </div>

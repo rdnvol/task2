@@ -21,13 +21,20 @@ const ProductGallery: FunctionComponent<PropTypes> = ({ media }) => {
   return (
     <div className="product__gallery-slider lg:flex lg:flex-wrap">
       {images?.map((mediaItem) => (
-        <div className="product__gallery-slider__item lg:pr-4 md:pb-4" key={mediaItem.id}>
-          <div className="product__gallery-slider__img" data-position={mediaItem.position}>
+        <div
+          className="product__gallery-slider__item md:pb-4 lg:pr-4"
+          key={mediaItem.id}
+        >
+          <div
+            className="product__gallery-slider__img"
+            data-position={mediaItem.position}
+          >
             <Image
               key={mediaItem.id}
               src={mediaItem.src}
               sizes={['635x791', '290x364']}
               ratio={mediaItem.aspect_ratio}
+              alt={mediaItem.alt}
             />
           </div>
         </div>

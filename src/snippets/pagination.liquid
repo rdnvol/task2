@@ -1,8 +1,15 @@
-<nav id="pagination" role="navigation" class="pagination">
+<nav
+  id="pagination"
+  role="navigation"
+  class="pagination"
+>
   <ol class="flex flex-wrap items-center justify-center">
     {%- if paginate.previous -%}
       <li>
-        <a href="{{ paginate.previous.url }}" class="pagination__prev">
+        <a
+          href="{{ paginate.previous.url }}"
+          class="pagination__prev"
+        >
           <span class="visually-hidden">Previous page</span>
         </a>
       </li>
@@ -18,7 +25,10 @@
         </li>
       {%- else -%}
         {%- if part.title == paginate.current_page -%}
-          <li class="active" aria-current="page">
+          <li
+            class="active"
+            aria-current="page"
+          >
             <div>
               <span>
                 {{ part.title }}
@@ -41,7 +51,10 @@
 
     {%- if paginate.next -%}
       <li>
-        <a href="{{ paginate.next.url }}" class="pagination__next">
+        <a
+          href="{{ paginate.next.url }}"
+          class="pagination__next"
+        >
           <span class="visually-hidden">Next page</span>
         </a>
       </li>

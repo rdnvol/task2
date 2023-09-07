@@ -6,6 +6,13 @@
   height: $height-form-elements;
   border: 1px solid $base-border;
   transition: border-color $animation-speed ease-in-out;
+  &.jcf-number--full-width {
+    max-width: none;
+  }
+  .cart-table &,
+  .cart-drawer & {
+    height: 38px;
+  }
 
   input {
     -moz-appearance: textfield;
@@ -22,6 +29,12 @@
     &::-webkit-outer-spin-button {
       -webkit-appearance: none;
     }
+    .cart-table &,
+    .cart-drawer & {
+      height: 36px;
+      font-size: $font-size-base;
+      font-weight: $font-body-weight;
+    }
   }
 }
 
@@ -37,6 +50,10 @@
   }
   @include media("≥tablet", "<desktop") {
     width: 30px;
+  }
+  .cart-table &,
+  .cart-drawer & {
+    width: 38px;
   }
   &::before,
   &::after {

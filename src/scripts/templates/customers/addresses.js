@@ -16,12 +16,15 @@ const selectors = {
   addressForm: '[data-address-form]',
   addressDeleteForm: '[data-address-delete-form]',
 };
+
 const hideClass = 'hidden';
 
 function triggerDefaultValues(domElem) {
-  let elements = document.querySelectorAll(domElem);
+  const elements = document.querySelectorAll(domElem);
+
   [...elements].forEach((element, i) => {
-    let value = element.getAttribute('data-default');
+    const value = element.getAttribute('data-default');
+
     [...element.options].forEach((option) => {
       if (option.text === value) {
         element.value = option.value;
@@ -41,7 +44,8 @@ function initializeAddressForm(container) {
       addressForm.classList.toggle(hideClass);
     });
   });
-  AddressForm(addressFields, 'en').then(function () {
+
+  AddressForm(addressFields, 'en').then(() => {
     triggerDefaultValues('.address-country-option[data-default]');
     triggerDefaultValues('.address-province-option[data-default]');
   });
@@ -50,11 +54,7 @@ function initializeAddressForm(container) {
     deleteForm.addEventListener('submit', (event) => {
       const confirmMessage = deleteForm.getAttribute('data-confirm-message');
 
-      if (
-        !window.confirm(
-          confirmMessage || 'Are you sure you wish to delete this address?'
-        )
-      ) {
+      if (!window.confirm(confirmMessage || 'Are you sure you wish to delete this address?')) {
         event.preventDefault();
       }
     });
