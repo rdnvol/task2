@@ -1,51 +1,100 @@
-<div class="section">
-  <div class="gallery-section">
-    <div class="md:grid md:grid-flow-col md:auto-cols-fr">
-      {% for block in section.blocks %}
-        {%- capture image_position -%}
-          style="{{ block.settings.alignment }}"
-        {%- endcapture -%}
-        {% capture gallery_image %}
-          <div class="gallery-section__img {{ section.settings.height }}">
-            {% if block.settings.image != blank %}
-              {%
-                render 'image',
-                src: block.settings.image,
-                d: '640x',
-                src_m: block.settings.image,
-                m: '375x',
-                alt: block.settings.image.alt,
-                data_attribute: image_position
-              %}
+{% liquid
+  assign blocks_size = section.blocks.size
+
+  if section.settings.height == ''
+    assign mobile_image_height = 94
+    assign desktop_image_height = 125
+  elsif section.settings.height == 'gallery-section__img--sm'
+    assign mobile_image_height = 225
+    assign desktop_image_height = 300
+  elsif section.settings.height == 'gallery-section__img--md'
+    assign mobile_image_height = 357
+    assign desktop_image_height = 475
+  elsif section.settings.height == 'gallery-section__img--lg'
+    assign mobile_image_height = 488
+    assign desktop_image_height = 650
+  elsif section.settings.height == 'gallery-section__img--xl'
+    assign mobile_image_height = 582
+    assign desktop_image_height = 775
+  endif
+
+  case blocks_size
+    when 1
+      assign desktop_size = '1440x' | append: desktop_image_height
+      assign mobile_size = '375x' | append: mobile_image_height
+    when 2
+      assign desktop_size = '720x' | append: desktop_image_height
+      assign mobile_size = '375x' | append: mobile_image_height
+    when 3
+      assign desktop_size = '480x' | append: desktop_image_height
+      assign mobile_size = '375x' | append: mobile_image_height
+    when 4
+      assign desktop_size = '360x' | append: desktop_image_height
+      assign mobile_size = '375x' | append: mobile_image_height
+  endcase
+%}
+
+{% if blocks_size > 0 %}
+  <section class="section">
+    <div class="gallery-section">
+      <div class="md:grid md:auto-cols-fr md:grid-flow-col">
+        {% for block in section.blocks %}
+          {% capture gallery_image %}
+            {% liquid
+              if block.settings.enable_lazyload
+                assign enable_lazyload = true
+                assign fetchpriority_value = 'low'
+              else
+                assign enable_lazyload = false
+                assign fetchpriority_value = 'high'
+              endif
+            %}
+            <div class="gallery-section__img {{ section.settings.height }}">
+              {% if block.settings.image != blank %}
+                {%
+                  render 'image',
+                  src: block.settings.image,
+                  m: mobile_size,
+                  src_d: block.settings.image,
+                  d: desktop_size,
+                  alt: block.settings.image.alt,
+                  crop: 'center',
+                  lazyload: enable_lazyload,
+                  fetchpriority: fetchpriority_value
+                %}
+              {% else %}
+                {{ 'image' | placeholder_svg_tag: "placeholder-svg" }}
+              {% endif %}
+            </div>
+          {% endcapture %}
+          {% capture gallery_title %}
+            {% if block.settings.title %}
+              <div class="gallery-section__title customizable-base-text">
+                <div class="h2">{{ block.settings.title }}</div>
+              </div>
+            {% endif %}
+          {% endcapture %}
+          <div {{ block.shopify_attributes }}>
+            {% if block.settings.link != blank %}
+              <a
+                href="{{ block.settings.link }}"
+                class="gallery-section__link"
+              >
+                {{ gallery_image }}
+                {{ gallery_title }}
+              </a>
             {% else %}
-              {{ 'image' | placeholder_svg_tag: "placeholder-svg" }}
+              <div class="gallery-section__item">
+                {{ gallery_image }}
+                {{ gallery_title }}
+              </div>
             {% endif %}
           </div>
-        {% endcapture %}
-        {% capture gallery_title %}
-          {% if block.settings.title %}
-            <div class="gallery-section__title customizable-base-text">
-              <div class="h2 m-0">{{ block.settings.title }}</div>
-            </div>
-          {% endif %}
-        {% endcapture %}
-        <div {{ block.shopify_attributes }}>
-          {% if block.settings.link != blank %}
-            <a href="{{ block.settings.link }}" class="gallery-section__link">
-              {{ gallery_image }}
-              {{ gallery_title }}
-            </a>
-          {% else %}
-            <div class="gallery-section__item">
-              {{ gallery_image }}
-              {{ gallery_title }}
-            </div>
-          {% endif %}
-        </div>
-      {% endfor %}
+        {% endfor %}
+      </div>
     </div>
-  </div>
-</div>
+  </section>
+{% endif %}
 
 {% schema %}
 {
@@ -92,24 +141,10 @@
           "label": "Image"
         },
         {
-          "type": "select",
-          "id": "alignment",
-          "label": "Image alignment",
-          "default": "object-position: 50% 50%;",
-          "options": [
-            {
-              "value": "object-position: 50% 0;",
-              "label": "Top"
-            },
-            {
-              "value": "object-position: 50% 50%;",
-              "label": "Medium"
-            },
-            {
-              "value": "object-position: 50% 100%;",
-              "label": "Bottom"
-            }
-          ]
+          "type": "checkbox",
+          "id": "enable_lazyload",
+          "label": "Enable lazyload",
+          "default": true
         },
         {
           "type": "url",

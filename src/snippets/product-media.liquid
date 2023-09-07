@@ -1,22 +1,33 @@
 {% case media.media_type %}
   {% when 'image' %}
-    <div class="product__gallery-slider__item lg:pr-4 md:pb-4">
-      <div class="product__gallery-slider__img" data-position="{{ media.position }}">
+    <div class="product__gallery-slider__item md:pb-4 lg:pr-4">
+      <div
+        class="product__gallery-slider__img"
+        data-position="{{ media.position }}"
+      >
         {%
           render 'image',
           src: media,
-          d: '635x791',
-          src_m: media,
-          m: '345x431',
+          m: '345x',
+          src_d: media,
+          d: '673x',
           alt: media.alt,
-          placeholder: 'img-placeholder.png'
+          lazyload: enable_lazyload,
+          fetchpriority: 'low'
         %}
       </div>
     </div>
   {% when 'external_video' %}
-    <div class="product__gallery-slider__item lg:pr-4 md:pb-4 lg:w-100">
-      <deferred-media class="deferred-media media product-gallery__img fluid-iframe" data-media-id="{{ media.id }}">
-        <button id="Deferred-Poster-Modal-{{ media.id }}" class="deferred-media__poster relative" type="button">
+    <div class="product__gallery-slider__item md:pb-4 lg:w-100 lg:pr-4">
+      <deferred-media
+        class="deferred-media media product-gallery__img fluid-iframe"
+        data-media-id="{{ media.id }}"
+      >
+        <button
+          id="Deferred-Poster-Modal-{{ media.id }}"
+          class="deferred-media__poster relative"
+          type="button"
+        >
           <span class="deferred-media__poster-button motion-reduce">
             <span class="visually-hidden">Play video</span>
             {% render 'icon' with 'play' %}
@@ -24,11 +35,12 @@
           {%
             render 'image',
             src: media,
-            d: '635x791',
-            src_m: media,
             m: '345x431',
+            src_d: media,
+            d: '635x791',
             alt: media.alt,
-            placeholder: 'img-placeholder.png'
+            lazyload: enable_lazyload,
+            fetchpriority: 'low'
           %}
         </button>
         <template>
@@ -42,11 +54,15 @@
       </deferred-media>
     </div>
   {% when 'video' %}
-    <div class="product__gallery-slider__item lg:pr-4 md:pb-4 lg:w-100">
-      <div class="background-video-wrapper relative" data-section-type="video" data-section-id="{{ section.id }}">
+    <div class="product__gallery-slider__item md:pb-4 lg:w-100 lg:pr-4">
+      <div
+        class="background-video-wrapper relative"
+        data-section-type="video"
+        data-section-id="{{ section.id }}"
+      >
         {{ media | video_tag: controls: false | replace: '<video', '<video class="js-player" playsinline autoplay loop muted' }}
         <div class="video-text-block">
-          <div class="flex h-100 text-center justify-center items-center">
+          <div class="flex h-100 items-center justify-center text-center">
             <div class="video-text-block__holder sm:w-10/12 md:w-6/12 lg:w-4/12">
               {% if section.settings.title %}
                 {% if section.settings.text_size == 'medium' %}
@@ -61,10 +77,14 @@
       </div>
     </div>
   {% when 'model' %}
-    <div class="product__gallery-slider__item lg:pr-4 md:pb-4 lg:w-100">
+    <div class="product__gallery-slider__item md:pb-4 lg:w-100 lg:pr-4">
       <div class="model-viewer-block">
         <product-model class="deferred-media media media--transparent">
-          <button id="Deferred-Poster-Modal-{{ media.id }}" class="deferred-media__poster" type="button">
+          <button
+            id="Deferred-Poster-Modal-{{ media.id }}"
+            class="deferred-media__poster"
+            type="button"
+          >
             <span class="deferred-media__poster-button motion-reduce">
               <span class="visually-hidden">Play video</span>
               {% render 'icon' with 'play' %}
@@ -73,21 +93,23 @@
               {%
                 render 'image',
                 src: media,
-                d: '635x791',
-                src_m: media,
                 m: '345x431',
+                src_d: media,
+                d: '635x791',
                 alt: media.alt,
-                placeholder: 'img-placeholder.png'
+                lazyload: enable_lazyload,
+                fetchpriority: 'low'
               %}
             {% else %}
               {%
                 render 'image',
                 src: media,
-                d: '191x237',
-                src_m: media,
                 m: '103x130',
+                src_d: media,
+                d: '191x237',
                 alt: media.alt,
-                placeholder: 'img-placeholder.png'
+                lazyload: enable_lazyload,
+                fetchpriority: 'low'
               %}
             {% endif %}
           </button>
@@ -101,7 +123,11 @@
       </div>
     </div>
   {% else %}
-    <div class="product-single__media" style="padding-top: 100%;" data-media-id="{{ media.id }}">
+    <div
+      class="product-single__media"
+      style="padding-top: 100%;"
+      data-media-id="{{ media.id }}"
+    >
       {{ media | media_tag }}
     </div>
 {% endcase %}

@@ -76,8 +76,13 @@ $media-expressions: (
 @import "section/map-section";
 @import "section/page-hero";
 @import "section/text-columns-with-images";
+@import "section/collapsible-content";
 
 @import "modules/age-popup";
 @import "modules/filters";
 @import "modules/cart-popup";
+@import "modules/cart-drawer";
+@import "modules/pickup-availability";
+@import "modules/quick-view-popup";
+@import "modules/predictive-search";
 @import "modules/footer";

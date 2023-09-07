@@ -1,7 +1,8 @@
 {
   "general": {
     "accessibility": {
-      "skip_to_content": "Pular para o conteúdo"
+      "skip_to_content": "Pular para o conteúdo",
+      "unit_price_separator": "per"
     },
     "breadcrumbs": {
       "home": "Home"
@@ -54,6 +55,12 @@
       "heading": {
         "one": "Resultado da pesquisa",
         "other": "Procurar Resultados"
+      },
+      "predictive_search": {
+        "suggestions": "Suggestions",
+        "product": "Products",
+        "pages": "Pages",
+        "search_for": "Search for \"{{ terms }}\""
       },
       "results_with_count": {
         "one": "{{ count }} resultado para \"{{ terms }}\"",
@@ -116,7 +123,13 @@
       "just_added_to_your_cart": "Just added to your cart",
       "view_cart": "View cart",
       "special_instructions_placeholder": "View Special instructions for seller",
-      "add_to_cart": "Add to cart"
+      "add_to_cart": "Add to cart",
+      "cart_drawer_lable": "Your cart" ,
+      "cart_drawer_remove_btn": "Remove",
+      "cart_drawer_continue_shopping_btn": "Continue shopping",
+      "free_shipping_left": "You are {{ price }} away from free shipping.",
+      "free_shipping_riched": "You riched free shipping.",
+      "tax_include_text": "Tax included and shipping calculated at checkout"
     },
     "label": {
       "product": "Produto",
@@ -143,11 +156,14 @@
       "filter": "Filter:"
     },
     "filters": {
-      "filter_product_price": "The highest price is $300.00",
+      "filter_product_price": "The highest price is {{ amount }}",
       "reset": "Reset",
       "to": "to",
       "minimum_price": "Minimum price",
       "maximum_price": "Maximum price"
+    },
+    "quick_view": {
+      "view_full_details": "View full details"
     }
   },
   "contact": {
@@ -243,7 +259,10 @@
       "tracking_url": "Link de rastreamento",
       "tracking_company": "Empresa",
       "tracking_number": "Número de rastreamento",
-      "subtotal": "Subtotal"
+      "subtotal": "Subtotal",
+      "order_details": "Order details",
+      "placed_on": "Placed on",
+      "order_detail_table": "Order detail table"
     },
     "recover_password": {
       "title": "Redefinir sua senha",
@@ -266,6 +285,7 @@
       "last_name": "Sobrenome",
       "email": "E-mail",
       "password": "Senha",
+      "accepts-marketing": "Subscribe to email marketing",
       "submit": "Criar",
       "cancel": "Retornar à loja"
     }
@@ -299,7 +319,9 @@
     "footer": {
       "social_platform": "{{ name }} em {{ platform }}",
       "copyright": "Direitos autorais",
-      "payment_methods": "Métodos de pagamento aceitos"
+      "payment_methods": "Métodos de pagamento aceitos",
+      "select_currency": "Select currency",
+      "select_locales": "Select locales"
     }
   },
   "products": {
@@ -311,13 +333,24 @@
       "on_sale_from_html": "Em promoção, a partir de {{ price }}",
       "from_text_html": "A partir de {{ price }}",
       "quantity": "Quantidade",
+      "quantity_decrease": "Decrease quantity",
+      "quantity_increase": "Increase quantity",
       "add_to_cart": "Adicionar ao carrinho",
+      "choose_options": "Choose options",
       "dynamic_button_placeholder": "Buy it now",
       "size_chart": "Size Chart",
       "size": "size",
+      "color": "color",
       "color_title": "Color",
       "starting_at": "From",
-      "product_variants": "Product variants"
+      "product_variants": "Product variants",
+      "tax_included": "Tax included.",
+      "pick_up_available_at_html": "Pickup available at ",
+      "pick_up_available": "Pickup available",
+      "pick_up_currently_unavailable": "Pickup currently unavailable",
+      "pick_up_unavailable_at_html": "Pickup unavailable at {{ location_name }} ",
+      "view_store_info": "View store info",
+      "check_other_stores": "Check other stores"
     },
     "product_card": {
       "labels": {

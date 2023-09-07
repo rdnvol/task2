@@ -14,6 +14,14 @@ const selectors = {
   resetSuccess: '[data-reset-success]',
 };
 
+/**
+ *  Show/Hide recover password form
+ */
+function toggleRecoverPasswordForm() {
+  document.querySelector(selectors.recoverPasswordForm).classList.toggle('hidden');
+  document.querySelector(selectors.loginForm).classList.toggle('hidden');
+}
+
 function onShowHidePasswordForm(evt) {
   evt.preventDefault();
   toggleRecoverPasswordForm();
@@ -26,14 +34,6 @@ function checkUrlHash() {
   if (hash === '#recover') {
     toggleRecoverPasswordForm();
   }
-}
-
-/**
- *  Show/Hide recover password form
- */
-function toggleRecoverPasswordForm() {
-  document.querySelector(selectors.recoverPasswordForm).classList.toggle('hidden');
-  document.querySelector(selectors.loginForm).classList.toggle('hidden');
 }
 
 /**

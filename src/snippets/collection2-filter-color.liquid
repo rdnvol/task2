@@ -1,16 +1,23 @@
 <div class="filter-collapse">
-  <details-utils force-open animate force-restore>
-    <details class="filter-collapse__item js-filter" data-index="{{ forloop.index }}">
-      <summary class="py-3 flex justify-between items-center">
+  <details-utils
+    force-open
+    animate
+    force-restore
+  >
+    <details
+      class="filter-collapse__item js-filter"
+      data-index="{{ forloop.index }}"
+    >
+      <summary class="flex items-center justify-between py-3">
         {{ filter.label }}
-        <span class="filter-collapse__btn flex-shrink-0 mx-4"></span>
+        <span class="filter-collapse__btn mx-4 shrink-0"></span>
       </summary>
 
       <div class="overflow-hidden">
         {% if filter.values.size > 0 %}
           {% for value in filter.values %}
             {% unless forloop.index > 5 %}
-              <div class="py-3 custom-input custom-input--colors-with-text">
+              <div class="custom-input custom-input--colors-with-text py-3">
                 <input
                   id="Filter-{{ value.param_name }}--{{ forloop.index }}"
                   type="checkbox"
@@ -23,7 +30,10 @@
                     disabled
                   {% endif %}
                 >
-                <label for="Filter-{{ value.param_name }}--{{ forloop.index }}" class="custom-label flex items-center">
+                <label
+                  for="Filter-{{ value.param_name }}--{{ forloop.index }}"
+                  class="custom-label flex items-center"
+                >
                   <span class="custom-label__img-holder">
                     <span
                       style="background-color: {{ value.value }}; display: block; width: 100%; height: 100%; border-radius: 50%;"
@@ -36,9 +46,21 @@
           {% endfor %}
         {% endif %}
         {% if filter.values.size >= 5 %}
-          <more-less class="filter-collapse__btn-more-content inline-block mb-3">
-            <span id="more" class="filter-collapse__more">+ More</span>
-            <span id="less" class="filter-collapse__less">- Less</span>
+          <more-less class="filter-collapse__btn-more-content mb-3 inline-block pt-4">
+            {%
+              render 'button',
+              element: 'button',
+              data_attribute: 'data-id="more"',
+              class: 'default filter-collapse__more',
+              text: '+ More'
+            %}
+            {%
+              render 'button',
+              element: 'button',
+              data_attribute: 'data-id="less"',
+              class: 'default filter-collapse__less',
+              text: '- Less'
+            %}
 
             <script id="filter-items" data-template="1" type="application/json">
               {

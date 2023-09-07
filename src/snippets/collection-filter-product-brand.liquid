@@ -1,8 +1,11 @@
 <div class="mr-5">
-  <details class="filter-collapse__item relative py-3 js-filter disclosure-has-popup" data-index="{{ forloop.index }}">
-    <summary class="body-small flex justify-between items-center">
+  <details
+    class="filter-collapse__item js-filter disclosure-has-popup relative py-3"
+    data-index="{{ forloop.index }}"
+  >
+    <summary class="body-small flex items-center justify-between">
       {{ filter.label }}
-      <span class="filter-collapse__btn-check flex-shrink-0 ml-1"></span>
+      <span class="filter-collapse__btn-check ml-1 shrink-0"></span>
     </summary>
     <div class="filter-collapse__slide overflow-hidden">
       <div class="filter-collapse__heading body-small flex items-center justify-between space-x-2 p-4">
@@ -19,7 +22,7 @@
       </div>
       <div class="filter-collapse__holder lg:px-4">
         {% for value in filter.values %}
-          <div class="py-3 custom-input custom-input--square-with-text">
+          <div class="custom-input custom-input--square-with-text py-3">
             <input
               id="Filter-{{ value.param_name }}-{{ forloop.index }}"
               type="checkbox"
@@ -32,7 +35,10 @@
                 disabled
               {% endif %}
             >
-            <label for="Filter-{{ value.param_name }}-{{ forloop.index }}" class="custom-label flex items-center">
+            <label
+              for="Filter-{{ value.param_name }}-{{ forloop.index }}"
+              class="custom-label flex items-center"
+            >
               <span class="custom-label__check"></span>
               {{ value.label }} ({{ value.count }})
             </label>

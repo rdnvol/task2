@@ -63,18 +63,47 @@
         <p>1 Infinite Loop Cupertino, CA 95014 United States</p>
       </address>
       <strong>Anchor Tag (aka. Link)</strong>
-      <p>This is an example of a <a title="Apple" href="https://apple.com/">link</a>.</p>
+      <p>
+        This is an example of a
+        <a
+          title="Apple"
+          href="https://apple.com/"
+        >
+          link
+        </a>
+        .
+      </p>
       <strong>Emphasize Tag</strong>
-      <p>The emphasize tag should <i>italicize</i> text.</p>
-      <div class="grid md:grid-cols-2 gap-8 py-5">
+      <p>
+        The emphasize tag should
+        <i>italicize</i>
+        text.
+      </p>
+      <div>
+        <a
+          href="#"
+          class="link"
+        >
+          add try on
+        </a>
+      </div>
+      <h3>Primary button lg md sm</h3>
+      <div class="mb-7 grid gap-8 py-5 md:grid-cols-2">
         <div>
-          <div class="md:inline-block mb-2">
+          <div class="mb-2 md:inline-block">
             {%
               render 'button',
               class: 'button--lg'
             %}
           </div>
-          <div class="md:inline-block mb-2">
+          <div class="mb-2 md:inline-block">
+            {%
+              render 'button',
+              element: 'button',
+              class: 'button--lg'
+            %}
+          </div>
+          <div class="mb-2 md:inline-block">
             {%
               render 'button',
               snippet: true,
@@ -82,7 +111,7 @@
               class: 'button--lg btn--with-icon'
             %}
           </div>
-          <div class="md:inline-block mb-2">
+          <div class="mb-2 md:inline-block">
             {%
               render 'button',
               snippet: true,
@@ -91,12 +120,26 @@
               class: 'button btn button--lg'
             %}
           </div>
+          <div class="mb-2 md:inline-block">
+            {%
+              render 'button',
+              element: 'button',
+              class: 'button--lg',
+              data_attribute: 'disabled'
+            %}
+          </div>
         </div>
         <div>
-          <div class="md:inline-block mb-2">
+          <div class="mb-2 md:inline-block">
             {% render 'button' %}
           </div>
-          <div class="md:inline-block mb-2">
+          <div class="mb-2 md:inline-block">
+            {%
+              render 'button',
+              element: 'button'
+            %}
+          </div>
+          <div class="mb-2 md:inline-block">
             {%
               render 'button',
               snippet: true,
@@ -104,10 +147,7 @@
               class: 'btn--with-icon'
             %}
           </div>
-          <div class="md:inline-block mb-2">
-            <button class="button" disabled>asd</button>
-          </div>
-          <div class="md:inline-block mb-2">
+          <div class="mb-2 md:inline-block">
             {%
               render 'button',
               snippet: true,
@@ -116,15 +156,29 @@
               class: 'button btn'
             %}
           </div>
+          <div class="mb-2 md:inline-block">
+            {%
+              render 'button',
+              element: 'button',
+              data_attribute: 'disabled'
+            %}
+          </div>
         </div>
         <div>
-          <div class="md:inline-block mb-2">
+          <div class="mb-2 md:inline-block">
             {%
               render 'button',
               class: 'button--sm'
             %}
           </div>
-          <div class="md:inline-block mb-2">
+          <div class="mb-2 md:inline-block">
+            {%
+              render 'button',
+              element: 'button',
+              class: 'button--sm'
+            %}
+          </div>
+          <div class="mb-2 md:inline-block">
             {%
               render 'button',
               snippet: true,
@@ -132,7 +186,7 @@
               class: 'btn--with-icon button--sm'
             %}
           </div>
-          <div class="md:inline-block mb-2">
+          <div class="mb-2 md:inline-block">
             {%
               render 'button',
               snippet: true,
@@ -141,29 +195,123 @@
               class: 'button btn button--sm'
             %}
           </div>
-        </div>
-        <div>
-          <a href="#" class="button button--secondary">build your prescription</a>
-        </div>
-        <div>
-          <a href="#" class="button button--secondary disabled">build your prescription</a>
+          <div class="mb-2 md:inline-block">
+            {%
+              render 'button',
+              element: 'button',
+              class: 'button--sm',
+              data_attribute: 'disabled'
+            %}
+          </div>
         </div>
       </div>
-      <div class="grid md:grid-cols-2 gap-8 py-5">
+      <h3>Secondary button lg md sm</h3>
+      <div class="base-footer-background mb-7 grid gap-8 py-5 md:grid-cols-2">
         <div>
-          <a href="#" class="button button--sm">customize</a>
+          <div class="mb-2 md:inline-block">
+            {%
+              render 'button',
+              class: 'button--lg button--secondary'
+            %}
+          </div>
+          <div class="mb-2 md:inline-block">
+            {%
+              render 'button',
+              element: 'button',
+              class: 'button--lg button--secondary'
+            %}
+          </div>
+          <div class="mb-2 md:inline-block">
+            {%
+              render 'button',
+              snippet: true,
+              icon: 'search',
+              class: 'button--lg btn--with-icon button--secondary'
+            %}
+          </div>
+          <div class="mb-2 md:inline-block">
+            {%
+              render 'button',
+              snippet: true,
+              type: 'icon',
+              icon: 'search',
+              class: 'button btn button--lg button--secondary'
+            %}
+          </div>
+          <div class="mb-2 md:inline-block">
+            {%
+              render 'button',
+              element: 'button',
+              class: 'button--lg button--secondary',
+              data_attribute: 'disabled'
+            %}
+          </div>
         </div>
         <div>
-          <a href="#" class="button button--sm disabled">customize</a>
+          <div class="mb-2 md:inline-block">
+            {%
+              render 'button'
+              class: 'button--secondary'
+            %}
+          </div>
+          <div class="mb-2 md:inline-block">
+            {%
+              render 'button',
+              snippet: true,
+              icon: 'search',
+              class: 'btn--with-icon button--secondary'
+            %}
+          </div>
+          <div class="mb-2 md:inline-block">
+            {%
+              render 'button',
+              snippet: true,
+              type: 'icon',
+              icon: 'account',
+              class: 'button btn button--secondary'
+            %}
+          </div>
+          <div class="mb-2 md:inline-block">
+            {%
+              render 'button',
+              element: 'button',
+              class: 'button--secondary',
+              data_attribute: 'disabled'
+            %}
+          </div>
         </div>
         <div>
-          <a href="#" class="button button--secondary button--sm">view more</a>
-        </div>
-        <div>
-          <a href="#" class="button button--secondary button--sm disabled">view more</a>
-        </div>
-        <div>
-          <a href="#" class="link">add try on</a>
+          <div class="mb-2 md:inline-block">
+            {%
+              render 'button',
+              class: 'button--sm button--secondary'
+            %}
+          </div>
+          <div class="mb-2 md:inline-block">
+            {%
+              render 'button',
+              snippet: true,
+              icon: 'search',
+              class: 'btn--with-icon button--sm button--secondary'
+            %}
+          </div>
+          <div class="mb-2 md:inline-block">
+            {%
+              render 'button',
+              snippet: true,
+              type: 'icon',
+              icon: 'cart',
+              class: 'button btn button--sm button--secondary'
+            %}
+          </div>
+          <div class="mb-2 md:inline-block">
+            {%
+              render 'button',
+              element: 'button',
+              class: 'button--sm button--secondary',
+              data_attribute: 'disabled'
+            %}
+          </div>
         </div>
       </div>
       <table>
@@ -219,7 +367,12 @@
         <dt>Do It Live:</dt>
         <dd>
           I'll let Bill O'Reilly will
-          <a title="We'll Do It Live" href="https://www.youtube.com/watch?v=O_HyZ5aW76c">explain</a>
+          <a
+            title="We'll Do It Live"
+            href="https://www.youtube.com/watch?v=O_HyZ5aW76c"
+          >
+            explain
+          </a>
           this one.
         </dd>
       </dl>
@@ -276,16 +429,16 @@
         <li>List item four</li>
       </ol>
 
-      <div class="grid sm:grid-cols-3 gap-8 mb-5">
+      <div class="mb-5 grid gap-8 sm:grid-cols-3">
         <div>
           <h4>Image lazyload asset_img_url</h4>
           {%
             render 'image',
             asset_img_url: true,
             src: 'img-placeholder.png',
-            d: '688x',
-            src_m: 'img-placeholder.png',
-            m: '375x'
+            m: '375x',
+            src_d: 'img-placeholder.png',
+            d: '688x'
           %}
         </div>
         <div>
@@ -294,12 +447,9 @@
             render 'image',
             asset_img_url: true,
             src: 'img-placeholder.png',
-            d: '688x600',
-            src_m: 'img-placeholder.png',
             m: '375x300',
-            placeholder: 'img-placeholder.png',
-            p_d: '688x600',
-            p_m: '375x300'
+            src_d: 'img-placeholder.png',
+            d: '688x600'
           %}
         </div>
         <div>
@@ -308,9 +458,9 @@
             render 'image',
             asset_img_url: true,
             src: 'img-placeholder.png',
-            d: '688x',
-            src_m: 'img-placeholder.png',
-            m: '375x'
+            m: '375x',
+            src_d: 'img-placeholder.png',
+            d: '688x'
           %}
         </div>
         <div>
@@ -318,7 +468,7 @@
           <picture>
             <img
               src="https://via.placeholder.com/203x115"
-              class="lazyload"
+              loading="lazy"
               data-sizes="auto"
               alt="image description"
               src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="

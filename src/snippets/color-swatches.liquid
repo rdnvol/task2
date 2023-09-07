@@ -1,0 +1,79 @@
+{% assign color_option = 'products.product.color' | t | downcase %}
+
+<form>
+  <div class="-mx-1 flex flex-wrap items-center justify-center">
+    {% for option in product.options_with_values %}
+      {% assign option_name = option.name | downcase %}
+      {% liquid
+        for value in option.values
+          for variant in product.variants
+            assign current_variant_options_string = current_variant.options | join: '/'
+          endfor
+        endfor
+      %}
+
+      {% if option_name == color_option %}
+        {% for value in option.values %}
+          {% liquid
+            assign break_loop = false
+            assign fallback_found = false
+            assign fallback_option_variant = false
+
+            for variant in product.variants
+
+              assign option_variant = false
+              for variant_option_value in variant.options
+
+                if variant_option_value == value and fallback_found == false
+                  assign fallback_option_variant = variant
+                  assign fallback_found = true
+                endif
+
+                if variant_option_value == value and variant.available
+                  assign option_variant = variant
+                  assign break_loop = true
+                  break
+                endif
+
+                if break_loop
+                  break
+                endif
+
+              endfor
+
+              if break_loop
+                break
+              endif
+
+            endfor
+          %}
+
+          <div class="custom-input custom-input--colors custom-input--circle custom-input--sm mx-1 mb-2">
+            <input
+              id="field-{{ product.handle }}-{{ color_option }}-{{ forloop.index }}"
+              type="radio"
+              name="filter-color"
+              aria-label="{{ value }}"
+              data-variant-id="{{ option_variant.id }}"
+              {% if current_variant_options_string contains value %}
+                checked
+              {% endif %}
+              {% unless option_variant %}
+                disabled
+              {% endunless %}
+            >
+
+            {% assign option_variant = option_variant | default: fallback_option_variant %}
+            <label
+              for="field-{{ product.handle }}-{{ color_option }}-{{ forloop.index }}"
+              class="custom-label"
+              data-variant="{{ option_variant }}"
+            >
+              <span style="background-color: {{ option_variant.metafields.swatches.color }}"></span>
+            </label>
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endfor %}
+  </div>
+</form>

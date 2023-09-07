@@ -1,10 +1,10 @@
 {% unless grid_item_width %}
-  {% assign grid_item_width = 'col-sm-6 col-lg-3' %}
+  {% assign grid_item_width = 'sm:w-6/12 lg:w-3/12' %}
 {% endunless %}
 
 <div class="{{ grid_item_width }}">
-  <div class="product-item text-center">
-    <div class="mb-3">
+  <div class="product-item {{ image_ratio }} text-center">
+    <div class="product-item__img relative mb-3">
       {{ 'product-' | append: index | placeholder_svg_tag: 'placeholder-svg' }}
     </div>
     <div class="product-item__box">

@@ -1,8 +1,8 @@
 {% if section.blocks.size > 0 %}
-  <section class="section blog-post-section">
+  <section class="section blog-post-section overflow-hidden">
     <div class="container">
       {% if section.settings.title != blank %}
-        <h2 class="text-center">
+        <h2 class="mb-4 text-center">
           {{ section.settings.title }}
         </h2>
       {% endif %}
@@ -10,22 +10,38 @@
         {% for block in section.blocks %}
           {% assign article = articles[block.settings.article] %}
           {% if article != blank %}
-            <article class="mb-6 md:mb-0" {{ block.shopify_attributes }}>
+            {% liquid
+              if block.settings.enable_lazyload
+                assign enable_lazyload = true
+              else
+                assign enable_lazyload = false
+              endif
+            %}
+            <article
+              class="mb-6 md:mb-0"
+              {{ block.shopify_attributes }}
+            >
               {% if article.image != blank %}
-                <a href="{{ article.url }}" class="image-container mb-2">
+                <a
+                  href="{{ article.url }}"
+                  class="image-container mb-2"
+                >
                   {%
                     render 'image',
                     src: article.image,
-                    d: '413x',
-                    src_m: article.image,
-                    m: '345x',
-                    placeholder: 'img-placeholder.png',
-                    alt: article.image.alt
+                    m: '330x',
+                    src_d: article.image,
+                    d: '448x',
+                    alt: article.image.alt,
+                    lazyload: enable_lazyload
                   %}
                 </a>
               {% endif %}
-              <h3 class="mb-0">
-                <a href="{{ article.url }}" class="inline-block align-top">
+              <h3>
+                <a
+                  href="{{ article.url }}"
+                  class="inline-block align-top"
+                >
                   {{ article.title }}
                 </a>
               </h3>
@@ -34,11 +50,11 @@
                   {{ article.published_at | date: "%b %d %Y" }}
                 </time>
               </div>
-              <div class="mb-3 rte">
+              <div class="rte mb-3">
                 {{ article.excerpt_or_content }}
               </div>
               {% if article.tags.size > 0 %}
-                <ul class="flex flex-wrap space-x-3 mb-3">
+                <ul class="mb-3 flex flex-wrap space-x-3">
                   {% for tag in article.tags %}
                     <li class="mb-2">
                       <a href="/blogs/{{ article.handle | split: '/' | first }}/tagged/{{ tag | handle }}">
@@ -56,7 +72,10 @@
                   text: 'Read more',
                 %}
                 {% if article.comments_enabled? %}
-                  <a href="{{ article.comment_post_url }}" class="py-2 uppercase">
+                  <a
+                    href="{{ article.comment_post_url }}"
+                    class="py-2 uppercase"
+                  >
                     {% if article.comments_count > 0 and article.comments_count <= 1 %}
                       {{ article.comments_count | append: ' comment' }}
                     {% elsif article.comments_count > 0 %}
@@ -93,6 +112,12 @@
           "type": "article",
           "id": "article",
           "label": "Article"
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_lazyload",
+          "label": "Enable lazyload",
+          "default": true
         }
       ]
     }

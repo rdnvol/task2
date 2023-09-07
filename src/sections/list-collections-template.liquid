@@ -7,39 +7,29 @@
     <div class="page-title-block text-center">
       <h1 class="h2">{{ page_title }}</h1>
     </div>
-    <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-8">
-      {% for collection in collections %}
-        <div class="collection-item text-center">
-          <a
-            class="collection-item__img"
-            href="{{ collection.url }}"
-            title="{{ 'collections.general.link_title' | t: title: collection.title }}"
-          >
-            {% liquid
+    <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 xl:grid-cols-4">
+      {% liquid
+        if section.blocks.size > 0
+          for block in section.blocks
+            assign collection = block.settings.collection
+            if block.settings.collection_image != blank
+              assign image = block.settings.collection_image
+            else
               assign image = collection.image | default: collection.products[0].featured_image
-              if image != blank
-                render 'image', src: image, d: '303x303', src_m: image, m: '375x375', alt: image.alt, crop: 'center'
-              else
-                echo 'image' | placeholder_svg_tag: 'placeholder-svg'
-              endif
-            %}
-          </a>
-          <div class="collection-item__box">
-            <h2 class="h4 collection-item__title">
-              <a
-                href="{{ collection.url }}"
-                title="{{ 'collections.general.link_title' | t: title: collection.title }}"
-              >
-                {{- collection.title -}}
-              </a>
-            </h2>
-            <p>
-              {{ collection.all_products_count }}
-              {{ collection.all_products_count | pluralize: product_placeholder, products_placeholder }}
-            </p>
-          </div>
-        </div>
-      {% endfor %}
+            endif
+
+            if collection != blank
+              render 'collections-list-block', collection: collection, block: block, image: image
+            endif
+          endfor
+        else
+          for collection in collections
+            assign image = collection.image | default: collection.products[0].featured_image
+
+            render 'collections-list-block', collection: collection, image: image
+          endfor
+        endif
+      %}
     </div>
   </div>
 </div>
@@ -100,6 +90,11 @@
           "type": "collection",
           "id": "collection",
           "label": "Collection"
+        },
+        {
+          "type": "image_picker",
+          "id": "collection_image",
+          "label": "Collection image"
         }
       ]
     }
