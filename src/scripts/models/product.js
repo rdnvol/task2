@@ -47,7 +47,7 @@ export class Product {
 
     if (!pickupAvailabilityInfoWrapper) return false;
 
-    fetch(`${window.Shopify.routes.root}variants/${variant.id}`)
+    fetch(`${window.location.origin}/variants/${variant.id}`)
       .then((response) => response.text())
       .then((text) => {
         const pickupAvailabilityDrawerWrapper = this.wrapper.querySelector('.pickup-availability-drawer');
