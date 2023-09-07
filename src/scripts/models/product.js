@@ -37,9 +37,13 @@ export class Product {
   }
 
   updatePickupAvailability(variant) {
-    if (!variant) return false;
-
     const pickupAvailabilityInfoWrapper = this.wrapper.querySelector('[data-store-availability-container]');
+
+    if (!variant) {
+      pickupAvailabilityInfoWrapper.innerHTML = '';
+
+      return false;
+    }
 
     if (!pickupAvailabilityInfoWrapper) return false;
 
