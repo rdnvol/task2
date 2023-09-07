@@ -373,7 +373,7 @@
     </div>
 
     {%- if pick_up_availabilities.size > 0 -%}
-      {% render 'pickup-availability-drawer' %}
+      {% render 'pickup-availability-drawer', isFeaturedProduct: isFeaturedProduct %}
     {% endif %}
   </div>
   <script type="application/json" id="product-json">

@@ -5,7 +5,7 @@
     assign enable_lazyload = false
   endif
 
-  render 'product', product: section.settings.product, enable_lazyload: enable_lazyload
+  render 'product', product: section.settings.product, enable_lazyload: enable_lazyload, isFeaturedProduct: true
 %}
 
 {% schema %}
