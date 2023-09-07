@@ -1,25 +1,58 @@
-{% unless grid_item_width %}
-  {% assign grid_item_width = 'col-sm-6 col-lg-3' %}
-{% endunless %}
+{% liquid
+  assign current_variant = product.selected_or_first_available_variant
 
-<div class="{{ grid_item_width }}">
-  <div class="product-item text-center">
-    <a href="{{ product.url | within: collection }}" class="relative block mb-3">
-      {% if product.featured_image != blank %}
+  unless grid_item_width
+    assign grid_item_width = 'sm:w-6/12 lg:w-3/12'
+  endunless
+  unless image_sizes_desktop
+    assign image_sizes_desktop = '323x'
+  endunless
+  unless image_sizes_mobile
+    assign image_sizes_mobile = '155x'
+  endunless
+
+  assign fetchpriority_value = fetchpriority_value | default: 'auto'
+%}
+
+<div
+  class="{{ grid_item_width }}"
+  data-js-product-card
+>
+  <div
+    class="product-item {{ image_ratio }} text-center"
+    data-current-variant-id="{{ current_variant.id }}"
+    data-product-container-js
+  >
+    <a
+      href="{{ current_variant.url | within: collection }}"
+      class="product-item__img relative mb-3 block"
+    >
+      {% if current_variant.featured_media != blank %}
         {%
-          render "image",
-          src: product.featured_image,
-          d: '302x376',
-          src_m: product.featured_image,
-          m: '162x202',
-          placeholder: 'img-placeholder.png',
-          alt: product.featured_image.alt,
-          crop: 'center',
+          render 'image',
+          src: current_variant.featured_media.preview_image,
+          m: image_sizes_mobile,
+          src_d: current_variant.featured_media.preview_image,
+          d: image_sizes_desktop,
+          alt: current_variant.featured_media.alt,
+          lazyload: enable_lazyload,
+          fetchpriority: fetchpriority_value
+        %}
+      {% elsif product.featured_media != blank %}
+        {%
+          render 'image',
+          src: product.featured_media.preview_image,
+          m: image_sizes_mobile,
+          src_d: product.featured_media.preview_image,
+          d: image_sizes_desktop,
+          alt: product.featured_media.alt,
+          lazyload: enable_lazyload,
+          fetchpriority: fetchpriority_value
         %}
       {% else %}
         {{ 'image' | placeholder_svg_tag: "placeholder-svg" }}
       {% endif %}
-      <div class="absolute top-2 left-2 bottom-2 right-2 flex items-start">
+      <div class="absolute bottom-2 left-2 right-2 top-2 flex items-start">
         <div class="product-item__label base-label flex flex-wrap">
           {% if product.compare_at_price > product.price %}
             <div class="product-item__label-sale">{{ 'products.product_card.labels.sale' | t }}</div>
@@ -38,11 +71,44 @@
         <div class="body-small">{{ product.vendor }}</div>
       {% endif %}
       <h3 class="title mb-2">
-        <a href="{{ product.url | within: collection }}">{{ product.title }}</a>
+        <a href="{{ current_variant.url | within: collection }}">{{ product.title }}</a>
       </h3>
-      <div class="mb-2 product-price-large">
-        {% render "product-price", product: product %}
+      <div class="product-price-large mb-1 md:mb-2">
+        {% render "product-price", current_variant: current_variant, product: product %}
       </div>
+      <div
+        class="product-price-small mb-1 md:mb-2"
+        data-unit-price-wrapper
+      >
+        {% liquid
+          if current_variant.unit_price_measurement
+            echo current_variant.unit_price | money | append: ' / '
+            if current_variant.unit_price_measurement.reference_value != 1
+            echo current_variant.unit_price_measurement.reference_value | append: ' '
+            endif
+            echo current_variant.unit_price_measurement.reference_unit
+          endif
+        %}
+      </div>
+      {% liquid
+        if template.name == 'collection'
+          assign filtered = false
+          for filter in collection.filters
+            if filter.active_values.size > 0
+              assign filtered = true
+            endif
+          endfor
+          if section.settings.enable_color_swatches
+            render 'color-swatches', product: product, current_variant: current_variant, collection: collection, filtered: filtered
+          endif
+          render 'quick-add', enable_quick_add_button: enable_quick_add_button, product: product, current_variant: current_variant, filtered: filtered
+        endif
+      %}
     </div>
   </div>
+  {% if section.settings.enable_color_swatches %}
+    <script type="application/json">
+      {{ product.variants | json }}
+    </script>
+  {% endif %}
 </div>

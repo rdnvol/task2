@@ -1,14 +1,21 @@
 module.exports = {
-  // mode: 'jit',
-  purge: {
-    content: [
-      './**/*.liquid',
-      './**/components/*.js',
-      './**/components/*.jsx',
-      './**/components/*.tsx',
-    ],
-  },
-  darkMode: false, // or 'media' or 'class'
+  content: [
+    './src/**/*.liquid',
+    './src/**/*.js',
+    './src/**/*.jsx',
+    './src/**/*.tsx'
+  ],
+
+  safelist: [
+    'invisible',
+    {
+      pattern: /grid-cols-(1|2|3|4|5|6)/,
+      variants: ['sm', 'md', 'lg', 'xl', '2xl'],
+    },
+  ],
+
+  darkMode: 'class', // or 'media' or 'class'
+
   theme: {
     extend: {},
 
@@ -73,14 +80,20 @@ module.exports = {
       10: '2.5rem',
       11: '2.75rem',
       12: '3rem',
+      13: '3.25rem',
       14: '3.5rem',
+      15: '3.75rem',
       16: '4rem',
+      17: '4.25rem',
       18: '4.5rem',
+      19: '4.75rem',
       20: '5rem',
+      21: '5.25rem',
       22: '5.5rem',
       24: '6rem',
       28: '7rem',
       29: '7.25rem',
+      30: '7.5rem',
       32: '8rem',
       36: '9rem',
       40: '10rem',
@@ -138,6 +151,7 @@ module.exports = {
       screen: '100vw',
       min: 'min-content',
       max: 'max-content',
+      fit: 'fit-content',
     },
 
     height: {
@@ -161,6 +175,7 @@ module.exports = {
       screen: '100vh',
       min: 'min-content',
       max: 'max-content',
+      fit: 'fit-content',
     },
 
     order: {
@@ -179,6 +194,14 @@ module.exports = {
       10: '10',
       11: '11',
       12: '12',
+      101: '101',
+      102: '102',
+      103: '103',
+      104: '104',
+      105: '105',
+      999: '999',
+      1000: '1000',
+      1001: '1001',
     },
 
     zIndex: {
@@ -200,96 +223,19 @@ module.exports = {
       1001: '1001',
       1002: '1002',
     },
+
+    borderRadius: {
+      'none': '0',
+      'sm': '0.125rem',
+      DEFAULT: '0.25rem',
+      'md': '0.5rem',
+      'lg': '1rem',
+      'full': '100%',
+    },
   },
 
   variants: {
     extend: {},
   },
 
-  corePlugins: [
-    'preflight',
-
-    // LAYOUT
-    'container',
-    'boxSizing',
-    'display',
-    'float',
-    'isolation',
-    'objectFit',
-    'objectPosition',
-    'overflow',
-    'overscrollBehavior',
-    'position',
-    'inset',
-    'visibility',
-    'zIndex',
-
-    // FLEXBOX AND GRID
-    'flexDirection',
-    'flexWrap',
-    'flex',
-    'flexGrow',
-    'flexShrink',
-    'order',
-    'gridTemplateColumns',
-    'gridColumn',
-    'gridColumnStart',
-    'gridColumnEnd',
-    'gridTemplateRows',
-    'gridRow',
-    'gridRowStart',
-    'gridRowEnd',
-    'gridAutoFlow',
-    'gridAutoColumns',
-    'gridAutoRows',
-    'gap',
-    'justifyContent',
-    'justifyItems',
-    'justifySelf',
-    'alignContent',
-    'alignItems',
-    'alignSelf',
-    'placeContent',
-    'placeItems',
-    'placeSelf',
-
-    // SPACING
-    'padding',
-    'margin',
-    'space',
-
-    // SIZING
-    'width',
-    'minWidth',
-    'maxWidth',
-    'height',
-    'minHeight',
-    'maxHeight',
-
-    // TYPOGRAPHY
-    'textAlign',
-    'textOpacity',
-    'textDecoration',
-    'textTransform',
-    'textOverflow',
-    'verticalAlign',
-    'whitespace',
-    'wordBreak',
-
-    // EFFECTS
-    'opacity',
-    'mixBlendMode',
-    'backgroundBlendMode',
-
-    // TABLES
-    'borderCollapse',
-    'tableLayout',
-
-    // ACCESSIBILITY
-    'accessibility',
-  ],
-
-  plugins: [
-    require('@tailwindcss/aspect-ratio'),
-  ],
-}
+};

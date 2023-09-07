@@ -6,17 +6,28 @@
 
 {% layout 'gift_card' %}
 
-<header class="pt-10 pb-5">
+<header class="pb-5 pt-10">
   <div class="container">
     {% if section.settings.logo_svg != blank %}
       <div class="logo">
-        <a href="{{ routes.root_url }}" rel="nofollow">
-          <img src="{{ section.settings.logo_svg | asset_url }}" width="86" height="18" alt="Draft logo">
+        <a
+          href="{{ routes.root_url }}"
+          rel="nofollow"
+        >
+          <img
+            src="{{ section.settings.logo_svg | asset_url }}"
+            width="86"
+            height="18"
+            alt="Draft logo"
+          >
         </a>
       </div>
     {% elsif section.settings.logo != blank %}
       <div class="logo">
-        <a href="{{ routes.root_url }}" rel="nofollow">
+        <a
+          href="{{ routes.root_url }}"
+          rel="nofollow"
+        >
           <img
             src="{{ section.settings.logo | image_url: width: 172 }}"
             width="{{ section.settings.logo.width }}"
@@ -27,15 +38,20 @@
       </div>
     {% else %}
       <div class="logo-text text-center">
-        <a href="{{ routes.root_url }}" rel="nofollow">{{ section.settings.logo_text }}</a>
+        <a
+          href="{{ routes.root_url }}"
+          rel="nofollow"
+        >
+          {{ section.settings.logo_text }}
+        </a>
       </div>
     {% endif %}
   </div>
 </header>
 
-<div class="pb-10 giftcard">
+<div class="giftcard pb-10">
   <div class="container">
-    <div class="md:w-9/12 md:mx-auto text-center">
+    <div class="text-center md:mx-auto md:w-9/12">
       <h1 class="h5 mb-5">{{ 'gift_cards.issued.subtext' | t }}</h1>
       <div class="product-price-large mb-5">
         {% unless gift_card.enabled %}
@@ -65,7 +81,7 @@
         {% endif %}
       </div>
 
-      <div class="gift-card__image-wrapper {{ section.settings.qrcode_position }} mx-auto mb-5 relative">
+      <div class="gift-card__image-wrapper {{ section.settings.qrcode_position }} relative mx-auto mb-5">
         <div class="gift-card__image-card mb-5">
           {%- if section.settings.image_card != blank -%}
             <img
@@ -92,7 +108,11 @@
         </div>
       </div>
 
-      <div id="GiftCardDigits" class="mb-3" data-gift-card-digits>
+      <div
+        id="GiftCardDigits"
+        class="mb-3"
+        data-gift-card-digits
+      >
         <input
           type="text"
           class="gift-card__number text-center"
@@ -104,14 +124,20 @@
 
       <div class="gift-card__copy-code mb-3">
         <button class="button default gift-card__copy-link link">{{ 'gift_cards.issued.copy_code_text' | t }}</button>
-        <span class="gift-card__copy-success form__message body-small" role="status"></span>
+        <div
+          class="gift-card__copy-success form__message body-small mt-3 flex items-center justify-center"
+          role="status"
+        ></div>
         <template>
           {%- render 'icon', icon: 'icon-success' -%}
           {{ 'gift_cards.issued.copy_code_success' | t }}
         </template>
       </div>
       {% if gift_card.pass_url %}
-        <a href="{{ gift_card.pass_url }}" class="apple-wallet inline-block mb-3">
+        <a
+          href="{{ gift_card.pass_url }}"
+          class="apple-wallet mb-3 inline-block"
+        >
           <img
             class="apple-wallet-image"
             src="{{ 'gift-card/add-to-apple-wallet.svg' | shopify_asset_url }}"
@@ -122,11 +148,21 @@
         </a>
       {% endif %}
       <div class="mb-5">
-        <a href="{{ routes.root_url }}" rel="nofollow" class="button button--secondary" target="_blank">
+        <a
+          href="{{ routes.root_url }}"
+          rel="nofollow"
+          class="button button--secondary"
+          target="_blank"
+        >
           {{- 'gift_cards.issued.shop_link' | t -}}
         </a>
       </div>
-      <button id="PrintGiftCard" class="button" onclick="window.print();" data-gift-card-print>
+      <button
+        id="PrintGiftCard"
+        class="button"
+        onclick="window.print();"
+        data-gift-card-print
+      >
         {{ 'gift_cards.issued.print' | t }}
       </button>
     </div>

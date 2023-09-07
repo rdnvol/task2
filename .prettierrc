@@ -6,14 +6,22 @@
   "jsxSingleQuote": false,
   "useTabs": false,
   "printWidth": 120,
+  "singleAttributePerLine": true,
+  "htmlWhitespaceSensitivity": "ignore",
   "overrides": [
     {
-      "files": [
-        "**/*.liquid"
-      ],
+      "files": ["**/*.liquid"],
+      "options": {
+        "singleQuote": false
+      }
+    },
+    {
+      "files": ["**/*.scss"],
       "options": {
         "singleQuote": false
       }
     }
-  ]
+  ],
+  "plugins": ["@shopify/prettier-plugin-liquid", "prettier-plugin-tailwindcss"],
+  "pluginSearchDirs": ["./node_modules"]
 }

@@ -1,14 +1,26 @@
 {%- liquid
-  if product.title
-    assign compare_at_price = product.compare_at_price
-    assign price = product.price
-    assign variant_min_price = product.selected_or_first_available_variant.price | money
-  else
-    assign compare_at_price = 2999
-    assign price = 1999
-  endif
+  if product
+    if product.title
+      assign compare_at_price = product.compare_at_price
+      assign price = product.price
+      assign variant_min_price = product.selected_or_first_available_variant.price | money
+    else
+      assign compare_at_price = 2999
+      assign price = 1999
+    endif
 
-  assign money_price = price | money
+    assign money_price = price | money
+  elsif current_variant
+    if current_variant.title
+      assign compare_at_price = current_variant.compare_at_price
+      assign price = current_variant.price
+    else
+      assign compare_at_price = 2999
+      assign price = 1999
+    endif
+
+    assign money_price = price | money
+  endif
 -%}
 
 <div class="product-item__price">

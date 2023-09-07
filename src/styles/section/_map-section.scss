@@ -92,6 +92,12 @@
     padding: 36px;
   }
 
+  .button {
+    &.inline-flex {
+      display: inline-flex;
+    }
+  }
+
   .icon {
     margin: 0 12px 0 0;
   }
@@ -100,10 +106,4 @@
 .map-section__text-box {
   margin: 0 0 15px;
   font-style: normal;
-  &.rte {
-
-    p {
-      margin: 0 0 15px;
-    }
-  }
 }

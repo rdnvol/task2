@@ -1,0 +1,60 @@
+<div
+  id="complementary-products-container"
+  data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit={{ block.settings.product_list_limit }}&intent=complementary"
+>
+  {%- if recommendations.performed and recommendations.products_count > 0 -%}
+    <ul class="accordion js-complementary-accordion">
+      <li class="open">
+        <button
+          type="button"
+          class="accordion__opener title w-100"
+          aria-expanded="true"
+          aria-controls="complementary-products"
+          id="complementary-accordion"
+        >
+          {{ block.settings.block_heading | default: 'Pairs well with' }}
+        </button>
+        <div
+          id="complementary-products"
+          class="accordion__slide"
+          role="region"
+          aria-labelledby="complementary-accordion"
+        >
+          <div class="accordion__block">
+            {%- for product in recommendations.products limit: block.settings.products_per_page offset: continue -%}
+              <div class="accordion__block-item mb-4 flex">
+                <a
+                  href="{{ product.url | within: collection }}"
+                  class="accordion__product-img mr-4 shrink-0"
+                >
+                  {% if product.featured_image %}
+                    {%
+                      render 'image',
+                      src: product.featured_image,
+                      m: '90x',
+                    %}
+                  {% else %}
+                    {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                  {% endif %}
+                </a>
+                <div>
+                  <div class="title mb-2">
+                    <a
+                      href="{{ product.url | within: collection }}"
+                      class="no-underline hover:underline"
+                    >
+                      {{ product.title }}
+                    </a>
+                  </div>
+                  <div class="product-price-large">
+                    {% render "product-price", product: product %}
+                  </div>
+                </div>
+              </div>
+            {%- endfor -%}
+          </div>
+        </div>
+      </li>
+    </ul>
+  {%- endif -%}
+</div>

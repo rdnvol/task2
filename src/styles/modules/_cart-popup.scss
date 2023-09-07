@@ -5,12 +5,12 @@
   width: 100%;
   font-size: $font-size-base - 2px;
   background: $base-body-background;
-  border: 1px solid $base-border;
+  box-shadow: 0 14px 38px rgba(0, 0, 0, 0.06);
   transition: transform $animation-speed ease;
-  transform: translateY(-100%);
+  transform: translateY(-150%);
   @include media("≥tablet") {
     right: 0;
-    width: 372px;
+    width: 345px;
   }
   &.active {
     transform: translateY(0);
@@ -22,7 +22,7 @@
 }
 
 .cart-popup__heading {
-  padding: 10px 14px;
+  padding: 10px 15px;
 }
 
 button.cart-popup__close {
@@ -44,27 +44,22 @@ button.cart-popup__close {
 }
 
 .cart-popup__holder {
-  padding: 20px 15px;
+  padding: 0 15px 10px;
+}
+
+.cart-popup__img {
+  width: 64px;
   @include media("≥tablet") {
-    padding-top: 30px;
+    width: 90px;
   }
 }
 
 .cart-popup__item {
-  margin: 0 0 15px;
 
   p {
     margin: 0 0 8px;
     &:last-child {
       margin: 0;
     }
-  }
-}
-
-.cart-popup__item__title {
-  margin: 0 0 8px;
-  font-weight: bold;
-  @include media("≥tablet") {
-    font-size: $font-size-base;
   }
 }
