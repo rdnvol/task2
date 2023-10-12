@@ -37,13 +37,17 @@ export class Product {
   }
 
   updatePickupAvailability(variant) {
-    if (!variant) return false;
-
     const pickupAvailabilityInfoWrapper = this.wrapper.querySelector('[data-store-availability-container]');
+
+    if (!variant) {
+      pickupAvailabilityInfoWrapper.innerHTML = '';
+
+      return false;
+    }
 
     if (!pickupAvailabilityInfoWrapper) return false;
 
-    fetch(`${window.Shopify.routes.root}variants/${variant.id}`)
+    fetch(`${window.location.origin}/variants/${variant.id}`)
       .then((response) => response.text())
       .then((text) => {
         const pickupAvailabilityDrawerWrapper = this.wrapper.querySelector('.pickup-availability-drawer');

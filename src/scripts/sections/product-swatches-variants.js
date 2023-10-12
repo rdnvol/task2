@@ -156,6 +156,7 @@ class ProductSwatchesVariant extends Product {
   }
 
   onOptionChange(variant) {
+    this.updatePickupAvailability(variant);
     this.updateVariantPrice(variant);
     this.updateSubmitButton(variant);
     this.updateVariantUrl(variant);

@@ -3,6 +3,10 @@
   tabindex="-1"
   role="dialog"
 >
+  {% if isFeaturedProduct %}
+    {%- assign product = section.settings.product %}
+  {% endif %}
+
   {%- assign pick_up_availabilities = product.selected_or_first_available_variant.store_availabilities | where: 'pick_up_enabled', true -%}
   <div class="pickup-availability-header">
     <div class="mb-5 flex items-start justify-between">
