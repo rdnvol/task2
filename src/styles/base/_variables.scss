@@ -91,8 +91,7 @@ $secondary-button-text-on-disabled: var(--secondary-button-text-on-disabled) !de
 $secondary-button-border-on-disabled: var(--secondary-button-border-on-disabled) !default;
 $secondary-button-background-on-disabled: var(--secondary-button-background-on-disabled) !default;
 
-$button-padding: 12px 15px !default;
-$button-font-size: inherit !default;
+$button-padding: 13px 20px !default;
 $button-border-radius: var(--button-border-radius) !default;
 
 // Dynamic buttons
@@ -110,14 +109,14 @@ $dynamic-checkout-button-border-on-disabled: var(--checkout-button-border-on-dis
 $dynamic-checkout-button-background-on-disabled: var(--checkout-button-background-on-disabled) !default;
 
 // Forms
-$form-element-padding: $button-padding !default;
-$form-element-border-color: #e5e5e5 !default;
-$form-element-focus-border-color: #000 !default;
-$placeholder-color: #999 !default;
+$form-element-padding: 12px 15px !default;
+$form-element-border-color: $base-border !default;
+$form-element-focus-border-color: $base-body-text !default;
+$placeholder-color: $base-secondary-text !default;
 $height-form-elements: 44px;
 $height-button-large: 48px;
-$height-button-medium: 40px;
-$height-button-small: 32px;
+$height-button-medium: 44px;
+$height-button-small: 36px;
 
 // Headers
 $headings-font-size: var(--heading-font-size);
@@ -136,7 +135,7 @@ $h2-font-size-desktop: calc(#{$headings-font-size} + 4px) !default;  // 40px
 $h3-font-size-desktop: $headings-font-size !default;                 // 36px
 $h4-font-size-desktop: calc(#{$headings-font-size} - 4px) !default;  // 32px
 $h5-font-size-desktop: calc(#{$headings-font-size} - 10px) !default; // 26px
-$h6-font-size-desktop: calc(#{$headings-font-size} - 12px) !default; // 22px
+$h6-font-size-desktop: calc(#{$headings-font-size} - 14px) !default; // 22px
 
 $logo-width: var(--header-logo-width);
 
@@ -144,4 +143,4 @@ $animation-speed: 0.3s;
 $menu-animation-speed: 0.2s;
 
 // Grid variables
-$grid-gutter-width: 32px;
+$grid-gutter-width: 30px;

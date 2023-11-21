@@ -1,0 +1,47 @@
+.collapsible-item {
+  margin-top: -1px;
+  border-width: 1px 0;
+  border-style: solid;
+  border-color: $base-border;
+}
+
+.collapsible-item__img {
+  @include media ("<tablet") {
+    margin: 0 calc(#{-$grid-gutter-width} / 2);
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.collapsible-item__opener {
+  position: relative;
+  padding-right: 20px;
+  list-style: none;
+  cursor: pointer;
+  &::-webkit-details-marker {
+    display: none;
+  }
+
+  .icon--checkmark {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    margin-right: 7px;
+  }
+
+  .icon--caret {
+    position: absolute;
+    top: 50%;
+    right: 5px;
+    width: 10px;
+    transform: translateY(-50%);
+
+    [open] & {
+      transform: translateY(-50%) rotate(180deg);
+    }
+  }
+}

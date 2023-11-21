@@ -8,13 +8,18 @@
           </summary>
           <div class="menu-accordion__slide">
             <div class="container">
-              <div class="lg:flex lg:space-x-8">
+              <div class="xl:flex xl:space-x-8">
                 {% for child_link in link.links %}
-                  <div class="lg:w-3/12">
+                  <div class="xl:w-3/12">
                     {% if child_link.links != blank %}
-                      <div class="h5 h">{{ child_link.title }}</div>
+                      <div class="h5 h mb-5">{{ child_link.title }}</div>
                     {% else %}
-                      <a href="{{ child_link.url }}" class="h5 h">{{ child_link.title }}</a>
+                      <a
+                        href="{{ child_link.url }}"
+                        class="h5 h mb-5"
+                      >
+                        {{ child_link.title }}
+                      </a>
                     {% endif %}
                     {% if child_link.links != blank %}
                       <ul>

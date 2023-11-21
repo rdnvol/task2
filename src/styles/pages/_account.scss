@@ -1,27 +1,10 @@
-.account-section {
-  padding: 60px 0;
-  @include media("≥tablet") {
-    padding: 120px 0;
-  }
-}
-
 .account-page__title {
   margin: 0 0 64px;
   @include media("≥tablet") {
     margin: 0 0 74px;
   }
 
-  h1,
-  .h1,
-  h2,
-  .h2,
-  .h {
-    &:only-child {
-      margin-bottom: 0;
-    }
-  }
-
-  p {
+  > * {
     &:last-child {
       margin-bottom: 0;
     }
@@ -34,17 +17,7 @@
     margin: 0 0 44px;
   }
 
-  h1,
-  .h1,
-  h2,
-  .h2,
-  .h {
-    &:only-child {
-      margin-bottom: 0;
-    }
-  }
-
-  p {
+  > * {
     &:last-child {
       margin-bottom: 0;
     }
@@ -53,11 +26,14 @@
 
 .account-form {
   @extend %clearfix;
-  max-width: 300px;
+  max-width: 450px;
   margin: 0 auto;
   color: $base-body-text;
   &.account-form--address {
     max-width: 100%;
+    @include media("≥tablet") {
+      border-bottom: 1px solid $base-border;
+    }
   }
 
   select {
@@ -65,74 +41,56 @@
     width: 100%;
   }
 
-  button {
-    min-width: 300px;
-    @include media("≥tablet") {
-      min-width: 100%;
+  > .input-holder {
+    &:last-child {
+      margin-bottom: 0;
     }
   }
+}
 
-  .button--address {
-    min-width: 100%;
+.account__customer-addresses {
+
+  & + & {
+    padding-top: 40px;
   }
 }
 
-button.button-add-new-address {
-  min-width: 280px;
-}
-
-.open-close__account__holder {
-  padding: 60px 0;
-}
-
-.input-holder {
-  position: relative;
-  &[data-aria-hidden="true"] {
-    display: none;
+.account__address {
+  &::first-line {
+    font-weight: 600;
+    @include media ("≥widescreen") {
+      font-size: calc(#{$font-size-base} + 2px); // 18px
+    }
   }
 }
 
-.account-form__actions {
+.account__holder-box {
+  padding: 0 0 16px;
+  border-bottom: 1px solid $base-border;
+  @include media("≥tablet") {
+    padding: 0 0 40px;
+  }
+}
+
+.errors {
   margin: 0 0 20px;
-  @include media("≥desktop") {
-    margin: 0 0 30px;
-  }
-}
+  padding: 10px;
+  color: $messages-error;
+  text-align: center;
 
-.account__block__item-holder {
-  @include media("≥tablet") {
-    margin-bottom: -45px;
-  }
-}
-
-.account__block__item {
-  margin: 0 0 30px;
-  @include media("≥tablet") {
-    margin-bottom: 45px;
+  .account-form & {
+    background-color: $messages-error-light;
   }
 
-  p {
-    margin-bottom: 0;
+  a {
+    color: inherit;
   }
 }
 
 .order-table {
   width: 100%;
-  margin: 0 0 30px;
+  table-layout: fixed;
   border-collapse: collapse;
-  @include media ("≥desktop") {
-    margin: 0 0 60px;
-  }
-
-  .order-name {
-    @extend %h5;
-    margin: 0;
-    font-weight: normal;
-
-    a {
-      text-decoration: none;
-    }
-  }
 
   thead {
     @include media("≤767px") {
@@ -155,27 +113,25 @@ button.button-add-new-address {
   }
 
   tr {
-    border-bottom: 1px solid #d0d2d3;
+    border-bottom: 1px solid $base-border;
   }
 
   th {
-    font-weight: 600;
+    text-align: left;
+    @extend %title;
   }
 
   th,
   td {
-    text-align: left;
+    padding: 10px 0;
   }
 
   td {
-    padding: 10px 0;
     @include media("≤767px") {
       position: relative;
       display: flex;
+      justify-content: space-between;
       width: 100%;
-    }
-    @include media("≥tablet") {
-      padding: 20px 0;
     }
     &:empty {
       @include media("≤767px") {
@@ -187,14 +143,21 @@ button.button-add-new-address {
         content: attr(data-label);
         vertical-align: top;
         flex-shrink: 0;
-        width: 130px;
-        padding: 0 10px 0 0;
+        width: 158px;
+        padding: 0 5px 0 0;
         font-family: $font-body;
         font-size: $font-size-base;
         line-height: $base-line-height;
         font-weight: 600;
         font-style: $font-body-style;
       }
+    }
+  }
+
+  a {
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
     }
   }
 
@@ -214,34 +177,96 @@ button.button-add-new-address {
   }
 }
 
-.account__header {
-  margin: 0 0 30px;
-  padding: 0 0 13px;
+.order__history-table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+
+  tr {
+    vertical-align: top;
+    border-bottom: 1px solid $base-border;
+    @include media ("≥tablet") {
+      vertical-align: middle;
+    }
+  }
+
+  th {
+    font-weight: normal;
+  }
+
+  th,
+  td {
+    text-align: left;
+    &:first-child {
+      @include media ("≥tablet") {
+        width: 55%;
+      }
+    }
+    &:nth-child(2) {
+      width: 15%;
+      text-align: right;
+      @include media ("<tablet") {
+        display: none;
+      }
+    }
+    &:nth-child(3) {
+      width: 15%;
+      text-align: right;
+      @include media ("<tablet") {
+        display: none;
+      }
+    }
+    &:nth-child(4) {
+      width: 15%;
+      text-align: right;
+      @include media ("<tablet") {
+        display: none;
+      }
+    }
+  }
+
+  .title {
+
+    a {
+      text-decoration: none;
+    }
+  }
+
+  .order__img {
+    width: 64px;
+    @include media ("≥tablet") {
+      width: 90px;
+    }
+  }
+}
+
+.order__summary {
+
+  > div {
+    border-bottom: 1px solid $base-border;
+  }
+}
+
+.order__box-title {
   border-bottom: 1px solid $base-border;
-  @include media("≥tablet") {
-    padding: 0 0 16px;
-  }
 }
 
-.account__sub-title {
-  margin: 0 0 20px;
-  text-transform: uppercase;
-}
-
-.account__customer-addresses {
-  & + & {
-    margin-top: 44px;
+.account__back-link {
+  position: relative;
+  display: inline-block;
+  padding-left: 11px;
+  &::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 8px;
+    height: 8px;
+    margin-top: -4px;
+    border-top: 2px solid $base-body-text;
+    border-left: 2px solid $base-body-text;
+    transform: rotate(-45deg);
   }
-
-  .button--address {
-    min-width: 100%;
-  }
-}
-
-.errors {
-  margin: 0 0 15px;
-  color: $messages-error;
-  text-align: center;
 }
 
 .shopify-challenge__container {

@@ -16,8 +16,6 @@ config/shopify.yml
 npm-debug.log
 .env
 .env.*
-src/assets/theme.css.liquid
-src/assets/theme.js
 
 # Compiled source #
 ###################
@@ -74,6 +72,17 @@ secrets.json
 src/assets/*.js.map
 Jenkinsfile
 stats.json
+src/assets/theme.css.liquid
+src/assets/theme.js
+src/assets/theme.js.LICENCE.txt
+src/assets/chunk.*.js
+src/assets/chunk.*.js.LICENCE.txt
+src/assets/layout.*.js
+src/assets/layout.*.js.LICENCE.txt
+src/assets/template.*.js
+src/assets/template.*.js.LICENCE.txt
+src/snippets/script-tags.liquid
+src/snippets/style-tags.liquid
 
 # Cypress #
 #####################

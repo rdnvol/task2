@@ -1,8 +1,16 @@
-{% render 'product', product: section.settings.product %}
+{% liquid
+  if section.settings.enable_lazyload
+    assign enable_lazyload = true
+  else
+    assign enable_lazyload = false
+  endif
+
+  render 'product', product: section.settings.product, enable_lazyload: enable_lazyload
+%}
 
 {% schema %}
 {
-  "name": "Product",
+  "name": "Featured product",
   "settings": [
     {
       "type": "product",
@@ -13,6 +21,12 @@
       "type": "checkbox",
       "id": "show_quantity",
       "label": "Show quantity selector",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_lazyload",
+      "label": "Enable lazyload",
       "default": true
     },
     {
@@ -42,6 +56,38 @@
   ],
   "blocks": [
     {
+      "type": "text",
+      "name": "Text",
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "text",
+          "default": "Text",
+          "label": "Text"
+        },
+        {
+          "type": "select",
+          "id": "text_style",
+          "default": "caption-with-letter-spacing",
+          "label": "Text style",
+          "options": [
+            {
+              "value": "",
+              "label": "Body"
+            },
+            {
+              "value": "body-large",
+              "label": "Subtitle"
+            },
+            {
+              "value": "caption-with-letter-spacing",
+              "label": "Uppercase"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "type": "vendor",
       "name": "Vendor",
       "limit": 1
@@ -49,7 +95,15 @@
     {
       "type": "title",
       "name": "Title",
-      "limit": 1
+      "limit": 1,
+      "settings": [
+        {
+          "type": "color",
+          "id": "title_color",
+          "label": "Title color",
+          "default": "#000"
+        }
+      ]
     },
     {
       "type": "price",
@@ -89,15 +143,33 @@
       "type": "share",
       "name": "Share",
       "limit": 1
+    },
+    {
+      "type": "custom_liquid",
+      "name": "Custom liquid",
+      "settings": [
+        {
+          "type": "liquid",
+          "id": "custom_liquid",
+          "label": "Custom liquid",
+          "info": "Add app snippets or other Liquid code to create advanced customizations."
+        }
+      ]
+    },
+    {
+      "type": "@app"
     }
   ],
   "presets": [
     {
-      "name": "Product",
+      "name": "Featured product",
       "category": "Product",
       "blocks": [
         {
           "type": "vendor"
+        },
+        {
+          "type": "text"
         },
         {
           "type": "title"
@@ -119,6 +191,9 @@
         },
         {
           "type": "share"
+        },
+        {
+          "type": "custom_liquid"
         }
       ]
     }

@@ -7,13 +7,19 @@
     data-days="{{ section.settings.days }}"
     style="display: none;"
   >
-    <div class="text-center age-popup__box rte">
+    <div class="age-popup__box rte text-center">
       {% if section.settings.custom_html != blank %}
         {{ section.settings.custom_html }}
       {% else %}
         {{ section.settings.text }}
         <div class="h3 mb-4">{{ section.settings.title }}</div>
-        <button type="button" class="button" data-fancybox-close>{{ section.settings.button_text }}</button>
+        <button
+          type="button"
+          class="button"
+          data-fancybox-close
+        >
+          {{ section.settings.button_text }}
+        </button>
       {% endif %}
     </div>
   </div>

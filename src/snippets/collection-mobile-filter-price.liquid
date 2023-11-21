@@ -1,14 +1,25 @@
 <div class="filter-collapse relative lg:mr-5">
-  <details-utils close-esc close-click-outside="(min-width: 1024px)" force-close="(min-width: 1024px)" force-restore>
-    <details class="filter-collapse__item js-filter" data-index="mobile-{{ forloop.index }}">
-      <summary class="py-3 flex justify-between items-center">
+  <details-utils
+    close-esc
+    close-click-outside="(min-width: 1024px)"
+    force-close="(min-width: 1024px)"
+    force-restore
+  >
+    <details
+      class="filter-collapse__item js-filter"
+      data-index="mobile-{{ forloop.index }}"
+    >
+      <summary class="flex items-center justify-between py-3">
         {{ filter.label }}
-        <span class="filter-collapse__btn flex-shrink-0 mx-4 lg:ml-0"></span>
+        <span class="filter-collapse__btn mx-4 shrink-0 lg:ml-0"></span>
       </summary>
 
       <div class="filter-collapse__slide overflow-hidden">
-        <div class="filter-collapse__heading hidden lg:flex lg:items-center lg:justify-between lg:space-x-2 lg:p-4 body-small">
-          <div>{{ 'collections.filters.filter_product_price' | t }}</div>
+        <div class="filter-collapse__heading body-small hidden lg:flex lg:items-center lg:justify-between lg:space-x-2 lg:p-4">
+          {% liquid
+            assign max_price_amount = filter.range_max | money | strip_html | escape
+          %}
+          <div>{{ 'collections.filters.filter_product_price' | t: amount: max_price_amount }}</div>
           <div>
             <facet-remove>
               <a href="{{ filter.url_to_remove }}">{{ 'collections.filters.reset' | t }}</a>
@@ -18,14 +29,17 @@
 
         <price-range class="facets__price flex items-center py-3 lg:p-4">
           <div class="w-100">
-            <label for="Filter-{{ filter.min_value.param_name }}" class="inline-block mb-2">
+            <label
+              for="Filter-{{ filter.min_value.param_name }}"
+              class="mb-2 inline-block"
+            >
               {{- 'collections.filters.minimum_price' | t -}}
             </label>
             <div class="relative">
               <span class="range-slider__suffix body-medium">{{ cart.currency.symbol }}</span>
               <input
                 type="number"
-                class="range-slider__input text-right w-100"
+                class="range-slider__input w-100 text-right"
                 inputmode="numeric"
                 name="{{ filter.min_value.param_name }}"
                 id="Filter-{{ filter.min_value.param_name }}"
@@ -37,13 +51,16 @@
               >
             </div>
           </div>
-          <div class="flex-shrink-0 mx-4 mb-3">{{ 'collections.filters.to' | t }}</div>
+          <div class="mx-4 mb-3 shrink-0">{{ 'collections.filters.to' | t }}</div>
           <div class="w-100">
-            <label for="Filter-{{ filter.max_value.param_name }}" class="inline-block mb-2">
+            <label
+              for="Filter-{{ filter.max_value.param_name }}"
+              class="mb-2 inline-block"
+            >
               {{- 'collections.filters.maximum_price' | t -}}
             </label>
             <div class="relative">
-              <span class="range-slider__suffix body-medium base-secondary-text-color absolute top-2 left-3">
+              <span class="range-slider__suffix body-medium base-secondary-text-color absolute left-3 top-2">
                 {{- cart.currency.symbol -}}
               </span>
               <input

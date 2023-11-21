@@ -1,7 +1,7 @@
 {
   "sections": {
     "product": {
-      "type": "product-swatcher-variants",
+      "type": "product-swatches-variants",
       "blocks": {
         "vendor": {
           "type": "vendor",
@@ -59,9 +59,9 @@
       "settings": {
         "show_variant_label": true,
         "show_size_chart": true,
-        "show_breadcrumbs": false,
+        "show_breadcrumbs": true,
         "size_chart_url": "shopify://pages/size-chart",
-        "swatcher_color_type": "metafields"
+        "swatches_color_type": "metafields"
       }
     },
     "product-recommendations": {

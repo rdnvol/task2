@@ -1,66 +1,64 @@
-{% liquid
-  if section.settings.blog_hero_display
-    render 'blog-hero', section: section
-  endif
-%}
-
 <div class="section">
   <div class="container">
     <div class="grid grid-cols-1 md:grid-cols-2 md:gap-x-8 md:gap-y-10">
       {% for article in blog.articles %}
         <article class="post">
           {% if article.image %}
-            <a href="{{ article.url }}" class="block">
+            <a
+              href="{{ article.url }}"
+              class="post__block-img block"
+            >
               {%
                 render 'image',
                 src: article.image.src,
-                d: '690x460',
-                p_d: '690x460',
-                src_m: article.image.src,
-                m: '375x250',
-                p_m: '375x250',
-                alt: article.image.alt,
-                placeholder: 'img-placeholder.png',
-                crop: 'center',
+                m: '375x',
+                src_d: article.image.src,
+                d: '690x',
+                alt: article.image.alt
               %}
             </a>
           {% endif %}
 
           <div class="py-4 md:py-5">
-            <h2 class="h5">
+            <h2 class="h5 mb-4 md:mb-3">
               <a href="{{ article.url }}">{{ article.title }}</a>
             </h2>
-            <div class="mb-4 base-secondary-text">
+            <div class="base-secondary-text mb-3 md:mb-4">
               {{ article.published_at | time_tag: format: 'month_day_year' }}
             </div>
             {% if blog.comments_enabled? %}
-              <div class="mb-4">
+              <div class="mb-3 md:mb-4">
                 <a href="{{ article.url }}#comments">
                   {{ 'blogs.comments.with_count' | t: count: article.comments_count }}
                 </a>
               </div>
             {% endif %}
-            <div class="rte mb-4">
+            <div class="rte mb-3">
               {% if article.excerpt.size > 0 %}
                 {{ article.excerpt }}
               {% else %}
                 {{ article.content | strip_html | truncate: 150 }}
               {% endif %}
             </div>
-            <a href="{{ article.url }}" class="link">Read more</a>
+            <a
+              href="{{ article.url }}"
+              class="link"
+            >
+              Read more
+            </a>
           </div>
         </article>
       {% endfor %}
     </div>
   </div>
 </div>
-
-<style>
-  .blog-hero::after {
-    background: rgba(0, 0, 0, 0.6);
-  }
-</style>
-
+{% if section.settings.blog_hero_background != blank and section.settings.blog_hero_background.alpha != 0 and section.settings.blog_hero_layout == 'text' %}
+  <style>
+    .blog-hero::after {
+      background: {{ section.settings.blog_hero_background }};
+    }
+  </style>
+{% endif %}
 {% schema %}
 {
   "name": "Blog",
@@ -68,6 +66,12 @@
     {
       "type": "header",
       "content": "Blog hero"
+    },
+    {
+      "type": "color",
+      "id": "blog_hero_background",
+      "label": "Blog hero background",
+      "default": "rgba(0, 0, 0, 0.6)"
     },
     {
       "type": "checkbox",
@@ -95,6 +99,12 @@
       "type": "image_picker",
       "id": "blog_hero_image",
       "label": "Blog Hero image"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_blog_hero_lazyload",
+      "label": "Enable blog hero lazyload",
+      "default": true
     },
     {
       "type": "checkbox",

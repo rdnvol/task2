@@ -4,19 +4,26 @@
 
 <div class="product-main-block__details product-main-block__details--sticky body-2">
   <div class="product__vendor body-2">
-    by <mark>{{ product.vendor }}</mark>
+    by
+    <mark>{{ product.vendor }}</mark>
   </div>
   <h1 class="product__title h3">
     {{ product.title }}
   </h1>
   {% form 'product', product, data-product-form: '', data-product-handle: product.handle, data-enable-history-state: 'true' %}
-    <div class="product__price" data-price-wrapper>
+    <div
+      class="product__price"
+      data-price-wrapper
+    >
       <div class="product__price__box h5 flex flex-wrap items-center">
         {% if product.compare_at_price_max > product.price %}
           <ins data-product-price>
             {{ product.compare_at_price_max | money }}
           </ins>
-          <span class="accessibility" data-compare-text>
+          <span
+            class="accessibility"
+            data-compare-text
+          >
             {{ 'products.product.regular_price' | t }}
           </span>
           {% if current_variant.compare_at_price > current_variant.price %}
@@ -57,10 +64,19 @@
       {% endfor %}
     {% endunless %}
     <div class="product__row">
-      <div class="sm:flex mb-2">
+      <div class="mb-2 sm:flex">
         <div class="sm:w-7/12 lg:w-5/12">
-          <label class="product__label" for="size">Variant</label>
-          <select name="id" id="size" class="product__select w-100">
+          <label
+            class="product__label"
+            for="size"
+          >
+            Variant
+          </label>
+          <select
+            name="id"
+            id="size"
+            class="product__select w-100"
+          >
             {% for variant in product.variants %}
               <option
                 {% if variant == current_variant %}
@@ -80,11 +96,20 @@
       <div class="lg:flex">
         <div class="lg:w-8/12">
           <div class="lg:flex lg:space-x-8">
-            <div class="lg:w-6/12 mb-4 lg:mb-0 custom-form">
-              <label class="product__label accessibility" for="Quantity">
+            <div class="custom-form mb-4 lg:mb-0 lg:w-6/12">
+              <label
+                class="product__label accessibility"
+                for="Quantity"
+              >
                 {{ 'products.product.quantity' | t }}
               </label>
-              <input type="number" id="Quantity" name="quantity" value="1" min="1">
+              <input
+                type="number"
+                id="Quantity"
+                name="quantity"
+                value="1"
+                min="1"
+              >
             </div>
             <div class="lg:w-6/12">
               {%
@@ -126,7 +151,12 @@
           {% endif %}
         </div>
         <div class="product__row">
-          <button type="button" class="w-100">Buy it now</button>
+          <button
+            type="button"
+            class="w-100"
+          >
+            Buy it now
+          </button>
         </div>
       </div>
     </div>
@@ -134,7 +164,12 @@
 
   <ul class="accordion js-accordion mb-6">
     <li class="open">
-      <button type="button" class="accordion__opener w-100 title">Product Details</button>
+      <button
+        type="button"
+        class="accordion__opener title w-100"
+      >
+        Product Details
+      </button>
       <div class="accordion__slide">
         <div class="accordion__block">
           <div class="title mb-2">DJI Mavic Air 2 Key Features</div>
@@ -155,7 +190,12 @@
       </div>
     </li>
     <li>
-      <button type="button" class="accordion__opener w-100 title">Specifications</button>
+      <button
+        type="button"
+        class="accordion__opener title w-100"
+      >
+        Specifications
+      </button>
       <div class="accordion__slide">
         <div class="accordion__block">
           <dl>
@@ -184,7 +224,12 @@
       </div>
     </li>
     <li>
-      <button type="button" class="accordion__opener w-100 title">Warranty & Services</button>
+      <button
+        type="button"
+        class="accordion__opener title w-100"
+      >
+        Warranty & Services
+      </button>
       <div class="accordion__slide">
         <div class="accordion__block">
           <div class="body-2">
@@ -194,7 +239,12 @@
       </div>
     </li>
     <li>
-      <button type="button" class="accordion__opener w-100 title">hipping & Returns</button>
+      <button
+        type="button"
+        class="accordion__opener title w-100"
+      >
+        hipping & Returns
+      </button>
       <div class="accordion__slide">
         <div class="accordion__block">
           <ul>

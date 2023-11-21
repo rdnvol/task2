@@ -1,0 +1,208 @@
+<ul class="accordion js-accordion">
+  <li>
+    <button
+      type="button"
+      class="accordion__opener title w-100"
+      aria-expanded="false"
+      aria-controls="sect1"
+      id="accordion1id"
+    >
+      Product Details
+    </button>
+    <div
+      id="sect1"
+      class="accordion__slide"
+      role="region"
+      aria-labelledby="accordion1id"
+    >
+      <div class="accordion__block">
+        <div class="title mb-2">DJI Mavic Air 2 Key Features</div>
+        <ul>
+          <li>8K Hyperlapse Time-Lapse Video</li>
+          <li>8K Hyperlapse Time-Lapse Video</li>
+          <li>8K Hyperlapse Time-Lapse Video</li>
+          <li>8K Hyperlapse Time-Lapse Video</li>
+        </ul>
+        <div class="body-2">
+          <p>
+            A midrange drone with flagship features, the DJI Mavic Air 2 combines a foldable and portable frame with a
+            high-end camera system. The 3-axis gimbal sports a 1/2" CMOS sensor capable of capturing 8K Hyperlapse
+            time-lapse shots, 4K60 video, 240 fps slow-motion 1080p video, and up to 48MP stills.
+          </p>
+        </div>
+      </div>
+    </div>
+  </li>
+  <li>
+    <button
+      type="button"
+      class="accordion__opener title w-100"
+      aria-expanded="false"
+      aria-controls="sect2"
+      id="accordion2id"
+    >
+      Specifications
+    </button>
+    <div
+      id="sect2"
+      class="accordion__slide"
+      role="region"
+      aria-labelledby="accordion2id"
+    >
+      <div class="accordion__block">
+        <dl>
+          <dt>Brand</dt>
+          <dd>DJI</dd>
+          <dt>Dimensions - Depth</dt>
+          <dd>DJI</dd>
+          <dt>Brand</dt>
+          <dd>DJI</dd>
+          <dt>Dimensions - Depth</dt>
+          <dd>CP.MA.0000017603</dd>
+          <dt>Brand</dt>
+          <dd>DJI</dd>
+          <dt>Brand</dt>
+          <dd>DJI</dd>
+          <dt>Brand</dt>
+          <dd>DJI</dd>
+          <dt>Brand</dt>
+          <dd>DJI</dd>
+          <dt>Brand</dt>
+          <dd>DJI</dd>
+          <dt>Brand</dt>
+          <dd>DJI</dd>
+        </dl>
+      </div>
+    </div>
+  </li>
+  <li>
+    <button
+      type="button"
+      class="accordion__opener title w-100"
+      aria-expanded="false"
+      aria-controls="sect3"
+      id="accordion3id"
+    >
+      Warranty & Services
+    </button>
+    <div
+      id="sect3"
+      class="accordion__slide"
+      role="region"
+      aria-labelledby="accordion3id"
+    >
+      <div class="accordion__block">
+        <div class="body-2">
+          <p>Free Technical Support</p>
+        </div>
+      </div>
+    </div>
+  </li>
+  <li>
+    <button
+      type="button"
+      class="accordion__opener title w-100"
+      aria-expanded="false"
+      aria-controls="sect4"
+      id="accordion4id"
+    >
+      hipping & Returns
+    </button>
+    <div
+      id="sect4"
+      class="accordion__slide"
+      role="region"
+      aria-labelledby="accordion4id"
+    >
+      <div class="accordion__block">
+        <ul>
+          <li>Standard shipping via UPS Ground is included in the quoted price.</li>
+          <li>Express shipping is via UPS.</li>
+          <li>Please choose your shipping method at checkout.</li>
+          <li>
+            An additional Shipping and Handling fee will apply to express shipments. This fee will be quoted at
+            checkout.
+          </li>
+          <li>
+            Delivery is available to Alaska, Hawaii and Puerto Rico; however, an additional Shipping and Handling fee
+            will apply. This fee will be quoted at checkout. Additional transit time may also be required.
+          </li>
+        </ul>
+      </div>
+    </div>
+  </li>
+  <li class="open">
+    <button
+      type="button"
+      class="accordion__opener title w-100"
+      aria-expanded="true"
+      aria-controls="sect5"
+      id="accordion5id"
+    >
+      Pairs well with
+    </button>
+    <div
+      id="sect5"
+      class="accordion__slide"
+      role="region"
+      aria-labelledby="accordion5id"
+    >
+      <div class="accordion__block">
+        <div class="accordion__block-item mb-4 flex">
+          <a
+            href="#"
+            class="accordion__product-img mr-4 shrink-0"
+          >
+            {%
+              render 'image',
+              asset_img_url: true,
+              src: 'img-placeholder.png',
+              m: '90x',
+              crop: 'center'
+            %}
+          </a>
+          <div>
+            <div class="title mb-2">
+              <a
+                href="{{ product.url | within: collection }}"
+                class="no-underline hover:underline"
+              >
+                {{ product.title }}
+              </a>
+            </div>
+            <div class="product-price-large">
+              {% render "product-price", product: product %}
+            </div>
+          </div>
+        </div>
+        <div class="accordion__block-item mb-4 flex">
+          <a
+            href="#"
+            class="accordion__product-img mr-4 shrink-0"
+          >
+            {%
+              render 'image',
+              asset_img_url: true,
+              src: 'img-placeholder.png',
+              m: '90x',
+              crop: 'center'
+            %}
+          </a>
+          <div>
+            <div class="title mb-2">
+              <a
+                href="{{ product.url | within: collection }}"
+                class="no-underline hover:underline"
+              >
+                {{- product.title -}}
+              </a>
+            </div>
+            <div class="product-price-large">
+              {% render "product-price", product: product %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </li>
+</ul>

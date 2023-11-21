@@ -9,10 +9,6 @@
 
 .collection-item {
 
-  .collection-grid & {
-    position: relative;
-  }
-
   a {
     text-decoration: none;
   }
@@ -27,20 +23,15 @@
 
   .image-container {
     margin: 0 0 12px;
-    padding-top: 150.8%;
-    @include media ("≥tablet") {
-      padding-top: 125.6%;
-    }
+    padding-top: 100%;
 
-    .collection-grid & {
-      margin: 0;
-      padding-top: 170.67%;
+    .collection-scroll & {
+      padding-top: 150.8%;
       @include media ("≥tablet") {
-        margin: 0 0 12px;
-        padding-top: 100%;
+        padding-top: 125.6%;
       }
       @include media ("≥widescreen") {
-        padding-top: 125.6%;
+        padding-top: 100%;
       }
     }
   }
@@ -48,15 +39,9 @@
 
 .collection-item__text-box {
 
-  .collection-grid & {
-    @include media ("<tablet") {
-      position: absolute;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      z-index: 2;
-      padding: 20px 16px;
-      pointer-events: none;
+  > * {
+    &:last-child {
+      margin-bottom: 0;
     }
   }
 }

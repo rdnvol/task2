@@ -1,0 +1,234 @@
+{% liquid
+  layout none
+  assign current_variant = product.selected_or_first_available_variant
+  assign product_form_id = 'product-form-' | append: product.id
+%}
+<div
+  class="js-quick-card md:flex md:space-x-10"
+  data-handle="{{ product.handle }}"
+  data-section-id="{{ product.id }}"
+>
+  {% if current_variant.featured_image != blank %}
+    <div
+      class="mb-5 md:mb-0 md:w-6/12"
+      data-featured-image
+    >
+      {%
+        render 'image',
+        src: current_variant.featured_image.src,
+        m: '288x288',
+        src_d: current_variant.featured_image.src,
+        d: '573x573',
+        crop: 'center',
+        alt: current_variant.featured_image.featured_image.alt
+      %}
+    </div>
+  {% else %}
+    {{ 'image' | placeholder_svg_tag: "placeholder-svg" }}
+  {% endif %}
+  <div class="md:w-6/12">
+    {% if product.vendor != blank %}
+      <div class="body-small">{{ product.vendor }}</div>
+    {% endif %}
+    <div class="h5 mb-1 md:mb-2">
+      <a href="{{ product.url }}">{{ product.title }}</a>
+    </div>
+
+    <div class="product__price product-price-large mb-1 inline-flex items-center overflow-hidden md:mb-2">
+      <div
+        class="product__price__box flex flex-wrap items-center"
+        data-price-wrapper
+      >
+        {% if current_variant.compare_at_price > current_variant.price %}
+          <ins data-product-price>{{ current_variant.price | money }}</ins>
+          <span class="accessibility">{{ 'products.product.regular_price' | t }}</span>
+          <del data-compare-price>{{ current_variant.compare_at_price | money }}</del>
+        {% else %}
+          <div data-product-price>
+            {{ current_variant.price | money }}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+    <div
+      class="product-price-small mb-1 md:mb-2"
+      data-unit-price-wrapper
+    >
+      {% liquid
+        if current_variant.unit_price_measurement
+          echo current_variant.unit_price | money | append: ' / '
+          if current_variant.unit_price_measurement.reference_value != 1
+            echo current_variant.unit_price_measurement.reference_value | append: ' '
+          endif
+          echo current_variant.unit_price_measurement.reference_unit
+        endif
+      %}
+    </div>
+    {% if cart.taxes_included %}
+      <div class="body-medium base-secondary-text mb-4">{{ 'products.product.tax_included' | t }}</div>
+    {% endif %}
+    <div
+      id="variant-selects"
+      class="no-js-hidden"
+      data-url="{{ product.url }}"
+      data-section="{{ product.id }}"
+    >
+      {% unless product.has_only_default_variant %}
+        {% for option in product.options_with_values %}
+          <div class="mb-4">
+            <div class="mb-1 flex items-center justify-between">
+              <label
+                for="Option{{ option.position }}"
+                class="base-secondary-text"
+              >
+                {{ option.name }}
+              </label>
+            </div>
+            <div class="select-holder">
+              <select
+                id="Option{{ option.position }}"
+                name="options[{{ option.name | escape }}]"
+                form="{{ product_form_id }}"
+                class="product__select w-100"
+              >
+                {% for value in option.values %}
+                  <option
+                    value="{{ value | escape }}"
+                    {% if option.selected_value == value %}
+                      selected="selected"
+                    {% endif %}
+                  >
+                    {{ value }}
+                  </option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+        {% endfor %}
+      {% endunless %}
+      <script type="application/json">
+        {{ product.variants | json }}
+      </script>
+
+      <noscript class="product-form__noscript-wrapper-{{ product.id }}">
+        <div class="product-form__input{% if product.has_only_default_variant %} hidden{% endif %}">
+          <label
+            class="form__label"
+            for="Variants-{{ product.id }}"
+          >
+            {{- 'products.product.product_variants' | t -}}
+          </label>
+          <div class="select">
+            <select
+              name="id"
+              id="Variants-{{ product.id }}"
+              class="select__select"
+            >
+              {%- for variant in product.variants -%}
+                <option
+                  {% if variant == product.selected_or_first_available_variant %}
+                    selected="selected"
+                  {% endif %}
+                  {% if variant.available == false %}
+                    disabled
+                  {% endif %}
+                  value="{{ variant.id }}"
+                >
+                  {{ variant.title }}
+                  {%- if variant.available == false %}- {{ 'products.product.sold_out' | t }}{% endif %}
+                  - {{ variant.price | money | strip_html }}
+                </option>
+              {%- endfor -%}
+            </select>
+          </div>
+        </div>
+      </noscript>
+    </div>
+
+    <div class="mb-4">
+      <label
+        for="Quantity"
+        class="body-medium base-secondary-text mb-1 inline-block"
+      >
+        {{- 'products.product.quantity' | t -}}
+      </label>
+      <div class="jcf-number jcf-number--full-width flex items-center">
+        <button
+          class="jcf-btn-dec"
+          type="button"
+        >
+          <span class="visually-hidden">{{ 'products.product.quantity_decrease' | t }}</span>
+        </button>
+        <input
+          type="number"
+          id="Quantity"
+          class="w-100"
+          name="quantity"
+          value="1"
+          min="1"
+          aria-label="Quantity"
+          form="{{ product_form_id }}"
+        >
+        <button
+          class="jcf-btn-inc jcf-disabled"
+          type="button"
+        >
+          <span class="visually-hidden">{{ 'products.product.quantity_increase' | t }}</span>
+        </button>
+      </div>
+      <div class="product-form__error-message body-small pt-4"></div>
+    </div>
+
+    {% form 'product', product, id: product_form_id, data-product-form: '', data-product-handle: product.handle, data-enable-history-state: 'true', data-type: 'add-to-cart-form', data-test-id: "add-to-cart" %}
+      <input
+        id="product-id"
+        type="hidden"
+        name="id"
+        value="{{ product.selected_or_first_available_variant.id }}"
+        disabled
+      >
+      <div class="mb-4">
+        {% if current_variant.available %}
+          {%
+            render 'button',
+            element: 'button',
+            type: 'submit',
+            class: 'button--secondary w-100',
+            locales_text: 'products.product.add_to_cart',
+            data_attribute: 'data-submit-button',
+            name: 'add',
+            other: 'name="add"',
+          %}
+        {% else %}
+          {%
+            render 'button',
+            element: 'button',
+            type: 'submit',
+            class: 'button--secondary w-100 disabled',
+            locales_text: 'products.product.sold_out',
+            data_attribute: 'data-submit-button',
+            name: 'add',
+            other: 'name="add" disabled',
+          %}
+        {% endif %}
+      </div>
+
+      <div class="mb-4">
+        {{ form | payment_button }}
+      </div>
+    {% endform %}
+
+    <div class="pt-1">
+      <a
+        href="{{ product.url }}"
+        class="product__view-details inline-flex items-center"
+      >
+        {{ 'collections.quick_view.view_full_details' | t }}
+        {%- render 'icon' with 'arrow-right' -%}
+      </a>
+    </div>
+  </div>
+  <script type="application/json" id="product-json">
+    {% render 'product-json' %}
+  </script>
+</div>

@@ -4,6 +4,22 @@
   padding: 0 calc(#{$grid-gutter-width} / 2);
 }
 
+.logo {
+  max-width: $logo-width;
+  height: auto;
+  margin: 0 auto;
+
+  a {
+    display: block;
+    height: 100%;
+  }
+
+  img {
+    display: block;
+    width: 100%;
+  }
+}
+
 .giftcard {
 
   .button {
@@ -55,4 +71,14 @@
 input.gift-card__number {
   @extend %body-large;
   border: none;
+}
+
+.form__message {
+
+  .icon {
+    flex-shrink: 0;
+    width: 21px;
+    height: 21px;
+    margin-right: 8px;
+  }
 }

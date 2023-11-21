@@ -1,0 +1,38 @@
+{% if product.media.size > 0 %}
+  {% if current_variant.featured_media != null %}
+    {% assign featured_media = current_variant.featured_media %}
+
+    <div class="product__gallery-slider__item md:pb-4 lg:pr-4">
+      <div
+        class="product__gallery-slider__img"
+        data-position="{{ featured_media.position }}"
+      >
+        {%
+          render 'image',
+          src: featured_media,
+          m: '345x',
+          src_d: featured_media,
+          d: '673x',
+          alt: featured_media.alt,
+          lazyload: false,
+          fetchpriority: 'high'
+        %}
+      </div>
+    </div>
+  {% endif %}
+  {% liquid
+    for media in product.media
+      if media.id != current_variant.featured_media.id
+        if enable_lazyload
+          assign lazyload = true
+        else
+          assign lazyload = false
+        endif
+        render 'product-media', media: media, main: true, enable_lazyload: lazyload
+      endif
+
+    endfor
+  %}
+{% else %}
+  {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+{% endif %}

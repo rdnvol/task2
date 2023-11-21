@@ -100,6 +100,10 @@ export const cartSlice = createSlice({
       ...state,
       popupActive: true,
     }),
+    openDrawer: (state) => ({
+      ...state,
+      drawerActive: true,
+    }),
     addJustAdded: (state, { payload }) => ({
       ...state,
       justAdded: payload,
@@ -145,9 +149,9 @@ export const cartSlice = createSlice({
 
     builder.addCase(updateItem.fulfilled, (state, { payload }) => ({
       ...state,
-      cart: payload,
-      items: payload.items,
-      item_count: payload.item_count,
+      cart: payload || state.cart,
+      items: payload?.items || state.items,
+      item_count: payload?.item_count || state.item_count,
       loading: false,
     }));
 
@@ -159,13 +163,15 @@ export const cartSlice = createSlice({
       state.loading = false;
     });
 
-    builder.addCase(getCart.fulfilled, (state, { payload }) => ({
-      ...state,
-      cart: payload.cart,
-      items: payload.items,
-      loading: false,
-      item_count: payload.item_count,
-    }));
+    builder.addCase(getCart.fulfilled, (state, { payload }) => {
+      return {
+        ...state,
+        cart: payload,
+        items: payload?.items || state.items,
+        loading: false,
+        item_count: payload.item_count,
+      };
+    });
 
     builder.addCase(getCart.rejected, (state) => {
       state.loading = false;
@@ -173,5 +179,5 @@ export const cartSlice = createSlice({
   },
 });
 
-export const { closePopup, openPopup, addJustAdded } = cartSlice.actions;
+export const { closePopup, openPopup, openDrawer, addJustAdded } = cartSlice.actions;
 export const cartReducer = cartSlice.reducer;

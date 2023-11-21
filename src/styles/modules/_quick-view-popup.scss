@@ -1,0 +1,50 @@
+.fancybox-quick-view {
+
+  .fancybox__slide {
+    padding: 20px 16px;
+  }
+
+  .fancybox__content {
+    width: 100%;
+    padding: 20px 20px 40px;
+    color: $base-body-text;
+    @include media ("≥tablet") {
+      max-width: 1267px;
+    }
+    @include media ("≥desktop") {
+      padding: 40px;
+    }
+
+    > .carousel__button {
+      &.is-close {
+        top: 8px;
+        right: 8px;
+        width: 32px;
+        height: 32px;
+        padding: 7px;
+        color: $base-secondary-text;
+        background: $base-overlay-white;
+        border: 1px solid $base-border;
+        @include media ("≥desktop") {
+          top: 40px;
+          right: 40px;
+        }
+
+        svg {
+          filter: none;
+        }
+      }
+    }
+  }
+
+  .product__price__box {
+    margin-bottom: -8px;
+  }
+}
+
+.product__view-details {
+
+  .icon--arrow-right {
+    margin-left: 16px;
+  }
+}
